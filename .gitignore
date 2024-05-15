@@ -1,0 +1,29 @@
+# Ignore temporary files from Microsoft Word
+~$*.docx
+~$*.doc
+~$*.dotx
+~$*.dot
+~$*.rtf
+
+# Ignore temporary files from Microsoft Excel
+~$*.xlsx
+~$*.xls
+~$*.xltx
+~$*.xlt
+
+# Ignore temporary files from Microsoft PowerPoint
+~$*.pptx
+~$*.ppt
+~$*.potx
+~$*.pot
+
+# Ignore backup files
+*.bak
+
+# Ignore temp files
+*.tmp
+*.temp
+
+# Ignore other common temporary file types
+Thumbs.db
+.DS_Store
