@@ -1,0 +1,17 @@
+modi,R_OSAL_RCFG_MqIsEmpty,03_013,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_message.c/gs_inner_mq_mtx,r_osal_res_cfg_message.c/gsp_mq_array,,,,,,,,,,
+0,0,0,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mq_search_array,r_osal_rcfg_mq_search_array,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqIsEmpty,R_OSAL_OS_MqIsEmpty,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_message.c/gs_inner_mq_mtx,r_osal_res_cfg_message.c/gsp_mq_array,@handle,@p_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mq_search_array@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqIsEmpty@AMIN_return,R_OSAL_RCFG_MqIsEmpty@@,;
+,g_osal_os_mutex_t[0],1,g_st_osal_mq_control_t[0],g_bool,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_osal_os_mutex_t[0],1,g_st_osal_mq_control_t[0],g_bool,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() returns OSAL_RETURN_FAIL
+,g_osal_os_mutex_t[0],0,g_st_osal_mq_control_t[0],g_bool,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;gsp_mq_array is NULL
+,g_osal_os_mutex_t[0],1,g_st_osal_mq_control_t[0],g_bool,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;r_osal_rcfg_mq_search_array() returns OSAL_RETURN_BUSY (Unlock is OK)
+,g_osal_os_mutex_t[0],1,g_st_osal_mq_control_t[0],g_bool,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;r_osal_rcfg_mq_search_array() returns OSAL_RETURN_BUSY (Unlock is FAIL)
+,g_osal_os_mutex_t[0],1,g_st_osal_mq_control_t[0],g_bool,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() returns OSAL_RETURN_FAIL
+,g_osal_os_mutex_t[0],1,g_st_osal_mq_control_t[0],g_bool,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MqIsEmpty() returns OSAL_RETURN_FAIL

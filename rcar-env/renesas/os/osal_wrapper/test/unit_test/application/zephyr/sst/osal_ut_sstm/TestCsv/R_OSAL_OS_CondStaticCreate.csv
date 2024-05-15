@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_CondStaticCreate,03_201,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,
+#COMMENT,$@cond_attr,$@p_cond,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AMIN_return,R_OSAL_OS_CondStaticCreate@@,;,,,,,
+,1,1,0,g_os_cond,0,OSAL_RETURN_OK,;Normal operation ,,,,,
+,1,0,0,g_os_cond,0,OSAL_RETURN_FAIL,;p_cond is NULL.,,,,,
+,1,1,0,0,0,OSAL_RETURN_MEM,;malloc() return NULL.,,,,,
+,1,1,0,g_os_cond,22,OSAL_RETURN_FAIL,;pthread_cond_init() return non-EOK.,,,,,

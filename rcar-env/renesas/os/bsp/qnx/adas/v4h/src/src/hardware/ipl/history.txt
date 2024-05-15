@@ -1,0 +1,21 @@
+    The IPL for R-Car Gen4 boards
+
+    CREATED   : 11.30.2021
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            11.30.2021 : Ver.0.1
+            - Create new version for S4:
+              Support booting image from eMMC
+              Support booting image from UART
+              Support booting image from QSPI
+            06.30.2022 : Ver.0.2
+            - Support for V4H:
+              Support booting image from eMMC
+              Support booting image from UART
+              Support booting image from QSPI
+            05.30.2023 : Ver.0.3
+            - Support HS200 for eMMC

@@ -1,0 +1,5 @@
+modi,r_osal_os_io_get_axi_id_list_for_device_hdl,15_153,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_param,r_osal_os_io_get_axi_id_list_for_device_hdl@@,;,,,,,,,,,
+,g_st_osal_os_io_get_axi_id_list_for_device_hdl_t,OSAL_RETURN_OK,;Normal operation,,,,,,,,,

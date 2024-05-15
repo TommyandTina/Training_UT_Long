@@ -1,0 +1,13 @@
+CPG resource manager driver for the Renesas R-Car platform
+
+accessed by various applications/other drivers.
+
+Syntax
+%C [options] &
+
+Options:
+	-d dllname  driver to load
+	-v verbose  (default is none)
+
+Example:
+rcar-cpg-mgr -d rcar-cpg -vvvv

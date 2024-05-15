@@ -1,0 +1,13 @@
+modi,R_OSAL_RCFG_ThreadCheckBusy,01_005,6,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_inner_thread_mtx,r_osal_res_cfg_thread.c/gsp_thread_array,,,,,,,,,,
+0,0,0,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_inner_thread_mtx,r_osal_res_cfg_thread.c/gsp_thread_array,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_RCFG_ThreadCheckBusy@@,;,,,,
+,g_st_osal_os_mutex_t[0],0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,
+,g_st_osal_os_mutex_t[0],0,0,0,OSAL_RETURN_HANDLE,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_HANDLE,,,,
+,g_st_osal_os_mutex_t[0],0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL,,,,
+,g_st_osal_os_mutex_t[0],1,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;gsp_thread_array is not NULL,,,,
+,g_st_osal_os_mutex_t[0],1,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_BUSY,;gsp_thread_array is not NULL and R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL,,,,

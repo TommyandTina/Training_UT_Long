@@ -1,0 +1,12 @@
+modi,R_PMA_BSP_WRAP_SetCpgON,05_003,10,3,,,,CPP,,,,0,,
+#InitWheneverCall,r_pma_bsp_wrapper.c/cpg_idmax,r_pma_bsp_wrapper.c/clkhwfuncs.mstp_enable,r_pma_bsp_wrapper.c/clkhwfuncs.mstp_is_enabled,$g_pma_bsp_wrap_cpg_id_tbl,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[0],r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[318],,,,,,,,
+0,0,0,0,0,0,0,,,,,,,,
+%,AMSTB_dummy_mstp_enable,dummy_mstp_enable,,,,,,,,,,,,
+%,AMSTB_dummy_mstp_is_enabled,dummy_mstp_is_enabled,,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode,R_PMA_BSP_WRAP_Exchange_ErrCode,,,,,,,,,,,,
+#COMMENT,@modId,r_pma_bsp_wrapper.c/cpg_idmax,r_pma_bsp_wrapper.c/clkhwfuncs.mstp_enable,r_pma_bsp_wrapper.c/clkhwfuncs.mstp_is_enabled,$g_pma_bsp_wrap_cpg_id_tbl,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[0],r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[318],AMSTB_SrcFile.c/AMSTB_dummy_mstp_enable@AMIN_return,AMSTB_SrcFile.c/AMSTB_dummy_mstp_is_enabled@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode@AMIN_return,AMSTB_SrcFile.c/AMSTB_dummy_mstp_enable@AMOUT_mod_id,AMSTB_SrcFile.c/AMSTB_dummy_mstp_is_enabled@AMOUT_mod_id,R_PMA_BSP_WRAP_SetCpgON@@,;
+,R_PMA_CPG_DOMAIN_ID_V4H_NUM,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_enable,dummy_mstp_is_enabled,2,0,318,,,,,,R_PMA_INVALID_ARGUMENT,;modId is R_PMA_CPG_DOMAIN_ID_V4H_NUM
+,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_enable,dummy_mstp_is_enabled,2,0,318,CPG_RET_ERROR,,R_PMA_NG,0,,R_PMA_NG,;mstp_enable() returns CPG_RET_ERROR
+,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_enable,dummy_mstp_is_enabled,2,0,318,CPG_RET_OK,CPG_RET_ERROR,R_PMA_NG,0,0,R_PMA_NG,;mstp_is_enabled() returns CPG_RET_ERROR
+,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_enable,dummy_mstp_is_enabled,2,0,318,CPG_RET_OK,R_PMA_CPG_CLOCK_ON,,0,0,R_PMA_OK,;mstp_is_enabled() returns 1(ON)
+,R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_GLOBAL,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_enable,dummy_mstp_is_enabled,2,0,318,CPG_RET_OK,R_PMA_CPG_CLOCK_OFF,,318,318,R_PMA_NG,;mstp_is_enabled() returns 0(OFF)

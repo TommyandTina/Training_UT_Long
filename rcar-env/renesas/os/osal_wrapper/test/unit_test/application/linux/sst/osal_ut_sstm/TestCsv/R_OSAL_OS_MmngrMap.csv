@@ -1,0 +1,19 @@
+modi,R_OSAL_OS_MmngrMap,17_101,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,g_osal_memory_region_info_list.p_info[0].range,g_osal_memory_region_info_list.p_info[0].offset,AMSTB_SrcFile.c/g_mem_info.phys_addr,,,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_GetSysPageSize,R_OSAL_OS_GetSysPageSize,,,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,,,,,
+%,AMSTB_mmap,mmap,,,,,,,,,,,,,,
+#COMMENT,g_osal_memory_region_info_list.p_info[0].range,g_osal_memory_region_info_list.p_info[0].offset,AMSTB_SrcFile.c/g_mem_info.phys_addr,@mngr_control,@p_usr_config,@p_usr_config[0].memory_limit,@region_idx,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_GetSysPageSize@AMIN_return,AMSTB_SrcFile.c/AMSTB_ioctl@AM_count,AMSTB_SrcFile.c/AMSTB_ioctl@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_ioctl@AMIN_p_param[0],AMSTB_SrcFile.c/AMSTB_mmap@AMIN_return,R_OSAL_OS_MmngrMap@@,;
+,0,536870912,1,g_st_osal_mem_mmngr_ptr_self[0],g_st_osal_mmngr_config,0xFFFFFFFFFFFFFFFE,0,0,0,4096,0,0,g_mem_info,1,OSAL_RETURN_OK,;Normal operation (memory_limit is UNLIMITED)
+,0,536870912,1,g_st_osal_mem_mmngr_ptr_self[0],g_st_osal_mmngr_config,1,0,0,0,4096,0,0,g_mem_info,1,OSAL_RETURN_OK,;Normal operation (memory_limit is not UNLIMITED)
+,0,536870912,1,0,g_st_osal_mmngr_config,0xFFFFFFFFFFFFFFFE,0,0,0,4096,0,0,g_mem_info,1,OSAL_RETURN_FAIL,;mngr_control is NULL
+,0,536870912,1,g_st_osal_mem_mmngr_ptr_self[0],0,0xFFFFFFFFFFFFFFFE,0,0,0,4096,0,0,g_mem_info,1,OSAL_RETURN_FAIL,;p_usr_config is NULL
+,0,536870912,1,g_st_osal_mem_mmngr_ptr_self[0],g_st_osal_mmngr_config,0xFFFFFFFFFFFFFFFE,0,0,-1,4096,0,0,g_mem_info,1,OSAL_RETURN_DEV,;R_OSAL_OS_Open returns -1
+,0,536870912,1,g_st_osal_mem_mmngr_ptr_self[0],g_st_osal_mmngr_config,0xFFFFFFFFFFFFFFFE,0,0,0,4096,0,-1,g_mem_info,1,OSAL_RETURN_DEV,;ioctl returns -1
+,0,536870912,0,g_st_osal_mem_mmngr_ptr_self[0],g_st_osal_mmngr_config,0xFFFFFFFFFFFFFFFE,0,0,0,4096,0,0,g_mem_info,1,OSAL_RETURN_DEV,;ioctl returns NULL
+,0,536870912,1,g_st_osal_mem_mmngr_ptr_self[0],g_st_osal_mmngr_config,0xFFFFFFFFFFFFFFFE,0,0,0,4096,0,0,g_mem_info,-1,OSAL_RETURN_DEV,;mmap returns MAP_FAILED

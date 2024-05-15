@@ -1,0 +1,124 @@
+%C[Options] *
+/*
+options:
+-display=[int]   Sets the display id
+-pipeline=[int]  Sets the wfd pipeline id
+-device=[int]    Sets the device index. 
+-source=[int]  Sets the source index
+-bsize=[width]x[height] Sets the buffer size. Need to determine the size of video source
+    width - the horizontal resolution of the Video capture buffer. 
+    height - the vertical resolution of the Video capture buffer.
+-format=[str]  Sets the buffer format. Default format is uyvy
+-size=[width]x[height]  Sets the size of the window
+-csize=[width]x[height] Sets the size for cropping
+-cpos=[x],[y]           Sets the position for cropping. The top and left coordinates of the clipped area. 
+
+*/
+
+- For D3 DRAAK Board
+    # Testing VIN on HDMI monitor
+        + HDMI input. On main board: Turn ON SW49, SW50, SW51, SW52 and SW60. Turn OFF SW53 and SW54.
+        camera_ctrl -display=1 -pipeline=2 -device=0 -bsize=1280x720 -size=1280x720
+        + CVBS input. On main board: Turn OFF SW49, SW50, SW51, SW52. Turn ON SW53 and SW54.
+        camera_ctrl -display=1 -pipeline=2 -device=1 -bsize=1280x720 -size=1280x720
+
+- For E3 Ebisu Board
+    # Testing VIN on HDMI. On main board: Turn ON SW44, SW47.
+    # Testing VIN on LVDS0 monitor. On main board: Turn ON SW47. Turn OFF SW44.
+        + HDMI input
+        camera_ctrl -display=1 -pipeline=2 -source=0 -bsize=1920x1080 -size=1280x720
+        + CVBS input
+        camera_ctrl -display=1 -pipeline=2 -source=1 -bsize=1280x720 -size=1280x720
+
+    # Testing VIN on VGA & LVDS1 monitor. On main board: Turn OFF SW47.
+        + HDMI input
+        camera_ctrl -display=2 -pipeline=6 -source=0 -bsize=1920x1080 -size=1280x720
+        + CVBS input
+        camera_ctrl -display=2 -pipeline=6 -source=1 -bsize=1280x720 -size=1280x720
+
+- For H3 Salvator Board
+    # Testing VIN on HDMI0 monitor
+        + HDMI input
+        camera_ctrl -display=2 -pipeline=6 -source=0 -bsize=1920x1080 -size=1920x1080
+        + CVBS input
+        camera_ctrl -display=2 -pipeline=6 -source=1 -bsize=1920x1080 -size=1920x1080
+
+    # Testing VIN on HDMI1 monitor
+        + HDMI input
+        camera_ctrl -display=3 -pipeline=10 -source=0 -bsize=1920x1080 -size=1920x1080
+        + CVBS input
+        camera_ctrl -display=3 -pipeline=10 -source=1 -bsize=1920x1080 -size=1920x1080
+
+    # Testing VIN on LVDS monitor
+        + HDMI input
+        camera_ctrl -display=1 -pipeline=2 -source=0 -bsize=1280x800 -size=1280x800
+        + CVBS input
+        camera_ctrl -display=1 -pipeline=2 -source=1 -bsize=1280x800 -size=1280x800
+
+    # Testing VIN on VGA monitor
+        + HDMI input
+        camera_ctrl -display=4 -pipeline=14 -source=0 -bsize=1280x720 -size=1280x720
+        + CVBS input
+        camera_ctrl -display=4 -pipeline=14 -source=1 -bsize=1280x720 -size=1280x720
+
+- For M3 Salvator Board
+    # Testing VIN on HDMI0 monitor
+        + HDMI input
+        camera_ctrl -display=2 -pipeline=6 -source=0 -bsize=1920x1080 -size=1920x1080
+        + CVBS input
+        camera_ctrl -display=2 -pipeline=6 -source=1 -bsize=1920x1080 -size=1920x1080
+
+    # Testing VIN on LVDS monitor
+        + HDMI input
+        camera_ctrl -display=1 -pipeline=2 -source=0 -bsize=1280x800 -size=1280x800
+        + CVBS input
+        camera_ctrl -display=1 -pipeline=2 -source=1 -bsize=1280x800 -size=1280x800
+
+    # Testing VIN on VGA monitor
+        + HDMI input
+        camera_ctrl -display=3 -pipeline=10 -source=0 -bsize=1280x720 -size=1280x720
+        + CVBS input
+        camera_ctrl -display=3 -pipeline=10 -source=1 -bsize=1280x720 -size=1280x720
+
+- For V3M Starter Kit Board
+    # Testing VIN on HDMI (CN2) monitor
+        camera_ctrl -display=1 -pipeline=2 -size=1280x720 -bsize=1280x1080
+
+- For V3M Eagle Board
+    # Testing VIN on HDMI (CN5) monitor
+    # ADV7482. Set SW18 on Eagle board to OFF position.
+        + HDMI input (1920x1080)
+        camera_ctrl -display=1 -pipeline=2 -bsize=1920x1080 -size=1920x1080 -device=0 -source=0
+        + CVBS input (720x480)
+        camera_ctrl -display=1 -pipeline=2 -bsize=720x480 -size=720x480 -device=0 -source=1
+    # MAX9286. On main board: Set SW18 to ON position and set pins 5, 6, 8 of SW35 to ON position.
+        camera_ctrl -display=1 -pipeline=2 -size=1280x720 -bsize=1280x1080 -device=1
+    # ADV7612. Set pins 5, 6, and 8 of SW35 on Eagle board to OFF position.
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1920x1080 -device=2 -source=0
+
+- For V3H Condor Board
+    # MAX9286 (U20) CN6, CN7, CN8, CN9
+        camera_ctrl -display=1 -pipeline=2 -size=1280x720 -bsize=1280x1080 -source=0
+    # MAX9286 (U178) CN27, CN28, CN29, CN30
+        camera_ctrl -display=1 -pipeline=2 -size=1280x720 -bsize=1280x1080 -source=1
+
+- For V3U Falcon Board
+    # MAX96712 (U7) CN4
+        + Color patern test (Only support for CSI channel 0)
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -source=0 
+        + Camera test (Support CSI channel 0 and CSI channel 1)
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1280x1080 -source=0
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1280x1080 -source=1
+    # MAX96712 (U10) CN5
+        + Color patern test (CSI channel 2)
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -source=2 
+        + Camera test (CSI channel 2)
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1280x1080 -source=2
+    # MAX96712 (U13) CN6
+        + Color patern test (CSI channel 3)
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -source=3 
+        + Camera test (CSI channel 3)
+        camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1280x1080 -source=3
+
+    # If including FCPR test, replace 'camera_ctrl' by 'camera_ctrl-fcpr_test'
+    # Please note that FCPR tested by VIN and shown by WFD works correctly with one camera input only

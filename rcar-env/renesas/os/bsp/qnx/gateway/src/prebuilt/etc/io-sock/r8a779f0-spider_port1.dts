@@ -1,0 +1,59 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Device Tree Source for the White Hawk CPU boards with R-Car S4
+ *
+ * Copyright (C) 2021 Renesas Electronics Corp.
+ */
+
+/dts-v1/;
+/* Reserved 1MB memory for boot loader secure area */
+/memreserve/ 0x50000000 0x00100000;
+/ {
+	compatible = "renesas,r8a779f0";
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	soc: soc {
+		compatible = "simple-bus";
+		interrupt-parent = <&gic>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+		
+		gic: interrupt-controller@f1000000 {
+			compatible = "arm,gic-v3";
+			#interrupt-cells = <3>;
+			#address-cells = <0>;
+			interrupt-controller;
+			reg = <0x0 0xf1000000 0 0x20000>,<0x0 0xf1060000 0 0x110000>;
+			interrupts = <1 9 (65280| 4)>;
+		};
+
+		tsn0: ethernet@e68c0000 {
+			compatible = "renesas,etherswitch-r8a779f0","renesas,etherswitch";
+			reg = <0 0xe68c0000 0 0x00020000>,<0 0xe6444000 0 0x2800>;
+			reg-names = "iobase", "serdes";
+			interrupts = <0 280 4>, <0 328 4>;
+			interrupt-names = "gwca0_rxtx0", "gwca0_ts0";
+			phy-mode = "rgmii";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+	};
+};
+
+/ {
+	model = "Renesas Spider CPU boards based on r8a779f0";
+	compatible = "renesas,spider-cpu", "renesas,r8a779f0";
+	aliases {
+		ethernet0 = &tsn0;
+	};
+};
+
+&tsn0 {
+	status = "okay";
+    gwca-index = "0";
+    etha-index = "1";
+    mac-address = [ 2E 09 0A 08 97 D2 ];
+};

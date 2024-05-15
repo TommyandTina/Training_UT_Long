@@ -1,0 +1,26 @@
+modi,R_OSAL_RCFG_CondCreate,02_012,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_inner_cond_mtx,r_osal_res_cfg_threadsync.c/gsp_cond_array,r_osal_res_cfg_threadsync.c/gs_cond_array_size,,,,,,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_cond_search_array,r_osal_rcfg_cond_search_array,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_cond_search_array,r_osal_rcfg_cond_search_array,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_inner_cond_mtx,r_osal_res_cfg_threadsync.c/gsp_cond_array,r_osal_res_cfg_threadsync.c/gs_cond_array_size,@cond_id,@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_cond_search_array@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_cond_search_array@AMIN_index,AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_RCFG_CondCreate@@,;
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_osal_os_mutex_t[0],0,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,0,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;r_osal_rcfg_cond_search_array() return OSAL_RETURN_BUSY
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_MEM,;realloc return NULL
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,2,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_cond_handle_t,0,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc return NULL
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_CondCreate() return OSAL_RETURN_FAIL
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_osal_os_mutex_t[0],g_osal_cond_handle_t,1,0,g_osal_cond_handle_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_cond_handle_t,0,g_st_osal_cond_control_t[0],0,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_CondCreate() and R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL

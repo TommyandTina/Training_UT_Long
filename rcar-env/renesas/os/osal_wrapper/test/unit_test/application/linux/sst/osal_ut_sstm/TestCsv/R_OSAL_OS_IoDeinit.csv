@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_IoDeinit,15_102,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_os_io.c/gsp_device_list,r_osal_os_io.c/gsp_device_list[0].fd,r_osal_os_io.c/gsp_device_list[1].fd,r_osal_os_io.c/gsp_io_axi_bus_name_list,r_osal_os_io.c/gs_axi_bus_name_info,r_osal_os_io.c/gs_axi_bus_name_info_array_size,r_osal_os_io.c/gs_io_axi_bus_name_list_len,,,,,
+0,0,0,0,0,0,0,0,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,r_osal_os_io.c/gsp_device_list,r_osal_os_io.c/gsp_device_list[0].fd,r_osal_os_io.c/gsp_device_list[1].fd,r_osal_os_io.c/gsp_io_axi_bus_name_list,r_osal_os_io.c/gs_axi_bus_name_info,r_osal_os_io.c/gs_axi_bus_name_info_array_size,r_osal_os_io.c/gs_io_axi_bus_name_list_len,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_OS_IoDeinit@@,;
+,g_st_osal_device_list_t,0,-1,str,g_st_osal_axi_bus_name_info_t,2,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,0,0,-1,str,g_st_osal_axi_bus_name_info_t,2,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation (gsp_device_list is NULL)
+,g_st_osal_device_list_t,0,-1,str,0,2,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation (gs_axi_bus_name_infois NULL)
+,g_st_osal_device_list_t,0,-1,str,g_st_osal_axi_bus_name_info_t,2,0,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Close returns OSAL_RETURN_FAIL

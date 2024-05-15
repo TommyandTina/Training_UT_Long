@@ -1,0 +1,7 @@
+modi,r_osal_os_interrupt_cleanup,14_111,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,@p_mutex,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],g_dummy,;,,,,,,,
+,0,0,OSAL_RETURN_OK,-,;Normal operation,,,,,,,

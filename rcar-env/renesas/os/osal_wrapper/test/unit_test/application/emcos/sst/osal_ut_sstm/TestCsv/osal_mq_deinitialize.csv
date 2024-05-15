@@ -1,0 +1,33 @@
+modi,osal_mq_deinitialize,04_013,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetMqInfo,R_OSAL_RCFG_GetMqInfo,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfMq,R_OSAL_RCFG_GetNumOfMq,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_MsSleep,R_OSAL_Internal_MsSleep,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMqInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfMq@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_MsSleep@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMqInfo@AM_count,g_st_osal_queue[0].p_buffer,g_st_osal_mq_config.max_num_msg,osal_mq_deinitialize@@,;
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,2,gp_void,2,OSAL_RETURN_OK,;Normal operation
+,1,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,2,gp_void,2,OSAL_RETURN_OK,;R_OSAL_RCFG_GetNumOfMq returns 0.
+,1,OSAL_RETURN_FAIL,2,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,2,gp_void,2,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetMqInfo() return OSAL_RETURN_FAIL
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,1,gp_void,2,OSAL_RETURN_FAIL,;The aquired mq_control is 0
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,3,gp_void,2,OSAL_RETURN_FAIL,;The aquired mq_control->usr_config is 0
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,2,gp_void,2,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,-1,0,0,0,OSAL_RETURN_OK,0,0,0,2,gp_void,2,OSAL_RETURN_FAIL,;pthread_cond_destroy() return non-zero (send_cond)
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,-1,0,0,OSAL_RETURN_OK,0,0,0,2,gp_void,2,OSAL_RETURN_FAIL,;pthread_cond_destroy() return non-zero (recieve_cond)
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,4,gp_void,2,OSAL_RETURN_OK,;mq_control->queue is NULL
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,2,gp_void,0,OSAL_RETURN_OK,;handle->usr_config->config.max_num_msg less than buffer count
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,2,0,2,OSAL_RETURN_OK,;mq_control->queue[buffer_count].p_buffer is NULL
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,-1,OSAL_RETURN_OK,0,0,0,2,gp_void,2,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,-1,0,2,gp_void,2,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,-1,-1,2,gp_void,2,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero (in while)
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,16,16,2,gp_void,2,OSAL_RETURN_FAIL,;waiting_time more than OSAL_MUTEX_DESTROY_TIMEOUT
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,0,16,0,2,gp_void,2,OSAL_RETURN_OK,;pthread_mutex_destroy() return zero (in while)

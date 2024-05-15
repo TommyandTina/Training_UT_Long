@@ -1,0 +1,23 @@
+R-Car I2C A Manager
+
+%C [Generic options] [options]
+
+e.g. i2c-rcar-A -I0 -v -d --u0
+
+options:
+-p addr             port address
+-i irq              IRQ
+-v                  Verbose level (Default: 0)
+-d                  Enable DMA transfer
+-s                  Enable SMMU
+-D                  Enable DMA transfer using dma channel info (Colon seperated): rx_reqid:tx_req_id:chan_min:chan_max
+-m                  Specify memory type for DMA transfer
+
+Generic options:
+--b bus_speed       Default bus speed. (Default: 100000)
+--m max_msg_len     Minimum length of resmgr receive buffer.
+                    (Default: 128 bytes)
+--n nparts          Minimum number of iov_t's in resmgr context.
+                    (Default: 2)
+--u unit            Unit number. Number to append to device name
+                    prefix (/dev/i2c). (Default: 0)

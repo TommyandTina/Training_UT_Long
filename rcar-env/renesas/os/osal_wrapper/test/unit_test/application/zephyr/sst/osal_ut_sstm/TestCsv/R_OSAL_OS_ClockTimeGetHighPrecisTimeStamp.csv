@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,05_102,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_clock_gettime,clock_gettime,,,,,,,,,,
+%,AMSTB_clock_gettime,clock_gettime,,,,,,,,,,
+#COMMENT,$@p_time_stamp,AMSTB_SrcFile.c/AMSTB_clock_gettime@AM_count,AMSTB_SrcFile.c/AMSTB_clock_gettime@AMIN_return[0],AMSTB_SrcFile.c/g_os_time.tv_nsec,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp@@,;,,,,,,
+,1,0,0,1,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,0,0,1,OSAL_RETURN_FAIL,;p_time_stamp is NULL.,,,,,,
+,1,0,-1,1,OSAL_RETURN_FAIL,;clock_gettime() return non-0.,,,,,,
+,1,0,0,1000000000,OSAL_RETURN_FAIL,;time_stamp.tv_nsec is greater than OSAL_MAX_NSEC.,,,,,,

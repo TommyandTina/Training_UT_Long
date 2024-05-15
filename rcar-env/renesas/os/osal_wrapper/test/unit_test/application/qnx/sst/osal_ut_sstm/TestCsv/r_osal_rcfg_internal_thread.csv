@@ -1,0 +1,32 @@
+modi,r_osal_rcfg_internal_thread,02_012,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondTimedWait,R_OSAL_OS_CondTimedWait,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondSignal,R_OSAL_OS_CondSignal,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadSetCpuAffinity,R_OSAL_OS_ThreadSetCpuAffinity,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadSetTaskName,R_OSAL_OS_ThreadSetTaskName,,,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,@p_arg,g_st_osal_thread_control[0].func,g_st_osal_thread_control[0].active,g_st_osal_thread_control[0].parent_thread,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondTimedWait@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondSignal@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadSetCpuAffinity@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadSetTaskName@AMIN_return,g_dummy,;
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;Normal operation
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,";R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+(before R_OSAL_OS_CondTimedWait)"
+,1,g_st_osal_thread_control,osal_thread_func_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;p_control->active is not true.
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;R_OSAL_OS_CondTimedWait() return non-zero
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,";R_OSAL_OS_MutexUnlock() return non-zero
+(after R_OSAL_OS_CondTimedWait)"
+,1,g_st_osal_thread_control,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;no exeute user function
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,";R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+(before R_OSAL_OS_CondSignal)"
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;p_control->parent_thread is false
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;R_OSAL_OS_CondSignal() return non-zero
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,-,";R_OSAL_OS_MutexUnlock() return non-zero
+(after R_OSAL_OS_CondSignal)"
+,1,0,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;The p_arg is NULL.
+,0,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,-,;gs_osal_thread_is_initialized_enu is not OSAL_MANAGER_STATE_INITIALIZE
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,-,;R_OSAL_OS_ThreadSetCpuAffinity return non-OSAL_RETURN_OK
+,1,g_st_osal_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,-,;R_OSAL_OS_ThreadSetTaskName return non-OSAL_RETURN_OK

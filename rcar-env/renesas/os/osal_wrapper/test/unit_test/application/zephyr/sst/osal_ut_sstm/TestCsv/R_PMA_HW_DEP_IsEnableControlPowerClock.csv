@@ -1,0 +1,9 @@
+modi,R_PMA_HW_DEP_IsEnableControlPowerClock,04_042,6,2,,,,CPP,,,,0
+#InitWheneverCall,g_pma_max_hwa_id_num,$r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[0].sysc_id,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[0].cpg_id,,,,,,,,
+0,0,0,0,0,,,,,,,,
+#COMMENT,@targetHwaId,$@isEnable,g_pma_max_hwa_id_num,$r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[0].sysc_id,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[0].cpg_id,*@isEnable,R_PMA_HW_DEP_IsEnableControlPowerClock@@,;,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_HWA_ID_NUM,1,R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,1,R_PMA_OK,;both SYSC and CPG is enable,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_HWA_ID_NUM,1,R_PMA_SYSC_DOMAIN_ID_NONE,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,1,R_PMA_OK,;only CPG is enable,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_HWA_ID_NUM,1,R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0,R_PMA_CPG_DOMAIN_ID_NONE,1,R_PMA_OK,;only SYSC is enable,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_HWA_ID_NUM,1,R_PMA_SYSC_DOMAIN_ID_NONE,R_PMA_CPG_DOMAIN_ID_NONE,0,R_PMA_OK,;both SYSC and CPG is disable,,,
+,R_PMA_HWA_ID_NUM,1,R_PMA_HWA_ID_NUM,1,R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,0,R_PMA_INVALID_ARGUMENT,;argument is invalid,,,

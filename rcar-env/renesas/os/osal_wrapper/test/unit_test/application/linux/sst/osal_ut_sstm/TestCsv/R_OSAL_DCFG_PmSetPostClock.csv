@@ -1,0 +1,21 @@
+modi,R_OSAL_DCFG_PmSetPostClock,07_015,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_PmSetPostClock,R_OSAL_OS_PmSetPostClock,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+#COMMENT,@device,@device[0].handle_id,@clock_enable,@clock_divider,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_PmSetPostClock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_DCFG_PmSetPostClock@@,;
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_TIME,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_TIME
+,g_st_osal_device_control_t[0],OSAL_INVALID_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is OSAL_INVALID_HANDLE_ID
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,";dev_id is not ""fba"" and ""fbc"""
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_PmSetPostClock() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,true,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_PmSetPostClock() return OSAL_RETURN_FAIL and R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL

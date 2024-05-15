@@ -1,0 +1,25 @@
+modi,R_OSAL_OS_MmngrMap,09_101,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,$g_osal_memory_region_info_list.p_info,&g_osal_memory_region_info_list.p_info[0].name,g_osal_memory_region_info_list.p_info[0].range,g_osal_memory_region_info_list.p_info[0].offset,,,,,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,,,,
+%,AMSTB_sysconf,sysconf,,,,,,,,,,,,,,,
+%,AMSTB_posix_typed_mem_open,posix_typed_mem_open,,,,,,,,,,,,,,,
+%,AMSTB_mmap64,mmap64,,,,,,,,,,,,,,,
+%,AMSTB_mlock,mlock,,,,,,,,,,,,,,,
+%,AMSTB_mem_offset64,mem_offset64,,,,,,,,,,,,,,,
+%,AMSTB_munlock,munlock,,,,,,,,,,,,,,,
+%,AMSTB_close,close,,,,,,,,,,,,,,,
+#COMMENT,$g_osal_memory_region_info_list.p_info,&g_osal_memory_region_info_list.p_info[0].name,g_osal_memory_region_info_list.p_info[0].range,g_osal_memory_region_info_list.p_info[0].offset,$@mngr_control,$@p_usr_config,@p_usr_config[0].memory_limit,@region_idx,AMSTB_SrcFile.c/AMSTB_sysconf@AMIN_return,AMSTB_SrcFile.c/AMSTB_posix_typed_mem_open@AMIN_return,AMSTB_SrcFile.c/AMSTB_mmap64@AMIN_return,AMSTB_SrcFile.c/AMSTB_mlock@AMIN_return,AMSTB_SrcFile.c/AMSTB_mem_offset64@AMIN_return,AMSTB_SrcFile.c/AMSTB_munlock@AMIN_return,AMSTB_SrcFile.c/AMSTB_close@AMIN_return,R_OSAL_OS_MmngrMap@@,;
+,1,'sysram&below4G',4096,4096,1,1,4096,0,4096,1,1,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,1,'sysram&below4G',4096,4096,1,1,0xFFFFFFFFFFFFFFFE,0,4096,1,1,0,0,0,0,OSAL_RETURN_OK,;Normal operation (p_usr_config->memory_limit is OSAL_MEMORY_MANAGER_CFG_UNLIMITED.)
+,1,'',4096,0,1,1,4096,0,4096,1,1,0,0,0,0,OSAL_RETURN_OK,;Normal operation (p_info->name[0] is '\0' and p_info->offset is 0.)
+,1,'',4096,4096,1,1,4096,0,4096,1,1,0,0,0,0,OSAL_RETURN_OK,;Normal operation (p_info->name[0] is '\0' and p_info->offset is non-0.)
+,1,'sysram&below4G',4096,4096,1,1,4096,0,4096,-1,1,0,0,0,0,OSAL_RETURN_DEV,;posix_typed_mem_open() return -1.
+,1,'sysram&below4G',4096,4096,1,1,4096,0,4096,1,-1,0,0,0,0,OSAL_RETURN_MEM,;mmap64() return MAP_FAILED.
+,1,'',4096,4096,1,1,4096,0,4096,1,-1,0,0,0,0,OSAL_RETURN_MEM,;mmap64() return MAP_FAILED. (NOFD)
+,1,'sysram&below4G',4096,4096,1,1,4096,0,4096,1,1,-1,0,0,0,OSAL_RETURN_FAIL,;mlock() return non-0.
+,1,'',4096,4096,1,1,4096,0,4096,1,1,-1,0,0,0,OSAL_RETURN_FAIL,;mlock() return non-0. (NOFD)
+,1,'sysram&below4G',4096,4096,1,1,4096,0,4096,1,1,0,-1,0,0,OSAL_RETURN_FAIL,;mem_offset64() return non-0.
+,1,'',4096,4096,1,1,4096,0,4096,1,1,0,-1,0,0,OSAL_RETURN_FAIL,;mem_offset64() return non-0. (NOFD)
+,1,'sysram&below4G',4096,4096,1,1,4096,0,4096,1,1,0,0,-1,0,OSAL_RETURN_FAIL,;munlock() return non-0.
+,1,'',4096,4096,1,1,4096,0,4096,1,1,0,0,-1,0,OSAL_RETURN_FAIL,;munlock() return non-0. (NOFD)
+,1,'sysram&below4G',4096,4096,1,1,4096,0,4096,1,1,0,0,0,-1,OSAL_RETURN_FAIL,;close() return non-0.

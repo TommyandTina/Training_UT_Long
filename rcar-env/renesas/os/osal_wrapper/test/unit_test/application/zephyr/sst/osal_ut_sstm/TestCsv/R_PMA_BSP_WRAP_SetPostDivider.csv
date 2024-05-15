@@ -1,0 +1,7 @@
+modi,R_PMA_BSP_WRAP_SetPostDivider,05_011,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_clock_control_set_rate,clock_control_set_rate,,,,,,,,,,
+#COMMENT,@chanIdx,@pClockDivider,AMSTB_SrcFile.c/AMSTB_clock_control_set_rate@AMIN_return,R_PMA_BSP_WRAP_SetPostDivider@@,;,,,,,,,
+,1,dummy_pClockDivider,0,R_PMA_OK,;Normal operation ,,,,,,,
+,0,dummy_pClockDivider,1,R_PMA_BSP_ECPG,;clock_control_set_rate) returns non-zero value.,,,,,,,

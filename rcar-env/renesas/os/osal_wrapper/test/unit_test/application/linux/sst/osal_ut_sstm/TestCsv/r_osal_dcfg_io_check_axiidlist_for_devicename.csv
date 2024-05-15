@@ -1,0 +1,17 @@
+modi,r_osal_dcfg_io_check_axiidlist_for_devicename,06_023,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_add_axiid_to_list,r_osal_dcfg_io_add_axiid_to_list,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,
+#COMMENT,@p_device_name,@pst_axi_bus_name_info,@pst_axi_bus_name_info[0].utlb,@pst_axi_bus_name_info[1].utlb,@pp_list_buffer,@p_num_of_axi_ids,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strstr@AM_count,AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_add_axiid_to_list@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_dcfg_io_check_axiidlist_for_devicename@@,;
+,0,g_st_osal_axi_bus_name_info_t,1,OSAL_AXI_BUS_NAME_LAST,g_osal_axi_bus_id_t,g_size_t,0,str,0,1,1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,0,g_st_osal_axi_bus_name_info_t,1,OSAL_AXI_BUS_NAME_LAST,g_osal_axi_bus_id_t,g_size_t,0,0,0,1,1,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc returns NULL
+,0,g_st_osal_axi_bus_name_info_t,1,OSAL_AXI_BUS_NAME_LAST,g_osal_axi_bus_id_t,g_size_t,0,str,0,0,1,OSAL_RETURN_OK,0,OSAL_RETURN_UNKNOWN_NAME,;p_device_name is not found
+,0,g_st_osal_axi_bus_name_info_t,OSAL_AXI_BUS_NAME_LAST,OSAL_AXI_BUS_NAME_LAST,g_osal_axi_bus_id_t,g_size_t,0,str,0,1,1,OSAL_RETURN_OK,0,OSAL_RETURN_UNKNOWN_NAME,;utlb is not registered
+,0,g_st_osal_axi_bus_name_info_t,OSAL_INVALID_UTLB,OSAL_AXI_BUS_NAME_LAST,g_osal_axi_bus_id_t,g_size_t,0,str,0,1,1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;All utlb is invalid
+,0,g_st_osal_axi_bus_name_info_t,1,OSAL_AXI_BUS_NAME_LAST,g_osal_axi_bus_id_t,g_size_t,0,str,0,1,1,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;r_osal_dcfg_io_add_axiid_to_list returns OSAL_RETURN_FAIL

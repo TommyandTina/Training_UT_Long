@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_ThreadStaticInit,02_101,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+#COMMENT,@thread_cfg_num,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],R_OSAL_OS_ThreadStaticInit@@,;,,,,,,,
+,2,0,g_st_osal_thread_self_control,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,2,0,0,OSAL_RETURN_MEM,;calloc() return NULL. (gsp_osal_thread_self_control),,,,,,,

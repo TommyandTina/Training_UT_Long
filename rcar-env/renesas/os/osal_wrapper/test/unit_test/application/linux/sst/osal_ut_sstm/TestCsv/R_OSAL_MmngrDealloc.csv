@@ -1,0 +1,13 @@
+modi,R_OSAL_MmngrDealloc,09_004,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrDealloc,R_OSAL_RCFG_MmngrDealloc,,,,,,,,,,
+#COMMENT,@hndl_mmngr,@buffer_obj,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrDealloc@AMIN_return,R_OSAL_MmngrDealloc@@,;,,,,,,,
+,g_st_osal_common_memory_manager_obj,g_osal_common_memory_buffer_obj,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,0,g_osal_common_memory_buffer_obj,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle is null,,,,,,,
+,g_st_osal_common_memory_manager_obj,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;buffer object is null,,,,,,,
+,g_st_osal_common_memory_manager_obj,g_osal_common_memory_buffer_obj,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_RCFG_MmngrDealloc() return OSAL_RETURN_FAIL,,,,,,,
+,g_st_osal_common_memory_manager_obj,g_osal_common_memory_buffer_obj,OSAL_RETURN_MEM,OSAL_RETURN_MEM,;R_OSAL_RCFG_MmngrDealloc() return OSAL_RETURN_MEM,,,,,,,
+,g_st_osal_common_memory_manager_obj,g_osal_common_memory_buffer_obj,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;R_OSAL_RCFG_MmngrDealloc() return OSAL_RETURN_HANDLE,,,,,,,
+,g_st_osal_common_memory_manager_obj,g_osal_common_memory_buffer_obj,OSAL_RETURN_STATE,OSAL_RETURN_STATE,;R_OSAL_RCFG_MmngrDealloc() return OSAL_RETURN_STATE,,,,,,,
+,g_st_osal_common_memory_manager_obj,g_osal_common_memory_buffer_obj,OSAL_RETURN_HANDLE_NOT_SUPPORTED,OSAL_RETURN_HANDLE_NOT_SUPPORTED,;R_OSAL_RCFG_MmngrDealloc() return OSAL_RETURN_HANDLE_NOT_SUPPORTED,,,,,,,

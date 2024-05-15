@@ -1,0 +1,10 @@
+modi,R_PMA_MNG_SetupTask,02_017,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadInitAttr,R_OSAL_OS_ThreadInitAttr,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadStaticCreate,R_OSAL_OS_ThreadStaticCreate,,,,,,,,,,
+#COMMENT,$@pThread,@taskPriority,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadStaticCreate@AMIN_return,R_PMA_MNG_SetupTask@@,;,,,,,,
+,0,10,,,R_PMA_NG,;pThread is NULL,,,,,,
+,1,10,OSAL_RETURN_FAIL,,R_PMA_NG,;R_OSAL_OS_ThreadInitAttr() returns OSAL_RETURN_FAIL,,,,,,
+,1,10,OSAL_RETURN_OK,OSAL_RETURN_FAIL,R_PMA_NG,;R_OSAL_OS_ThreadStaticCreate() returns OSAL_RETURN_FAIL,,,,,,
+,1,10,OSAL_RETURN_OK,OSAL_RETURN_OK,R_PMA_OK,;Normal operation,,,,,,

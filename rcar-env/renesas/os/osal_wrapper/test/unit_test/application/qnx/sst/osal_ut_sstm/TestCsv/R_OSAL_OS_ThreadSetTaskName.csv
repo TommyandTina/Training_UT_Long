@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_ThreadSetTaskName,02_112,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_setname_np,pthread_setname_np,,,,,,,,,,
+#COMMENT,@p_task_name,AMSTB_SrcFile.c/AMSTB_pthread_setname_np@AMIN_return,R_OSAL_OS_ThreadSetTaskName@@,;,,,,,,,,
+,str,0,OSAL_RETURN_OK,;Normal operation,,,,,,,,
+,0,0,OSAL_RETURN_OK,;p_task_name is NULL.,,,,,,,,
+,str,16,OSAL_RETURN_FAIL,;pthread_setname_np() returns non-zero.,,,,,,,,

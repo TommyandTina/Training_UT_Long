@@ -1,0 +1,25 @@
+modi,osal_internal_mq_snd_not_isr,04_018,22,1,,,,CPP,,,,0,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_timedlock,pthread_mutex_timedlock,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait_mqstb,pthread_cond_timedwait,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait_mqstb,pthread_cond_timedwait,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait_mqstb,pthread_cond_timedwait,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait_mqstb,pthread_cond_timedwait,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mq_snd,osal_internal_mq_snd,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait_mqstb,pthread_cond_timedwait,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_broadcast,pthread_cond_broadcast,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,@handle,g_st_osal_mq_control.usr_config,$g_st_osal_mq_control.usr_config,g_st_osal_mq_control.usr_config[0].config.max_num_msg,g_st_osal_mq_control.numofmsg,g_st_osal_mq_control.receive_wait,@p_time_stamp,g_st_osal_time.tv_sec,g_st_osal_time.tv_nsec,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_pthread_mutex_timedlock@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait_mqstb@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait_mqstb@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait_mqstb@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait_mqstb@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_osal_internal_mq_snd@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait_mqstb@AM_val,AMSTB_SrcFile.c/AMSTB_pthread_cond_broadcast@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],osal_internal_mq_snd_not_isr@@,;
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,0,1,0,0,0,OSAL_RETURN_OK,1,0,0,0,OSAL_RETURN_OK,;Normal operation
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,110,1,0,0,0,OSAL_RETURN_OK,1,0,0,0,OSAL_RETURN_TIME,;pthread_mutex_timedlock() return ETIMEDOUT
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,-1,1,0,0,0,OSAL_RETURN_OK,1,0,0,0,OSAL_RETURN_FAIL,;pthread_mutex_timedlock() return non-zero
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,0,1,g_st_osal_time,10,10,gp_void,4,0,1,0,0,0,OSAL_RETURN_OK,1,0,0,0,OSAL_RETURN_OK,;handle->usr_config->config.max_num_msg is not equal handle->numofmsg
+,0,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,0,1,0,0,0,OSAL_RETURN_OK,1,0,0,0,OSAL_RETURN_STATE,;gs_osal_mq_is_initialized is false
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,0,1,110,110,110,OSAL_RETURN_OK,1,0,0,0,OSAL_RETURN_TIME,;pthread_cond_timedwait() return ETIMEDOUT
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,0,1,-1,-1,-1,OSAL_RETURN_OK,1,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_timedwait() return non-zero
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,0,1,0,0,0,OSAL_RETURN_FAIL,1,0,0,0,OSAL_RETURN_FAIL,;osal_internal_mq_snd() return OSAL_RETURN_FAIL
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,0,1,0,0,0,OSAL_RETURN_OK,1,-1,0,0,OSAL_RETURN_FAIL,;pthread_cond_broadcast() return non-zero
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,1,g_st_osal_time,10,10,gp_void,4,0,1,0,0,0,OSAL_RETURN_OK,1,0,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero
+,1,g_st_osal_mq_control,g_st_osal_rcfg_mq_config,1,4,4,0,g_st_osal_time,10,10,gp_void,4,0,1,0,0,0,OSAL_RETURN_OK,1,0,0,-1,OSAL_RETURN_FAIL,;handle->receive_wait is false

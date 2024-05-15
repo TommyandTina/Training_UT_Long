@@ -1,0 +1,18 @@
+Driver for R_CarV3U SPI Slave
+
+Syntax:
+	spi-slave-rcar [-u channel] [[-c]]
+
+options:
+	-u : select SPI channel (from 0 to 5)
+	-c : set device configuration
+		cpol : clock polarity (default CPOL = 0)
+		cpha : clock phase    (default CPHA = 0)
+		bitlen : length of 1 data element (default bitlen = 8)
+
+Example:
+	spi-slave-rcar -u2
+	Above command start SPI Slave with default information: channel 2, CPOL = 0, CPHA = 0, bitlen = 8
+
+	spi-slave-rcar -u2 -c cpol=0,cpha=1,bitlen=16
+	Above command start SPI Slave channel 2 with CPOL = 0, CPHA = 1, 16 bit data

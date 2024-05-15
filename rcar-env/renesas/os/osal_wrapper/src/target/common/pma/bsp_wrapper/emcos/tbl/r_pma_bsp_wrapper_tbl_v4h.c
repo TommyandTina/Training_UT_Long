@@ -1,0 +1,660 @@
+/***********************************************************************************************************************
+* Copyright [2022] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+*
+* The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
+* and/or its licensors ("Renesas") and subject to statutory and contractual protections.
+*
+* Unless otherwise expressly agreed in writing between Renesas and you: 1) you may not use, copy, modify, distribute,
+* display, or perform the contents; 2) you may not use any name or mark of Renesas for advertising or publicity
+* purposes or in connection with your use of the contents; 3) RENESAS MAKES NO WARRANTY OR REPRESENTATIONS ABOUT THE
+* SUITABILITY OF THE CONTENTS FOR ANY PURPOSE; THE CONTENTS ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+* WARRANTY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+* NON-INFRINGEMENT; AND 4) RENESAS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR CONSEQUENTIAL DAMAGES,
+* INCLUDING DAMAGES RESULTING FROM LOSS OF USE, DATA, OR PROJECTS, WHETHER IN AN ACTION OF CONTRACT OR TORT, ARISING
+* OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE CONTENTS. Third-party contents included in this file may
+* be subject to different terms.
+***********************************************************************************************************************/
+/***********************************************************************************************************************
+* Version :      0.0.1
+* Description  : BSP Wrapper information table for PM API
+***********************************************************************************************************************/
+
+/*======================================================================================================================
+Includes <System Includes> , "Project Includes"
+======================================================================================================================*/
+#include "target/common/pma/bsp_wrapper/r_pma_bsp_wrapper.h"
+#include <drv/sysc/sysc.h>
+#include <drv/cpg/cpg_driver.h>
+
+/*======================================================================================================================
+Private global variables
+======================================================================================================================*/
+/* PRQA S 1531,3408 1 # Because the SoC-dependent processing is divided by the file, it cannot be avoided */
+const uint32_t g_pma_bsp_wrap_sysc_id_tbl_v4h[] =
+{
+    SYSC_A1CNN0,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0   */
+    SYSC_A1DSP0,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A1DSP0   */
+    SYSC_A1DSP1,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A1DSP1   */
+    SYSC_A1DSP2,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A1DSP2   */
+    SYSC_A1DSP3,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A1DSP3   */
+    SYSC_A2CN0,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2CN0    */
+    SYSC_A2IMP01,   /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2IMP01  */
+    SYSC_A2IMP23,   /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2IMP23  */
+    SYSC_A2PSC,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2PSC    */
+    SYSC_A2DMA,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2DMA    */
+    SYSC_A2CV0,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2CV0    */
+    SYSC_A2CV1,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2CV1    */
+    SYSC_A2CV2,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2CV2    */
+    SYSC_A2CV3,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A2CV3    */
+    SYSC_A3IR,      /*    R_PMA_SYSC_DOMAIN_ID_V4H_A3IR     */
+    SYSC_A3VIP0,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A3VIP0   */
+    SYSC_A3VIP1,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A3VIP1   */
+    SYSC_A3VIP2,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A3VIP2   */
+    SYSC_A3DUL,     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A3DUL    */
+    SYSC_A3ISP0,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A3ISP0   */
+    SYSC_A3ISP1,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A3ISP1   */
+    SYSC_A23DGB,    /*    R_PMA_SYSC_DOMAIN_ID_V4H_A23DGB   */
+    SYSC_A33DGA     /*    R_PMA_SYSC_DOMAIN_ID_V4H_A33DGA   */
+};
+
+/* PRQA S 1531,3408 1 # Because the SoC-dependent processing is divided by the file, it cannot be avoided */
+const uint32_t g_pma_bsp_wrap_cpg_id_tbl_v4h[] =
+{
+    /* PRQA S 4542,4543,0499 ++ # Cannot be avoided due to the definition of BSP */
+    CPGDRV_MSSR0_NAME_IMPPSC,   /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC    */
+    CPGDRV_MSSR0_NAME_IMPDMAC0, /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPDMAC0  */
+    CPGDRV_MSSR0_NAME_IMP1,     /*    R_PMA_CPG_DOMAIN_ID_V4H_IMP1    */
+    CPGDRV_MSSR0_NAME_IMP0,     /*    R_PMA_CPG_DOMAIN_ID_V4H_IMP0    */
+    CPGDRV_MSSR0_NAME_SPMC,     /*    R_PMA_CPG_DOMAIN_ID_V4H_SPMC    */
+    CPGDRV_MSSR0_NAME_IMPCNN,   /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPCNN  */
+    CPGDRV_MSSR0_NAME_ISP1,     /*    R_PMA_CPG_DOMAIN_ID_V4H_ISP1    */
+    CPGDRV_MSSR0_NAME_ISP0,     /*    R_PMA_CPG_DOMAIN_ID_V4H_ISP0    */
+    CPGDRV_MSSR0_NAME_ANRT,     /*    R_PMA_CPG_DOMAIN_ID_V4H_ANRT1   */
+    CPGDRV_MSSR0_NAME_UMFL0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_UMFL0   */
+    CPGDRV_MSSR0_NAME_SMPS0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_SMPS0   */
+    CPGDRV_MSSR0_NAME_SMPO0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_SMPO0   */
+    CPGDRV_MSSR0_NAME_RGX,      /*    R_PMA_CPG_DOMAIN_ID_V4H_RGX     */
+    CPGDRV_MSSR1_NAME_ANVI1,    /*    R_PMA_CPG_DOMAIN_ID_V4H_ANVI1   */
+    CPGDRV_MSSR1_NAME_ANVI0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_ANVI0   */
+    CPGDRV_MSSR1_NAME_ANVC1,    /*    R_PMA_CPG_DOMAIN_ID_V4H_ANVC1   */
+    CPGDRV_MSSR1_NAME_ANVC0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_ANVC0   */
+    CPGDRV_MSSR1_NAME_ANSP0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_ANSP0   */
+    CPGDRV_MSSR1_NAME_ANRT,     /*    R_PMA_CPG_DOMAIN_ID_V4H_ANRT    */
+    CPGDRV_MSSR1_NAME_ANPV0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_ANPV0   */
+    CPGDRV_MSSR1_NAME_ADVFSC,   /*    R_PMA_CPG_DOMAIN_ID_V4H_ADVFSC  */
+    CPGDRV_MSSR1_NAME_ADG,      /*    R_PMA_CPG_DOMAIN_ID_V4H_ADG     */
+    CPGDRV_MSSR1_NAME_SPMI,     /*    R_PMA_CPG_DOMAIN_ID_V4H_SPMI    */
+    CPGDRV_MSSR1_NAME_IMPSLV,   /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPSLV  */
+    CPGDRV_MSSR1_NAME_IMPDTA,   /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPDTA  */
+    CPGDRV_MSSR1_NAME_AXIMP0_AXRS,  /*    R_PMA_CPG_DOMAIN_ID_V4H_AXIMP0_AXRS */
+    CPGDRV_MSSR1_NAME_AXIMP0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXIMP0    */
+    CPGDRV_MSSR1_NAME_ANIMP1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ANIMP1    */
+    CPGDRV_MSSR1_NAME_ANIMP0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ANIMP0    */
+    CPGDRV_MSSR1_NAME_IMPDMAC1,     /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPDMAC1  */
+    CPGDRV_MSSR1_NAME_IMP3,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IMP3      */
+    CPGDRV_MSSR1_NAME_IMP2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IMP2      */
+    CPGDRV_MSSR2_NAME_AXSM_AXRS,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSM_AXRS */
+    CPGDRV_MSSR2_NAME_AXSD0_1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSD0_1   */
+    CPGDRV_MSSR2_NAME_AXSD0_0,      /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSD0_0   */
+    CPGDRV_MSSR2_NAME_AXSC,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSC      */
+    CPGDRV_MSSR2_NAME_AXRS_AXSC,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRS_AXSC */
+    CPGDRV_MSSR2_NAME_AXRT_AXRS,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRT_AXRS */
+    CPGDRV_MSSR2_NAME_AXRT,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRT      */
+    CPGDRV_MSSR2_NAME_AXRD_1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRD_1    */
+    CPGDRV_MSSR2_NAME_AXRD_0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRD_0    */
+    CPGDRV_MSSR2_NAME_AXRC_1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRC_1    */
+    CPGDRV_MSSR2_NAME_AXRC_0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRC_0    */
+    CPGDRV_MSSR2_NAME_AXRS_AXPV,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRS_AXPV */
+    CPGDRV_MSSR2_NAME_AXPV,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AXPV      */
+    CPGDRV_MSSR2_NAME_ANMM_AXMM,    /*    R_PMA_CPG_DOMAIN_ID_V4H_ANMM_AXMM */
+    CPGDRV_MSSR2_NAME_AVB2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AVB2      */
+    CPGDRV_MSSR2_NAME_AVB1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AVB1      */
+    CPGDRV_MSSR2_NAME_AVB0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AVB0      */
+    CPGDRV_MSSR2_NAME_ARMREG,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ARMREG    */
+    CPGDRV_MSSR2_NAME_ARMM,         /*    R_PMA_CPG_DOMAIN_ID_V4H_ARMM      */
+    CPGDRV_MSSR2_NAME_APSP3_1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_APSP3_1   */
+    CPGDRV_MSSR2_NAME_APSP3_0,      /*    R_PMA_CPG_DOMAIN_ID_V4H_APSP3_0   */
+    CPGDRV_MSSR2_NAME_APSP4_1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_APSP4_1   */
+    CPGDRV_MSSR2_NAME_APSP4_0,      /*    R_PMA_CPG_DOMAIN_ID_V4H_APSP4_0   */
+    CPGDRV_MSSR2_NAME_APRT0_1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_APRT0_1   */
+    CPGDRV_MSSR2_NAME_APRT0_0,      /*    R_PMA_CPG_DOMAIN_ID_V4H_APRT0_0   */
+    CPGDRV_MSSR2_NAME_ANVIP2,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ANVIP2    */
+    CPGDRV_MSSR2_NAME_ANVIP1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ANVIP1    */
+    CPGDRV_MSSR2_NAME_ANVIP0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ANVIP0    */
+    CPGDRV_MSSR3_NAME_CSITOP0,      /*    R_PMA_CPG_DOMAIN_ID_V4H_CSITOP0   */
+    CPGDRV_MSSR3_NAME_CSDBGPAP,     /*    R_PMA_CPG_DOMAIN_ID_V4H_CSDBGPAP  */
+    CPGDRV_MSSR3_NAME_CR0,          /*    R_PMA_CPG_DOMAIN_ID_V4H_CR0       */
+    CPGDRV_MSSR3_NAME_CANFD,        /*    R_PMA_CPG_DOMAIN_ID_V4H_CANFD     */
+    CPGDRV_MSSR3_NAME_AXVIP1_1,     /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVIP1_1  */
+    CPGDRV_MSSR3_NAME_AXVIP1_0,     /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVIP1_0  */
+    CPGDRV_MSSR3_NAME_AXVIP0_AXRS,  /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVIP0_AXRS   */
+    CPGDRV_MSSR3_NAME_AXVIP0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVIP0    */
+    CPGDRV_MSSR3_NAME_AXVIFF,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVIFF    */
+    CPGDRV_MSSR3_NAME_AXVI1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVI1     */
+    CPGDRV_MSSR3_NAME_AXVI1_AXRS,   /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVI1_AXRS    */
+    CPGDRV_MSSR3_NAME_AXVI,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVI      */
+    CPGDRV_MSSR3_NAME_AXVC_AXRS,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVC_AXRS */
+    CPGDRV_MSSR3_NAME_AXVC,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVC      */
+    CPGDRV_MSSR3_NAME_AXTBH,        /*    R_PMA_CPG_DOMAIN_ID_V4H_AXTBH     */
+    CPGDRV_MSSR3_NAME_AXSTM,        /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSTM     */
+    CPGDRV_MSSR3_NAME_AXSTM_AXRS,   /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSTM_AXRS    */
+    CPGDRV_MSSR3_NAME_AXRS_AXSP0,   /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRS_AXSP0    */
+    CPGDRV_MSSR3_NAME_AXSP0,        /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSP0     */
+    CPGDRV_MSSR3_NAME_AXSN,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSN      */
+    CPGDRV_MSSR3_NAME_AXRS_AXSN,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AXRS_AXSN */
+    CPGDRV_MSSR3_NAME_AXSM,         /*    R_PMA_CPG_DOMAIN_ID_V4H_AXSM      */
+    CPGDRV_MSSR4_NAME_DSITXLINK1,   /*    R_PMA_CPG_DOMAIN_ID_V4H_DSITXLINK1    */
+    CPGDRV_MSSR4_NAME_DSITXLINK0,   /*    R_PMA_CPG_DOMAIN_ID_V4H_DSITXLINK0    */
+    CPGDRV_MSSR4_NAME_DOC2CH,       /*    R_PMA_CPG_DOMAIN_ID_V4H_DOC2CH        */
+    CPGDRV_MSSR4_NAME_DIS0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_DIS0      */
+    CPGDRV_MSSR4_NAME_DDR3_DDR2,    /*    R_PMA_CPG_DOMAIN_ID_V4H_DDR3_DDR2 */
+    CPGDRV_MSSR4_NAME_DDR1_DDR0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_DDR1_DDR0 */
+    CPGDRV_MSSR4_NAME_CSITOP1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_CSITOP1   */
+    CPGDRV_MSSR5_NAME_INTAP,        /*    R_PMA_CPG_DOMAIN_ID_V4H_INTAP     */
+    CPGDRV_MSSR5_NAME_IMS1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IMS1    */
+    CPGDRV_MSSR5_NAME_IMS0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IMS0    */
+    CPGDRV_MSSR5_NAME_IMR2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IMR2    */
+    CPGDRV_MSSR5_NAME_IMR1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IMR1    */
+    CPGDRV_MSSR5_NAME_IMR0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IMR0    */
+    CPGDRV_MSSR5_NAME_I2C5,         /*    R_PMA_CPG_DOMAIN_ID_V4H_I2C5    */
+    CPGDRV_MSSR5_NAME_I2C4,         /*    R_PMA_CPG_DOMAIN_ID_V4H_I2C4    */
+    CPGDRV_MSSR5_NAME_I2C3,         /*    R_PMA_CPG_DOMAIN_ID_V4H_I2C3    */
+    CPGDRV_MSSR5_NAME_I2C2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_I2C2    */
+    CPGDRV_MSSR5_NAME_I2C1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_I2C1    */
+    CPGDRV_MSSR5_NAME_I2C0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_I2C0    */
+    CPGDRV_MSSR5_NAME_HSCIF3,       /*    R_PMA_CPG_DOMAIN_ID_V4H_HSCIF3  */
+    CPGDRV_MSSR5_NAME_HSCIF2,       /*    R_PMA_CPG_DOMAIN_ID_V4H_HSCIF2  */
+    CPGDRV_MSSR5_NAME_HSCIF1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_HSCIF1  */
+    CPGDRV_MSSR5_NAME_HSCIF0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_HSCIF0  */
+    CPGDRV_MSSR5_NAME_FRAY00,       /*    R_PMA_CPG_DOMAIN_ID_V4H_FRAY00  */
+    CPGDRV_MSSR5_NAME_FCPVD1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_FCPVD1  */
+    CPGDRV_MSSR5_NAME_FCPVD0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_FCPVD0  */
+    CPGDRV_MSSR5_NAME_FCPCS,        /*    R_PMA_CPG_DOMAIN_ID_V4H_FCPCS   */
+    CPGDRV_MSSR6_NAME_RTDM1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_RTDM1   */
+    CPGDRV_MSSR6_NAME_RTDM0,        /*    R_PMA_CPG_DOMAIN_ID_V4H_RTDM0   */
+    CPGDRV_MSSR6_NAME_RPC,          /*    R_PMA_CPG_DOMAIN_ID_V4H_RPC     */
+    CPGDRV_MSSR6_NAME_PWM,          /*    R_PMA_CPG_DOMAIN_ID_V4H_PWM     */
+    CPGDRV_MSSR6_NAME_PCIE1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_PCIE10  */
+    CPGDRV_MSSR6_NAME_PCIE0,        /*    R_PMA_CPG_DOMAIN_ID_V4H_PCIE00  */
+    CPGDRV_MSSR6_NAME_MSI5,         /*    R_PMA_CPG_DOMAIN_ID_V4H_MSI5    */
+    CPGDRV_MSSR6_NAME_MSI4,         /*    R_PMA_CPG_DOMAIN_ID_V4H_MSI4    */
+    CPGDRV_MSSR6_NAME_MSI3,         /*    R_PMA_CPG_DOMAIN_ID_V4H_MSI3    */
+    CPGDRV_MSSR6_NAME_MSI2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_MSI2    */
+    CPGDRV_MSSR6_NAME_MSI1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_MSI1    */
+    CPGDRV_MSSR6_NAME_MSI0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_MSI0    */
+    CPGDRV_MSSR6_NAME_IVCP1E,       /*    R_PMA_CPG_DOMAIN_ID_V4H_IVCP1E  */
+    CPGDRV_MSSR6_NAME_ISPCS1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ISPCS1  */
+    CPGDRV_MSSR6_NAME_ISPCS0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_ISPCS0  */
+    CPGDRV_MSSR6_NAME_IRQC,         /*    R_PMA_CPG_DOMAIN_ID_V4H_IRQC    */
+    CPGDRV_MSSR6_NAME_INTTP,        /*    R_PMA_CPG_DOMAIN_ID_V4H_INTTP   */
+    CPGDRV_MSSR6_NAME_IPC,          /*    R_PMA_CPG_DOMAIN_ID_V4H_IPC     */
+    CPGDRV_MSSR7_NAME_VIN01,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN01   */
+    CPGDRV_MSSR7_NAME_VIN00,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN00   */
+    CPGDRV_MSSR7_NAME_VCPL4,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VCPL4   */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC7    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC6    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC5    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC4    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC3    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC2    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC1    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC0    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_AES_ACC_WRAP    */
+    CPGDRV_MSSR7_NAME_TPU0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_TPU0    */
+    CPGDRV_MSSR7_NAME_TMU4,         /*    R_PMA_CPG_DOMAIN_ID_V4H_TMU4    */
+    CPGDRV_MSSR7_NAME_TMU3,         /*    R_PMA_CPG_DOMAIN_ID_V4H_TMU3    */
+    CPGDRV_MSSR7_NAME_TMU2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_TMU2    */
+    CPGDRV_MSSR7_NAME_TMU1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_TMU1    */
+    CPGDRV_MSSR7_NAME_TMU0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_TMU0    */
+    CPGDRV_MSSR7_NAME_SYDM2,        /*    R_PMA_CPG_DOMAIN_ID_V4H_SYDM2   */
+    CPGDRV_MSSR7_NAME_SYDM1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_SYDM1   */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_SECROM   */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_SDHI0    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_SCIF4    */
+    R_PMA_BSP_WRAP_UNDEFINED_ID,    /*    R_PMA_CPG_DOMAIN_ID_V4H_SCIF3    */
+    CPGDRV_MSSR7_NAME_SCIF1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_SCIF1    */
+    CPGDRV_MSSR7_NAME_SCIF0,        /*    R_PMA_CPG_DOMAIN_ID_V4H_SCIF0    */
+    CPGDRV_MSSR7_NAME_RTDM3,        /*    R_PMA_CPG_DOMAIN_ID_V4H_RTDM3    */
+    CPGDRV_MSSR7_NAME_RTDM2,        /*    R_PMA_CPG_DOMAIN_ID_V4H_RTDM2    */
+    CPGDRV_MSSR8_NAME_VSPD1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VSPD1    */
+    CPGDRV_MSSR8_NAME_VSPD0,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VSPD0    */
+    CPGDRV_MSSR8_NAME_VIN17,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN17    */
+    CPGDRV_MSSR8_NAME_VIN16,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN16    */
+    CPGDRV_MSSR8_NAME_VIN15,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN15    */
+    CPGDRV_MSSR8_NAME_VIN14,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN14    */
+    CPGDRV_MSSR8_NAME_VIN13,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN13    */
+    CPGDRV_MSSR8_NAME_VIN12,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN12    */
+    CPGDRV_MSSR8_NAME_VIN11,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN11    */
+    CPGDRV_MSSR8_NAME_VIN10,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN10    */
+    CPGDRV_MSSR8_NAME_VIN07,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN07    */
+    CPGDRV_MSSR8_NAME_VIN06,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN06    */
+    CPGDRV_MSSR8_NAME_VIN05,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN05    */
+    CPGDRV_MSSR8_NAME_VIN04,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN04    */
+    CPGDRV_MSSR8_NAME_VIN03,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN03    */
+    CPGDRV_MSSR8_NAME_VIN02,        /*    R_PMA_CPG_DOMAIN_ID_V4H_VIN02    */
+    CPGDRV_MSSR9_NAME_UCMT,         /*    R_PMA_CPG_DOMAIN_ID_V4H_UCMT     */
+    CPGDRV_MSSR9_NAME_TSC4_TSC3_TSC2_TSC1, /*    R_PMA_CPG_DOMAIN_ID_V4H_TSC4_TSC3_TSC2_TSC1 */
+    CPGDRV_MSSR9_NAME_PFC3,         /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC3    */
+    CPGDRV_MSSR9_NAME_PFC2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC2    */
+    CPGDRV_MSSR9_NAME_PFC1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC1    */
+    CPGDRV_MSSR9_NAME_PFC0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC0    */
+    CPGDRV_MSSR9_NAME_CMT3,         /*    R_PMA_CPG_DOMAIN_ID_V4H_CMT3    */
+    CPGDRV_MSSR9_NAME_CMT2,         /*    R_PMA_CPG_DOMAIN_ID_V4H_CMT2    */
+    CPGDRV_MSSR9_NAME_CMT1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_CMT1    */
+    CPGDRV_MSSR9_NAME_CMT0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_CMT0    */
+    CPGDRV_MSSR9_NAME_WDT1_WDT0,    /*    R_PMA_CPG_DOMAIN_ID_V4H_WDT1_WDT0 */
+    CPGDRV_MSSR9_NAME_WCRC3,        /*    R_PMA_CPG_DOMAIN_ID_V4H_WCRC3    */
+    CPGDRV_MSSR9_NAME_WCRC2,        /*    R_PMA_CPG_DOMAIN_ID_V4H_WCRC2    */
+    CPGDRV_MSSR9_NAME_WCRC1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_WCRC1    */
+    CPGDRV_MSSR9_NAME_WCRC0,        /*    R_PMA_CPG_DOMAIN_ID_V4H_WCRC0    */
+    CPGDRV_MSSR10_NAME_VSPX1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VSPX1    */
+    CPGDRV_MSSR10_NAME_VSPX0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VSPX0    */
+    CPGDRV_MSSR10_NAME_RGXC,        /*    R_PMA_CPG_DOMAIN_ID_V4H_RGXC     */
+    CPGDRV_MSSR10_NAME_RGXB,        /*    R_PMA_CPG_DOMAIN_ID_V4H_RGXB     */
+    CPGDRV_MSSR11_NAME_SWDT1_SWDT0, /*    R_PMA_CPG_DOMAIN_ID_V4H_SWDT1_SWDT0   */
+    CPGDRV_MSSR11_NAME_RGXPVC,      /*    R_PMA_CPG_DOMAIN_ID_V4H_RGXPVC   */
+    CPGDRV_MSSR11_NAME_RGXPVDE,     /*    R_PMA_CPG_DOMAIN_ID_V4H_RGXPVDE  */
+    CPGDRV_MSSR11_NAME_PCIE1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_PCIE11   */
+    CPGDRV_MSSR11_NAME_PCIE0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_PCIE01   */
+    CPGDRV_MSSR11_NAME_INTAP,       /*    R_PMA_CPG_DOMAIN_ID_V4H_INTAP11  */
+    CPGDRV_MSSR11_NAME_FRAY01,      /*    R_PMA_CPG_DOMAIN_ID_V4H_FRAY01   */
+    CPGDRV_MSSR11_NAME_AXVI,        /*    R_PMA_CPG_DOMAIN_ID_V4H_AXVI11   */
+    CPGDRV_MSSR11_NAME_AULK4P,      /*    R_PMA_CPG_DOMAIN_ID_V4H_AULK4P   */
+    CPGDRV_MSSR11_NAME_AULK2P,      /*    R_PMA_CPG_DOMAIN_ID_V4H_AULK2P   */
+    CPGDRV_MSSR11_NAME_FCPVX1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_FCPVX1   */
+    CPGDRV_MSSR11_NAME_FCPVX0,      /*    R_PMA_CPG_DOMAIN_ID_V4H_FCPVX0   */
+    CPGDRV_MSSR12_NAME_KCRC4,       /*    R_PMA_CPG_DOMAIN_ID_V4H_KCRC4    */
+    CPGDRV_MSSR12_NAME_FSO,         /*    R_PMA_CPG_DOMAIN_ID_V4H_FSO      */
+    CPGDRV_MSSR12_NAME_CRC3,        /*    R_PMA_CPG_DOMAIN_ID_V4H_CRC3     */
+    CPGDRV_MSSR12_NAME_CRC2,        /*    R_PMA_CPG_DOMAIN_ID_V4H_CRC2     */
+    CPGDRV_MSSR12_NAME_CRC1,        /*    R_PMA_CPG_DOMAIN_ID_V4H_CRC1     */
+    CPGDRV_MSSR12_NAME_CRC0,        /*    R_PMA_CPG_DOMAIN_ID_V4H_CRC0     */
+    CPGDRV_MSSR12_NAME_ADVFSC,      /*    R_PMA_CPG_DOMAIN_ID_V4H_ADVFS   */
+    CPGDRV_MSSR12_NAME_SCMT,        /*    R_PMA_CPG_DOMAIN_ID_V4H_SCMT     */
+    CPGDRV_MSSR12_NAME_PFC3D3,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC3D3   */
+    CPGDRV_MSSR12_NAME_PFC3D2,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC3D2   */
+    CPGDRV_MSSR12_NAME_PFC3D1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC3D1   */
+    CPGDRV_MSSR12_NAME_PFC2D3,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC2D3   */
+    CPGDRV_MSSR12_NAME_PFC2D2,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC2D2   */
+    CPGDRV_MSSR12_NAME_PFC2D1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC2D1   */
+    CPGDRV_MSSR12_NAME_PFC1D3,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC1D3   */
+    CPGDRV_MSSR12_NAME_PFC1D2,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC1D2   */
+    CPGDRV_MSSR12_NAME_PFC1D1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC1D1   */
+    CPGDRV_MSSR12_NAME_PFC0D3,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC0D3   */
+    CPGDRV_MSSR12_NAME_PFC0D2,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC0D2   */
+    CPGDRV_MSSR12_NAME_PFC0D1,      /*    R_PMA_CPG_DOMAIN_ID_V4H_PFC0D1   */
+    CPGDRV_MSSR12_NAME_WWDT9_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT9_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT8_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT8_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT7_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT7_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT6_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT6_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT5_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT5_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT4_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT4_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT3_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT3_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT2_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT2_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT1_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT1_RCLK    */
+    CPGDRV_MSSR12_NAME_WWDT0_RCLK,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT0_RCLK    */
+    CPGDRV_MSSR13_NAME_WWDT9_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT9_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT8_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT8_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT7_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT7_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT6_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT6_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT5_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT5_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT4_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT4_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT3_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT3_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT2_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT2_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT1_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT1_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_WWDT0_SASYNCRT,  /*    R_PMA_CPG_DOMAIN_ID_V4H_WWDT0_SASYNCRT    */
+    CPGDRV_MSSR13_NAME_DBE,             /*    R_PMA_CPG_DOMAIN_ID_V4H_DBE    */
+    CPGDRV_MSSR13_NAME_MTI,             /*    R_PMA_CPG_DOMAIN_ID_V4H_MTI    */
+    CPGDRV_MSSR13_NAME_KCRC7,           /*    R_PMA_CPG_DOMAIN_ID_V4H_KCRC7    */
+    CPGDRV_MSSR13_NAME_KCRC6,           /*    R_PMA_CPG_DOMAIN_ID_V4H_KCRC6    */
+    CPGDRV_MSSR13_NAME_KCRC5,           /*    R_PMA_CPG_DOMAIN_ID_V4H_KCRC5    */
+    CPGDRV_MSSR14_NAME_CKMMM,           /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMMM    */
+    CPGDRV_MSSR14_NAME_CKMIR,           /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMIR    */
+    CPGDRV_MSSR14_NAME_CKMVIP,          /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMVIP   */
+    CPGDRV_MSSR14_NAME_CKMVC,           /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMVC    */
+    CPGDRV_MSSR14_NAME_CKMVIO,          /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMVIO   */
+    CPGDRV_MSSR14_NAME_CKMPE0,          /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMPE0   */
+    CPGDRV_MSSR14_NAME_CKMRT,           /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMRT    */
+    CPGDRV_MSSR14_NAME_CKM3DG,          /*    R_PMA_CPG_DOMAIN_ID_V4H_CKM3DG   */
+    CPGDRV_MSSR15_NAME_APVI4_1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_APVI4_1  */
+    CPGDRV_MSSR15_NAME_APVI4_0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_APVI4_0  */
+    CPGDRV_MSSR15_NAME_APVC1_1,         /*    R_PMA_CPG_DOMAIN_ID_V4H_APVC1_1  */
+    CPGDRV_MSSR15_NAME_APVC1_0,         /*    R_PMA_CPG_DOMAIN_ID_V4H_APVC1_0  */
+    CPGDRV_MSSR15_NAME_CKMDSP_CKMIR,    /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMDSP_CKMIR    */
+    CPGDRV_MSSR15_NAME_CKMCNR_CKMIR,    /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMCNR_CKMIR    */
+    CPGDRV_MSSR15_NAME_CKM,             /*    R_PMA_CPG_DOMAIN_ID_V4H_CKM       */
+    CPGDRV_MSSR15_NAME_CKMHSC,          /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMHSC    */
+    CPGDRV_MSSR15_NAME_CKMCR52,         /*    R_PMA_CPG_DOMAIN_ID_V4H_CKMCR52   */
+    CPGDRV_MSSR15_NAME_ANHC,            /*    R_PMA_CPG_DOMAIN_ID_V4H_ANHC      */
+    CPGDRV_MSSR15_NAME_AXHC_AXRS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_AXHC_AXRS */
+    CPGDRV_MSSR15_NAME_AXHC,            /*    R_PMA_CPG_DOMAIN_ID_V4H_AXHC      */
+    CPGDRV_MSSR27_NAME_CSBRG_IR_A2,     /*    R_PMA_CPG_DOMAIN_ID_V4H_CSBRG_IR_A2    */
+    CPGDRV_MSSR27_NAME_CSBRG_IR_A3,     /*    R_PMA_CPG_DOMAIN_ID_V4H_CSBRG_IR_A3    */
+    CPGDRV_MSSR27_NAME_TSN,             /*    R_PMA_CPG_DOMAIN_ID_V4H_TSN       */
+    CPGDRV_MSSR27_NAME_IMPSDMAC1,       /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPSDMAC1 */
+    CPGDRV_MSSR27_NAME_IMPSDMAC0,       /*    R_PMA_CPG_DOMAIN_ID_V4H_IMPSDMAC0 */
+    CPGDRV_MSSR27_NAME_CVE3,            /*    R_PMA_CPG_DOMAIN_ID_V4H_CVE3      */
+    CPGDRV_MSSR27_NAME_CVE2,            /*    R_PMA_CPG_DOMAIN_ID_V4H_CVE2      */
+    CPGDRV_MSSR27_NAME_CVE1,            /*    R_PMA_CPG_DOMAIN_ID_V4H_CVE1      */
+    CPGDRV_MSSR27_NAME_CVE0,            /*    R_PMA_CPG_DOMAIN_ID_V4H_CVE0      */
+    CPGDRV_MSSR28_NAME_VDSP1_REG,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_REG */
+    CPGDRV_MSSR28_NAME_VDSP1_CSB,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_CSB */
+    CPGDRV_MSSR28_NAME_VDSP0_SYSPO,     /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_SYSPO   */
+    CPGDRV_MSSR28_NAME_VDSP0_APBDBG,    /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_APBDBG  */
+    CPGDRV_MSSR28_NAME_VDSP0_OCEM,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_OCEM    */
+    CPGDRV_MSSR28_NAME_VDSP0_CORE,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_CORE    */
+    CPGDRV_MSSR28_NAME_VDSP0_SYS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_SYS     */
+    CPGDRV_MSSR28_NAME_VDSP0_GLOBAL,    /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_GLOBAL  */
+    CPGDRV_MSSR28_NAME_VDSP0_REG,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_REG     */
+    CPGDRV_MSSR28_NAME_VDSP0_CSB,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_CSB     */
+    CPGDRV_MSSR28_NAME_DSC,             /*    R_PMA_CPG_DOMAIN_ID_V4H_DSC       */
+    CPGDRV_MSSR28_NAME_FCPRC,           /*    R_PMA_CPG_DOMAIN_ID_V4H_FCPRC     */
+    CPGDRV_MSSR28_NAME_PAPSDMA,         /*    R_PMA_CPG_DOMAIN_ID_V4H_PAPSDMA   */
+    CPGDRV_MSSR28_NAME_PAPTOP,          /*    R_PMA_CPG_DOMAIN_ID_V4H_PAPTOP    */
+    CPGDRV_MSSR28_NAME_PAPBUS,          /*    R_PMA_CPG_DOMAIN_ID_V4H_PAPBUS    */
+    CPGDRV_MSSR28_NAME_VDSP3_BUS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_BUS */
+    CPGDRV_MSSR28_NAME_VDSP2_BUS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_BUS */
+    CPGDRV_MSSR28_NAME_VDSP1_BUS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_BUS */
+    CPGDRV_MSSR28_NAME_VDSP0_BUS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP0_BUS */
+    CPGDRV_MSSR29_NAME_SSI,             /*    R_PMA_CPG_DOMAIN_ID_V4H_SSI       */
+    CPGDRV_MSSR29_NAME_SSIU,            /*    R_PMA_CPG_DOMAIN_ID_V4H_SSIU      */
+    CPGDRV_MSSR29_NAME_VDSP3_SYSPO,     /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_SYSPO   */
+    CPGDRV_MSSR29_NAME_VDSP3_APBDBG,    /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_APBDBG  */
+    CPGDRV_MSSR29_NAME_VDSP3_OCEM,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_OCEM    */
+    CPGDRV_MSSR29_NAME_VDSP3_CORE,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_CORE    */
+    CPGDRV_MSSR29_NAME_VDSP3_SYS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_SYS     */
+    CPGDRV_MSSR29_NAME_VDSP3_GLOBAL,    /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_GLOBAL  */
+    CPGDRV_MSSR29_NAME_VDSP3_REG,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_REG     */
+    CPGDRV_MSSR29_NAME_VDSP3_CSB,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP3_CSB     */
+    CPGDRV_MSSR29_NAME_VDSP2_SYSPO,     /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_SYSPO   */
+    CPGDRV_MSSR29_NAME_VDSP2_APBDBG,    /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_APBDBG  */
+    CPGDRV_MSSR29_NAME_VDSP2_OCEM,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_OCEM    */
+    CPGDRV_MSSR29_NAME_VDSP2_CORE,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_CORE    */
+    CPGDRV_MSSR29_NAME_VDSP2_SYS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_SYS     */
+    CPGDRV_MSSR29_NAME_VDSP2_GLOBAL,    /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_GLOBAL  */
+    CPGDRV_MSSR29_NAME_VDSP2_REG,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_REG     */
+    CPGDRV_MSSR29_NAME_VDSP2_CSB,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP2_CSB     */
+    CPGDRV_MSSR29_NAME_VDSP1_SYSPO,     /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_SYSPO   */
+    CPGDRV_MSSR29_NAME_VDSP1_APBDBG,    /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_APBDBG  */
+    CPGDRV_MSSR29_NAME_VDSP1_OCEM,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_OCEM    */
+    CPGDRV_MSSR29_NAME_VDSP1_CORE,      /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_CORE    */
+    CPGDRV_MSSR29_NAME_VDSP1_SYS,       /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_SYS     */
+    CPGDRV_MSSR29_NAME_VDSP1_GLOBAL     /*    R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_GLOBAL  */
+};
+
+/* CPGDRV_FRQ_NAME_POST[X] */
+const uint32_t g_pma_bsp_wrap_post_clk_id_tbl_v4h[R_PMA_MNG_CLK_POSTCKCR] =
+{
+    CPGDRV_FRQ_NAME_POST,
+    CPGDRV_FRQ_NAME_POST2,
+    CPGDRV_FRQ_NAME_POST3,
+    CPGDRV_FRQ_NAME_POST4
+};
+/* CPGDRV_POST[X]_DIV[YY} */
+const uint32_t g_pma_bsp_wrap_cpg_div0_id_tbl_v4h[(R_PMA_MNG_CLK_DIVIDER-1)] =
+{
+    CPGDRV_POST_DIV4,               /* 0x1   */
+    CPGDRV_POST_DIV8,               /* 0x2   */
+    CPGDRV_POST_DIV12,              /* 0x3   */
+    CPGDRV_POST_DIV16,              /* 0x4   */
+    CPGDRV_POST_DIV20,              /* 0x5   */
+    CPGDRV_POST_DIV24,              /* 0x6   */
+    CPGDRV_POST_DIV28,              /* 0x7   */
+    CPGDRV_POST_DIV32,              /* 0x8   */
+    CPGDRV_POST_DIV36,              /* 0x9   */
+    CPGDRV_POST_DIV40,              /* 0xA   */
+    CPGDRV_POST_DIV48,              /* 0xB   */
+    CPGDRV_POST_DIV52,              /* 0xC   */
+    CPGDRV_POST_DIV56,              /* 0xD   */
+    CPGDRV_POST_DIV60,              /* 0xE   */
+    CPGDRV_POST_DIV64,              /* 0xF   */
+    CPGDRV_POST_DIV68,              /* 0x10  */
+    CPGDRV_POST_DIV72,              /* 0x11  */
+    CPGDRV_POST_DIV76,              /* 0x12  */
+    CPGDRV_POST_DIV80,              /* 0x13  */
+    CPGDRV_POST_DIV84,              /* 0x14  */
+    CPGDRV_POST_DIV88,              /* 0x15  */
+    CPGDRV_POST_DIV92,              /* 0x16  */
+    CPGDRV_POST_DIV96,              /* 0x17  */
+    CPGDRV_POST_DIV100,             /* 0x18  */
+    CPGDRV_POST_DIV104,             /* 0x19  */
+    CPGDRV_POST_DIV108,             /* 0x1A  */
+    CPGDRV_POST_DIV112,             /* 0x1B  */
+    CPGDRV_POST_DIV116,             /* 0x1C  */
+    CPGDRV_POST_DIV120,             /* 0x1D  */
+    CPGDRV_POST_DIV124,             /* 0x1E  */
+    CPGDRV_POST_DIV128,             /* 0x1F  */
+    CPGDRV_POST_DIV132,             /* 0x20  */
+    CPGDRV_POST_DIV136,             /* 0x21  */
+    CPGDRV_POST_DIV140,             /* 0x22  */
+    CPGDRV_POST_DIV144,             /* 0x23  */
+    CPGDRV_POST_DIV148,             /* 0x24  */
+    CPGDRV_POST_DIV152,             /* 0x25  */
+    CPGDRV_POST_DIV156,             /* 0x26  */
+    CPGDRV_POST_DIV160,             /* 0x27  */
+    CPGDRV_POST_DIV164,             /* 0x28  */
+    CPGDRV_POST_DIV168,             /* 0x29  */
+    CPGDRV_POST_DIV172,             /* 0x2A  */
+    CPGDRV_POST_DIV176,             /* 0x2B  */
+    CPGDRV_POST_DIV180,             /* 0x2C  */
+    CPGDRV_POST_DIV184,             /* 0x2D  */
+    CPGDRV_POST_DIV188,             /* 0x2E  */
+    CPGDRV_POST_DIV192,             /* 0x2F  */
+    CPGDRV_POST_DIV196,             /* 0x30  */
+    CPGDRV_POST_DIV200,             /* 0x31  */
+    CPGDRV_POST_DIV204,             /* 0x32  */
+    CPGDRV_POST_DIV208,             /* 0x33  */
+    CPGDRV_POST_DIV212,             /* 0x34  */
+    CPGDRV_POST_DIV216,             /* 0x35  */
+    CPGDRV_POST_DIV220,             /* 0x36  */
+    CPGDRV_POST_DIV224,             /* 0x37  */
+    CPGDRV_POST_DIV228,             /* 0x38  */
+    CPGDRV_POST_DIV232,             /* 0x39  */
+    CPGDRV_POST_DIV236,             /* 0x3A  */
+    CPGDRV_POST_DIV240,             /* 0x3B  */
+    CPGDRV_POST_DIV244,             /* 0x3C  */
+    CPGDRV_POST_DIV248,             /* 0x3D  */
+    CPGDRV_POST_DIV252,             /* 0x3E  */
+    CPGDRV_POST_DIV256              /* 0x3F  */
+};
+
+const uint32_t g_pma_bsp_wrap_cpg_div2_id_tbl_v4h[(R_PMA_MNG_CLK_DIVIDER-1)] =
+{
+    CPGDRV_POST2_DIV4,              /* 0x1   */
+    CPGDRV_POST2_DIV8,              /* 0x2   */
+    CPGDRV_POST2_DIV12,             /* 0x3   */
+    CPGDRV_POST2_DIV16,             /* 0x4   */
+    CPGDRV_POST2_DIV24,             /* 0x5   */
+    CPGDRV_POST2_DIV28,             /* 0x6   */
+    CPGDRV_POST2_DIV32,             /* 0x7   */
+    CPGDRV_POST2_DIV36,             /* 0x8   */
+    CPGDRV_POST2_DIV40,             /* 0x9   */
+    CPGDRV_POST2_DIV44,             /* 0xA   */
+    CPGDRV_POST2_DIV48,              /* 0xB   */
+    CPGDRV_POST2_DIV52,              /* 0xC   */
+    CPGDRV_POST2_DIV56,              /* 0xD   */
+    CPGDRV_POST2_DIV60,              /* 0xE   */
+    CPGDRV_POST2_DIV64,              /* 0xF   */
+    CPGDRV_POST2_DIV68,              /* 0x10  */
+    CPGDRV_POST2_DIV72,              /* 0x11  */
+    CPGDRV_POST2_DIV76,              /* 0x12  */
+    CPGDRV_POST2_DIV80,              /* 0x13  */
+    CPGDRV_POST2_DIV84,              /* 0x14  */
+    CPGDRV_POST2_DIV88,              /* 0x15  */
+    CPGDRV_POST2_DIV92,              /* 0x16  */
+    CPGDRV_POST2_DIV96,              /* 0x17  */
+    CPGDRV_POST2_DIV100,             /* 0x18  */
+    CPGDRV_POST2_DIV104,             /* 0x19  */
+    CPGDRV_POST2_DIV108,             /* 0x1A  */
+    CPGDRV_POST2_DIV112,             /* 0x1B  */
+    CPGDRV_POST2_DIV116,             /* 0x1C  */
+    CPGDRV_POST2_DIV120,             /* 0x1D  */
+    CPGDRV_POST2_DIV124,             /* 0x1E  */
+    CPGDRV_POST2_DIV128,             /* 0x1F  */
+    CPGDRV_POST2_DIV132,             /* 0x20  */
+    CPGDRV_POST2_DIV136,             /* 0x21  */
+    CPGDRV_POST2_DIV140,             /* 0x22  */
+    CPGDRV_POST2_DIV144,             /* 0x23  */
+    CPGDRV_POST2_DIV148,             /* 0x24  */
+    CPGDRV_POST2_DIV152,             /* 0x25  */
+    CPGDRV_POST2_DIV156,             /* 0x26  */
+    CPGDRV_POST2_DIV160,             /* 0x27  */
+    CPGDRV_POST2_DIV164,             /* 0x28  */
+    CPGDRV_POST2_DIV168,             /* 0x29  */
+    CPGDRV_POST2_DIV172,             /* 0x2A  */
+    CPGDRV_POST2_DIV176,             /* 0x2B  */
+    CPGDRV_POST2_DIV180,             /* 0x2C  */
+    CPGDRV_POST2_DIV184,             /* 0x2D  */
+    CPGDRV_POST2_DIV188,             /* 0x2E  */
+    CPGDRV_POST2_DIV192,             /* 0x2F  */
+    CPGDRV_POST2_DIV196,             /* 0x30  */
+    CPGDRV_POST2_DIV200,             /* 0x31  */
+    CPGDRV_POST2_DIV204,             /* 0x32  */
+    CPGDRV_POST2_DIV208,             /* 0x33  */
+    CPGDRV_POST2_DIV212,             /* 0x34  */
+    CPGDRV_POST2_DIV216,             /* 0x35  */
+    CPGDRV_POST2_DIV220,             /* 0x36  */
+    CPGDRV_POST2_DIV224,             /* 0x37  */
+    CPGDRV_POST2_DIV228,             /* 0x38  */
+    CPGDRV_POST2_DIV232,             /* 0x39  */
+    CPGDRV_POST2_DIV236,             /* 0x3A  */
+    CPGDRV_POST2_DIV240,             /* 0x3B  */
+    CPGDRV_POST2_DIV244,             /* 0x3C  */
+    CPGDRV_POST2_DIV248,             /* 0x3D  */
+    CPGDRV_POST2_DIV252,             /* 0x3E  */
+    CPGDRV_POST2_DIV256              /* 0x3F  */
+};
+
+const uint32_t g_pma_bsp_wrap_cpg_div3_id_tbl_v4h[(R_PMA_MNG_CLK_DIVIDER-1)] =
+{
+    CPGDRV_POST3_DIV4,               /* 0x1   */
+    CPGDRV_POST3_DIV8,               /* 0x2   */
+    CPGDRV_POST3_DIV12,              /* 0x3   */
+    CPGDRV_POST3_DIV16,              /* 0x4   */
+    CPGDRV_POST3_DIV20,              /* 0x5   */
+    CPGDRV_POST3_DIV24,              /* 0x6   */
+    CPGDRV_POST3_DIV28,              /* 0x7   */
+    CPGDRV_POST3_DIV32,              /* 0x8   */
+    CPGDRV_POST3_DIV36,              /* 0x9   */
+    CPGDRV_POST3_DIV40,              /* 0xA   */
+    CPGDRV_POST3_DIV48,              /* 0xB   */
+    CPGDRV_POST3_DIV52,              /* 0xC   */
+    CPGDRV_POST3_DIV56,              /* 0xD   */
+    CPGDRV_POST3_DIV60,              /* 0xE   */
+    CPGDRV_POST3_DIV64,              /* 0xF   */
+    CPGDRV_POST3_DIV68,              /* 0x10  */
+    CPGDRV_POST3_DIV72,              /* 0x11  */
+    CPGDRV_POST3_DIV76,              /* 0x12  */
+    CPGDRV_POST3_DIV80,              /* 0x13  */
+    CPGDRV_POST3_DIV84,              /* 0x14  */
+    CPGDRV_POST3_DIV88,              /* 0x15  */
+    CPGDRV_POST3_DIV92,              /* 0x16  */
+    CPGDRV_POST3_DIV96,              /* 0x17  */
+    CPGDRV_POST3_DIV100,             /* 0x18  */
+    CPGDRV_POST3_DIV104,             /* 0x19  */
+    CPGDRV_POST3_DIV108,             /* 0x1A  */
+    CPGDRV_POST3_DIV112,             /* 0x1B  */
+    CPGDRV_POST3_DIV116,             /* 0x1C  */
+    CPGDRV_POST3_DIV120,             /* 0x1D  */
+    CPGDRV_POST3_DIV124,             /* 0x1E  */
+    CPGDRV_POST3_DIV128,             /* 0x1F  */
+    CPGDRV_POST3_DIV132,             /* 0x20  */
+    CPGDRV_POST3_DIV136,             /* 0x21  */
+    CPGDRV_POST3_DIV140,             /* 0x22  */
+    CPGDRV_POST3_DIV144,             /* 0x23  */
+    CPGDRV_POST3_DIV148,             /* 0x24  */
+    CPGDRV_POST3_DIV152,             /* 0x25  */
+    CPGDRV_POST3_DIV156,             /* 0x26  */
+    CPGDRV_POST3_DIV160,             /* 0x27  */
+    CPGDRV_POST3_DIV164,             /* 0x28  */
+    CPGDRV_POST3_DIV168,             /* 0x29  */
+    CPGDRV_POST3_DIV172,             /* 0x2A  */
+    CPGDRV_POST3_DIV176,             /* 0x2B  */
+    CPGDRV_POST3_DIV180,             /* 0x2C  */
+    CPGDRV_POST3_DIV184,             /* 0x2D  */
+    CPGDRV_POST3_DIV188,             /* 0x2E  */
+    CPGDRV_POST3_DIV192,             /* 0x2F  */
+    CPGDRV_POST3_DIV196,             /* 0x30  */
+    CPGDRV_POST3_DIV200,             /* 0x31  */
+    CPGDRV_POST3_DIV204,             /* 0x32  */
+    CPGDRV_POST3_DIV208,             /* 0x33  */
+    CPGDRV_POST3_DIV212,             /* 0x34  */
+    CPGDRV_POST3_DIV216,             /* 0x35  */
+    CPGDRV_POST3_DIV220,             /* 0x36  */
+    CPGDRV_POST3_DIV224,             /* 0x37  */
+    CPGDRV_POST3_DIV228,             /* 0x38  */
+    CPGDRV_POST3_DIV232,             /* 0x39  */
+    CPGDRV_POST3_DIV236,             /* 0x3A  */
+    CPGDRV_POST3_DIV240,             /* 0x3B  */
+    CPGDRV_POST3_DIV244,             /* 0x3C  */
+    CPGDRV_POST3_DIV248,             /* 0x3D  */
+    CPGDRV_POST3_DIV252,             /* 0x3E  */
+    CPGDRV_POST3_DIV256              /* 0x3F  */
+};
+
+const uint32_t g_pma_bsp_wrap_cpg_div4_id_tbl_v4h[(R_PMA_MNG_CLK_DIVIDER-1)] =
+{
+    CPGDRV_POST4_DIV4,               /* 0x1   */
+    CPGDRV_POST4_DIV8,               /* 0x2   */
+    CPGDRV_POST4_DIV12,              /* 0x3   */
+    CPGDRV_POST4_DIV16,              /* 0x4   */
+    CPGDRV_POST4_DIV20,              /* 0x5   */
+    CPGDRV_POST4_DIV24,              /* 0x6   */
+    CPGDRV_POST4_DIV28,              /* 0x7   */
+    CPGDRV_POST4_DIV32,              /* 0x8   */
+    CPGDRV_POST4_DIV36,              /* 0x9   */
+    CPGDRV_POST4_DIV40,              /* 0xA   */
+    CPGDRV_POST4_DIV48,              /* 0xB   */
+    CPGDRV_POST4_DIV52,              /* 0xC   */
+    CPGDRV_POST4_DIV56,              /* 0xD   */
+    CPGDRV_POST4_DIV60,              /* 0xE   */
+    CPGDRV_POST4_DIV64,              /* 0xF   */
+    CPGDRV_POST4_DIV68,              /* 0x10  */
+    CPGDRV_POST4_DIV72,              /* 0x11  */
+    CPGDRV_POST4_DIV76,              /* 0x12  */
+    CPGDRV_POST4_DIV80,              /* 0x13  */
+    CPGDRV_POST4_DIV84,              /* 0x14  */
+    CPGDRV_POST4_DIV88,              /* 0x15  */
+    CPGDRV_POST4_DIV92,              /* 0x16  */
+    CPGDRV_POST4_DIV96,              /* 0x17  */
+    CPGDRV_POST4_DIV100,             /* 0x18  */
+    CPGDRV_POST4_DIV104,             /* 0x19  */
+    CPGDRV_POST4_DIV108,             /* 0x1A  */
+    CPGDRV_POST4_DIV112,             /* 0x1B  */
+    CPGDRV_POST4_DIV116,             /* 0x1C  */
+    CPGDRV_POST4_DIV120,             /* 0x1D  */
+    CPGDRV_POST4_DIV124,             /* 0x1E  */
+    CPGDRV_POST4_DIV128,             /* 0x1F  */
+    CPGDRV_POST4_DIV132,             /* 0x20  */
+    CPGDRV_POST4_DIV136,             /* 0x21  */
+    CPGDRV_POST4_DIV140,             /* 0x22  */
+    CPGDRV_POST4_DIV144,             /* 0x23  */
+    CPGDRV_POST4_DIV148,             /* 0x24  */
+    CPGDRV_POST4_DIV152,             /* 0x25  */
+    CPGDRV_POST4_DIV156,             /* 0x26  */
+    CPGDRV_POST4_DIV160,             /* 0x27  */
+    CPGDRV_POST4_DIV164,             /* 0x28  */
+    CPGDRV_POST4_DIV168,             /* 0x29  */
+    CPGDRV_POST4_DIV172,             /* 0x2A  */
+    CPGDRV_POST4_DIV176,             /* 0x2B  */
+    CPGDRV_POST4_DIV180,             /* 0x2C  */
+    CPGDRV_POST4_DIV184,             /* 0x2D  */
+    CPGDRV_POST4_DIV188,             /* 0x2E  */
+    CPGDRV_POST4_DIV192,             /* 0x2F  */
+    CPGDRV_POST4_DIV196,             /* 0x30  */
+    CPGDRV_POST4_DIV200,             /* 0x31  */
+    CPGDRV_POST4_DIV204,             /* 0x32  */
+    CPGDRV_POST4_DIV208,             /* 0x33  */
+    CPGDRV_POST4_DIV212,             /* 0x34  */
+    CPGDRV_POST4_DIV216,             /* 0x35  */
+    CPGDRV_POST4_DIV220,             /* 0x36  */
+    CPGDRV_POST4_DIV224,             /* 0x37  */
+    CPGDRV_POST4_DIV228,             /* 0x38  */
+    CPGDRV_POST4_DIV232,             /* 0x39  */
+    CPGDRV_POST4_DIV236,             /* 0x3A  */
+    CPGDRV_POST4_DIV240,             /* 0x3B  */
+    CPGDRV_POST4_DIV244,             /* 0x3C  */
+    CPGDRV_POST4_DIV248,             /* 0x3D  */
+    CPGDRV_POST4_DIV252,             /* 0x3E  */
+    CPGDRV_POST4_DIV256,             /* 0x3F  */
+};

@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_InterruptInit,14_101,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_key_create,pthread_key_create,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_pthread_key_create@AMIN_return,R_OSAL_OS_InterruptInit@@,;,,,,,,,,,
+,0,OSAL_RETURN_OK,;Normal operation,,,,,,,,,
+,-1,OSAL_RETURN_FAIL,;pthread_key_create returns -1,,,,,,,,,

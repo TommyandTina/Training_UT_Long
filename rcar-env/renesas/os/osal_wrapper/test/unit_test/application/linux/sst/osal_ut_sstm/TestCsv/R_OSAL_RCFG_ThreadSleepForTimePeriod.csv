@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_ThreadSleepForTimePeriod,01_010,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ThreadSleepForTimePeriod,R_OSAL_HIF_ThreadSleepForTimePeriod,,,,,,,,,,
+#COMMENT,@time_period,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ThreadSleepForTimePeriod@AMIN_return,R_OSAL_RCFG_ThreadSleepForTimePeriod@@,;,,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,,

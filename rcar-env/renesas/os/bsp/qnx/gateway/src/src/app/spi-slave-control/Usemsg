@@ -1,0 +1,53 @@
+%C SPI Slave Driver test utility
+
+Syntax:
+# spi-slave-control <spi path> [-i] | [[-c | -r | -w] [-x] [-W] [-o]]
+
+Options:
+    -<spi path>: spi path of device, e.g. "/dev/spi2"
+    -i    : show driverinformation
+    -c    : set device config
+        cpol: Set POL
+        cpha: Set Phase
+
+    -w    : Specify number of data byte to transmit
+            Writing data is 0, 1, 2, ...
+    -W    : Specify data to transmit
+    -r    : Specify number of data byte to receive
+    -x    : Specify number of data byte to transmit and receive in the same frame
+    -o    : Specify transmit data is random, value of -o option is transfered to srand()
+            This option has to use with -w or -x option
+    -v    : verbosity
+Examples: if word count = 1 bytes(8 bit)
+    - Display device 0 information:
+     # spi-control /dev/spi2 -i
+
+    - Write 8 bytes data of 0:1:2:3:4:5:6:7
+     # spi-control /dev/spi2 -w 8
+
+    - Write 7 bytes data 74 65 73 74 69 62 67 (data in decimal format)
+     # spi-control /dev/spi2 -W 74:65:73:74:69:62:67
+
+    - Write 8 bytes random-data
+     # spi-control /dev/spi2 -o 123 -w 8
+
+    - Read 8 bytes from master
+     # spi-control /dev/spi2 -r 8
+
+    - Set SPI configuration:
+     # spi-control /dev/spi2 -c cpol=1,cpha=1
+
+Note: For R-CarV4H maximum of data is 256*4 bytes, for other product maximum of data is 64*4 bytes	 
+
+
+1.1) Channel 1  (Master mode) – Channel 2 (Slave mode)
+# slay spi-master spi-slave-rcar
+# spi-master -u1 -d /proc/boot/spi-rcar.so channel=1,blksize=64,dma
+# spi-slave-rcar -u2 
+1.1.1) Perform Master write - Slave read test
+  
+a) Master write - Slave read with 64  bytes, data size=8bits
+ # spi-slave-control /dev/spi2 -r64
+ # spi-control /dev/spi1 -s0 -w 64  -v
+SPI master: Exchanged  64 bytes
+SPI master: Transmit

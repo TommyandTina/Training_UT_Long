@@ -1,0 +1,10 @@
+modi,R_PMA_MNG_SetupQueue,02_016,4,3,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqInitAttr,R_OSAL_OS_MqInitAttr,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqCreate,R_OSAL_OS_MqCreate,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqDeinitAttr,R_OSAL_OS_MqDeinitAttr,,,,,,,,,,
+#COMMENT,$@pTaskQueue,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqCreate@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqCreate@AMOUT_p_config[0].max_num_msg,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqCreate@AMOUT_p_config[0].msg_size,R_PMA_MNG_SetupQueue@@,;,,,,
+,1,OSAL_RETURN_FAIL,,,,,R_PMA_NG,;R_OSAL_OS_MqInitAttr() returns OSAL_RETURN_FAIL,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,,333,32,R_PMA_NG,;R_OSAL_OS_MqCreate() returns OSAL_RETURN_FAIL,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_OK,,333,32,R_PMA_OK,;Normal operation,,,,

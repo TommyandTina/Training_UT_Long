@@ -1,0 +1,9 @@
+modi,R_PMA_BSP_WRAP_Quit,05_002,6,3,,,,CPP,,,,0
+#InitWheneverCall,r_pma_bsp_wrapper.c/clkhwfuncs.deinit,r_pma_bsp_wrapper.c/syschwfuncs.deinit,,,,,,,,,,
+0,0,0,,,,,,,,,,
+%,AMSTB_dummy_deinit,dummy_deinit,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode,R_PMA_BSP_WRAP_Exchange_ErrCode,,,,,,,,,,
+%,AMSTB_dummy_sysc_deinit,dummy_sysc_deinit,,,,,,,,,,
+#COMMENT,r_pma_bsp_wrapper.c/clkhwfuncs.deinit,r_pma_bsp_wrapper.c/syschwfuncs.deinit,AMSTB_SrcFile.c/AMSTB_dummy_deinit@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode@AMIN_return,AMSTB_SrcFile.c/AMSTB_dummy_sysc_deinit@AM_count,AMSTB_SrcFile.c/AMSTB_dummy_deinit@AM_count,AMSTB_SrcFile.c/AMSTB_dummy_deinit@AM_count,AMSTB_SrcFile.c/AMSTB_dummy_sysc_deinit@AM_count,R_PMA_BSP_WRAP_Quit@@,;,,
+,dummy_deinit,dummy_sysc_deinit,CPG_RET_ERROR,R_PMA_NG,0,0,1,0,R_PMA_NG,;clkhwfuncs.deinit() returns CPG_RET_ERROR,,
+,dummy_deinit,dummy_sysc_deinit,CPG_RET_OK,,0,0,1,1,R_PMA_OK,;Normal operation,,

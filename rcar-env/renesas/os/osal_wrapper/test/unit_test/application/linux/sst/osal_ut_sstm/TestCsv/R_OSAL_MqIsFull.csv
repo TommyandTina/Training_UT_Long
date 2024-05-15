@@ -1,0 +1,12 @@
+modi,R_OSAL_MqIsFull,04_006,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MqGetInitStatus,R_OSAL_RCFG_MqGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MqIsFull,R_OSAL_RCFG_MqIsFull,,,,,,,,,,
+#COMMENT,@handle,@p_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MqGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MqIsFull@AMIN_return,R_OSAL_MqIsFull@@,;,,,,,,
+,g_st_osal_common_mq_control,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,0,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle is NULL,,,,,,
+,g_st_osal_common_mq_control,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_result is NULL,,,,,,
+,g_st_osal_common_mq_control,p_result_common,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;R_OSAL_RCFG_MqGetInitStatus() return OSAL_MANAGER_STATE_UNINITIALIZED,,,,,,
+,g_st_osal_common_mq_control,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_RCFG_MqIsFull() return OSAL_RETURN_FAIL,,,,,,
+,g_st_osal_common_mq_control,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;R_OSAL_RCFG_MqIsFull() return OSAL_RETURN_HANDLE,,,,,,

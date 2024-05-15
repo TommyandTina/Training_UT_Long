@@ -1,0 +1,30 @@
+modi,r_osal_os_interrupt_thread_init,06_111,19,1,,,,CPP,,,,0,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init_multiple,pthread_mutex_init,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init_multiple,pthread_mutex_init,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init_multiple,pthread_mutex_init,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_init,pthread_attr_init,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setinheritsched,pthread_attr_setinheritsched,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedpolicy,pthread_attr_setschedpolicy,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedparam,pthread_attr_setschedparam,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setstacksize,pthread_attr_setstacksize,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_create,pthread_create,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_destroy,pthread_attr_destroy,,,,,,,,,,,,,,,,,,,
+#COMMENT,$@p_info,$@p_info[0].usr_config,@p_info[0].usr_config[0].priority,@p_info[0].usr_config[0].stack_size,@p_info[0].usr_config[0].interrupt_timeout,$@p_device_control,$@p_mutex_attr,$@p_cond_attr,AMSTB_SrcFile.c/AMSTB_pthread_mutex_init_multiple@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_init_multiple@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init_multiple@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setinheritsched@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedpolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedparam@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setstacksize@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_create@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_destroy@AMIN_return,r_osal_os_interrupt_thread_init@@,;
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation 
+,1,1,15,1024,100,1,1,1,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_CONF,;p_info->usr_config->priority is more than OSAL_INTERRUPT_PRIORITY_HIGHEST
+,1,1,-1,1024,100,1,1,1,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_CONF,;p_info->usr_config->priority is less than OSAL_INTERRUPT_PRIORITY_LOWEST
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,0,100,1,1,1,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_CONF,;p_info->usr_config->stack_size is 0
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_CONF,;p_info->usr_config->interrupt_timeout is 0.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,22,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_mutex_init(inner_mtx) return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,22,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_init() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,22,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_attr_init() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,0,22,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_attr_setinheritsched() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,0,0,22,0,0,0,0,OSAL_RETURN_FAIL,;pthread_attr_setschedpolicy() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,0,0,0,22,0,0,0,OSAL_RETURN_FAIL,;pthread_attr_setschedparam() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,0,0,0,0,22,0,0,OSAL_RETURN_FAIL,;pthread_attr_setstacksize() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,0,0,0,0,0,22,0,OSAL_RETURN_FAIL,;pthread_create() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,0,0,0,0,0,0,0,0,22,OSAL_RETURN_FAIL,;pthread_attr_destroy() return non-EOK.
+,1,1,OSAL_INTERRUPT_PRIORITY_LOWEST,1024,100,1,1,1,0,0,22,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_mutex_init(inner_mtx_for_cond) return non-EOK.

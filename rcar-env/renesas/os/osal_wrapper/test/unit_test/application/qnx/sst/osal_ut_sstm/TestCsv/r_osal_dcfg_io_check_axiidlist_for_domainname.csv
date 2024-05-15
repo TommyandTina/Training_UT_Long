@@ -1,0 +1,16 @@
+modi,r_osal_dcfg_io_check_axiidlist_for_domainname,07_030,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_add_utlb_list,r_osal_dcfg_io_add_utlb_list,,,,,,,,,,
+#COMMENT,$@p_axi_bus_name,$@p_domain_name,@p_list_buffer,@list_size,@p_num_of_axi_ids,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_add_utlb_list@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_add_utlb_list@AMIN_match_count,r_osal_dcfg_io_check_axiidlist_for_domainname@@,;
+,1,1,g_uint64_t,1,array_sizet,0,3,6,OSAL_RETURN_OK,3,OSAL_RETURN_OK,;Normal operation
+,1,1,g_uint64_t,1,array_sizet,0,3,6,OSAL_RETURN_UNKNOWN_NAME,3,OSAL_RETURN_UNKNOWN_NAME,;r_osal_dcfg_io_add_utlb_list() return non-OSAL_RETURN_OK
+,1,1,g_uint64_t,1,array_sizet,0,3,3,OSAL_RETURN_OK,3,OSAL_RETURN_UNKNOWN_NAME,;axi_bus_name_len is less than (offset + (size_t)3U)
+,1,1,g_uint64_t,1,array_sizet,0,3,6,OSAL_RETURN_OK,0,OSAL_RETURN_UNKNOWN_NAME,;utlb_control.match_count is 0.
+,1,1,g_uint64_t,1,array_sizet,0,3,5,OSAL_RETURN_OK,3,OSAL_RETURN_UNKNOWN_NAME,;axi_bus_name_len is 5.
+,1,1,g_uint64_t,1,array_sizet,0,3,7,OSAL_RETURN_OK,3,OSAL_RETURN_OK,;axi_bus_name_len is 7.
+,1,1,g_uint64_t,1,array_sizet,0,3,8,OSAL_RETURN_OK,3,OSAL_RETURN_OK,;axi_bus_name_len is 8.
+,1,1,g_uint64_t,1,array_sizet,0,3,9,OSAL_RETURN_OK,3,OSAL_RETURN_OK,;axi_bus_name_len is 9.

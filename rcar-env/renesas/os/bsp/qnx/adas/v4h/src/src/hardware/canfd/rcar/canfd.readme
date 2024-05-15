@@ -1,0 +1,134 @@
+*************************************************
+    General CAN Operation & Loopback Testing
+*************************************************
+
+1. Start CAN driver with channels 0,2,3,4,5,6,7 in communication mode and channel 1 in internal
+   loop back mode.
+
+# canfd-rcar -u1 -m3
+
+# ls /dev/can* (*: 0-7)
+rx0  tx0
+
+
+The message ID's (MID's) of the transmit and receive device mailboxes are
+configured by default such that:
+
+Channel     Device Mailbox       MID
+=======   =================   ===========
+   0           rx0/tx0         0x00000001
+   1           rx0/tx0         0x00000011
+   2           rx0/tx0         0x00000021
+   3           rx0/tx0         0x00000031
+   4           rx0/tx0         0x00000041
+   5           rx0/tx0         0x00000051
+   6           rx0/tx0         0x00000061
+   7           rx0/tx0         0x00000071
+
+2. Internal loop back
++ Run a client application to read CAN messages on the receive mailbox
+# cat /dev/can1/rx0 &
+
++ Transmit a CAN message to the receive device mailbox
+# echo testing > /dev/can1/tx0
+testing
+
+Data must be less than or equal to 8 bytes - if it is larger, no
+CAN message is transmitted (an error is returned from the write() fuction)
+# echo testimony > /dev/can1/tx0
+
+No data is transmitted/received.
+
+3. Set normal baudrate 500Kbs and data baudrate 1Mbits
+# canfd-rcar -b500000 -d1000000
+
+4. Set internal loop back mode for channel 0
+# canfd-rcar -u0 -m3
+
+5. Set communication mode for channel 1
+# canfd-rcar -u1 -m4
+
+6. Set external clock mode at 40 MHz
+# canfd-rcar -x40000000
+
+7. Set timestamp to 150us both channels
+# canfd-rcar -t150
+
+8. Select classic CAN module
+# canfd-rcar -i
+
+9. Get MID
+Channel 0
+# canctl -u0,rx0 -M
+GET_MID = 0x01
+
+# canctl -u0,tx0 -M
+GET_MID = 0x01
+
+Channel 1
+# canctl -u1,rx0 -M
+GET_MID = 0x11
+
+# canctl -u1,tx0 -M
+GET_MID = 0x11
+
+10. Set MID
+Channel 0
+# canctl -u0,rx0 -m0x11
+# canctl -u0,tx0 -m0x22
+
+Channel 1
+# canctl -u1,rx0 -m0x33
+# canctl -u1,tx0 -m0x44
+
+11. Get Filter
+Channel 0
+# canctl -u0,rx0 -F
+MFILTER = 0x1FFFFFFF
+
+Channel 1
+# canctl -u1,rx0 -F
+MFILTER = 0x1FFFFFFF
+
+12. Set Filter
+Channel 0
+# canctl -u0,rx0 -f0x00FFFFF0
+
+Channel 1
+# canctl -u1,rx0 -f0x00FFFFF1
+
+13. Get timestamp
+Channel 0
+# canctl -u0 -T
+GET_TIMESTAMP = 0x4B
+
+Channel 1
+# canctl -u1 -T
+GET_TIMESTAMP = 0x4B
+
+14. Set timestamp
+Channel 0
+# canfd-rcar -u0 -t0               //timestamp = 0 us
+
+Channel 1 - tx0
+# canfd-rcar -u1 -t0
+
+15. Communication mode
+Before do below commands, please make sure hardware connection between
+two boards are correct.
+
+Board 1               Board 2
+=======              =========
+ CANL<----------------->CANL
+ CANH<----------------->CANH
+ GND <----------------->GND
+
+Board 1:
+# canfd-rcar
+# cat /dev/can0/rx0 &
+
+Board 2:
+# canfd-rcar
+# echo message > /dev/can0/tx0
+
+If there are no problems, you should see the message at board 1 side.

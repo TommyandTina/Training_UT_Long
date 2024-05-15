@@ -1,0 +1,12 @@
+modi,R_OSAL_ThreadEqual,02_002,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_ThreadGetInitStatus,R_OSAL_RCFG_ThreadGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_ThreadEqual,R_OSAL_RCFG_ThreadEqual,,,,,,,,,,
+#COMMENT,@handle1,@handle2,@p_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_ThreadGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_ThreadEqual@AMIN_return,R_OSAL_ThreadEqual@@,;,,,,,
+,g_thread_common_control_1,g_thread_common_control_2,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,
+,0,g_thread_common_control_2,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle1 is NULL,,,,,
+,g_thread_common_control_1,0,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle2 is NULL,,,,,
+,g_thread_common_control_1,g_thread_common_control_2,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_result_common is NULL,,,,,
+,g_thread_common_control_1,g_thread_common_control_2,p_result_common,OSAL_MANAGER_STATE_UNINITIALIZED ,OSAL_RETURN_OK,OSAL_RETURN_STATE,;R_OSAL_RCFG_ThreadGetInitStatus() return OSAL_MANAGER_STATE_UNINITIALIZED ,,,,,
+,g_thread_common_control_1,g_thread_common_control_2,p_result_common,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;R_OSAL_RCFG_ThreadEqual() return OSAL_RETURN_HANDLE,,,,,

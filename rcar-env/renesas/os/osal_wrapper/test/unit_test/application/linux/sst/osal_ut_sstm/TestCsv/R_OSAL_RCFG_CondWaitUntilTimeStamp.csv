@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_CondWaitUntilTimeStamp,02_015,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_cond_wait,r_osal_rcfg_cond_wait,,,,,,,,,,
+#COMMENT,@cond_handle,@mutex_handle,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_cond_wait@AMIN_return,R_OSAL_RCFG_CondWaitUntilTimeStamp@@,;,,,,,,
+,g_st_osal_cond_control_t[0],g_st_osal_mutex_control_t[0],g_st_osal_time_t,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,

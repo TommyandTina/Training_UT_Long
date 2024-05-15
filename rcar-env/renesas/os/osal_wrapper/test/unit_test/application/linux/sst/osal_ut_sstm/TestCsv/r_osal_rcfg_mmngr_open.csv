@@ -1,0 +1,15 @@
+modi,r_osal_rcfg_mmngr_open,09_023,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,r_osal_res_cfg_memory.c/gsp_osal_memory_manager,g_st_osal_memory_manager_table.osal_memory_manager,g_st_osal_memory_manager_table.osal_memory_manager[0].p_ptr_self,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_open_map,r_osal_rcfg_mmngr_open_map,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_open_malloc,r_osal_rcfg_mmngr_open_malloc,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_memory.c/gsp_osal_memory_manager,g_st_osal_memory_manager_table.osal_memory_manager,g_st_osal_memory_manager_table.osal_memory_manager[0].p_ptr_self,$@p_usr_config,@p_usr_config[0].memory_limit,@region_idx,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_open_map@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_open_malloc@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],r_osal_rcfg_mmngr_open@@,;
+,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_rcfg_mmngr_open_map() return OSAL_RETURN_FAIL
+,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_rcfg_mmngr_open_malloc() return OSAL_RETURN_FAIL
+,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return non-zero

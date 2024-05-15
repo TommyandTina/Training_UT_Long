@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_ClockTimeControlInit,05_003,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_timeclock.c/gs_osal_clock_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeInit,R_OSAL_OS_ClockTimeInit,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_timeclock.c/gs_osal_clock_is_initialized_enu,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeInit@AMIN_return,R_OSAL_RCFG_ClockTimeControlInit@@,;,,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,,

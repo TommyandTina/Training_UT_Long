@@ -1,0 +1,11 @@
+modi,R_PMA_BSP_WRAP_ReadPdmode,05_015,5,2,,,,CPP,,,,0
+#InitWheneverCall,r_pma_bsp_wrapper.c/syschwfuncs.read_pdmode,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_dummy_sysc_read_pdmode,dummy_sysc_read_pdmode,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode,R_PMA_BSP_WRAP_Exchange_ErrCode,,,,,,,,,,
+#COMMENT,$@pdMode,*@pdMode,r_pma_bsp_wrapper.c/syschwfuncs.read_pdmode,AMSTB_SrcFile.c/AMSTB_dummy_sysc_read_pdmode@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode@AMIN_return,@pdMode[0],R_PMA_BSP_WRAP_ReadPdmode@@,;,,,,
+,1,0,dummy_sysc_read_pdmode,-1,R_PMA_NG,0,R_PMA_NG,;read_pdmode() returns -1,,,,
+,1,0,dummy_sysc_read_pdmode,2,,0,R_PMA_OK,;read_pdmode() returns 2,,,,
+,1,0,dummy_sysc_read_pdmode,R_PMA_SYSC_PDMODE_0,,R_PMA_SYSC_PDMODE_0,R_PMA_OK,;Normal operation,,,,
+,1,0,dummy_sysc_read_pdmode,R_PMA_SYSC_PDMODE_1,,R_PMA_SYSC_PDMODE_1,R_PMA_OK,;Normal operation,,,,
+,1,0,dummy_sysc_read_pdmode,R_PMA_SYSC_PDMODE_3,,R_PMA_SYSC_PDMODE_3,R_PMA_OK,;Normal operation,,,,

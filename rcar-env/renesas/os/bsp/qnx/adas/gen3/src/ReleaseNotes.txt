@@ -1,0 +1,206 @@
+=====================================================================
+             BSP Release Notes
+=====================================================================  
+This is a release note for QNX 7.1 BSP for R-Car Gen3 boards
+
+This BSP is distributed under QNX Apache License, version 2.0.
+
+                         Board:  RENESAS Renesas R-Car H3/M3/M3N/E3/D3/V3M/V3H/V3U boards
+                      BSP file:  R-CarGen3e_qnx71_bsp_vx.y.zip
+                       Version:  1.1
+                  Release Date:  11.18.2022
+                        Author:  Renesas Electronics America Inc.
+ Software Development Platform:  QNX SDP 7.1
+=====================================================================
+
+---------------------------------------------------------------------
+ Installation
+---------------------------------------------------------------------
+Please refer to the BSP Setup Manual for specific instructions on
+using this BSP with the specified target device.
+
+---------------------------------------------------------------------
+ Uninstallation
+---------------------------------------------------------------------
+
+---------------------------------------------------------------------
+ QNX7.1 BSP Change History
+---------------------------------------------------------------------
+    CREATED   : 09.30.2020
+    MODIFIED  :
+    BSP CONTENTS  :
+    +-- <images>            : where the resultant boot images are places
+    +-- <install>           : gets populated at the beginning of the BSP build process
+    +-- <prebuilt>          : contains the binaries, system binaries, buidfiles, libraries, 
+    |   |                   : and header files that are shipped with the BSP
+    |   +-- <aarch64le>     : store header files and prebuilt library/utility binaries files
+    +-- <src>               : stored the whole source files of BSP
+    |   +-- <app>           : store testing program source files
+    |   |   +-- <camera_ctrl>       : stores VIN testing source files
+    |   |   +-- <cmm_test>          : stores CMM testing source files
+    |   |   +-- <cpg_sysc_test>     : stores CPG driver and SYSC driver testing source files
+    |   |   +-- <crc_app>           : stores crc application source files
+    |   |   +-- <discom_test>       : stores discom_test and format_test source files
+    |   |   +-- <dma-memtomem-test> : stores dma-memtomem-test and format_test source files
+    |   |   +-- <flexray_test>      : stores FlexRay driver testing source files
+    |   |   +-- <gpio_test>         : stores GPIO driver testing source files
+    |   |   +-- Makefile            : compiling makefile
+    |   |   +-- <pwm_test>          : stores PWM testing source files
+    |   |   +-- <spi-control>       : stores spi-control source files
+    |   |   +-- <spi-slave-control> : stores spi-slave-control source files
+    |   |   +-- <thermal_test>      : stores Thermal driver testing source files
+    |   |   +-- <timer_test>        : stores CMT/TMU driver testing source files
+    |   |   +-- <tpu_test>          : stores TPU driver testing source files
+    |   +-- <hardware>              : BSP source files
+    |   |   +-- <canfd>             : store CANFD driver source files
+    |   |   +-- <deva>              : store SSI, SSIU, SCU driver source files
+    |   |   +-- <devb>              : store SD/eMMC driver source files
+    |   |   +-- <devc>              : stores SCIF and HSCIF driver source files
+    |   |   +-- <devnp>             : stores AVB network driver source files
+    |   |   +-- <flash>             : stores Flash driver source files
+    |   |   +-- <flexray>           : stores FlexRay driver source files
+    |   |   +-- <i2c>               : stores I2C driver source files
+    |   |   +-- <pwm>               : stores PWM driver source files
+    |   |   +-- <spi>               : stores SPI driver source files
+    |   |   +-- Makefile            : compiling makefile
+    |   |   +-- <startup>           : stores Startup source files
+    |   |   +-- <support>           : utility programs and other drivers
+    |   |   |   +-- <genmac>            : stores genmac utility source files
+    |   |   |   +-- Makefile            : compiling makefile
+    |   |   |   +-- <rcar-cmm>          : store CMM driver source files
+    |   |   |   +-- <rcar-cpg>          : store CPG mgr driver and control app source files
+    |   |   |   +-- <rcar-gpio>         : stores GPIO driver source files
+    |   |   |   +-- <rcar-thermal>      : stores Thermal utility source files
+    |   |   |   +-- <rcar-uboot-env>    : stores rcar uboot environment source files
+    |   |   |   +-- <rcar-sysc>         : stores sysc resource manager driver and control app source files
+    |   |   |   +-- <wdtkick-rcar>      : stores Watchdog timer utility source files
+    |   +-- <lib>                   : drivers libraries and includes
+    |   |   +-- <dma>               : stores SYS-DMAC, Audio-DMAC and PP-DMAC libraries source file
+    |   |   +-- <hw_vendor>         : stores source files for vendor's hw
+    |   |   |   +-- Makefile            : compiling makefile
+    |   |   |   +-- <renesas>           : stores source files for Renesas vendor
+    |   |   |   |   +-- Makefile        : compiling makefile
+    |   |   |   |   +-- <rcar>          : stores source files for R-CarGen3
+    |   |   |   |   |   +-- <cmt>           : stores CMT library interface source files
+    |   |   |   |   |   +-- <cpg>           : store rcar-cpg library source file
+    |   |   |   |   |   +-- <cpg-support>   : store cpg-support library source file
+    |   |   |   |   |   +-- <crc>           : stores CRC libraries source file
+    |   |   |   |   |   +-- Makefile        : compiling makefile
+    |   |   |   |   |   +-- <sysc>          : store rcar-sysc library source file
+    |   |   |   |   |   +-- <sysc-support>  : store sysc-support library source file
+    |   |   |   |   |   +-- <tmu>           : stores TMU library source files
+    |   |   |   |   |   +-- <tpu>           : stores TPU library source files
+    |   |   +-- Makefile            : compiling makefile
+    |   |   +-- <timer>             : stores a CMT/TMU timer library source files
+    |   |   +-- <vin>               : stores CSI-2, VIN libraries source files
+    |   |   +-- <wfdcfg>            : Display common configuration source files
+    |   +-- Makefile                : compiling make file
+    |   +-- <utils>                 : utilities
+    |   |   +-- <in32>              : stores source files for reading registers
+    |   |   +-- Makefile            : compiling makefile
+    |   |   +-- <out32>             : stores source files for wrting registers
+    +-- Makefile           : compiling make file
+    +-- ReleaseNotes.txt   : Release note for QNX 7.1 BSP for R-Car Gen3 boards
+    +-- source.xml         : some information about BSP, CPU name
+
+    HISTORY:
+    02.28.2021 : Ver.0.1
+    - Migrating QNX7.0 Gen3 BSP Ver.0.1.3 to QNX SDP 7.1 as Alpha 1 release
+    03.30.2021 : Ver.0.2
+    - Support/Merge with V3H2.x and V3U
+    04.26.2020 : Ver.0.3
+    - Add new supported modules:
+      FlexRay driver
+      CMT library
+      TMU library
+      TPU library
+      CRC library for V3U
+    - Support CA57 clock to 2.0GHz change
+    - Support V3H 2.x Power Domain Mode group
+    05.19.2021 : Ver.0.4
+    - Add POSTnCKCR support and divider function in cpg-support driver
+    06.30.2021 : Ver.0.5
+    - Update MMC retune devb driver
+    - Update startup module in using APIs in cpg-gen3/sys-gen3 libraries to read/change CPU clock 
+      and add HWinfo for IIC base, CMT clocks, TMU clocks
+    - Add new CMM module (driver and test program)
+    - Add new PDMODE read API and set domain dependencies in Power Domain group for V3H2.x SYSC driver
+    - Remove all -L reserved memory in rcar_h3.build
+    - Change boot address to 0x50100000
+    07.30.2021 : Ver.0.6
+    - Optimize FlexRay driver
+    - Support interrupt mode for GPIO driver
+    - SYSC driver/Lib : Merge /src/lib/hw_vendor/renesas/rcar/sysc and /src/lib/hw_vendor/renesas/rcar/sysc-support 
+              into /src/lib/hw_vendor/renesas/rcar/sysc
+    - CPG driver/Lib :
+      + Merge /src/lib/hw_vendor/renesas/rcar/cpg and /src/lib/hw_vendor/renesas/rcar/cpg-support 
+            into /src/lib/hw_vendor/renesas/rcar/cpg
+      + Add error/debug messages to cpg and sysc drivers
+      + Add more return error checking/handling
+    - Update CAN driver to fix communication error between 2 R-Car V3M Eagle board
+    08.30.2021 : Ver.0.7
+    - Add I2C0 congiguration before reading board type in startup mode for V3M and V3H boards 
+            (This is also to fix board type reading wrong and fix external SCFI_CLK doesn't work on V3M Eagle board )
+    - Add interrupt clear in interrupt_unmask_rcar_gpio function in startup callout_interrupt_rcar_gpio.S 
+            for GPIO interrupt mode (this is to fix twice continuous interrupts when key down)
+            and add more arguments for testing app
+    - Fix CMM flicker on M3N
+    - Update Thermal driver in seting over/under temperature threadholds cause warning interrupts
+    - Remove DMA channel clear in dma_setup_xfer() and add DMA channel clear in dma_abort() when DMA channel clear flag is set
+    11.30.2021 : Ver.0.8
+    - Port CPG/SYSC frameworks same as QSSL's S4 for CPG/SYSC tp:
+        + Made below code change:
+          clk_mgr_funcs_t -> cpg_mgr_funcs_t
+          clk_mgr_getfuncs -> cpg_mgr_getfuncs
+          (OSAL integration team needs to replace their original rcar_cpg.h with the rcar_cpg.h included in this BSP to be compatible)
+    - Remove Power ON IMPX5 domains in V3M startup module (Applied Linux power domain patch 0001-Revert-soc-renesas-rcar-sysc-Include-IMP-power-domai.patch)
+    - Support DMA Buffer control (in dma lib) and  DMA Rate control (startup) for V3H and V3U
+    - Support V3H rev.2.1 for WFD  driver (in binary)
+    - Remove PDMODE config in V3H startup
+    - Remove check status in mstp_config()for disable case for cpg-support lib
+    - Add mstp testing code for cpg_ctrl
+    - Support HS400 for V3H Rev.2.1
+    - Update WFD binaries built from QSSL's latest source code (Rev.88)
+    03.30.2022 : Ver.0.9
+    - AVB network (devnp) driver: Code optimization/enhancement based on code review, Linux code and Hardware manual
+    08.29.2022 : Ver.1.0
+    - Add in SYSC PDMODE mode support for V3H 2.1
+    - Fix "No voice" for playback for Audio driver by changing code in DMA lib
+    - Flash driver :
+      + Add starting option "wbuf" to control using write buffer mode
+      + Add WA for defect "RPC data cache hit logic has a problem. Reading RPC registers with CacheON may hit the data cache by mistake. Wrong data is read."
+    11.18.2022 : Ver.1.1
+    - eMMC driver : Update always to reset DMAC when any error occurs regardless DMAC is started or not
+    - CPG driver : 
+      + Updated SRCRn access from read-modify-write to only write to target bit (this has fixed Software Reset issue when 2 OS running on different cores are accessing same SRCRn register at the same time)
+      + Removed using error codes from errno.h
+      + Added return codes:
+        CPG_RET_OK
+        CPG_RET_INVALPARA
+        CPG_RET_TIMEOUT
+        CPG_RET_HWFAIL
+        CPG_RET_UNKNOWNSTA
+        CPG_RET_ERROR
+    - SYSC driver :
+      + Removed using error codes from errno.h
+      + Added return codes:
+        SYSC_RET_OK
+        SYSC_RET_INVALPARA
+        SYSC_RET_TIMEOUT
+        SYSC_RET_HWFAIL
+        SYSC_RET_UNKNOWNSTA
+        SYSC_RET_ERROR
+    - I2C driver :
+      + Add in channel index to prefix place of all logs
+      + Optimize interrupt handler code
+    - CANFD driver :
+      + Add in 2.1 support (same as V3H 2.0 support)
+      + Add function "canfd_calculate_bittiming" to calculate CAN bit time replacing for CAN bit time calculation in main().
+      + Remove unused macro and CAN bit time calculation in options in main().
+    - Startup : Add in V3H 2.1 support
+	- CPG : Add in V3H 2.1 support
+	- devb: Updated V3H 2.1 support comment 
+-----------------------------------------------------------------------------
+ Known limitations with this release
+-----------------------------------------------------------------------------
+    - CANFD mode on M3N cannot work (some CAN FD mode buffer registers cannot be changed)

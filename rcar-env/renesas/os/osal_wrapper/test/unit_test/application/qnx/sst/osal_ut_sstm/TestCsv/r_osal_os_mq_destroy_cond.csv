@@ -1,0 +1,11 @@
+modi,r_osal_os_mq_destroy_cond,10_016,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy_mqstb,pthread_cond_destroy,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy_mqstb,pthread_cond_destroy,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy_mqstb,pthread_cond_destroy,,,,,,,,,,
+#COMMENT,@mq,AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy_mqstb@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy_mqstb@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy_mqstb@AMIN_return[1],r_osal_os_mq_destroy_cond@@,;,,,,,,
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,;Normal operation,,,,,,
+,g_st_osal_os_mq,0,-1,0,OSAL_RETURN_FAIL,;pthread_cond_destroy() return not EOK. (send_cond),,,,,,
+,g_st_osal_os_mq,0,0,-1,OSAL_RETURN_FAIL,;pthread_cond_destroy() return not EOK. (recieve_cond),,,,,,
+,g_st_osal_os_mq,0,-1,-1,OSAL_RETURN_FAIL,;pthread_cond_destroy() return not EOK. (send_cond and recieve_cond),,,,,,

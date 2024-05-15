@@ -1,0 +1,16 @@
+modi,R_OSAL_OS_ThreadSleep,02_107,8,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_nanosleep,nanosleep,,,,,,,,,,
+%,AMSTB_z_impl_clock_gettime,z_impl_clock_gettime,,,,,,,,,,
+%,AMSTB_z_impl_clock_gettime,z_impl_clock_gettime,,,,,,,,,,
+#COMMENT,$@p_time_stamp,@p_time_stamp[0].tv_sec,@p_time_stamp[0].tv_nsec,AMSTB_SrcFile.c/AMSTB_nanosleep@AMIN_return,AMSTB_SrcFile.c/AMSTB_z_impl_clock_gettime@AM_count,AMSTB_SrcFile.c/AMSTB_z_impl_clock_gettime@AMIN_return[0],AMSTB_SrcFile.c/g_os_time.tv_sec,AMSTB_SrcFile.c/g_os_time.tv_nsec,R_OSAL_OS_ThreadSleep@@,;,,
+,1,1,500000001,0,0,0,1,500000000,OSAL_RETURN_OK,;Normal operation,,
+,0,1,500000001,0,0,0,1,500000000,OSAL_RETURN_FAIL,;p_time_stamp is NULL.,,
+,1,1,500000001,0,0,1,1,500000000,OSAL_RETURN_FAIL,;clock_gettime() return non-zero.,,
+,1,1,500000001,0,0,0,0,1000000000,OSAL_RETURN_FAIL,;time_stamp.tv_nsec more than OSAL_MAX_TV_NSEC.,,
+,1,1,500000001,0,0,0,1,500000002,OSAL_RETURN_OK,";0 > p_time_stamp->tv_nsec - time_stamp.tv_nsec
+(Input timestamp - current timestamp in nano sec)",,
+,1,1,500000001,0,0,0,2,500000000,OSAL_RETURN_OK,";0 > p_time_stamp->tv_sec - time_stamp.tv_sec
+(Input timestamp - current timestamp in sec)",,
+,1,1,500000001,-1,0,0,1,500000000,OSAL_RETURN_FAIL,;nanosleep() return non-zero,,

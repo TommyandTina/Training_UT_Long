@@ -1,0 +1,14 @@
+    The Audio driver for R-Car Gen3 boards
+
+    CREATED   : 02.28.2021
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+           02.28.2021 : Ver.0.1
+			- Create new QNX7.1 version ported from QNX7.0 driver 
+           
+
+

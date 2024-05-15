@@ -1,0 +1,6 @@
+modi,r_osal_os_interrupt_key_destructor,14_108,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@p_arg,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,g_dummy,;,,,,,,,,
+,0,0,-,;Normal operation,,,,,,,,

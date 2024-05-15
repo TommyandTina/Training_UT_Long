@@ -1,0 +1,44 @@
+%C Driver for Renesas RAVB Ethernet interface
+
+
+Syntax:
+  io-pkt-v6-hc -d ravb [option[,option ...]] ...
+
+Options:
+  speed=100|1000       Force media data rate in Megabits/Second
+  duplex=0|1           Force half (0) or full (1) duplex mode.
+  flow=0|1|2|3         Force flow control
+                         0=off,
+                         1=Bidirectional pause,
+                         2=Rx pause frames,
+                         3=Tx pause frames
+  mii                  Use the MII interface between the MAC and the PHY.
+                       Default is RGMII.
+  miiLite              Use the MII-Lite interface between the MAC and the PHY.
+                       Default is RGMII.
+  iorange=0xXXXXXXXX   IO base address.
+  irq=num              IRQ of the interface.
+  mac=XXXXXXXXXXXX     Interface address of the controller.
+  verbose(=N)          Set verbosity level. With no N then level 1,
+                       repeated settings increase verbosity. N is a mask:
+                         1=general, 2=PHY, 4=Rx, 8=Tx.
+  emu_phy=n            Emulate a PHY on port n.
+  slave                Set slave mode for KSZ9031 PHY.
+  avb                  Set driver in AVB mode.
+  mv88q5072            Option to poll the mv88q5072 switch port 0 for link up/down.
+  txc_delay            Add internal Tx clock delay 2.0ns 
+                         Limitation for V4H 1.0: If using internal Tx clock, need to change IO voltage to 1.8V when 1Gbps speed
+  rxc_delay            Add internal Rx clock delay 1.8ns
+  deviceidx            Specify AVB channel index 
+                         deviceidx=0 : AVB0 (RJ45 on CPU board)
+                         deviceidx=1 : AVB1 (CN3 on Ethernet sub board)
+                         deviceidx=2 : AVB2 (CN3 on Ethernet sub board)
+                         Default port 0
+  portnum              Specify number of port enabled, default 1 port is enabled
+  ipmmu=on|1|off|0     Use IPMMU for address translation
+                        on|1=Use IPMMU for address translation
+                        off|0=Not to use IPMMU for address translation
+                        Default IPMMU is not used
+Examples:
+  io-pkt-v6-hc -d ravb
+  ifconfig ravb0 192.0.2.1

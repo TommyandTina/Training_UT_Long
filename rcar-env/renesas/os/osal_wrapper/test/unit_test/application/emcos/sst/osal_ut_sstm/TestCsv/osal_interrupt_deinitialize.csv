@@ -1,0 +1,36 @@
+modi,osal_interrupt_deinitialize,06_009,31,1,,,,CPP,,,,0,,,,,,,,,,,,,,,,,,,,,
+#InitWheneverCall,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,r_osal_io.c/g_pdev_entry.num,r_osal_io.c/g_pdev_entry.entry,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetNumOfDevice,R_OSAL_DCFG_GetNumOfDevice,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfInterruptThread,R_OSAL_RCFG_GetNumOfInterruptThread,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetDeviceInfo,R_OSAL_DCFG_GetDeviceInfo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_DeleteThreadKey,R_OSAL_Internal_DeleteThreadKey,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetInterruptThreadInfo,R_OSAL_RCFG_GetInterruptThreadInfo,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_signal,pthread_cond_signal,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_uring_interrupt_notify,uring_interrupt_notify,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,r_osal_io.c/g_pdev_entry.num,r_osal_io.c/g_pdev_entry.entry,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetNumOfDevice@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfInterruptThread@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_DeleteThreadKey@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetInterruptThreadInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_signal@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_join@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_uring_interrupt_notify@AMIN_return,AMSTB_SrcFile.c/AMSTB_posix_devctl@AM_count,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AM_count,AMSTB_SrcFile.c/g_st_osal_device_control.interrupt_index,AMSTB_SrcFile.c/g_st_osal_device_control.irq_channels,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetInterruptThreadInfo@AM_count,AMSTB_SrcFile.c/g_st_osal_interrupt_thread_control.handle_id,AMSTB_SrcFile.c/g_osal_pdev_entry.uring,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[0],AMSTB_SrcFile.c/g_interrupt_count,osal_interrupt_deinitialize@@,;
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0x4F53414C5F494E54ULL,1,g_interrupt_count,1,OSAL_RETURN_OK,;Normal operation 
+,0,1,g_osal_pdev_entry,2,2,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;R_OSAL_DCFG_GetDeviceInfo() return OSAL_RETURN_FAIL.
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;p_device_control is NULL.
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_OK,;p_device_control->interrupt_index is 0
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_OK,;p_device_control->irq_channels is 0
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;R_OSAL_Internal_DeleteThreadKey() return OSAL_RETURN_FAIL.
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetInterruptThreadInfo() return OSAL_RETURN_FAIL.
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;p_local_control is NULL.
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;p_local_control->usr_config is NULL.
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_OK,;timestamp.tv_nsec grater than OSAL_MAX_TV_NSEC
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,1,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;pthread_join() return non-zero.
+,0,1,g_osal_pdev_entry,1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,1,1,0,0x4F53414C5F494E54ULL,0,g_interrupt_count,1,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero.

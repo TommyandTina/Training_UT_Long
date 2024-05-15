@@ -1,0 +1,25 @@
+modi,R_OSAL_OS_MqCreate,10_001,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_init_mqstb,pthread_cond_init,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_init_mqstb,pthread_cond_init,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_init_mqstb,pthread_cond_init,,,,,,,,,,,,,
+#COMMENT,@p_config,g_st_osal_mq_config[0].max_num_msg,@mq_attr,@p_mq,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_init_mqstb@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_init_mqstb@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_init_mqstb@AMIN_return[1],R_OSAL_OS_MqCreate@@,;
+,g_st_osal_mq_config,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,0,0,OSAL_RETURN_FAIL,;p_config is NULL
+,g_st_osal_mq_config,1,0,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,0,0,OSAL_RETURN_FAIL,;mq_attr is NULL
+,g_st_osal_mq_config,1,g_osal_os_mqattr,0,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,0,0,OSAL_RETURN_FAIL,;p_mq is NULL
+,g_st_osal_mq_config,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,0,g_st_osal_queue,gp_void,gp_void,0,0,0,0,OSAL_RETURN_MEM,;calloc() return is NULL. (st_osal_os_mq_t)
+,g_st_osal_mq_config,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,0,gp_void,gp_void,0,0,0,0,OSAL_RETURN_MEM,;calloc() return is NULL. (p_config->max_num_msg)
+,g_st_osal_mq_config,2,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,0,0,0,0,0,0,OSAL_RETURN_MEM,;calloc() return is NULL. (p_config->msg_size)
+,g_st_osal_mq_config,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,-1,0,0,0,OSAL_RETURN_FAIL,;pthread_mutex_init() return not EOK.
+,g_st_osal_mq_config,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,-1,0,OSAL_RETURN_FAIL,;pthread_cond_init() return not EOK. (send_cond)
+,g_st_osal_mq_config,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,0,-1,OSAL_RETURN_FAIL,;pthread_cond_init() return not EOK. (recieve_cond)
+,g_st_osal_mq_config,0,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,0,0,OSAL_RETURN_OK,;p_config->max_num_msg is 0
+,g_st_osal_mq_config,2,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,gp_void,0,0,0,0,OSAL_RETURN_OK,;p_config->max_num_msg is 2

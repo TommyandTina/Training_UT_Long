@@ -1,0 +1,8 @@
+modi,R_OSAL_DCFG_IoGetNumOfAxiIdsForAxiBusName,07_016,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_get_domain_name,r_osal_dcfg_io_get_domain_name,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_check_axiidlist_for_domainname,r_osal_dcfg_io_check_axiidlist_for_domainname,,,,,,,,,,
+#COMMENT,$@p_axi_bus_name,@p_num_of_axi_ids,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_get_domain_name@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_check_axiidlist_for_domainname@AMIN_return,R_OSAL_DCFG_IoGetNumOfAxiIdsForAxiBusName@@,;,,,,,,
+,1,array_sizet,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,
+,1,array_sizet,OSAL_RETURN_UNKNOWN_NAME,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,;r_osal_dcfg_io_get_domain_name() return non-OSAL_RETURN_OK.,,,,,,

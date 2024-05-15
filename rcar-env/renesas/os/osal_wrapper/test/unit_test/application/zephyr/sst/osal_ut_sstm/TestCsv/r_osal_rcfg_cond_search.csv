@@ -1,0 +1,7 @@
+modi,r_osal_rcfg_cond_search,03_026,6,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,@p_key,g_cond_id,@p_search_info,g_st_osal_cond_control.usr_config,g_st_osal_rcfg_cond_config.id,r_osal_rcfg_cond_search@@,;,,,,
+,1,g_cond_id,0,g_st_osal_cond_control,g_st_osal_rcfg_cond_config,0,0,;Normal operation(same id),,,,
+,1,g_cond_id,1,g_st_osal_cond_control,g_st_osal_rcfg_cond_config,0,1,;key more than p_control->usr_config->id,,,,
+,1,g_cond_id,0,g_st_osal_cond_control,g_st_osal_rcfg_cond_config,1,-1,;key less than p_control->usr_config->id,,,,

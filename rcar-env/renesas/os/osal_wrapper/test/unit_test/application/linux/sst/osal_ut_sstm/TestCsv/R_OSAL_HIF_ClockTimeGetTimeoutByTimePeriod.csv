@@ -1,0 +1,8 @@
+modi,R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,05_102,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,
+#COMMENT,@time_period,$@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp@AMIN_p_time_stamp.tv_sec,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp@AMIN_p_time_stamp.tv_nsec,R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod@@,;,,,,,
+,1,1,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation ,,,,,
+,-1,1,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_ClockTimeGetTimeStamp return OSAL_RETURN_FAIL,,,,,
+,1,1,OSAL_RETURN_OK,0,1000000000L,OSAL_RETURN_OK,;R_OSAL_OS_ClockTimeGetTimeStamp return invalid p_timestamp,,,,,

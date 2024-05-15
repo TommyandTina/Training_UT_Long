@@ -1,0 +1,43 @@
+modi,r_osal_os_io_set_irq_information,15_139,27,1,,,,CPP,,,,0,,,,,,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_irq_num,r_osal_os_io_get_irq_num,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_uio_link,r_osal_os_io_get_uio_link,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_spi_num,r_osal_os_io_get_spi_num,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDeinitAttr,R_OSAL_OS_MutexDeinitAttr,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].irq_num,@p_uio_symbolic_name,@p_id,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_irq_num@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_p_mutex_attr,AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_uio_link@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_spi_num@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_set_irq_information@@,;
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_device_control_t[0],0,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation (irq_num is 0)
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_FAIL,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;r_osal_os_io_get_irq_num returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,0,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[0] returns NULL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,0,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[1] returns NULL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,0,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[2] returns NULL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_FAIL,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexInitAttr returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,-1,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;snprintf returns -1
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,-1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Open returns -1
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;r_osal_os_io_get_uio_link returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;r_osal_os_io_get_spi_num returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate[0] returns OSAL_RETURN_FAIL (DeinitAttr is OK)
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate[0] returns OSAL_RETURN_FAIL (DeinitAttr is FAIL)
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate[1] returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDeinitAttr returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],2,0,0,OSAL_RETURN_OK,0,g_st_osal_interrupt_control_t,str,str,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_CondCreate returns OSAL_RETURN_FAIL

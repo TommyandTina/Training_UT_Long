@@ -1,0 +1,18 @@
+modi,R_OSAL_OS_MqSend,10_005,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_timedlock_mutex,r_osal_os_mq_timedlock_mutex,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_send,r_osal_os_mq_send,,,,,,,,,,
+%,AMSTB_pthread_cond_broadcast,pthread_cond_broadcast,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].numofmsg,g_st_osal_os_mq[0].receive_wait,g_st_osal_os_mq[0].config.max_num_msg,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_timedlock_mutex@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_send@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_broadcast@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return,R_OSAL_OS_MqSend@@,;
+,g_st_osal_os_mq,1,1,4,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation
+,0,1,1,4,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,;mq is NULL.
+,g_st_osal_os_mq,1,1,4,0,4,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,;p_buffer is NULL.
+,g_st_osal_os_mq,1,1,4,gp_void,4,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,;r_osal_os_mq_timedlock_mutex() return non-OSAL_RETURN_OK.
+,g_st_osal_os_mq,1,1,1,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_BUSY,;mq->numofmsg equal to mq->config.max_num_msg.
+,g_st_osal_os_mq,1,1,4,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,;r_osal_os_mq_send() return OSAL_RETURN_FAIL
+,g_st_osal_os_mq,1,0,4,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;mq->receive_wait is false.
+,g_st_osal_os_mq,1,1,4,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_OK,-1,0,OSAL_RETURN_FAIL,;pthread_cond_broadcast() is return non-EOK.
+,g_st_osal_os_mq,1,1,4,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_OK,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() is return non-EOK.
+,g_st_osal_os_mq,1,1,1,gp_void,4,OSAL_RETURN_OK,OSAL_RETURN_OK,0,-1,OSAL_RETURN_BUSY,;pthread_mutex_unlock() is return non-EOK and osal_ret is not OSAL_RETURN_OK.

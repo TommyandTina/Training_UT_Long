@@ -1,0 +1,11 @@
+modi,r_osal_os_mq_mutex_lock_for_time_period,19_116,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTimedLock,R_OSAL_OS_MutexTimedLock,,,,,,,,,,
+#COMMENT,@mutex,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp@AMIN_p_time_stamp.tv_nsec,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTimedLock@AMIN_return,r_osal_os_mq_mutex_lock_for_time_period@@,;,,,,,,
+,g_st_osal_os_mutex_t[0],OSAL_RETURN_OK,1000000000,OSAL_RETURN_OK,OSAL_RETURN_OK,;time_stamp.tv_nsec is 1000000000,,,,,,
+,g_st_osal_os_mutex_t[0],OSAL_RETURN_OK,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;time_stamp.tv_nsec is 1,,,,,,
+,g_st_osal_os_mutex_t[0],OSAL_RETURN_FAIL,1000000000,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp returns OSAL_RETURN_FAIL,,,,,,
+,g_st_osal_os_mutex_t[0],OSAL_RETURN_OK,1000000000,OSAL_RETURN_TIME,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexTimedLock returns OSAL_RETURN_TIME,,,,,,

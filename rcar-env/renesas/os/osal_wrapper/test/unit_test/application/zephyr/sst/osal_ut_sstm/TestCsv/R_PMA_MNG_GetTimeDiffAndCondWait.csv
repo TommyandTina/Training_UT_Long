@@ -1,0 +1,12 @@
+modi,R_PMA_MNG_GetTimeDiffAndCondWait,02_012,13,3,,,,CPP,,,,0,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondTimedWait,R_OSAL_OS_CondTimedWait,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighResoTimeStamp,R_OSAL_OS_ClockTimeGetHighResoTimeStamp,,,,,,,,,,,,,,,
+#COMMENT,@LstStartTime,g_st_osal_time.tv_sec,g_st_osal_time.tv_nsec,@pDiffTime,g_st_osal_dif_time.tv_sec,g_st_osal_dif_time.tv_nsec,@sleepTimePeriod,@osal_os_cond,@osal_os_mutex,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondTimedWait@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighResoTimeStamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighResoTimeStamp@AMOUT_p_time_stamp.tv_sec,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighResoTimeStamp@AMOUT_p_time_stamp.tv_nsec,@pDiffTime[0].tv_sec,@pDiffTime[0].tv_nsec,R_PMA_MNG_GetTimeDiffAndCondWait@@,;
+,g_st_osal_time,0,1000000001,g_st_osal_dif_time,0,1,1,1,1,OSAL_RETURN_FAIL,,,,,,OSAL_RETURN_FAIL,;R_OSAL_OS_CondTimedWait() returns OSAL_RETURN_FAIL
+,g_st_osal_time,0,0,g_st_osal_dif_time,0,1,1,1,1,OSAL_RETURN_TIME,OSAL_RETURN_FAIL,,,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_ClockTimeGetHighResoTimeStamp() returns OSAL_RETURN_FAIL
+,g_st_osal_time,1,500,g_st_osal_dif_time,0,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,2,0,0,999999500,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_time,1,500,g_st_osal_dif_time,0,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,,,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_time,0,0,g_st_osal_dif_time,0,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,500,0,500,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_time,0,500,g_st_osal_dif_time,0,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,1,500,1,0,OSAL_RETURN_OK,;Normal operation

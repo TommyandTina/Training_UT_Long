@@ -1,0 +1,72 @@
+/* impdrv_cmnctl_calc_checksum */
+#define impdrv_cmnctl_calc_checksum impdrv_cmnctl_calc_checksum_(__LINE__)
+#define impdrv_cmnctl_calc_checksum_(line) impdrv_cmnctl_calc_checksum__(line)
+#define impdrv_cmnctl_calc_checksum__(line) impdrv_cmnctl_calc_checksum_ut_##line
+/* V4H*/
+#if defined(RCAR_V4H) || defined(RCAR_V4H2)
+#define impdrv_cmnctl_calc_checksum_ut_1853 impdrv_cmnctl_calc_checksum
+#define impdrv_cmnctl_calc_checksum_ut_2435 impdrv_cmnctl_calc_checksum
+#define impdrv_cmnctl_calc_checksum_ut_2463 impdrv_cmnctl_calc_checksum_stub
+#endif
+
+/* impdrv_cmnctl_set_checksum */
+#define impdrv_cmnctl_set_checksum impdrv_cmnctl_set_checksum_(__LINE__)
+#define impdrv_cmnctl_set_checksum_(line) impdrv_cmnctl_set_checksum__(line)
+#define impdrv_cmnctl_set_checksum__(line) impdrv_cmnctl_set_checksum_ut_##line
+
+#define impdrv_cmnctl_set_checksum_ut_1108 impdrv_cmnctl_set_checksum_stub
+#define impdrv_cmnctl_set_checksum_ut_2427 impdrv_cmnctl_set_checksum
+#define impdrv_cmnctl_set_checksum_ut_513 impdrv_cmnctl_set_checksum
+#define impdrv_cmnctl_set_checksum_ut_976 impdrv_cmnctl_set_checksum_stub
+
+/* impdrv_cmnctl_test_checksum */
+#define impdrv_cmnctl_test_checksum impdrv_cmnctl_test_checksum_(__LINE__)
+#define impdrv_cmnctl_test_checksum_(line) impdrv_cmnctl_test_checksum__(line)
+#define impdrv_cmnctl_test_checksum__(line) impdrv_cmnctl_test_checksum_ut_##line
+
+#define impdrv_cmnctl_test_checksum_ut_528 impdrv_cmnctl_test_checksum
+#define impdrv_cmnctl_test_checksum_ut_2454 impdrv_cmnctl_test_checksum
+#define impdrv_cmnctl_test_checksum_ut_1068  impdrv_cmnctl_test_checksum_stub
+
+/* impdrv_cmnctl_cnv_int_bit_core */
+#define impdrv_cmnctl_cnv_int_bit_core impdrv_cmnctl_cnv_int_bit_core_(__LINE__)
+#define impdrv_cmnctl_cnv_int_bit_core_(line) impdrv_cmnctl_cnv_int_bit_core__(line)
+#define impdrv_cmnctl_cnv_int_bit_core__(line) impdrv_cmnctl_cnv_int_bit_core_ut_##line
+
+#define impdrv_cmnctl_cnv_int_bit_core_ut_428 impdrv_cmnctl_cnv_int_bit_core
+#define impdrv_cmnctl_cnv_int_bit_core_ut_906 impdrv_cmnctl_cnv_int_bit_core_stub
+#define impdrv_cmnctl_cnv_int_bit_core_ut_920 impdrv_cmnctl_cnv_int_bit_core_stub
+#define impdrv_cmnctl_cnv_int_bit_core_ut_1582 impdrv_cmnctl_cnv_int_bit_core
+#define impdrv_cmnctl_cnv_int_bit_core_ut_2183 impdrv_cmnctl_cnv_int_bit_core
+
+/* impdrv_cmnctl_cnv_int_core_bit */
+#define impdrv_cmnctl_cnv_int_core_bit impdrv_cmnctl_cnv_int_core_bit_(__LINE__)
+#define impdrv_cmnctl_cnv_int_core_bit_(line) impdrv_cmnctl_cnv_int_core_bit__(line)
+#define impdrv_cmnctl_cnv_int_core_bit__(line) impdrv_cmnctl_cnv_int_core_bit_ut_##line
+
+#define impdrv_cmnctl_cnv_int_core_bit_ut_405      impdrv_cmnctl_cnv_int_core_bit
+#define impdrv_cmnctl_cnv_int_core_bit_ut_569   impdrv_cmnctl_cnv_int_core_bit_stub
+#define impdrv_cmnctl_cnv_int_core_bit_ut_911   impdrv_cmnctl_cnv_int_core_bit_stub
+#define impdrv_cmnctl_cnv_int_core_bit_ut_1158   impdrv_cmnctl_cnv_int_core_bit
+#define impdrv_cmnctl_cnv_int_core_bit_ut_1985  impdrv_cmnctl_cnv_int_core_bit_stub
+#define impdrv_cmnctl_cnv_int_core_bit_ut_2094  impdrv_cmnctl_cnv_int_core_bit
+
+/* impdrv_cmnctl_get_group */
+#define impdrv_cmnctl_get_group impdrv_cmnctl_get_group_(__LINE__)
+#define impdrv_cmnctl_get_group_(line) impdrv_cmnctl_get_group__(line)
+#define impdrv_cmnctl_get_group__(line) impdrv_cmnctl_get_group_ut_##line
+
+#define impdrv_cmnctl_get_group_ut_498      impdrv_cmnctl_get_group
+#define impdrv_cmnctl_get_group_ut_720      impdrv_cmnctl_get_group_stub
+#define impdrv_cmnctl_get_group_ut_877      impdrv_cmnctl_get_group_stub
+#define impdrv_cmnctl_get_group_ut_2074      impdrv_cmnctl_get_group_stub
+#define impdrv_cmnctl_get_group_ut_2253      impdrv_cmnctl_get_group
+#define impdrv_cmnctl_get_group_ut_2375      impdrv_cmnctl_get_group
+
+#include "r_impdrv_cmnctl.c"
+
+#undef impdrv_cmnctl_set_checksum
+#undef impdrv_cmnctl_cnv_int_bit_core
+#undef impdrv_cmnctl_cnv_int_core_bit
+#undef impdrv_cmnctl_get_group
+#undef impdrv_cmnctl_calc_checksum

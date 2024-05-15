@@ -1,0 +1,5 @@
+modi,R_OSAL_HIF_MutexLockUntilTimeStamp,02_002,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_time_stamp,@mutex,R_OSAL_HIF_MutexLockUntilTimeStamp@@,;,,,,,,,,
+,1,g_osal_common_mutex,OSAL_RETURN_OK,;Normal operation ,,,,,,,,

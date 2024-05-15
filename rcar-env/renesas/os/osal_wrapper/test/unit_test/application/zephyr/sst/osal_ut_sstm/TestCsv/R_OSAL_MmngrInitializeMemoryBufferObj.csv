@@ -1,0 +1,6 @@
+modi,R_OSAL_MmngrInitializeMemoryBufferObj,09_019,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_obj,R_OSAL_MmngrInitializeMemoryBufferObj@@,;,,,,,,,,,
+,g_osal_common_memory_buffer,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,
+,0,OSAL_RETURN_PAR,;p_obj is null,,,,,,,,,

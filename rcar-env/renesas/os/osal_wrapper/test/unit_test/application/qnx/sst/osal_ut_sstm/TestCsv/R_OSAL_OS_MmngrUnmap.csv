@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_MmngrUnmap,09_102,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_munmap,munmap,,,,,,,,,,
+#COMMENT,$@mngr_control,AMSTB_SrcFile.c/AMSTB_munmap@AMIN_return,R_OSAL_OS_MmngrUnmap@@,;,,,,,,,,
+,1,0,OSAL_RETURN_OK,;Normal operation,,,,,,,,
+,0,0,OSAL_RETURN_FAIL,;mngr_control is NULL.,,,,,,,,
+,1,-1,OSAL_RETURN_MEM,;munmap() return non-0.,,,,,,,,

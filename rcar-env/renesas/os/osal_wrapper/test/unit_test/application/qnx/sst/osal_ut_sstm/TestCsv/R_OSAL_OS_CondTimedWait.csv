@@ -1,0 +1,12 @@
+modi,R_OSAL_OS_CondTimedWait,03_203,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait,pthread_cond_timedwait,,,,,,,,,,
+%,AMSTB_pthread_cond_wait,pthread_cond_wait,,,,,,,,,,
+#COMMENT,$@cond,$@mutex,$@p_time_stamp,@p_time_stamp[0].tv_sec,@p_time_stamp[0].tv_nsec,AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_wait@AMIN_return,R_OSAL_OS_CondTimedWait@@,;,,,
+,1,1,1,1,1,0,0,OSAL_RETURN_OK,;Normal operation ,,,
+,1,1,0,1,1,0,0,OSAL_RETURN_OK,;Normal operation (p_time_stamp is not NULL.),,,
+,0,1,1,1,1,0,0,OSAL_RETURN_FAIL,;cond is NULL.,,,
+,1,0,1,1,1,0,0,OSAL_RETURN_FAIL,;mutex is NULL.,,,
+,1,1,1,1,1,10060,0,OSAL_RETURN_TIME,;pthread_cond_timedwait() return ETIMEDOUT.,,,
+,1,1,0,1,1,0,11,OSAL_RETURN_FAIL,;pthread_cond_wait() return non-EOK.,,,

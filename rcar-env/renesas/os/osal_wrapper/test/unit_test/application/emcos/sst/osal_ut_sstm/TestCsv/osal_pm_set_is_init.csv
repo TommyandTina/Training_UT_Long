@@ -1,0 +1,5 @@
+modi,osal_pm_set_is_init,08_015,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_power.c/gs_osal_pm_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_power.c/gs_osal_pm_is_initialized,g_dummy,;,,,,,,,,,
+,0,,;Normal operation,,,,,,,,,

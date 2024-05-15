@@ -1,0 +1,28 @@
+modi,R_OSAL_OS_ThreadStaticCreate,02_103,23,1,,,,CPP,,,,0,,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setstack,pthread_attr_setstack,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_create,pthread_create,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_k_thread_cpu_mask_clear,k_thread_cpu_mask_clear,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_k_thread_cpu_mask_enable,k_thread_cpu_mask_enable,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_setname_np,pthread_setname_np,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@p_config,@func,@p_arg,@thread_attr,$@p_thread,r_osal_os_thread.c/gs_osal_thread_stack_config_num,r_osal_os_thread.c/gs_osal_thread_affinity_num,g_thread_control.usr_config,g_st_osal_rcfg_thread_config[0].id,g_osal_thread_stack_config[0].id,g_osal_thread_stack_config[1].id,g_osal_thread_affinity[0].id,g_osal_thread_affinity[1].id,g_osal_thread_affinity[0].affinity,g_osal_thread_affinity[1].affinity,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setstack@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_create@AMIN_return,AMSTB_SrcFile.c/AMSTB_k_thread_cpu_mask_clear@AMIN_return,AMSTB_SrcFile.c/AMSTB_k_thread_cpu_mask_enable@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_setname_np@AMIN_return,R_OSAL_OS_ThreadStaticCreate@@,;
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation(PMA)
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,2,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation(without CPU affinity setting)
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,0,0,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation(CPU affinity setting is 0)
+,0,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_FAIL,;p_config is NULL.
+,g_uts_thread_config,0,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_FAIL,;func is NULL.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,0,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_FAIL,;p_arg is NULL.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,0,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_FAIL,;thread_attr is NULL.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,0,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_FAIL,;p_thread is NULL.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,2,2,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,0,OSAL_RETURN_FAIL,;Stack for the target thread is not found.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,1,0,0,0,0,OSAL_RETURN_FAIL,;pthread_attr_setstack returns non-zero value.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,0,1,0,0,0,0,0,OSAL_RETURN_FAIL,;calloc() returns NULL.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,-1,0,0,0,OSAL_RETURN_FAIL,;pthread_create() returns non-zero value.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,-1,0,0,OSAL_RETURN_FAIL,;k_thread_cpu_mask_clear() returns non-zero value.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,-1,0,OSAL_RETURN_FAIL,;k_thread_cpu_mask_enable() returns non-zero value.
+,g_uts_thread_config,AMSTB_osal_os_thread_func,g_thread_control,g_osal_os_threadattr,1,2,2,g_st_osal_rcfg_thread_config[0],1,1,1,2,1,1,1,0,g_osal_os_thread,1,0,0,0,0,-1,OSAL_RETURN_FAIL,;pthread_setname_np() returns non-zero value.

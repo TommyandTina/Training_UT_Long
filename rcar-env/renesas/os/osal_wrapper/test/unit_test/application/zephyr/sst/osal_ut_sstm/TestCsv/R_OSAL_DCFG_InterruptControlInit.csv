@@ -1,0 +1,6 @@
+modi,R_OSAL_DCFG_InterruptControlInit,06_008,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_interrupt.c/gs_osal_interrupt_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_InterruptStaticInit,R_OSAL_OS_InterruptStaticInit,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_interrupt.c/gs_osal_interrupt_is_initialized_enu,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_InterruptStaticInit@AMIN_return,R_OSAL_DCFG_InterruptControlInit@@,;,,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,,

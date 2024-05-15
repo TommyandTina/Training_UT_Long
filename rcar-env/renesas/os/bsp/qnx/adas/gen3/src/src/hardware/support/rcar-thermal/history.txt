@@ -1,0 +1,19 @@
+    The Thermal driver for R-Car Gen3 boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.28.2020 : Ver.1.0
+            - Create new version
+            08.30.2021 : Ver.1.1
+            - Add initial temperaure argument in rcar_thermal_set_irq_temp_ac() function for using to set
+              over/under temperature threadholds cause warning interrupts
+
+-----------------------------------------------------------------------------
+ Known limitations with this release
+-----------------------------------------------------------------------------
+ V3U channel 0 & 4 are tested because constant parameters are unknown

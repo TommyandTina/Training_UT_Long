@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_GetNumOfThread,02_013,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_thread.c/gs_osal_thread_is_initialized,r_osal_usr_cfg.c/gsp_osal_thread_config,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,r_osal_thread.c/gs_osal_thread_is_initialized,r_osal_usr_cfg.c/gsp_osal_thread_config,R_OSAL_RCFG_GetNumOfThread@@,;,,,,,,,,
+,1,g_osal_thread_config,84,;Normal operation ,,,,,,,,
+,1,g_osal_thread_config_dummy,0,;Invalid config,,,,,,,,

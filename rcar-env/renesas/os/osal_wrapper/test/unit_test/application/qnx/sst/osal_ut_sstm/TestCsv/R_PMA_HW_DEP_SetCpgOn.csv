@@ -1,0 +1,8 @@
+modi,R_PMA_HW_DEP_SetCpgOn,04_021,3,2,,,,CPP,,,,0
+#InitWheneverCall,r_pma_hwdepend.c/g_pma_hw_dep_max_cpg_id_num,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_SetCpgON,R_PMA_BSP_WRAP_SetCpgON,,,,,,,,,,
+#COMMENT,@modId,r_pma_hwdepend.c/g_pma_hw_dep_max_cpg_id_num,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_SetCpgON@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_SetCpgON@AMOUT_modId,R_PMA_HW_DEP_SetCpgOn@@,;,,,,,,
+,R_PMA_CPG_DOMAIN_ID_V4H_NUM,R_PMA_CPG_DOMAIN_ID_V4H_NUM,,,R_PMA_NG,;modId is R_PMA_CPG_DOMAIN_ID_V4H_NUM,,,,,,
+,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_CPG_DOMAIN_ID_V4H_NUM,R_PMA_NG,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_NG,;R_PMA_BSP_WRAP_SetCpgON() returns R_PMA_NG,,,,,,
+,R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_GLOBAL,R_PMA_CPG_DOMAIN_ID_V4H_NUM,R_PMA_OK,R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_GLOBAL,R_PMA_OK,;Normal operation,,,,,,

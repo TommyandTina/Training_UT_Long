@@ -1,0 +1,38 @@
+	The SYSC libraries for RENESAS R-Car Gen3 boards
+
+    CREATED   : 01.25.2021
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            01.25.2021 : Ver.0.1
+            - Create new version (support for V3U)
+            02.28.2021 : Ver.0.2
+            - Support for V3H2.0
+            03.30.2021 : Ver.0.3
+            - Support for R-Car H3, M3W, M3N, E3, V3M
+            06.30.2021 : Ver.0.4
+            - Add SYSC_PDR_GEN3_CA57_SCU, SYSC_PDR_GEN3_CA53_SCU and SYSC_PDR_GEN3_CR7 power domain support 
+              (SYSC_PDR_GEN3_CA57_SCU & SYSC_PDR_GEN3_CA53_SCU power domains are called in startup)
+            - Add Macros for V3U Power domain number (cpg/public/hw/rcar_sys.h)
+            - Update 'v3h_sysc_power_domain' table to switch to another domain when power on/off a domain in power domain group mode 1 and 3 for V3H Ver.2.0
+            - Add PDMODE read API
+            07.30.2021 : Ver.0.6
+            - Merge /sysc-support and /sysc
+            - Add debug mesaages to slog2info for power_on and power_off functions (this will be effect when starting rcar-cpg-mgr with couple of option -v)
+            - Add error messages to version which is used in startup module
+            11.30.2021 : Ver.0.7
+             - Port SYSC frameworks same as QSSL's S4 for SYSC tp (rcar-sysc and sysc-support libs):
+              (OSAL integration team needs to replace their original rcar_sysc.h with the rcar_sysc.h included in this BSP to be compatible)
+            07.22.2022 : Ver.0.8
+             - Add in PDMODE mode support for V3H 2.1
+            11.15.2022 : Ver.0.9
+            - Removed using error codes from errno.h
+            - Added error codes:
+              SYSC_RET_OK
+              SYSC_RET_INVALPARA
+              SYSC_RET_TIMEOUT
+              SYSC_RET_HWFAIL
+              SYSC_RET_ERROR

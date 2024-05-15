@@ -1,0 +1,15 @@
+    PWM driver for R-Car Gen4 boards
+
+    CREATED   : 04.13.2022
+    MODIFIED  : 04.13.2022
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            04.13.2022 : Ver.0.1
+            - Create new version
+            09.30.2023 : Ver.0.2
+            - Add iofunc_attr_lock() before return pwm_devctl()
+            10.30.2023 : Ver.0.3
+            - Remove unnecessary writing to PFC PMMER register

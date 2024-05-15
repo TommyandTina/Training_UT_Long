@@ -1,0 +1,14 @@
+Utility for reading U-Boot envrionment on Renesas R-Car Gen3 and Gen4 based boards
+
+Syntax:
+%C [partition to read from] [uboot envrionment variable] [offset=<offset value>[:x]]
+x=0: begin to search from offset 
+x=1: begin to search from end of partion - offset
+
+Example:
+# uboot-env /dev/fs0 ethaddr
+(Read MAC address from U-Boot envrionment)
+# uboot-env /dev/sysdisk2 bootcmd
+(Read boot command from U-Boot envrionment)
+# uboot-env /dev/fs0 ethaddr offset=0xC80000
+(Read MAC address from U-Boot envrionment, begin to search from 0xC80000)

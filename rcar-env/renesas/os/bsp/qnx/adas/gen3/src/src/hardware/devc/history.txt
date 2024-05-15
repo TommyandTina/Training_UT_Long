@@ -1,0 +1,15 @@
+    The SCIF/HSCIF driver for R-Car Gen3 boards
+
+    CREATED   : 09.30.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            09.30.2020 : Ver.1.0
+            - Create new version
+            02.28.2021 : Ver.1.1
+            - Update and Support for R-Car Gen3
+            
+

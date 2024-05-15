@@ -1,0 +1,14 @@
+modi,r_osal_rcfg_mmngr_send_monitor_event,09_045,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,
+#COMMENT,@mutex_id,@event_id,@error_code,@p_mngr_control,g_st_osal_mem_mmngr_ptr_self[0].num_monitor,g_st_osal_mem_mmngr_ptr_self[0].p_monitor,g_st_osal_mem_monitor_desc_array[0].event_id,g_st_osal_mem_monitor_desc_array[1].event_id,g_st_osal_mem_monitor_desc_array[0].p_handler,g_st_osal_mem_monitor_desc_array[1].p_handler,@buffer_hndl,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],r_osal_rcfg_mmngr_send_monitor_event@@,;
+,g_osal_os_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,1,g_st_osal_mem_monitor_desc_array,1,1,osal_memory_mngr_cb_dummy,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_osal_os_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,1,g_st_osal_mem_monitor_desc_array,1,1,osal_memory_mngr_cb_dummy,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_osal_os_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,1,g_st_osal_mem_monitor_desc_array,0,0,osal_memory_mngr_cb_dummy,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;specifid event_id is not registerd.
+,g_osal_os_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,1,g_st_osal_mem_monitor_desc_array,0,0,osal_memory_mngr_cb_dummy,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,g_osal_os_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,0,g_st_osal_mem_monitor_desc_array,1,1,osal_memory_mngr_cb_dummy,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;p_mngr_control->num_monitor is 0
+,g_osal_os_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,2,g_st_osal_mem_monitor_desc_array,1,1,osal_memory_mngr_cb_dummy,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;p_mngr_control->num_monitor is 2

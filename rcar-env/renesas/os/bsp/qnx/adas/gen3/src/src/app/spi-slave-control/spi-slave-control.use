@@ -1,0 +1,29 @@
+%C SPI Slave Driver test utility
+
+Syntax:
+# spi-slave-control <spi path> [-i] | [[-c | -r | -w] [-x]]
+   
+Options:
+    -<spi path>: spi path of device, e.g. "/dev/spi2"
+    -i    : show driverinformation
+    -c    : set device config
+        cpol
+        cpha
+        bitlen
+    -w    : write data to master
+    -r    : read data from master
+    -x    : write data to master and read data from the same frame
+
+Examples:
+    - Display device 0 information:
+     # spi-control /dev/spi2 -i
+
+    - Write 7 bytes data (74 65 73 74 69 62 67) to device (data in decimal format)
+     # spi-control /dev/spi2 -w 74:65:73:74:69:62:67
+     
+    - Read 6 bytes from master
+     # spi-control /dev/spi2 -r6
+     
+    - Set SPI configuration:
+     # spi-control /dev/spi2 -c cpol=1,cpha=1
+     

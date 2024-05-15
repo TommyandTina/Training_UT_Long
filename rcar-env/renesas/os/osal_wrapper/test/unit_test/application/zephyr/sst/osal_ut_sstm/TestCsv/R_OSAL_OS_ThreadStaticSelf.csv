@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_ThreadStaticSelf,02_106,6,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_os_thread.c/gsp_osal_thread_self_control,r_osal_os_thread.c/gs_osal_thread_self_register_num,,,,,,,,,,
+0,0,0,,,,,,,,,,
+%,AMSTB_pthread_equal,pthread_equal,,,,,,,,,,
+%,AMSTB_pthread_equal,pthread_equal,,,,,,,,,,
+%,AMSTB_pthread_equal,pthread_equal,,,,,,,,,,
+#COMMENT,r_osal_os_thread.c/gsp_osal_thread_self_control,r_osal_os_thread.c/gs_osal_thread_self_register_num,@pp_arg,AMSTB_SrcFile.c/AMSTB_pthread_equal@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_equal@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_equal@AMIN_return[1],R_OSAL_OS_ThreadStaticSelf@@,;,,,,
+,g_st_osal_thread_self_control,2,gp_void,0,1,1,OSAL_RETURN_OK,;Normal operation,,,,
+,g_st_osal_thread_self_control,2,0,0,1,1,OSAL_RETURN_FAIL,;pp_arg is NULL.,,,,
+,0,2,gp_void,0,1,1,OSAL_RETURN_FAIL,;gsp_osal_thread_self_control is NULL.,,,,
+,g_st_osal_thread_self_control,2,gp_void,0,0,0,OSAL_RETURN_OK,;gs_osal_thread_self_register_num more than or equal to loop_count,,,,

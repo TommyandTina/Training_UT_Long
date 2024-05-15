@@ -1,0 +1,22 @@
+modi,r_osal_rcfg_mmngr_open_malloc,09_025,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDeinitAttr,R_OSAL_OS_MutexDeinitAttr,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,
+#COMMENT,$@p_mngr_control,$@p_usr_config,@p_usr_config[0].max_registered_monitors_cbs,@p_usr_config[0].max_allowed_allocations,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AMOUT_p_ptr,r_osal_rcfg_mmngr_open_malloc@@,;
+,1,1,1,1,OSAL_RETURN_OK,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,1,1,1,1,OSAL_RETURN_FAIL,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexInitAttr() return OSAL_RETURN_FAIL
+,1,1,0,1,OSAL_RETURN_OK,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;p_usr_config->max_registered_monitors_cbs is 0.
+,1,1,1,1,OSAL_RETURN_OK,0,0,g_osal_mem_buf_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;p_mngr_control->p_monitor is NULL
+,1,1,1,1,OSAL_RETURN_OK,0,g_st_osal_mem_monitor_desc,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;p_mngr_control->p_buffers is NULL
+,1,1,1,2,OSAL_RETURN_OK,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate() return OSAL_RETURN_FAIL
+,1,1,1,1,OSAL_RETURN_OK,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDeinitAttr() return OSAL_RETURN_FAIL
+,1,1,1,0,OSAL_RETURN_OK,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;p_usr_config->max_allowed_allocations is 0
+,1,1,1,2,OSAL_RETURN_OK,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;p_usr_config->max_allowed_allocations is 2

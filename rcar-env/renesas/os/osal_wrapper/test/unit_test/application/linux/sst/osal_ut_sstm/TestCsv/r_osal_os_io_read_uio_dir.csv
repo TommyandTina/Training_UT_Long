@@ -1,0 +1,11 @@
+modi,r_osal_os_io_read_uio_dir,15_110,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_opendir,opendir,,,,,,,,,,
+%,AMSTB_r_osal_os_io_set_always_on,r_osal_os_io_set_always_on,,,,,,,,,,
+%,AMSTB_closedir,closedir,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_opendir@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_set_always_on@AMIN_return,AMSTB_SrcFile.c/AMSTB_closedir@AMIN_return,r_osal_os_io_read_uio_dir@@,;,,,,,,,
+,1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;opendir returns NULL,,,,,,,
+,1,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;r_osal_os_io_set_always_on returns OSAL_RETURN_FAIL,,,,,,,
+,1,OSAL_RETURN_OK,-1,OSAL_RETURN_FAIL,;closedir returns -1,,,,,,,

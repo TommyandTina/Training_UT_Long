@@ -1,0 +1,28 @@
+modi,R_OSAL_PmSetPostClock,08_007,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,r_osal_power.c/gs_osal_pm_is_initialized,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SetPostClock,R_PMA_SetPostClock,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_power.c/gs_osal_pm_is_initialized,@device,g_st_osal_device_control.active,g_st_osal_device_control.handle_id,g_st_osal_device_control.dev_info,g_st_osal_device_control.pma_handle,g_st_osal_device_info.postckcr,@clock_divider,@clock_enable,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_PMA_SetPostClock@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],R_OSAL_PmSetPostClock@@,;
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,1,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_OK,;Normal operation(clock_enable = R_PMA_CLK_ENABLE)
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_OK,;Normal operation(clock_enable = R_PMA_CLK_DISABLE)
+,0,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_STATE,;gs_osal_pm_is_initialized is false
+,1,0,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_HANDLE,;device is Null
+,1,g_st_osal_device_control,0,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_HANDLE,;device->active is false
+,1,g_st_osal_device_control,1,0,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_HANDLE,;device->handle_id is not equals OSAL_DEVICE_HANDLE_ID
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,0,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_HANDLE,;device->dev_info is Null
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,0,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_HANDLE,;device->pma_handle is NULL
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,100,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_PAR,;clock_divider is bigger than 64
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,-1,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_OK,";device type is not equals ""fbc"""
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,-1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_OK,";device type is not equals ""fba"""
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,-1,-1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_UNSUPPORTED_OPERATION,";device type is not equals ""fba"" / ""fba"""
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POSTCKCR_INVALID,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,OSAL_RETURN_UNSUPPORTED_OPERATION,;device->dev_info->postckcr is equals OSAL_PM_POSTCKCR_INVALID
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_FAIL,R_PMA_RESULT_OK,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_ERR_RESULT_NG,0,0,OSAL_RETURN_FAIL,;R_PMA_SetPostClock() return R_PMA_ERR_RESULT_NG
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,OSAL_PM_POST2CKCR,0,0,0,0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

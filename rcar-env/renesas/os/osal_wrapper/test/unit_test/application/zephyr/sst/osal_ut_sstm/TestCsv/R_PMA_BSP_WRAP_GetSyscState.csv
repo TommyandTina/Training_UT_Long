@@ -1,0 +1,11 @@
+modi,R_PMA_BSP_WRAP_GetSyscState,05_008,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_pma_bsp_wrapper.c/sysc_idmax,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_pm_device_state_get,pm_device_state_get,,,,,,,,,,
+%,AMSTB_pm_device_state_get,pm_device_state_get,,,,,,,,,,
+#COMMENT,@modId,@modState,r_pma_bsp_wrapper.c/sysc_idmax,AMSTB_SrcFile.c/AMSTB_pm_device_state_get@AMIN_return,AMSTB_SrcFile.c/AMSTB_pm_device_state_get@AMOUT_state,R_PMA_BSP_WRAP_SetCpgON@@,;,,,,,
+,0,dummy_modState,1,0,0,R_PMA_OK,;Normal case (The current state is ACTIVE.),,,,,
+,0,dummy_modState,1,0,1,R_PMA_OK,;Normal case (The current state is SUSPENDED.),,,,,
+,2,dummy_modState,1,0,0,R_PMA_INVALID_ARGUMENT,;modId is larger than the max number of SYSC ID.,,,,,
+,0,dummy_modState,1,-1,0,R_PMA_BSP_ECPG,;pm_device_state_get() returns non-zero value.,,,,,
+,0,dummy_modState,1,0,10,R_PMA_BSP_ECPG,;The acquired power state is neither ACTIVE or SUSPEND.,,,,,

@@ -1,0 +1,21 @@
+CPG resource manager driver for the Renesas R-Car platform
+
+accessed by various applications/other drivers.
+
+Syntax
+%C [options] &
+
+Options:
+    -b CPG base address
+    -s CPG base size
+    -c Board external clock
+    -d dllname  driver to load
+    -v verbose  (default is none)
+
+Example:
+rcar-cpg-mgr -d support
+rcar-cpg-mgr -vv -b 0xe6150000 -s 0x4000 -c 20000000 -d support
+
+Example: (PM version only)
+rcar-cpg-mgr-pm -d support-pm
+rcar-cpg-mgr-pm -vv -b 0xe6150000 -s 0x4000 -c 20000000 -d support-pm

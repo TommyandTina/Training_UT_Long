@@ -1,0 +1,9 @@
+modi,R_OSAL_MmngrGetConstCpuPtr,09_013,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,g_st_osal_memory_buffer_obj.p_getConstCpuPtr,@pp_const_cpu_ptr,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_MmngrGetConstCpuPtr@@,;,,,,,,
+,g_st_osal_memory_buffer_obj,AMSTB_osal_mem_internal,gp_void,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,AMSTB_osal_mem_internal,gp_void,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;memory_buffer_obj_hndl is equals 0,,,,,,
+,g_st_osal_memory_buffer_obj,AMSTB_osal_mem_internal,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;pp_const_cpu_ptr is 0,,,,,,
+,g_st_osal_memory_buffer_obj,0,gp_void,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;memory_buffer_obj_hndl->p_getConstCpuPtr is 0,,,,,,
+,g_st_osal_memory_buffer_obj,AMSTB_osal_mem_internal,gp_void,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;memory_buffer_obj_hndl->p_getConstCpuPtr returns OSAL_RETURN_FAIL,,,,,,

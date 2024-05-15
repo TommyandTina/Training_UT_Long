@@ -1,0 +1,29 @@
+modi,osal_internal_mem_debugmmngrprint,09_037,19,1,,,,CPP,,,,0,,,,,,,,,
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mem_conv_unit_and_str,osal_internal_mem_conv_unit_and_str,,,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mem_conv_unit_and_str,osal_internal_mem_conv_unit_and_str,,,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mem_conv_unit_and_str,osal_internal_mem_conv_unit_and_str,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,@p_ptr_self,g_st_osal_memory_manager_obj[0].p_ptr_self,g_st_osal_mem_mmngr_ptr_self[0].handle_id,g_st_osal_mem_mmngr_ptr_self[0].p_buffers,g_osal_mem_buf_ptr_self.handle_id,g_st_osal_mem_mmngr_ptr_self[0].num_buffers,g_st_osal_mem_mmngr_ptr_self[0].config.mode,@p_output,AMSTB_SrcFile.c/AMSTB_osal_internal_mem_conv_unit_and_str@AM_count,AMSTB_SrcFile.c/AMSTB_osal_internal_mem_conv_unit_and_str@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_osal_internal_mem_conv_unit_and_str@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_fprintf@AM_count,AMSTB_SrcFile.c/AMSTB_fprintf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_fprintf@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_fprintf@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_fprintf@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_fprintf@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_fprintf@AMIN_return[5],osal_internal_mem_debugmmngrprint@@,;
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation(Allocation mode STACK)
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,0,1,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation (Allocation mode STACK_PROT)
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_FREE_LIST,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation(Allocation mode FREE_LIST)
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,0,1,OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation (Allocation mode FREE_LIST_PROT)
+,1,0,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_HANDLE,;p_ptr_self is NULL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,0,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_HANDLE,;p_mngr_control->handle_id is not equals OSAL_MEMORY_HANDLE_ID
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,0,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_PAR,;p_mngr_control->p_buffers is NULL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;osal_internal_mem_conv_unit_and_str() (convert to use_buffer_total) return OSAL_RETURN_FAIL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;osal_internal_mem_conv_unit_and_str() (convert to memory_limit) return OSAL_RETURN_FAIL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,-1,0,0,0,0,0,OSAL_RETURN_IO,;fprintf() (output to Memory Current) return -1
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,-1,0,0,0,0,OSAL_RETURN_IO,;fprintf() (output to Allocations Current) return -1
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,-1,0,0,0,OSAL_RETURN_IO,;fprintf() (output to Registered Monitors Current) return -1
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,-1,0,0,OSAL_RETURN_IO,;fprintf() (output to Allocation Mode) return -1
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,-1,0,OSAL_RETURN_IO,;fprintf() (output to Buffer Handle Value) return -1
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_MMNGR_ALLOC_MODE_UNSPECIFIED,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,-1,OSAL_RETURN_IO,;fprintf() (output to Buffer Handle Information) return -1

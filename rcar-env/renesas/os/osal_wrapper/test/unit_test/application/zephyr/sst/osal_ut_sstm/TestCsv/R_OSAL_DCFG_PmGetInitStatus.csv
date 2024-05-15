@@ -1,0 +1,5 @@
+modi,R_OSAL_DCFG_PmGetInitStatus,08_015,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_power.c/gs_osal_pm_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_power.c/gs_osal_pm_is_initialized_enu,R_OSAL_DCFG_PmGetInitStatus@@,;,,,,,,,,,
+,1,1,;Normal operation,,,,,,,,,

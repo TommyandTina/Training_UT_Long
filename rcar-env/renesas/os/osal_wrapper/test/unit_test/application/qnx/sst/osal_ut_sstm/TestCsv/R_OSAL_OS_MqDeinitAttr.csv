@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_MqDeinitAttr,10_004,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_destroy,pthread_mutexattr_destroy,,,,,,,,,,
+%,AMSTB_pthread_condattr_destroy,pthread_condattr_destroy,,,,,,,,,,
+#COMMENT,@mq_attr,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_condattr_destroy@AMIN_return,R_OSAL_OS_MqDeinitAttr@@,;,,,,,,,
+,g_osal_os_mqattr,0,0,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,0,0,0,OSAL_RETURN_FAIL,;mq_attr is NULL.,,,,,,,
+,g_osal_os_mqattr,-1,0,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy() is not EOK.,,,,,,,
+,g_osal_os_mqattr,0,-1,OSAL_RETURN_FAIL,;pthread_condattr_destroy() is not EOK.,,,,,,,

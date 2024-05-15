@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_ThsyncGetInitStatus,03_017,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_osal_threadsync_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_osal_threadsync_is_initialized_enu,R_OSAL_RCFG_ThsyncGetInitStatus@@,;,,,,,,,,,
+,1,1,;Normal operation,,,,,,,,,

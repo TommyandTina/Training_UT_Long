@@ -1,0 +1,32 @@
+modi,osal_thread_deinitialize,02_010,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfThread,R_OSAL_RCFG_GetNumOfThread,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetThreadInfo,R_OSAL_RCFG_GetThreadInfo,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_signal,pthread_cond_signal,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_MsSleep,R_OSAL_Internal_MsSleep,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfThread@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetThreadInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_signal@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_MsSleep@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_join@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetThreadInfo@AM_count,osal_thread_deinitialize@@,;
+,1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;R_OSAL_RCFG_GetNumOfThread() return num is 0.
+,2,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetThreadInfo() return OSAL_RETURN_FAIL
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,1,OSAL_RETURN_FAIL,;The aquired thread_control is 0
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,-1,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_signal() return non-zero
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,-1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,16,16,0,0,0,0,0,0,OSAL_RETURN_FAIL,;OSAL_MUTEX_DESTROY_TIMEOUT <= waiting_time
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,-1,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,0,-1,0,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_destroy() rerturn non-zero (spesific create_cond)
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,-1,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_destroy() rerturn non-zero (spesific join_cond)
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,-1,0,OSAL_RETURN_FAIL,;pthread_join() return non-zero

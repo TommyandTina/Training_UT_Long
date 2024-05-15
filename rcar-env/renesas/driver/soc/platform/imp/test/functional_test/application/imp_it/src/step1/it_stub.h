@@ -1,0 +1,242 @@
+#ifndef IT_STUB_H_
+#define IT_STUB_H_
+
+#include <stdbool.h>
+#include "r_impdrv.h"
+#include "r_impdrv_private.h"
+#include "r_impdrv_osdep.h"
+#include "r_impdrv_corectl.h"
+#include "r_impdrv_cmnctl.h"
+#include "it_common.h"
+
+/* offset for register access stub func */
+#define RCVDRV_IMP_OFFSET_ALL		(0xFFFFFFFF)
+
+#define RCVDRV_IMP_ALL		        (0xFFFFFFFF)
+
+#define RCVDRV_DEINITASK_TIMEOUT		(1000)
+
+extern volatile bool is_valid_core_flag;
+
+/* stub functions */
+void it_stub_set_impdrv_cmnctl_get_dsp_func(p_impdrv_dspctl_dsp_start_t ret);
+void it_stub_set_impdrv_dspctl_dsp_start_pre(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_get_corectl_func(st_impdrv_corectl_func_t* ret);
+void it_stub_set_impdrv_cmnctl_mutex_create(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_mutex_lock(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_check_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_check_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_check_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_check_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_check_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_check_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_check_state(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_cmnctl_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_reg_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_reg_mem_init(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_init_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_init_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_init_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_init_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_init_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_init_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_init_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_init_start(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_init_end(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_init_end(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_init_end(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_init_end(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_init_end(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_init_end(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_init_end(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_init_end(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+void it_stub_set_impdrv_impsctl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+void it_stub_set_impdrv_ocvctl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+void it_stub_set_impdrv_dmactl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+void it_stub_set_impdrv_dmasctl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+void it_stub_set_impdrv_pscctl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+void it_stub_set_impdrv_cnnctl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+void it_stub_set_impdrv_dspctl_set_state(e_impdrv_errorcode_t ret, uint32_t count);
+
+void it_stub_set_impdrv_impctl_attr_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_attr_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_attr_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_attr_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_attr_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_attr_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_attr_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_attr_init(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_is_valid_core(bool ret);
+void it_stub_set_impdrv_impsctl_is_valid_core(bool ret);
+void it_stub_set_impdrv_ocvctl_is_valid_core(bool ret);
+void it_stub_set_impdrv_dmactl_is_valid_core(bool ret);
+void it_stub_set_impdrv_dmasctl_is_valid_core(bool ret);
+void it_stub_set_impdrv_pscctl_is_valid_core(bool ret);
+void it_stub_set_impdrv_cnnctl_is_valid_core(bool ret);
+void it_stub_set_impdrv_dspctl_is_valid_core(bool ret);
+
+void it_stub_set_impdrv_impctl_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_start(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_dsp_start(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_stop(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_stop(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_stop(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_stop(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_stop(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_stop(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_stop(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_stop(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_set_mem_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_set_mem_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_set_mem_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_set_mem_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_set_mem_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_set_mem_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_set_mem_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_set_mem_init(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_set_core_map(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_set_core_map(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_set_core_map(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_set_core_map(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_set_core_map(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_set_core_map(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_set_core_map(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_set_core_map(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_set_cl(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_set_cl(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_set_cl(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_set_cl(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_set_cl(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_set_cl(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_set_cl(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_set_dsp(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_set_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_set_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_set_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_set_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_set_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_set_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_set_irq_mask(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_execute(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_execute(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_execute(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_execute(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_execute(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_execute(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_execute(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_dsp_execute(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_int_handler(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_int_handler(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_int_handler(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_int_handler(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_int_handler(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_int_handler(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_int_handler(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_int_handler(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_resume_exe(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_resume_exe(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_resume_exe(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_resume_exe(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_resume_exe(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_resume_exe(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_resume_exe(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_resume_exe(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_pm_set_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_pm_set_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_pm_set_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_pm_set_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_pm_set_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_pm_set_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_pm_set_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_pm_set_policy(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_pm_get_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_pm_get_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_pm_get_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_pm_get_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_pm_get_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_pm_get_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_pm_get_policy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_pm_get_policy(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_pm_get_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_pm_get_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_pm_get_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_pm_get_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_pm_get_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_pm_get_state(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_pm_get_state(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_cmnctl_mutex_unlock(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_mutex_destroy(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_quit(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_get_syncc_val(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_set_irq_group(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_judge_int(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_fatal_cb(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_reg_set_mem_protect(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_reg_get_hw_info(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_mb_init(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_save_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_restore_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_force_irq_mask(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cmnctl_reg_chk_mem_protect(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_bus_if_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_bus_if_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_bus_if_check(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_impsctl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_conf_reg_check(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_conf_reg_check(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_set_cond_gosub(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_set_cond_gosub(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_set_cond_gosub(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_set_cond_gosub(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_set_cond_gosub(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_set_cond_gosub(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_set_cl_brk_addr(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_set_cl_brk_addr(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_set_cl_brk_addr(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_set_cl_brk_addr(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_set_cl_brk_addr(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_set_cl_brk_addr(e_impdrv_errorcode_t ret);
+
+void it_stub_set_impdrv_impctl_quit(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_ocvctl_quit(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmactl_quit(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dmasctl_quit(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_pscctl_quit(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_cnnctl_quit(e_impdrv_errorcode_t ret);
+void it_stub_set_impdrv_dspctl_quit(e_impdrv_errorcode_t ret);
+
+#endif /* IT_STUB_H_ */

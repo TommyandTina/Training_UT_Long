@@ -1,0 +1,8 @@
+modi,R_OSAL_Internal_SetThreadSpecific,01_013,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_setspecific,pthread_setspecific,,,,,,,,,,
+#COMMENT,@p_set_value,AMSTB_SrcFile.c/AMSTB_pthread_setspecific@AMIN_return,R_OSAL_Internal_SetThreadSpecific@@,;,,,,,,,,
+,gp_void,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,0,0,OSAL_RETURN_PAR,;p_set_value is NULL.,,,,,,,,
+,gp_void,-1,OSAL_RETURN_FAIL,;pthread_setspecific() is return non-zero.,,,,,,,,

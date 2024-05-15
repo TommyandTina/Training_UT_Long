@@ -1,0 +1,9 @@
+modi,R_OSAL_RCFG_ThsyncCheckBusy,03_016,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_osal_threadsync_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_cond_check_busy,r_osal_rcfg_cond_check_busy,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mutex_check_busy,r_osal_rcfg_mutex_check_busy,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_osal_threadsync_is_initialized_enu,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_cond_check_busy@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mutex_check_busy@AMIN_return,R_OSAL_RCFG_ThsyncCheckBusy@@,;,,,,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation.,,,,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_rcfg_mutex_check_busy() return OSAL_RETURN_FAIL.,,,,,,,
+,1,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_rcfg_cond_check_busy() return OSAL_RETURN_FAIL.,,,,,,,

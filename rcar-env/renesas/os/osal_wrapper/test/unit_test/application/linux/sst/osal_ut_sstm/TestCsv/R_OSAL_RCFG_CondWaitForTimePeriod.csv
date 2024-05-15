@@ -1,0 +1,9 @@
+modi,R_OSAL_RCFG_CondWaitForTimePeriod,02_014,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_cond_wait,r_osal_rcfg_cond_wait,,,,,,,,,,
+#COMMENT,@cond_handle,@mutex_handle,@time_period,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_cond_wait@AMIN_return,R_OSAL_RCFG_CondWaitForTimePeriod@@,;,,,,,
+,g_st_osal_cond_control_t[0],g_st_osal_mutex_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,
+,g_st_osal_cond_control_t[0],g_st_osal_mutex_control_t[0],0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod() return OSAL_RETURN_FAIL,,,,,
+,g_st_osal_cond_control_t[0],g_st_osal_mutex_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;r_osal_rcfg_cond_wait() return OSAL_RETURN_HANDLE,,,,,

@@ -1,0 +1,21 @@
+modi,R_OSAL_DCFG_IoGetDeviceList,07_002,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,$@p_device_type_name,@p_num_of_byte,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],R_OSAL_DCFG_IoGetDeviceList@@,;
+,1,1,array_sizet,str,255,0,28,10,10,0,0,0,OSAL_RETURN_OK,;Normal operation
+,1,1,array_sizet,str,255,0,29,10,10,0,0,0,OSAL_RETURN_PAR,;p_deviceType is bigger than OSAL_DEVICE_TYPE_NAME_MAX_LENGTH
+,1,1,array_sizet,str,255,0,28,10,10,0,-1,-1,OSAL_RETURN_UNKNOWN_NAME,;strncmp() return OSAL_RETURN_FAIL (NULL != p_buffer route)
+,1,1,array_sizet,0,0,0,28,10,10,0,-1,-1,OSAL_RETURN_UNKNOWN_NAME,;strncmp() return OSAL_RETURN_FAIL
+,2,1,array_sizet,str,255,0,28,32,32,0,0,0,OSAL_RETURN_FAIL,;name_length is bigger than OSAL_DEVICE_NAME_MAX_LENGTH (NULL != p_buffer route)
+,2,1,array_sizet,0,0,0,28,10,10,0,0,0,OSAL_RETURN_OK,;name_length is less than OSAL_DEVICE_NAME_MAX_LENGTH
+,1,1,array_sizet,0,0,0,28,32,32,0,0,0,OSAL_RETURN_FAIL,;name_length is bigger than OSAL_DEVICE_NAME_MAX_LENGTH and p_buffer is NULL and buffer_size is 0
+,1,1,array_sizet,str,2,0,28,10,10,0,0,0,OSAL_RETURN_PAR,;(local_total_length + 1) is bigger than buffer_size
+,0,1,array_sizet,str,255,0,28,10,10,0,0,0,OSAL_RETURN_UNKNOWN_NAME,;g_osal_num_of_device_table is 0
+,2,1,array_sizet,str,255,0,28,10,10,0,0,0,OSAL_RETURN_OK,;g_osal_num_of_device_table is 2

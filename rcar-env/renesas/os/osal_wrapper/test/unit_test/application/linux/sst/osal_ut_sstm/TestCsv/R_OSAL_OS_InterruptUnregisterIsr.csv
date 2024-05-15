@@ -1,0 +1,25 @@
+modi,R_OSAL_OS_InterruptUnregisterIsr,14_104,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cancel,pthread_cancel,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,,,,,
+%,AMSTB_pthread_detach,pthread_detach,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].int_handle,@handle[0].int_handle[0].irq_func,@handle[0].int_handle[0].irq_enable,@handle[0].int_handle[0].irq_thread,@irq_channel,@irqHandlerFunction,AMSTB_SrcFile.c/AMSTB_pthread_cancel@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AM_result,AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_retval,AMSTB_SrcFile.c/AMSTB_pthread_detach@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_OS_InterruptUnregisterIsr@@,;
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation (is_isr is false)
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,1,0,0,0,0,OSAL_RETURN_OK,;Normal operation (is_isr is true)
+,0,g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_FAIL,;handle is NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_FAIL,;irqHandlerFunction is NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,2,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_PAR,;irqHandlerFunction is not equal irq_func
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,1,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_BUSY,;irq_enable is true
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,0,0,1,0,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_FAIL,;irq_thread is NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,ESRCH,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,;pthread_cancel returns ESRCH
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,-1,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_cancel returns -1
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_FAIL,0,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,0,-1,0,0,0,OSAL_RETURN_FAIL,;pthread_join returns -1
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,0,0,-1,0,0,OSAL_RETURN_OK,;pthread_join p_res is PTHREAD_CANCELED
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,0,0,1,0,0,OSAL_RETURN_FAIL,;pthread_join p_res is not NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,g_osal_thread_t,0,1,0,OSAL_RETURN_OK,1,0,0,-1,0,OSAL_RETURN_FAIL,;pthread_detach returns -1

@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_IoInit,15_101,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_read_uio_dir,r_osal_os_io_read_uio_dir,,,,,,,,,,
+%,AMSTB_r_osal_os_io_initialize_axi_bus_info,r_osal_os_io_initialize_axi_bus_info,,,,,,,,,,
+%,AMSTB_r_osal_os_io_initialize_device,r_osal_os_io_initialize_device,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_read_uio_dir@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_initialize_axi_bus_info@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_initialize_device@AMIN_return,R_OSAL_OS_IoInit@@,;,,,,,,,
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_read_uio_dir returns OSAL_RETURN_FAIL,,,,,,,
+,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_initialize_axi_bus_info returns OSAL_RETURN_FAIL,,,,,,,
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_os_io_initialize_device returns OSAL_RETURN_FAIL,,,,,,,

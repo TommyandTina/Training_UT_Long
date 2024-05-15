@@ -1,0 +1,5 @@
+modi,R_OSAL_Internal_CalcTimeDifference,01_028,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_time2,$@p_time1,$@p_time_difference,R_OSAL_Internal_CalcTimeDifference@@,;,,,,,,,
+,1,1,1,OSAL_RETURN_OK,;Normal operation Is Normal Context,,,,,,,

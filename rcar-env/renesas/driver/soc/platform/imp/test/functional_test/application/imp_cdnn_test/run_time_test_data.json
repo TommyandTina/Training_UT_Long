@@ -1,0 +1,23 @@
+{
+    "files": [
+        {
+            "pattern": "rcar-test-data/imp/sample_app/impsample_dsp_cdnn/sample.cdnnQdata",
+            "target": "application/input/sample.cdnnQdata"
+        },
+
+        {
+            "pattern": "rcar-test-data/imp/sample_app/impsample_dsp_cdnn/cl_cnn0.bin",
+            "target": "application/input/cl_cnn0.bin"
+        },
+
+        {
+            "pattern": "rcar-test-data/imp/sample_app/impsample_dsp_cdnn/image.bin",
+            "target": "application/input/image.bin"
+        },
+
+        {
+            "pattern": "rcar-test-data/imp/sample_app/impsample_dsp_cdnn/image_config.txt",
+            "target": "application/input/image_config.txt"
+        }
+    ]
+}

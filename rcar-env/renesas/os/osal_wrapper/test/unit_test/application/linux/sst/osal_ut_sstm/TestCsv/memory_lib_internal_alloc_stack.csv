@@ -1,0 +1,10 @@
+modi,memory_lib_internal_alloc_stack,09_105,9,1,,,,CPP,,,,0
+#InitWheneverCall,AMSTB_SrcFile.c/meml_buffer_dummy[0].remain,AMSTB_SrcFile.c/meml_buffer_dummy[1].remain,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/meml_buffer_dummy[0].remain,AMSTB_SrcFile.c/meml_buffer_dummy[1].remain,$@p_manage,@size,@alignment,@p_manage[0].buffer.p_prev,$@p_manage[0].buffer.p_next,@p_manage[0].buffer.addr,@p_manage[0].physical_addr,memory_lib_internal_alloc_stack@@,;,
+,256,256,1,128,0,meml_buffer_dummy,0,dummy_buffer_va,dummy_buffer_pa,dummy_buffer_va,;Normal operation(1st allocate),
+,256,256,1,128,0,meml_buffer_dummy,1,dummy_buffer_va,dummy_buffer_pa,AMSTB_SrcFile.c/meml_buffer_dummy+40,;Normal operation(add tail),
+,256,256,0,128,64,meml_buffer_dummy,0,dummy_buffer_va,dummy_buffer_pa,0,;p_manage is NULL,
+,256,256,1,128,64,0,0,dummy_buffer_va,dummy_buffer_pa,0,;buffer.prev is NULL,
+,256,256,1,0,64,meml_buffer_dummy,0,dummy_buffer_va,dummy_buffer_pa,0,;size = 0,
+,256,256,1,1024,64,meml_buffer_dummy,0,dummy_buffer_va,dummy_buffer_pa,0,;less than remain,

@@ -1,0 +1,46 @@
+	The CANFD driver for RENESAS R-Car Gen3, Gen4
+
+    CREATED   : 11.20.2020
+    MODIFIED  : 11.25.2022
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-Car Gen3 & Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            11.20.2020 : Ver.0.1
+            - Create new version (port from Gen3 QNX70 BSP) for V3U
+            12.18.2020 : Ver.0.2
+            - Add canfd_pfc_config.c due to CANFD5 Pin mutiplex with FLEXRAY Pin
+            - Add canfd_log.h for debugging
+            - Optimze the code
+            02.06.2021 : Ver.0.3
+            - Support R-Car V3H
+            04.30.2021 : Ver.0.4
+            - Support R-Car Gen3e
+            04.21.2022 : Ver.0.5
+            - Support for R-Car V4H: 
+            - Change binary driver from "canfd-rcar" to "rcar-canfd" 
+            - Use IS_RCAR_GEN4 to check version of R-Car platform.
+            - Support command CAN_DEVCTL_GET_STATS, CAN_DEVCTL_ERROR,CAN_DEVCTL_READ_CANMSG_EXT, CAN_DEVCTL_WRITE_CANMSG_EXT
+              and change argument "option" in function "canfd_control_cb" to "dcmd"
+            - In struct candev_info_t add two members devctl_stat, canfd_stat to get errors and CAN statistics of from driver.
+            - Updated functions: canfd_tx_irq, canfd_rx_irq to get errrors and CAN statistics of CAN-FD.
+            - Change define CANFD_GERFL_ERR_V3U to CANFD_GERFL_ERR_RCARGEN4
+            - Updated define fCAN, CANFD_GERFL_ERR_V3H20, CANFD_GERFL_ERR_OTHER
+            - Remove define CANFD_nPRESDIV_250K, CANFD_nSJW_250K, CANFD_nTSEG1_250K, CANFD_nTSEG2_250K, CANFD_dPRESDIV_2M
+              , CANFD_dSJW_2M, CANFD_dTSEG1_2M, CANFD_dTSEG2_2M and remove calculate CAN bit time in options in "main" function.
+            - Add function "canfd_calculate_bittiming" to calculate CAN bit time.
+            - Addd enum FD_MODE to support CAN-FD only mode.
+            - Remove memeber "membase" in struct canfddev_hwinfo.
+            - Add some register defines : RCAR_CANFD_CFDCnFDCFG(n), RCAR_CFDCnFDCFG_CFDTE, RCAR_CFDCnFDCFG_CLOE,RCAR_CFDCnFDCFG_FDOECFDCnFDSTS(n)
+              CFDCnFDCRC(n), CFDCnBLCT(n), CFDCnBLSTS(n)
+            - Change option "i", add option "e" in "main" function. 
+            06.30.2022 : Ver.0.6
+            - Fix fCAN clock for internal clock source
+            11.25.2022 : Ver.0.6
+            - Remove define CAN_PRESDIV_250K, CAN_SJW_250K, CAN_TSEG1_250K, CAN_TSEG2_250K
+            - Remove get product_id, product_rev in "get_canfd_hwinfo" function.
+
+-----------------------------------------------------------------------------
+ Known limitations/Testing conditions with this driver
+-----------------------------------------------------------------------------

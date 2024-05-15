@@ -1,0 +1,13 @@
+modi,R_OSAL_OS_InterruptDisableIsr,14_106,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Write,R_OSAL_OS_Write,,,,,,,,,,
+#COMMENT,@handle,@handle[0].int_handle,@handle[0].int_handle[0].irq_func,@irq_channel,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AM_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Write@AMIN_return,R_OSAL_OS_InterruptDisableIsr@@,;,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (is_isr is true),,,
+,0,g_st_osal_interrupt_control_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;handle is NULL,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;irq_func is NULL,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext returns OSAL_RETURN_FAIL,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_Write returns OSAL_RETURN_FAIL,,,

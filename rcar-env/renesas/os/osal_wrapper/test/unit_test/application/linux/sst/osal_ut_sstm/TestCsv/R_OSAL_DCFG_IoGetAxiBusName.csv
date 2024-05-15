@@ -1,0 +1,20 @@
+modi,R_OSAL_DCFG_IoGetAxiBusName,06_015,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,AMSTB_SrcFile.c/g_st_osal_os_io_get_axi_bus_name_t.pst_axi_bus_name_info,AMSTB_SrcFile.c/g_st_osal_axi_bus_name_info_t[0].utlb,AMSTB_SrcFile.c/g_st_osal_axi_bus_name_info_t[1].utlb,,,,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/g_st_osal_os_io_get_axi_bus_name_t.pst_axi_bus_name_info,AMSTB_SrcFile.c/g_st_osal_axi_bus_name_info_t[0].utlb,AMSTB_SrcFile.c/g_st_osal_axi_bus_name_info_t[1].utlb,@axi_id,@p_buffer,@buffer_size,@p_num_of_byte,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_p_param,AMSTB_SrcFile.c/AMSTB_strlen@AM_count,AMSTB_SrcFile.c/AMSTB_strlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_DCFG_IoGetAxiBusName@@,;
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,0,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,0,0,0,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (p_buffer is NULL)
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,0,str,1,g_size_t,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod returns OSAL_RETURN_TIME
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,0,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_IoGetAxiBusInformation returns OSAL_RETURN_FAIL (Unlock is OK)
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,0,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_IoGetAxiBusInformation returns OSAL_RETURN_FAIL (Unlock is FAIL)
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,1,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;axi_id is larger than max_count_axi_id
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,0,str,0,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;copy size is larger than buffer_size
+,g_st_osal_axi_bus_name_info_t,0,OSAL_AXI_BUS_NAME_LAST,0,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_t,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL

@@ -1,0 +1,21 @@
+	The libcapture for RENESAS R-Car Gen3 board
+
+	CREATED   : 10.28.2020
+	AUTHOR    : Renesas Electronics America Inc.
+	HARDWARE  : RENESAS R-Car Gen3 board
+	TARGET OS : QNX SDP 7.1
+
+	HISTORY   :
+		10.28.2020 : Ver.0.1
+		- Create new version
+		11.20.2020 : Ver.0.2
+		- Optimize Max96712 source code
+		12.11.2020 : Ver.0.3
+		- Optimize Max96712 source code
+		02.06.2021 : Ver.0.2
+        - Merge R-CarV3U and R-CarV3H to R-CarGen3 QNX SDP 7.1
+        03.30.2021 : Ver.0.3
+        - Add CAPTURE_VIA_CSI and CAPTURE_VIA_ISP defines to input_support enum type
+        06.30.2021 : Ver.0.4
+        - Update ADV7482 source code for fixing HDMI capture shifting
+            

@@ -1,0 +1,23 @@
+modi,osal_internal_user_thread,06_012,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_wait,pthread_cond_wait,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_SetThreadSpecific,R_OSAL_Internal_SetThreadSpecific,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,
+#COMMENT,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,@p_arg,g_st_osal_interrupt_thread_control.notify,g_st_osal_interrupt_thread_control.irq_handler,g_st_osal_interrupt_thread_control.irq_enable,osal_irq_cb_dummy@AM_flags,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_cond_wait@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_SetThreadSpecific@AMIN_return,AMSTB_SrcFile.c/AMSTB_posix_devctl@AM_count,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],osal_internal_user_thread@@,;
+,1,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0,;Normal operation 
+,1,0,0,osal_irq_cb_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0,;p_arg is NULL.
+,1,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,1,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_st_osal_interrupt_thread_control,0,0,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0,;p_interrupt_control->irq_handler is NULL
+,1,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0,;p_interrupt_control->irq_enable is false
+,1,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,0,0,0,0,0,;R_OSAL_Internal_SetThreadSpecific() return OSAL_RETURN_FAIL
+,1,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,-1,0,0,0,;posix_devctl() return non-zero
+,1,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,-1,0,;pthread_mute_unlock() return non-zero
+,0,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0,;gs_osal_interrupt_is_initialized is false
+,1,g_st_osal_interrupt_thread_control,0,osal_irq_cb_dummy,1,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0,;p_interrupt_control->irq_enable is false while executing user call back function.

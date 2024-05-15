@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_GetSysPageSize,18_108,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_sysconf,sysconf,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_sysconf@AMIN_return,R_OSAL_OS_GetSysPageSize@@,;,,,,,,,,,
+,1,1,;Normal operation ,,,,,,,,,

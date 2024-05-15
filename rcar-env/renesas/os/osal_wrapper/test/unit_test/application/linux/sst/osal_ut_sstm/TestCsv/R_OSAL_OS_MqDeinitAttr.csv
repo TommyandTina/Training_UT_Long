@@ -1,0 +1,9 @@
+modi,R_OSAL_OS_MqDeinitAttr,19_112,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDeinitAttr,R_OSAL_OS_MutexDeinitAttr,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@mq_attr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_OS_MqDeinitAttr@@,;,,,,,,,
+,g_st_osal_os_mqattr_t,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;mq_attr is NULL,,,,,,,
+,g_st_osal_os_mqattr_t,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDeinitAttr returns OSAL_RETURN_FAIL,,,,,,,

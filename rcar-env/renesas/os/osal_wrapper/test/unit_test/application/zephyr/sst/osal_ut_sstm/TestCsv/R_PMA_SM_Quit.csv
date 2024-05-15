@@ -1,0 +1,6 @@
+modi,R_PMA_SM_Quit,03_002,4,3,,,,CPP,,,,0
+#InitWheneverCall,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enReqStat,r_pma_statemachine.c/g_pma_sm_info_tbl[0].refCnt,,,,,,,,
+0,0,0,0,0,,,,,,,,
+#COMMENT,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enReqStat,r_pma_statemachine.c/g_pma_sm_info_tbl[0].refCnt,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enReqStat,r_pma_statemachine.c/g_pma_sm_info_tbl[0].refCnt,;,,,,
+,0,dummy_handle,R_PMA_HWA_REQUESTED,1,dummy_handle,R_PMA_HWA_REQUESTED,1,;g_pma_max_hwa_id_num is 0,,,,
+,1,dummy_handle,R_PMA_HWA_REQUESTED,1,0,R_PMA_HWA_RELEASED,0,;Normal operation,,,,

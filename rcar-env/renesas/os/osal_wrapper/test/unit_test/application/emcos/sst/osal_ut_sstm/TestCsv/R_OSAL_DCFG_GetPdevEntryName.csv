@@ -1,0 +1,5 @@
+modi,R_OSAL_DCFG_GetPdevEntryName,07_036,3,2,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,@num,@name,*@name[0],R_OSAL_DCFG_GetPdevEntryName@@,;,,,,,,
+,1,0,char_dummy_p,\'pdev_imr',OSAL_RETURN_OK,;Normal operation ,,,,,,

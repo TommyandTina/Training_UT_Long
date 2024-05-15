@@ -1,0 +1,25 @@
+    The SCIF/HSCIF driver for R-Car Gen3 & Gen4 boards
+
+    CREATED   : 09.30.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 & Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.28.2020 : Ver.0.1
+            - Create new version from QNX7.0 driver for V3U
+            02.28.2021 : Ver.0.2
+            - Update and Support for R-Car Gen3
+            09.30.2021 : Ver.0.3
+            - Support for S4
+            04.12.2022 : Ver.0.4
+            - Support TX, RX and RTS trigger level change for HSCIF
+            - Remove TX & RX FIFO reset removal in baudrate setting
+            - Replace calling 'fprintf' by calling 'slog'
+            - Optimize/enhance code (basing on code Rev:805958 of S4 BSP on QNX Software Center )
+            08.16.2022 : Ver.0.5
+            - Correct formula in calculating N value to set to SCBRR/HSBRR registers
+            - Add in 'INTERNAL_CLOCK2' to handle internal clock (266.66MHz) input to BRG of SCIF/HSCIF
+            09.30.2022 : Ver.0.6
+            - Add in memory type for DMA buffer allocation

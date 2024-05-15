@@ -1,0 +1,27 @@
+modi,R_OSAL_OS_MqDelete,10_002,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_timedlock_mutex,r_osal_os_mq_timedlock_mutex,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_destroy_cond,r_osal_os_mq_destroy_cond,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,
+%,AMSTB_clock_gettime,clock_gettime,,,,,,,,,,,,,
+%,AMSTB_clock_gettime,clock_gettime,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy_mqstb,pthread_mutex_destroy,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy_mqstb,pthread_mutex_destroy,,,,,,,,,,,,,
+%,AMSTB_clock_nanosleep,clock_nanosleep,,,,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].numofmsg,g_st_osal_os_mq[0].receive_wait,g_st_osal_os_mq[0].send_wait,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_timedlock_mutex@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_destroy_cond@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return,AMSTB_SrcFile.c/AMSTB_clock_gettime@AM_count,AMSTB_SrcFile.c/AMSTB_clock_gettime@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy_mqstb@AM_count,&AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy_mqstb@AMIN_return,AMSTB_SrcFile.c/AMSTB_clock_nanosleep@AMIN_return,AMSTB_SrcFile.c/g_os_time.tv_nsec,R_OSAL_OS_MqDelete@@,;
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,899000000,OSAL_RETURN_OK,;Normal operation
+,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,899000000,OSAL_RETURN_FAIL,;mq is NULL.
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,0,0,0,0,899000000,OSAL_RETURN_FAIL,;r_osal_os_mq_timedlock_mutex() return non-OSAL_RETURN_OK.
+,g_st_osal_os_mq,1,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,899000000,OSAL_RETURN_BUSY,;mq->numofmsg is not 0.
+,g_st_osal_os_mq,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,899000000,OSAL_RETURN_BUSY,;mq->receive_wait is true.
+,g_st_osal_os_mq,0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,0,899000000,OSAL_RETURN_BUSY,;mq->send_wait is true.
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,0,0,0,899000000,OSAL_RETURN_FAIL,;r_osal_os_mq_destroy_cond() return non-OSAL_RETURN_OK.
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,-1,0,0,0,0,0,899000000,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero.
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,-1,0,0,0,0,0,899000000,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero and r_osal_os_mq_destroy_cond() return non-OSAL_RETURN_OK.
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,-1,0,899000000,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero.(in while)
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16|16,0,899000000,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return EBUSY. (in while)
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,16|0,0,899000000,OSAL_RETURN_OK,;pthread_mutex_destroy() return EOK. (in while)
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,-1,0,16|0,0,899000000,OSAL_RETURN_OK,;clock_gettime() return non-zero.(r_osal_os_mq_ms_sleep)
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,16|0,0,999000000,OSAL_RETURN_OK,;current_time.tv_nsec more than OSAL_MAX_TV_NSEC.(r_osal_os_mq_ms_sleep)
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,16|0,-1,899000000,OSAL_RETURN_OK,;clock_nanosleep() return non-zero.(r_osal_os_mq_ms_sleep)

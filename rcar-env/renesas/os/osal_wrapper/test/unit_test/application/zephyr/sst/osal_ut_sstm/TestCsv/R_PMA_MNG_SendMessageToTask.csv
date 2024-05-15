@@ -1,0 +1,9 @@
+modi,R_PMA_MNG_SendMessageToTask,02_003,4,3,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MqSendForTimePeriod,R_OSAL_HIF_MqSendForTimePeriod,,,,,,,,,,
+#COMMENT,$@pMsg,r_pma_manager.c/g_pma_mng_queue,r_pma_manager.c/g_pma_mng_timeout,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MqSendForTimePeriod@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MqSendForTimePeriod@AMOUT_mq,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MqSendForTimePeriod@AMOUT_time_period,R_PMA_MNG_SendMessageToTask@@,;,,,,
+,0,1,1,,,,R_PMA_NG,;pMsg is NULL,,,,
+,1,1,1,OSAL_RETURN_FAIL,1,1,R_PMA_NG,;R_OSAL_HIF_MqSendForTimePeriod() returns OSAL_RETURN_FAIL,,,,
+,1,1,1,OSAL_RETURN_TIME,1,1,R_PMA_TIMEOUT,;R_OSAL_HIF_MqSendForTimePeriod() returns OSAL_RETURN_TIME,,,,
+,1,1,1,OSAL_RETURN_OK,1,1,R_PMA_OK,;Normal operation,,,,

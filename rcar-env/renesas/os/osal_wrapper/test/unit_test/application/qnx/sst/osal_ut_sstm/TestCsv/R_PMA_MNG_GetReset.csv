@@ -1,0 +1,12 @@
+modi,R_PMA_MNG_GetReset,02_008,11,3,,,,CPP,,,,0,,,
+#InitWheneverCall,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_timeout,,,,,,,,,,,,,
+0,0,0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_GetResetState,R_PMA_SM_GetResetState,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+#COMMENT,@handle,@hwaId,$@pRstState,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_timeout,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_PMA_SM_GetResetState@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_control,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_GetResetState@AMOUT_handle,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_GetResetState@AMOUT_hwaId,R_PMA_MNG_GetReset@@,;
+,1,R_PMA_HWA_ID_V4H_IMPPSC,1,1,1,OSAL_RETURN_FAIL,,,0,0,,,,R_PMA_NG,;R_OSAL_HIF_MutexLockForTimePeriod() returns OSAL_RETURN_FAIL
+,1,R_PMA_HWA_ID_V4H_IMPPSC,1,1,1,OSAL_RETURN_OK,R_PMA_INVALID_ARGUMENT,OSAL_RETURN_OK,0,0,0,1,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_INVALID_ARGUMENT,;R_OSAL_ThsyncMutexUnlock() returns OSAL_RETURN_FAIL
+,1,R_PMA_HWA_ID_V4H_IMPPSC,1,1,1,OSAL_RETURN_OK,R_PMA_INVALID_ARGUMENT,OSAL_RETURN_FAIL,0,0,0,1,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_NG,;R_PMA_SM_GetResetState() returns R_PMA_INVALID_ARGUMENT
+,1,R_PMA_HWA_ID_V4H_IMPPSC,1,1,1,OSAL_RETURN_OK,R_PMA_OK,OSAL_RETURN_FAIL,0,0,0,1,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_NG,;R_OSAL_ThsyncMutexUnlock() returns OSAL_RETURN_FAIL
+,1,R_PMA_HWA_ID_V4H_IMPPSC,1,1,1,OSAL_RETURN_OK,R_PMA_OK,OSAL_RETURN_OK,0,0,0,1,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_OK,;Normal operation

@@ -1,0 +1,10 @@
+modi,R_PMA_BSP_WRAP_GetResetState,05_016,9,3,,,,CPP,,,,0,
+#InitWheneverCall,r_pma_bsp_wrapper.c/cpg_idmax,r_pma_bsp_wrapper.c/clkhwfuncs.mstp_reset_state,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[0],r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[318],,,,,,,,
+0,0,0,0,0,0,,,,,,,,
+%,AMSTB_dummy_mstp_reset_state,dummy_mstp_reset_state,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode,R_PMA_BSP_WRAP_Exchange_ErrCode,,,,,,,,,,,
+#COMMENT,@modId,$@pRstStat,r_pma_bsp_wrapper.c/cpg_idmax,r_pma_bsp_wrapper.c/clkhwfuncs.mstp_reset_state,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[0],r_pma_bsp_wrapper.c/g_pma_bsp_wrap_cpg_id_tbl[318],AMSTB_SrcFile.c/AMSTB_dummy_mstp_reset_state@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode@AMIN_return,@pRstStat[0],AMSTB_SrcFile.c/AMSTB_dummy_mstp_reset_state@AMOUT_mod_id,R_PMA_BSP_WRAP_GetCpgState@@,;
+,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,1,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_reset_state,dummy_g_pma_bsp_wrap_cpg_id_tbl,0,318,CPG_RET_ERROR,R_PMA_NG,,0,R_PMA_NG,;mstp_reset_state() returns CPG_RET_ERROR
+,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,1,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_reset_state,dummy_g_pma_bsp_wrap_cpg_id_tbl,0,318,R_PMA_RELEASED_RESET,,R_PMA_RELEASED_RESET,0,R_PMA_OK,;mstp_reset_state() returns 1(ON)
+,R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_GLOBAL,1,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_reset_state,dummy_g_pma_bsp_wrap_cpg_id_tbl,0,318,R_PMA_APPLIED_RESET,,R_PMA_APPLIED_RESET,318,R_PMA_OK,;mstp_reset_state() returns 0(OFF)
+,R_PMA_CPG_DOMAIN_ID_V4H_VDSP1_GLOBAL,1,R_PMA_CPG_DOMAIN_ID_V4H_NUM,dummy_mstp_reset_state,dummy_g_pma_bsp_wrap_cpg_id_tbl,0,318,3,,,318,R_PMA_OK,;mstp_reset_state() returns 3

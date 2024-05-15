@@ -1,0 +1,10 @@
+modi,r_osal_os_io_add_item_to_list,15_133,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+#COMMENT,@p_glob_buffer,@pp_list_buffer,@pp_list_buffer[0],@count,@p_dst_offset,@p_dst_offset[0],AMSTB_SrcFile.c/AMSTB_strlen@AM_count,AMSTB_SrcFile.c/AMSTB_strlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],r_osal_os_io_add_item_to_list@@,;
+,g_glob_t,p_char,str,0,g_size_t,0,0,5,0,str,OSAL_RETURN_OK,;Normal operation
+,g_glob_t,p_char,str,0,g_size_t,0,0,5,0,0,OSAL_RETURN_FAIL,;realloc returns NULL

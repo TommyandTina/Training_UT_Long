@@ -1,0 +1,23 @@
+PWM Resource Manager for R-Car Gen4 based platforms
+
+Options
+=======
+  --channel -c
+    Set PWM channels that is supported by driver. 
+    In case many channels are selected, these channels are separated by comma. 
+    Default is all available channels.
+
+  --verbose -v
+    Set logging level (0..7), default level is INFO (5)
+
+  --setup-pin -s
+    Allow pin re-configuration for selected PWM channels. By default, driver will use pin setting from startup.
+
+Example
+=======
+  1) Start PWM driver for all channels
+     $ rcar-pwm
+
+  2) Start PWM driver for channel 3, 5, 7 and re-configure pin
+     $ rcar-pwm -c 3,5,7 -s
+     

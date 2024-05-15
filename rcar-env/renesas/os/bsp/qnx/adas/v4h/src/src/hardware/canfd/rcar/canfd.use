@@ -1,0 +1,75 @@
+%C - CAN driver for R-Car CAN Controller
+
+Syntax:
+   canfd-rcar [option[,option ...]] ...
+
+Options:
+ -b                                     Set normal bitrate (50000, 125000, 250000, 500000, 1000000, default 250000)
+                                        You should select a value less than value of data bitrate
+                                        Example:
+                                        #canfd-rcar -b250000 -d 2000000 -u0 -m4
+
+ -d                                     Set data bitrate (1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000 default 2000000)
+                                        You should select a value higher than value of normal bitrate
+                                        Example:
+                                        #canfd-rcar -b250000 -d 2000000 -u0 -m4
+
+ -u                                     Select unit CAN (0, 1, 2, 4, 5, 6, 7 defaulf 0)
+                                        This uses with option '-m' selecting channel to configure mode.
+                                        Examples:
+                                        Configuring internal loop back mode for channel 0
+                                        #canfd-rcar -u0 -m3
+                                        Configuring internal communication mode for channel 1
+                                        #canfd-rcar -u1 -m4
+
+ -m                                     Select modes
+                                        STANDARD_TEST_MODE         : -m0
+                                        LISTEN_ONLY_MODE           : -m1
+                                        EXTERNAL_LOOP_BACK_MODE    : -m2
+                                        INTERNAL_LOOP_BACK_MODE    : -m3
+                                        CHANNEL_COMMUNICATION_MODE : -m4
+                                        CHANNEL_RESET_MODE         : -m5
+                                        CHANNEL_HALT_MODE          : -m6
+
+                                        This uses with option '-u' selecting channel to configure mode.
+                                        Example:
+                                        Configuring internal loop back mode for channel 0
+                                        #canfd-rcar -u0 -m3
+                                        Configuring internal communication mode for channel 1
+                                        #canfd-rcar -u1 -m4
+
+ -t                                     Set transmition interval function
+                                        Example:
+                                        Set transmition interval 75 microseconds (us) both channels
+                                        #canfd-rcar -t75
+
+ -x                                     Select clock mode
+                                        There are two modes:
+                                        Internal clock mode: default
+                                        External clock mode: -x40000000
+                                        Example:
+                                        Set external clock mode run at fCAN is 40000000 MHz
+                                        #canfd-rcar -x40000000
+                                        Because lack of hardware, so we didn't test with external clock mode yet.
+
+ -i                                     Select CAN interface
+                                        There are 3 interfaces:
+                                        Classic mode     : -i0  The driver can send only Classical Frame FD frames will cause the detection of an error.
+                                        CAN FD mode      : -i1  Classical and CAN-FD frames can be transmitted and received.
+                                        FD only mode     : -i2  Only CAN-FD frames can be transmitted and received.
+                                                                Classical frames will cause the detection of an error.
+                                                                This mode is supported only in R-CarV4H/R-CarV3U
+                                        default (CAN FD mode):  
+                                        Example
+                                        Set Classic mode
+                                        #canfd-rcar -u0 -m4 -u1 -m4 -u2 -m4 -u3 -m4 -u4 -m4 -u5 -m3 -u6 -m3 -u7 -m4 -i0
+                                        Set CAN FD mode
+                                        #canfd-rcar -u0 -m4 -u1 -m4 -u2 -m4 -u3 -m4 -u4 -m4 -u5 -m3 -u6 -m3 -u7 -m4 -i1
+                                        Set FD mode
+                                        canfd-rcar -u0 -m4 -u1 -m4 -u2 -m4 -u3 -m4 -u4 -m4 -u5 -m3 -u6 -m3 -u7 -m4 -i2
+ -e                                     Select Classical CAN only mode, FD tolerant mode. This mode is supported only in R-CarV4H/R-CarV3U
+                                        The IP can send only Classical Frame.
+                                        FD frames will not cause the detection of an error and will be ignored.
+                                        Example
+                                        #canfd-rcar -u0 -m4 -u1 -m4 -u2 -m4 -u3 -m4 -u4 -m4 -u5 -m3 -u6 -m3 -u7 -m4 -i0 -e
+

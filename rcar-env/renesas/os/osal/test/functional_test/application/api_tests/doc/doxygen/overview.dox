@@ -1,0 +1,31 @@
+/**
+ * @page 0overview Overview
+ * OSAL API Functional Test is a test to confirm that OSAL Wrapper works in common with OS.
+ * @version OSAL API Functional Test version: 3.15.0
+ * @version OSAL API version: 3.7.0
+ * @section overview_features Features
+ * -# Test category
+ * OSAL API Functional Test runs the following categories of tests
+ *     * Requirements-based test
+ *         * Test whether OSAL APIs are achieving the required functionality. \n
+ * This test category includes combination test of multiple OSAL APIs.
+ *     * Interface test
+ *         * Test the behavior when inputted boundary values to OSAL API parameters
+ * -# Test category
+ * The test targets are all of Manager's APIs below.
+ *     * Thread
+ *     * Thsync (mutex)
+ *     * Thsync (condition variables)
+ *     * Message
+ *     * Interrupt
+ *     * IO
+ *     * Power
+ *     * Memory
+ *     * Clock&Time
+ * @section overview_spec Specifications
+ * Test Name consists of a set of tests, a target API name, and a test number.
+ * 
+ * @section note
+ * Code changes and tests may be added for proper testing 
+ *
+ */

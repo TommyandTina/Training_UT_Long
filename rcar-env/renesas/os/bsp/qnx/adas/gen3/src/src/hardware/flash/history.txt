@@ -1,0 +1,19 @@
+    The RPC (QSPI) driver for R-Car Gen3 boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.28.2020 : Ver.1.0
+			- Create new version
+            02.28.2021 : Ver.1.1
+            - Update and Support for R-Car Gen3
+            08.29.2022 : Ver.1.2
+            - Add starting option "wbuf" to control using write buffer mode
+            - Add WA for defect "RPC data cache hit logic has a problem.
+                                Reading RPC registers with CacheON may hit the data cache by mistake.
+                                Wrong data is read."
+

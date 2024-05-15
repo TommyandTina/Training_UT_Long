@@ -1,0 +1,27 @@
+modi,R_OSAL_RCFG_MqDelete,03_007,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,r_osal_res_cfg_message.c/gs_inner_mq_mtx,r_osal_res_cfg_message.c/gsp_mq_array,r_osal_res_cfg_message.c/gs_mq_array_size,r_osal_res_cfg_message.c/gsp_mq_array[0],r_osal_res_cfg_message.c/gsp_mq_array[1],,,,,,,,,,,,,,
+0,0,0,0,0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mq_search_array,r_osal_rcfg_mq_search_array,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mq_search_array,r_osal_rcfg_mq_search_array,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqCheckBusy,R_OSAL_OS_MqCheckBusy,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqDelete,R_OSAL_OS_MqDelete,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_message.c/gs_inner_mq_mtx,r_osal_res_cfg_message.c/gsp_mq_array,r_osal_res_cfg_message.c/gs_mq_array_size,r_osal_res_cfg_message.c/gsp_mq_array[0],r_osal_res_cfg_message.c/gsp_mq_array[1],@handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mq_search_array@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mq_search_array@AMIN_p_index,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqCheckBusy@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqDelete@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_RCFG_MqDelete@@,;
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod returns OSAL_RETURN_FAIL
+,g_osal_os_mutex_t[0],0,1,,,g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;gsp_mq_array is NULL
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;r_osal_rcfg_mq_search_array() returns OSAL_RETURN_BUSY
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_BUSY,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;R_OSAL_OS_MqCheckBusy() returns OSAL_RETURN_BUSY
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MqDelete() returns OSAL_RETURN_FAIL
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,0,g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;gsp_mq_array[] is NULL
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;gsp_mq_array[] is not NULL (gs_mq_array_size <= index)
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,2,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;gs_mq_array_size is not 0 (realloc is OK)
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,2,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_MEM,;gs_mq_array_size is not 0 (realloc is FAIL)
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() returns OSAL_RETURN_FAIL (R_OSAL_OS_MqDelete is OK)
+,g_osal_os_mutex_t[0],g_osal_mq_handle_t,1,g_st_osal_mq_control_t[0],g_st_osal_mq_control_t[1],g_st_osal_mq_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,g_osal_mq_handle_t,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() returns OSAL_RETURN_FAIL (R_OSAL_OS_MqDelete is FAIL)

@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_MutexDeinitAttr,03_307,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_destroy,pthread_mutexattr_destroy,,,,,,,,,,
+#COMMENT,$@mutex_attr,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_destroy@AMIN_return,R_OSAL_OS_MutexDeinitAttr@@,;,,,,,,,,
+,1,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,0,0,OSAL_RETURN_FAIL,;mutex_attr is NULL.,,,,,,,,
+,1,22,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy() return non-EOK.,,,,,,,,

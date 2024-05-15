@@ -1,0 +1,16 @@
+modi,osal_internal_mem_getsize,09_044,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,@p_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,g_st_osal_memory_buffer_obj.mmngr_owner_hndl,g_st_osal_memory_manager_obj[0].p_ptr_self,g_osal_mem_buf_ptr_self.handle_id,@p_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],osal_internal_mem_getsize@@,;
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,g_size_t,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation
+,0,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,g_size_t,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;p_ptr_self is NULL
+,g_st_osal_memory_buffer_obj,0,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,g_size_t,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;buffer_obj->p_ptr_self is NULL
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,0,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,g_size_t,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;buffer_obj->mmngr_owner_hndl is NULL
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,0,OSAL_BUFFER_HANDLE_ID,g_size_t,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;buffer_obj->mmngr_owner_hndl->p_ptr_self is NULL
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,0,g_size_t,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;p_buffer->handle_id is not equals OSAL_BUFFER_HANDLE_ID
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,g_size_t,0,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,g_size_t,0,OSAL_RETURN_OK,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

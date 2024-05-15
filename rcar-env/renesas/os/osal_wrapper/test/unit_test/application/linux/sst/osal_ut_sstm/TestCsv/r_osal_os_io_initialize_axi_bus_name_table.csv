@@ -1,0 +1,33 @@
+modi,r_osal_os_io_initialize_axi_bus_name_table,15_116,20,1,,,,CPP,,,,0,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_glob,glob,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_glob,glob,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_glob,glob,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_bus_domain,r_osal_os_io_get_bus_domain,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_bus_domain,r_osal_os_io_get_bus_domain,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_bus_domain,r_osal_os_io_get_bus_domain,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_axi_bus_name_table,r_osal_os_io_create_axi_bus_name_table,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_axi_bus_name_table,r_osal_os_io_create_axi_bus_name_table,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_axi_bus_name_table,r_osal_os_io_create_axi_bus_name_table,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_axi_bus_name_table,r_osal_os_io_create_axi_bus_name_table,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_axi_bus_name_table,r_osal_os_io_create_axi_bus_name_table,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_axi_bus_name_table,r_osal_os_io_create_axi_bus_name_table,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_register_axi_bus_info,r_osal_os_io_register_axi_bus_info,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_register_axi_bus_info,r_osal_os_io_register_axi_bus_info,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_register_axi_bus_info_last_data,r_osal_os_io_register_axi_bus_info_last_data,,,,,,,,,,,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_glob@AMIN_return,AMSTB_SrcFile.c/AMSTB_glob@AMIN_pglob_gl_pathc,AMSTB_SrcFile.c/AMSTB_glob@AMIN_pglob_gl_pathv,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_bus_domain@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_bus_domain@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_bus_domain@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strcmp@AM_count,AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_axi_bus_name_table@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_axi_bus_name_table@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_axi_bus_name_table@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_axi_bus_name_table@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_axi_bus_name_table@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_axi_bus_name_table@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_register_axi_bus_info@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_register_axi_bus_info@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_register_axi_bus_info_last_data@AMIN_return,r_osal_os_io_initialize_axi_bus_name_table@@,;
+,0,4,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,-1,4,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;glob returns -1
+,0,4,str,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_get_bus_domain returns OSAL_RETURN_FAIL
+,0,4,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,1,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;gl_pathv[2] is invalid
+,0,4,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,0,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;gl_pathv[2] is mm(ipa)
+,0,0,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,1,1,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_create_axi_bus_name_table returns OSAL_RETURN_FAIL (Registere mm(ipa))
+,0,0,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_register_axi_bus_info returns OSAL_RETURN_FAIL (Register mm(ipa))
+,0,4,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,0,1,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_create_axi_bus_name_table returns OSAL_RETURN_FAIL (Register other)
+,0,4,str,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_os_io_register_axi_bus_info_last_data returns OSAL_RETURN_FAIL

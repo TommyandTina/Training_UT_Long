@@ -1,0 +1,13 @@
+modi,R_OSAL_DCFG_IoGetAxiBusName,07_010,9,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_io.c/gs_osal_io_is_initialized_enu,r_osal_dev_cfg_io.c/gs_axi_bus_name_info_array_size,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,,,,,,,,,
+0,0,0,0,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gs_osal_io_is_initialized_enu,r_osal_dev_cfg_io.c/gs_axi_bus_name_info_array_size,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,@p_buffer,@buffer_size,@p_num_of_byte,@axi_id,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[0],R_OSAL_DCFG_IoGetAxiBusName@@,;,
+,1,10,g_axi_bus_name_info_6,str,255,g_size_t,2,0,2,OSAL_RETURN_OK,;Normal operation,
+,1,0,g_axi_bus_name_info_6,str,255,g_size_t,2,0,2,OSAL_RETURN_PAR,;axi_id bigger than gs_axi_bus_name_info_array_size,
+,1,10,g_axi_bus_name_info_6,str,255,g_size_t,2,0,0,OSAL_RETURN_PAR,;axi_bus_name_length is equal 0,
+,1,10,g_axi_bus_name_info_6,0,255,g_size_t,2,0,2,OSAL_RETURN_OK,;p_buffer is NULL,
+,1,10,g_axi_bus_name_info_6,str,0,g_size_t,2,0,2,OSAL_RETURN_PAR,;buffer_size less than (axi_bus_name_length + 4U),
+,1,10,g_axi_bus_name_info_6,str,255,g_size_t,0,0,2,OSAL_RETURN_OK,;axi_id is 0,
+,1,10,g_axi_bus_name_info_6,str,255,g_size_t,1,0,2,OSAL_RETURN_OK,;axi_id is 1,

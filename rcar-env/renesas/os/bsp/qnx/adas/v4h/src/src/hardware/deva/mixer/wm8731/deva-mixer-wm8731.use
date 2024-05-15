@@ -1,0 +1,19 @@
+
+%C - Mixer DLL for the WM8731 codec
+
+This is a DLL of the io-audio system.
+
+Configuration file options:
+    wm8731_i2c_dev=<value>                                   I2C device number corresponding to the WM8731 codec
+    wm8731_i2c_addr=<value>                                  I2C slave address corresponding to the WM8731 codec
+    wm8731_debug=<enable|disable>                            Enable register dumps (default:disable)
+
+All codec options are to be included under the [ctrl] section for the audio card the
+mixer DLL is to be mounted under.
+
+Example:
+[ctrl]
+name=rcar-wm8731
+mixer_dll=wm8731                       # Load deva-mixer-wm8731.so
+wm8731_i2c_dev=2                       # /dev/i2c2
+wm8731_i2c_addr=13                     # 0x0D (7-bit address)

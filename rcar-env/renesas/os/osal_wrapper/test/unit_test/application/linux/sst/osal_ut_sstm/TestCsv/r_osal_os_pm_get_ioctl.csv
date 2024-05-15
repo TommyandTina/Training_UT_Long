@@ -1,0 +1,9 @@
+modi,r_osal_os_pm_get_ioctl,16_108,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,
+#COMMENT,@device_fd,@req,@p_value,@p_value[0],AMSTB_SrcFile.c/AMSTB_ioctl@AM_count,AMSTB_SrcFile.c/AMSTB_ioctl@AMIN_return[0],r_osal_os_pm_get_ioctl@@,;,,,,
+,0,0,g_dummy,0,0,0,OSAL_RETURN_OK,;Normal operation ,,,,
+,0,0,g_dummy,-95,0,-1,OSAL_RETURN_UNSUPPORTED_OPERATION,;ioctl returns -1 and *p_value is -EOPNOTSUPP,,,,
+,0,0,g_dummy,0,0,-1,OSAL_RETURN_FAIL,;ioctl returns -1 and *p_value is not -EOPNOTSUPP,,,,

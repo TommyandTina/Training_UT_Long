@@ -1,0 +1,12 @@
+modi,R_OSAL_OS_MqIsFull,10_010,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_timedlock_mutex,r_osal_os_mq_timedlock_mutex,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].numofmsg,g_st_osal_os_mq[0].config.max_num_msg,@p_result,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_timedlock_mutex@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return,R_OSAL_OS_MqIsFull@@,;,,,,
+,g_st_osal_os_mq,4,4,g_bool,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation,,,,
+,0,4,4,g_bool,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;mq is NULL.,,,,
+,g_st_osal_os_mq,4,4,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_result is NULL.,,,,
+,g_st_osal_os_mq,4,4,g_bool,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;r_osal_os_mq_timedlock_mutex() return non-OSAL_RETURN_OK.,,,,
+,g_st_osal_os_mq,1,4,g_bool,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;mq->numofmsg is not equal to mq->config.max_num_msg.,,,,
+,g_st_osal_os_mq,4,4,g_bool,OSAL_RETURN_OK,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero.,,,,

@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_InterruptSetIsrPriority,06_108,7,1,,,,CPP,,,,0
+#InitWheneverCall,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_control,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_control,$@handle,$@handle[0].interrupt_index,@handle[0].interrupt_index[0],@irq_channel,@priority_value,R_OSAL_OS_InterruptSetIsrPriority@@,;,,,
+,1,g_st_osal_interrupt_control_t,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,;Normal operation,,,
+,0,g_st_osal_interrupt_control_t,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_STATE,;gs_osal_os_interrupt_init_flag is false.,,,
+,1,g_st_osal_interrupt_control_t,1,1,0,0,100,OSAL_RETURN_OK,;p_interrupt_control->usr_config->priority is larger than the isr priority limit value.,,,

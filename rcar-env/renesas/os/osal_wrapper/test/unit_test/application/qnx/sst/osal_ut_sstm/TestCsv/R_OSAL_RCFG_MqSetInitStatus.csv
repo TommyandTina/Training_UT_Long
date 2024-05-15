@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_MqSetInitStatus,04_002,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_message.c/gs_osal_mq_is_initialized_enu,@status,g_dummy,;,,,,,,,,
+,1,1,-,;Normal operation,,,,,,,,

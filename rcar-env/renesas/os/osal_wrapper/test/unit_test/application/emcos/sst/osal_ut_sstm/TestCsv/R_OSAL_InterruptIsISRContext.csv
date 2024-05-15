@@ -1,0 +1,9 @@
+modi,R_OSAL_InterruptIsISRContext,06_006,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_GetThreadSpecific,R_OSAL_Internal_GetThreadSpecific,,,,,,,,,,
+#COMMENT,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,@p_is_isr,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_GetThreadSpecific@AM_num,R_OSAL_InterruptIsISRContext@@,;,,,,,,,
+,1,g_bool,1,OSAL_RETURN_OK,;Normal operation (p_res is NULL),,,,,,,
+,1,g_bool,3,OSAL_RETURN_OK,;Normal operation (p_res is not NULL),,,,,,,
+,0,g_bool,2,OSAL_RETURN_STATE,;gs_osal_interrupt_is_initialized is 0,,,,,,,
+,1,0,1,OSAL_RETURN_PAR,;p_is_isr is 0,,,,,,,

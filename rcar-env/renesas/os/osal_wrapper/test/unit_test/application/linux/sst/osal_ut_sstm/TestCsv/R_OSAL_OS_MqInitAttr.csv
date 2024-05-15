@@ -1,0 +1,12 @@
+modi,R_OSAL_OS_MqInitAttr,19_111,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@p_mq_attr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_OS_MqInitAttr@@,;,,,,,
+,g_osal_os_mqattr_t,0,g_st_osal_os_mqattr_t,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,0,g_st_osal_os_mqattr_t,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_mq_attr is NULL,,,,,
+,g_osal_os_mqattr_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc returns NULL,,,,,
+,g_osal_os_mqattr_t,0,g_st_osal_os_mqattr_t,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexInitAttr returns OSAL_RETURN_FAIL,,,,,

@@ -1,0 +1,7 @@
+modi,R_OSAL_DCFG_InterruptIsISRContext,08_010,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,
+#COMMENT,@p_is_isr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,R_OSAL_DCFG_InterruptIsISRContext@@,;,,,,,,,,
+,g_bool,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,,
+,g_bool,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext returns OSAL_RETURN_FAIL,,,,,,,,

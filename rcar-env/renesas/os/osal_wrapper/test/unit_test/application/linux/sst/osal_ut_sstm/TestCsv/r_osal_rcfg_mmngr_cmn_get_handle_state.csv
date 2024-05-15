@@ -1,0 +1,8 @@
+modi,r_osal_rcfg_mmngr_cmn_get_handle_state,09_047,5,1,,,,CPP,,,,0
+#InitWheneverCall,g_osal_memory_region_info_list.num_of_memory_regions,r_osal_res_cfg_memory.c/gsp_osal_memory_manager,g_st_osal_memory_manager_table.osal_memory_manager,,,,,,,,,
+0,0,0,0,,,,,,,,,
+#COMMENT,g_osal_memory_region_info_list.num_of_memory_regions,r_osal_res_cfg_memory.c/gsp_osal_memory_manager,g_st_osal_memory_manager_table.osal_memory_manager,@hndl_mmngr,$@p_state,r_osal_rcfg_mmngr_cmn_get_handle_state@@,;,,,,,
+,1,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_memory_manager_obj,1,OSAL_RETURN_OK,;Normal operation,,,,,
+,1,g_st_osal_memory_manager_table,0,g_st_osal_memory_manager_obj,1,OSAL_RETURN_HANDLE,;hndl_mmngr is't equal to gsp_osal_memory_manager[loop].osal_memory_manager,,,,,
+,0,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_memory_manager_obj,1,OSAL_RETURN_HANDLE,;g_osal_memory_region_info_list.num_of_memory_regions is 0,,,,,
+,2,g_st_osal_memory_manager_table,g_st_osal_memory_manager_obj,g_st_osal_memory_manager_obj,1,OSAL_RETURN_OK,;g_osal_memory_region_info_list.num_of_memory_regions is 2,,,,,

@@ -1,0 +1,10 @@
+modi,r_osal_os_io_get_map_information,15_137,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_map_size,r_osal_os_io_get_map_size,,,,,,,,,,
+%,AMSTB_mmap,mmap,,,,,,,,,,
+#COMMENT,@handle,@handle[0].len,@p_uio_symbolic_name,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_map_size@AMIN_return,AMSTB_SrcFile.c/AMSTB_mmap@AMIN_return,r_osal_os_io_get_map_information@@,;,,,,,
+,g_st_osal_device_control_t[0],1,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,;Normal operation,,,,,
+,g_st_osal_device_control_t[0],1,0,OSAL_RETURN_FAIL,1,OSAL_RETURN_FAIL,;r_osal_os_io_get_map_size returns OSAL_RETURN_FAIL,,,,,
+,g_st_osal_device_control_t[0],0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,;handle->len is 0,,,,,
+,g_st_osal_device_control_t[0],1,0,OSAL_RETURN_OK,-1,OSAL_RETURN_FAIL,;mmap returns MAP_FAILED,,,,,

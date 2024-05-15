@@ -1,0 +1,16 @@
+	The TPU driver for RENESAS V3U board
+
+    CREATED   : 12.18.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-CarV3U board
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+				12.18.2020 : Ver.1.0
+				- Create new version
+
+-----------------------------------------------------------------------------
+ Known limitations with this version
+-----------------------------------------------------------------------------
+No support stepping-Motor control.

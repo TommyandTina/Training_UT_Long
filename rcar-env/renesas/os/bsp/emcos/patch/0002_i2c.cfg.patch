@@ -1,0 +1,19 @@
+--- a/build/parts/config/drv/i2c/i2c.cfg	2022-03-28 11:43:18.000000000 +0000
++++ b/build/parts/config/drv/i2c/i2c.cfg	2022-04-28 10:09:46.800786931 +0000
+@@ -83,6 +83,7 @@
+  * slave Address, DMA mode, name
+  */
+ static const struct i2c_slave_info I2C_0_SLAVE[] = { 
++                                                    {0x0060U,0U,"Renesas FPGA-Board"},
+                                                     {0x0020U,0U,"PCA9654EDTR2G I/O expander"},
+                                                     {0x0068U,0U,"9FGV0841AKILF CLK generator"},
+                                                     {0x0050U,0U,"BR24G01FVM-3GTTR EEPROM"},
+@@ -104,6 +105,8 @@
+                                                     {0x0028U,0U,"MAX20087ATPA/VY+ Power protector"},
+                                                     {0x002AU,0U,"MAX20087ATPB/VY+ Power protector"},
+                                                     {0x0060U,0U,"MAX96789GTN/V+ Serializer"},
++                                                    {0x0040U,0U,"MAX9295A"}, 
++                                                    {0x0001U,0U,"MAX9295A-01"}, 
+                                                     {0x0049U,0U,"MAX96712GTB/VY+ DeSerializer"},
+                                                     {0x004BU,0U,"MAX96712GTB/VY+ DeSerializer"},
+                                                     {0xFFFFU,0U, "No registration" } };

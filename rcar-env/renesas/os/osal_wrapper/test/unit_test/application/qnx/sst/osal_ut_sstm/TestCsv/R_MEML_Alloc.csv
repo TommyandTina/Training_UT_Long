@@ -1,0 +1,12 @@
+modi,R_MEML_Alloc,09_103,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_manage,@p_manage[0].p_allocate,@size,@alignment,R_MEML_Alloc@@,;,,,,,,
+,1,meml_alloc_dummy,64,64,1,;Normal operation,,,,,,
+,0,meml_alloc_dummy,64,64,0,;p_manage is NULL.,,,,,,
+,1,meml_alloc_dummy,63,64,0,;size < 64,,,,,,
+,1,meml_alloc_dummy,96,64,0,;size % 64 != 0,,,,,,
+,1,meml_alloc_dummy,0,64,0,;size = 0,,,,,,
+,1,meml_alloc_dummy,64,63,0,;alignment < 64,,,,,,
+,1,meml_alloc_dummy,64,96,0,;alignment is not 2^n,,,,,,
+,1,0,64,64,0,;p_manage.p_allocate is NULL.,,,,,,

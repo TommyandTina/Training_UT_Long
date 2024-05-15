@@ -1,0 +1,22 @@
+modi,osal_io_deinitialize,07_026,19,1,,,,CPP,,,,0,,,,,,,,,
+#InitWheneverCall,r_osal_io.c/gsp_axi_bus_name_info,g_axi_bus_name_info.dev_names,r_osal_io.c/gs_axi_bus_name_info_array_size,r_osal_io.c/g_pdev_entry.num,r_osal_io.c/g_pdev_entry.entry,g_osal_pdev_entry.fd,g_osal_pdev_entry.start_addr,g_osal_pdev_entry.end_addr,,,,,,,,,,,,,
+0,0,0,0,0,0,0,0,0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetAxiBusInfo,R_OSAL_DCFG_GetAxiBusInfo,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetNumOfDevice,R_OSAL_DCFG_GetNumOfDevice,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetDeviceInfo,R_OSAL_DCFG_GetDeviceInfo,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,,
+%,AMSTB_munmap,munmap,,,,,,,,,,,,,,,,,,,
+%,AMSTB_close,close,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gsp_axi_bus_name_info,g_axi_bus_name_info.dev_names,r_osal_io.c/gs_axi_bus_name_info_array_size,r_osal_io.c/g_pdev_entry.num,r_osal_io.c/g_pdev_entry.entry,g_osal_pdev_entry.fd,g_osal_pdev_entry.start_addr,g_osal_pdev_entry.end_addr,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetAxiBusInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetNumOfDevice@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_munmap@AMIN_return,AMSTB_SrcFile.c/AMSTB_close@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetAxiBusInfo@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AM_count,g_st_osal_device_control.dev_info,g_st_osal_device_control.base_addr,osal_io_deinitialize@@,;
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,0,0,0,0,0,0,g_st_osal_device_info,1,OSAL_RETURN_OK,;Normal operation
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,0,0,0,0,0,0,g_st_osal_device_info,0,OSAL_RETURN_OK,;Normal operation(before open)
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_FAIL,1,OSAL_RETURN_OK,0,0,0,0,0,0,g_st_osal_device_info,1,OSAL_RETURN_FAIL,;R_OSAL_DCFG_GetAxiBusInfo() return OSAL_RETURN_FAIL
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,0,0,0,0,1,0,g_st_osal_device_info,1,OSAL_RETURN_FAIL,;The aquierd p_axi_bus_control is NULL
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,0,0,0,0,2,0,g_st_osal_device_info,1,OSAL_RETURN_OK,;The aquierd p_axi_bus_control->list is NULL
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,2,OSAL_RETURN_FAIL,0,0,0,0,0,0,g_st_osal_device_info,1,OSAL_RETURN_FAIL,;R_OSAL_DCFG_GetDeviceInfo() return OSAL_RETURN_FAIL
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,2,OSAL_RETURN_OK,0,0,0,0,0,1,g_st_osal_device_info,1,OSAL_RETURN_FAIL,;The aquierd device_control is NULL
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,2,OSAL_RETURN_OK,0,0,0,0,0,2,0,1,OSAL_RETURN_FAIL,;The aquierd device_control->dev_info is NULL
+,g_axi_bus_name_info,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,0,-1,0,0,0,0,g_st_osal_device_info,1,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero
+,0,str,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,2,OSAL_RETURN_OK,0,0,0,0,0,0,g_st_osal_device_info,1,OSAL_RETURN_OK,;The gsp_axi_bus_name_info is NULL.
+,g_axi_bus_name_info,0,1,1,g_osal_pdev_entry,1,0,0,OSAL_RETURN_OK,2,OSAL_RETURN_OK,0,0,0,0,0,0,g_st_osal_device_info,1,OSAL_RETURN_OK,;The gsp_axi_bus_name_info[0].dev_names is NULL.

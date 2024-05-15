@@ -1,0 +1,5 @@
+modi,R_OSAL_DCFG_GetMemoryRegionInfo,09_051,3,4,,,,CPP,,,,0
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,@pp_info,@region_idx,&g_st_osal_mmngr_region_info.name,g_st_osal_mmngr_region_info.offset,g_st_osal_mmngr_region_info.range,R_OSAL_DCFG_GetMemoryRegionInfo@@,;,,,,
+,1,g_st_osal_mmngr_region_info,0,\'/pdev/mem',0,402653184,OSAL_RETURN_OK,;Normal operation ,,,,

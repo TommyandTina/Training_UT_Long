@@ -1,0 +1,21 @@
+modi,r_osal_os_io_get_spi_num,15_161,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Read,R_OSAL_OS_Read,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,
+#COMMENT,@p_irq_uio_name,@p_spi_num,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Read@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_get_spi_num@@,;
+,0,g_uint64_t,0,str,0,0,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,0,g_uint64_t,0,0,0,0,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc returns NULL
+,0,g_uint64_t,0,str,0,-1,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;snprintf returns -1
+,0,g_uint64_t,0,str,0,0,0,-1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Open returns -1
+,0,g_uint64_t,0,str,0,0,0,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Read returns OSAL_RETURN_FAIL (Close is OK)
+,0,g_uint64_t,0,str,0,0,0,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Read returns OSAL_RETURN_FAIL (Close is FAIL)
+,0,g_uint64_t,0,str,0,0,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Close returns OSAL_RETURN_FAIL

@@ -1,0 +1,17 @@
+modi,R_OSAL_MqGetConfig,04_010,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,@handle,g_st_osal_mq_control.handle_id,g_st_osal_mq_control.usr_config,g_st_osal_mq_control.active,@p_config,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],R_OSAL_MqGetConfig@@,;
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,1,g_st_osal_mq_config,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation
+,0,g_st_osal_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,1,g_st_osal_mq_config,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_STATE,;gs_osal_mq_is_initialized is false
+,1,0,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,1,g_st_osal_mq_config,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle is NULL
+,1,g_st_osal_mq_control,0,g_st_osal_rcfg_mq_config,1,g_st_osal_mq_config,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle->handle_id is not OSAL_MESSAGE_HANDLE_ID
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,0,1,g_st_osal_mq_config,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle->usr_config is NULL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,1,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_PAR,;p_config is NULL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,1,g_st_osal_mq_config,0,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,g_st_osal_mq_config,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle->active is false
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,1,g_st_osal_mq_config,0,OSAL_RETURN_OK,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

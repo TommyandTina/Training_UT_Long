@@ -1,0 +1,12 @@
+modi,osal_internal_mem_alloc_lib,09_030,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,
+%,AMSTB_R_MEML_Alloc,R_MEML_Alloc,,,,,,,,,,,,
+%,AMSTB_R_MEML_Dealloc,R_MEML_Dealloc,,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,$r_osal_memory.c/osal_internal_mem_alloc_lib@p_mngr_control,r_osal_memory.c/osal_internal_mem_alloc_lib@p_mngr_control[0].num_buffers,r_osal_memory.c/osal_internal_mem_alloc_lib@p_mngr_control[0].p_virtual_addr,r_osal_memory.c/osal_internal_mem_alloc_lib@p_mngr_control[0].size,r_osal_memory.c/osal_internal_mem_alloc_lib@p_mngr_control[0].config.mode,$@p_buffer_info,@p_buffer_info[0].chunk_size,@bytes,@alignment,AMSTB_SrcFile.c/AMSTB_R_MEML_Alloc@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_MEML_Dealloc@AMIN_return,osal_internal_mem_alloc_lib@@,;
+,1,1,0,1,3,OSAL_MMNGR_ALLOC_MODE_STACK,1,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,1,1,0,1,3,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,1,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operationimode: STACK_PROT)
+,1,1,0,1,3,OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT,1,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operationimode: FREELIST_PROT)
+,1,1,1,50331648,2097153,OSAL_MMNGR_ALLOC_MODE_STACK,1,1,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation(p_mngr_control->num_buffers is not 0)
+,1,1,0,1,3,OSAL_MMNGR_ALLOC_MODE_STACK,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_MEM,;p_buffer_info->p_chunk_va is NULL
+,1,1,0,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,1,10,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_MEM,;(p_buffer_info->p_chunk_va + p_buffer_info->chunk_size) is bigger than chunk_max

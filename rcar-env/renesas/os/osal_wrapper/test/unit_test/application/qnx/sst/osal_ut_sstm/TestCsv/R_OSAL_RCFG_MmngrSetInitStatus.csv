@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_MmngrSetInitStatus,09_002,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_memory.c/gs_osal_memory_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_memory.c/gs_osal_memory_is_initialized_enu,@status,g_dummy,;,,,,,,,,
+,OSAL_MANAGER_STATE_INITIALIZED,OSAL_MANAGER_STATE_INITIALIZED,,;Normal operation,,,,,,,,

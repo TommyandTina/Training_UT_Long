@@ -1,0 +1,11 @@
+modi,R_OSAL_MmngrGetSize,09_014,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrGetSize,R_OSAL_RCFG_MmngrGetSize,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,@p_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrGetSize@AMIN_return,R_OSAL_MmngrGetSize@@,;,,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_size_t,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,0,g_size_t,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;memory_buffer_obj_hndl is null,,,,,,,
+,g_st_osal_common_memory_buffer_obj,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_size is null,,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_size_t,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_RCFG_MmngrGetSize() return OSAL_RETURN_FAIL,,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_size_t,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;R_OSAL_RCFG_MmngrGetSize() return OSAL_RETURN_HANDLE,,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_size_t,OSAL_RETURN_UNSUPPORTED_OPERATION,OSAL_RETURN_UNSUPPORTED_OPERATION,;R_OSAL_RCFG_MmngrGetSize() return OSAL_RETURN_UNSUPPORTED_OPERATION,,,,,,,

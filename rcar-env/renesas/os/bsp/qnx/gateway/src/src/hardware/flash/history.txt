@@ -1,0 +1,26 @@
+    The RPC (QSPI) driver for R-Car Gen3 & Gen4 boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 & Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.28.2020 : Ver.0.1
+            - Create new version from QNX7.0 driver for V3U
+            02.28.2021 : Ver.0.2
+            - Update for R-Car Gen3
+            09.30.2021 : Ver.0.3
+            - Support for S4
+            12.30.2021 : Ver.0.4
+            - Set internal strobe delay in external read to 7 and write buffer to 15
+            - Add DMA transfer unit for 32-bytes and 64-bytes cases
+            - Add "wbuf" starting driver option for using write buffer mode used to write data to QSPI flash
+            08.10.2022 : Ver0.5
+            - Optimize the code
+            09.16.2022 : Ver0.6
+            - Add WA for defect : RPC data cache hit logic has a problem.
+                                  Reading RPC registers with CacheON may hit the data cache by mistake.
+                                  Wrong data is read.
+            - Add "strobe" option to control Strobe Timing Adjustment (PHYCNT register) and set STRTIM to 15 as default for Gen4

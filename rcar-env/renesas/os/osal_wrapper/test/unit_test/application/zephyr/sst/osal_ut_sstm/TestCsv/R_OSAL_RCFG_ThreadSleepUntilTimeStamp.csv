@@ -1,0 +1,7 @@
+modi,R_OSAL_RCFG_ThreadSleepUntilTimeStamp,02_011,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ThreadSleepUntilTimeStamp,R_OSAL_HIF_ThreadSleepUntilTimeStamp,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ThreadSleepUntilTimeStamp@AMIN_return,R_OSAL_RCFG_ThreadSleepUntilTimeStamp@@,;,,,,,,,
+,1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,1,g_st_osal_time,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_HIF_ThreadSleepUntilTimeStamp() return OSAL_RETURN_PAR,,,,,,,

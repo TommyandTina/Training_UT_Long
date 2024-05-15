@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_MmngrUnmap,09_102,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@mngr_control,R_OSAL_OS_MmngrUnmap@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation,,,,,,,,,
+,0,OSAL_RETURN_FAIL,;mngr_control is NULL.,,,,,,,,,

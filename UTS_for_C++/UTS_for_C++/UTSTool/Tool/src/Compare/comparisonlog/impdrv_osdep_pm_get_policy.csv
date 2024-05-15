@@ -1,0 +1,55 @@
+PCL expected data
+testcaseid,ercd,*p_pm_policy
+impdrv_osdep_pm_get_policy_0001,IMPDRV_EC_OK,not null
+impdrv_osdep_pm_get_policy_0002,IMPDRV_EC_OK,not null
+impdrv_osdep_pm_get_policy_0003,IMPDRV_EC_OK,not null
+impdrv_osdep_pm_get_policy_0004,IMPDRV_EC_OK,not null
+impdrv_osdep_pm_get_policy_0005,IMPDRV_EC_NG_ARGNULL,-
+impdrv_osdep_pm_get_policy_0006,IMPDRV_EC_NG_PARAM,-
+impdrv_osdep_pm_get_policy_0007,IMPDRV_EC_NG_SYSTEMERROR,-
+impdrv_osdep_pm_get_policy_0008,IMPDRV_EC_NG_PARAM,-
+impdrv_osdep_pm_get_policy_0009,IMPDRV_EC_NG_SYSTEMERROR,-
+impdrv_osdep_pm_get_policy_0010,IMPDRV_EC_NG_SYSTEMERROR,-
+impdrv_osdep_pm_get_policy_0011,IMPDRV_EC_NG_SYSTEMERROR,-
+
+Log expected data
+testcaseid,ercd,*p_pm_policy
+impdrv_osdep_pm_get_policy_0001,IMPDRV_EC_OK,-
+impdrv_osdep_pm_get_policy_0002,IMPDRV_EC_OK,-
+impdrv_osdep_pm_get_policy_0003,IMPDRV_EC_OK,-
+impdrv_osdep_pm_get_policy_0004,IMPDRV_EC_OK,-
+impdrv_osdep_pm_get_policy_0005,IMPDRV_EC_NG_ARGNULL,-
+impdrv_osdep_pm_get_policy_0006,IMPDRV_EC_NG_PARAM,-
+impdrv_osdep_pm_get_policy_0007,IMPDRV_EC_NG_SYSTEMERROR,-
+impdrv_osdep_pm_get_policy_0008,IMPDRV_EC_NG_PARAM,-
+impdrv_osdep_pm_get_policy_0009,IMPDRV_EC_NG_SYSTEMERROR,-
+impdrv_osdep_pm_get_policy_0010,IMPDRV_EC_NG_SYSTEMERROR,-
+impdrv_osdep_pm_get_policy_0011,IMPDRV_EC_NG_SYSTEMERROR,-
+
+Log data not found in PCL
+testcaseid
+impdrv_osdep_pm_get_policy_0001
+impdrv_osdep_pm_get_policy_0002
+impdrv_osdep_pm_get_policy_0003
+impdrv_osdep_pm_get_policy_0004
+impdrv_osdep_pm_get_policy_0005
+impdrv_osdep_pm_get_policy_0006
+impdrv_osdep_pm_get_policy_0007
+impdrv_osdep_pm_get_policy_0008
+impdrv_osdep_pm_get_policy_0009
+impdrv_osdep_pm_get_policy_0010
+impdrv_osdep_pm_get_policy_0011
+
+Result
+testcaseid,feature,testtype,testresult,compareresult,finalresult,logfiles,remarks
+impdrv_osdep_pm_get_policy_0001,Test API,2(N),FAILED,FAILED,FAILED,log_v3u.txt,Log not match PCL expected data
+impdrv_osdep_pm_get_policy_0002,Test API,2(N),FAILED,FAILED,FAILED,log_v3u.txt,Log not match PCL expected data
+impdrv_osdep_pm_get_policy_0003,Test API,2(N),FAILED,FAILED,FAILED,log_v3u.txt,Log not match PCL expected data
+impdrv_osdep_pm_get_policy_0004,Test API,2(N),FAILED,FAILED,FAILED,log_v3u.txt,Log not match PCL expected data
+impdrv_osdep_pm_get_policy_0005,Test API,5(A),PASSED,PASSED,PASSED,log_v3u.txt,Log match PCL expected data
+impdrv_osdep_pm_get_policy_0006,Test API,5(A),PASSED,PASSED,PASSED,log_v3u.txt,Log match PCL expected data
+impdrv_osdep_pm_get_policy_0007,Test API,5(A),PASSED,PASSED,PASSED,log_v3u.txt,Log match PCL expected data
+impdrv_osdep_pm_get_policy_0008,Test API,5(A),PASSED,PASSED,PASSED,log_v3u.txt,Log match PCL expected data
+impdrv_osdep_pm_get_policy_0009,Test API,6(A),PASSED,PASSED,PASSED,log_v3u.txt,Log match PCL expected data
+impdrv_osdep_pm_get_policy_0010,Test API,6(A),PASSED,PASSED,PASSED,log_v3u.txt,Log match PCL expected data
+impdrv_osdep_pm_get_policy_0011,Test API,6(A),PASSED,PASSED,PASSED,log_v3u.txt,Log match PCL expected data

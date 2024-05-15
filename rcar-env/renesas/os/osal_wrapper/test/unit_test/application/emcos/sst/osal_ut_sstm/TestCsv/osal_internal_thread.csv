@@ -1,0 +1,28 @@
+modi,osal_internal_thread,02_008,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_thread.c/gs_osal_thread_is_initialized,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_wait,pthread_cond_wait,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_signal,pthread_cond_signal,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,
+#COMMENT,r_osal_thread.c/gs_osal_thread_is_initialized,@p_arg,g_thread_control.func,g_thread_control.active,g_thread_control.parent_thread,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_cond_wait@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_signal@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[1],g_dummy,;
+,1,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,,;Normal operation
+,0,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,,;gs_osal_thread_is_initialized is false
+,1,0,osal_thread_func_dummy,0,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,0,0,0,,;p_arg is NULL.
+,1,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,0,0,0,,";R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+(before pthread_cond_wait)"
+,1,g_thread_control,osal_thread_func_dummy,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,,;control->active is true
+,1,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,-1,0,0,0,0,,;pthread_cond_wait() return non-zero
+,1,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,-1,0,,";pthread_mutex_unlock() return non-zero
+(after pthread_cond_wait)"
+,1,g_thread_control,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,,;no exeute user function
+,1,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,0,0,,";R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+(before pthread_cond_signal)"
+,1,g_thread_control,osal_thread_func_dummy,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,,;control->parent_thread is false
+,1,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,-1,0,0,0,,;pthread_cond_signal() return non-zero
+,1,g_thread_control,osal_thread_func_dummy,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,-1,,";pthread_mutex_unlock() return non-zero
+(after pthread_cond_signal)"

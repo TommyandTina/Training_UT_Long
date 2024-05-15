@@ -1,0 +1,371 @@
+{
+    "release_date": "23th Dec 2022",
+    "document_version": "Rev.0.3.5",
+    "document_num": "",
+    "title": "xOS3 Zephyr Drivers",
+    "intro": {
+        "description": [
+            "This document describes regarding to product of the Zephyr drivers."
+        ]
+    },
+    "overview": {
+        "description": [
+            "This document explains the release information of the Zephyr drivers."
+        ]
+    },
+    "general_info": {
+        "table": [{
+            "item": "Supported Operating System",
+            "name": "Zephyr 3.1.0",
+            "note": "-"
+        }]
+    },
+    "release_software": {
+        "table": [{
+            "name": "Startup",
+            "version": "0.3.2",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        },
+        {
+            "name": "ISR",
+            "version": "0.3.2",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        },
+        {
+            "name": "SCIF driver",
+            "version": "0.3.5",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        },
+        {
+            "name": "CPG",
+            "version": "0.3.5",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        },
+        {
+            "name": "SYSC",
+            "version": "0.3.5",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        },
+        {
+            "name": "I2C",
+            "version": "0.3.5",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        },
+        {
+            "name": "EtherAVB driver",
+            "version": "0.3.5",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        },
+        {
+            "name": "Cache driver",
+            "version": "0.3.5",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        }
+        ],
+        "note": [
+            "The Current/Target Quality grades options are below:",
+            " - Current: Sample, Reference, Alpha, Beta, QM, ASIL",
+            " - Target: Sample, Reference, QM, ASIL\\n"
+        ]
+    },
+    "license": {
+        "description": [
+            "/* SPDX-License-Identifier: Apache-2.0<BR> *<BR> * Copyright (c) 2022 Renesas Electronics Corporation<BR> */"
+        ],
+        "table": [
+
+        ]
+    },
+    "restriction": {
+        "table": [
+            {
+                "no": "#376400",
+                "description": "EtherAVB: Missing NULL check for pointer type of argument",
+                "impact": "User may not set NULL pointer for argument. In normal usage, no impact for user.",
+                "note": "work_around: None <BR>It will be resolved by SDK v3.11.0."
+            },
+            {
+                "no": "#376402",
+                "description": "EtherAVB: Can not call eth_rcar_start_device after eth_rcar_stop_device",
+                "impact": "User may not call eth_rcar_start_device twice.",
+                "note": "work_around: None <BR>It will be resolved by SDK v3.11.0."
+            },
+            {
+                "no": "#376409",
+                "description": "EtherAVB: When define EtherAVB1 or  AVB2 individually in device tree, port initialization for each AVB channel will not work as expected",
+                "impact": "User may not define EtherAVB1 or AVB2 individually in device tree.",
+                "note": "work_around: Define EtherAVB0, AVB1, AVB2 continuously in device tree. <BR>It will be resolved by SDK v3.11.0. "
+            }
+        ]
+    },
+    "rel_document": {
+        "description": [
+        ],
+        "table": [{
+                "type": "CPG driver User's Manual",
+                "name": "r11uz0163ej0035-zephyrcpgdriver.pdf",
+                "version": "0.3.5",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "SYSC driver User's Manual",
+                "name": "r11uz0162ej0035-zephyrsyscdriver.pdf",
+                "version": "0.3.5",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "I2C driver User's Manual",
+                "name": "r11uz0160ej0035-zephyri2cdriver.pdf",
+                "version": "0.3.5",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "SCIF driver User's Manual",
+                "name": "r11uz0161ej0035-zephyrscifdriver.pdf",
+                "version": "0.3.5",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "EtherAVB driver User's Manual",
+                "name": "r11uz0246ej0035-zephyretheravbdriver.pdf",
+                "version": "0.3.5",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "Cache driver User's Manual",
+                "name": "r11uz0259ej0035-zephyrcachedriver.pdf",
+                "version": "0.3.5",
+                "update": "Yes",
+                "note": "-"
+            }
+        ]
+    },
+    "upgrade": {
+        "description": [
+            ""
+        ],
+        "section": [{
+                "name": "Version 0.2.0",
+                "description": [
+                    "This version is newly created."
+                ]
+            },
+            {
+                "name": "Version 0.3.0",
+                "description": [
+                    "This version updates I2C driver and SCIF driver."
+                ]                
+            },
+            {
+                "name": "Version 0.3.1",
+                "description": [
+                    "This version updates CPG driver, SYSC driver, I2C driver and SCIF driver User's Manual as below.",
+                    "- Update information of sample application (code path, build command)",
+                    "- Add return code when set NULL for argument, update argument information not to set NULL.",
+                    "- Update code size and stack size.",
+                    "- Add limitation for SCIF driver while the APIs are called from a normal task, the APIs must not be called from interrupts or higher priority tasks.",
+                    "- Add preconditions for I2C driver."
+                ]                
+            },
+            {
+                "name": "Version 0.3.2",
+                "description": [
+                    "- This version updates CPG driver and SYSC driver to add config for log level.",
+                    "- This version updates CONFIG_SYS_CLOCK_TICKS_PER_SEC from 100 to 1000.",
+                    "- This version updates compile option for armclang to add -nostdlib.",
+                    "- This version updates CPG driver, SYSC driver and I2C driver User's Manual as below.",
+                    "    - Add information about how to change log level.",
+                    "    - Update stack size for CPG driver.",
+                    "    - Update API details Returns and Preconditions for I2C driver."
+                ]                
+            },
+            {
+                "name": "Version 0.3.3",
+                "description": [
+                    "- This version updates EtherAVB driver with sample application for socket API. (One path test version)",
+                    "- This version updates I2C driver User's Manual to update the code size."
+                ]                
+            },
+            {
+                "name": "Version 0.3.4",
+                "description": [
+                    "- This version updates EtherAVB driver based on coding phase, also updates User's Manual to apply newest code.",
+                    "- This version updates CPG driver, SYSC driver, I2C driver, SCIF drirver and each sample applications to apply coding style. Also updates User's Manual to apply newest sample code.",
+					"- This version updates Cache driver wirh sample application."
+                ]                
+            },
+            {
+                "name": "Version 0.3.5",
+                "description": [
+                    "- This version updates User's Manual of CPG driver, SYSC driver, I2C driver, SCIF driver, EtherAVB driver, and Cache driver to apply newest Hardware Manual.",
+                    "- This version updates EtherAVB driver User's Manual to add recommended environments, to update return codes of API, to add API sequences.",
+                    "- This version has no update for software."
+                ]
+            }
+        ]
+    },
+    "kil": {
+        "description": [
+
+        ],
+        "table": [
+            {
+                "number": "-",
+                "description": "-",
+                "work_around": "-"
+            }
+        ]
+    },
+    "fil": {
+        "description": [
+            "Fixed issue in this release."
+        ],
+        "table": [
+            {
+                "number": "-",
+                "description": "-"
+            } 
+        ]
+    },
+    "rev": {
+        "description": [
+
+        ],
+        "table": [{
+                "rev": "0.2.0",
+                "date": "1st July 2022",
+                "page": "All",
+                "sum": "Newly created."
+            },
+            {
+                "rev": "0.3.0",
+                "date": "29th July 2022",
+                "page": [
+                    "2\\n ",
+                    "3\\n ",
+                    "4\\n ",
+                    "5\\n ",
+                    "6\\n "
+                ],
+                "sum": [
+                    "1.2 Update the Release software version\\n ",
+                    "1.4.Update Restrictions\\n ",
+                    "2.2 Add Version 0.3.0\\n ",
+                    "3 Update Known Issues List(KIL)\\n ",
+                    "4 Update Fixed Issues List(FIL)"
+                ]
+            },
+            {
+                "rev": "0.3.1",
+                "date": "26th Aug 2022",
+                "page": [
+                    "1\\n ",
+                    "2\\n ",
+                    "2\\n ",
+                    "3\\n ",
+                    "5\\n "
+                ],
+                "sum": [
+                    "1.2 Update the Release software version\\n ",
+                    "1.4 Update Restrictions\\n ",
+                    "1.5 Update Related Documents\\n ",
+                    "2.3 Add Version 0.3.1\\n ",
+                    "4 Update Fixed Issues List(FIL)"
+                ]
+            },
+            {
+                "rev": "0.3.2",
+                "date": "29th Sep 2022",
+                "page": [
+                    "1\\n ",
+                    "2\\n ",
+                    "2\\n ",
+                    "3\\n ",
+                    "4\\n ",                    
+                    "5\\n "
+                ],
+                "sum": [
+                    "1.2 Update the Release software version\\n ",
+                    "1.4 Update Restrictions\\n ",
+                    "1.5 Update Related Documents\\n ",
+                    "2.4 Add Version 0.3.2\\n ",
+                    "3 Update Known Issue List(KIL)\\n ",
+                    "4 Update Fixed Issues List(FIL)"
+                ]
+            },
+            {
+                "rev": "0.3.3",
+                "date": "26th Oct 2022",
+                "page": [
+                    "1\\n ",
+                    "2\\n ",
+                    "2\\n ",
+                    "3\\n ",
+                    "5\\n "
+                ],
+                "sum": [
+                    "1.2 Update the Release software version\\n ",
+                    "1.4 Update Restrictions\\n ",
+                    "1.5 Update Related Documents\\n ",
+                    "2.5 Add Version 0.3.3\\n ",
+                    "4 Update Fixed Issues List(FIL)"
+                ]
+            },
+            {
+                "rev": "0.3.4",
+                "date": "25th Nov 2022",
+                "page": [
+                    "1\\n ",
+                    "2\\n ",
+                    "2\\n ",
+                    "3\\n ",
+                    "4\\n "
+                ],
+                "sum": [
+                    "1.2 Update the Release software version\\n ",
+                    "1.4 Update Restrictions\\n ",
+                    "1.5 Update Related Documents\\n ",
+                    "2.6 Add Version 0.3.4\\n ",
+                    "3.  Update Known Issues List(KIL)"
+                ]
+            },
+            {
+                "rev": "0.3.5",
+                "date": "23th Dec 2022",
+                "page": [
+                    "1\\n ",
+                    "2\\n ",
+                    "2\\n ",
+                    "3\\n "
+                ],
+                "sum": [
+                    "1.2 Update the Release software version\\n ",
+                    "1.4 Update Restrictions\\n ",
+                    "1.5 Update Related Documents\\n ",
+                    "2.7 Add Version 0.3.5\\n "
+                ]
+            }
+        ]
+    }
+}

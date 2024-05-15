@@ -1,0 +1,23 @@
+{
+    "SERIAL_PORT":"/dev/serial/by-path/pci-0000:00:14.0-usb-0:1.1.3:1.0-port0",
+    "USB_MOUNT_POINT": "1-3.1.1",
+    "SERIAL_ID": "002062",
+    "RCAR_BOARD": "spider",
+    "RCAR_TARGET_OS": "linux",
+    "CI_RUNNER_ID": 391,
+    "NFS_FOLDER": "/tftpboot",
+    "BAUD_RATE": 1843200,
+    "boot_command":
+    [ 
+              "setenv ipaddr 192.168.2.30",
+              "setenv serverip 192.168.2.2",
+              "setenv bootcmd 'tftp 0x48080000 linux/spider/391/Image; tftp 0x48000000 linux/spider/391/r8a779f0-spider.dtb; booti 0x48080000 - 0x48000000'",
+              "setenv bootargs 'rw root=/dev/nfs nfsroot=192.168.2.2:/tftpboot/linux/spider/391/rfs ip=192.168.2.30:::::tsn0 ignore_loglevel cma=560M'",
+              "print",
+              "run bootcmd"
+    ],
+    "command":
+    [
+              "ltrace -o ltrace_s4_result.log -f -s 1024 ./osal_wrapper_functional_test_sequence_s4_d"
+    ]
+}

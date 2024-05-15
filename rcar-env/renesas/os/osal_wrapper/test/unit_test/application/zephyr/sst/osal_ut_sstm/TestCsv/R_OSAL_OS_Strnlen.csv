@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_Strnlen,01_105,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_str,@maxlen,R_OSAL_OS_Strnlen@@,;,,,,,,,,
+,g_str_dummy,8,8,;Normal operation,,,,,,,,
+,0,1,0,;p_str is NULL.,,,,,,,,
+,g_str_dummy,5,5,;Normal operation (the length of the p_str is longer than max length.),,,,,,,,

@@ -1,0 +1,11 @@
+modi,r_osal_dcfg_io_get_domain_name,07_029,6,1,,,,CPP,,,,0
+#InitWheneverCall,gs_osal_axi_bus_control.num,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+#COMMENT,gs_osal_axi_bus_control.num,$@p_axi_bus_name,$@p_domain_name,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],r_osal_dcfg_io_get_domain_name@@,;,,,,
+,1,1,1,0,0,0,OSAL_RETURN_OK,;Normal operation,,,,
+,1,1,1,0,-1,-1,OSAL_RETURN_UNKNOWN_NAME,;strncmp() return non-zero,,,,
+,0,1,1,0,0,0,OSAL_RETURN_UNKNOWN_NAME,;gs_osal_axi_bus_control.num is 0,,,,
+,2,1,1,0,0,0,OSAL_RETURN_OK,;gs_osal_axi_bus_control.num is 2,,,,

@@ -1,0 +1,7 @@
+modi,r_osal_os_interrupt_search,06_115,5,1,,,,CPP,,,,0
+#InitWheneverCall,AMSTB_SrcFile.c/g_uint64_t,AMSTB_SrcFile.c/g_st_osal_interrupt_thread_affinity_addr_t[0].p_affinity_info,g_osal_interrupt_thread_affinity[0].irq_number,,,,,,,,,
+0,0,0,0,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/g_uint64_t,AMSTB_SrcFile.c/g_st_osal_interrupt_thread_affinity_addr_t[0].p_affinity_info,g_osal_interrupt_thread_affinity[0].irq_number,@p_key,@p_search_info,r_osal_os_interrupt_search@@,;,,,,,
+,100,g_osal_interrupt_thread_affinity,100,g_uint64_t,g_st_osal_interrupt_thread_affinity_addr_t,0,;key is equal to p_affinity_addr->p_affinity_info->irq_number,,,,,
+,101,g_osal_interrupt_thread_affinity,100,g_uint64_t,g_st_osal_interrupt_thread_affinity_addr_t,1,;key more than p_affinity_addr->p_affinity_info->irq_number,,,,,
+,99,g_osal_interrupt_thread_affinity,100,g_uint64_t,g_st_osal_interrupt_thread_affinity_addr_t,-1,;key less than p_affinity_addr->p_affinity_info->irq_number,,,,,

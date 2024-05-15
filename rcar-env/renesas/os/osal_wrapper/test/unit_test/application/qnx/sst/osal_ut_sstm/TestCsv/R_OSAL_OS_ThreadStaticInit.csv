@@ -1,0 +1,22 @@
+modi,R_OSAL_OS_ThreadStaticInit,02_101,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,g_osal_thread_priority_matrix[0],g_osal_thread_priority_matrix[1],g_osal_thread_priority_matrix[13],g_osal_thread_priority_matrix[14],g_osal_interrupt_thread_priority_matrix[0],g_osal_thread_affinity[0].id,g_osal_thread_affinity[1].id,g_osal_thread_affinity[2].id,g_osal_thread_affinity[3].id,g_osal_thread_affinity[4].id,,,,,,
+0,0,0,0,0,0,0,0,0,0,0,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,
+#COMMENT,g_osal_thread_priority_matrix[0],g_osal_thread_priority_matrix[1],g_osal_thread_priority_matrix[13],g_osal_thread_priority_matrix[14],g_osal_interrupt_thread_priority_matrix[0],g_osal_thread_affinity[0].id,g_osal_thread_affinity[1].id,g_osal_thread_affinity[2].id,g_osal_thread_affinity[3].id,g_osal_thread_affinity[4].id,@thread_cfg_num,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[1],R_OSAL_OS_ThreadStaticInit@@,;
+,1,2,239,240,241,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_OK,;Normal operation
+,1,2,239,240,241,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,0,OSAL_RETURN_MEM,;calloc() return NULL. (gsp_osal_thread_self_control)
+,0,2,239,240,241,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;g_osal_thread_priority_matrix[0] less than 1.
+,1,2,239,241,242,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;g_osal_thread_priority_matrix[(OSAL_THREAD_PRIORITY_MATRIX_SIZE - 1)] more than (255 - OSAL_INTERRUPT_PRIORITY_MATRIX_SIZE).
+,1,2,239,240,240,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;g_osal_thread_priority_matrix[(OSAL_THREAD_PRIORITY_MATRIX_SIZE - 1)] equal to g_osal_interrupt_thread_priority_matrix[0]
+,1,2,239,240,239,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;g_osal_thread_priority_matrix[(OSAL_THREAD_PRIORITY_MATRIX_SIZE - 1)] more than g_osal_interrupt_thread_priority_matrix[0]
+,2,2,239,240,241,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;g_osal_thread_priority_matrix[0] equal to g_osal_thread_priority_matrix[1]
+,3,2,239,240,241,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;g_osal_thread_priority_matrix[0] more than g_osal_thread_priority_matrix[1]
+,1,2,239,238,241,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;g_osal_thread_priority_matrix[14] less than g_osal_thread_priority_matrix[13]
+,1,2,239,240,241,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_OK,;gs_osal_thread_affinity_num is 0.
+,1,2,239,240,241,0x3000,0x3001,0x3002,0x3003,0xFFFFFFFFFFFFFFFF,2,0,0,g_st_osal_thread_self_control,OSAL_RETURN_MEM,;calloc() return NULL. (gsp_osal_thread_affinity_addr)
+,1,2,239,240,241,0x3000,0x2FFF,0x2FFE,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_OK,;gsp_osal_thread_affinity_addr[1].p_affinity_info->id less than gsp_osal_thread_affinity_addr[2].p_affinity_info->id
+,1,2,239,240,241,0x3000,0x3001,0x3001,0x3003,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_CONF,;gsp_osal_thread_affinity_addr[2].p_affinity_info->id equal to gsp_osal_thread_affinity_addr[1].p_affinity_info->id
+,1,2,239,240,241,0x3000,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_OK,;gs_osal_thread_affinity_num is 1.
+,1,2,239,240,241,0x3000,0x3001,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,2,0,g_st_osal_thread_affinity_addr_t,g_st_osal_thread_self_control,OSAL_RETURN_OK,;gs_osal_thread_affinity_num is 2.

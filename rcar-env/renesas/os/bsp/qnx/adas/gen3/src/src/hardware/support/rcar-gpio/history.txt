@@ -1,0 +1,22 @@
+	The GPIO driver for RENESAS R-CarGen3e boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-CarGen3e boards
+    TARGET OS : QNX SDP 7.1 
+
+    HISTORY   :
+                10.28.2020 : Ver.0.1
+                - Create release code for V3U
+                02.06.2021 : Ver.0.2
+                - Support R-CarGen3e
+                06.30.2021 : Ver.0.3
+                - Merge io_devctl code V3U and Gen3 SoC
+                - Optimize code
+                - Fix wrong data read in input mode for V3U
+                07.30.2021 : Ver.0.4
+                - Support Interrupt mode
+                - Add sloginfo to dump registers value
+                08.30.2021 : ver.0.5
+                - Add interrupt clear in 'interrupt_unmask_rcar_gpio' in startup callot_interrupt_rcar_gpio.S

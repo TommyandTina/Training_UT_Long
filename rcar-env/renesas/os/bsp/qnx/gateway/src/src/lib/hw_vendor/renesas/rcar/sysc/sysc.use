@@ -1,0 +1,5 @@
+SYSC library for the Renesas R-Car platform
+
+Loaded and utilized by various applications/drivers.
+
+SYSC resource manager rcar-sysc-mgr must be running.

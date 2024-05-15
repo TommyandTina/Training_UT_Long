@@ -1,0 +1,26 @@
+	The FlexRay driver for RENESAS R-CarV3U
+
+    CREATED   : 12.18.2020
+    MODIFIED  : 06.30.2021
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-CarV3U board
+    TARGET OS : QNX SDP 7.1
+    
+    HISTORY   :
+            12.18.2020 : Ver.1.0
+            - Create new version 
+            04.16.2021 : Ver.1.1
+            - Support transfer handler to transfer messages between Messages buffers and user RAM automatically.
+            - Support timer and stopwatch.
+            - Support stopwatch events, timer events.            
+            07.30.2021 : Ver.1.2
+            - Change struct fr_msg_buffer_rx_t and fr_msg_ram_t
+            - Add config.h file to folder public/hw
+            - Remove functions: txmsg_list_create,  rxmsg_list_create
+            - Remove struct tfrrxmsg_list_t,  frtxmsg_list_t, frrxmsg_t and frtxmsg_t
+            - Add struct frmsg_list_t and frmsg_t
+-----------------------------------------------------------------------------
+ Known limitations with this version
+-----------------------------------------------------------------------------
+1) Integrate a non-coldstart node: Supported but not tested
+

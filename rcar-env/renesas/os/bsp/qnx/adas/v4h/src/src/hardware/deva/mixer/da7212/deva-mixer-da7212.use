@@ -1,0 +1,24 @@
+
+%C - Mixer DLL for the DA7212 codec
+
+This is a DLL of the io-audio system.
+
+Configuration file options:
+    da7212_i2c_dev=<value>                I2C device number corresponding to the da7212 codec
+    da7212_i2c_addr=<value>               I2C slave address corresponding to the da7212 codec
+    da7212_debug=<enable|disable>         Enable register dumps (default:disable)
+    da7212_mclk                           Frequency value of input master clock provides to audio codec board.
+
+All codec options are to be included under the [ctrl] section for the audio card the
+mixer DLL is to be mounted under.
+
+This audio mixer just supports below sample rates:
+8 kHz, 11.025 kHz, 12 kHz, 16 kHz, 22 kHz, 24 kHz, 32 kHz, 44.1 kHz, 48 kHz, 88.2 kHz, 96 kHz
+
+Example:
+[ctrl]
+name=rcar
+mixer_dll=da7212                       # Load deva-mixer-da7212.so
+da7212_i2c_dev=2                       # /dev/i2c2
+da7212_i2c_addr=26                     # 0x1A (7-bit address)
+da7212_mclk=12288000

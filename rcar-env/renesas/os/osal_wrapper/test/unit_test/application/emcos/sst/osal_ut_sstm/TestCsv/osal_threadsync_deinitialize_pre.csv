@@ -1,0 +1,11 @@
+modi,osal_threadsync_deinitialize_pre,03_022,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_osal_internal_cond_deinitialize_pre,osal_internal_cond_deinitialize_pre,,,,,,,,,,
+%,AMSTB_osal_internal_mutex_deinitialize_pre,osal_internal_mutex_deinitialize_pre,,,,,,,,,,
+#COMMENT,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,AMSTB_SrcFile.c/AMSTB_osal_internal_cond_deinitialize_pre@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_internal_mutex_deinitialize_pre@AMIN_return,osal_threadsync_deinitialize_pre@@,;,,,,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation.,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_STATE,;gs_osal_threadsync_is_initialized is true.,,,,,,,
+,1,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_internal_cond_deinitialize_pre() return OSAL_RETURN_FAIL.,,,,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;osal_internal_mutex_deinitialize_pre() return OSAL_RETURN_FAIL.,,,,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_BUSY,OSAL_RETURN_BUSY,;osal_internal_mutex_deinitialize_pre() return OSAL_RETURN_BUSY.,,,,,,,

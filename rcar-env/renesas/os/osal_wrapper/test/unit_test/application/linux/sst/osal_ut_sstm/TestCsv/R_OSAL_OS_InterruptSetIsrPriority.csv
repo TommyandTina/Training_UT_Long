@@ -1,0 +1,9 @@
+modi,R_OSAL_OS_InterruptSetIsrPriority,14_107,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_setschedprio,pthread_setschedprio,,,,,,,,,,
+#COMMENT,@handle,@handle[0].int_handle,@handle[0].int_handle[0].irq_thread,@irq_channel,@priority_value,AMSTB_SrcFile.c/AMSTB_pthread_setschedprio@AMIN_return,R_OSAL_OS_InterruptSetIsrPriority@@,;,,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,g_osal_thread_t,0,OSAL_INTERRUPT_PRIORITY_LOWEST,0,OSAL_RETURN_OK,;Normal operation,,,,
+,0,g_st_osal_interrupt_control_t,g_osal_thread_t,0,OSAL_INTERRUPT_PRIORITY_LOWEST,0,OSAL_RETURN_FAIL,;handle is NULL,,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,0,OSAL_RETURN_FAIL,;irq_thread is NULL,,,,
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,g_osal_thread_t,0,OSAL_INTERRUPT_PRIORITY_LOWEST,-1,OSAL_RETURN_FAIL,;pthread_setschedprio returns -1,,,,

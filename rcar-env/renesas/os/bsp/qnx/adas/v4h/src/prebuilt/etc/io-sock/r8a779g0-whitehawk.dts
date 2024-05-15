@@ -1,0 +1,190 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Device Tree Source for the White Hawk CPU boards with R-Car V4H
+ *
+ * Copyright (C) 2021 Renesas Electronics Corp.
+ */
+
+/dts-v1/;
+/* Reserved 1MB memory for boot loader secure area */
+/memreserve/ 0x50000000 0x00100000;
+/ {
+	compatible = "renesas,r8a779g0";
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+
+	soc: soc {
+		compatible = "simple-bus";
+        interrupt-parent = <&gic>;
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		gic: interrupt-controller@f1000000 {
+			compatible = "arm,gic-v3";
+			#interrupt-cells = <4>;
+			#address-cells = <0>;
+			interrupt-controller;
+			reg = <0x0 0xf1000000 0 0x20000>,
+			      <0x0 0xf1060000 0 0x110000>;
+			interrupts = <1 9 (128 | 4) 0>;
+		};
+
+		avb0: ethernet@e6800000 {
+			compatible = "renesas,etheravb-r8a779g0",
+				     "renesas,etheravb-rcar-gen4";
+			reg = <0 0xe6800000 0 0x800>;
+			interrupts =  <0 335 4 0>,<0 336 4 0>,<0 353 4 0>,<0 354 4 0>,<0 357 4 0>,<0 359 4 0>;
+			interrupt-names = "ch0", "ch1", "ch18", "ch19", "ch22", "ch24";
+			phy-mode = "rgmii";
+            chan-idx = "0";
+			rx-internal-delay-ps = <0>;
+			tx-internal-delay-ps = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		avb1: ethernet@e6810000 {
+			compatible = "renesas,etheravb-r8a779g0",
+				     "renesas,etheravb-rcar-gen4";
+			reg = <0 0xe6810000 0 0x800>;
+			interrupts = <0 360 4 0>,
+                         <0 361 4 0>,
+                         <0 378 4 0>,
+                         <0 379 4 0>,
+                         <0 382 4 0>,
+                         <0 384 4 0>;
+			interrupt-names = "ch0", "ch1", "ch18", "ch19", "ch22", "ch24";
+			phy-mode = "rgmii";
+            chan-idx = "1";
+			rx-internal-delay-ps = <0>;
+			tx-internal-delay-ps = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		avb2: ethernet@e6820000 {
+			compatible = "renesas,etheravb-r8a779g0",
+				     "renesas,etheravb-rcar-gen4";
+			reg = <0 0xe6820000 0 0x1000>;
+			interrupts = <0 385 4 0>,
+                         <0 386 4 0>,
+                         <0 403 4 0>,
+                         <0 404 4 0>,
+                         <0 407 4 0>,
+                         <0 409 4 0>;
+			interrupt-names = "ch0", "ch1", "ch18", "ch19", "ch22", "ch24";
+			phy-mode = "rgmii";
+            chan-idx = "2";
+			rx-internal-delay-ps = <0>;
+			tx-internal-delay-ps = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		avb_port1: ethernet@e6810000 {
+			compatible = "renesas,etheravb-port1-r8a779g0",
+				     "renesas,etheravb-rcar-gen4";
+			reg = <0 0xe6810000 0 0x800>;
+			interrupts = <0 360 4 0>,
+                         <0 361 4 0>,
+                         <0 378 4 0>,
+                         <0 379 4 0>,
+                         <0 382 4 0>,
+                         <0 384 4 0>;
+			interrupt-names = "ch0", "ch1", "ch18", "ch19", "ch22", "ch24";
+			phy-mode = "rgmii";
+            chan-idx = "1";
+			rx-internal-delay-ps = <0>;
+			tx-internal-delay-ps = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		avb_port2: ethernet@e6820000 {
+			compatible = "renesas,etheravb-port2-r8a779g0",
+				     "renesas,etheravb-rcar-gen4";
+			reg = <0 0xe6820000 0 0x1000>;
+			interrupts = <0 385 4 0>,
+                         <0 386 4 0>,
+                         <0 403 4 0>,
+                         <0 404 4 0>,
+                         <0 407 4 0>,
+                         <0 409 4 0>;
+			interrupt-names = "ch0", "ch1", "ch18", "ch19", "ch22", "ch24";
+			phy-mode = "rgmii";
+            chan-idx = "2";
+			rx-internal-delay-ps = <0>;
+			tx-internal-delay-ps = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		rtsn0: ethernet@e6460000 {
+			compatible = "renesas,rtsnes-r8a779g0",
+				     "renesas,rtsnes-rcar-gen4";
+			reg = <0 0xe6460000 0 0x7000>, <0 0xe6449000 0 0x500>;
+			interrupts = <0 429 4 0>,
+                         <0 430 4 0>;
+			interrupt-names = "axibmi_tx", "axibmi_rx";
+			phy-mode = "rgmii";
+			rx-internal-delay = <0>;
+			tx-internal-delay = <0>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+	};
+};
+
+/ {
+	model = "enesas White Hawk CPU boards based on r8a779g0";
+	compatible = "renesas,whitehawk-cpu", "renesas,r8a779g0";
+	aliases {
+		ethernet0 = &avb0;
+	};
+};
+
+&avb0 {
+    mac-address = [ 2E 09 0A 03 9B 15 ];
+	phy-chip = "micrel";
+	tx-internal-delay-ps = <2000>;
+	status = "okay";
+};
+
+&avb1 {
+    mac-address = [ 2E 09 0A 03 9B 16 ];
+    phy-chip = "m88q2110";
+    status = "disabled";
+};
+
+&avb2 {
+    mac-address = [ 2E 09 0A 03 9B 17 ];
+    phy-chip = "m88q2110";
+    status = "disabled";
+};
+
+&rtsn0 {
+    mac-address = [ 2E 09 0A 06 D9 11 ];
+    phy-chip = "m88q2110";
+    status = "okay";
+};
+
+
+&avb_port1 {
+    mac-address = [ 2E 09 0A 03 9B 16 ];
+    phy-chip = "m88q2110";
+    status = "okay";
+};
+
+&avb_port2 {
+    mac-address = [ 2E 09 0A 03 9B 17 ];
+    phy-chip = "m88q2110";
+    status = "okay";
+};

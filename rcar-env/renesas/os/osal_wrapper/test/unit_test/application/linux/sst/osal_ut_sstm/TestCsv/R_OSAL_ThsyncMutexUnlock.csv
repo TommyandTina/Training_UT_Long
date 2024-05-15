@@ -1,0 +1,12 @@
+modi,R_OSAL_ThsyncMutexUnlock,03_012,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_ThsyncGetInitStatus,R_OSAL_RCFG_ThsyncGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MutexUnlock,R_OSAL_RCFG_MutexUnlock,,,,,,,,,,
+#COMMENT,@handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_ThsyncGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MutexUnlock@AMIN_return,R_OSAL_ThsyncMutexUnlock@@,;,,,,,,,
+,g_st_osal_common_mutex_control,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;03_012_001,,,,,,,
+,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;03_012_002,,,,,,,
+,g_st_osal_common_mutex_control,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;03_012_003,,,,,,,
+,g_st_osal_common_mutex_control,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;03_012_004,,,,,,,
+,g_st_osal_common_mutex_control,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;03_012_005,,,,,,,
+,g_st_osal_common_mutex_control,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_STATE,OSAL_RETURN_STATE,;03_012_006,,,,,,,

@@ -1,0 +1,8 @@
+modi,R_OSAL_Internal_MutexUnlock,01_020,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,$@handle,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],R_OSAL_Internal_MutexUnlock@@,;,,,,,,,
+,1,0,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,1,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() is return non-zero.,,,,,,,

@@ -1,0 +1,25 @@
+modi,R_PMA_IF_CheckUser,01_016,20,3,,,,CPP,,,,0,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_GetUserInfo,R_PMA_IF_GetUserInfo,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@pUserInfo,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[5],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[6],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[7],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[8],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[9],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[10],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[11],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[12],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[13],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[14],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMIN_return[15],AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AM_count,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0].isUsed,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[15].isUsed,&AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AMOUT_userNo,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_GetUserInfo@AM_count,R_PMA_IF_CheckUser@@,;
+,1,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[1],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[2],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[3],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[4],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[5],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[6],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[7],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[8],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[9],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[10],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[11],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[12],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[13],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[14],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[15],0,1,1,0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15,16,R_PMA_ERR_INVALID_ARGUMENT,;user_info(R_PMA_IF_GetUserInfo()'s return value) and user_info_arg are not equal 
+,0,,,,,,,,,,,,,,,,,0,,,,0,R_PMA_ERR_INVALID_ARGUMENT,;pUserInfo is NULL
+,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],,,,,,,,,,,,,,,,0,1,,0,1,R_PMA_RESULT_OK,;Normal operation
+,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[15],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[2],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[3],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[4],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[5],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[6],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[7],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[8],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[9],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[10],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[11],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[12],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[13],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[14],r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[15],0,0,0,0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15,16,R_PMA_ERR_INVALID_HANDLE,;user_info_arg->isUsed is false

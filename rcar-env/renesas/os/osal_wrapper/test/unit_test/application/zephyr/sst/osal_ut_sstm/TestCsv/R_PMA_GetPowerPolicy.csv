@@ -1,0 +1,15 @@
+modi,R_PMA_GetPowerPolicy,01_009,8,8,,,,CPP,,,,0,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_CheckUser,R_PMA_IF_CheckUser,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_GetPowerPolicy,R_PMA_MNG_GetPowerPolicy,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_Exchange_ErrCode,R_PMA_IF_Exchange_ErrCode,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_IsEnableControlPowerClock,R_PMA_MNG_IsEnableControlPowerClock,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_IsEnableControlPowerClock,R_PMA_MNG_IsEnableControlPowerClock,,,,,,,,,,,,,,,
+#COMMENT,@handle,@hwaId,@pPolicy,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_CheckUser@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_GetPowerPolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_Exchange_ErrCode@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_IsEnableControlPowerClock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_IsEnableControlPowerClock@AMOUT_isEnable,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_CheckUser@AMOUT_pUserInfo,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_GetPowerPolicy@AMOUT_handle,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_GetPowerPolicy@AMOUT_hwaId,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_GetPowerPolicy@AMOUT_pPolicy,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_Exchange_ErrCode@AMOUT_innerErr,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_IsEnableControlPowerClock@AMOUT_hwaId,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_IsEnableControlPowerClock@AMOUT_isEnable,R_PMA_GetPowerPolicy@@,;
+,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_ERR_RESULT_NG,,,,,0x10,,,,,,,R_PMA_ERR_RESULT_NG,;R_PMA_IF_CheckUser() returns R_PMA_ERR_RESULT_NG
+,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_RESULT_OK,R_PMA_OK,R_PMA_RESULT_OK,R_PMA_OK,1,0x10,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_OK,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_RESULT_OK,;Normal operation
+,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_RESULT_OK,R_PMA_INVALID_ARGUMENT,R_PMA_ERR_INVALID_ARGUMENT,R_PMA_OK,1,0x10,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_INVALID_ARGUMENT,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_ERR_INVALID_ARGUMENT,;R_PMA_MNG_GetPowerPolicy() returns R_PMA_INVALID_ARGUMENT
+,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_RESULT_OK,R_PMA_OK,R_PMA_RESULT_OK,R_PMA_OK,1,0x10,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_OK,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_RESULT_OK,;Normal operation
+,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_RESULT_OK,,R_PMA_ERR_INVALID_ARGUMENT,R_PMA_INVALID_ARGUMENT,1,0x10,,,,R_PMA_INVALID_ARGUMENT,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_ERR_INVALID_ARGUMENT,;R_PMA_MNG_IsEnableControlPowerClock() returns R_PMA_INVALID_ARGUMENT
+,0x10,R_PMA_HWA_ID_V4H_IMPPSC,0x20,R_PMA_RESULT_OK,,,R_PMA_OK,0,0x10,,,,,R_PMA_HWA_ID_V4H_IMPPSC,0,R_PMA_ERR_UNSUPPORTED_OPERATION,;R_PMA_MNG_IsEnableControlPowerClock() set is_enable false

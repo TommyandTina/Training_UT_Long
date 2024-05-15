@@ -1,0 +1,7 @@
+modi,R_OSAL_DCFG_Init,07_030,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetSocType,R_OSAL_DCFG_GetSocType,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetSocType@AMIN_return,g_dummy,;,,,,,,,,
+,1,OSAL_DEVICE_SOC_TYPE_V4H,,";Case ""OSAL_DEVICE_SOC_TYPE_V4H""",,,,,,,,
+,1,OSAL_DEVICE_SOC_TYPE_INVALID,,";Case ""OSAL_DEVICE_SOC_TYPE_INVALID""",,,,,,,,

@@ -1,0 +1,17 @@
+modi,r_osal_os_io_count_device,15_130,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,
+#COMMENT,@p_glob_buffer,@p_glob_buffer[0].gl_pathc,@p_dev_pattern,@p_match_count,AMSTB_SrcFile.c/AMSTB_regcomp@AM_count,AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AM_count,AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_count_device@@,;
+,g_glob_t,2,0,g_size_t,0,0,0,g_regmatch_t,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,g_glob_t,2,0,g_size_t,0,-1,0,g_regmatch_t,0,0,0,0,OSAL_RETURN_FAIL,;regcomp returns -1
+,g_glob_t,2,0,g_size_t,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;calloc returns NULL
+,g_glob_t,2,0,g_size_t,0,0,0,g_regmatch_t,0,-1,0,0,OSAL_RETURN_OK,;regexec[0] returns -1
+,g_glob_t,2,0,g_size_t,0,0,0,g_regmatch_t,0,0,-1,0,OSAL_RETURN_OK,;regexec[1] returns -1

@@ -1,0 +1,8 @@
+modi,R_OSAL_RCFG_ThsyncControlInit,03_014,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_osal_threadsync_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_cond_control_init,r_osal_rcfg_cond_control_init,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mutex_control_init,r_osal_rcfg_mutex_control_init,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_osal_threadsync_is_initialized_enu,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_cond_control_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mutex_control_init@AMIN_return,R_OSAL_RCFG_ThsyncControlInit@@,;,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation.,,,,,,,
+,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_rcfg_cond_control_init() returns OSAL_RETURN_FAIL.,,,,,,,

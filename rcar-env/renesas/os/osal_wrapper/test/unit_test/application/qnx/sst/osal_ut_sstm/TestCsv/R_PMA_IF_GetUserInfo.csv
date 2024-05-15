@@ -1,0 +1,7 @@
+modi,R_PMA_IF_GetUserInfo,01_017,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@userNo,R_PMA_IF_GetUserInfo@@,;,,,,,,,,,
+,15,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[15],;Normal operation,,,,,,,,,
+,R_PMA_IF_USER_MAX,0,;user_info is NULL,,,,,,,,,
+,0,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],;Normal operation,,,,,,,,,

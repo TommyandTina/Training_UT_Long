@@ -1,0 +1,13 @@
+modi,R_OSAL_OS_ThreadWaitFinish,02_104,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_clock_gettime,clock_gettime,,,,,,,,,,
+%,AMSTB_clock_gettime,clock_gettime,,,,,,,,,,
+%,AMSTB_pthread_timedjoin_monotonic,pthread_timedjoin_monotonic,,,,,,,,,,
+#COMMENT,@thread,AMSTB_SrcFile.c/AMSTB_clock_gettime@AM_count,AMSTB_SrcFile.c/AMSTB_clock_gettime@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_timedjoin_monotonic@AMIN_return,AMSTB_SrcFile.c/g_os_time.tv_nsec,R_OSAL_OS_ThreadWaitFinish@@,;,,,,,
+,g_osal_os_thread,0,0,0,500000001,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,0,0,0,1000001,OSAL_RETURN_FAIL,;thread is NULL.,,,,,
+,g_osal_os_thread,0,-1,0,1000001,OSAL_RETURN_FAIL,;clock_gettime() return non-zero.,,,,,
+,g_osal_os_thread,0,0,0,1000000000,OSAL_RETURN_FAIL,;time_stamp.tv_nsec more than OSAL_MAX_TV_NSEC.,,,,,
+,g_osal_os_thread,0,0,0,1000000,OSAL_RETURN_OK,;time_stamp.tv_nsec % OSAL_MSECTONSEC is not 0.,,,,,
+,g_osal_os_thread,0,0,-1,1000001,OSAL_RETURN_FAIL,;pthread_timedjoin_monotonic() return non-zero.,,,,,

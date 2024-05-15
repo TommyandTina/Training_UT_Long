@@ -1,0 +1,10 @@
+Renesas R-CAR GPIO driver
+
+Syntax
+%C [options] &
+
+Options:
+    -g      GPIO index (must be input)
+    -p      GPIO base address
+    -i      GPIO IRQ numbder
+    -v      Verbose level (default 0)

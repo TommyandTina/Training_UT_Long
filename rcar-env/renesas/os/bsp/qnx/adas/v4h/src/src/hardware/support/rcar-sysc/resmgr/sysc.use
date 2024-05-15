@@ -1,0 +1,14 @@
+SYSC resource manager driver for the Renesas R-Car platform
+
+accessed by various applications/other drivers.
+
+Syntax
+%C [options] &
+
+Options:
+    -b base:size  SYSC base address and size, colon separated
+    -d dllname    driver to load
+    -v            (default is none)
+
+Example:
+rcar-sysc-mgr -d support -vvvv

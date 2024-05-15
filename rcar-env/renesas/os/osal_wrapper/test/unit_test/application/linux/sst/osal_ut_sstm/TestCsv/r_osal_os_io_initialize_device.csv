@@ -1,0 +1,68 @@
+modi,r_osal_os_io_initialize_device,15_127,49,1,,,,CPP,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_glob,glob,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_glob,glob,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_initialize_for_pm,r_osal_os_io_initialize_for_pm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_glob@AMIN_return,AMSTB_SrcFile.c/AMSTB_glob@AMIN_pglob_gl_pathc,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[5],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[6],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[7],AMSTB_SrcFile.c/AMSTB_regcomp@AM_count,AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[5],AMSTB_SrcFile.c/AMSTB_regexec@AM_count,AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[5],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[6],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[7],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[5],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[6],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[7],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_initialize_for_pm@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_initialize_device@@,;
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,-1,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;glob returns -1
+,0,2,0,0,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_MEM,;calloc[0] returns NULL
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,-1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;regcomp[0] returns -1
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,-1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;regcomp[3] returns -1
+,0,2,0,g_st_osal_device_list_t,0,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_MEM,;calloc[1] returns NULL
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;regexec[0] returns -1
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;regexec[7] returns -1
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,0,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[6] returns NULL
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[7] returns NULL
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Open[0] returns -1
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Open[7] returns -1
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;strncmp[3] returns 0
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;strncmp[4] returns 0
+,0,2,0,g_st_osal_device_list_t,str,str,str,str,0,str,str,str,str,str,str,str,str,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;strncmp[5] returns 0

@@ -1,0 +1,31 @@
+    The I2C driver for R-Car Gen3 and Gen4 boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 and Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            02.28.2021 : Ver.0.1
+            - Create new version from QNX7.0 driver for V3U
+            06.30.2021 : Ver.0.2
+            - Update and support for R-Car Gen3
+            - Support HW info for rcar-B (IIC)
+            10.30.2021 : Ver.0.3
+            - Support S4
+            04.12.2022 : Ver.0.4
+            - Optimize/enhance code in DMA stransfer
+            - Based HWM to fix "0: Setting prohibited" for MDBS bit of ICMCR register
+            - Remove I2C rcar-B folder
+            05.30.2022 : Ver.0.5
+            - Update in DMA init function due to update of DMA lib
+            07.20.2022 : Ver.0.6
+            - Add in code to change IO voltage to 1.8V in FAST MODE+
+            09.30.2022 : Ver.0.7
+            - Add in memory type for DMA buffer allocation (e.g. specify 32-bit or 40-bit memory for DMA buffer)
+            11.02.2022 : Ver.0.8
+            - Remove Fast mode+ support because S4 doesn't support Fast Mode+
+            - Add in channel index to prefix of all logs
+            - Replace second call rcar_dma_wait_complete() by rcar_i2c_wait_complete() in DMA transfer to resolve DMA timeout
+

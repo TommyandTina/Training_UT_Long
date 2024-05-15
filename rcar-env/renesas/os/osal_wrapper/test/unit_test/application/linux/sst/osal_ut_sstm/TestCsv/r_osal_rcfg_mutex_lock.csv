@@ -1,0 +1,24 @@
+modi,r_osal_rcfg_mutex_lock,02_021,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_inner_mutex_mtx,r_osal_res_cfg_threadsync.c/gsp_mutex_array,,,,,,,,,,,,,,
+0,0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockUntilTimeStamp,R_OSAL_HIF_MutexLockUntilTimeStamp,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTryLock,R_OSAL_OS_MutexTryLock,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockUntilTimeStamp,R_OSAL_HIF_MutexLockUntilTimeStamp,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mutex_search_array,r_osal_rcfg_mutex_search_array,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockUntilTimeStamp,R_OSAL_HIF_MutexLockUntilTimeStamp,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTryLock,R_OSAL_OS_MutexTryLock,,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_inner_mutex_mtx,r_osal_res_cfg_threadsync.c/gsp_mutex_array,@handle,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockUntilTimeStamp@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTryLock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AM_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockUntilTimeStamp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mutex_search_array@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockUntilTimeStamp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTryLock@AMIN_return[0],r_osal_rcfg_mutex_lock@@,;
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,true,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockUntilTimeStamp() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],0,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;gsp_mutex_array is NULL
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_OK,OSAL_RETURN_BUSY,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;r_osal_rcfg_mutex_search_array() return OSAL_RETURN_BUSY
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_OK,OSAL_RETURN_BUSY,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;r_osal_rcfg_mutex_search_array() return OSAL_RETURN_BUSY and R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockUntilTimeStamp() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,false,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_os_mutex_t[0],1,g_st_osal_mutex_control_t[0],g_st_osal_time_t,0,0,0,true,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexTryLock() return OSAL_RETURN_FAIL

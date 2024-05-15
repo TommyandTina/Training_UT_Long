@@ -1,0 +1,122 @@
+%C - SSI Sound driver for Renesas R-Car SOC family
+
+This is a DLL of the io-audio system.
+
+command:
+    io-audio -d rcar [tx_ssi=val][,rx_ssi=val][,tx_use_src=val][,...]
+
+Driver Options:
+        tx_ssi                : string of one to four digits indicating the SSI ports used for playback
+        rx_ssi                : indicates the SSI port used for capture
+        tx_voices             : indicates number of voices used for playback;
+                                in case tx_op_mode=tdm_exsplit, it indicates the voice map to be used for the TDM exsplit mode
+        rx_voices             : indicates number of voices used for capture;
+                                in case rx_op_mode=tdm_exsplit, it indicates the voice map to be used for the TDM exsplit mode
+        tx_op_mode            : Indicates a special TDM mode to be used for playback
+                "tdm_ext"     - TDM extended mode is used
+                "tdm_split"   - TDM split mode is used
+                "tdm_exsplit" - TDM exsplit mode is used
+        rx_op_mode            : Indicates a special TDM mode to be used for capture
+                "tdm_ext"     - TDM extended mode is used
+                "tdm_split"   - TDM split mode is used
+                "tdm_exsplit" - TDM exsplit mode is used
+        tx_use_src:         0 : Don't use Sample Rate Conversion (SRC) for playback
+                            1 : Use SRC for playback
+                                Default value is variant specific
+        rx_use_src:         0 : Don't use SRC for capture
+                            1 : Use SRC for capture
+                                Default value is variant specific
+        tx_use_dvc:         0 : Don't use Digital Volume Control (DVC) for playback
+                            1 : Use DVC for playback
+                                Default value is variant specific
+        rx_use_dvc:         0 : Don't use DVC for capture
+                            1 : Use DVC for capture
+                                Default value is variant specific
+        tx_use_mlp:         0 : Don't use MediaLB (MLP) for playback (default)
+                            1 : Use MLP for playback
+        rx_use_mlp:         0 : Don't use MLP for capture (default)
+                            1 : Use MLP for capture
+        tx_use_dtcp:        0 : Don't use Digital Transmission Content Protection (DTCP) for playback (default)
+                            1 : Use DTCP for playback
+        rx_use_dtcp:        0 : Don't use DTCP for capture (default)
+                            1 : Use DTCP for capture
+        clk_mode  "master"    : one of the SSI ports indicated by tx_ssi and rx_ssi is configured as master
+                  "slave"     : all SSI ports indicated by tx_ssi and rx_ssi are configured as slave
+        sync_start            : Synchronize start of SSI ports 3,4
+        sample_size           : 16, 24 or 32 bits (default is 16)
+        clk_pol               : Bit clock polarity
+                            0 - data sampled at SCK falling edge
+                            1 - data sampled at SCK rising edge (default)
+        fsync_pol             : Frame sync (WS) polarity
+                            0 - active low (default)
+                            1 - active high
+        bit_delay             : Delay between frame sync and start of data
+                            0 - none
+                            1 - 1 cycle (default)
+        sample_rate           : range in Hz - min_rate:max_rate (default 8000 - 192000 Hz, the full supported range of Rcar H2/H3)
+        sample_rate_list      : list of all supported sample rates in Hz, separated by :
+        slot_size             : number of bits in one phase of frame clock, 16 or 32 (default is 32 for Rcar H3, 16 for Rcar H2)
+        hdmi_chan             : HDMI channel to use, only applicable to Rcar H3 (0 or 1, default none)
+        ver                   : RCAR version string ("h2", "e2", "m2", "h3", etc - default is "h2")
+        mclk_1                : MCLK RATE 1 in HZ  (default value from variant.h: MCLK_1)
+        mclk_2                : MCLK RATE 2 in HZ  (default value from variant.h: MCLK_2)
+        mclk_fs               : Scale of MCLK RATE to sample rate (default value is variant specific)
+        mclk_clk_source1      : MCLK source for MCLK RATE 1 (default value from variant.h: MCLK_SOURCE_1)
+        mclk_clk_source2      : MCLK source for MCLK RATE 2 (default value from variant.h: MCLK_SOURCE_2)
+        debug                 : enable register dumps at the start and end of playback or capture session
+Notes:
+
+SRC and DVC are functional blocks of the Sample Rate Conversion Unit (SCU).
+
+There are a number of global options and channel specific options. The channel specific options are prefixed with "tx_" for playback channel options and "rx_" for capture channel options.
+
+One or more instances of tx_ssi and/or rx_ssi can be specified in the case that the rcar driver instance supports multiple SSI in pin sharing mode. In the case that the tx_ssi or rx_ssi option is repeated, in order to specify multiple playback or capture channels, it is recommended to specify all global options first, then the channel specific options that have the same value for all channels, and have the channel specific options that vary across channels grouped after the tx_ssi or rx_ssi option for the related channel, and before the rx_ssi or rx_ssi option of the next channel. Special values "012" or "0129" for tx_ssi or rx_ssi are to be used in the case of multiple SSI used in multi channel mode (one 6 or 8 channel pcm channel uses 3 or 4 SSIs in stereo configuration). For the case where the use of multiple SSI without pin sharing is intended, separate driver instances shall be used.
+
+Supported sample rate range and SRC: the range 8000-192000 Hz can be always supported with SRC enabled, regardless of analog codec used; with SRC disabled, however, the supported range depends on the analog codec in use, if any. For Rcar-H2/W2H platforms equipped with the AK4643 codec, the supported sample rate range with SRC disabled is 8000-48000 Hz.
+
+Voice maps for the TDM exsplit consist in numeric values indicating the number of voices to be used for each BUSIF subchannel, starting from subchannel 0, separated by semicolons.
+
+io-audio configuration file: If using an Rcar-H2 or Rcar-H3 platform with SDP 7.1 and/or Mainline BSPs, and the platform is equipped with an analog codec, the analog codec DLL must be specified using an io-audio configuration file, and io-audio must get started using "io-audio -c <path-to-io_audio.conf>".
+
+Examples for io-audio command line for cases where no analog codec is used:
+
+   # Start audio driver on SSI 0 for playback and SSI 1 for capture with src
+   io-audio -d rcar tx_ssi=0,rx_ssi=1,voices=2,clk_mode=master,tx_use_src=1,rx_use_src=1
+
+   # Start audio driver on SSI 0,1,2,9 for playback with src
+   io-audio -d rcar tx_ssi=0129,clk_mode=master,tx_use_src=1
+
+   # Start audio driver on SSI 3 for playback and SSI 4 for capture
+   io-audio -d rcar tx_ssi=3,rx_ssi=4,clk_mode=master,sync_start
+
+   # Start audio driver on SSI 3 for playback and SSI 4 and 9 for capture, SRC and DVC enabled for all channels except capture on SSI 9
+   io-audio -d rcar tx_use_src=1,rx_use_src=1,tx_use_dvc=1,clk_mode=master,tx_voices=8,rx_voices=8,tx_ssi=3,rx_ssi=4,rx_use_dvc=1,rx_ssi=9,rx_use_dvc=0
+
+Examples of [ctrl] section of io_audio.conf file for cases where an analog codec is used, or the io_audio.conf file is used for any other reason; the driver options described above are listed as key-value pairs separated by commas as a value for the "options" key:
+
+   #W2H example:
+   [ctrl]
+   name=rcar
+   options=ver=w2h,tx_ssi=0,rx_ssi=1,rx_use_dvc=0,mclk_1=12288000,mclk_clk_source1=1,mclk_fs=0
+   mixer_dll=ak4643                       # Load deva-mixer-ak4643.so
+   ak4643_i2c_dev=2                       # /dev/i2c2
+   ak4643_i2c_addr=18                     # 0x12
+   ak4643_lineout=enable
+   ak4643_mic1=enable:single-ended
+   ak4643_clock_mode=pll:mcki
+   ak4643_mclk_in=12288000
+   ak4643_mclk_out_fs=256
+   ak4643_debug=enable
+
+   #Rcar-H3 example:
+   [ctrl]
+   name=rcar
+   options=ver=h3,tx_ssi=0,rx_ssi=1,tx_use_src=1,rx_use_src=1,tx_use_dvc=1,rx_use_dvc=0
+   mixer_dll=ak4613                       # Load deva-mixer-ak4613.so
+   ak4613_i2c_dev=2                       # /dev/i2c2
+   ak4613_i2c_addr=16                     # 0x10
+   ak4613_out1=enable:differential
+   ak4613_in1=enable:single-ended
+
+
+

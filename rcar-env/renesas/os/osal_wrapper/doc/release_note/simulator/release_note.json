@@ -1,0 +1,1075 @@
+{
+    "release_date": "Jan.05.2024",
+    "document_version": "Rev.0.30.0",
+    "document_num": "",
+    "title": "OSAL Wrapper for Simulator on R-Car V3H/V3M/V4H/V4M",
+    "intro": {
+        "description": [
+            "This document describes updates and restrictions for this release."
+        ]
+    },
+    "overview": {
+        "description": [
+            "This document describes the contents regarding to the OSAL Wrapper for Simulator on R-Car V3H/V3M/V4H/V4M."
+        ]
+    },
+    "general_info": {
+        "table": [
+            {
+                "item": "Target devices",
+                "name": "Windows: R-Car V3H1.1, V3H2.1, V3M2.0, V4H1.0, V4H2.0, V4H2.1, V4H2.2, V4M1.0 \\n Linux : R-Car V3H1.1, V3H2.1, V3M2.0, V4H1.0, V4H2.0, V4H2.1, V4H2.2, V4M1.0",
+                "note": "-"
+            },
+            {
+                "item": "Supported OS",
+                "name": "Windows: Windows 10 Professional 64bit \\n Linux: Ubuntu 20.04",
+                "note": "-"
+            },
+            {
+                "item": "Tool Chain",
+                "name": "Windows: GCC 7.3.0 \\n Linux: GCC 9.3.0",
+                "note": "-"
+            },
+            {
+                "item": "OSAL API Specification",
+                "name": "OSAL API 3.7.0",
+                "note": "-"
+            }
+        ]
+    },
+    "release_software": {
+        "table": [{
+            "name": "OSAL Wrapper for Simulator",
+            "version": "2.10.0",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        }],
+        "note": [
+            "The Current/Target Quality grades options are below:",
+            " - Current: Sample, Reference, Alpha Beta, QM, ASIL",
+            " - Target: Sample, Reference, QM, ASIL\\n",
+            " \\n"
+        ]
+    },
+    "license": {
+        "description": [
+            "Proprietary license \\n",
+            "Copyright(C) [2020 - 2024] Renesas Electronics Corporation. All rights reserved."
+        ],
+        "table": [
+
+        ]
+    },
+    "restriction": {
+        "table": [
+            {
+                "no": "ASDRCXPOSAL-1596",
+                "description": [
+                    " Threads that have entered a wait state using the following APIs may be released from the wait state unexpectedly by the OS. \\n ",
+                    " - R_OSAL_ThsyncCondWaitForTimePeriod \\n ", 
+                    " - R_OSAL_ThsyncCondWaitUntilTimeStamp"
+                ],
+                "impact": "-",
+                "note": [
+                    "When using these API, please do the following after wakeup: \\n ",
+                    "- Check condition variable is whether expectation. If condition variable is not expectation, please call target API again. \\n "
+                ]
+            }
+        ]
+    },
+    "rel_document": {
+        "table": [{
+                "type": "API Specification",
+                "name": "R-Car_OSAL_APISpecification.pdf",
+                "version": "3.70E",
+                "update": "no",
+                "note": "-"
+            },
+            {
+                "type": "API User's Manual",
+                "name": "r11uz0125ej0311-osal.pdf",
+                "version": "3.11E",
+                "update": "no",
+                "note": [
+                    "(*1)"
+                ]
+            },
+            {
+                "type": "Application Note",
+                "name": "r11an0630ej0312-osal.pdf",
+                "version": "3.12E",
+                "update": "no",
+                "note": "-"
+            },
+            {
+                "type": "API Test Specification",
+                "name": "R-Car_OSAL_TestSpecification.pdf",
+                "version": "3.150E",
+                "update": "yes",
+                "note": "-"
+            }
+        ],
+        "note": [
+            "(*1) The current software structure of OSAL for Simulator is different from chapter 2, 4 for this document. \\n However, concept of the current implementation is the same."
+        ]
+    },
+    "upgrade": {
+        "description": [
+            ""
+        ],
+        "section": [{
+                "name": "Version 0.1.0",
+                "description": [
+                    "- In the version 0.1.0, this is new creation for alpha release.\\n ",
+                    "This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.2.0",
+                "description": [
+                    "- Linux OS is supported.",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.3.0",
+                "description": [
+                    "- Preliminary support for V4H.",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.4.0",
+                "description": [
+                    "- Support for V4H.",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.5.0",
+                "description": [
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.6.0",
+                "description": [
+                    "- Update device information for V4H.[OSAL-1714]",
+                    "- Add new API",
+                    "    - R_OSAL_ThsyncMemoryBarrier(). This API is empty implementation. [OSAL-1695, OSAL-1704]",
+                    "    - R_OSAL_MmngrDebugMmngrPrint [OSAL-1746]",
+                    "    - R_OSAL_MmngrDebugBufferPrint [OSAL-1746]",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.7.0",
+                "description": [
+                    "- Added implementation to OSAL Wrapper for Simulator. [OSAL-1896]",
+                    "    - R_OSAL_PmSetPostClock",
+                    "    - R_OSAL_PmGetLowestIntermediatePowerState",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.8.0",
+                "description": [
+                    "- Enabled to set thread priority.[OSAL - 1741]",
+                    "    - R_OSAL_ThreadCreate",
+                    "    - R_OSAL_InterruptRegisterIsr",
+                    "- Add NULL pointer check to below APIs.[OSAL - 1698]",
+                    "    - R_OSAL_ThsyncCondDestroy()",
+                    "    - R_OSAL_IoDeviceClose()",
+                    "    - R_OSAL_MqDelete()",
+                    "    - R_OSAL_ThsyncMutexDestroy()",
+                    "    - R_OSAL_ThsyncMutexTryLock()",
+                    "    - R_OSAL_ThsyncMutexUnlock()",
+                    "    - R_OSAL_MqCreate()",
+                    "    - R_OSAL_InterruptIsISRContext()",
+                    "    - R_OSAL_InterruptGetNumOfIrqChannels()",
+                    "    - R_OSAL_MqSendUntilTimeStamp()",
+                    "    - R_OSAL_MqReceiveUntilTimeStamp()",
+                    "    - R_OSAL_MqIsFull()",
+                    "    - R_OSAL_MqIsEmpty()",
+                    "- Add renge check of channel to below APIs.[OSAL - 1698]",
+                    "    - R_OSAL_InterruptUnregisterIsr()",
+                    "- Changed to prevent an error even if the following memory allocation mode is specified for R_OSAL_MmngrOpen().\\n ",
+                    " However, the actual behavior will be OSAL_MMNGR_ALLOC_MODE_FREE_LIST regardless of the specified allocation mode.",
+                    "    - OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT",
+                    "    - OSAL_MMNGR_ALLOC_MODE_STACK",
+                    "    - OSAL_MMNGR_ALLOC_MODE_STACK_PROT",
+                    "This software is checked in 1 - pass case."
+                ]
+            },
+            {
+                "name": "Version 0.9.0",
+                "description": [
+                    "- Added initialize check to each OSAL APIs. [OSAL-2000]",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.10.0",
+                "description": [
+                    "- Supported bellow memory allocation mode [OTLINT-1354] [OSAL-1719]",
+                    "    - OSAL_MMNGR_ALLOC_MODE_STACK",
+                    "    - OSAL_MMNGR_ALLOC_MODE_STACK_PROT",
+                    "    - OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 1.0.0",
+                "description": [
+                    "- Supported R_OSAL_InterruptUnregisterIsr() call from interrupt context [OSAL-2240]",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 2.0.0",
+                "description": [
+                    "- Supported system ram",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 2.1.0",
+                "description": [
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-374-01",
+                    "    - ASDRCXPOSAL-374-02",
+                    "    - ASDRCXPOSAL-374-03",
+                    "    - ASDRCXPOSAL-374-04",
+                    "    - ASDRCXPOSAL-374-05",
+                    "    - ASDRCXPOSAL-374-06",
+                    "    - ASDRCXPOSAL-374-07",
+                    "    - ASDRCXPOSAL-374-08",
+                    "    - ASDRCXPOSAL-374-09"
+                ]
+            },
+            {
+                "name": "Version 2.2.0",
+                "description": [
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-519-01",
+                    "    - ASDRCXPOSAL-519-02",
+                    "    - ASDRCXPOSAL-608",
+                    "- Added the following API prototype. [ASDRCXPOSAL-507]",
+                    "    - R_OSAL_IoGetAxiIdListForAxiBusName()",
+                    "    - R_OSAL_IoGetAxiIdListForDeviceHdl()",
+                    "    - R_OSAL_IoGetAxiIdListForDeviceName()",
+                    "    - R_OSAL_IoGetNumOfAxiIdsForAxiBusName()",
+                    "    - R_OSAL_IoGetNumOfAxiIdsForDeviceHdl()",
+                    "    - R_OSAL_IoGetNumOfAxiIdsForDeviceName()"
+                ]
+            },
+            {
+                "name": "Version 2.3.0",
+                "description": [
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-619",
+                    "    - ASDRCXPOSAL-572-1",
+                    "    - ASDRCXPOSAL-572-2"
+                ]
+            },
+            {
+                "name": "Version 2.4.0",
+                "description": [
+                    "- Update following APIs features to support with the updated axi bus name rules.[ASDRCXPOSAL-705]",
+                    "    - R_OSAL_IoGetAxiBusName",
+                    "    - R_OSAL_IoGetAxiBusNameList",
+                    "    - R_OSAL_IoGetDeviceAxiBusId",
+                    "    - R_OSAL_IoGetAxiBusIdFromDeviceName",
+                    "- Supported the function to open multiple Memory Handles.[ASDRCXPOSAL-716] [OTLINT-2155] \\n ",
+                    " OSAL Wrapper for Simulator can use 2GB of memory with each memory handle since The Windows simulator compiler supports 32bit.",
+                    "    - Update function of the following APIs can open multi memory handles support",
+                    "        - R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx",
+                    "        - R_OSAL_MmngrOpenFromRegionIdx",
+                    "    - Add APIs that supports the ability to open multiple memory handles",
+                    "        - R_OSAL_MmngrOpen",
+                    "        - R_OSAL_MmngrClose",
+                    "        - R_OSAL_MmngrGetOsalMaxConfig "
+                ]
+            },
+            {
+                "name": "Version 2.5.0",
+                "description": [
+                    "- Fix the following issues, Table 4-1 has more detailed information.",
+                    "    - ASDRCXPOSAL-1289-1",
+                    "    - ASDRCXPOSAL-1289-2",
+                    "    - ASDRCXPOSAL-1289-3",
+                    "    - ASDRCXPOSAL-1289-4",
+                    "    - ASDRCXPOSAL-1289-5",
+                    "    - ASDRCXPOSAL-1289-6"
+                ]
+            },
+            {
+                "name": "Version 2.6.0",
+                "description": [
+                    "- Fix the following issues, Table 4-1 has more detailed information.",
+                    "    - ASDRCXPOSAL-1315-1",
+                    "    - ASDRCXPOSAL-1315-2",
+                    "    - ASDRCXPOSAL-1315-3",
+                    "    - ASDRCXPOSAL-1315-4",
+                    "    - ASDRCXPOSAL-1315-5"
+                ]
+            },
+            {
+                "name": "Version 2.7.0",
+                "description": [
+                    "- Updated Device information for R-Car V4H",
+                    "    - Added VIP_WRAP",
+                    "- Support for R-Car V4H2.2/V4M1.0"
+                ]
+            },
+            {
+                "name": "Version 2.8.0",
+                "description": [
+                    "- Updated Device information for R-Car V4M"
+                ]
+            },
+            {
+                "name": "Version 2.9.0",
+                "description": [
+                    "- Fix the following issues, Table 4-1 has more detailed information.",
+                    "    - ASDRCXPOSAL-1969-1",
+                    "    - ASDRCXPOSAL-1969-2",
+                    "    - ASDRCXPOSAL-1969-3",
+                    "    - ASDRCXPOSAL-1978"
+                ]
+            },
+            {
+                "name": "Version 2.10.0",
+                "description": [
+                    "- Fix the following issue, Table 4-1 has more detailed information.",
+                    "    - ASDRCXPOSAL-2021"
+                ]
+            }
+        ]
+    },
+    "kil": {
+        "description": [
+
+        ],
+        "table": [{
+            "number": "OTLINT-1355\\n OSAL-1718",
+            "description": "Process freezes when it tries to terminate without calling R_OSAL_Deinitialize() after a successful call to R_OSAL_Initialize() \\n It is depends on the implementation of the simulator library",
+            "work_around": "Call R_OSAL_Deinitialize() after a successful call to R_OSAL_Initialize()."
+        }]
+    },
+    "fil": {
+        "description": [
+
+        ],
+        "table": [{
+                "number": "ASDRCXPOSAL-374-01",
+                "description":[
+                     "[Ver 2.1.0] The following Power Manager APIs dose not check initialized status \\n ",
+                     "  -R_OSAL_PmSetRequiredState() \\n ",
+                     "  -R_OSAL_PmGetRequiredState() \\n ",
+                     "  -R_OSAL_PmWaitForState() \\n ",
+                     "  -R_OSAL_PmGetState() \\n ",
+                     "  -R_OSAL_PmSetPolicy() \\n ",
+                     "  -R_OSAL_PmGetPolicy() \\n ",
+                     "  -R_OSAL_PmSetResetState() \\n ",
+                     "  -R_OSAL_PmGetResetState() \\n ",
+                     "  -R_OSAL_PmSetPostClock() \\n ",
+                     "  -R_OSAL_PmGetLowestIntermediatePowerState()"
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-374-02",
+                "description":[
+                    "[Ver 2.1.0] Lack of parameter check in following APIs \\n ",
+                    "  - R_OSAL_ThreadCreate() \\n ",
+                    "  - R_OSAL_ThsyncCondBroadcast() \\n ",
+                    "  - R_OSAL_ThsyncCondSignal() \\n ",
+                    "  - R_OSAL_ThsyncCondWaitUntilTimeStamp() \\n ",
+                    "  - R_OSAL_InterruptRegisterIsr() \\n ",
+                    "  - R_OSAL_InterruptUnregisterIsr() \\n ",
+                    "  - R_OSAL_InterruptEnableIsr() \\n ",
+                    "  - R_OSAL_InterruptDisableIsr() \\n ",
+                    "  - R_OSAL_InterruptSetIsrPriority () \\n ",
+                    "  - R_OSAL_IoGetNumOfDevices ()"
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-374-03",
+                "description": "[Ver 2.1.0] When R_OSAL_ThreadSleepUntilTimeStamp() is called with less than 1msec, it dose not sleep."
+            },
+            {
+                "number": "ASDRCXPOSAL-374-04",
+                "description": "[Ver 2.1.0] Locked mutex is released by calling R_OSAL_ThsyncMutexDestroy()"
+            },
+            {
+                "number": "ASDRCXPOSAL-374-05",
+                "description": "[Ver 2.1.0] R_OSAL_ThsyncMutexDestroy() dose not check initialized status"
+            },
+            {
+                "number": "ASDRCXPOSAL-374-06",
+                "description": "[Ver 2.1.0] Message queue in use is released by calling R_OSAL_MqDelete()."
+            },
+            {
+                "number": "ASDRCXPOSAL-374-07",
+                "description": [
+                    "[Ver 2.1.0] The following IO accessing APIs ignore alignment. \\n ",
+                    "  - R_OSAL_IoBlockRead32() \\n ",
+                    "  - R_OSAL_IoBlockRead64() \\n ",
+                    "  - R_OSAL_IoBlockWrite32() \\n ",
+                    "  - R_OSAL_IoBlockWrite64() "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-374-08",
+                "description": [
+                    "[Ver 2.1.0] When following APIs are called with invalid handle, it occer segmentation fault. \\n ",
+                    "  - R_OSAL_MmngrGetConfig() \\n ",
+                    "  - R_OSAL_MmngrRegisterMonitor() \\n ",
+                    "  - R_OSAL_MmngrDebugMmngrPrint()"
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-374-09",
+                "description": [
+                    "[Ver 2.1.0] Resource in use is released by calling R_OSAL_Deinitialize."
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-519-01",
+                "description":[
+                     "[Ver 2.2.0] Fixed the return value of R_OSAL_ThreadSelf() \\n ",
+                     "  - Fixed so that OSAL_RETURN_FAIL is returned when calling R_OSAL_ThreadSelf in a thread not created by the OSAL Create function."
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-519-02",
+                "description":
+                    "[Ver 2.2.0] Fixed issue that Segmentation Fault is occurred when R_OSAL_ThsyncMutexDestroy() is executed multiple times after executing R_OSAL_ThsyncMutexDestroy()."
+            },
+            {
+                "number": "ASDRCXPOSAL-608",
+                "description": "[Ver 2.2.0] Removed the ability to get a WARNING message when changing Thread Priority. [ASDRCXPOSAL-462]"
+            },
+            {
+                "number": "ASDRCXPOSAL-619",
+                "description":[
+                    "[Ver 2.3.0] completed to implementation of the following APIs in ASDRCXPOSAL-507. \\n ",
+                    "  - R_OSAL_IoGetAxiIdListForAxiBusName() \\n ",
+                    "  - R_OSAL_IoGetAxiIdListForDeviceHdl() \\n ",
+                    "  - R_OSAL_IoGetAxiIdListForDeviceName() \\n ",
+                    "  - R_OSAL_IoGetNumOfAxiIdsForAxiBusName() \\n ",
+                    "  - R_OSAL_IoGetNumOfAxiIdsForDeviceHdl() \\n ",
+                    "  - R_OSAL_IoGetNumOfAxiIdsForDeviceName()"
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-572-1",
+                "description":[
+                    "[Ver 2.3.0] Update Power Manager APIs. \\n ",
+                    "  - All of OSAL PM APIs return OSAL_RETURN_UNSUPPORTED_OPERATION if the target device does not support power or clock domain. \\n ",
+                    "  - OSAL PM APIs related to reset domain return OSAL_RETURN_UNSUPPORTED_OPERATION if the target device does not support reset domain. \\n ",
+                    "  - For devices use always ON power domain, The lowest power state that they can reach is OSAL_PM_STATE_CG"
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-572-2",
+                "description":[
+                    "[Ver 2.3.0] Update R_OSAL_PmWaitForState(). \\n ",
+                    "  - Adjust the internal timeout used in R_OSAL_PmWaitForState."
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1289-1",
+                "description":[
+                    "[Ver 2.5.0] Implement p_handle overwriting with NULL in case OSAL APIs return other errors than OSAL_RETURN_BUSY. \\n ",
+                    "  - R_OSAL_ThreadCreate() \\n ",
+                    "  - R_OSAL_ThsyncMutexCreate() \\n ",
+                    "  - R_OSAL_ThsyncCondCreate() \\n ",
+                    "  - R_OSAL_MqCreate() \\n ",
+                    "  - R_OSAL_IoDeviceOpen() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1289-2",
+                "description":[
+                    "[Ver 2.5.0] Change the return value of Mutex lock APIs from OSAL_RETURN_TIME to OSAL_RETURN_FAIL when the mutex has already been owned by calling threads in non-interrupt context. \\n ",
+                    "  - R_OSAL_ThsyncMutexLockUntilTimeStamp() \\n ",
+                    "  - R_OSAL_ThsyncMutexLockForTimePeriod() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1289-3",
+                "description":[
+                    "[Ver 2.5.0] Add the device type length checking, OSAL_RETURN_PAR will be returned if the length of device type is bigger than OSAL_DEVICE_TYPE_NAME_MAX_LENGTH. \\n ",
+                    "  - R_OSAL_IoGetNumOfDevices() \\n ",
+                    "  - R_OSAL_IoGetDeviceList() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1289-4",
+                "description":[
+                    "[Ver 2.5.0] Add priority range checking, OSAL_RETURN_PAR will be returned if the priority is out-of-range. \\n ",
+                    "  - R_OSAL_InterruptRegisterIsr() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1289-5",
+                "description":[
+                    "[Ver 2.5.0] Add device handle checking, OSAL_RETURN_HANDLE will be returned if using device handle has already been closed. \\n ",
+                    "  - R_OSAL_IoGetNumOfAxiIdsForDeviceHdl() \\n ",
+                    "  - R_OSAL_IoGetAxiIdListForDeviceHdl() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1289-6",
+                "description":[
+                    "[Ver 2.5.0] Update parameter checking for input power policy in R_OSAL_PmSetPolicy(). \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1315-1",
+                "description":[
+                    "[Ver 2.6.0] Add checking for “p_ptr_self” pointer of OSAL Memory Manager Handle and Memory Buffer Handle. OSAL_RETURN_HANDLE is returned if “p_ptr_self” is invalid. \\n ",
+                    "  - R_OSAL_MmngrClose() \\n ",
+                    "  - R_OSAL_MmngrAlloc() \\n ",
+                    "  - R_OSAL_MmngrDealloc() \\n ",
+                    "  - R_OSAL_MmngrGetConfig() \\n ",
+                    "  - R_OSAL_MmngrRegisterMonitor() \\n ",
+                    "  - R_OSAL_MmngrDebugMmngrPrint() \\n ",
+                    "  - R_OSAL_MmngrGetCpuPtr() \\n ",
+                    "  - R_OSAL_MmngrGetConstCpuPtr() \\n ",
+                    "  - R_OSAL_MmngrFlush() \\n ",
+                    "  - R_OSAL_MmngrInvalidate() \\n ",
+                    "  - R_OSAL_MmngrGetHwAddr() \\n ",
+                    "  - R_OSAL_MmngrGetSize() \\n ",
+                    "  - R_OSAL_MmngrCheckBuffer() \\n ",
+                    "  - R_OSAL_MmngrDebugBufferPrint() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1315-2",
+                "description":[
+                    "[Ver 2.6.0] Update range checking for “monitored_event” parameter of R_OSAL_MmngrRegisterMonitor(). OSAL_RETURN_PAR is returned when using “monitored_event” is out of range \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1315-3",
+                "description":[
+                    "[Ver 2.6.0] Add checking for “mmngr_owner_hndl” of OSAL Memory Buffer Handle. OSAL_RETURN_HANDLE is returned if “mmngr_owner_hndl” is invalid. \\n ",
+                    "  - R_OSAL_MmngrGetCpuPtr() \\n ",
+                    "  - R_OSAL_MmngrGetConstCpuPtr() \\n ",
+                    "  - R_OSAL_MmngrFlush() \\n ",
+                    "  - R_OSAL_MmngrInvalidate() \\n ",
+                    "  - R_OSAL_MmngrGetHwAddr() \\n ",
+                    "  - R_OSAL_MmngrGetSize() \\n ",
+                    "  - R_OSAL_MmngrCheckBuffer() \\n ",
+                    "  - R_OSAL_MmngrDebugBufferPrint() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1315-4",
+                "description":[
+                    "[Ver 2.6.0] Fix illegal memory access. OSAL_RETURN_HANDLE_NOT_SUPPORTED is returned if using OSAL Memory Manager Handle which has already been closed. \\n ",
+                    "  - R_OSAL_MmngrAlloc() \\n ",
+                    "  - R_OSAL_MmngrDealloc() \\n ",
+                    "  - R_OSAL_MmngrGetConfig() \\n ",
+                    "  - R_OSAL_MmngrRegisterMonitor() \\n ",
+                    "  - R_OSAL_MmngrDebugMmngrPrint() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1315-5",
+                "description":[
+                    "[Ver 2.6.0] Fix illegal memory access. OSAL_RETURN_UNSUPPORTED_OPERATION is returned if using OSAL Memory Buffer Handle which has already been deallocated. \\n ",
+                    "  - R_OSAL_MmngrGetCpuPtr() \\n ",
+                    "  - R_OSAL_MmngrGetConstCpuPtr() \\n ",
+                    "  - R_OSAL_MmngrFlush() \\n ",
+                    "  - R_OSAL_MmngrInvalidate() \\n ",
+                    "  - R_OSAL_MmngrGetHwAddr() \\n ",
+                    "  - R_OSAL_MmngrGetSize() \\n ",
+                    "  - R_OSAL_MmngrCheckBuffer() \\n ",
+                    "  - R_OSAL_MmngrDebugBufferPrint() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1969-1",
+                "description":[
+                    "[Ver 2.9.0] Fixed the issue that OSAL_RETURN_MEM was returned when a specific size and alignment combination was specified for R_OSAL_MmngrAlloc \\n ",
+                    "  - R_OSAL_MmngrAlloc() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1969-2",
+                "description":[
+                    "[Ver 2.9.0] Fixed the issue that user can not open multi-memory regions in random order \\n ",
+                    "  - R_OSAL_MmngrOpen() \\n ",
+                    "  - R_OSAL_MmngrOpenFromRegionIdx() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1969-3",
+                "description":[
+                    "[Ver 2.9.0] Updated the returned HW address when using OSAL_AXI_BUS_ID_IPA_MAIN_MEMORY. The behavior of R_OSAL_MmngrGetHwAddr() when using OSAL_AXI_BUS_ID_IPA_MAIN_MEMORY and other valid AXI IDs now are the same. \\n ",
+                    "  - R_OSAL_MmngrGetHwAddr() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-1978",
+                "description":[
+                    "[Ver 2.9.0] Fixed an issue when executing R_OSAL_Mmngr_Alloc for an area exceeding the memory limit, then executing R_OSAL_MmngrDealloc to release the allocated area, but that released area could not be reused. \\n ",
+                    "  - R_OSAL_MmngrAlloc() \\n "
+                ]
+            },
+            {
+                "number": "ASDRCXPOSAL-2021",
+                "description":[
+                    "[Ver 2.10.0] R_OSAL_MmngrDealloc() report an error message and the released area can not be reused when user deallocates buffers not in the reversed order of the allocation in FREE_LIST mode. \\n ",
+                    "  - R_OSAL_MmngrAlloc() \\n ",
+                    "  - R_OSAL_MmngrDealloc()"
+                ]
+            }
+        ]
+    },
+    "rev": {
+        "description": [
+
+        ],
+        "table": [{
+                "rev": "0.10",
+                "date": "2021/09/29",
+                "page": "-",
+                "sum": "New creation"
+            },
+            {
+                "rev": "0.20",
+                "date": "2021/01/25",
+                "page": "-",
+                "sum": "Linux OS is supported"
+            },
+            {
+                "rev": "0.30",
+                "date": "2021/03/10",
+                "page": [
+                    "-"
+                ],
+                "sum": [
+                    "Preliminary support for V4H"
+                ]
+            },
+            {
+                "rev": "0.40",
+                "date": "2021/06/18",
+                "page": [
+                    "2"
+                ],
+                "sum": [
+                    "Added support for some devices for V4H.\\n ",
+                    "Update OS and Toolchain for Linux"
+                ]
+            },
+            {
+                "rev": "0.40",
+                "date": "2021/07/08",
+                "page": [
+                    "3"
+                ],
+                "sum": [
+                    "Update Table 1-3 Restriction Lists"
+                ]
+            },
+            {
+                "rev": "0.50",
+                "date": "2021/7/12",
+                "page": [
+                    "3\\n \\n ",
+                    "4"
+                ],
+                "sum": [
+                    "Move OTLINT-1354 issue “Restriction Lists” to “Known issues List\\n ",
+                    "Add “API Specification”, “API User’s Manual” and “Application Note” information.\\n ",
+                    "Add OTLINT-649 and OTLINT-1355 issue to “Known issues List”"
+                ]
+            },
+            {
+                "rev": "0.50",
+                "date": "2021/7/27",
+                "page": [
+                    "4"
+                ],
+                "sum": [
+                    "Add OSAL-1721 issue to “Known issues List”"
+                ]
+            },
+            {
+                "rev": "0.60",
+                "date": "2021/8/3",
+                "page": [
+                    "3\\n ",
+                    "4"
+                ],
+                "sum": [
+                    "Update “API Specification”, “API User’s Manual” and “Application Note” information.\\ n",
+                    "Update device information\\n ",
+                    "Add new API"
+                ]
+            },
+            {
+                "rev": "0.60",
+                "date": "2021/8/16",
+                "page": [
+                    "5"
+                ],
+                "sum": [
+                    "Add OSAL-1767 issue to “Fixed issues List”"
+                ]
+            },
+            {
+                "rev": "0.70",
+                "date": "2021/9/7",
+                "page": [
+                    "3\\n ",
+                    "4\\n ",
+                    "5"
+                ],
+                "sum": [
+                    "Update “API Specification”, “API User’s Manual” and “Application Note” information..\\n ",
+                    "Add OSAL-1741 to “Known issues List”\\n ",
+                    "Add OTLINT-649, OSAL-1721/OSAL-1831 and OSAL-1896 issue to “Fixed issues List”"
+                ]
+            },
+            {
+                "rev": "0.70",
+                "date": "2021/9/8",
+                "page": [
+                    "5"
+                ],
+                "sum": [
+                    "Added OSAL-1915 to “Fixed issues List”"
+                ]
+            },
+            {
+                "rev": "0.70",
+                "date": "2021/9/16",
+                "page": [
+                    "3"
+                ],
+                "sum": [
+                    "Updated the expressions for No.2 and No.3."
+                ]
+            },
+            {
+                "rev": "0.80",
+                "date": "2021/10/9",
+                "page": [
+                    "3\\n ",
+                    "4\\n ",
+                    "5\\n ",
+                    "5"
+
+                ],
+                "sum": [
+                    "Update “API Specification”, “API User’s Manual” and “Application Note” information.\\n ",
+                    "Update API function [OSAL-1741, OSAL-1698]\\n ",
+                    "Remove OSAL-1741 to “Known issues List”\\n ",
+                    "Add OSAL-1935, OSAL-1866, OSAL-1698 issue to “Fixed issues List”"
+                ]
+            },
+            {
+                "rev": "0.90",
+                "date": "2021/11/5",
+                "page": [
+                    "2 \\n ",
+                    "4 "
+                ],
+                "sum": [
+                    "Updated Related documents version. \\n ",
+                    "Update API function [OSAL-2000]."
+                ]
+            },
+            {
+                "rev": "0.100",
+                "date": "2021/12/6",
+                "page": [
+                    "2 \\n \\n ",
+                    "5 \\n ",
+                    "6  "
+                ],
+                "sum": [
+                    "Removed Restriction #1, #2, #3. \\n ",
+                    "Updated Related documents version. \\n ",
+                    "Supported memory allocation mode [OTLINT-1354] [OSAL-1719].",
+                    "Updated Fixed issues List."
+                ]
+            },
+            {
+                "rev": "0.110",
+                "date": "2021/12/24",
+                "page": [
+                    "2 \\n ",
+                    "5 \\n ",
+                    "7  "
+                ],
+                "sum": [
+                    "Updated Related documents version. \\n ",
+                    "Updated Upgrade information. \\n ",
+                    "Updated Fixed issues List."
+                ]
+            },
+            {
+                "rev": "0.12.0",
+                "date": "2022/3/17",
+                "page": [
+                    "- \\n ",
+                    "2 \\n ",
+                    "5 "
+                ],
+                "sum": [
+                    "Changed version to x.y.z format \\n ",
+                    "Add restriction ASDRCXPOSAL-462. \\n  ",
+                    "Updated Upgrade information. "
+                ]
+            },
+            {
+                "rev": "0.13.0",
+                "date": "2022/4/7",
+                "page": [
+                    "7 "
+                ],
+                "sum": [
+                    "Updated Fixed issues List: Add ASDRCXPOSAL-374-01 to ASDRCXPOSAL-374-09 "
+                ]
+            },
+            {
+                "rev": "0.14.0",
+                "date": "2022/5/13",
+                "page": [
+                    "1 \\n ",
+                    "2 \\n \\n \\n \\n ",
+                    "5 \\n ",
+                    "7-8 \\n "
+                ],
+                "sum": [
+                    "Updated Release Software \\n ",
+                    "Updated Restrictions: \\n - Remove ASDRCXPOSAL-462 \\n - Add ASDRCXPOSAL-619 \\n ",
+                    "Updated Related Documents version \\n ",
+                    "Upgrade Information: Add Version 2.2.0 \\n ",
+                    "Updated Fixed issues List: \\n - Add ASDRCXPOSAL-519-01, ASDRCXPOSAL-519-02, ASDRCXPOSAL-608"
+                ]
+            },
+            {
+                "rev": "0.15.0",
+                "date": "2022/6/8",
+                "page": [
+                    "1 \\n ",
+                    "2 \\n \\n ",
+                    "6 \\n ",
+                    "9 \\n "
+                ],
+                "sum": [
+                    "Updated Release Software \\n ",
+                    "Updated Restrictions: \\n - Remove ASDRCXPOSAL-619 \\n ",
+                    "Upgrade Information: Add Version 2.3.0 \\n ",
+                    "Updated Fixed issues List: \\n - Add ASDRCXPOSAL-619, ASDRCXPOSAL-572-1, ASDRCXPOSAL-572-2"
+                ]
+            },
+            {
+                "rev": "0.16.0",
+                "date": "2022/7/7",
+                "page": [
+                    "1 \\n ",
+                    "6"
+                ],
+                "sum": [
+                    "Updated Release Software \\n ",
+                    "Upgrade Information: Add Version 2.4.0"
+                ]
+            },
+            {
+                "rev": "0.17.0",
+                "date": "2022/8/3",
+                "page": [
+                    "1 \\n ",
+                    "2"
+                ],
+                "sum": [
+                    "Updated General Information \\n ",
+                    "Updated Related Documents"
+                ]
+            },
+            {
+                "rev": "0.18.0",
+                "date": "2022/9/7",
+                "page": [
+                    "1 \\n \\n \\n ",
+                    "2"
+                ],
+                "sum": [
+                    "Updated General Information \\n ",
+                    "(Add V4H2 and V3M to Target devices for Linux, delete V3U, V3H1.1 for Windows) \\n ",
+                    "Updated file name of Related Documents. \\n ",
+                    "Add note of API User's Manual in Related Documents."
+                ]
+            },
+            {
+                "rev": "0.19.0",
+                "date": "2022/10/12",
+                "page": [
+                    "1 \\n ",
+                    "2"
+                ],
+                "sum": [
+                    "Updated General Information \\n ",
+                    "Updated Related Documents"
+                ]
+            },
+            {
+                "rev": "0.20.0",
+                "date": "2022/11/01",
+                "page": [
+                    "1 \\n ",
+                    "2"
+                ],
+                "sum": [
+                    "Updated General Information \\n ",
+                    "Updated Related Documents"
+                ]
+            },
+            {
+                "rev": "0.21.0",
+                "date": "2022/12/09",
+                "page": [
+                    "2"
+                ],
+                "sum": [
+                    "Updated Related Documents"
+                ]
+            },
+            {
+                "rev": "0.22.0",
+                "date": "2023/01/11",
+                "page": [
+                    "1 \\n ",
+                    "2 \\n "
+                ],
+                "sum": [
+                    "Updated General Information \\n ",
+                    "Updated Copyright \\n ",
+                    "Updated Related Documents"
+                ]
+            },
+            {
+                "rev": "0.23.0",
+                "date": "2023/02/09",
+                "page": [
+                    "1 \\n \\n ",
+                    "2 \\n ",
+                    "6 \\n ",
+                    "9 \\n "
+                ],
+                "sum": [
+                    "Updated Release Software \\n ",
+                    "Updated General Information \\n ",
+                    "Updated Related Documents \\n ",
+                    "Upgrade Information: Add Version 2.5.0 \\n ",
+                    "Updated Fixed issues List: \\n - Add ASDRCXPOSAL-1289"
+                ]
+            },
+            {
+                "rev": "0.24.0",
+                "date": "2023/04/05",
+                "page": [
+                    "2 \\n \\n \\n ",
+                    "3 \\n ",
+                    "7 \\n ",
+                    "11 \\n "
+                ],
+                "sum": [
+                    "Updated Release Software \\n ",
+                    "Updated Overview \\n ",
+                    "Updated General Information \\n ",
+                    "Updated Related Documents \\n ",
+                    "Upgrade Information: Add Version 2.6.0 \\n ",
+                    "Updated Fixed issues List: \\n - Add ASDRCXPOSAL-1315"
+                ]
+            },
+            {
+                "rev": "0.25.0",
+                "date": "2023/06/08",
+                "page": [
+                    "3"
+                ],
+                "sum": [
+                    "Updated Restrictions: \\n - Add ASDRCXPOSAL-1596"
+                ]
+            },
+            {
+                "rev": "0.26.0",
+                "date": "2023/09/12",
+                "page": [
+                    "3"
+                ],
+                "sum": [
+                    "Updated Related Documents"
+                ]
+            },
+            {
+                "rev": "0.27.0",
+                "date": "2023/10/13",
+                "page": [
+                    "2 \\n \\n ",
+                    "8"
+                ],
+                "sum": [
+                    "Add V4H2.2 and V4M to Overview \\n ",
+                    "Add V4H2.2 and V4M to General Information \\n ",
+                    "Updated Upgrade Information"
+                ]
+            },
+            {
+                "rev": "0.28.0",
+                "date": "2023/11/07",
+                "page": [
+                    "2 \\n ",
+                    "8"
+                ],
+                "sum": [
+                    "Updated Related Documents \\n ",
+                    "Updated Upgrade Information"
+                ]
+            },
+            {
+                "rev": "0.29.0",
+                "date": "2023/12/07",
+                "page": [
+                    "2 \\n ",
+                    "3 \\n ",
+                    "8 \\n ",
+                    "13 \\n "
+                ],
+                "sum": [
+                    "Updated Release Software \\n ",
+                    "Updated Related Documents \\n ",
+                    "Upgrade Information: Add Version 2.9.0 \\n ",
+                    "Updated Fixed issues List: \\n - Add ASDRCXPOSAL-1969, ASDRCXPOSAL-1978"
+                ]
+            },
+            {
+                "rev": "0.30.0",
+                "date": "2024/01/05",
+                "page": [
+                    "2 \\n ",
+                    "3 \\n ",
+                    "8 \\n ",
+                    "13 \\n "
+                ],
+                "sum": [
+                    "Updated Release Software \\n ",
+                    "Updated Related Documents \\n ",
+                    "Upgrade Information: Add Version 2.10.0 \\n ",
+                    "Updated Fixed issues List: \\n - Add ASDRCXPOSAL-2021"
+                ]
+            }
+        ]
+    }
+}

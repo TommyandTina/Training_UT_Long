@@ -1,0 +1,7 @@
+modi,R_PMA_HW_DEP_GetResetState,04_036,5,2,,,,CPP,,,,0
+#InitWheneverCall,g_pma_max_hwa_id_num,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,dummy_g_pma_hw_dep_hwa_info_tbl[0].actual_rst_stat,,,,,,,,,
+0,0,0,0,,,,,,,,,
+#COMMENT,@hwaId,$@pRstStat,g_pma_max_hwa_id_num,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,dummy_g_pma_hw_dep_hwa_info_tbl[0].actual_rst_stat,@pRstStat[0],R_PMA_HW_DEP_GetResetState@@,;,,,,
+,R_PMA_HWA_ID_NUM,1,R_PMA_HWA_ID_NUM,dummy_g_pma_hw_dep_hwa_info_tbl,0,,R_PMA_NG,;hwaId is R_PMA_HWA_ID_NUM,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,0,R_PMA_HWA_ID_NUM,dummy_g_pma_hw_dep_hwa_info_tbl,0,,R_PMA_NG,;pRstStat is NULL,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,1,R_PMA_HWA_ID_NUM,dummy_g_pma_hw_dep_hwa_info_tbl,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_OK,;Normal operation,,,,

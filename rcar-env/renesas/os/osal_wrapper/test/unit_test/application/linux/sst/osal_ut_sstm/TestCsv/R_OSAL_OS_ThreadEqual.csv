@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_ThreadEqual,09_104,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_equal,pthread_equal,,,,,,,,,,
+#COMMENT,@thread1,@thread2,@p_result,AMSTB_SrcFile.c/AMSTB_pthread_equal@AMIN_return,R_OSAL_OS_ThreadEqual@@,;,,,,,,
+,g_st_osal_os_thread_t,g_st_osal_os_thread_t,g_bool,0,OSAL_RETURN_OK,;Normal operation,,,,,,
+,g_st_osal_os_thread_t,g_st_osal_os_thread_t,g_bool,1,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,g_st_osal_os_thread_t,g_bool,1,OSAL_RETURN_FAIL,;thread1 is NULL,,,,,,
+,g_st_osal_os_thread_t,0,g_bool,1,OSAL_RETURN_FAIL,;thread2 is NULL,,,,,,
+,g_st_osal_os_thread_t,g_st_osal_os_thread_t,0,1,OSAL_RETURN_FAIL,;p_result is NULL,,,,,,

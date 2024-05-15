@@ -1,0 +1,9 @@
+modi,R_OSAL_MmngrDebugBufferPrint,09_019,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@hndl_buffer,@p_output,g_st_osal_memory_buffer_obj.p_print,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_MmngrDebugBufferPrint@@,;,,,,,,
+,g_st_osal_memory_buffer_obj,g_FILE,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,g_FILE,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;hndl_buffer is eqauls 0,,,,,,
+,g_st_osal_memory_buffer_obj,0,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_output is 0,,,,,,
+,g_st_osal_memory_buffer_obj,g_FILE,0,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;hndl_buffer->p_print is 0,,,,,,
+,g_st_osal_memory_buffer_obj,g_FILE,AMSTB_osal_mem_internal,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;hndl_buffer->p_print returns OSAL_RETURN_FAIL,,,,,,

@@ -1,0 +1,5 @@
+modi,R_OSAL_DCFG_InterruptCheckBusy,08_005,1,1,,,,CPP,,,,0
+#InitWheneverCall,g_dummy,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,g_dummy,R_OSAL_DCFG_InterruptCheckBusy@@,;,,,,,,,,,
+,0,OSAL_RETURN_OK,;Normal operation,,,,,,,,,

@@ -1,0 +1,19 @@
+modi,r_osal_os_interrupt_thread,14_109,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_interrupt_thread_start,r_osal_os_interrupt_thread_start,,,,,,,,,,
+%,AMSTB_poll,poll,,,,,,,,,,
+%,AMSTB_poll,poll,,,,,,,,,,
+%,AMSTB_poll,poll,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Read,R_OSAL_OS_Read,,,,,,,,,,
+%,AMSTB_r_osal_os_interrupt_execute_userfunction,r_osal_os_interrupt_execute_userfunction,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Write,R_OSAL_OS_Write,,,,,,,,,,
+#COMMENT,@p_arg,g_st_osal_interrupt_control_t[0].irq_thread_active,g_st_osal_interrupt_control_t[0].irq_enable,AMSTB_SrcFile.c/AMSTB_r_osal_os_interrupt_thread_start@AMIN_return,AMSTB_SrcFile.c/AMSTB_poll@AM_count,AMSTB_SrcFile.c/AMSTB_poll@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_poll@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Read@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_interrupt_execute_userfunction@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Write@AMIN_return,r_osal_os_interrupt_thread@@,;
+,g_st_osal_interrupt_control_t[0],1,1,OSAL_RETURN_OK,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;Normal operation
+,g_st_osal_interrupt_control_t[0],0,1,OSAL_RETURN_OK,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;Normal operation (irq_thread_active is false)
+,g_st_osal_interrupt_control_t[0],1,0,OSAL_RETURN_OK,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;Normal operation (irq_enable is false)
+,g_st_osal_interrupt_control_t[0],1,1,OSAL_RETURN_FAIL,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;r_osal_os_interrupt_thread_start returns OSAL_RETURN_FAIL
+,g_st_osal_interrupt_control_t[0],1,1,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;poll returns 0
+,g_st_osal_interrupt_control_t[0],1,1,OSAL_RETURN_OK,0,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;R_OSAL_OS_Read returns OSAL_RETURN_FAIL
+,g_st_osal_interrupt_control_t[0],1,1,OSAL_RETURN_OK,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,;r_osal_os_interrupt_execute_userfunction returns OSAL_RETURN_FAIL
+,g_st_osal_interrupt_control_t[0],1,1,OSAL_RETURN_OK,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,;R_OSAL_OS_Write returns OSAL_RETURN_FAIL

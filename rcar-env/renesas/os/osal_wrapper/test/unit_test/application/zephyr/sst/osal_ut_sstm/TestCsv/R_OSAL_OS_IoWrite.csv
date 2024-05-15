@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_IoWrite,07_104,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@handle,@handle[0].base_addr,@offset,@size,@unit_size,@p_data,R_OSAL_OS_IoWrite@@,;,,,,
+,1,g_uint8_array,0,1,1,g_uint8_t,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint8_t).),,,,
+,1,g_uint16_array,0,2,2,g_uint16_t,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint16_t).),,,,
+,1,g_uint32_array,0,4,4,g_uint32_t,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint32_t).),,,,
+,1,g_uint64_array,0,8,8,g_uint64_t,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint64_t).),,,,
+,1,g_uint8_array,0,1,1,0,OSAL_RETURN_PAR,;p_data is NULL.,,,,
+,1,g_uint8_array,0,1,0,g_uint8_t,OSAL_RETURN_FAIL,;unit_size is 0.,,,,

@@ -1,0 +1,27 @@
+PWM test utility for R-Car based platforms
+
+Options
+=======
+  --channel -c
+    Set PWM channel. Default is channel 0
+
+  --cycle_sec -s
+    Set duration (in second) for one PWM cycle. Default is one second
+
+  --cycle_nsec -n
+    Set duration (in nanosecond) for one PWM cycle. Default is 0
+
+  --duty -d
+    Set duty cycle (in percentage). Default is 50%
+
+  --oneshot -o
+    Enable single pulse mode, PWM will operate only for a single cycle then stop.
+
+Example
+=======
+  1) Start PWM channel 7, period is 1.5 second, duty cycle is 25%
+     $ pwm_test -c 7 -s 1 -n 500000000 -d 25
+
+  2) Start PWM channel 5, period is 100ms, duty cycle is 50%, single pulse mode
+     $ pwm_test -c 5 -n 100000000 -d 50 -o
+     

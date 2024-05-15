@@ -1,0 +1,35 @@
+/**
+ * @page overview Overview
+ * OSAL Sample Device Application is a sample code which provides the basic sequences using OSAL IO, Power Management and Interrupt APIs
+ * @version OSAL Sample Device Application version: 3.6.0
+ * @version OSAL API version: 3.7.0
+ * @version OSAL API User Manual version: 3.11E
+ * @section overview_features Features
+ * The following functions supported by OSAL Sample Device Application are based on the sequences described in OSAL API User Manual
+ * -# Interrupt operation:
+ *      - Register interrupt
+ *      - Call interrupt function
+ *      - API restriction for interrupt context
+ * -# IO operation:
+ *      - Device open
+ *      - Register access
+ *      - AXI bus access
+ *      - AXI bus name and id management
+ * -# Power Management:
+ *      - Power control
+ *      - Post clock
+ *      - Power State Control
+ *      - Power State timing chart
+ *
+ * @section overview_def Pre-definition
+ * Please select the suitable definition for your system.
+ * -# SUPPORT_FBA: This flag is to enable sample code using FIELD BIST Devices. Select it if there is a FIELD BIST Device in your system.
+ * -# SUPPORT_POWER: This flag is to enable power management sample code. Select it if your device supports power management.
+ * -# SUPPORT_AXI_BUS_NAME: This flag is to enable AXI bus accessing and AXI bus name, id management sample code. Select it if your devices support AXI bus name and id management.
+ * -# UNSUPPORT_INTERRUPT: This flag is to enable sample code generating interrupt. Select it if your device does not support interrupt.
+ * 
+ * @section note Note
+ * -# The sample code sequences may have a little differences in comparison with OSAL User Manual because OSAL Sample Device Application want to support all of APIs in each target OSAL manager.
+ * -# The pre-definition is dependent on each system and only available for OSAL Sample Device Application. Users need to define the pre-definition at the build-time of sample application.
+ *
+ */

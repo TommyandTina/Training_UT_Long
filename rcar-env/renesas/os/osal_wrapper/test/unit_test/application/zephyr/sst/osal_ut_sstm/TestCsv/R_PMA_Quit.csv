@@ -1,0 +1,12 @@
+modi,R_PMA_Quit,01_002,6,7,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_CheckUser,R_PMA_IF_CheckUser,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_SendMessageToTask,R_PMA_MNG_SendMessageToTask,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_Quit,R_PMA_MNG_Quit,,,,,,,,,,,,
+%,AMSTB_R_PMA_IF_Exchange_ErrCode,R_PMA_IF_Exchange_ErrCode,,,,,,,,,,,,
+#COMMENT,@handle,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0].isUsed,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_CheckUser@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_SendMessageToTask@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_Quit@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_Exchange_ErrCode@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_CheckUser@AMOUT_pUserInfo,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_SendMessageToTask@AMOUT_pMsg[0].enProcId,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_SendMessageToTask@AMOUT_pMsg[0].stPmaHandle,AMSTB_SrcFile.c/AMSTB_R_PMA_IF_Exchange_ErrCode@AMOUT_innerErr,r_pma_if.c/g_pma_if_first_init_flag,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0].isUsed,R_PMA_Quit@@,;
+,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],1,R_PMA_RESULT_OK,R_PMA_NG,,R_PMA_ERR_RESULT_NG,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],R_PMA_PROCESS_ID_EXIT_THREAD,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],R_PMA_NG,1,1,R_PMA_ERR_RESULT_NG,;R_PMA_MNG_SendMessageToTask() returns R_PMA_NG
+,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],1,R_PMA_ERR_INVALID_HANDLE,,,,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],,,,1,1,R_PMA_ERR_INVALID_HANDLE,;R_PMA_IF_CheckUser() returns R_PMA_ERR_INVALID_HANDLE
+,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],1,R_PMA_RESULT_OK,R_PMA_OK,R_PMA_NG,R_PMA_ERR_RESULT_NG,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],R_PMA_PROCESS_ID_EXIT_THREAD,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],R_PMA_NG,1,1,R_PMA_ERR_RESULT_NG,;R_PMA_MNG_Quit() returns R_PMA_NG
+,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],1,R_PMA_RESULT_OK,R_PMA_OK,R_PMA_OK,R_PMA_RESULT_OK,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],R_PMA_PROCESS_ID_EXIT_THREAD,r_pma_if.c/R_PMA_IF_GetUserInfo@gs_pma_if_user_info[0],R_PMA_OK,1,0,R_PMA_RESULT_OK,;Normal operation

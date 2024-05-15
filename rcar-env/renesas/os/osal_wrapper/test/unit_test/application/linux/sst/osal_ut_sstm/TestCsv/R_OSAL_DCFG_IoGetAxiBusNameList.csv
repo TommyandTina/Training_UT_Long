@@ -1,0 +1,17 @@
+modi,R_OSAL_DCFG_IoGetAxiBusNameList,06_014,10,1,,,,CPP,,,,0
+#InitWheneverCall,AMSTB_SrcFile.c/g_st_osal_os_io_get_axi_bus_name_list_t.axi_bus_name_list_len,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/g_st_osal_os_io_get_axi_bus_name_list_t.axi_bus_name_list_len,@p_buffer,@buffer_size,@p_num_of_byte,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_p_param,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_DCFG_IoGetAxiBusNameList@@,;
+,1,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_list_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,1,0,0,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_list_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (p_buffer is NULL)
+,1,str,1,g_size_t,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_list_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod returns OSAL_RETURN_TIME
+,1,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,g_st_osal_os_io_get_axi_bus_name_list_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_IoGetAxiBusInformation returns OSAL_RETURN_FAIL (Unlock is OK)
+,1,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,g_st_osal_os_io_get_axi_bus_name_list_t,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_IoGetAxiBusInformation returns OSAL_RETURN_FAIL (Unlock is FAIL)
+,1,str,0,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_list_t,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_buffer is not NULL && buffer_size less than axi_bus_name_list_len
+,1,str,1,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_axi_bus_name_list_t,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL

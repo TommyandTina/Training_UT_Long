@@ -1,0 +1,10 @@
+modi,R_OSAL_IoGetDeviceAxiBusId,07_021,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,@device,g_st_osal_device_control.handle_id,g_st_osal_device_control.active,@p_axi_id,R_OSAL_IoGetDeviceAxiBusId@@,;,,,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_osal_axi_bus_id,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_osal_axi_bus_id,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false,,,,,
+,1,0,OSAL_DEVICE_HANDLE_ID,1,g_osal_axi_bus_id,OSAL_RETURN_HANDLE,;handle is NULL,,,,,
+,1,g_st_osal_device_control,0,1,g_osal_axi_bus_id,OSAL_RETURN_HANDLE,;handle->handle_id is not equals OSAL_DEVICE_HANDLE_ID,,,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,0,g_osal_axi_bus_id,OSAL_RETURN_HANDLE,;handle->active is false,,,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,0,OSAL_RETURN_PAR,;p_axi_id is NULL,,,,,

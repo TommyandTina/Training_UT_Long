@@ -1,0 +1,19 @@
+modi,r_osal_os_io_get_domain_name,15_156,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,
+#COMMENT,@p_axi_bus_name,@p_domain_name,AMSTB_SrcFile.c/AMSTB_regcomp@AM_count,AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AM_count,AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_index[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_rm_so[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_rm_eo[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_get_domain_name@@,;
+,str,str,0,0,0,g_regmatch_t,0,0,0,0,3,0,OSAL_RETURN_OK,;Normal operation
+,str,0,0,0,0,g_regmatch_t,0,0,0,0,3,0,OSAL_RETURN_FAIL,;p_domain_name is NULL
+,str,str,0,-1,0,g_regmatch_t,0,0,0,0,3,0,OSAL_RETURN_FAIL,;regcomp returns -1
+,str,str,0,0,0,0,0,0,0,0,3,0,OSAL_RETURN_FAIL,;calloc returns NULL
+,str,str,0,0,0,g_regmatch_t,0,-1,0,0,3,0,OSAL_RETURN_UNKNOWN_NAME,;regexec returns -1

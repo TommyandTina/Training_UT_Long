@@ -1,0 +1,11 @@
+modi,R_OSAL_MmngrCheckBuffer,09_015,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrCheckBuffer,R_OSAL_RCFG_MmngrCheckBuffer,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrCheckBuffer@AMIN_return,R_OSAL_MmngrCheckBuffer@@,;,,,,,,,,
+,g_st_osal_common_memory_buffer_obj,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;memory_buffer_obj_hndl is null,,,,,,,,
+,g_st_osal_common_memory_buffer_obj,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_RCFG_MmngrCheckBuffer() return OSAL_RETURN_FAIL,,,,,,,,
+,g_st_osal_common_memory_buffer_obj,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;R_OSAL_RCFG_MmngrCheckBuffer() return OSAL_RETURN_HANDLE,,,,,,,,
+,g_st_osal_common_memory_buffer_obj,OSAL_RETURN_CONF,OSAL_RETURN_CONF,;R_OSAL_RCFG_MmngrCheckBuffer() return OSAL_RETURN_CONF,,,,,,,,
+,g_st_osal_common_memory_buffer_obj,OSAL_RETURN_UNSUPPORTED_OPERATION,OSAL_RETURN_UNSUPPORTED_OPERATION,;R_OSAL_RCFG_MmngrCheckBuffer() return OSAL_RETURN_UNSUPPORTED_OPERATION,,,,,,,,

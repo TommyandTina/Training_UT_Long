@@ -1,0 +1,8 @@
+Testing CPG library/driver and SYSC library
+
+Syntax:
+    cpg_sysc_test
+    
+Ex: 
+    #cpg_sysc_test
+

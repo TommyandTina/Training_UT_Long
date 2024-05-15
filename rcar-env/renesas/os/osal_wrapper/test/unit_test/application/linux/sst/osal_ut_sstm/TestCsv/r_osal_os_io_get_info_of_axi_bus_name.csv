@@ -1,0 +1,21 @@
+modi,r_osal_os_io_get_info_of_axi_bus_name,15_119,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_bus_domain,r_osal_os_io_get_bus_domain,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_bus_domain,r_osal_os_io_get_bus_domain,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_utlbs_from_uio,r_osal_os_io_get_utlbs_from_uio,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_utlbs_from_uio,r_osal_os_io_get_utlbs_from_uio,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_register_axi_bus_info,r_osal_os_io_register_axi_bus_info,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_register_axi_bus_info,r_osal_os_io_register_axi_bus_info,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_register_axi_bus_info,r_osal_os_io_register_axi_bus_info,,,,,,,,,,,,,
+#COMMENT,@p_uio_name,@device_name,@utlbs,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_bus_domain@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_bus_domain@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_utlbs_from_uio@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_utlbs_from_uio@AMIN_p_utlb_num,AMSTB_SrcFile.c/AMSTB_strcmp@AM_count,AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_register_axi_bus_info@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_register_axi_bus_info@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_register_axi_bus_info@AMIN_return[1],r_osal_os_io_get_info_of_axi_bus_name@@,;
+,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,2,0,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,0,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,2,0,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_get_bus_domain returns OSAL_RETURN_FAIL
+,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,2,0,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_get_utlbs_from_uio returns OSAL_RETURN_FAIL
+,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,2,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;strcmp[0] returns 0
+,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,2,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;strcmp[1] returns 0
+,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,1,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_register_axi_bus_info returns OSAL_RETURN_FAIL (utlb_num is 0)
+,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,2,0,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_os_io_register_axi_bus_info returns OSAL_RETURN_FAIL (utlb_num is not 0)

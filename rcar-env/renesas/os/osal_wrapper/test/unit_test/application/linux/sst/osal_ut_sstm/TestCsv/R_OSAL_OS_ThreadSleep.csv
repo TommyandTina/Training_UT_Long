@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_ThreadSleep,09_105,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_clock_nanosleep,clock_nanosleep,,,,,,,,,,
+#COMMENT,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_clock_nanosleep@AMIN_return,R_OSAL_OS_ThreadSleep@@,;,,,,,,,,
+,g_st_osal_time_t,0,OSAL_RETURN_OK,;Normal operation,,,,,,,,
+,0,0,OSAL_RETURN_FAIL,;p_time_stamp is NULL,,,,,,,,
+,g_st_osal_time_t,1,OSAL_RETURN_FAIL,;clock_nanosleep() return OSAL_RETURN_FAIL,,,,,,,,

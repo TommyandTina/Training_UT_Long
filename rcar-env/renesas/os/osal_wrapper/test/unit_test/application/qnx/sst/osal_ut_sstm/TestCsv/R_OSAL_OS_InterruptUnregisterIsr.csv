@@ -1,0 +1,12 @@
+modi,R_OSAL_OS_InterruptUnregisterIsr,06_105,11,1,,,,CPP,,,,0,
+#InitWheneverCall,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_thread_control,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_handler,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_enable,,,,,,,,,
+0,0,0,0,0,,,,,,,,,
+%,AMSTB_r_osal_os_interrupt_timedlock_mutex,r_osal_os_interrupt_timedlock_mutex,,,,,,,,,,,
+%,AMSTB_r_osal_os_interrupt_unlock_mutex,r_osal_os_interrupt_unlock_mutex,,,,,,,,,,,
+#COMMENT,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_thread_control,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_handler,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_enable,$@handle,$@handle[0].interrupt_index,@handle[0].interrupt_index[0],@irq_channel,@irqHandlerFunction,AMSTB_SrcFile.c/AMSTB_r_osal_os_interrupt_timedlock_mutex@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_interrupt_unlock_mutex@AMIN_return,R_OSAL_OS_InterruptUnregisterIsr@@,;
+,1,g_osal_interrupt_thread_control,1,0,1,1,0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,1,g_osal_interrupt_thread_control,1,0,1,1,0,0,1,OSAL_RETURN_TIME,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_interrupt_timedlock_mutex() return non-OSAL_RETURN_OK.
+,0,g_osal_interrupt_thread_control,1,0,1,1,0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_STATE,;gs_osal_os_interrupt_init_flag is false.
+,1,g_osal_interrupt_thread_control,1,0,1,1,0,0,2,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_PAR,;p_interrupt_control->irq_handler is equal irqHandlerFunction.
+,1,g_osal_interrupt_thread_control,1,1,1,1,0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;p_interrupt_control->irq_enable is true.
+,1,g_osal_interrupt_thread_control,1,0,1,1,0,0,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_os_interrupt_unlock_mutex() return non-OSAL_RETURN_OK.

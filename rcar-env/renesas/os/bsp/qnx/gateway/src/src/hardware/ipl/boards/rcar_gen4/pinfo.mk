@@ -1,0 +1,3 @@
+define PINFO
+PINFO DESCRIPTION=AARCH64 R-Car Gen4 IPL
+endef

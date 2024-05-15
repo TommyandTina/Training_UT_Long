@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_ThreadSetInitStatus,02_002,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,@status,g_dummy,;,,,,,,,,
+,1,1,-,;Normal operation,,,,,,,,

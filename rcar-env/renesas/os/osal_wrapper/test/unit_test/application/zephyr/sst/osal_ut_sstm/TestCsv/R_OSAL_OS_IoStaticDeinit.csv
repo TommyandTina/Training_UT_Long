@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_IoStaticDeinit,07_102,8,1,,,,CPP,,,,0
+#InitWheneverCall,$gsp_device_config_addr,gsp_device_config_addr[0].virtual_addr,gsp_device_config_addr[1].virtual_addr,gsp_device_config_addr[0].p_dev_info,gsp_device_config_addr[1].p_dev_info,g_osal_device_config[0].interrupt,g_osal_device_config[1].interrupt,g_osal_num_of_device_config,,,,
+0,0,0,0,0,0,0,0,0,,,,
+#COMMENT,$gsp_device_config_addr,gsp_device_config_addr[0].virtual_addr,gsp_device_config_addr[1].virtual_addr,gsp_device_config_addr[0].p_dev_info,gsp_device_config_addr[1].p_dev_info,g_osal_device_config[0].interrupt,g_osal_device_config[1].interrupt,g_osal_num_of_device_config,R_OSAL_OS_IoStaticDeinit@@,;,,
+,2,4096,0,g_osal_device_config[0],g_osal_device_config[1],g_st_osal_interrupt_info[0],g_st_osal_interrupt_info[1],2,OSAL_RETURN_OK,;Normal operation,,
+,0,4096,0,g_osal_device_config[0],g_osal_device_config[1],g_st_osal_interrupt_info[0],g_st_osal_interrupt_info[1],2,OSAL_RETURN_OK,;Normal operation (gsp_device_config_addr is NULL.),,
+,2,4096,0,g_osal_device_config[0],g_osal_device_config[1],0,0,2,OSAL_RETURN_OK,;p_dev_info->interrupt is NULL,,

@@ -1,0 +1,9 @@
+Renesas R-CAR thermal driver
+
+Syntax
+%C [options] &
+
+Options:
+    -v      Verbose level (default 0)
+    -ux:y   x : Upper temperature threshold to warn a slog2info msg (default 60 degree Celsius)
+            y : Lower temperature threshold to warn a slog2info msg (default 10 degree Celsius)

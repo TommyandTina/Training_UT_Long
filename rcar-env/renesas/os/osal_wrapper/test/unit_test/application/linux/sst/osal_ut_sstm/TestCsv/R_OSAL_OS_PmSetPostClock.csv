@@ -1,0 +1,25 @@
+modi,R_OSAL_OS_PmSetPostClock,16_107,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Open,R_OSAL_OS_Open,,,,,,,,,,,,,,,
+%,AMSTB_flock,flock,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_pm_set_ioctl,r_osal_os_pm_set_ioctl,,,,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].dev_post_fd,@clock_enable,@clock_divider,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Open@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_flock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_pm_set_ioctl@AMIN_return,R_OSAL_OS_PmSetPostClock@@,;
+,g_st_osal_device_control_t[0],1,true,0,0,0,0,0,0,str,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,0,1,true,0,0,0,0,0,0,str,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;handle is NULL
+,g_st_osal_device_control_t[0],-1,true,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc() return NULL
+,g_st_osal_device_control_t[0],-1,true,0,0,0,0,0,0,str,-1,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;snprintf() return error
+,g_st_osal_device_control_t[0],-1,true,0,0,0,0,0,0,str,0,-1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_Open() return error
+,g_st_osal_device_control_t[0],-1,true,0,0,0,0,0,0,str,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],1,false,0,0,0,0,0,0,str,0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;flock() return error
+,g_st_osal_device_control_t[0],1,false,0,0,0,0,0,0,str,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_Close() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],1,false,0,0,0,0,0,0,str,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],-1,false,0,0,0,0,0,0,str,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 

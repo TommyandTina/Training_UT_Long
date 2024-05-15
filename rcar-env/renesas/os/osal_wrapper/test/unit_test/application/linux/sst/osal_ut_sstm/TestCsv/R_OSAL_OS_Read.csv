@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_Read,18_103,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_read,read,,,,,,,,,,
+#COMMENT,@fd,@p_buf,@count,AMSTB_SrcFile.c/AMSTB_read@AMIN_return,R_OSAL_OS_Read@@,;,,,,,,
+,0,str,1,1,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,0,0,1,1,OSAL_RETURN_FAIL,;p_buf is NULL,,,,,,
+,0,str,1,2,OSAL_RETURN_FAIL,;read() return invalid value,,,,,,

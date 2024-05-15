@@ -1,0 +1,87 @@
+QNX generic SYSC controller hardware libraries
+------------------------------------------------
+
+This source code is compiled into 2 following versions:
+    - Static Library (libsysc-support.a)
+    - Dynamic Link Library (sysc-support.so)
+
+These libraries allow various generic modules to execute Power-OFF or Power-ON for SYSC Power Domains
+
+These libraries provide the following interface APIs :
+
+    Struct:
+        sysc_support_funcs_t sysc_support_funcs = {
+            .init         = rcar_sysc_init,
+            .deinit       = rcar_sysc_deinit,
+            .power_set    = rcar_sysc_power_set,
+            .power_is_off = rcar_sysc_power_is_off,
+            .read_pdmode  = rcar_sysc_pdmode_read,
+        };
+
+    Note:
+        SYSC HW is described in section 9. System Controller (SYSC)
+        
+        The APIs of Static Shared Library or Dynamic Link Library versions should be used in other drivers/applications
+
+        There are some common parameters are described as below:
+
+          - 'cpg_vbase' is SYSC's physical address base (used directly in startup module) or a mmap base (used in drivers/applications)
+
+          - prod_id is procduct id, it is value of RCAR_PRODUCT_REGISTER (0xFFF00044):
+
+          - 'pdr_number' is power domain id defined in rcar_sysc.h (see above):
+
+1. Function int sysc_init:
+
+    int rcar_sysc_init(const sysc_opts_t* const sysc_opts)
+
+        Input Parameters:
+            const sysc_opts_t* const sysc_opts : Pointer to sysc_opts_t struct. Must to provide this pointer
+
+        Return Value :
+            0    - Successful
+           Other - Failure
+    
+        This function will do SYSC register mmap, get product ID from HWinfo, .... 
+        It must be called before calling other functions.
+
+2. Function void cpg_deinit:
+
+    int sysc_init()
+    
+        This function will clean memory after using
+        It needs to be called after finishing
+
+
+3. int power_set(const int pdr_number, const int status)
+        This function is used to power on/off a power doamin.
+
+        Input Parameters:
+            int pdr_number : power domain ID
+            unsigned idx : Channel index
+            int status : 
+                1 - Perform power off
+                0 - Perform power on
+
+        Return Value :
+            0    - Successful
+           Other - Failure
+
+
+4. int power_is_off(const int pdr_number)
+        This function is used to check status of a power domain.
+
+        Input Parameters:
+            int pdr_number : power domain ID
+
+        Return Value :
+            1 - power domain is off
+            0 - power domain is on
+            Other - Failure
+
+5. int pdmode_read(void)
+        This function is used to read DPMODE in V3H 2.x only
+
+        Return Value :
+            0 <= - Value of DPMODE
+            0 >  - Failure

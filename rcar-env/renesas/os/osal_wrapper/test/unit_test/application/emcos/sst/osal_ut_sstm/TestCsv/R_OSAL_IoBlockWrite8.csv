@@ -1,0 +1,15 @@
+modi,R_OSAL_IoBlockWrite8,07_017,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,@handle,g_st_osal_device_control.handle_id,g_st_osal_device_control.active,g_st_osal_device_control.base_addr,g_st_osal_device_control.dev_info,g_st_osal_device_control.len,@offset,@size,@p_data,R_OSAL_IoBlockWrite8@@,;
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,array_uint8,g_st_osal_device_info,10,1,1,g_uint8_t,OSAL_RETURN_OK,;Normal operation
+,0,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,array_uint8,g_st_osal_device_info,10,1,1,g_uint8_t,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false
+,1,0,OSAL_DEVICE_HANDLE_ID,1,array_uint8,g_st_osal_device_info,10,1,1,g_uint8_t,OSAL_RETURN_HANDLE,;handle is NULL
+,1,g_st_osal_device_control,0,1,array_uint8,g_st_osal_device_info,10,1,1,g_uint8_t,OSAL_RETURN_HANDLE,;handle->handle_id is not equals OSAL_DEVICE_HANDLE_ID
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,0,array_uint8,g_st_osal_device_info,10,1,1,g_uint8_t,OSAL_RETURN_HANDLE,;handle->active is false
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,0,g_st_osal_device_info,10,1,1,g_uint8_t,OSAL_RETURN_HANDLE,;handle->base_addr is NULL
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,array_uint8,0,10,1,1,g_uint8_t,OSAL_RETURN_HANDLE,;handle->dev_info is NULL
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,array_uint8,g_st_osal_device_info,10,1,1,0,OSAL_RETURN_PAR,;p_data is NULL
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,array_uint8,g_st_osal_device_info,10,0x00200000,1,g_uint8_t,OSAL_RETURN_PAR,;offset is bigger than handle->len
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,array_uint8,g_st_osal_device_info,10,1,10,g_uint8_t,OSAL_RETURN_PAR,;size is bigger than handle->len
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,array_uint8,g_st_osal_device_info,10,8,8,g_uint8_t,OSAL_RETURN_PAR,;size is bigger than (handle->len - offset)

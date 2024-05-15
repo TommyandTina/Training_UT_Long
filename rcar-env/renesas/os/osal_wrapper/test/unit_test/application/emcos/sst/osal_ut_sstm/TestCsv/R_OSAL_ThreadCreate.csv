@@ -1,0 +1,29 @@
+modi,R_OSAL_ThreadCreate,02_001,18,1,,,,CPP,,,,0,,,,,,,,
+#InitWheneverCall,r_osal_thread.c/gs_osal_thread_is_initialized,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetThreadInfo,R_OSAL_RCFG_GetThreadInfo,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfThread,R_OSAL_RCFG_GetNumOfThread,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_signal,pthread_cond_signal,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_thread.c/gs_osal_thread_is_initialized,@p_config,g_uts_thread_config.priority,g_uts_thread_config.stack_size,@thread_id,@p_handle,gs_osal_thread_is_initialized_dummy,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetThreadInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfThread@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_init_ope,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_signal@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetThreadInfo@AM_count,AMSTB_SrcFile.c/g_thread_control.active,AMSTB_SrcFile.c/g_st_osal_rcfg_thread_config.id,R_OSAL_ThreadCreate@@,;
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_OK,;Normal operation
+,0,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_STATE,;gs_osal_thread_is_initialized is false
+,1,0,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_PAR,;p_config is 0
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,0,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_PAR,;p_handle is 0
+,1,g_uts_thread_config,-1,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_PAR,;p_config->priority is less than OSAL_THREAD_PRIORITY_LOWEST
+,1,g_uts_thread_config,15,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_PAR,;p_config->priority is greater than OSAL_THREAD_PRIORITY_HIGHEST
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,0,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_PAR,;p_config->stack_size is 0
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_FAIL,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetThreadInfo return OSAL_RETURN_FAIL
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,1,0,1,OSAL_RETURN_FAIL,;The aquired thread_control is 0
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,3,0,1,OSAL_RETURN_FAIL,;The aquired thread_control->usr_config is 0
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,0,2,OSAL_RETURN_ID,;The aquired thread_control->usr_config->id is not equal thread_id
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_FAIL,0,0,0,2,0,1,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex return OSAL_RETURN_FAIL
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,0,2,1,1,OSAL_RETURN_BUSY,;thread_control->active is true
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,-1,0,0,2,0,1,OSAL_RETURN_FAIL,;pthread_cond_signal return non-zero
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,-1,2,0,1,OSAL_RETURN_FAIL,;pthread_mutex_unlock return non-zero
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_ID,;R_OSAL_RCFG_GetNumOfThread() return 0
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,gs_osal_thread_is_initialized,OSAL_RETURN_OK,2,1,0,OSAL_RETURN_OK,0,0,0,2,0,1,OSAL_RETURN_STATE,;Check if the block is released after the de-initialization

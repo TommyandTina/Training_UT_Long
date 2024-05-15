@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_MemoryBarrierInit,12_301,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_syscall,syscall,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_syscall@AMIN_return,R_OSAL_OS_MemoryBarrierInit@@,;,,,,,,,,,
+,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,
+,1,OSAL_RETURN_FAIL,;syscall() return error,,,,,,,,,

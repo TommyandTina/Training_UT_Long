@@ -1,0 +1,129 @@
+{
+    "module_name": "OSAL Sample Application",
+    "filename": "r11an0632ej0350-osal",
+    "module_short_name": "OSAL Sample Application",
+    "document_type": "Memory Manager",
+    "document_status": "Released",
+    "document_number": "LLWEB-20108384",
+    "history":
+    [
+        {
+            "version": "0.10E",
+            "date": "May.12,2021",
+            "change":
+            [
+                {
+                    "page": "-",
+                    "content": "Newly Created."
+                }
+            ]
+        },
+        {
+            "version": "0.20E",
+            "date": "Jul.5,2021",
+            "change": [{
+                    "page": "p.6",
+                    "content": "2.3.2.2 common_alloc_use()\nChange the output destination of R_OSAL_MmngrDebugBufferPrint, OSAL_MmngrDebugMmngrPrint and from file to stdout."
+                }
+            ]
+        },
+        {
+            "version": "0.30E",
+            "date": "Aug.31,2021",
+            "change": [{
+                    "page": "-",
+                    "content": "Update the type definition of the function used in the main function\n- int init_obj_main_task → static int32_t init_obj_main_task\n- int alloc_use_main_task → static int32_t alloc_use_main_task\n- int common_alloc_use → static int32_t common_alloc_use\n- void monitorCb → static void monitorCb"
+                }
+            ]
+        },
+        {
+            "version": "1.00E",
+            "date": "Oct.4,2021",
+            "change": [{
+                    "page": "-",
+                    "content": "- Updated Document status from Draft to Released."
+                }
+            ]
+        },
+        {
+            "version": "1.10E",
+            "date": "Oct.19,2021",
+            "change": [{
+                    "page": "-",
+                    "content": "- Change document template"
+                }
+            ]
+        },
+        {
+            "version": "2.00E",
+            "date": "Dec.7,2021",
+            "change": [{
+                    "page": "-",
+                    "content": "Update Document Status to Released"
+                }
+            ]
+        },
+        {
+            "version": "3.00E",
+            "date": "Jul.20,2022",
+            "change": [{
+                    "page": "p.7",
+                    "content": "Add sample code for OSAL multi-memory region APIs"
+                }
+            ]
+        },
+        {
+            "version": "3.10E",
+            "date": "Nov.09,2022",
+            "change": [{
+                    "page": "-",
+                    "content": "Simplify the OSAL sample memory app by updating it based on the new sequence diagram"
+                }
+            ]
+        },
+        {
+            "version": "3.20E",
+            "date": "Dec.06,2022",
+            "change": [{
+                    "page": "-",
+                    "content": "Improve the doxygen of OSAL sample memory app\n- Update the description of doxygen @param in more detail"
+                },
+                {
+                    "page": "p.1",
+                    "content": "Add the overview section for OSAL sample memory app"
+                }
+            ]
+        },
+        {
+            "version": "3.30E",
+            "date": "Jan.06,2023",
+            "change": [{
+                    "page": "-",
+                    "content": "Add OSAL version output using R_OSAL_GetVersion"
+                },
+                {
+                    "page": "p.1",
+                    "content": "Update related document version in overview"
+                }
+            ]
+        },
+        {
+            "version": "3.40E",
+            "date": "Feb.09,2023",
+            "change": [{
+                    "page": "p.1",
+                    "content": "Update OSAL API Version from 3.6.0 to 3.7.0\n Update API User's Manual Version from 3.08E to 3.09E "
+                }
+            ]
+        },
+        {
+            "version": "3.50E",
+            "date": "Aug.06,2023",
+            "change": [{
+                    "page": "p.1",
+                    "content": "Update API User's Manual Version from 3.09E to 3.11E "
+                }
+            ]
+        }
+    ]
+}

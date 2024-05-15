@@ -1,0 +1,22 @@
+modi,R_OSAL_OS_InterruptEnableIsr,14_105,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTimedLock,R_OSAL_OS_MutexTimedLock,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Write,R_OSAL_OS_Write,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondSignal,R_OSAL_OS_CondSignal,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].int_handle,@handle[0].int_handle[0].irq_enable,@handle[0].int_handle[0].irq_func,@irq_channel,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTimedLock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AM_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Write@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondSignal@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_OS_InterruptEnableIsr@@,;
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (irq_enable is true)
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (is_isr is true)
+,0,g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;handle is NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;irq_func is NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexTimedLock returns OSAL_RETURN_TIME
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext returns OSAL_RETURN_FAIL (Unlock is OK)
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext returns OSAL_RETURN_FAIL (Unlock is FAIL)
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_Write returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_CondSignal returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL

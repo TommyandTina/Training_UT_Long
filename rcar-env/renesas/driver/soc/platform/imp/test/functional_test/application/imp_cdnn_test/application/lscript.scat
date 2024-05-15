@@ -1,0 +1,84 @@
+/* sample scatter file */
+
+PSU_DDR_0_S_AXI_BASEADDR 0x54C00000 NOCOMPRESS 0x2B400000
+{
+	TEXT 0x54C00000 FIXED
+	{
+		*(.vectors,+FIRST)
+		*(.boot)
+		*(.text)
+		*(.text.*)
+	}
+
+	RODATA AlignExpr(ImageLimit(TEXT),1024*1024*2) FIXED
+	{
+		*(.rodata.*)
+		*(.constdata)
+		.ANY(+RO)
+	}
+
+	DATA AlignExpr(ImageLimit(RODATA),1024*1024*2) FIXED
+	{
+		*(.data)
+		*(.data.*)
+		.ANY(+RW)
+	}
+
+	GOT ImageLimit(DATA)
+	{
+		.ANY(.got)
+	}
+
+	INIT_ARRAY AlignExpr(ImageLimit(GOT),1024*1024*2) SORTTYPE Lexical
+	{
+		*(.init_array.*)
+		*(.init_array)
+	}
+
+	BSS AlignExpr(ImageLimit(INIT_ARRAY),1024*1024*2)
+	{
+		*(.bss)
+		*(.bss.*)
+		.ANY(+ZI)
+	}
+	
+	EL3_STACK AlignExpr(ImageLimit(BSS),1024*1024*2) EMPTY 0x2000
+	{
+	}
+	EL2_STACK AlignExpr(ImageLimit(EL3_STACK),64) EMPTY 0x2000
+	{
+	}
+	EL1_STACK AlignExpr(ImageLimit(EL2_STACK),64) EMPTY 0x2000
+	{
+	}
+	EL0_STACK AlignExpr(ImageLimit(EL1_STACK),64) EMPTY 0x2000
+	{
+	}
+	
+	MMU_TABLE0 AlignExpr(ImageLimit(EL0_STACK),1024*1024*2) EMPTY 0x1000
+	{
+	}
+	MMU_TBL1 AlignExpr(ImageLimit(MMU_TABLE0),1024*1024*2) EMPTY 0x4000
+	{
+	}
+	
+	ARM_LIB_STACK AlignExpr(ImageLimit(MMU_TBL1),1024*1024*2) EMPTY 0x2000
+	{
+	}
+	
+
+	ARM_LIB_HEAP +0 EMPTY (0x54C00000+0x2B400000-ImageLimit(ARM_LIB_STACK))
+	{
+	}
+
+}
+
+peripherals_memory 0xE6000000 NOCOMPRESS (0x100000000-0xE6000000)
+{
+	peripherals_start 0xE6000000 EMPTY 4
+	{
+	}
+	peripherals_end 0x100000000 EMPTY 4
+	{
+	}
+}

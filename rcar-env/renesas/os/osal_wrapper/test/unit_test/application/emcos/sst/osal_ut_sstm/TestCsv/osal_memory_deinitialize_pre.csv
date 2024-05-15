@@ -1,0 +1,6 @@
+modi,osal_memory_deinitialize_pre,09_022,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,osal_memory_deinitialize_pre@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation,,,,,,,,,
+,0,OSAL_RETURN_STATE,;gs_osal_memory_is_initialized is equals OSAL_MMNGR_STATE_NONE,,,,,,,,,

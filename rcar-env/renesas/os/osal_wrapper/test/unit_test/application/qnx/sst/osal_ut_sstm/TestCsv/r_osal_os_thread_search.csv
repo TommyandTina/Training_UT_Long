@@ -1,0 +1,7 @@
+modi,r_osal_os_thread_search,02_112,5,1,,,,CPP,,,,0
+#InitWheneverCall,AMSTB_SrcFile.c/g_thread_id,AMSTB_SrcFile.c/g_st_osal_thread_affinity_addr_t[0].p_affinity_info,g_osal_thread_affinity[0].id,,,,,,,,,
+0,0,0,0,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/g_thread_id,AMSTB_SrcFile.c/g_st_osal_thread_affinity_addr_t[0].p_affinity_info,g_osal_thread_affinity[0].id,@p_key,@p_search_info,r_osal_os_thread_search@@,;,,,,,
+,1,g_osal_thread_affinity,1,g_thread_id,g_st_osal_thread_affinity_addr_t,0,;key is equal to p_affinity_addr->p_affinity_info->id,,,,,
+,2,g_osal_thread_affinity,1,g_thread_id,g_st_osal_thread_affinity_addr_t,1,;key more than p_affinity_addr->p_affinity_info->id,,,,,
+,0,g_osal_thread_affinity,1,g_thread_id,g_st_osal_thread_affinity_addr_t,-1,;key less than p_affinity_addr->p_affinity_info->id,,,,,

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<module name="spi-rcar">
+	<type>Element</type>
+	<classification>Driver</classification>
+
+	<description>
+		<short>R_CarH2 SPI Driver</short>
+	        <abstract>
+		<![CDATA[The Serial Protocol Interface on the msiof is protocol compatible
+				with the standard Serial Protocol Interface.
+				supports Full Duplex communication in Master mode. The SPI provides
+                serial communications between the msiof CPU core and peripheral devices.]]>
+	        </abstract>
+	</description>
+
+	<supports>
+		<availability>
+			<cpu isa="arm">
+				<byteOrder>le.v7</byteOrder>
+			</cpu>
+		</availability>
+	</supports>
+
+	<source available="false">
+		<location type="">.</location>
+	</source>
+	<GroupOwner>hw</GroupOwner>
+
+	<contents>
+		<component id="spi-rcar" generated="true">
+			<location basedir="{cpu}/dll{.:endian}"
+				 runtime="true">spi-rcar.so</location>
+		</component>
+	</contents>
+
+	<requires>
+		<part build="true" location="lib/spi"/>
+		<part build="false" location="hardware/spi"/>
+	</requires>
+</module>

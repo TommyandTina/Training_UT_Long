@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_GetNumOfMutex,03_024,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,r_osal_usr_cfg.c/gsp_osal_mutex_config,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,r_osal_usr_cfg.c/gsp_osal_mutex_config,R_OSAL_RCFG_GetNumOfMutex@@,;,,,,,,,,
+,1,g_osal_mutex_config,146,;Normal operation ,,,,,,,,
+,1,g_osal_mutex_config_dummy,0,;Invalid config,,,,,,,,

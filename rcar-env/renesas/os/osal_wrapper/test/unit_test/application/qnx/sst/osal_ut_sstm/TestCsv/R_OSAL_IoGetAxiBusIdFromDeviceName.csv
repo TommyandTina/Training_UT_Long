@@ -1,0 +1,11 @@
+modi,R_OSAL_IoGetAxiBusIdFromDeviceName,07_025,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_IoGetInitStatus,R_OSAL_DCFG_IoGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_IoGetAxiBusIdFromDeviceName,R_OSAL_DCFG_IoGetAxiBusIdFromDeviceName,,,,,,,,,,
+#COMMENT,$@p_device_name,@p_axi_id,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_IoGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_IoGetAxiBusIdFromDeviceName@AMIN_return,R_OSAL_IoGetAxiBusIdFromDeviceName@@,;,,,,,,
+,1,array_uint64,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,1,array_uint64,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;R_OSAL_DCFG_IoGetInitStatus return OSAL_MANAGER_STATE_UNINITIALIZED,,,,,,
+,0,array_uint64,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_device_name is NULL,,,,,,
+,1,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_axi_id is NULL,,,,,,
+,1,array_uint64,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_DCFG_IoGetAxiBusIdFromDeviceName return OSAL_RETURN_FAIL,,,,,,

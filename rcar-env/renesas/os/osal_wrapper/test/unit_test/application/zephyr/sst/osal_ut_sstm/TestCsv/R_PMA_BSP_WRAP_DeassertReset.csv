@@ -1,0 +1,8 @@
+modi,R_PMA_BSP_WRAP_DeassertReset,05_010,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_pma_bsp_wrapper.c/cpg_idmax,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_clock_control_off,clock_control_off,,,,,,,,,,
+#COMMENT,@modId,r_pma_bsp_wrapper.c/cpg_idmax,AMSTB_SrcFile.c/AMSTB_clock_control_off@AMIN_return,R_PMA_BSP_WRAP_SetCpgON@@,;,,,,,,,
+,0,1,0,R_PMA_OK,;Normal case,,,,,,,
+,2,1,0,R_PMA_INVALID_ARGUMENT,;modId is larger than the max number of CPG ID.,,,,,,,
+,0,1,1,R_PMA_BSP_ECPG,;clock_control_off() returns unknown value.,,,,,,,

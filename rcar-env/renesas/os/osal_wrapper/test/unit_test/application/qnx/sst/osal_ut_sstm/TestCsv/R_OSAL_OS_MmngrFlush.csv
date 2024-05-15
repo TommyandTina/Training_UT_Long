@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_MmngrFlush,09_042,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_msync,msync,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,@addr,@offset,@size,AMSTB_SrcFile.c/AMSTB_msync@AMIN_return,R_OSAL_OS_MmngrFlush@@,;,,,,,
+,1,1,1,1,0,OSAL_RETURN_OK,;Normal operation,,,,,
+,1,1,1,1,-1,OSAL_RETURN_FAIL,;msync() return non-0.,,,,,

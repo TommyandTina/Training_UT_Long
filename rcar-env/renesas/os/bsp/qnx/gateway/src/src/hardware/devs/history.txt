@@ -1,0 +1,14 @@
+    The io-sock based Ethernet driver for R-Car V4H boards
+
+    CREATED   : 02.28.2023
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car V4H boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+                02.28.2023 : Ver.0.1
+                - First support io-sock for RSwitch2 (support up 3 ports simultaneously)
+-----------------------------------------------------------------------------
+ Known limitations
+-----------------------------------------------------------------------------            

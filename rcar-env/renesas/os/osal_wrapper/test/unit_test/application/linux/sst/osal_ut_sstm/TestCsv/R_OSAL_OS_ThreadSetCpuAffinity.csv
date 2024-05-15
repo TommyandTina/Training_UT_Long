@@ -1,0 +1,17 @@
+modi,R_OSAL_OS_ThreadSetCpuAffinity,09_106,19,5,,,,CPP,,,,0,,,,,,,,,,,,,
+#InitWheneverCall,g_osal_thread_affinity[0].id,g_osal_thread_affinity[0].affinity,g_osal_thread_affinity[1].id,g_osal_thread_affinity[1].affinity,g_osal_thread_affinity[2].id,g_osal_thread_affinity[2].affinity,g_osal_thread_affinity[3].id,g_osal_thread_affinity[3].affinity,g_osal_thread_affinity[4].id,g_osal_thread_affinity[4].affinity,g_osal_thread_affinity[5].id,g_osal_thread_affinity[5].affinity,,,,,,,,,,,,,
+0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,,
+%,AMSTB_CPU_SET,CPU_SET,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_CPU_SET,CPU_SET,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_CPU_SET,CPU_SET,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_CPU_SET,CPU_SET,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_CPU_SET,CPU_SET,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_setaffinity_np,pthread_setaffinity_np,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,g_osal_thread_affinity[0].id,g_osal_thread_affinity[0].affinity,g_osal_thread_affinity[1].id,g_osal_thread_affinity[1].affinity,g_osal_thread_affinity[2].id,g_osal_thread_affinity[2].affinity,g_osal_thread_affinity[3].id,g_osal_thread_affinity[3].affinity,g_osal_thread_affinity[4].id,g_osal_thread_affinity[4].affinity,g_osal_thread_affinity[5].id,g_osal_thread_affinity[5].affinity,@id,AMSTB_SrcFile.c/AMSTB_CPU_SET@AM_count,AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[0],AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[1],AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[2],AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[3],AMSTB_SrcFile.c/AMSTB_pthread_setaffinity_np@AMIN_return,R_OSAL_OS_ThreadSetCpuAffinity@@,AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[0],AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[1],AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[2],AMSTB_SrcFile.c/AMSTB_CPU_SET@AMOUT_cpu[3],;
+,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,0,0,-1,-1,-1,-1,0,OSAL_RETURN_OK,-1,-1,-1,-1,;g_osal_thread_affinity[0].id is OSAL_THREAD_AFFINITY_INVALID_ID
+,0,0x1,1,0x2,2,0x4,3,0x8,4,0xA,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,5,0,-1,-1,-1,-1,0,OSAL_RETURN_OK,-1,-1,-1,-1,;id of parameter is not found from g_osal_thread_affinity
+,0,0x0,1,0x2,2,0x4,3,0x8,4,0xA,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,0,0,-1,-1,-1,-1,0,OSAL_RETURN_OK,-1,-1,-1,-1,;g_osal_thread_affinity[0].affinity is 0
+,0,0x1,1,0x2,2,0x4,3,0x8,4,0x0,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,4,0,-1,-1,-1,-1,0,OSAL_RETURN_OK,-1,-1,-1,-1,;g_osal_thread_affinity[4].affinity is 0
+,0,0x1,1,0x2,2,0x4,3,0x8,4,0xA,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,0,0,-1,-1,-1,-1,0,OSAL_RETURN_OK,0,-1,-1,-1,;g_osal_thread_affinity[0].affinity is 0x1
+,0,0x1,1,0x2,2,0x4,3,0x8,4,0xA,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,4,0,-1,-1,-1,-1,0,OSAL_RETURN_OK,1,3,-1,-1,;g_osal_thread_affinity[4].affinity is 0xA
+,0,0x1,1,0x2,2,0x4,3,0x8,4,0xA,OSAL_THREAD_AFFINITY_INVALID_ID,0x0,0,0,-1,-1,-1,-1,-1,OSAL_RETURN_FAIL,,,,,;pthread_setaffinity_np returns -1

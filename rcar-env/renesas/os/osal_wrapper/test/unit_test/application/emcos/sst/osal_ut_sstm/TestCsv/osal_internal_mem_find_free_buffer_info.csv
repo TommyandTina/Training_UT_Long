@@ -1,0 +1,7 @@
+modi,osal_internal_mem_find_free_buffer_info,09_029,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_mngr_control,@p_mngr_control[0].config.max_allowed_allocations,@p_mngr_control[0].p_buffers,g_osal_mem_buf_ptr_self.handle_id,$@pp_buffer_info,osal_internal_mem_find_free_buffer_info@@,;,,,,,
+,1,2,g_osal_mem_buf_ptr_self,0,1,OSAL_RETURN_OK,;Normal operation,,,,,
+,1,1,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,1,OSAL_RETURN_OK,;p_mngr_control->p_buffers[loop_count].handle_id is equals OSAL_BUFFER_HANDLE_ID,,,,,
+,1,1,g_osal_mem_buf_ptr_self,OSAL_BUFFER_HANDLE_ID,0,OSAL_RETURN_OK,;pp_buffer_info is NULL.,,,,,

@@ -1,0 +1,16 @@
+    The RPC (PWM) driver for R-Car Gen3 boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 04.16.2021
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            02.28.2021 : Ver.1.0
+			- Create new version
+            - Support for R-Car Gen3
+            04.16.2021 : Ver.1.1
+ 			- Modify pwm_drv.c to use dispatch_handler instead of thread pool
+ 			- Change the number in devctl commnads in pwm.h
+ 			- Add procmgr_daemon to run process in the background 			     

@@ -1,0 +1,45 @@
+	The CPG/CPG-support libraries for RENESAS R-Car Gen3 & Gen4 boards
+
+    CREATED   : 01.25.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 & Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            01.25.2021 : Ver.0.1
+            - Create new version (support for R-Car V3U)
+            02.28.2021 : Ver.0.2
+            - Update and Support for R-Car Gen3
+            04.26.2021 : Ver.0.3
+            - Add CA57 CPU clock setting(used in for startup)
+            05.19.2021 : Ver.0.4
+            - Add POSTnCKCR support
+            - Add divider function
+            06.30.2021 : Ver.0.5
+            - Add AVS code in changing CA57 clock
+            - Add CPU clock getting function (used in for startup)
+            - Add register index checking for PLL and SDHI modules for each SoC
+            - Suport RPC, SDHI modules to divider function
+            07.30.2021 : Ver.0.6
+            - Merge /cpg-support and /cpg
+            - Return error code from HW interface to user interface
+            - Add error messages to version which is used in startup module
+            09.30.2021 : Ver.0.7
+            - Support for R-Car S4
+            - Add SDSRCφ divider support for V3H2.0
+            30.10.2021 : Ver.0.8
+            - Port new CPG/SYSC frameworks
+            04.12.2022 : Ver.0.9
+            - Add bit allocation for AES and SHIP
+            - Add cases PLL2, PLL2 and PLL6 for change values in cpg-support
+            10.17.2022 : Ver.1.0
+            - Updated SRCRn access from read-modify-write to only write to target bit (this has fixed Software Reset issue when 2 OS in CA and CR cores are accessing same SRCRn register at the same time)
+            - Removed using error codes from errno.h
+            - Added error codes:
+              CPG_RET_OK
+              CPG_RET_INVALPARA
+              CPG_RET_TIMEOUT
+              CPG_RET_HWFAIL
+              CPG_RET_UNKNOWNSTA
+              CPG_RET_ERROR

@@ -1,0 +1,8 @@
+modi,r_osal_os_mq_cond_destroy,19_118,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,
+#COMMENT,@p_cond,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AMIN_return[0],r_osal_os_mq_cond_destroy@@,;,,,,,,,
+,g_osal_os_cond_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,g_osal_os_cond_t,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_CondDestroy returns OSAL_RETURN_FAIL,,,,,,,

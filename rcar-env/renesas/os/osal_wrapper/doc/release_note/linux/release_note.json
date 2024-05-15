@@ -1,0 +1,1561 @@
+{
+    "release_date": "Feb.08.2024",
+    "document_version": "Rev.1.6.0",
+    "document_num": "",
+    "title": "OSAL Wrapper for Linux on R-Car V3H/V3M/V4H/V4M/S4",
+    "intro": {
+        "description": [
+            "This document describes updates and restrictions for this release."
+        ]
+    },
+    "overview": {
+        "description": [
+            "This document describes the contents regarding to the OSAL Wrapper for Linux on R-Car V3H/V3M/V4H/V4M/S4. \\n "
+        ]
+    },
+    "general_info": {
+        "table": [
+            {
+                "item": "Target devices",
+                "name": "R-Car V3H Ver1.1, V3H_2 Ver2.1 \\n R-Car V3M Ver2.0 \\n R-Car V4H Ver2.x \\n R-Car V4M \\n R-Car S4(includes S4N) ",
+                "note": "The quality grade of R-Car V3H Ver1.1, V4H Ver2.0,2.1 are always Reference. \\n "
+            },
+            {
+                "item": "Supported OS",
+                "name": "R-Car V3H,V3H_2,V3M,V4H Ver2.0,2.1 \\n - Yocto Recipe Package v6.13.0 \\n R-Car V4H Ver2.2,V4M \\n - Yocto Recipe Package v6.20.0 \\n R-Car S4 \\n - Yocto Recipe Package v5.21.0",
+                "note": "Each Yocto Recipe Package supports the listed version or later"
+            },
+            {
+                "item": "Tool Chain",
+                "name": "- Poky SDK 3.1.11 \\n - ARM Compiler 6.16.1",
+                "note": "-"
+            },
+            {
+                "item": "OSAL API Specification",
+                "name": "OSAL API 3.7.0",
+                "note": "-"
+            },
+            {
+                "item": "OSAL Configuration",
+                "name": "OSAL Configuratino 1.1.0",
+                "note": "-"
+            }
+        ]
+    },
+    "release_software": {
+        "table": [{
+            "name": "OSAL Wrapper for Linux \\n (R-Car S4(includes S4N))",
+            "version": "3.12.0",
+            "cur_qual": "Reference/ \\n QM",
+            "tar_qual": "Reference/ \\n QM",
+            "note": "The actual quality grade \\n corresponds to the SLA"
+        },
+        {
+            "name": "OSAL Wrapper for Linux \\n (R-Car V3H_2,V3M,V4H Ver2.2)",
+            "version": "3.13.0",
+            "cur_qual": "Reference/ \\n QM",
+            "tar_qual": "Reference/ \\n QM",
+            "note": "The actual quality grade \\n corresponds to the SLA"
+        },
+        {
+            "name": "OSAL Wrapper for Linux \\n (R-Car V4M)",
+            "version": "3.14.0",
+            "cur_qual": "Beta",
+            "tar_qual": "Reference/ \\n QM",
+            "note": "The actual quality grade \\n corresponds to the SLA"
+        },
+        {
+            "name": "OSAL Wrapper for Linux \\n (R-Car V3H,V4H Ver2.0,2.1)",
+            "version": "3.13.0",
+            "cur_qual": "Reference",
+            "tar_qual": "Reference",
+            "note": "-"
+        }],
+        "note": [
+            "The Current/Target Quality grades options are below:",
+            " - Current: Sample, Reference, Alpha Beta, QM, ASIL",
+            " - Target: Sample, Reference, QM, ASIL\\n",
+            " \\n"
+        ]
+    },
+    "license": {
+        "description": [
+            "Proprietary license \\n",
+            "Copyright(C) [2020 - 2024] Renesas Electronics Corporation. All rights reserved."
+        ],
+        "table": [
+
+        ]
+    },
+    "restriction": {
+        "table": [
+            {
+                "no": "-",
+                "description": [
+                    "-"
+                ],
+                "impact": "-",
+                "note": "-"
+            }
+        ]
+    },
+    "rel_document": {
+        "table": [{
+                "type": "API Specification",
+                "name": "R-Car_OSAL_APISpecification.pdf",
+                "version": "3.70E",
+                "update": "no",
+                "note": "-"
+            },
+            {
+                "type": "API User's Manual",
+                "name": "r11uz0125ej0311-osal.pdf",
+                "version": "3.11E",
+                "update": "no",
+                "note": "-"
+            },
+            {
+                "type": "Application Note",
+                "name": "r11an0630ej0312-osal.pdf",
+                "version": "3.12E",
+                "update": "no",
+                "note": "-"
+            },
+            {
+                "type": "API Test Specification",
+                "name": "R-Car_OSAL_TestSpecification.pdf",
+                "version": "3.150E",
+                "update": "no",
+                "note": "-"
+            },
+            {
+                "type": "Wrapper User's Manual",
+                "name": "r11uz0126ej0317-osalwrapper.pdf",
+                "version": "3.17E",
+                "update": "yes",
+                "note": "-"
+            },
+            {
+                "type": "Contents List",
+                "name": "CONTENT.md",
+                "version": "-",
+                "update": "yes",
+                "note": "-"
+            }
+        ]
+    },
+    "upgrade": {
+        "description": [
+            ""
+        ],
+        "section": [{
+                "name": "Version 0.1.0",
+                "description": [
+                    "- In the version 0.1.0, this is new creation for alpha release.",
+                    "- This software is checked in 1-pass case."
+                ]
+            },
+            {
+                "name": "Version 0.2.0",
+                "description": [
+                    "- This software is checked in 1-pass case.",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 0.3.0",
+                "description": [
+                    "- This software is checked in 1-pass case.",
+                    "- Refer to Table 2-1 for details on each API status.",
+                    "     - Implemented request buffer size in R_OSAL_IoGetDeviceList ()."
+                ]
+            },
+            {
+                "name": "Version 0.4.0",
+                "description": [
+                    "- This software is checked in 1-pass case",
+                    "- Refer to Table 2-1 for details on each API status.",
+                    "     - Below IO manager APIs are implemented \\n",
+                    "         - R_OSAL_IoGetDeviceAxiBusId \\n",
+                    "         - R_OSAL_IoGetAxiBusIdFromDeviceName \\n",
+                    "         - R_OSAL_IoGetAxiBusNameList \\n",
+                    "         - R_OSAL_IoGetAxiBusName",
+                    "     - Below Power manager APIs are implemented \\n",
+                    "         - R_OSAL_PmSetRequiredState \\n",
+                    "         - R_OSAL_PmGetRequiredState \\n",
+                    "         - R_OSAL_PmWaitForState \\n",
+                    "         - R_OSAL_PmGetState \\n",
+                    "         - R_OSAL_PmSetPolicy \\n",
+                    "         - R_OSAL_PmGetPolicy \\n",
+                    "         - R_OSAL_PmSetResetState \\n",
+                    "         - R_OSAL_PmGetResetState \\n",
+                    "         - R_OSAL_PmGetLowestIntermediatePowerState",
+                    "     - Below Memory manager APIs are implemented \\n",
+                    "         - R_OSAL_MmngrOpen \\n",
+                    "         - R_OSAL_MmngrClose \\n",
+                    "         - R_OSAL_MmngrAlloc \\n",
+                    "         - R_OSAL_MmngrDealloc \\n",
+                    "         - R_OSAL_MmngrGetConfig \\n",
+                    "         - R_OSAL_MmngrGetOsalMaxConfig \\n",
+                    "         - R_OSAL_MmngrInitializeMmngrConfigSt \\n",
+                    "         - R_OSAL_MmngrRegisterMonitor \\n",
+                    "         - R_OSAL_MmngrGetCpuPtr \\n",
+                    "         - R_OSAL_MmngrGetConstCpuPtr \\n",
+                    "         - R_OSAL_MmngrFlush \\n",
+                    "         - R_OSAL_MmngrInvalidate \\n",
+                    "         - R_OSAL_MmngrGetHwAddr \\n",
+                    "         - R_OSAL_MmngrGetSize \\n",
+                    "         - R_OSAL_MmngrCheckBuffer \\n",
+                    "         - R_OSAL_MmngrDebugMmngrPrint \\n",
+                    "         - R_OSAL_MmngrDebugBufferPrint"
+                ]
+            },
+            {
+                "name": "Version 0.5.0",
+                "description": [
+                    "- This software is checked in 1-pass case.",
+                    "- Refer to Table 2-1 for details on each API status.",
+                    "     - Below Power manager APIs are implemented.",
+                    "         - R_OSAL_PmSetPostClock \\n",
+                    "     - Below Memory manager APIs are verified for all supported algorithms.",
+                    "         - R_OSAL_MmngrOpen \\n",
+                    "         - R_OSAL_MmngrAlloc \\n",
+                    "         - R_OSAL_MmngrClose \\n",
+                    "         - R_OSAL_MmngrDealloc \\n"
+                ]
+            },
+            {
+                "name": "Version 0.6.0",
+                "description": [
+                    "- Fixed static analysis.",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 0.7.0",
+                "description": [
+                    "- Fixed static analysis.",
+                    "- Change R_OSAL_MmngrAlloc () so that the alignment is adjusted based on physical address.",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 0.8.0",
+                "description": [
+                    "- Improve performance for resource creation and deletion.",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 0.9.0",
+                "description": [
+                    "- Add new API",
+                    "     - R_OSAL_ThsyncMemoryBarrier [OSAL-1695, OSAL-1704]",
+                    "- Add type check for ioctl() by static assertion. [OSAL-1625]",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 0.10.0",
+                "description": [
+                    "- Supported new device type [OSAL-1733, OTLINT-929]",
+                    "     - ipmmu_mm, ipmmu_cache, fpcrr, fcprw, fcpra",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 1.0.0",
+                "description": [
+                    "- Removed Restriction #1 from Version 0.10.0 release [OSAL-1979]",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 1.1.0",
+                "description": [
+                    "- Update device definition regarding to Yocto 4.17.0"
+                ]
+            },
+            {
+                "name": "Version 1.2.0",
+                "description": [
+                    "- Add new API [OSAL-1742].",
+                    "     - R_OSAL_IoGetNumOfAXIIdsForAXIBusName",
+                    "     - R_OSAL_IoGetAxiIdListForAXIBusName",
+                    "     - R_OSAL_IoGetNumOfAXIIdsForDeviceHdl",
+                    "     - R_OSAL_IoGetAxiIdListForDeviceHdl",
+                    "     - R_OSAL_IoGetNumOfAXIIdsForDeviceName",
+                    "     - R_OSAL_IoGetAxiIdListForDeviceName",
+                    "- Reduction of stack usage. [OSAL-2064]",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 1.3.0",
+                "description": [
+                    "- Fully support below API [OSAL-1742].",
+                    "     - R_OSAL_IoGetNumOfAXIIdsForAXIBusName",
+                    "     - R_OSAL_IoGetAxiIdListForAXIBusName",
+                    "     - R_OSAL_IoGetNumOfAXIIdsForDeviceHdl",
+                    "     - R_OSAL_IoGetAxiIdListForDeviceHdl",
+                    "     - R_OSAL_IoGetNumOfAXIIdsForDeviceName",
+                    "     - R_OSAL_IoGetAxiIdListForDeviceName",
+                    "- Reduction of stack usage. [OSAL-2064]",
+                    "- Remove device dependency from wrapper implementation. [OSAL-2069]",
+                    "- Refer to Table 2-1 for details on each API status."
+                ]
+            },
+            {
+                "name": "Version 2.0.0",
+                "description": [
+                    "- Update osal wrapper software version."
+                ]
+            },
+            {
+                "name": "Version 3.0.0",
+                "description": [
+                    "- Added to supported following SoCs.",
+                    "    - R-Car V4H",
+                    "    - R-Car S4"
+                ]
+            },
+            {
+                "name": "Version 3.1.0",
+                "description": [
+                    "- Resolved following restriction, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-435",
+                    "- Added following restriction, Table 1-3 has more details.",
+                    "    - ASDRCXPOSAL-624",
+                    "    - ASDRCXPOSAL-625",
+                    "    - ASDRCXPOSAL-631",
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-577"
+                ]
+            },
+            {
+                "name": "Version 3.2.0",
+                "description": [
+                    "- Resolved following restriction, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-419",
+                    "    - ASDRCXPOSAL-624",
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-709",
+                    "    - ASDRCXPOSAL-711"
+                ]
+            },
+            {
+                "name": "Version 3.3.0",
+                "description": [
+                    "- Resolved following restriction, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-625",
+                    "    - ASDRCXPOSAL-631"
+                ]
+            },
+            {
+                "name": "Version 3.4.0",
+                "description": [
+                    "- Added a known issue, Table 3-1 has more details.",
+                    "    - ASDRCXPOSAL-886",
+                    "- Supported osal_configuration to register multiple memory region as resource information."
+                ]
+            },
+            {
+                "name": "Version 3.5.0",
+                "description": [
+                    "- Separated OS-dependent processing part and OS-independent processing part \\n ",
+                    "Along with the above changes, the structure of the User's Manual has changed.",
+                    "- R_OSAL_IoDeviceOpen now returns OSAL_RETURN_CONF. \\n",
+                    "This is the return value originally described in the API specification.",
+                    "- Added following restriction, Table 1-3 has more details.",
+                    "    - ASDRCXPOSAL-970",
+                    "- Added a Fixed issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-772",
+                    "    - ASDRCXPOSAL-977",
+                    "- Resolved following known issues, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-785",
+                    "    - ASDRCXPOSAL-810"
+                ]
+            },
+            {
+                "name": "Version 3.6.0",
+                "description": [
+                    "- Update API status from Partially Support to Fully support in Table 2-1",
+                    "    - R_OSAL_MmngrOpenFromRegionIdx()",
+                    "    - R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx()",
+                    "- The file structure of osal_configuration has been changed as follows. \\n ",
+                    "(Before) \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw/aarch64-<Compiler (armclang or gnu)>-linux/include/rcar-xos/osal_configuration/r_osal_usr_cfg_info.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw/aarch64-<Compiler (armclang or gnu)>-linux/include/rcar-xos/osal_configuration/r_osal_dev_cfg_info.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw/aarch64-<Compiler (armclang or gnu)>-linux/include/rcar-xos/osal_configuration/r_osal_configuration.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw/aarch64-<Compiler (armclang or gnu)>-linux/src/target/linux/r_osal_resource_info.c \\n ",
+                    "\\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw_src/renesas/os/osal_configuration/include/rcar-xos/osal_configuration/r_osal_usr_cfg_info.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw_src/renesas/os/osal_configuration/include/rcar-xos/osal_configuration/r_osal_dev_cfg_info.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw_src/renesas/os/osal_configuration/include/rcar-xos/osal_configuration/r_osal_configuration.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw_src/renesas/os/osal_configuration/src/target/linux/r_osal_resource_info.c \\n ",
+                    "(After) \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw/aarch64-<Compiler (armclang or gnu)>-linux/include/rcar-xos/osal_configuration/target/common/r_osal_res_cfg_info.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw/aarch64-<Compiler (armclang or gnu)>-linux/include/rcar-xos/osal_configuration/target/linux/r_osal_configuration.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw/aarch64-<Compiler (armclang or gnu)>-linux/src/target/linux/r_osal_configuration.c \\n ",
+                    " \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw_src/renesas/os/osal_configuration/include/rcar-xos/osal_configuration/target/common/r_osal_res_cfg_info.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw_src/renesas/os/osal_configuration/include/rcar-xos/osal_configuration/target/linux/r_osal_configuration.h \\n ",
+                    "<Package Root>/rcar-xos/<SDK Version>/sw_src/renesas/os/osal_configuration/src/target/linux/r_osal_configuration.c \\n ",
+                    "- Resolved following restriction, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-970",
+                    "- Added Fixed issues, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-1036"
+                ]
+            },
+            {
+                "name": "Version 3.7.0",
+                "description": [
+                    "- Added Fixed issues, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-1077",
+                    "    - ASDRCXPOSAL-1100",
+                    "    - ASDRCXPOSAL-1104"
+                ]
+            },
+            {
+                "name": "Version 3.8.0",
+                "description": [
+                    "- Changed the behavior when OSAL_MEMORY_MANAGER_CFG_UNLIMITED is specified to p_config->max_allowed_allocations and p_config->max_registered_monitors_cbs of the argument of R_OSAL_MmngrOpen.",
+                    "    - Before: OSAL_MEMORY_MANAGER_CFG_UNLIMITED could be specified as an argument but OSAL_RETURN_MEM was returned due to lack of space when allocating memory. \\n ",
+                    "    - After: When OSAL_MEMORY_MANAGER_CFG_UNLIMITED is specified as an argument, it operates with the maximum value defined in g_osal_memory_max_configration. \\n ",
+                    "    - Note: If there is not a memory area that can allocate the maximum value of the internal configuration, R_OSAL_MmngrOpen returns OSAL_RETURN_MEM the same as previously. "
+                ]
+            },
+            {
+                "name": "Version 3.9.0",
+                "description": [
+                    "- Supported R-Car V4H2.0",
+                    "- Added Fixed issues, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-1185",
+                    "    - ASDRCXPOSAL-1192",
+                    "- Added a known issue, Table 3-1 has more details.",
+                    "    - ASDRCXPOSAL-1239"
+                ]
+            },
+            {
+                "name": "Version 3.10.0",
+                "description": [
+                    "- Updated R_OSAL_IoDeviceOpen() to allow multiple processes to open the same device ID",
+                    "- Added Fixed issues, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-886",
+                    "    - ASDRCXPOSAL-1208"
+                ]
+            },
+            {
+                "name": "Version 3.11.0",
+                "description": [
+                    "- Supported the following new funcitons. ",
+                    "    - Set CPU affinity so that target thread run on the specified CPU cores.",
+                    "    - Added CPU affinity value and corespond thread to OSAL Configuration.",
+                    "- Removed restriction (ASDRCXPOSAL-456) in Table 2-1 API Status List.  \\n ",
+                    "This restriction was moved to \"1.3. Restrictions\" in API User's Manual.",
+                    "    - R_OSAL_IoGetDeviceAxiBusId",
+                    "    - R_OSAL_IoGetAxiBusIdFromDeviceName \\n ",
+                    "- Added Fixed issues, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-1239"
+                ]
+            },
+            {
+                "name": "Version 3.12.0",
+                "description": [
+                    "- Supported R-Car V3H1.1 and R-Car S4N",
+                    "- Added Fixed issues, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-1368"
+                ]
+            },
+            {
+                "name": "Version 3.13.0",
+                "description": [
+                    "- Updated module version of OSAL Wrapper to support R-Car V4H2.2 and V4M1.0"
+                ]
+            },
+            {
+                "name": "Version 3.14.0",
+                "description": [
+                    "- Fixed for static analysis."
+                ]
+            },
+            {
+                "name": "Version 3.15.0",
+                "description": [
+                    "- Added new memory region to osal_configuration that is located in a 40-bit address space.",
+                    "- Added the following error cause explanation in the Wrapper User's Manual.",
+                    "    - incorrect OSAL configuration value",
+                    "    - incorrect configurable variable"
+                ],
+                "custom_table": {
+                    "table_name": "Table 2-1 API Status List",
+                    "table": [{
+                            "c1": "60",
+                            "c2": "20",
+                            "c3": "20"
+                        },
+                        {
+                            "c1": "API Name",
+                            "c2": "Status",
+                            "c3": "Annotation"
+                        },
+                        {
+                            "c1": "R_OSAL_Initialize(void)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_DeInitialize(void)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadCreate(const st_osal_thread_config_t* const p_config, osal_thread_id_t thread_id, osal_thread_handle_t* const p_handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadSleepUntilTimeStamp(const st_osal_time_t* const p_time_stamp)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadSleepForTimePeriod(osal_milli_sec_t time_period)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadSelf(osal_thread_handle_t* const p_handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadEqual(osal_thread_handle_t handle1, osal_thread_handle_t handle2, bool* const p_result)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadJoin(osal_thread_handle_t handle, int64_t* const p_return_value)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadInitializeThreadConfigSt(st_osal_thread_config_t* const config)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexCreate(osal_mutex_id_t mutex_id, osal_mutex_handle_t* const p_handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexDestroy(osal_mutex_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexLockUntilTimeStamp(osal_mutex_handle_t handle, const st_osal_time_t* const p_time_stamp)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexLockForTimePeriod(osal_mutex_handle_t handle, osal_milli_sec_t time_period)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexTryLock(osal_mutex_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexUnlock(osal_mutex_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondCreate(osal_cond_id_t cond_id, osal_cond_handle_t* const p_handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondDestroy(osal_cond_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondWaitForTimePeriod(osal_cond_handle_t cond_handle, osal_mutex_handle_t mutex_handle, osal_milli_sec_t time_period)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondWaitUntilTimeStamp(osal_cond_handle_t cond_handle, osal_mutex_handle_t mutex_handle, const st_osal_time_t* const p_time_stamp)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondBroadcast(osal_cond_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondSignal(osal_cond_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMemoryBarrier(void)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqCreate(const st_osal_mq_config_t* const p_config, osal_mq_id_t mq_Id, osal_mq_handle_t* const p_handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqDelete(osal_mq_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqSendUntilTimeStamp(osal_mq_handle_t handle, const st_osal_time_t* const p_time_stamp, const void* p_buffer, size_t buffer_size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqSendForTimePeriod(osal_mq_handle_t handle, osal_milli_sec_t time_period, const void* p_buffer, size_t buffer_size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqReceiveUntilTimeStamp(osal_mq_handle_t handle, const st_osal_time_t* const p_time_stamp, void* p_buffer, size_t buffer_size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqReceiveForTimePeriod(osal_mq_handle_t handle, osal_milli_sec_t time_period, void* p_buffer, size_t buffer_size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqIsFull(osal_mq_handle_t handle, bool* const p_result)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqIsEmpty(osal_mq_handle_t handle, bool* const p_result)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqGetConfig(osal_mq_handle_t handle, st_osal_mq_config_t* const p_config)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqReset(osal_mq_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MqInitializeMqConfigSt(st_osal_mq_config_t* const config)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ClockTimeGetTimeStamp(e_osal_clock_type_t clock_type, st_osal_time_t* const p_time_stamp)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_ClockTimeCalculateTimeDifference(const st_osal_time_t* const p_time2, const st_osal_time_t* const p_time1, osal_nano_sec_t* const p_time_difference)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptGetNumOfIrqChannels(osal_device_handle_t handle, size_t* const p_numOfChannels)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptRegisterIsr(osal_device_handle_t handle, uint64_t irq_channel, e_osal_interrupt_priority_t priority_value, p_osal_isr_func_t irqHandlerFunction, void* irq_arg)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptUnregisterIsr(osal_device_handle_t handle, uint64_t irq_channel, p_osal_isr_func_t irqHandlerFunction)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptEnableIsr(osal_device_handle_t handle, uint64_t irq_channel)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptDisableIsr(osal_device_handle_t handle, uint64_t irq_channel)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptIsISRContext(bool* const p_is_isr)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptSetIsrPriority(osal_device_handle_t handle, uint64_t irq_channel, e_osal_interrupt_priority_t priority_value)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfDevices(const char* deviceType, size_t* const p_numOfDevices)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetDeviceList(const char* device_type_name, char* p_buffer, size_t buffer_size, size_t* const p_num_of_byte)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoDeviceOpen(const char* id, osal_device_handle_t* const p_handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoDeviceClose(osal_device_handle_t handle)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead8(osal_device_handle_t handle, uintptr_t offset, uint8_t* const p_data)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead16(osal_device_handle_t handle, uintptr_t offset, uint16_t* const p_data)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead32(osal_device_handle_t handle, uintptr_t offset, uint32_t* const p_data)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead64(osal_device_handle_t handle, uintptr_t offset, uint64_t* const p_data)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite8(osal_device_handle_t handle, uintptr_t offset, uint8_t data)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite16(osal_device_handle_t handle, uintptr_t offset, uint16_t data)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite32(osal_device_handle_t handle, uintptr_t offset, uint32_t data)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite64(osal_device_handle_t handle, uintptr_t offset, uint64_t data)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead8(osal_device_handle_t handle, uintptr_t offset, uint8_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead16(osal_device_handle_t handle, uintptr_t offset, uint16_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead32(osal_device_handle_t handle, uintptr_t offset, uint32_t* p_data, size_t size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead64(osal_device_handle_t handle, uintptr_t offset, uint64_t* p_data, size_t size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite8(osal_device_handle_t handle, uintptr_t offset, const uint8_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite16(osal_device_handle_t handle, uintptr_t offset, const uint16_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": "R-Car SoC HWA registers only support access in multiples of 32bit."
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite32(osal_device_handle_t handle, uintptr_t offset, const uint32_t* p_data, size_t size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite64(osal_device_handle_t handle, uintptr_t offset, const uint64_t* p_data, size_t size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetDeviceAxiBusId(osal_device_handle_t device, osal_axi_bus_id_t * const axi_id)",
+                            "c2": "Fully support",
+                            "c3": "This API will be deprecated and removed. User shall not be used."
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiBusIdFromDeviceName(const char * device_name, osal_axi_bus_id_t * const axi_id)",
+                            "c2": "Fully support",
+                            "c3": "This API will be deprecated and removed. User shall not be used."
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiBusNameList(char * p_buffer, size_t buffer_size, size_t * const p_num_of_byte)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiBusName(osal_axi_bus_id_t axi_id, char * p_buffer, size_t buffer_size, size_t * const p_num_of_byte)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfAxiIdsForAxiBusName ( const char * p_axi_bus_name, size_t * p_num_of_axi_ids )",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiIdListForAxiBusName (const char * p_axi_bus_name, osal_axi_bus_id_t * p_buffer, size_t num_of_max_entry, size_t * const p_num_of_written_axi_ids)",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfAxiIdsForDeviceHdl (osal_device_handle_t device_hdl, size_t * const p_num_of_axi_ids)",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiIdListForDeviceHdl (osal_device_handle_t device_hdl, osal_axi_bus_id_t * p_buffer, size_t num_of_max_entry, size_t * const p_num_of_written_axi_ids)",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfAxiIdsForDeviceName ( const char * p_device_name, size_t * const p_num_of_axi_ids )",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiIdListForDeviceName (const char * p_device_name, osal_axi_bus_id_t * p_buffer, size_t num_of_max_entry, size_t * const p_num_of_written_axi_ids )",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetRequiredState(osal_device_handle_t handle, e_osal_pm_required_state_t state, bool applyImmediate)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetRequiredState(osal_device_handle_t handle, e_osal_pm_required_state_t* const p_state)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmWaitForState(osal_device_handle_t handle, e_osal_pm_state_t state, osal_milli_sec_t time_period)",
+                            "c2": "Fully support",
+                            "c3": "fixed issue: ASDRCXPOSAL-1368"
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetState(osal_device_handle_t handle, e_osal_pm_state_t* const p_state)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetPolicy(osal_device_handle_t handle, e_osal_pm_policy_t policy, bool applyImmediate)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetPolicy(osal_device_handle_t handle, e_osal_pm_policy_t* const p_policy)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetResetState(osal_device_handle_t handle, e_osal_pm_reset_state_t state)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetResetState(osal_device_handle_t handle, e_osal_pm_reset_state_t* const p_state)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetLowestIntermediatePowerState(osal_device_handle_t handle, e_osal_pm_state_t* const state)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetPostClock(osal_device_handle_t handle, bool clock_enable, uint32_t clock_divider)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrOpen(const st_osal_mmngr_config_t * const config, osal_memory_manager_handle_t * const hndl_mmngr)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrOpenFromRegionIdx(const st_osal_mmngr_config_t * const p_config, osal_memory_region_idx_t region_idx, osal_memory_manager_handle_t * const p_hndl_mmngr)",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrClose(osal_memory_manager_handle_t hndl_mmngr)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrAlloc(osal_memory_manager_handle_t hndl_mmngr, size_t size, size_t alignment, osal_memory_buffer_handle_t * const buffer_obj)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrDealloc(osal_memory_manager_handle_t hndl_mmngr, osal_memory_buffer_handle_t buffer_obj)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetConfig(osal_memory_manager_handle_t hndl_mmngr, st_osal_mmngr_config_t * const config)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetOsalMaxConfig(st_osal_mmngr_config_t * co9nst config)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx(osal_memory_region_idx_t region_idx, st_osal_mmngr_config_t * const p_config)",
+                            "c2": "Fully Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrInitializeMmngrConfigSt(st_osal_mmngr_config_t * const config)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrRegisterMonitor(osal_memory_manager_handle_t hndl_mmngr, e_osal_mmngr_event_t monitored_event, fp_osal_memory_mngr_cb_t monitor_handler, void * user_arg)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetCpuPtr(osal_memory_buffer_handle_t memory_buffer_obj_hndl, void ** const cpu_ptr)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetConstCpuPtr(osal_memory_buffer_handle_t memory_buffer_obj_hndl, const void ** const const_cpu_ptr)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrFlush(osal_memory_buffer_handle_t memory_buffer_obj_hndl, size_t offset, size_t size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrInvalidate(osal_memory_buffer_handle_t memory_buffer_obj_hndl, size_t offset, size_t size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetHwAddr(osal_memory_buffer_handle_t memory_buffer_obj_hndl, osal_axi_bus_id_t axi_id, uintptr_t * const hw_addr)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetSize(osal_memory_buffer_handle_t memory_buffer_obj_hndl, size_t * const size)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrCheckBuffer(osal_memory_buffer_handle_t memory_buffer_obj_hndl)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrDebugMmngrPrint(osal_memory_manager_handle_t hndl_mmngr, FILE * output)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrDebugBufferPrint(osal_memory_buffer_handle_t hndl_buffer, FILE * output)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_GetVersion(void)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "typedef void (*p_osal_isr_func_t) (osal_device_handle_t device_handle, uint64_t irq_channel,void *irq_arg)",
+                            "c2": "Fully support",
+                            "c3": " "
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "kil": {
+        "description": [
+
+        ],
+        "table": [{
+            "number": "-",
+            "description": [
+                "-"
+            ],
+            "work_around": "-"
+        }
+    ]
+    },
+    "fil": {
+        "description": [
+
+        ],
+        "table": [{
+            "number": "ASDRCXPOSAL-577",
+            "description": "[Ver 3.1.0] Resolved an issue that caiplite_wrapper_00 could not be opened even though it was defined in the device tree."
+        },
+        {
+            "number": "ASDRCXPOSAL-435",
+            "description": "[Ver 3.1.0] The Restriction \"Return OSAL_RETURN_FAIL from R_OSAL_PmSetRequiredState when control clock about system_ram_00.\" was confirmed as the expected behavior according to the specifications of the SoC."
+        },
+        {
+            "number": "ASDRCXPOSAL-624",
+            "description": "[Ver 3.2.0] Kernel no longer outputs warning, when Device Open/Close system_ram_00."
+        },
+        {
+            "number": "ASDRCXPOSAL-709",
+            "description": ["[Ver 3.2.0] The following APIs correctly return states even for devices that have not been assigned Reset. (Previously, OSAL returned OSAL_RETURN_FAIL.) \\n ",
+                            "- R_OSAL_PmGetState \\n ",
+                            "- R_OSAL_PmWaitForState \\n ",
+                            "The following APIs now return OSAL_RETURN_UNSUPPORTED_OPERATION for devices that have not been assigned Reset. (Previously OSAL returned OSAL_RETURN_FAIL.) \\n ",
+                            "- R_OSAL_PmSetResetState \\n ",
+                            "- R_OSAL_PmGetResetState"]
+        },
+        {
+            "number": "ASDRCXPOSAL-419",
+            "description": ["[Ver 3.2.0] SoC: R-Car V4H \\n Fixed an error in the kernel when using R_OSAL_PmSetPostClock(). "]
+        },
+        {
+            "number": "ASDRCXPOSAL-711",
+            "description": ["[Ver 3.2.0] SoC: R-Car V3H2.1/V3M2.0 \\n Fixed an error in the kernel when using R_OSAL_PmSetPostClock(). "]
+        },
+        {
+            "number": "ASDRCXPOSAL-625",
+            "description": [
+                "[Ver 3.3.0] Supported following API. \\n",
+                " - R_OSAL_MmngrOpenFromRegionIdx \\n ",
+                " - R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-631",
+            "description": [
+                "[Ver 3.3.0] Fixed axi id and axi bus name string returned by the following API. \\n",
+                " - R_OSAL_IoGetDeviceAxiBusId \\n ",
+                " - R_OSAL_IoGetAxiBusIdFromDeviceName \\n ",
+                " - R_OSAL_IoGetAxiBusNameList \\n ",
+                " - R_OSAL_IoGetAxiBusName"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-772",
+            "description": [
+                "[Ver 3.5.0] Fixed the problem that there was a possibility of accessing outside the memory area when accessing the device. \\n",
+                " - R_OSAL_IoDeviceOpen"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-785",
+            "description": [
+                "[Ver 3.5.0] In case of specified handle->p_ptr_self is NULL, the return value is now returned according to API specification. \\n",
+                " - R_OSAL_MmngrGetConfig"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-810",
+            "description": [
+                "[Ver 3.5.0] In case of specified regionIdx which is out-of-range, the return value is now returned according to API specification. \\n",
+                " - R_OSAL_MmngrOpenFromRegionIdx"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-977",
+            "description": [
+                " \\n[Ver 3.5.0] Fixed wrong size when allocating memory for strings by internal function \\n ",
+                " - R_OSAL_Initialize \\n ",
+                " - R_OSAL_IoGetDeviceAxiBusId \\n ",
+                " - R_OSAL_IoGetAxiBusIdFromDeviceName \\n ",
+                " - R_OSAL_IoGetNumOfAxiIdsForDeviceHdl \\n ",
+                " - R_OSAL_IoGetAxiIdListForDeviceHdl \\n ",
+                " - R_OSAL_IoGetNumOfAxiIdsForDeviceName \\n ",
+                " - R_OSAL_IoGetAxiIdListForDeviceName"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-970",
+            "description": [
+                "[Ver 3.6.0] Completed Metrics improvements"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1036",
+            "description": [
+                "[Ver 3.6.0] Corrected parameter check of R_OSAL_MmngrGetOsalMaxConfig as following. \\n ",
+                " - region_idx: Deleted because it was redundantly checked \\n ",
+                " - range: Fixed to return OSAL_RETURN_CONF error instead of memory_limit=0 when g_osal_memory_region_info_list.p_info[region_idx].range is more than MEMORY_RESERVE_SIZE"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1077",
+            "description": [
+                "[Ver 3.7.0] Resolved the problem of memory corruption when the ipmmu-id obtained from UIO is invalid \\n ",
+                " - R_OSAL_Initialize "
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1100",
+            "description": [
+                "[Ver 3.7.0] Fixed the return value in case of OSAL_AXI_BUS_ID_INVALID is specified to the argument axi_id of R_OSAL_MmngrGetHwAddr. \\n ",
+                "Before: OSAL_RETURN_OK \\n ",
+                "After: OSAL_RETURN_PAR \\n ",
+                "axi_id should be specified a value other than OSAL_AXI_BUS_ID_INVALID."
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1104",
+            "description": [
+                "[Ver 3.7.0] Fixed the issue that a segmentation fault occurred when specified an out-of-range value to the argument of R_OSAL_IoGetAxiBusName."
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1185",
+            "description": [
+                "[Ver 3.9.0] Fixed the issue that if a device_name_1 halfway equals a device_name_2, R_OSAL_IoDeviceOpen() returned OSAL_RETURN_BUSY error. \\n ",
+                "Before:  \\n ",
+                "R_OSAL_IoDeviceOpen(\"fba_ca76_0_cl0\"); -> RETURN_OK \\n ",
+                "R_OSAL_IoDeviceOpen(\"fba_ca76_0_cl0_cpu0\"); -> RETURN_BUSY \\n ",
+                "After: \\n ",
+                "R_OSAL_IoDeviceOpen(\"fba_ca76_0_cl0\"); -> RETURN_OK \\n ",
+                "R_OSAL_IoDeviceOpen(\"fba_ca76_0_cl0_cpu0\"); -> RETURN_OK"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1192",
+            "description": [
+                "[Ver 3.9.0] Fixed incorrect return value for error case when following API is called without wait time. \\n ",
+                "- R_OSAL_MqSendUntilTimeStamp \\n ",
+                "- R_OSAL_MqSendForTimePeriod \\n ",
+                "- R_OSAL_MqReceiveUntilTimeStamp \\n ",
+                "- R_OSAL_MqReceiveForTimePeriod \\n ",
+                "Before: OSAL_RETURN_FAIL \\n ",
+                "After: OSAL_RETURN_TIME \\n "
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-886",
+            "description": [
+                "[Ver 3.10.0] Fixed Power Manager API incorrect return value when specifying a device with no assigned POWER/CLK. \\n ",
+                "Before: OSAL_RETURN_OK \\n ",
+                "After: OSAL_RETURN_UNSUPPORTED_OPERATION \\n "
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1208",
+            "description": [
+                "[Ver 3.10.0] The initial power policy is determined only at initialization.  \\n ",
+                "It remains unchanged when the device is opened/closed."
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1239",
+            "description": [
+                "[Ver 3.11.0] Fixed incorrect return value when a device name with more characters than OSAL_DEVICE_TYPE_NAME_MAX_LENGTH ",
+                "is specified for the first argument \"p_device_type_name\" of R_OSAL_IoGetDeviceList(). \\n ",
+                "Before: OSAL_RETURN_UNKNOWN_NAME \\n ",
+                "After: OSAL_RETURN_PAR"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1368",
+            "description": [
+                "[Ver 3.12.0] Fixed behavior when calling R_OSAL_PmWaitForState(state = OSAL_PM_STATE_RESET) for a device that has only reset assigned. \\n ",
+                "Before: OSAL_RETURN_UNSUPPORTED_OPERATION \\n ",
+                "After: OSAL_RETURN_OK"
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1807",
+            "description": [
+                "[Ver 3.13.0] Device tree of R-Car V4M has been supported the Multi-memory-region function in the osal_memory_sample_v4m."
+            ]
+        },
+        {
+            "number": "ASDRCXPOSAL-1809",
+            "description": [
+                "[Ver 3.13.0] Linux BSP of R-Car V4M has been supported the device access in the osal_sample_device_v4m."
+            ]
+        }
+        ]
+    },
+    "rev": {
+        "description": [
+
+        ],
+        "table": [{
+                "rev": "0.1.0",
+                "date": "2022/3/7",
+                "page": [
+                    "P1 \\n \\n ",
+                    "P2 \\n \\n ",
+                    "P7"
+                ],
+                "sum": [
+                    "Add support SoC to Table 1-1 \\n ",
+                    "Update release version for Release Software \\n ",
+                    "Add restriction, ASDRCXPOSAL-419 \\n ",
+                    "Update related document \\n ",
+                    "Update upgrade information "
+                ]
+            },
+            {
+                "rev": "0.2.0",
+                "date": "2022/4/7",
+                "page": [
+                    "P2"
+                ],
+                "sum": [
+                    "Update related document"
+                ]
+            },
+            {
+                "rev": "0.3.0",
+                "date": "2022/5/9",
+                "page": [
+                    "P1 \\n \\n ",
+                    "P2, P3 \\n \\n \\n ",
+                    "P13 \\n ",
+                    "P16"
+                ],
+                "sum": [
+                    "Updated support OS and OSAL API version in Table 1-1 \\n ",
+                    "Updated Linux module version\\n ",
+                    "Updated related document \\n ",
+                    "Updated Restrictions: Removed ASDRCXPOSAL-435 \\n ",
+                    "Updated Restrictions: Added ASDRCXPOSAL-624, ASDRCXPOSAL-625 and ASDRCXPOSAL-631 \\n ",
+                    "Added new API to Table 2-1 API Status List \\n ",
+                    "Added ASDRCXPOSAL-577 and ASDRCXPOSAL-435 to Fixed Issues List"
+                ]
+            },
+            {
+                "rev": "0.4.0",
+                "date": "2022/6/8",
+                "page": [
+                    "P1 \\n \\n ",
+                    "P2 \\n \\n ",
+                    "P3, P4 \\n ",
+                    "P18"
+                ],
+                "sum": [
+                    "Updated support OS, Tool Chain and OSAL API version in Table 1-1 \\n ",
+                    "Updated Linux module version\\n ",
+                    "Updated Restrictions: Removed ASDRCXPOSAL-419 and ASDRCXPOSAL-624 \\n ",
+                    "Updated related document \\n ",
+                    "Added ASDRCXPOSAL-419, ASDRCXPOSAL-624, ASDRCXPOSAL-709 and ASDRCXPOSAL-711 to Fixed Issues List"
+                ]
+            },
+            {
+                "rev": "0.5.0",
+                "date": "2022/7/8",
+                "page": [
+                    "P1 \\n \\n ",
+                    "P2 \\n \\n ",
+                    "P8 \\n ",
+                    "P16 \\n ",
+                    "P17  "
+                ],
+                "sum": [
+                    "Updated OSAL API version in Table 1-1 \\n ",
+                    "Updated Linux module version\\n ",
+                    "Updated Restrictions: Removed ASDRCXPOSAL-625 and ASDRCXPOSAL-631 \\n ",
+                    "Updated related document \\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-785 and ASDRCXPOSAL-810 to Known Issues List \\n ",
+                    "Added ASDRCXPOSAL-625 and ASDRCXPOSAL-631 to Fixed Issues List"
+                ]
+            },
+            {
+                "rev": "0.6.0",
+                "date": "2022/8/4",
+                "page": [
+                    "P1 \\n",
+                    "   \\n ",
+                    "P2 \\n ",
+                    "P8 \\n ",
+                    "P16 "
+                ],
+                "sum": [
+                    "Updated OSAL API version in Table 1-1 \\n ",
+                    "Updated Linux module version\\n ",
+                    "Updated related document \\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-886 to Known Issues List "
+                ]
+            },
+            {
+                "rev": "0.7.0",
+                "date": "2022/9/6",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n \\n ",
+                    "P8 \\n \\n ",
+                    "P16 "
+                ],
+                "sum": [
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Updated Restrictions: Added ASDRCXPOSAL-970 \\n ",
+                    "Update upgrade information \\n ",
+                    "Updated API information related to IoRead8,16/Write8,16 in Table 2-1.",
+                    "Added ASDRCXPOSAL-772, ASDRCXPOSAL-785, ASDRCXPOSAL-810 and ASDRCXPOSAL-977 to Fixed Issues List "
+                ]
+            },
+            {
+                "rev": "0.8.0",
+                "date": "2022/10/11",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n \\n ",
+                    "P9 \\n ",
+                    "P19 "
+                ],
+                "sum": [
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Updated Restrictions: Resolved ASDRCXPOSAL-970 \\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-970 and ASDRCXPOSAL-1036 to Fixed Issues List "
+                ]
+            },
+            {
+                "rev": "0.9.0",
+                "date": "2022/11/8",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    "P9 \\n ",
+                    "P19 "
+                ],
+                "sum": [
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-1077, ASDRCXPOSAL-1100 and ASDRCXPOSAL-1104 to Fixed Issues List "
+                ]
+            },
+            {
+                "rev": "0.10.0",
+                "date": "2022/12/8",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    "P9 \\n "
+                ],
+                "sum": [
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Update upgrade information \\n "
+                ]
+            },
+            {
+                "rev": "0.11.0",
+                "date": "2023/1/13",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    "P9 \\n ",
+                    "P18 \\n ",
+                    "P19 "
+                ],
+                "sum": [
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-1239 to Known Issues List \\n ",
+                    "Added ASDRCXPOSAL-1185 and ASDRCXPOSAL-1192 to Fixed Issues List "
+                ]
+            },
+            {
+                "rev": "0.12.0",
+                "date": "2023/1/27",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    "P9 \\n ",
+                    "P19 "
+                ],
+                "sum": [
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-886 and ASDRCXPOSAL-1208 to Fixed Issues List "
+                ]
+            },
+            {
+                "rev": "0.13.0",
+                "date": "2023/2/10",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    "P9 \\n ",
+                    "P20 "
+                ],
+                "sum": [
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-1239 to Fixed Issues List "
+                ]
+            },
+            {
+                "rev": "0.14.0",
+                "date": "2023/3/13",
+                "page": [
+                    "P1 \\n \\n ",
+                    "P2 \\n ",
+                    "P9 \\n ",
+                    "P20 "
+                ],
+                "sum": [
+                    "Added R-Car V3H1.1 and S4N to Target devices \\n ",
+                    "Updated Linux module version\\n ",
+                    "Updated file name of Related Documents.\\n ",
+                    "Update upgrade information \\n ",
+                    "Added ASDRCXPOSAL-1368 to Fixed Issues List "
+                ]
+            },
+            {
+                "rev": "1.0.0",
+                "date": "2023/4/4",
+                "page": [
+                    "P1"
+                ],
+                "sum": [
+                    "Updated current quality grade for R-Car S4(includes S4N)"
+                ]
+            },
+            {
+                "rev": "1.1.0",
+                "date": "2023/9/12",
+                "page": [
+                    "P4"
+                ],
+                "sum": [
+                    "Updated file name of Related Documents. "
+                ]
+            },
+            {
+                "rev": "1.2.0",
+                "date": "2023/10/12",
+                "page": [
+                    "P3 \\n \\n ",
+                    "P4 \\n \\n ",
+                    "P5 \\n ",
+                    "P14 "
+                ],
+                "sum": [
+                    "Updated target device \\n ",
+                    "Updated Linux module version\\n ",
+                    "Add Restriction of ASDRCXPOSAL-1807,ASDRCXPOSAL-1809 \\n ",
+                    "Updated file name of Related Documents. \\n ",
+                    "Update upgrade information"
+                ]
+            },
+            {
+                "rev": "1.3.0",
+                "date": "2023/11/10",
+                "page": [
+                    "P3 \\n ",
+                    "   \\n ",
+                    "   \\n ",
+                    "   \\n ",
+                    "   \\n ",
+                    "   \\n ",
+                    "P4 \\n \\n \\n ",
+                    "P24 "
+                ],
+                "sum": [
+                    "Modified appearance of target devices. \\n ",
+                    "Updated Release Software information \\n ",
+                    " - Update Current quality Grade of R-Car V3H_2,V3M,V4H Ver2.2 to Reference/QM \\n ",
+                    " - Update Current quality Grade of R-Car V3H,V4H Ver2.0,2.1 to Reference \\n ",
+                    "Deleted restriction of ASDRCXPOSAL-1807 and ASDRCXPOSAL-1809. \\n ",
+                    "Updated file name of Related Documents. \\n ",
+                    "Added ASDRCXPOSAL-1807 and ASDRCXPOSAL-1809 to Fixed Issues List."
+                ]
+            },
+            {
+                "rev": "1.4.0",
+                "date": "2023/12/8",
+                "page": [
+                    "P4 "
+                ],
+                "sum": [
+                    "Updated file name of Related Documents."
+                ]
+            },
+            {
+                "rev": "1.5.0",
+                "date": "2024/1/12",
+                "page": [
+                    "P3 \\n ",
+                    "P13 "
+                ],
+                "sum": [
+                    "Updated Release Software version. \\n ",
+                    "Update upgrade information."
+                ]
+            },
+            {
+                "rev": "1.6.0",
+                "date": "2024/2/8",
+                "page": [
+                    "P3 \\n \\n ",
+                    "P4 \\n ",
+                    "P13 "
+                ],
+                "sum": [
+                    "Updated Release Software information \\n ",
+                    " - Update Current quality Grade of R-Car V4M to Beta \\n ",
+                    "Updated file name of Related Documents. \\n ",
+                    "Update upgrade information."
+                ]
+            }
+        ]
+    }
+}

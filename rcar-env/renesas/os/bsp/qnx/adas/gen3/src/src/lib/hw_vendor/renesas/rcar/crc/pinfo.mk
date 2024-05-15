@@ -1,0 +1,3 @@
+define PINFO
+PINFO DESCRIPTION=R-CarV3U CRC lib
+endef

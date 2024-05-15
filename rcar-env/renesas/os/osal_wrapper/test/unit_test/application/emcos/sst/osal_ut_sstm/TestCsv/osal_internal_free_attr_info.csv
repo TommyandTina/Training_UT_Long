@@ -1,0 +1,13 @@
+modi,osal_internal_free_attr_info,01_029,6,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_common.c/gs_inner_mutex_attr_mngr_num,r_osal_common.c/gs_inner_thread_attr_mngr_num,r_osal_common.c/gsp_inner_mutex_attr_mngr_tbl,r_osal_common.c/gsp_inner_thread_attr_mngr_tbl,,,,,,,,
+0,0,0,0,0,,,,,,,,
+%,AMSTB_pthread_mutexattr_destroy,pthread_mutexattr_destroy,,,,,,,,,,
+%,AMSTB_pthread_attr_destroy,pthread_attr_destroy,,,,,,,,,,
+#COMMENT,r_osal_common.c/gs_inner_mutex_attr_mngr_num,r_osal_common.c/gs_inner_thread_attr_mngr_num,r_osal_common.c/gsp_inner_mutex_attr_mngr_tbl,r_osal_common.c/gsp_inner_thread_attr_mngr_tbl,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_destroy@AMIN_return,osal_internal_free_attr_info@@,;,,,,
+,1,1,g_osal_inner_mutexattr_p,g_osal_inner_thread_attr_arry,0,0,OSAL_RETURN_OK,;Normal operation Is Normal Context,,,,
+,0,1,g_osal_inner_mutexattr_p,g_osal_inner_thread_attr_arry,0,0,OSAL_RETURN_OK,;gs_inner_mutex_attr_mngr_num is 0,,,,
+,1,1,0,g_osal_inner_thread_attr_arry,0,0,OSAL_RETURN_OK,;gsp_inner_mutex_attr_mngr_tbl is NULL.,,,,
+,1,1,g_osal_inner_mutexattr_p,g_osal_inner_thread_attr_arry,-1,0,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy return not 0,,,,
+,1,0,g_osal_inner_mutexattr_p,g_osal_inner_thread_attr_arry,0,0,OSAL_RETURN_OK,;gs_inner_thread_attr_mngr_num is 0,,,,
+,1,1,g_osal_inner_mutexattr_p,0,0,0,OSAL_RETURN_OK,;r_osal_common.c/gsp_inner_thread_attr_mngr_tbl is NULL.,,,,
+,1,1,g_osal_inner_mutexattr_p,g_osal_inner_thread_attr_arry,0,-1,OSAL_RETURN_FAIL,;pthread_attr_destroy return not 0,,,,

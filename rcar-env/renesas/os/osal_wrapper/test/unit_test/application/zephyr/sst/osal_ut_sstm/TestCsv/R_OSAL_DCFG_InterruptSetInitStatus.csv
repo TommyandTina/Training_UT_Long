@@ -1,0 +1,5 @@
+modi,R_OSAL_DCFG_InterruptSetInitStatus,06_012,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_interrupt.c/gs_osal_interrupt_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_interrupt.c/gs_osal_interrupt_is_initialized_enu,@status,g_dummy,;,,,,,,,,
+,1,1,-,;Normal operation ,,,,,,,,

@@ -1,0 +1,12 @@
+modi,osal_internal_mem_send_monitor_event,09_036,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,
+#COMMENT,@p_mutex_id,@event_id,@error_code,@p_mngr_control,g_st_osal_mem_mmngr_ptr_self[0].p_monitor,g_st_osal_mem_monitor_desc.event_id,g_st_osal_mem_monitor_desc.p_handler,@buffer_hndl,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],osal_internal_mem_send_monitor_event@@,;
+,g_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,1,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,1,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,0,-1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero
+,g_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,0,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;specifid event_id is not registerd.
+,g_mutex,1,OSAL_RETURN_OK,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,0,osal_memory_mngr_cb_dummy,g_memory_buffer_handle,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_InternalTimedlockMutex() return OSAL_RETURN_FAIL

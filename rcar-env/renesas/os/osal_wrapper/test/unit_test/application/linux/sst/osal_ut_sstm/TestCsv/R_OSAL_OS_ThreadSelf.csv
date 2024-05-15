@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_ThreadSelf,09_103,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_self_id,R_OSAL_OS_ThreadSelf@@,;,,,,,,,,,
+,g_osal_thread_t,OSAL_RETURN_OK,;Normal operation,,,,,,,,,
+,0,OSAL_RETURN_FAIL,;p_self_id is NULL,,,,,,,,,

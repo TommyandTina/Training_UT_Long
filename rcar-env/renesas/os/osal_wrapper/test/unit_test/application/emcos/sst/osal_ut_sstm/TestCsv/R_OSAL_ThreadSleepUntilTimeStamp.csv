@@ -1,0 +1,13 @@
+modi,R_OSAL_ThreadSleepUntilTimeStamp,02_007,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_thread.c/gs_osal_thread_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_CheckTimestamp,R_OSAL_Internal_CheckTimestamp,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimeRoundUp,R_OSAL_Internal_TimeRoundUp,,,,,,,,,,
+%,AMSTB_clock_nanosleep,clock_nanosleep,,,,,,,,,,
+#COMMENT,r_osal_thread.c/gs_osal_thread_is_initialized,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_CheckTimestamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimeRoundUp@AMIN_return,AMSTB_SrcFile.c/AMSTB_clock_nanosleep@AMIN_return,R_OSAL_ThreadSleepUntilTimeStamp@@,;,,,,,
+,1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_STATE,;gs_osal_thread_is_initialized is false,,,,,
+,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_PAR,;p_time_stamp is 0,,,,,
+,1,g_st_osal_time,OSAL_RETURN_PAR,OSAL_RETURN_OK,0,OSAL_RETURN_PAR,;R_OSAL_Internal_CheckTimestamp() return OSAL_RETURN_PAR,,,,,
+,1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimeRoundUp() return OSAL_RETURN_FAIL,,,,,
+,1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,-1,OSAL_RETURN_FAIL,;clock_nanosleep return non-zero,,,,,

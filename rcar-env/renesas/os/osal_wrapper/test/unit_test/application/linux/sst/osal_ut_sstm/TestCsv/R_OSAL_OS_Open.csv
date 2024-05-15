@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_Open,18_101,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_open,open,,,,,,,,,,
+#COMMENT,@p_pathname,@flags,AMSTB_SrcFile.c/AMSTB_open@AMIN_return,R_OSAL_OS_Open@@,;,,,,,,,
+,0,0,1,0,;Normal operation ,,,,,,,
+,str,0,1,1,;Normal operation ,,,,,,,

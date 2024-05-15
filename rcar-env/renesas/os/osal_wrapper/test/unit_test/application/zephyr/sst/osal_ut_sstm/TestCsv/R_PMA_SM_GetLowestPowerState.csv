@@ -1,0 +1,12 @@
+modi,R_PMA_SM_GetLowestPowerState,03_013,6,2,,,,CPP,,,,0
+#InitWheneverCall,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enLowestPwrState,,,,,,,,,
+0,0,0,0,,,,,,,,,
+#COMMENT,@handle,@hwaId,@pLowestPower,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enLowestPwrState,@pLowestPower[0],R_PMA_SM_GetLowestPowerState@@,;,,,
+,0,R_PMA_HWA_ID_V4H_VDSP1_GLOBAL,dummy_pLowestPower,R_PMA_HWA_ID_NUM,0,0,-,R_PMA_INVALID_ARGUMENT,;handle is NULL,,,
+,dummy_handle,R_PMA_HWA_ID_NUM,dummy_pLowestPower,R_PMA_HWA_ID_NUM,0,0,-,R_PMA_INVALID_ARGUMENT,;hwaId is R_PMA_HWA_ID_NUM,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,0,R_PMA_HWA_ID_NUM,0,0,-,R_PMA_INVALID_ARGUMENT,;pLowestPower is NULL,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,dummy_pLowestPower,R_PMA_HWA_ID_NUM,0,0,-,R_PMA_INVALID_HANDLE,;g_pma_sm_info_tbl[hwaId].handle != handle,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,dummy_pLowestPower,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_STATE_PG,R_PMA_STATE_PG,R_PMA_OK,;Normal operation ,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,dummy_pLowestPower,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_STATE_CG,R_PMA_STATE_CG,R_PMA_OK,;Normal operation ,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,dummy_pLowestPower,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_STATE_ENABLED,R_PMA_STATE_ENABLED,R_PMA_OK,;Normal operation ,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,dummy_pLowestPower,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_STATE_UNKNOWN,R_PMA_STATE_UNKNOWN,R_PMA_OK,;Normal operation ,,,

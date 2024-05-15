@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_ClockTimeSetInitStatus,05_002,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_timeclock.c/gs_osal_clock_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_timeclock.c/gs_osal_clock_is_initialized_enu,@status,g_dummy,;,,,,,,,,
+,1,1,,;Normal operation,,,,,,,,

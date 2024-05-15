@@ -1,0 +1,11 @@
+modi,r_osal_os_io_initialize_axi_bus_info,15_113,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_initialize_bus_information,r_osal_os_io_initialize_bus_information,,,,,,,,,,
+%,AMSTB_r_osal_os_io_initialize_axi_bus_name_table,r_osal_os_io_initialize_axi_bus_name_table,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_bus_name_list,r_osal_os_io_create_bus_name_list,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_initialize_bus_information@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_initialize_axi_bus_name_table@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_bus_name_list@AMIN_return,r_osal_os_io_initialize_axi_bus_info@@,;,,,,,,,
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_initialize_bus_information returns OSAL_RETURN_FAIL,,,,,,,
+,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_io_initialize_axi_bus_name_table returns OSAL_RETURN_FAIL,,,,,,,
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_os_io_create_bus_name_list returns OSAL_RETURN_FAIL,,,,,,,

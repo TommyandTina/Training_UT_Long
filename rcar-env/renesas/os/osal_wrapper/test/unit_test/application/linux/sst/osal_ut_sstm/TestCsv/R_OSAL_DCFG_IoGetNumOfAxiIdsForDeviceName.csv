@@ -1,0 +1,10 @@
+modi,R_OSAL_DCFG_IoGetNumOfAxiIdsForDeviceName,06_020,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename,r_osal_dcfg_io_check_axiidlist_for_devicename,,,,,,,,,,
+#COMMENT,@p_device_name,@p_num_of_axi_ids,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_p_param,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename@AMIN_return,R_OSAL_DCFG_IoGetNumOfAxiIdsForDeviceName@@,;,,,,,
+,str,g_size_t,OSAL_RETURN_OK,g_st_osal_os_io_get_num_of_axi_ids_for_device_name_t,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,
+,str,g_size_t,OSAL_RETURN_FAIL,g_st_osal_os_io_get_num_of_axi_ids_for_device_name_t,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_IoGetAxiBusInformation returns OSAL_RETURN_FAIL,,,,,
+,str,g_size_t,OSAL_RETURN_OK,g_st_osal_os_io_get_num_of_axi_ids_for_device_name_t,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_dcfg_io_check_axiidlist_for_devicename returns OSAL_RETURN_FAIL,,,,,

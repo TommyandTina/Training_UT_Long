@@ -1,0 +1,25 @@
+/* impdrv_osdep_get_dsp_irq_channel */
+#define  impdrv_osdep_get_dsp_irq_channel  impdrv_osdep_get_dsp_irq_channel_(__LINE__)
+#define  impdrv_osdep_get_dsp_irq_channel_(line)  impdrv_osdep_get_dsp_irq_channel__(line)
+#define  impdrv_osdep_get_dsp_irq_channel__(line)  impdrv_osdep_get_dsp_irq_channel_ut_##line
+
+#define impdrv_osdep_get_dsp_irq_channel_ut_416 impdrv_osdep_get_dsp_irq_channel
+#define impdrv_osdep_get_dsp_irq_channel_ut_626 impdrv_osdep_get_dsp_irq_channel
+#define impdrv_osdep_get_dsp_irq_channel_ut_2058 impdrv_osdep_get_dsp_irq_channel_stub
+#define impdrv_osdep_get_dsp_irq_channel_ut_2099 impdrv_osdep_get_dsp_irq_channel_stub
+#define impdrv_osdep_get_dsp_irq_channel_ut_2236 impdrv_osdep_get_dsp_irq_channel
+#define impdrv_osdep_get_dsp_irq_channel_ut_3046 impdrv_osdep_get_dsp_irq_channel
+
+/* impdrv_genctl_dsp_int_handler */
+#define  impdrv_genctl_dsp_int_handler  impdrv_genctl_dsp_int_handler_(__LINE__)
+#define  impdrv_genctl_dsp_int_handler_(line)  impdrv_genctl_dsp_int_handler__(line)
+#define  impdrv_genctl_dsp_int_handler__(line)  impdrv_genctl_dsp_int_handler_ut_##line
+
+#define impdrv_genctl_dsp_int_handler_ut_2921 impdrv_genctl_dsp_int_handler_stub
+#define impdrv_genctl_dsp_int_handler_ut_2957 impdrv_genctl_dsp_int_handler_stub
+#define impdrv_genctl_dsp_int_handler_ut_2993 impdrv_genctl_dsp_int_handler_stub
+#define impdrv_genctl_dsp_int_handler_ut_3029 impdrv_genctl_dsp_int_handler_stub
+
+#include "r_impdrv_osdep.c"
+
+

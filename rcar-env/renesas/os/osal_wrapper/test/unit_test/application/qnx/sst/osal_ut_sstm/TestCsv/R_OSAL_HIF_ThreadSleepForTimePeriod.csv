@@ -1,0 +1,7 @@
+modi,R_OSAL_HIF_ThreadSleepForTimePeriod,01_001,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,,,,,,,,,,
+#COMMENT,@time_period,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod@AMIN_return,R_OSAL_HIF_ThreadSleepForTimePeriod@@,;,,,,,,,,
+,10,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,-1,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_HIF_ClockGetTimeOutByTimePeriod return OSAL_RETURN_FAIL,,,,,,,,

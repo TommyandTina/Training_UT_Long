@@ -1,0 +1,13 @@
+	The GPIO test application Ver.0.1.0 for RENESAS R_Car Gen3 board
+
+    CREATED   : 10.14.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-CarV3U board
+    TARGET OS : QNX SDP 7.1 GA
+
+    HISTORY   :
+				10.14.2020
+				- Created release code.
+                02.06.2021 : Ver.0.2
+                - Merge R-CarV3U and R-CarV3H to R-CarGen3 QNX SDP 7.1

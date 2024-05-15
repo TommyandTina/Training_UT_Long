@@ -1,0 +1,13 @@
+modi,r_osal_rcfg_mmngr_getcpuptr,09_035,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_cmn_check_buffer_handle,r_osal_rcfg_mmngr_cmn_check_buffer_handle,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,@p_ptr_self,@pp_cpu_ptr,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_cmn_check_buffer_handle@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],r_osal_rcfg_mmngr_getcpuptr@@,;,,,
+,g_st_osal_memory_buffer_obj,gp_void,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,
+,g_st_osal_memory_buffer_obj,gp_void,OSAL_RETURN_HANDLE,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;r_osal_rcfg_mmngr_cmn_check_buffer_handle() return non-OSAL_RETURN_OK.,,,
+,g_st_osal_memory_buffer_obj,gp_void,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL,,,
+,g_st_osal_memory_buffer_obj,gp_void,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL,,,

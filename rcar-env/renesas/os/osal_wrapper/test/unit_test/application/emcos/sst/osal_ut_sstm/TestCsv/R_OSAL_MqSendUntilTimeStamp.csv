@@ -1,0 +1,24 @@
+modi,R_OSAL_MqSendUntilTimeStamp,04_004,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_GetThreadSpecific,R_OSAL_Internal_GetThreadSpecific,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mq_snd_is_isr,osal_internal_mq_snd_is_isr,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimeRoundUp,R_OSAL_Internal_TimeRoundUp,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mq_snd_not_isr,osal_internal_mq_snd_not_isr,,,,,,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,@handle,g_st_osal_mq_control.handle_id,g_st_osal_mq_control.active,g_st_osal_mq_control.usr_config,g_st_osal_rcfg_mq_config.config.msg_size,@p_time_stamp,g_st_osal_time.tv_sec,g_st_osal_time.tv_nsec,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_GetThreadSpecific@AM_num,AMSTB_SrcFile.c/AMSTB_osal_internal_mq_snd_is_isr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimeRoundUp@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_internal_mq_snd_not_isr@AMIN_return,R_OSAL_MqSendUntilTimeStamp@@,;
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (is_isr=true)
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,3,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (is_isr=false)
+,0,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_STATE,;gs_osal_mq_is_initialized is false
+,1,0,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle is NULL
+,1,g_st_osal_mq_control,0,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is not equal OSAL_MESSAGE_HANDLE_ID
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,0,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->active is false
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,0,4,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->usr_config is NULL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,0,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_time_stamp is NULL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,-1,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_time_stamp->tv_sec is less than 0
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,-1,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_time_stamp->tv_nsec is less than 0
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,1000000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_time_stamp->tv_nsec is grater than OSAL_MAX_TV_NSEC
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,0,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_buffer is NULL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,1,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;buffer_size is not equal handle->usr_config->config.msg_size
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,2,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_internal_mq_snd_is_isr() return OSAL_RETURN_FAIL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,3,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimeRoundUp() return OSAL_RETURN_FAIL
+,1,g_st_osal_mq_control,0x4F53414C5F4D5347,1,g_st_osal_rcfg_mq_config,4,g_st_osal_time,200,500000000,array_uint32,4,3,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;osal_internal_mq_snd_not_isr() return OSAL_RETURN_FAIL

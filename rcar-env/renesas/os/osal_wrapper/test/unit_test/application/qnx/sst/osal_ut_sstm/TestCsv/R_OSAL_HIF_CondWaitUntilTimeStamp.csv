@@ -1,0 +1,5 @@
+modi,R_OSAL_HIF_CondWaitUntilTimeStamp,03_002,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_time_stamp,@cond,@mutex,R_OSAL_HIF_CondWaitUntilTimeStamp@@,;,,,,,,,
+,1,g_osal_common_cond,g_osal_common_mutex,OSAL_RETURN_OK,;Normal operation ,,,,,,,

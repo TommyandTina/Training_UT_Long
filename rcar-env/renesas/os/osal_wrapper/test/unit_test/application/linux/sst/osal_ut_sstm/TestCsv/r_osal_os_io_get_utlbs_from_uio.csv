@@ -1,0 +1,20 @@
+modi,r_osal_os_io_get_utlbs_from_uio,15_121,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,
+%,AMSTB_fopen,fopen,,,,,,,,,,,,,
+%,AMSTB_fopen,fopen,,,,,,,,,,,,,
+%,AMSTB_fread,fread,,,,,,,,,,,,,
+%,AMSTB__fclose_internal,_fclose_internal,,,,,,,,,,,,,
+%,AMSTB__fclose_internal,_fclose_internal,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,
+#COMMENT,@p_utlbs,@p_uio_name,@p_utlb_num,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_fopen@AM_count,AMSTB_SrcFile.c/AMSTB_fopen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_fread@AMIN_return,AMSTB_SrcFile.c/AMSTB__fclose_internal@AM_count,AMSTB_SrcFile.c/AMSTB__fclose_internal@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_get_utlbs_from_uio@@,;
+,0,0,g_size_t,0,str,0,0,0,1,1,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0,0,g_size_t,0,0,0,0,0,1,1,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc returns NULL
+,0,0,g_size_t,0,str,0,-1,0,1,1,0,0,0,OSAL_RETURN_FAIL,;snprintf returns -1
+,0,0,g_size_t,0,str,0,0,0,0,1,0,0,0,OSAL_RETURN_OK,;fopen returns NULL
+,0,0,g_size_t,0,str,0,0,0,1,0,0,0,0,OSAL_RETURN_OK,;fread returns 0
+,0,0,g_size_t,0,str,0,0,0,1,1,0,-1,0,OSAL_RETURN_FAIL,;fclose returns -1

@@ -1,0 +1,45 @@
+R-Car S4 GPIO Driver testing program
+-----------------------------------------
+
+Usage:
+    #rcar-gpio -Ix & : must be running (x is GPIO group index)
+
+    Syntax:
+        #gpio_test device=<device path> port=<port pin> value=<value> mode=<mode>
+
+        Options
+            - <device path> = /dev/gpioX
+            - <port pin>    =  0..31 of port X
+            - <value>       =  0 or 1
+            - <mode>        =  <mode>[:<posneg>][:<edglevel>][:<bothedge>]
+                               - <mode>     =  in  :      Input mode
+                                               out :      Output mode
+                                               int :      Interrupt mode
+                               - <posneg>   =  pos :      Positive logic
+                                               neg :      Negative logic
+                               - <edglevel> =  edg :      Edge detection interrupt
+                                               lev :      Level dectection interrupt
+                               - <bothedg>  =  bot :      Both Edge detection interrupt
+                                               one :      Falling/Rising Edge detection interrrupt
+
+Examples:
+Because there is no GPIO Group belonging Application Domain HW implemented S4 Spider board so we cannot see real behaviour happen when testing with this app.
+
+Start GPIO driver:
+    #rcar-gpio -I0 &
+
+- For output:
+    #gpio_test device=/dev/gpio0 port=11 mode=out value=0
+    #gpio_test device=/dev/gpio0 port=14 mode=out value=0
+
+    #gpio_test device=/dev/gpio0 port=11 mode=out value=1
+    #gpio_test device=/dev/gpio0 port=14 mode=out value=1
+
+- For input:
+    #gpio_test device=/dev/gpio0 port=11 mode=in
+    #gpio_test device=/dev/gpio0 port=14 mode=in
+
+- For interrupt input:
+    #gpio_test device=/dev/gpio0 port=11 mode=int
+    #gpio_test device=/dev/gpio0 port=14 mode=int
+

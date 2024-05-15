@@ -1,0 +1,25 @@
+modi,R_OSAL_InterruptSetIsrPriority,06_007,18,1,,,,CPP,,,,0,,,,,,,,
+#InitWheneverCall,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetInterruptThreadInfo,R_OSAL_RCFG_GetInterruptThreadInfo,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_setschedprio,pthread_setschedprio,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,@handle,g_st_osal_device_control.handle_id,g_st_osal_device_control.active,g_st_osal_device_control.interrupt_index,g_st_osal_device_control.irq_channels,@irq_channel,@priority_value,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetInterruptThreadInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_setschedprio@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetInterruptThreadInfo@AM_count,AMSTB_SrcFile.c/g_st_osal_interrupt_thread_control.handle_id,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_interrupt,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_interrupt,R_OSAL_InterruptSetIsrPriority@@,;
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_OK,;Normal operation 
+,0,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_STATE,;gs_osal_interrupt_is_initialized is false
+,1,0,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_HANDLE,;handle is NULL
+,1,g_st_osal_device_control,0,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_HANDLE,;handle->handle_id is note OSAL_DEVICE_HANDLE_ID
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,0,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_HANDLE,;handle->active is not true
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,0,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_HANDLE,;handle->interrupt_index is NULL
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,11,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_PAR,;handle->irq_channels less than irq_channel
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,-1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_PAR,;priority_value is less than OSAL_THREAD_PRIORITY_LOWEST
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,16,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_PAR,;priority_value is greater than OSAL_THREAD_PRIORITY_HIGHEST
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetInterruptThreadInfo() return OSAL_RETURN_FAIL
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,1,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_FAIL,;The aquired interrupt_control is 0
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,0,3,0,1,1,OSAL_RETURN_FAIL,;The aquired interrupt_control->handle_id is not OSAL_INTERRUPT_HANDLE_ID
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,0,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,-1,0,0,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_FAIL,;pthread_setschedprio() return non-zero
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_int32_t,10,0,OSAL_INTERRUPT_PRIORITY_LOWEST,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,-1,0,0x4F53414C5F494E54ULL,1,1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

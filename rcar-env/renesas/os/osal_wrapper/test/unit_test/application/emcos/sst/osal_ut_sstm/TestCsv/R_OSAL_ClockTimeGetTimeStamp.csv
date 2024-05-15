@@ -1,0 +1,11 @@
+modi,R_OSAL_ClockTimeGetTimeStamp,05_001,4,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_timeclock.c/gs_osal_clock_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_GetTimestamp,R_OSAL_Internal_GetTimestamp,,,,,,,,,,
+#COMMENT,r_osal_timeclock.c/gs_osal_clock_is_initialized,@clock_type ,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_GetTimestamp@AMIN_return,R_OSAL_ClockTimeGetTimeStamp@@,;,,,,,,
+,1,1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation(clock_type is OSAL_CLOCK_TYPE_HIGH_RESOLUTION),,,,,,
+,1,2,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation(clock  type is OSAL_CLOCK_TYPE_HIGH_PRECISION),,,,,,
+,0,1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_STATE,;gs_osal_clock_is_initialized is false,,,,,,
+,1,-1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_PAR ,;clock_type is -1,,,,,,
+,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_PAR ,;p_time_stamp is 0,,,,,,
+,1,2,g_st_osal_time,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_Internal_GetTimestamp() return OSAL_RETURN_FAIL,,,,,,

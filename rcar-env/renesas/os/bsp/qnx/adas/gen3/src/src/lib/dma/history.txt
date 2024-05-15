@@ -1,0 +1,21 @@
+	The SYS-DMAC/RT-DMAC library for RENESAS R-Car Gen3 boards
+
+    CREATED   : 09.30.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            09.30.2020 : Ver.0.1
+            - Create new version (all features) ported from QNX 7.0
+            - Add R-Car V3U support
+            08.30.2021 : Ver.0.2
+            - Remove DMA channel clear in dma_setup_xfer() and add DMA channel clear in dma_abort() when DMA channel clear flag is set.
+            10.27.2021 : Ver.0.3
+            - Set 1 to bit0 for biult-in/external descriptor
+            11.30.2021 : Ver.0.4
+            - Support Rate Control and Buffer control features
+            08.01.2022 : Ver.0.8
+             - Move "out32(chan->regs + SYSDMAC_DMACHCR, status & ~(SYSDMAC_CHCR_DSE | SYSDMAC_CHCR_TE));" to top of dma_xfer_complete()
+               to fix "No voice" for playback for Audio driver.

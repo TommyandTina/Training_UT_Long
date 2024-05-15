@@ -1,0 +1,13 @@
+modi,R_OSAL_RCFG_MqSendUntilTimeStamp,03_009,8,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mq_send_not_isr,r_osal_rcfg_mq_send_not_isr,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mq_send_isr,r_osal_rcfg_mq_send_isr,,,,,,,,,,
+#COMMENT,@handle,@p_time_stamp,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AM_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mq_send_not_isr@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mq_send_isr@AMIN_return,R_OSAL_RCFG_MqSendUntilTimeStamp@@,;,,
+,g_st_osal_mq_control_t[0],g_st_osal_time_t,0,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,
+,g_st_osal_mq_control_t[0],g_st_osal_time_t,0,g_size_t,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,
+,g_st_osal_mq_control_t[0],g_st_osal_time_t,0,g_size_t,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_rcfg_mq_mutex_lock_for_time_period() return OSAL_RETURN_FAIL,,
+,g_st_osal_mq_control_t[0],g_st_osal_time_t,0,g_size_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_rcfg_mq_send_not_isr() return OSAL_RETURN_FAIL,,
+,g_st_osal_mq_control_t[0],g_st_osal_time_t,0,g_size_t,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_rcfg_mq_send_isr() return OSAL_RETURN_FAIL,,

@@ -1,0 +1,11 @@
+modi,R_OSAL_IoGetNumOfDevices,07_001,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_IoGetInitStatus,R_OSAL_DCFG_IoGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_IoGetNumOfDevices,R_OSAL_DCFG_IoGetNumOfDevices,,,,,,,,,,
+#COMMENT,$@p_deviceType,@p_numOfDevices,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_IoGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_IoGetNumOfDevices@AMIN_return,R_OSAL_IoGetNumOfDevices@@,;,,,,,,
+,1,array_sizet,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,1,array_sizet,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;R_OSAL_DCFG_IoGetInitStatus return OSAL_MANAGER_STATE_UNINITIALIZED,,,,,,
+,0,array_sizet,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_deviceType is NULL,,,,,,
+,1,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_numOfDevices is NULL,,,,,,
+,1,array_sizet,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_PAR,OSAL_RETURN_PAR,;R_OSAL_DCFG_IoGetNumOfDevices return OSAL_RETURN_PAR,,,,,,

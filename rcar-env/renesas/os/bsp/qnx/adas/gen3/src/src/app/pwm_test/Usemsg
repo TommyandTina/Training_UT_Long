@@ -1,0 +1,7 @@
+   A program to test PWM
+-------------------------------------
+1. Copy pwm_test to /tmp of the target
+
+2. Run the following command:
+   
+   #/tmp/pwm_test

@@ -1,0 +1,12 @@
+modi,R_OSAL_MmngrGetConfig,09_008,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetMaxConfigOfMemory,R_OSAL_DCFG_GetMaxConfigOfMemory,,,,,,,,,,
+#COMMENT,@hndl_mmngr,g_st_osal_memory_manager_obj[0].p_getConfig,@p_config,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetMaxConfigOfMemory@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_MmngrGetConfig@@,;,,,,,
+,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,g_st_osal_mmngr_config,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,AMSTB_osal_mem_internal,g_st_osal_mmngr_config,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;hndl_mmngr is equals OSAL_MEMORY_MANAGER_HANDLE_INVALID,,,,,
+,0,AMSTB_osal_mem_internal,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_config is NULL,,,,,
+,0,AMSTB_osal_mem_internal,g_st_osal_mmngr_config,OSAL_RETURN_PAR,OSAL_RETURN_OK,OSAL_RETURN_PAR,;R_OSAL_DCFG_GetMaxConfigOfMemory() return OSAL_RETURN_PAR,,,,,
+,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_config is NULL (other route for 09_008_003),,,,,
+,g_st_osal_memory_manager_obj,0,g_st_osal_mmngr_config,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_HANDLE_NOT_SUPPORTED,;hndl_mmngr->p_getConfig is NULL,,,,,
+,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,g_st_osal_mmngr_config,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;hndl_mmngr->p_getConfig return OSAL_RETURN_FAIL,,,,,

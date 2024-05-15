@@ -1,0 +1,25 @@
+modi,R_OSAL_OS_MqTimedSend,10_006,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_send,r_osal_os_mq_send,,,,,,,,,,,,,,,,,
+%,AMSTB_sem_timedwait,sem_timedwait,,,,,,,,,,,,,,,,,
+%,AMSTB_sem_timedwait,sem_timedwait,,,,,,,,,,,,,,,,,
+%,AMSTB_sem_timedwait,sem_timedwait,,,,,,,,,,,,,,,,,
+%,AMSTB_sem_getvalue,sem_getvalue,,,,,,,,,,,,,,,,,
+%,AMSTB_sem_trywait,sem_trywait,,,,,,,,,,,,,,,,,
+%,AMSTB_sem_post,sem_post,,,,,,,,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].numofmsg,g_st_osal_os_mq[0].rcv_wait_count,g_st_osal_os_mq[0].config.max_num_msg,@p_time_stamp,AMSTB_SrcFile.c/g_st_osal_time.tv_nsec,AMSTB_SrcFile.c/g_st_osal_time.tv_sec,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_send@AMIN_return,AMSTB_SrcFile.c/AMSTB_sem_timedwait@AM_count,AMSTB_SrcFile.c/AMSTB_sem_timedwait@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_sem_timedwait@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_sem_getvalue@AMIN_return,AMSTB_SrcFile.c/AMSTB_sem_trywait@AMIN_return,AMSTB_SrcFile.c/AMSTB_sem_post@AMIN_return,AMSTB_SrcFile.c/AMSTB_sem_getvalue@AMIN_value,R_OSAL_OS_MqTimedSend@@,;
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,0,0,0,0,0,1,OSAL_RETURN_OK,;Normal operation(numofmsg is equal to max)
+,g_st_osal_os_mq,0,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,0,0,0,0,0,1,OSAL_RETURN_OK,;Normal operation(numofmsg is less than max)
+,0,4,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,0,0,0,0,0,1,OSAL_RETURN_FAIL,;mq is NULL.
+,g_st_osal_os_mq,4,1,4,0,0,0,gp_void,4,OSAL_RETURN_OK,0,0,0,0,0,0,1,OSAL_RETURN_FAIL,;p_time_stamp is NULL.
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,1,0,4,OSAL_RETURN_OK,0,0,0,0,0,0,1,OSAL_RETURN_FAIL,;p_buffer is NULL.
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,1,1,0,0,0,1,OSAL_RETURN_TIME,;sem_timedwait() returns non-zero value.
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,1,0,1,0,0,1,OSAL_RETURN_TIME,;sem_getvalue() returns non-zero value.
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,1,0,0,0,0,0,OSAL_RETURN_TIME,;Acquired sem_count is 0.
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,1,0,0,1,0,1,OSAL_RETURN_TIME,;sem_trywait() returns non-zero value.
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_FAIL,0,0,0,0,0,0,1,OSAL_RETURN_FAIL,;r_osal_os_mq_send() return OSAL_RETURN_FAIL
+,g_st_osal_os_mq,4,0,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,0,0,0,0,0,1,OSAL_RETURN_OK,;mq->rcv_wait_count is 0.
+,g_st_osal_os_mq,1,1,4,g_st_osal_time,1,1,gp_void,4,OSAL_RETURN_OK,0,0,0,0,0,1,1,OSAL_RETURN_FAIL,;sem_post() returns non-zero value.
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1,-1,gp_void,4,OSAL_RETURN_OK,0,1,0,0,0,1,1,OSAL_RETURN_FAIL,;Invalid timer value. (tv_sec is negative value.)
+,g_st_osal_os_mq,4,1,4,g_st_osal_time,1000000000,2,gp_void,4,OSAL_RETURN_OK,0,1,0,0,0,1,1,OSAL_RETURN_FAIL,";Invalid timer value. (tv_nsec is larger than 999,999,999.)"

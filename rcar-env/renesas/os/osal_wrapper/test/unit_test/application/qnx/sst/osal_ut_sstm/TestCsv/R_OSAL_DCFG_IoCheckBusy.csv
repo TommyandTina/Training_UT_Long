@@ -1,0 +1,16 @@
+modi,R_OSAL_DCFG_IoCheckBusy,07_013,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_io.c/gp_osal_device_control,g_st_osal_device_control_array[0].active,g_st_osal_device_control_array[1].active,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,,,,,,,,
+0,0,0,0,0,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gp_osal_device_control,g_st_osal_device_control_array[0].active,g_st_osal_device_control_array[1].active,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[1],R_OSAL_DCFG_IoCheckBusy@@,;
+,g_st_osal_device_control_array,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_device_control_array,0,0,2,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_array,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,OSAL_RETURN_BUSY,;device_control->active is true
+,g_st_osal_device_control_array,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return non-zero
+,g_st_osal_device_control_array,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;g_osal_num_of_device_table is 0
+,g_st_osal_device_control_array,0,0,2,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;g_osal_num_of_device_table is 2

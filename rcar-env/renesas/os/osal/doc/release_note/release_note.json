@@ -1,0 +1,919 @@
+{
+    "release_date": "Jan.12.2024",
+    "document_version": "Rev.3.15.0",
+    "document_num": "",
+    "title": "OSAL API",
+    "intro": {
+        "description": [
+            "This document describes updates and restrictions for this release."
+        ]
+    },
+    "overview": {
+        "description": [
+            "This document describes the contents regarding to \"OSAL API\". \\n",
+            "The OSAL API defines SW interfaces and behaviors for OS abstraction layer. \\n \\n",
+            "The OSAL API consists of the following.",
+            "- API specification",
+            "- Application Note",
+            "- Common header files for C language \\n \\n",
+            "About implementation information, please refer to release note for each OS."
+        ]
+    },
+    "general_info": {
+        "table": [{
+            "item": "-",
+            "name": "-",
+            "note": "The OSAL API is environment-independent."
+        }]
+    },
+    "release_software": {
+        "table": [{
+            "name": "OSAL API",
+            "version": "3.7.0",
+            "cur_qual": "-",
+            "tar_qual": "-",
+            "note": "The OSAL API quality grade depends on OSAL Wrapper."
+        }],
+        "note": [
+            "The Current/Target Quality grades options are below:",
+            " - Current: Sample, Reference, Alpha Beta, QM, ASIL",
+            " - Target: Sample, Reference, QM, ASIL\\n",
+            " \\n"
+        ]
+    },
+    "license": {
+        "description": [
+            "Proprietary license \\n",
+            "Copyright(C) [2020 - 2024] Renesas Electronics Corporation. All rights reserved."
+        ],
+        "table": [
+
+        ]
+    },
+    "restriction": {
+        "table": [{
+            "no": "-",
+            "description": [
+                "-"
+            ],
+            "impact": "-.",
+            "note": "-"
+        }]
+    },
+    "rel_document": {
+        "table": [{
+                "type": "API Specification",
+                "name": "R-Car_OSAL_APISpecification.pdf",
+                "version": "3.70 E",
+                "update": "no",
+                "note": "-"
+            },
+            {
+                "type": "API User's Manual",
+                "name": "r11uz0125ej0311-osal.pdf",
+                "version": "3.11 E",
+                "update": "yes",
+                "note": "-"
+            },
+            {
+                "type": "Application Note",
+                "name": "r11an0630ej0312-osal.pdf",
+                "version": "3.12 E",
+                "update": "yes",
+                "note": "-"
+            },
+            {
+                "type": "API Test Specification",
+                "name": "R-Car_OSAL_TestSpecification.pdf",
+                "version": "3.150 E",
+                "update": "yes",
+                "note": "-"
+            }
+        ]
+    },
+    "upgrade": {
+        "description": [
+            ""
+        ],
+        "section": [{
+                "name": "Version 0.7.0",
+                "description": [
+                    "- This is the first version."
+                ]
+            },
+            {
+                "name": "Version 0.8.0",
+                "description": [
+                    "- Followings in OSAL API Specification have been changed.",
+                    "     -# Rename API functions with timeout. \\n More detail refers to history in OSAL_API_Specification.pdf.",
+                    "     -# Change the return value type of interrupt callback function. ",
+                    "     -# Change initialization/de-initialization from dedicated call for each manager to consolidated one.",
+                    "     -# Change the resource ID type of the following API from enumeration type to integer type.",
+                    "         - R_OSAL_ThreadCreate",
+                    "         - R_OSAL_ThsyncMutexCreate",
+                    "         - R_OSAL_ThsyncCondCreate",
+                    "         - R_OSAL_MqCreate",
+                    "- Add an Application Note for OSAL API"
+                ]
+            },
+            {
+                "name": "Version 0.9.0",
+                "description": [
+                    "- Followings in OSAL API Specification have been changed.",
+                    "     -# Add error description to RETURN VALUE of each API.",
+                    "     -# Add detailed description of TimeStamp API.",
+                    "         - R_OSAL_ThreadSleepUntilTimeStamp",
+                    "         - R_OSAL_ThsyncMutexLockUntilTimeStamp",
+                    "         - R_OSAL_ThsyncCondWaitUntilTimeStamp",
+                    "         - R_OSAL_MqSendUntilTimeStamp",
+                    "         - R_OSAL_MqReceiveUntilTimeStamp",
+                    "     -# Add \"const\" to the following API parameter.",
+                    "         - R_OSAL_ThreadCreate",
+                    "         - R_OSAL_MqCreate",
+                    "- OSAL Application Note have not changed."
+                ]
+            },
+            {
+                "name": "Version 1.0.0",
+                "description": [
+                    "- OSAL API Specification have not changed.",
+                    "- OSAL Application Note have not changed."
+                ]
+            },
+            {
+                "name": "Version 1.1.0",
+                "description": [
+                    "- Followings in OSAL API Specification have been changed.",
+                    "     -# Remove OSAL type definition.",
+                    "         - osal_char_t",
+                    "         - osal_device_type_t",
+                    "         - osal_device_id_t",
+                    "     -# Change API name.",
+                    "         - R_OSAL_SetAndWaitForState -> R_OSAL_WaitForState",
+                    "     -# Change API interface. ",
+                    "         - R_OSAL_IoGetNumOfDevices",
+                    "         - R_OSAL_IoGetDeviceList",
+                    "         - R_OSAL_IoDeviceOpen",
+                    "     -# Change API behavior",
+                    "         - R_OSAL_IoGetDeviceList \\n  OSAL stores the device id as a string in the buffer."
+                ]
+            },
+            {
+                "name": "Version 2.0.0",
+                "description": [
+                    "- This version same as version 1.1.0."
+                ]
+            },
+            {
+                "name": "Version 2.1.0",
+                "description": [
+                    "- Followings in OSAL API Specification have been changed.",
+                    "     -# Added memory management API.",
+                    "         - R_OSAL_MmngrOpen",
+                    "         - R_OSAL_MmngrClose",
+                    "         - R_OSAL_MmngrAlloc",
+                    "         - R_OSAL_MmngrDealloc",
+                    "         - R_OSAL_MmngrGetConfig",
+                    "         - R_OSAL_MmngrGetOsalMaxConfig",
+                    "         - R_OSAL_MmngrRegisterMonitor",
+                    "         - R_OSAL_MmngrGetCpuPtr",
+                    "         - R_OSAL_MmngrGetConstCpuPtr",
+                    "         - R_OSAL_MmngrFlush",
+                    "         - R_OSAL_MmngrInvalidate",
+                    "         - R_OSAL_MmngrGetHwAddr",
+                    "         - R_OSAL_MmngrGetSize",
+                    "         - R_OSAL_MmngrCheckBuffer",
+                    "         - R_OSAL_MmngrDebugMmngrPrint",
+                    "         - R_OSAL_MmngrDebugBufferPrint",
+                    "     -# Added io extension API.",
+                    "         - R_OSAL_IoGetDeviceAxiBusId",
+                    "         - R_OSAL_IoGetAxiBusIdFromDeviceName",
+                    "         - R_OSAL_IoGetAxiBusNameList",
+                    "         - R_OSAL_IoGetAxiBusName",
+                    "     -# Added new power management API.",
+                    "         - R_OSAL_PmGetLowestIntermediatePowerState",
+                    "         - R_OSAL_PmSetPostClock",
+                    "     -# Added version acquisition API.",
+                    "         - R_OSAL_GetVersion",
+                    "     -# Added configuration initialize API.",
+                    "         - R_OSAL_ThreadInitializeThreadConfigSt",
+                    "         - R_OSAL_MqInitializeMqConfigSt",
+                    "         - R_OSAL_MmngrInitializeMmngrConfigSt"
+                ]
+            },
+            {
+                "name": "Version 2.2.0",
+                "description": [
+                    "- Update API behavior",
+                    "    - R_OSAL_ThreadCreate when return OSAL_RETURN_BUSY",
+                    "    - R_OSAL_ThsyncMutexCreate when return OSAL_RETURN_BUSY",
+                    "    - R_OSAL_ThsyncCondCreate when return OSAL_RETURN_BUSY",
+                    "    - R_OSAL_MqCreate when return OSAL_RETURN_BUSY",
+                    "    - R_OSAL_IoDeviceOpen when return OSAL_RETURN_BUSY",
+                    "    - R_OSAL_IoGetDeviceList when return OSAL_RETURN_UNKNOWN",
+                    "- Update API argument range",
+                    "    - R_OSAL_MqSendUntilTimeStamp",
+                    "    - R_OSAL_MqSendForTimePeriod",
+                    "    - R_OSAL_MqReceiveUntilTimeStamp",
+                    "    - R_OSAL_MqReceiveForTimePeriod",
+                    "    - R_OSAL_PmGetPostClock",
+                    "    - R_OSAL_MmngrOpen",
+                    "    - R_OSAL_MmngrAlloc",
+                    "    - R_OSAL_MmngrFlash",
+                    "    - R_OSAL_MmngrInvalidate",
+                    "- Removed definition from in osal_return_t.",
+                    "    - OSAL_RETURN_PERMITIED",
+                    "    - OSAL_RETURN_CANCELED",
+                    "- Fixed typo definition from in osal_return_t.",
+                    "    - OSAL_RETURN_UNKOWN to OSAL_RETURN_UNKNOWN",
+                    "- Fixed variable declaration in st_osal_thread_config_t",
+                    "    - char *task_name to const char *task_name",
+                    "- Follow coding guidelines.",
+                    "    - Added prefix of \"p_\" on pointer",
+                    "    - Changed member name of st_osal_sub_version structure."
+                ]
+            },
+            {
+                "name": "Version 2.3.0",
+                "description": [
+                    "- Update API behavior",
+                    "    - R_OSAL_PmSetRequiredState when return OSAL_RETURN_TIME",
+                    "    - R_OSAL_PmSetPolicy when return OSAL_RETURN_TIME",
+                    "- Update API argument description",
+                    "    - applyImmediate of R_OSAL_PmSetRequiredState",
+                    "    - applyImmediate of R_OSAL_PmSetPolicy"
+                ]
+            }, {
+                "name": "Version 2.4.0",
+                "description": [
+                    "- Fixed static analysis.",
+                    "- Add sample application. Refer to Application Note for detail.",
+                    "- Update API description",
+                    "     - note of R_OSAL_ThreadCreate",
+                    "     - OSAL_RETURN_HANDLE of R_OSAL_ThreadJoin",
+                    "     - OSAL_RETURN_FAIL of R_OSAL_InterruptEnableIsr",
+                    "     - note of R_OSAL_InterruptDisableIsr",
+                    "     - note of R_OSAL_IoDeviceOpen",
+                    "     - note of R_OSAL_PmSetPolicy",
+                    "     - R_OSAL_ThsyncMutexLockForTimePeriod operation and argument time_period",
+                    "     - R_OSAL_ThsyncMutexLockUntilTimeStamp operation and argument p_time_stamp",
+                    "     - R_OSAL_ThsyncMutexTryLock operation",
+                    "     - R_OSAL_ThsyncCondWaitForTimePeriod operation and argument time_period",
+                    "     - R_OSAL_ThsyncCondWaitUntilTimeStamp operation and argument p_time_stamp",
+                    "     - R_OSAL_MqSendForTimePeriod operation and argument time_period",
+                    "     - R_OSAL_MqSendUntilTimeStamp operation and argument p_time_stamp",
+                    "     - R_OSAL_MqReceiveForTimePeriod operation and argument time_period",
+                    "     - R_OSAL_MqReceiveUntilTimeStamp operation and argument p_time_stamp",
+                    "     - R_OSAL_MqReset operation",
+                    "     - argument time_period of R_OSAL_PmWaitForState",
+                    "     - Described a specific example of the device list acquired using R_OSAL_IoGetDeviceList"
+                ]
+            },
+            {
+                "name": "Version 2.5.0",
+                "description": [
+                    "- Update API description",
+                    "     - Add return value of OSAL_RETURN_STATE to R_OSAL_IoGetDeviceAxiBusId",
+                    "     - Add return value of OSAL_RETURN_STATE to R_OSAL_IoGetAxiBusIdFromDeviceName",
+                    "     - Add return value of OSAL_RETURN_MEM and OSAL_RETURN_STATE to R_OSAL_IoGetAxiBusNameList",
+                    "     - Add return value of OSAL_RETURN_STATE to R_OSAL_IoGetAxiBusName",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_PmSetPostClock",
+                    "     - Fixed a typo in the behavior of R_OSAL_MmngrOpen",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_MmngrOpen",
+                    "     - Add related API and structure to R_OSAL_MmngrOpen",
+                    "     - Add return value of OSAL_RETURN_OK and OSAL_RETURN_FAIL to R_OSAL_MmngrClose",
+                    "     - Add return value of OSAL_RETURN_PAR, OSAL_RETURN_FAIL and OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_MmngrAlloc",
+                    "     - Add return value of OSAL_RETURN_FAIL and OSAL_RETURN_STATE to R_OSAL_MmngrDealloc",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_MmngrGetConfig",
+                    "     - Add related API to R_OSAL_MmngrGetOsalMaxConfig",
+                    "     - Add return value of OSAL_RETURN_FAIL, OSAL_RETURN_HANDLE and OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_MmngrRegisterMonitor",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_MmngrGetCpuPtr",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_MmngrGetConstCpuPtr",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_MmngrFlush",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_MmngrInvalidate",
+                    "     - Add return value of OSAL_RETURN_FAIL to R_OSAL_MmngrGetHwAddr",
+                    "     - Add return value of OSAL_RETURN_FAIL and OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_MmngrGetSize",
+                    "     - Add return value of OSAL_RETURN_MEM, OSAL_RETURN_FAIL to R_OSAL_MmngrCheckBuffer",
+                    "     - Add return value of OSAL_RETURN_PAR to R_OSAL_MmngrDebugMmngrPrint",
+                    "     - Add return value of OSAL_RETURN_PAR to R_OSAL_MmngrDebugBufferPrint",
+                    "     - Update description for st_osal_mmngr_config_t structure"
+                ]
+            },
+            {
+                "name": "Version 2.6.0",
+                "description": [
+                    "- Fixed the style of Doxygen comments."
+                ]
+            },
+            {
+                "name": "Version 2.7.0",
+                "description": [
+                    "- Update sample application. Refer to Application Note for detail.",
+                    "- Add new API",
+                    "- Update API description",
+                    "     - Add return value of OSAL_RETURN_BUSY to R_OSAL_Deinitialize",
+                    "     - Remove return value of OSAL_RETURN_HANDLE_NOT_SUPPORTED to R_OSAL_MmngrClose",
+                    "     - Remove return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_MmngrAlloc",
+                    "     - Remove return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_MmngrDealloc",
+                    "     - Remove return value of OSAL_RETURN_UNSUPPORTED_OPERATION and add return value of OSAL_RETURN_HANDLE_NOT_SUPPORTED to R_OSAL_MmngrGetConfig",
+                    "     - Remove return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_MmngrGetOsalMaxConfig",
+                    "     - Remove return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_MmngrRegisterMonitor",
+                    "     - Remove return value of OSAL_RETURN_UNSUPPORTED_OPERATION and add return value of OSAL_RETURN_HANDLE_NOT_SUPPORTED to R_OSAL_MmngrDebugMmngrPrint",
+                    "     - Fixed a typo in the behavior of R_OSAL_MqReceiveForTimePeriod."
+                ]
+            },
+            {
+                "name": "Version 2.8.0",
+                "description": [
+                    "- Update sample application. Refer to Application Note for detail.",
+                    "- Update API description",
+                    "     - Add return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_PmSetRequiredState",
+                    "     - Add return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_PmGetRequiredState",
+                    "     - Add return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_PmWaitForState",
+                    "     - Add return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_PmGetState",
+                    "     - Add return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_PmSetResetState",
+                    "     - Add return value of OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_PmGetResetState",
+                    "     - Refined return code usage of R_OSAL_MmngrClose in case of 'if Memory Manager is not opened.' (OSAL_RETURN_HANDLE -> OSAL_RETURN_STATE)",
+                    "     - Refined return code usage of R_OSAL_MmngrAlloc in case of 'if Memory Manager is not opened.' (OSAL_RETURN_HANDLE -> OSAL_RETURN_STATE)",
+                    "     - Refined return code usage of R_OSAL_MmngrDealloc in case of 'if Memory Manager is not opened.' (OSAL_RETURN_HANDLE -> OSAL_RETURN_STATE)",
+                    "     - Refined return code usage of R_OSAL_MmngrGetConfig in case of 'if Memory Manager is not opened.'' (OSAL_RETURN_HANDLE -> OSAL_RETURN_STATE)",
+                    "     - Refined return code usage of R_OSAL_MmngrRegisterMonitor in case of 'if Memory Manager is not opened.' (OSAL_RETURN_HANDLE -> OSAL_RETURN_STATE)",
+                    "     - Refined return code usage of R_OSAL_MmngrDebugMmngrPrint in case of 'if Memory Manager is not opened.' (OSAL_RETURN_HANDLE -> OSAL_RETURN_STATE)",
+                    "     - Refined return code usage of R_OSAL_IoGetAxiBusName in case of 'if provided buffer is too small.' (OSAL_RETURN_MEM -> OSAL_RETURN_PAR)",
+                    "     - Refined return code usage of R_OSAL_IoGetAxiBusNameList in case of 'if provided buffer is too small.' (OSAL_RETURN_MEM -> OSAL_RETURN_PAR)",
+                    "     - Refined return code usage of R_OSAL_IoGetDeviceList in case of 'if provided buffer is too small.' (OSAL_RETURN_FAIL -> OSAL_RETURN_PAR)"
+                ]
+            },
+            {
+                "name": "Version 2.9.0",
+                "description": [
+                    "- Specified unique value for enum."
+                ]
+            },
+            {
+                "name": "Version 2.10.0",
+                "description": [
+                  "- Add new API. These APIs are for internal developers.",
+                  "     - R_OSAL_IoGetNumOfAXIIdsForAXIBusName",
+                  "     - R_OSAL_IoGetAxiIdListForAXIBusName",
+                  "     - R_OSAL_IoGetNumOfAXIIdsForDeviceHdl",
+                  "     - R_OSAL_IoGetAxiIdListForDeviceHdl",
+                  "     - R_OSAL_IoGetNumOfAXIIdsForDeviceName",
+                  "     - R_OSAL_IoGetAxiIdListForDeviceName"
+                ]
+            },
+            {
+                "name": "Version 2.11.0",
+                "description": [
+                  "- Update argument name of below API .",
+                  "     - R_OSAL_IoGetAxiIdListForAxiBusName",
+                  "     - R_OSAL_IoGetAxiIdListForDeviceHdl",
+                  "     - R_OSAL_IoGetAxiIdListForDeviceName"
+                ]
+            },
+            {
+                "name": "Version 3.0.0",
+                "description": [
+                    "- Added following restriction, Table 1-3 has more details. \\n ",
+                    "    - ASDRCXPOSAL-633",
+                    "- Update API description",
+                    "     - Added the condition that returns OSAL_RETURN_FAIL to R_OSAL_ThreadSelf()",
+                    "     - Added the condition that returns OSAL_RETURN_PAR to R_OSAL_InterruptUnregisterIsr()",
+                    "- Added new API",
+                    "     - R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx",
+                    "     - R_OSAL_MmngrOpenFromRegionIdx"
+                ]
+            },
+            {
+                "name": "Version 3.1.0",
+                "description": [
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-712"
+                ]
+            },
+            {
+                "name": "Version 3.2.0",
+                "description": [
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-633"
+                ]
+            },
+            {
+                "name": "Version 3.3.0",
+                "description": [
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-879"
+                ]
+            },
+            {
+                "name": "Version 3.4.0",
+                "description": [
+                    "- Update API description",
+                    "     - Added the condition that returns OSAL_RETURN_CONF to the following APIs.",
+                    "       - R_OSAL_MmngrGetConfig()",
+                    "       - R_OSAL_MmngrGetOsalMaxConfig()",
+                    "       - R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx()",
+                    "     - Added the condition that returns OSAL_RETURN_UNSUPPORTED_OPERATION to the following APIs",
+                    "       - R_OSAL_InterruptRegisterIsr()",
+                    "       - R_OSAL_InterruptUnregisterIsr()",
+                    "       - R_OSAL_InterruptEnableIsr()",
+                    "       - R_OSAL_InterruptDisableIsr()",
+                    "       - R_OSAL_InterruptSetIsrPriority()"
+                ]
+            },
+            {
+                "name": "Version 3.5.0",
+                "description": [
+                    "- Update API description",
+                    "     - Added a condition to return OSAL_RETURN_FAIL of R_OSAL_ThsyncMutexUnlock(). \\n ",
+                    "       condition: \"Mutex has already unlocked.\" \\n ",
+                    "       The behavior of the API has not been changed, just added the description to the API specification.",
+                    "     - Added condition to return OSAL_RETURN_PAR of R_OSAL_MmngrGetHwAddr(). \\n ",
+                    "       condition: \"axi_id is OSAL_AXI_BUS_ID_INVALID.\" \\n ",
+                    "       The behavior of the API has not been changed, just added the description to the API specification.",
+                    "- Update sample application.",
+                    "     - Cleaned up sequence of sample applications because these sequences contained redundant processing.", 
+                    "     - Separated sequences to each function block to clarify how to use OSAL API."
+                ]
+            },
+            {
+                "name": "Version 3.6.0",
+                "description": [
+                    "- Supported R-Car V4H2.0",
+                    "- The OSAL build configuration was updated as follows. \\n ",
+                    "  These build configurations are applied when \"-DNDEBUG\" is specified and \"-DR_OSAL_ENABLE_DEBUG\" is not specified to compile option.",
+                    "     - stdio.h is not included",
+                    "     - Use dummy definition for \"FILE\"",
+                    "- Update brief of definition \"OSAL_AXI_BUS_ID_INVALID\" and \"OSAL_AXI_BUS_ID_IPA_MAIN_MEMORY\"",
+                    "- Clarified the conditions that returns OSAL_RETURN_HANDLE for the following APIs",
+                    "     - R_OSAL_MmngrDealloc",
+                    "     - R_OSAL_MmngrCheckBuffer",
+                    "     - R_OSAL_MmngrFlush",
+                    "     - R_OSAL_MmngrInvalidate",
+                    "     - R_OSAL_MmngrGetConfig",
+                    "     - R_OSAL_MmngrGetCpuPtr",
+                    "     - R_OSAL_MmngrGetConstCpuPtr",
+                    "     - R_OSAL_MmngrGetHwAddr",
+                    "     - R_OSAL_MmngrGetSize",
+                    "     - R_OSAL_MmngrDebugMmngrPrint",
+                    "     - R_OSAL_MmngrDebugBufferPrint",
+                    "- Removed unnecessary condition to return OSAL_RETURN_PAR of R_OSAL_PmSetPolicy()"
+                ]
+            },
+            {
+                "name": "Version 3.7.0",
+                "description": [
+                    "- Removed following restriction. This restriction was moved to \"1.3. Restrictions\" in API User's Manual.",
+                    "    - ASDRCXPOSAL-456",
+                    "- Updated API description when applyImmediate is true in R_OSAL_PmSetPolicy()",
+                    "- Updated API description the return value of Memory Manager APIs to avoid misunderstandings"
+                ]
+            },
+            {
+                "name": "Version 3.8.0",
+                "description": [
+                    "- Changed file name of following document. There are no changes to the contents.",
+                    "    - R-CarV4H_S4_V3H_V3M_OSAL_APISpecification.pdf -> R-Car_OSAL_APISpecification.pdf",
+                    "    - R-CarV4H_S4_V3H_V3M_OSAL_TestSpecification.pdf -> R-Car_OSAL_TestSpecification.pdf",
+                    "- The appearance of the R-Car_OSAL_APISpecification.pdf has changed, due to changes in doxygen settings.",
+                    "  These are unnecessary information and have no effect on the OSAL API specifications",
+                    "    - Remove chapter: 3 Namespace Index",
+                    "    - Remove chapter: 6 Namespace Documentation"
+                ]
+            }
+        ]
+    },
+    "kil": {
+        "description": [
+
+        ],
+        "table": [{
+            "number": "-",
+            "description": "-",
+            "work_around": "-"
+        }]
+    },
+    "fil": {
+        "description": [
+        ],
+        "table": [{
+            "number": "ASDRCXPOSAL-712",
+            "description": ["[Ver 3.1.0] - Fixed the condition that the following APIs return RETURN_PAR. \\n ",
+                            "   - R_OSAL_IoRead16() \\n ",
+                            "   - R_OSAL_IoRead32() \\n ",
+                            "   - R_OSAL_IoRead64() \\n ",
+                            "   - R_OSAL_IoWrite8() \\n ",
+                            "   - R_OSAL_IoWrite16() \\n ",
+                            "   - R_OSAL_IoWrite32() \\n ",
+                            "   - R_OSAL_IoWrite64() \\n ",
+                            "   - R_OSAL_IoBlockRead8() \\n ",
+                            "   - R_OSAL_IoBlockRead16() \\n ",
+                            "   - R_OSAL_IoBlockRead32() \\n ",
+                            "   - R_OSAL_IoBlockRead64() \\n ",
+                            "   - R_OSAL_IoBlockWrite8() \\n ",
+                            "   - R_OSAL_IoBlockWrite16() \\n ",
+                            "   - R_OSAL_IoBlockWrite32() \\n ",
+                            "   - R_OSAL_IoBlockWrite64() \\n "]
+        },
+        {
+            "number": "ASDRCXPOSAL-633",
+            "description": ["[Ver 3.2.0] - Updated description of the following APIs. \\n ",
+                            "   - R_OSAL_IoGetDeviceAxiBusId() \\n ",
+                            "   - R_OSAL_IoGetAxiBusIdFromDeviceName() \\n ",
+                            "   - R_OSAL_IoGetAxiBusNameList() \\n ",
+                            "   - R_OSAL_IoGetAxiBusName()"]
+        },
+        {
+            "number": "ASDRCXPOSAL-879",
+            "description": ["[Ver 3.3.0] - Fixed the condition that the following APIs return RETURN_PAR. \\n ",
+                            "   - R_OSAL_ThsyncCondWaitForTimePeriod() \\n ",
+                            "   - R_OSAL_ThsyncCondWaitUntilTimeStamp() \\n "
+                            ]
+        }]
+    },
+    "rev": {
+        "description": [
+
+        ],
+        "table": [{
+                "rev": "0.70",
+                "date": "2020/03/27",
+                "page": "-",
+                "sum": "New creation"
+            },
+            {
+                "rev": "0.80",
+                "date": "2020/06/02",
+                "page": [
+                    "-\\n \\n \\n ",
+                    "P4"
+                ],
+                "sum": [
+                    "Separated the release notes into two parts, one for the OSAL Wrapper and one for the OSAL API and create this document for the OSAL API.\\n ",
+                    "Updates related to the OSAL API are described."
+                ]
+            },
+            {
+                "rev": "0.90",
+                "date": "2020/07/06",
+                "page": "P4",
+                "sum": "Updates related to the OSAL API are described for Ver 0.9.0."
+            },
+            {
+                "rev": "1.00",
+                "date": "2020/08/03",
+                "page": "P4",
+                "sum": "Updates related to the OSAL API are described for Ver 1.0.0."
+            },
+            {
+                "rev": "1.10",
+                "date": "2020/09/16",
+                "page": "P4",
+                "sum": "Updates related to the OSAL API are described for Ver 1.1.0."
+            },
+            {
+                "rev": "2.00",
+                "date": "2020/11/30",
+                "page": "-",
+                "sum": "Update version"
+            },
+            {
+                "rev": "2.10",
+                "date": "2020/12/12",
+                "page": "P5",
+                "sum": "Add new OSAL APIs are described for Ver 2.1.0."
+            },
+            {
+                "rev": "2.20",
+                "date": "2021/02/08",
+                "page": "P3",
+                "sum": "Updated API User's Manual version and added API Application Note information in Table 1-4"
+            },
+            {
+                "rev": "2.30",
+                "date": "2021/03/29",
+                "page": [
+                    "P5\\n ",
+                    "P6"
+                ],
+                "sum": [
+                    "Updates related to the OSAL API are described for Ver 2.2.0.\\n ",
+                    "Add Fixed issue list"
+                ]
+            },
+            {
+                "rev": "2.40",
+                "date": "2021/04/09",
+                "page": "P6",
+                "sum": "Updates related to the OSAL API are described for Ver 2.3.0."
+            },
+            {
+                "rev": "2.50",
+                "date": "2021/05/12",
+                "page": "P6",
+                "sum": "Updates related to the OSAL API are described for Ver 2.4.0."
+            },
+            {
+                "rev": "2.60",
+                "date": "2021/06/09",
+                "page": [
+                    "P2\\n ",
+                    "P3\\n ",
+                    "P6"
+                ],
+                "sum": [
+                    "Updated Restriction Lists in Table1-3.\\n ",
+                    "Updated Related Documents version.\\n ",
+                    "Updates related to the OSAL API are described for Ver 2.5.0."
+                ]
+            },
+            {
+                "rev": "2.70",
+                "date": "2021/7/20",
+                "page": [
+                    "P2\\n ",
+                    "P3\\n ",
+                    "P6"
+                ],
+                "sum": [
+                    "Updated Restriction Lists in Table1-3.\\n ",
+                    "Updated Related Documents version.\\n ",
+                    "Updates related to the OSAL API are described for Ver 2.6.0."
+                ]
+            },
+            {
+                "rev": "2.80",
+                "date": "2021/8/2",
+                "page": [
+                    "P3\\n ",
+                    "P7"
+                ],
+                "sum": [
+                    "Updated Related Documents version.\\n ",
+                    "Updates related to the OSAL API are described for Ver 2.7.0."
+                ]
+            },
+            {
+                "rev": "2.90",
+                "date": "2021/9/15",
+                "page": [
+                    "P3\\n ",
+                    "\\n ",
+                    "\\n ",
+                    "P7"
+                ],
+                "sum": [
+                    "Updated Related Documents version.\\n ",
+                    "Added API Test Specification to Related Documents\\n ",
+                    "Remove Restriction #1\\n ",
+                    "Updates related to the OSAL API are described for Ver 2.8.0."
+                ]
+            },
+            {
+                "rev": "2.100",
+                "date": "2021/10/05",
+                "page": "P3",
+                "sum": "Updated Related Documents version."
+            },
+            {
+                "rev": "2.110",
+                "date": "2021/10/09",
+                "page": [
+                    "P3 \\n ",
+                    "P7 "
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 2.9.0."
+                ]
+            },
+            {
+                "rev": "2.120",
+                "date": "2021/11/05",
+                "page": [
+                    "P3 \\n ",
+                    "P8 "
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 2.10.0."
+                ]
+            },
+            {
+                "rev": "2.130",
+                "date": "2021/12/06",
+                "page": [
+                    "P3 \\n ",
+                    "P9 "
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 2.11.0."
+                ]
+            },
+            {
+                "rev": "3.0.0",
+                "date": "2022/3/15",
+                "page": [
+                    "- \\n ",
+                    "P2 \\n ",
+                    "P3 "
+                ],
+                "sum": [
+                    "Changed version to x.y.z format \\n ",
+                    "Added restriction ASDRCXPOSAL-456. \\n ",
+                    "Updated Related Documents version. "
+                ]
+            },
+            {
+                "rev": "3.1.0",
+                "date": "2022/4/7",
+                "page": [
+                    "P2 "
+                ],
+                "sum": [
+                    "Updated Related Documents version. "
+                ]
+            },
+            {
+                "rev": "3.2.0",
+                "date": "2022/5/9",
+                "page": [
+                    "P2 \\n ",
+                    "P3 \\n "
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.0.0. \\n "
+                ]
+            },
+            {
+                "rev": "3.3.0",
+                "date": "2022/6/8",
+                "page": [
+                    "P2 \\n ",
+                    "P3 \\n ",
+                    "P12 \\n "
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.1.0. \\n ",
+                    "Added ASDRCXPOSAL-712 to Fixed Issues List"
+                ]
+            },
+            {
+                "rev": "3.4.0",
+                "date": "2022/7/11",
+                "page": [
+                    "P2 \\n ",
+                    "P3 \\n ",
+                    "P11"
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.2.0. \\n ",
+                    "Added ASDRCXPOSAL-633 to Fixed Issues List"
+                ]
+            },
+            {
+                "rev": "3.5.0",
+                "date": "2022/8/4",
+                "page": [
+                    "P2 \\n ",
+                    "P3 \\n ",
+                    "P11"
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.3.0. \\n ",
+                    "Added ASDRCXPOSAL-879 to Fixed Issues List"
+                ]
+            },
+            {
+                "rev": "3.6.0",
+                "date": "2022/8/29",
+                "page": [
+                    "P2"
+                ],
+                "sum": [
+                    "Updated file name of Related Documents."
+                ]
+            },
+            {
+                "rev": "3.7.0",
+                "date": "2022/10/7",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    "P10 \\n "
+                ],
+                "sum": [
+                    "Updated API version\\n ",
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.4.0. \\n "
+                ]
+            },
+            {
+                "rev": "3.8.0",
+                "date": "2022/11/8",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    "P10 \\n "
+                ],
+                "sum": [
+                    "Updated API version\\n ",
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.5.0.",
+                    "Added description about update of OSAL API Sample."
+                ]
+            },
+            {
+                "rev": "3.9.0",
+                "date": "2022/12/8",
+                "page": [
+                    "P2 \\n "
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n "
+                ]
+            },
+            {
+                "rev": "3.10.0",
+                "date": "2023/1/13",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    " \\n ",
+                    "P10 \\n "
+                ],
+                "sum": [
+                    "Updated API version\\n ",
+                    "Updated Copyright \\n ",
+                    "Updated Related Documents version. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.6.0."
+                ]
+            },
+            {
+                "rev": "3.11.0",
+                "date": "2023/2/3",
+                "page": [
+                    "P2"
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n ",
+                    " - Update sample device application. \\n ",
+                    " - Added process of RTDMAC power/clock control by using rtdmac_descriptor when SoC is S4."
+                ]
+            },
+            {
+                "rev": "3.12.0",
+                "date": "2023/2/10",
+                "page": [
+                    "P1 \\n ",
+                    "P2 \\n ",
+                    " \\n ",
+                    "P11"
+                ],
+                "sum": [
+                    "Updated API version\\n ",
+                    "Updated Related Documents version. \\n ",
+                    "Removed restriction ASDRCXPOSAL-456. \\n ",
+                    "Updates related to the OSAL API are described for Ver 3.7.0."
+                ]
+            },
+            {
+                "rev": "3.13.0",
+                "date": "2023/3/13",
+                "page": [
+                    "P2"
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n "
+                ]
+            },
+            {
+                "rev": "3.14.0",
+                "date": "2023/9/12",
+                "page": [
+                    "P4"
+                ],
+                "sum": [
+                    "Updated Related Documents version. \\n "
+                ]
+            },
+            {
+                "rev": "3.15.0",
+                "date": "2024/1/12",
+                "page": [
+                    "P4 \\n ",
+                    "P13"
+                ],
+                "sum": [
+                    "Updated Related Documents filename. \\n ",
+                    "Updated Upgrade information. \\n "
+                ]
+            }
+        ]
+    }
+}

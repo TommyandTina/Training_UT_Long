@@ -1,0 +1,25 @@
+diff --git a/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig b/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig
+index c2a99c3ab9..17fa8190f6 100644
+--- a/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig
++++ b/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig
+@@ -49,3 +49,4 @@ CONFIG_MAIN_STACK_SIZE=4096
+ CONFIG_SCHED_CPU_MASK=y
+ CONFIG_THREAD_NAME=y
+ CONFIG_THREAD_MAX_NAME_LEN=16
++CONFIG_IDLE_STACK_SIZE=21440
+diff --git a/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c b/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c
+index b86536fd3a..a31ee50172 100644
+--- a/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c
++++ b/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c
+@@ -104,6 +104,11 @@ static const struct arm_mpu_region mpu_regions[] = {
+ 			DT_PROP_BY_IDX(DT_NODELABEL(iccommem_00), reg, 0),
+ 			DT_PROP_BY_IDX(DT_NODELABEL(iccommem_00), reg, 1),
+ 			ATTR_RW_NC),
++
++	MPU_REGION_ENTRY("CA76_OSAL_MMNGR",
++			0x80000000,
++			0x20000000,
++			ATTR_RW_C_B),
+ };
+ 
+ const struct arm_mpu_config mpu_config = {

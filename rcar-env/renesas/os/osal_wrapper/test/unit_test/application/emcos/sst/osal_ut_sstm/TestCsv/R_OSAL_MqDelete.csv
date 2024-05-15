@@ -1,0 +1,19 @@
+modi,R_OSAL_MqDelete,04_002,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,@handle,g_mq_control.handle_id,g_mq_control.usr_config,g_mq_control.numofmsg,g_mq_control.active,g_mq_control.receive_wait,g_mq_control.send_wait,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],R_OSAL_MqDelete@@,;
+,1,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation
+,0,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_STATE,;gs_osal_mq_is_initialized is not true
+,1,0,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle is 0
+,1,g_mq_control,1,g_st_osal_rcfg_mq_config,0,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle->handle_is is not equal OSAL_MESSAGE_HANDLE_ID
+,1,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,0,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle->active is false
+,1,g_mq_control,0x4F53414C5F4D5347,0,0,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle->usr_config is 0
+,1,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,1,0,0,0,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,1,1,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_BUSY,;handle->numofmsg is not equal 0
+,1,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,1,1,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_BUSY,;handle->receive_wait is true
+,1,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,1,0,1,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_BUSY,;handle->send_wait is true
+,1,g_mq_control,0x4F53414C5F4D5347,g_st_osal_rcfg_mq_config,0,1,0,0,0,OSAL_RETURN_OK,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

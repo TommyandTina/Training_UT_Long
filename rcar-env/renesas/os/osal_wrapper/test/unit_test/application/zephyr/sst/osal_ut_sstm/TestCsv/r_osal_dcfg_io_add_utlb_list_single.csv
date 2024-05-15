@@ -1,0 +1,12 @@
+modi,r_osal_dcfg_io_add_utlb_list_single,07_031,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,g_axi_bus_name_info_1[0].utlb,g_axi_bus_name_info_1[1].utlb,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,g_axi_bus_name_info_1[0].utlb,g_axi_bus_name_info_1[1].utlb,@utlb,$@p_domain_name,@list_size,@p_list_buffer,@p_utlb_control,g_st_osal_utlb_list_control.match_count,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],r_osal_dcfg_io_add_utlb_list_single@@,;
+,g_axi_bus_name_info_1,1,OSAL_DEV_CFG_AXI_BUS_NAME_LAST,1,1,10,array_uint64,g_st_osal_utlb_list_control,3,0,0,0,OSAL_RETURN_OK,;Normal operation
+,g_axi_bus_name_info_1,1,OSAL_DEV_CFG_AXI_BUS_NAME_LAST,1,1,10,array_uint64,g_st_osal_utlb_list_control,3,0,-1,-1,OSAL_RETURN_UNKNOWN_NAME,;strncmp() return non-zero.
+,g_axi_bus_name_info_1,1,OSAL_DEV_CFG_AXI_BUS_NAME_LAST,2,1,10,array_uint64,g_st_osal_utlb_list_control,3,0,0,0,OSAL_RETURN_UNKNOWN_NAME,;gsp_axi_bus_name_info[count].utlb is not equals utlb.
+,g_axi_bus_name_info_1,1,OSAL_DEV_CFG_AXI_BUS_NAME_LAST,1,1,10,0,g_st_osal_utlb_list_control,3,0,0,0,OSAL_RETURN_OK,;p_list_buffer is NULL.
+,g_axi_bus_name_info_1,1,OSAL_DEV_CFG_AXI_BUS_NAME_LAST,1,1,10,array_uint64,g_st_osal_utlb_list_control,10,0,0,0,OSAL_RETURN_OK,;list_size is bigger than p_utlb_control->match_count.

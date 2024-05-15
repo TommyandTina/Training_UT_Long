@@ -1,0 +1,25 @@
+tienvanle@W410222-SL D:\imp-osal\CANTWorkspace\impdrv_ut
+> impdrv_ut.exe
+[I][==========] RunAllTests() START
+[I][----------] 16 tests from UT_r_imr_osal_ctl_start
+[I][ RUN ] UT_r_imr_osal_ctl_start_ALL.r_imr_osal_ctl_start_0001
+[V]<OK> ReturnValue [output] E_OK(0) <==> [expected] E_OK(0)
+[V]<OK> r_imr_osal_msg_create_channel [output] IMR_CH0(0) <==> [expected] IMR_CH0(0)
+[V]<OK> r_imr_osal_io_ctl_create_channel [output] IMR_CH0(0) <==> [expected] IMR_CH0(0)
+[V]<OK> r_imr_osal_msg_destroy_channel [output] 0xCCCCCCCC(-858993460) <==> [expected] 0xCCCCCCCC(-858993460)
+[V][ RESULT ] r_imr_osal_ctl_start-001: OK
+[ OK ] UT_r_imr_osal_ctl_start_ALL.r_imr_osal_ctl_start_0001
+[I][ RUN ] UT_r_imr_osal_ctl_start_ALL.r_imr_osal_ctl_start_0002
+[V]<OK> ReturnValue [output] E_OK(0) <==> [expected] E_OK(0)
+[V]<OK> r_imr_osal_msg_create_channel [output] IMR_CH1(1) <==> [expected] IMR_CH1(1)
+[V]<OK> r_imr_osal_io_ctl_create_channel [output] IMR_CH1(1) <==> [expected] IMR_CH1(1)
+[V]<OK> r_imr_osal_msg_destroy_channel [output] 0xCCCCCCCC(-858993460) <==> [expected] 0xCCCCCCCC(-858993460)
+[V][RESULT ] r_imr_rtt_osal_ctl_init-002: OK
+[       OK ] UT_r_imr_rtt_osal_ctl_init_ALL.r_imr_rtt_osal_ctl_init_0002
+[I][----------] 2 tests from UT_r_imr_rtt_osal_ctl_init
+[I][  PASSED  ] 2 tests from UT_r_imr_rtt_osal_ctl_init
+[I][Result ] UT_r_imr_rtt_osal_ctl_init : OK = 2, NG = 0, Skip = 0
+
+[I][==========] RunAllTests() END
+[I]
+ 2 PASSED TEST

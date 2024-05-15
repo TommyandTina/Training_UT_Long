@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_Strnlen,01_047,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,
+#COMMENT,$@p_str,@maxlen,AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return,R_OSAL_OS_Strnlen@@,;,,,,,,,
+,1,1,1,1,;Normal operation,,,,,,,
+,0,1,1,0,;p_str is NULL.,,,,,,,

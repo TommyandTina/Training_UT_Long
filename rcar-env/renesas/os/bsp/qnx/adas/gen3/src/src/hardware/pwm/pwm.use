@@ -1,0 +1,9 @@
+Renesas R-CAR PWM driver
+
+%C [options] -c
+
+    -c: PWM channel
+	
+e.g:
+# Using PWM channel 0
+    pwm-rcar -c 0 &

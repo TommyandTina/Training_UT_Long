@@ -1,0 +1,27 @@
+	The SYS-DMAC/RT-DMAC library for RENESAS R-Car Gen3&Gen4 boards
+
+    CREATED   : 09.30.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3&Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            09.30.2020 : Ver.0.1
+            - Create new version (all features) ported from QNX 7.0
+            - Add R-Car V3U support
+            08.30.2021 : Ver.0.2
+            - Remove DMA channel clear in dma_setup_xfer() and add DMA channel clear in dma_abort() when DMA channel clear flag is set
+            09.30.2021 : Ver.0.3
+            - Add R-Car S4 support
+            10.30.2021 : Ver0.4
+            - Optimize code
+            11.30.2021 : Ver0.5
+            - Support Rate Control and Buffer control features
+            05.30.2022 : Ver0.6
+            - Sync framework with QNX's Rev: 954457
+            08.11.2022 : Ver0.7
+            - Remove built-in descriptor support for S4 and V4H
+            01.27.2023 : Ver0.8
+            - Call rsrcdb_detach_resources() in dma_channel_release() to detach DMA channel
+

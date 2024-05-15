@@ -1,0 +1,13 @@
+modi,R_OSAL_OS_MutexCreate,10_101,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@mutex_attr,@p_mutex,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_OS_MutexCreate@@,;,,,,
+,g_st_osal_os_mutexattr_t,g_osal_os_mutex_t[0],0,g_st_osal_os_mutex_t[0],0,0,OSAL_RETURN_OK,;Normal operation ,,,,
+,0,g_osal_os_mutex_t[0],0,g_st_osal_os_mutex_t[0],0,0,OSAL_RETURN_FAIL,;mutex_attr is NULL,,,,
+,g_st_osal_os_mutexattr_t,0,0,g_st_osal_os_mutex_t[0],0,0,OSAL_RETURN_FAIL,;p_mutex is NULL,,,,
+,g_st_osal_os_mutexattr_t,g_osal_os_mutex_t[0],0,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc returns NULL,,,,
+,g_st_osal_os_mutexattr_t,g_osal_os_mutex_t[0],0,g_st_osal_os_mutex_t[0],-1,0,OSAL_RETURN_FAIL,;pthread_mutex_init returns -1,,,,

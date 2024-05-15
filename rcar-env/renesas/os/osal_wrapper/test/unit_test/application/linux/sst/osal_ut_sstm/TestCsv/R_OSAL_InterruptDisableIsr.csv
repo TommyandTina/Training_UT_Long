@@ -1,0 +1,11 @@
+modi,R_OSAL_InterruptDisableIsr,06_005,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_InterruptDisableIsr,R_OSAL_DCFG_InterruptDisableIsr,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_InterruptGetInitStatus,R_OSAL_DCFG_InterruptGetInitStatus,,,,,,,,,,
+#COMMENT,@handle,@irq_channel,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_InterruptDisableIsr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_InterruptGetInitStatus@AMIN_return,R_OSAL_InterruptDisableIsr@@,;,,,,,,
+,g_st_osal_common_device_control,2,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,g_st_osal_common_device_control,2,OSAL_RETURN_OK,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_STATE,;R_OSAL_DCFG_InterruptGetInitStatus() return OSAL_MANAGER_STATE_UNINITIALIZED,,,,,,
+,0,2,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_HANDLE,;handle is NULL,,,,,,
+,g_st_osal_common_device_control,2,OSAL_RETURN_HANDLE,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_HANDLE,;R_OSAL_DCFG_InterruptDisableIsr() return OSAL_RETURN_HANDLE,,,,,,
+,g_st_osal_common_device_control,2,OSAL_RETURN_PAR,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_PAR,;R_OSAL_DCFG_InterruptDisableIsr() return OSAL_RETURN_PAR,,,,,,

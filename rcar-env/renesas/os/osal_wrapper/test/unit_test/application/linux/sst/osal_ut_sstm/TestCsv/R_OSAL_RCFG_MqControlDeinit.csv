@@ -1,0 +1,13 @@
+modi,R_OSAL_RCFG_MqControlDeinit,03_004,7,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_message.c/gs_inner_mq_mtx,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTryLock,R_OSAL_OS_MutexTryLock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTryLock,R_OSAL_OS_MutexTryLock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_message.c/gs_inner_mq_mtx,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTryLock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTryLock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_RCFG_MqControlDeinit@@,;,,,
+,g_osal_os_mutex_t[0],0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,
+,g_osal_os_mutex_t[0],0,0,0,OSAL_RETURN_HANDLE,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexTryLock() return OSAL_RETURN_HANDLE,,,
+,g_osal_os_mutex_t[0],0,0,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDestroy() return OSAL_RETURN_BUSY,,,

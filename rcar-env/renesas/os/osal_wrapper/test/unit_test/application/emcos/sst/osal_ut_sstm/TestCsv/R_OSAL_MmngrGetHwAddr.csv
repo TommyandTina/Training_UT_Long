@@ -1,0 +1,10 @@
+modi,R_OSAL_MmngrGetHwAddr,09_016,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,g_st_osal_memory_buffer_obj.p_getHwAddr,@axi_id,@p_hw_addr,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_MmngrGetHwAddr@@,;,,,,,
+,g_st_osal_memory_buffer_obj,AMSTB_osal_mem_internal,1,g_uintptr_t,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,AMSTB_osal_mem_internal,1,g_uintptr_t,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;memory_buffer_obj_hndl is equals 0,,,,,
+,g_st_osal_memory_buffer_obj,AMSTB_osal_mem_internal,1,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_hw_addr is 0,,,,,
+,g_st_osal_memory_buffer_obj,AMSTB_osal_mem_internal,0,g_uintptr_t,OSAL_RETURN_OK,OSAL_RETURN_PAR,;axi_id is eqauls OSAL_AXI_BUS_ID_INVALID,,,,,
+,g_st_osal_memory_buffer_obj,0,1,g_uintptr_t,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;memory_buffer_obj_hndl->p_getHwAddr is 0,,,,,
+,g_st_osal_memory_buffer_obj,AMSTB_osal_mem_internal,1,g_uintptr_t,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;memory_buffer_obj_hndl->p_getHwAddr returns OSAL_RETURN_FAIL,,,,,

@@ -1,0 +1,35 @@
+
+%C - Serial driver for SCIF/HSCIF
+
+%C [options] [scif#|hscif#]&
+Options:
+ -b number    Define initial baud rate (default )
+ -B number    Base Address
+ -c clk[/div] Set the input clock rate and divisor; 
+ -C number    Size of canonical input buffer (default 256)
+ -e           Set options to "edit" mode
+ -E           Set options to "raw" mode (default)
+ -h           Enable RS-232 use of RTS and CTS lines (default)
+ -H           Permanently disable RS-232 use of RTS and CTS lines (for use as GPIOs)
+ -i num       IRQ
+ -I number    Size of raw input buffer (default 2048)
+ -x           Use external clock
+ -X           Use internal clock2 (266.66MHz) input to BRG
+ -f           Enable hardware flow control (default)
+ -F           Disable hardware flow control
+ -O number    Size of output buffer (default 2048)
+ -r num       Set RTS trigger level (SCIF default 15)
+ -s           Enable software flow control
+ -S           Disable software flow control (default)
+ -t num       Set receive FIFO trigger level (SCIF default 14)
+ -T num       Set transmit FIFO data trigger level (SCIF default 0)
+ -u unit      Set serial unit number (default 1)
+ -m (0|1)     Interrupt mode (0 = event, 1 = isr) (default = 1)
+ -d           Enable DMA on RCAR GEN3 - AARCH64 (default DMA is disabled)
+ -D           Enables dma and reuqest specific channels (-DRX Channel/TX Channel)
+ -o options   string options:
+                  disable=rx (Disable receiver on startup)
+ -y string    Specify memory type for DMA transfer
+
+ scif#|hscif# UART type. scif or hscif must be set in command line
+              # is the UART device# defined in HWINFO

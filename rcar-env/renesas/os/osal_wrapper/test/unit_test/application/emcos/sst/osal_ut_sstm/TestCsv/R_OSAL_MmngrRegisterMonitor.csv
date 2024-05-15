@@ -1,0 +1,11 @@
+modi,R_OSAL_MmngrRegisterMonitor,09_010,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@hndl_mmngr,@monitored_event,@monitor_handler,@p_user_arg,g_st_osal_memory_manager_obj[0].p_registerMonitor,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_MmngrRegisterMonitor@@,;,,,,
+,g_st_osal_memory_manager_obj,1,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,
+,0,1,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;hndl_mmngr is equals OSAL_MEMORY_MANAGER_HANDLE_INVALID,,,,
+,g_st_osal_memory_manager_obj,1,0,1,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_PAR,;monitor_handler is 0,,,,
+,g_st_osal_memory_manager_obj,0,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_PAR,;monitored_event is less than equal to OSAL_MMNGR_EVENT_INVALID,,,,
+,g_st_osal_memory_manager_obj,6,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_PAR,;monitored_event is greater than OSAL_MMNGR_EVENT_ERROR,,,,
+,g_st_osal_memory_manager_obj,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE_NOT_SUPPORTED,;hndl_mmngr->p_registerMonitor is 0,,,,
+,g_st_osal_memory_manager_obj,1,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;hndl_mmngr->p_registerMonitor returns OSAL_RETURN_FAIL,,,,

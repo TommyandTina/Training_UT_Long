@@ -1,0 +1,9 @@
+modi,R_OSAL_OS_ClockTimeGetHighResoTimeStamp,05_103,5,1,,,,CPP,,,,0
+#InitWheneverCall,gs_osal_clock_info.initial_cycle,gs_osal_clock_info.cycles_per_sec,gs_osal_clock_info.initial_time.tv_nsec,,,,,,,,,
+0,0,0,0,,,,,,,,,
+%,AMSTB_k_cycle_get_32,k_cycle_get_32,,,,,,,,,,
+#COMMENT,gs_osal_clock_info.initial_cycle,gs_osal_clock_info.cycles_per_sec,gs_osal_clock_info.initial_time.tv_nsec,$@p_time_stamp,AMSTB_SrcFile.c/AMSTB_k_cycle_get_32@AMIN_return,R_OSAL_OS_ClockTimeGetHighResoTimeStamp@@,;,,,,,
+,1,10,1,1,102,OSAL_RETURN_OK,;Normal operation ,,,,,
+,1,10,1000000000,1,102,OSAL_RETURN_OK,;Normal operation (time_stamp.tv_nsec is greater than OSAL_MAX_NSEC.),,,,,
+,1,10,1,0,102,OSAL_RETURN_FAIL,;p_time_stamp is NULL.,,,,,
+,1,0,1,1,102,OSAL_RETURN_FAIL,;gs_osal_clock_info.cycles_per_sec is 0.,,,,,

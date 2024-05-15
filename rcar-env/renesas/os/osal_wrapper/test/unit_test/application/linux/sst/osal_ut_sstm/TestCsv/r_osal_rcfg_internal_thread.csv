@@ -1,0 +1,10 @@
+modi,r_osal_rcfg_internal_thread,01_012,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadSetTaskName,R_OSAL_OS_ThreadSetTaskName,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadSetCpuAffinity,R_OSAL_OS_ThreadSetCpuAffinity,,,,,,,,,,
+#COMMENT,@p_arg,g_st_osal_thread_control_t[0].osal_config.func,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadSetTaskName@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadSetCpuAffinity@AMIN_return,r_osal_rcfg_internal_thread@@,;,,,,,,
+,g_st_osal_thread_control_t[0],AMSTB_dummy,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;Normal operation ,,,,,,
+,g_st_osal_thread_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,;Normal operation ,,,,,,
+,g_st_osal_thread_control_t[0],AMSTB_dummy,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,;R_OSAL_OS_ThreadSetTaskName returns OSAL_RETURN_FAIL,,,,,,
+,g_st_osal_thread_control_t[0],AMSTB_dummy,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,;R_OSAL_OS_ThreadSetCpuAffinity returns OSAL_RETURN_FAIL,,,,,,

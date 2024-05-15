@@ -1,0 +1,12 @@
+modi,R_OSAL_HIF_MqSendForTimePeriod,04_201,9,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqSend,R_OSAL_OS_MqSend,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqTimedSend,R_OSAL_OS_MqTimedSend,,,,,,,,,,
+#COMMENT,@mq,@time_period,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqSend@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqTimedSend@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AM_result,R_OSAL_HIF_ThreadSleepForTimePeriod@@,;,
+,g_st_osal_os_mq,500,gp_void,g_size_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,1,OSAL_RETURN_OK,;Normal operation (Is ISR Context),
+,g_st_osal_os_mq,500,gp_void,g_size_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation (Is Normal Context),
+,g_st_osal_os_mq,500,gp_void,g_size_t,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,1,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext() return OSAL_RETURN_FAIL,
+,g_st_osal_os_mq,500,gp_void,g_size_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod() return OSAL_RETURN_FAIL,

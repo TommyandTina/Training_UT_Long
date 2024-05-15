@@ -1,0 +1,93 @@
+diff --git a/build/parts/drv/renesas_isr/renesas_pdev_imr_isr_handler.c b/build/parts/drv/renesas_isr/renesas_pdev_imr_isr_handler.c
+new file mode 100644
+index 0000000..dfa1772
+--- /dev/null
++++ b/build/parts/drv/renesas_isr/renesas_pdev_imr_isr_handler.c
+@@ -0,0 +1,87 @@
++/***********************************************************************************************************************
++* Copyright [2022] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
++*
++* The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
++* and/or its licensors ("Renesas") and subject to statutory and contractual protections.
++*
++* Unless otherwise expressly agreed in writing between Renesas and you: 1) you may not use, copy, modify, distribute,
++* display, or perform the contents; 2) you may not use any name or mark of Renesas for advertising or publicity
++* purposes or in connection with your use of the contents; 3) RENESAS MAKES NO WARRANTY OR REPRESENTATIONS ABOUT THE
++* SUITABILITY OF THE CONTENTS FOR ANY PURPOSE; THE CONTENTS ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
++* WARRANTY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
++* NON-INFRINGEMENT; AND 4) RENESAS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR CONSEQUENTIAL DAMAGES,
++* INCLUDING DAMAGES RESULTING FROM LOSS OF USE, DATA, OR PROJECTS, WHETHER IN AN ACTION OF CONTRACT OR TORT, ARISING
++* OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE CONTENTS. Third-party contents included in this file may
++* be subject to different terms.
++***********************************************************************************************************************/
++/****************************************************************************
++ISR handler function for GIC problem workaround
++****************************************************************************/
++#include "renesas_isr_common.h"
++
++#define IMR_REG_OFFSET_IMR      0x0018U     //!< Interrupt Mask Register
++#define IMR_REG_IMR_VAL         0x00000c1fU //!< Default IMR value
++
++static int32_t imr_isr_disable(uint16_t iid)
++{
++    int32_t ret = MCOS_EOK;
++
++    switch (iid)
++    {
++    case RCAR4_INTNO_IMR_0:
++        *((volatile uint32_t*)(0xffffffff00000000 + 0xfe860000U + IMR_REG_OFFSET_IMR)) = IMR_REG_IMR_VAL;
++        break;
++    case RCAR4_INTNO_IMR_1:
++        *((volatile uint32_t*)(0xffffffff00000000 + 0xfe870000U + IMR_REG_OFFSET_IMR)) = IMR_REG_IMR_VAL;
++        break;
++    case RCAR4_INTNO_IMR_2:
++        *((volatile uint32_t*)(0xffffffff00000000 + 0xfe880000U + IMR_REG_OFFSET_IMR)) = IMR_REG_IMR_VAL;
++        break;
++    case RCAR4_INTNO_IMR_3:
++        *((volatile uint32_t*)(0xffffffff00000000 + 0xfe890000U + IMR_REG_OFFSET_IMR)) = IMR_REG_IMR_VAL;
++        break;
++    case RCAR4_INTNO_IMR_4:
++        *((volatile uint32_t*)(0xffffffff00000000 + 0xfe8a0000U + IMR_REG_OFFSET_IMR)) = IMR_REG_IMR_VAL;
++        break;
++    default:
++        ret = MCOS_ENOEXS;
++        break;
++    }
++
++    return ret;
++}
++
++void rcar_pdev_imr_isr_handler(uint16_t iid, uintptr_t param)
++{
++    int32_t ret = imr_isr_disable(iid);
++
++    if (ret != MCOS_EOK)
++    {
++        mcos_debug_printf(
++                "interrupt %d: mcos_interrupt_disable error (%d) in %s/n",
++                iid, ret, __func__);
++    }
++    else
++    {
++        pdev_intentry_t *intentry = (pdev_intentry_t *) param;
++        struct lfs_devgetdone req;
++        req.code = DEV_DEVGETDONE;
++        req.type = GETDONE_NONBLOCK | (intentry->intno << 8);
++        req.ptr = (lfs_t**) intentry->itr_config.param;
++        if (intentry->itr_config.uring != NULL)
++        {
++            ret = uring_interrupt_notify_internal(intentry->itr_config.uring, &req, sizeof(struct lfs_devgetdone), true);
++        }
++        else
++        {
++            ret = mcos_rrmessage_send(intentry->itr_config.tid, DEV_DEVGETDONE, &req, sizeof(req), NULL, NULL, 0);
++        }
++
++        if (ret != MCOS_EOK)
++        {
++            mcos_debug_printf(
++                            "interrupt %d: mcos_rrmessage_send error in %s/n",
++                            iid, __func__);
++        }
++    }
++}

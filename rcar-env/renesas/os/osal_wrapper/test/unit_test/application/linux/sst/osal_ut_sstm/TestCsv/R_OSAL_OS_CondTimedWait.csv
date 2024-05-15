@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_CondTimedWait,11_203,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait,pthread_cond_timedwait,,,,,,,,,,
+#COMMENT,@cond,@mutex,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait@AMIN_return,R_OSAL_OS_CondTimedWait@@,;,,,,,,
+,g_st_osal_os_cond_t,g_osal_os_mutex_t[0],g_st_osal_time_t,0,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,0,g_osal_os_mutex_t[0],g_st_osal_time_t,0,OSAL_RETURN_FAIL,;cond is NULL,,,,,,
+,g_st_osal_os_cond_t,0,g_st_osal_time_t,0,OSAL_RETURN_FAIL,;mutex is NULL,,,,,,
+,g_st_osal_os_cond_t,g_osal_os_mutex_t[0],0,0,OSAL_RETURN_FAIL,;p_time_stamp is NULL,,,,,,
+,g_st_osal_os_cond_t,g_osal_os_mutex_t[0],g_st_osal_time_t,110,OSAL_RETURN_TIME,;pthread_cond_timedwait() return ETIMEDOUT,,,,,,
+,g_st_osal_os_cond_t,g_osal_os_mutex_t[0],g_st_osal_time_t,1,OSAL_RETURN_FAIL,;pthread_cond_timedwait() return error,,,,,,

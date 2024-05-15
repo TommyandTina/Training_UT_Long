@@ -1,0 +1,12 @@
+modi,r_osal_rcfg_mutex_check_busy,03_021,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_osal_num_of_mutex_table,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTryLock,R_OSAL_OS_MutexTryLock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_osal_num_of_mutex_table,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTryLock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[1],r_osal_rcfg_mutex_check_busy@@,;,,,,,
+,2,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,
+,2,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexTryLock() returns OSAL_RETURN FAIL.,,,,,
+,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;gs_osal_num_of_mutex_table is 0,,,,,
+,1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;gs_osal_num_of_mutex_table is 1,,,,,

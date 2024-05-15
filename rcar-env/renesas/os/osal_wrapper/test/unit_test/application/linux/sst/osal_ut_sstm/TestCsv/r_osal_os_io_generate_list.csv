@@ -1,0 +1,24 @@
+modi,r_osal_os_io_generate_list,15_132,18,1,,,,CPP,,,,0,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_add_item_to_list,r_osal_os_io_add_item_to_list,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_add_item_to_list,r_osal_os_io_add_item_to_list,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_add_item_to_list,r_osal_os_io_add_item_to_list,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_add_item_to_list,r_osal_os_io_add_item_to_list,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_add_item_to_list,r_osal_os_io_add_item_to_list,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,
+#COMMENT,@p_glob_buffer,@p_glob_buffer[0].gl_pathc,@p_dev_pattern,@pp_list_buffer,@pp_list_buffer[0],AMSTB_SrcFile.c/AMSTB_regcomp@AM_count,AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AM_count,AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_add_item_to_list@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_add_item_to_list@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_add_item_to_list@AMIN_p_dst_offset[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_add_item_to_list@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_add_item_to_list@AMIN_p_dst_offset[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_generate_list@@,;
+,g_glob_t,2,0,p_char,str,0,0,0,str,0,0,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,;Normal operation
+,g_glob_t,2,0,p_char,str,0,-1,0,str,0,0,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,;regcomp returns -1
+,g_glob_t,2,0,p_char,str,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,;calloc returns NULL
+,g_glob_t,2,0,p_char,str,0,0,0,str,0,-1,-1,0,OSAL_RETURN_OK,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_UNKNOWN_NAME,;regexec[] returns -1
+,g_glob_t,2,0,p_char,str,0,0,0,str,0,0,0,0,OSAL_RETURN_FAIL,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,;r_osal_os_io_add_item_to_list[0] returns OSAL_RETURN_FAIL
+,g_glob_t,2,0,p_char,str,0,0,0,str,0,0,0,0,OSAL_RETURN_OK,1,OSAL_RETURN_FAIL,1,0,OSAL_RETURN_FAIL,;r_osal_os_io_add_item_to_list[1] returns OSAL_RETURN_FAIL
+,g_glob_t,2,0,p_char,str,0,0,0,str,0,0,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;dst_offset is 0

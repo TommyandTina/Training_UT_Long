@@ -1,0 +1,5 @@
+modi,R_MEML_GetVersion,09_109,1,3,,,,CPP,,,,0
+#InitWheneverCall,AMSTB_SrcFile.c/meml_buffer_dummy[0].addr,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/meml_buffer_dummy[0].addr,R_MEML_GetVersion@@[0].major,R_MEML_GetVersion@@[0].minor,R_MEML_GetVersion@@[0].patch,;,,,,,,,
+,dummy_buffer_pa,1,1,0,;Normal operation,,,,,,,

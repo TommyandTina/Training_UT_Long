@@ -1,0 +1,9 @@
+modi,R_OSAL_MmngrDealloc,09_007,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@hndl_mmngr,g_st_osal_memory_manager_obj[0].p_deallocate,@buffer_obj,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_MmngrDealloc@@,;,,,,,,
+,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,g_osal_memory_buffer_obj,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,AMSTB_osal_mem_internal,g_osal_memory_buffer_obj,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;hndl_mmngr is NULL,,,,,,
+,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;buffer_obj is NULL,,,,,,
+,g_st_osal_memory_manager_obj,0,g_osal_memory_buffer_obj,OSAL_RETURN_OK,OSAL_RETURN_HANDLE_NOT_SUPPORTED,;hndl_mmngr->p_deallocate is NULL,,,,,,
+,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,g_osal_memory_buffer_obj,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;hndl_mmngr->p_deallocate returns OSAL_RETURN_FAIL,,,,,,

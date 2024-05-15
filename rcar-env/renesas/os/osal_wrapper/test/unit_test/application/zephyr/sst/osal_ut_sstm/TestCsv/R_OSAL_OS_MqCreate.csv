@@ -1,0 +1,16 @@
+modi,R_OSAL_OS_MqCreate,10_001,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_sem_init,sem_init,,,,,,,,,,
+#COMMENT,@p_config,g_st_osal_mq_config[0].max_num_msg,g_st_osal_mq_config[0].msg_size,@mq_attr,@p_mq,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_sem_init@AMIN_return,R_OSAL_OS_MqCreate@@,;
+,g_st_osal_mq_config,1,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,0,OSAL_RETURN_OK,;Normal operation
+,0,1,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,0,OSAL_RETURN_FAIL,;p_config is NULL
+,g_st_osal_mq_config,1,1,g_osal_os_mqattr,0,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,0,OSAL_RETURN_FAIL,;p_mq is NULL
+,g_st_osal_mq_config,1,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,0,g_st_osal_queue,gp_void,0,OSAL_RETURN_MEM,;calloc() return is NULL. (st_osal_os_mq_t)
+,g_st_osal_mq_config,1,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,0,gp_void,0,OSAL_RETURN_MEM,;calloc() return is NULL. (p_config->max_num_msg)
+,g_st_osal_mq_config,2,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,0,0,OSAL_RETURN_MEM,;calloc() return is NULL. (p_config->msg_size)
+,g_st_osal_mq_config,1,1,g_osal_os_mqattr,gpp_st_osal_os_mq,0,gp_st_osal_os_mq,g_st_osal_queue,gp_void,1,OSAL_RETURN_FAIL,;sem_init() returns non-zero value

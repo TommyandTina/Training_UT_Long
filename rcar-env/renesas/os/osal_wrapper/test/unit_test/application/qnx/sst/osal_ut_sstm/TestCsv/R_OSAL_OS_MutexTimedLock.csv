@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_MutexTimedLock,03_303,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_timedlock_monotonic,pthread_mutex_timedlock_monotonic,,,,,,,,,,
+#COMMENT,$@mutex,$@p_time_stamp,@p_time_stamp[0].tv_sec,@p_time_stamp[0].tv_nsec,AMSTB_SrcFile.c/AMSTB_pthread_mutex_timedlock_monotonic@AMIN_return,R_OSAL_OS_MutexTimedLock@@,;,,,,,
+,1,1,1,1,0,OSAL_RETURN_OK,;Normal operation ,,,,,
+,0,1,1,1,0,OSAL_RETURN_FAIL,;mutex is NULL.,,,,,
+,1,0,,,0,OSAL_RETURN_FAIL,;p_time_stamp is NULL.,,,,,
+,1,1,1,1,10060,OSAL_RETURN_TIME,;pthread_mutex_timedlock_monotonic() return ETIMEDOUT.,,,,,
+,1,1,1,1,22,OSAL_RETURN_FAIL,;pthread_mutex_timedlock_monotonic() return non-EOK.,,,,,

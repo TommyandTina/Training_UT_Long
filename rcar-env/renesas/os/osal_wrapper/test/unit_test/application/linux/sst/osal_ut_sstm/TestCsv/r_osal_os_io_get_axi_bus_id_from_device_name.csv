@@ -1,0 +1,5 @@
+modi,r_osal_os_io_get_axi_bus_id_from_device_name,15_147,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_param,r_osal_os_io_get_axi_bus_id_from_device_name@@,;,,,,,,,,,
+,g_st_osal_os_io_get_axi_bus_id_from_device_name_t,OSAL_RETURN_OK,;Normal operation,,,,,,,,,

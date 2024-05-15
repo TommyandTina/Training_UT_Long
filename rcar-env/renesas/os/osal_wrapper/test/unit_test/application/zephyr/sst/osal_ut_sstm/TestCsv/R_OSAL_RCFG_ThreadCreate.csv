@@ -1,0 +1,18 @@
+modi,R_OSAL_RCFG_ThreadCreate,02_006,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondSignal,R_OSAL_OS_CondSignal,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,@p_config,g_uts_thread_config.priority,g_uts_thread_config.stack_size,@thread_id,@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondSignal@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/g_st_osal_thread_control[0].handle_id,R_OSAL_RCFG_ThreadCreate@@,;
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,g_st_osal_thread_control,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,OSAL_RETURN_OK,;Normal operation
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,OSAL_RETURN_ID,;R_OSAL_OS_BinarySearch return OSAL_RETURN_FAIL
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,g_st_osal_thread_control,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod return OSAL_RETURN_FAIL
+,0,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,g_st_osal_thread_control,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,OSAL_RETURN_STATE,;gs_osal_thread_is_initialized_enu is OSAL_MANAGER_STATE_UNINITIALIZED
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,g_st_osal_thread_control,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RES_CFG_THREAD_HANDLE_ID,OSAL_RETURN_BUSY,;p_control->handle_id is OSAL_RES_CFG_THREAD_HANDLE_ID
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,g_st_osal_thread_control,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,OSAL_RETURN_FAIL,;R_OSAL_OS_CondSignal return OSAL_RETURN_FAIL
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,g_st_osal_thread_control,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock return OSAL_RETURN_FAIL
+,1,g_uts_thread_config,OSAL_THREAD_PRIORITY_HIGHEST,1,1,g_uts_thread_handle,g_st_osal_thread_control,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,OSAL_RETURN_FAIL,;CondSignal is failed and MutexUnlock is failed

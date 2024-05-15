@@ -1,0 +1,8 @@
+modi,R_OSAL_Internal_TimeRoundUp,01_008,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_timespec,@p_timespec[0].tv_nsec,R_OSAL_Internal_TimeRoundUp@@,;,,,,,,,,
+,1,1000001,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,0,0,OSAL_RETURN_PAR,;p_timespec is NULL.,,,,,,,,
+,1,1000000,OSAL_RETURN_OK,;p_timespec->tv_nsec % 1000000L is 0L.,,,,,,,,
+,1,999999999,OSAL_RETURN_OK,;p_timespec->tv_nsec more than OSAL_MAX_TV_NSEC.,,,,,,,,

@@ -1,0 +1,7 @@
+modi,R_OSAL_DCFG_InterruptControlInit,08_003,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_InterruptInit,R_OSAL_OS_InterruptInit,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_InterruptInit@AMIN_return,R_OSAL_DCFG_InterruptControlInit@@,;,,,,,,,,,
+,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,,,
+,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_InterruptInit returns OSAL_RETURN_FAIL,,,,,,,,,

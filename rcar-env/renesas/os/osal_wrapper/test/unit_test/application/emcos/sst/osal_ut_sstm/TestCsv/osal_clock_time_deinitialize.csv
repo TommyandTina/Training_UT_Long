@@ -1,0 +1,5 @@
+modi,osal_clock_time_deinitialize,05_004,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_timeclock.c/gs_osal_clock_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_timeclock.c/gs_osal_clock_is_initialized,osal_clock_time_deinitialize@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation,,,,,,,,,

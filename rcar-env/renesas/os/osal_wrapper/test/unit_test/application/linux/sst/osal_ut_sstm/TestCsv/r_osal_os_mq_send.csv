@@ -1,0 +1,12 @@
+modi,r_osal_os_mq_send,19_113,8,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@mq,@mq[0].tail,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_mq_send@@,;,,
+,g_st_osal_os_mq_t,g_st_osal_mq_node_t[0],0,0,0,g_st_osal_mq_node_t[1],1,0,OSAL_RETURN_OK,;Normal operation (mq->tail is not NULL),,
+,g_st_osal_os_mq_t,0,0,0,0,g_st_osal_mq_node_t[1],1,0,OSAL_RETURN_OK,;Normal operation (mq->tail is NULL),,
+,g_st_osal_os_mq_t,g_st_osal_mq_node_t[0],0,0,0,0,1,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc[0] returns NULL,,
+,g_st_osal_os_mq_t,g_st_osal_mq_node_t[0],0,0,0,g_st_osal_mq_node_t[1],0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc[1] returns NULL,,

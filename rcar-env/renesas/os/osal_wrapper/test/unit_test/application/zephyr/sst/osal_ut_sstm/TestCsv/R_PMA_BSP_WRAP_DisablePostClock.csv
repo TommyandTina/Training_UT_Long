@@ -1,0 +1,10 @@
+modi,R_PMA_BSP_WRAP_DisablePostClock,05_013,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_clock_control_get_status,clock_control_get_status,,,,,,,,,,
+%,AMSTB_clock_control_off,clock_control_off,,,,,,,,,,
+#COMMENT,@chanIdx,AMSTB_SrcFile.c/AMSTB_clock_control_get_status@AMIN_return,AMSTB_SrcFile.c/AMSTB_clock_control_off@AMIN_return,R_PMA_BSP_WRAP_EnablePostClock@@,;,,,,,,,
+,0,2,0,R_PMA_OK,;Normal case (clock_control_get_status() returns OFF.),,,,,,,
+,0,1,0,R_PMA_OK,;Normal case (clock_control_get_status() returns ON,,,,,,,
+,0,10,0,R_PMA_BSP_ECPG,;clock_control_get_status() returns neither ON nor OFF.,,,,,,,
+,0,2,1,R_PMA_BSP_ECPG,;clock_control_off() returns non-zero value.,,,,,,,

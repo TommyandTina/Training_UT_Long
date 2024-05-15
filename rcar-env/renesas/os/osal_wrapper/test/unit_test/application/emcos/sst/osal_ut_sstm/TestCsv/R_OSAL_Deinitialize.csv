@@ -1,0 +1,25 @@
+modi,R_OSAL_Deinitialize,01_002,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_osal_internal_deinitialize_pre,osal_internal_deinitialize_pre,,,,,,,,,,
+%,AMSTB_osal_clock_time_deinitialize,osal_clock_time_deinitialize,,,,,,,,,,
+%,AMSTB_osal_mq_deinitialize,osal_mq_deinitialize,,,,,,,,,,
+%,AMSTB_osal_threadsync_deinitialize,osal_threadsync_deinitialize,,,,,,,,,,
+%,AMSTB_osal_interrupt_deinitialize,osal_interrupt_deinitialize,,,,,,,,,,
+%,AMSTB_osal_pm_deinitialize,osal_pm_deinitialize,,,,,,,,,,
+%,AMSTB_osal_io_deinitialize,osal_io_deinitialize,,,,,,,,,,
+%,AMSTB_osal_memory_deinitialize,osal_memory_deinitialize,,,,,,,,,,
+%,AMSTB_osal_thread_deinitialize,osal_thread_deinitialize,,,,,,,,,,
+%,AMSTB_osal_internal_free_attr_info,osal_internal_free_attr_info,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_osal_internal_deinitialize_pre@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_clock_time_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_mq_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_threadsync_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_interrupt_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_pm_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_io_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_memory_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_thread_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_internal_free_attr_info@AMIN_return,R_OSAL_Deinitialize@@,;
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_internal_deinitialize_pre() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_clock_time_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_mq_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_threadsync_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_interrupt_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_pm_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_io_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_memory_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;osal_thread_deinitialize() returns OSAL_RETURN_FAIL.
+,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;osal_internal_free_attr_info() returns OSAL_RETURN_FAIL.

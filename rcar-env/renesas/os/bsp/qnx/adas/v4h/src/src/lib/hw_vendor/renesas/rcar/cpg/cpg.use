@@ -1,0 +1,8 @@
+CPG library for the Renesas R-Car platform
+
+Loaded and utilised by various applications/drivers.
+
+CPG resource manager rcar-cpg-mgr must be running.
+
+(PM version only)
+CPG resource manager rcar-cpg-mgr-pm must be running.

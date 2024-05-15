@@ -1,0 +1,29 @@
+modi,R_OSAL_Internal_MqDelete,01_025,18,1,,,,CPP,,,,0,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_destroy,pthread_cond_destroy,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy_mqstb,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy_mqstb,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy_mqstb,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy_mqstb,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,
+#COMMENT,$@handle,@handle[0].numofmsg,@handle[0].receive_wait,@handle[0].send_wait,@handle[0].config.max_num_msg,@handle[0].queue,AMSTB_SrcFile.c/g_st_osal_queue[0].p_buffer,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_destroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy_mqstb@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy_mqstb@AM_control,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy_mqstb@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy_mqstb@AMIN_return[1],R_OSAL_Internal_MqDelete@@,;
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation Is Normal Context
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_FAIL,0,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL.
+,1,1,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_BUSY,;handle->numofmsg is 1.
+,1,0,1,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_BUSY,;handle->receive_wait is true.
+,1,0,0,1,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_BUSY,;handle->send_wait is true.
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,-1,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_destroy() is return non-zero.(send-cond)
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,-1,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_destroy() is return non-zero.(recieve-cond)
+,1,0,0,0,1,0,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;handle->queue is NULL.
+,1,0,0,0,1,g_st_osal_queue,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,;handle->queue.p_buffer is NULL.
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,-1,0,0,0,0,OSAL_RETURN_FAIL,;pthread_mutex_unlock() is return non-zero.
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,-1,-1,OSAL_RETURN_FAIL,;pthread_mutex_destroy() is return non-zero.
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,1,16,16,OSAL_RETURN_FAIL,";""waiting_time"" more than or equal ""OSAL_MUTEX_DESTROY_TIMEOUT""."
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,2,16,16,OSAL_RETURN_OK,";""waiting_time"" less than  ""OSAL_MUTEX_DESTROY_TIMEOUT"".(normal)"
+,1,0,0,0,1,g_st_osal_queue,array_uint32,0,OSAL_RETURN_OK,0,0,0,0,0,0,3,16,16,OSAL_RETURN_FAIL,";""waiting_time"" less than  ""OSAL_MUTEX_DESTROY_TIMEOUT"".(abnormal)"

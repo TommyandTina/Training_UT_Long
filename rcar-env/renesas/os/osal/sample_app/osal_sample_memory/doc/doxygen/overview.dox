@@ -1,0 +1,20 @@
+/**
+ * @page overview Overview
+ * OSAL Sample Memory Application is a sample code which provides the basic sequences using OSAL Memory management
+ * @version OSAL Sample Memory Application version: 3.3.0
+ * @version OSAL API version: 3.7.0
+ * @version OSAL API User Manual version: 3.11E
+ * @section overview_features Features
+ * The following functions supported by OSAL Sample Memory Application are based on the sequences described in OSAL API User Manual
+ * -# Allocate & use
+ * -# Multi memory region
+ *
+ * @section overview_def Pre-definition
+ * Please select the suitable definition for your system.
+ * -# SUPPORT_MULTI_MEMORY_REGION: This flag is to enable sample code using OSAL Memory Multi-Region APIs. Select it if you want to allocate and use buffers in multi memory regions.
+ * 
+ * @section note Note
+ * -# The sample code sequences may have a little differences in comparison with OSAL User Manual because OSAL Sample Memory Application want to support all of APIs in each target OSAL manager.
+ * -# The pre-definition is dependent on each system and only available for OSAL Sample Memory Application. Users need to define the pre-definition at the build-time of sample application.
+ *
+ */

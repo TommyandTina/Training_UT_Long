@@ -1,0 +1,6 @@
+modi,R_OSAL_ThsyncMemoryBarrier,03_013,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,R_OSAL_ThsyncMemoryBarrier@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation,,,,,,,,,
+,0,OSAL_RETURN_STATE,;gs_osal_threadsync_is_initialized is false,,,,,,,,,

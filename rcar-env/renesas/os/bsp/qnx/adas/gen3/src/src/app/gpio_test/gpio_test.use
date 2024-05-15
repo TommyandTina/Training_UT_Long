@@ -1,0 +1,150 @@
+R-Car Gen3 GPIO Driver testing program
+-----------------------------------------
+
+Usage:
+    #rcar-gpio -gX & : must be running
+
+    Syntax:
+        #gpio_test device=<device path> port=<port pin> value=<value> mode=<mode>
+
+        Options
+            - <device path> = /dev/gpioX
+            - <port pin>    =  0..31 of port X
+            - <value>       =  0 or 1
+            - <mode>        =  <mode>[:<posneg>][:<edglevel>][:<bothedge>]
+                               - <mode>     =  in  :      Input mode
+                                               out :      Output mode
+                                               int :      Interrupt mode
+                               - <posneg>   =  pos :      Positive logic
+                                               neg :      Negative logic
+                               - <edglevel> =  edg :      Edge detection interrupt
+                                               lev :      Level dectection interrupt
+                               - <bothedg>  =  bot :      Both Edge detection interrupt
+                                               one :      Falling/Rising Edge detection interrrupt
+                                      
+
+Examples:
+==================================================
+For V3H Condor/V3M Eagle board:
+Start GPIO driver:
+    #rcar-gpio -g5
+
+Check status on pins (GP5_12, GP5_13 and GP5_14)
+1) Check LED3, LED4 and LED5
+    #gpio_test device=/dev/gpio5 port=12 mode=out value=0    // LED3 (GP5_12)on V3H cpu_board: Dark
+    #gpio_test device=/dev/gpio5 port=13 mode=out value=0    // LED4 (GP5_13)on V3H cpu_board: Dark
+    #gpio_test device=/dev/gpio5 port=14 mode=out value=0    // LED5 (GP5_14)on V3H cpu_board: Dark
+
+    #gpio_test device=/dev/gpio5 port=12 mode=out value=1    // LED3 (GP5_12)on V3H cpu_board: Light
+    #gpio_test device=/dev/gpio5 port=13 mode=out value=1    // LED4 (GP5_13)on V3H cpu_board: Light
+    #gpio_test device=/dev/gpio5 port=14 mode=out value=1    // LED5 (GP5_14)on V3H cpu_board: Light
+
+    
+2) Check SW15, SW16 and SW17
+
+    - No press SW15/SW16/SW17 on V3H cpu_board, read status on terminal is 1 
+    - Press and hold SW15/SW16/SW17 on V3H cpu_board, read status on terminal is 0  
+    
+    #gpio_test device=/dev/gpio5 port=12 mode=in              // SW15 on V3H/V3M cpu_board.
+    #gpio_test device=/dev/gpio5 port=13 mode=in              // SW16 on V3H/V3M cpu_board.
+    #gpio_test device=/dev/gpio5 port=14 mode=in              // SW17 on V3H/V3M cpu_board.
+
+==================================================    
+For H3/M3N/M3W:
+Start GPIO driver:
+    #rcar-gpio -g6
+
+Check status on pins (GP6_11, GP6_12 and GP6_13)
+1) Check LED4, LED5 and LED6
+    #gpio_test device=/dev/gpio6 port=11 mode=out value=0    // LED4 (GP6_11) on H3/M3N/M3W cpu_board: Dark
+    #gpio_test device=/dev/gpio6 port=12 mode=out value=0    // LED5 (GP6_12) on H3/M3N/M3W cpu_board: Dark
+    #gpio_test device=/dev/gpio6 port=13 mode=out value=0    // LED6 (GP6_13) on H3/M3N/M3W cpu_board: Dark
+
+    #gpio_test device=/dev/gpio6 port=11 mode=out value=1    // LED4 (GP6_11) on H3/M3N/M3W cpu_board: Light
+    #gpio_test device=/dev/gpio6 port=12 mode=out value=1    // LED5 (GP6_12) on H3/M3N/M3W cpu_board: Light
+    #gpio_test device=/dev/gpio6 port=13 mode=out value=1    // LED6 (GP6_13) on H3/M3N/M3W cpu_board: Light
+
+   
+2) Check SW20, SW21 and SW22
+    - No press SW20/SW21/SW22 on H3/M3N/M3W cpu_board, read status on terminal is 1 
+    - Press and hold SW20/SW21/SW22 on H3/M3N/M3W cpu_board, read status on terminal is 0  
+    
+    #gpio_test device=/dev/gpio6 port=11 mode=in              // SW20 on H3/M3N/M3W cpu_board.
+    #gpio_test device=/dev/gpio6 port=12 mode=in              // SW21 on H3/M3N/M3W cpu_board.
+    #gpio_test device=/dev/gpio6 port=13 mode=in              // SW22 on H3/M3N/M3W cpu_board.
+
+=================================================
+For E3:
+Start GPIO driver:
+    #rcar-gpio -g5 &
+
+Check status on pins (GP5_5, GP5_6 and GP5_19)
+ 1) Check LED4, LED5 and LED6
+    #gpio_test device=/dev/gpio5 port=5 mode=out value=0    // LED4 (GP5_5)on E3 cpu_board: Dark
+    #gpio_test device=/dev/gpio5 port=6 mode=out value=0    // LED5 (GP5_6)on E3 cpu_board: Dark
+    #gpio_test device=/dev/gpio5 port=19 mode=out value=0   // LED6 (GP5_19)on E3 cpu_board: Dark
+    
+    #gpio_test device=/dev/gpio5 port=5 mode=out value=1    // LED4 (GP5_5)on E3 cpu_board: Light
+    #gpio_test device=/dev/gpio5 port=6 mode=out value=1    // LED5 (GP5_6)on E3 cpu_board: Light
+    #gpio_test device=/dev/gpio5 port=19 mode=out value=1   // LED6 (GP5_19)on E3 cpu_board: Light
+
+2) Check SW20, SW21 and SW22
+    - No press SW20/SW21/SW22 on E3 cpu_board, read status on terminal is 1 
+    - Press and hold SW20/SW21/SW22 on E3 cpu_board, read status on terminal is 0  
+    
+    #gpio_test device=/dev/gpio5 port=5 mode=in              // SW20 on E3 cpu_board.
+    #gpio_test device=/dev/gpio5 port=6 mode=in              // SW21 on E3 cpu_board.
+    #gpio_test device=/dev/gpio5 port=19 mode=in             // SW22 on E3 cpu_board.
+
+===================================================
+For D3 Draak
+Start GPIO driver:
+    #rcar-gpio -g1
+    #rcar-gpio -g4
+
+Check status on pins (GP4_07, GP4_25 and GP1_30)
+1) Check LED12, LED13 and LED14
+    #gpio_test device=/dev/gpio1 port=30 mode=out value=0    // LED12 (GP1_30) on D3 Draak cpu_board: Dark
+    #gpio_test device=/dev/gpio4 port=7 mode=out value=0     // LED13 (GP4_07) on D3 Draak cpu_board: Dark
+    #gpio_test device=/dev/gpio4 port=25 mode=out value=0    // LED14 (GP4_25) on D3 Draak cpu_board: Dark
+
+    #gpio_test device=/dev/gpio1 port=30 mode=out value=1    // LED12 (GP1_30) on D3 Draak cpu_board: Light
+    #gpio_test device=/dev/gpio4 port=7 mode=out value=1     // LED13 (GP4_07) on D3 Draak cpu_board: Light
+    #gpio_test device=/dev/gpio4 port=25 mode=out value=1    // LED14 (GP4_25) on D3 Draak cpu_board: Light
+
+    Note: Can't write 0 or 1 to GP4_07, so can't check LED13
+    
+2) Check SW57, SW58 and SW59
+
+    - No press SW57/SW58/SW59 on D3 Draak cpu_board, read status on terminal is 1 
+    - Press and hold SW57/SW58/SW59 on D3 Draak cpu_board, read status on terminal is 0  
+    
+    #gpio_test device=/dev/gpio1 port=30 mode=in              // SW58 on D3 Draak cpu_board.
+    #gpio_test device=/dev/gpio4 port=7 mode=in               // SW59 on D3 Draak cpu_board.
+    #gpio_test device=/dev/gpio4 port=25 mode=in              // SW57 on D3 Draak cpu_board.
+    
+==================================================
+For V3U:
+Start GPIO driver:
+    #rcar-gpio -g4
+    #rcar-gpio -g6
+
+Check status on pins (GP6_18, GP6_19 and GP6_20)
+1) Check LED1, LED2 and LED3
+    
+    #gpio_test device=/dev/gpio4 port=18 mode=out value=0    // LED1 (GP4_18)on V3U cpu_board: Dark
+    #gpio_test device=/dev/gpio4 port=19 mode=out value=0    // LED2 (GP4_19)on V3U cpu_board: Dark
+    #gpio_test device=/dev/gpio4 port=20 mode=out value=0    // LED3 (GP4_20)on V3U cpu_board: Dark
+
+    #gpio_test device=/dev/gpio4 port=18 mode=out value=1    // LED1 (GP4_18)on V3U cpu_board: Light
+    #gpio_test device=/dev/gpio4 port=19 mode=out value=1    // LED2 (GP4_19)on V3U cpu_board: Light
+    #gpio_test device=/dev/gpio4 port=20 mode=out value=1    // LED3 (GP4_20)on V3U cpu_board: Light
+
+
+2) Check SW47, SW48 and SW49
+    - No press SW47/SW48/SW49 on V3U cpu_board, read status on terminal is 1 
+    - Press and hold SW47/SW48/SW49 on V3U cpu_board, read status on terminal is 0  
+    
+    #gpio_test device=/dev/gpio6 port=18 mode=in              // SW47 on V3U cpu_board.
+    #gpio_test device=/dev/gpio6 port=19 mode=in              // SW48 on V3U cpu_board.
+    #gpio_test device=/dev/gpio6 port=20 mode=in              // SW49 on V3U cpu_board.

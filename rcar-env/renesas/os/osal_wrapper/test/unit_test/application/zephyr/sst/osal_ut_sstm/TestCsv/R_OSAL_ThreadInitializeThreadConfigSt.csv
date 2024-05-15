@@ -1,0 +1,6 @@
+modi,R_OSAL_ThreadInitializeThreadConfigSt,02_003,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_config,R_OSAL_ThreadInitializeThreadConfigSt@@,;,,,,,,,,,
+,g_uts_common_thread_config,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,
+,0,OSAL_RETURN_PAR,;p_config is NULL,,,,,,,,,

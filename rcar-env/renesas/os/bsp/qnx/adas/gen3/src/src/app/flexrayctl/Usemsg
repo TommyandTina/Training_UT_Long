@@ -1,0 +1,51 @@
+flexrayctl [options]
+Runs on:
+
+QNX Neutrino 7.1
+Options:
+
+-b        Use blocking mode.
+-e        Print error information.			   
+-h        Print the usage of utility.
+-n        Use nonblocking mode.
+-r  node,fifo,index
+          Receive message buffers. Options specific to receive message buffers from node. These options include:
+          node=1   Receive message buffers from node 1
+          node=2   Receive message buffers from node 2	
+          fifo=0   Receive 14 message buffers
+          fifo=1   Receive fifo message buffers 		  
+          index:   The message buffer index. This option is only availabe for fifo=0
+                   node=1   index=[15...29]
+                   node=2   index=[2...14]	
+          For example:  
+          Receive 14 message buffers from node 1:   flexrayctl -r node=1,fifo=0
+          Receive fifo message buffers from node 1: flexrayctl -r node=1,fifo=1	  
+          Receive 14 message buffers from node 2:   flexrayctl -r node=2,fifo=0		  
+          Receive fifo message buffers from node 2: flexrayctl -r node=2,fifo=1
+          Receive message buffer 15 from node 1:    flexrayctl -r node=1,index=15
+          Receive message buffer 2  from node 2:    flexrayctl -r node=2,index=2  
+		  
+-t node,tx,rx
+          Test timer and stopwatch. Options specific to test timer and stopwatch. These options include:          
+          node=1   Send message buffers to 1
+          node=2   Send message buffers to 2
+          rx:      Receive message buffers
+	      tx:      Send message buffers		
+          For example: 
+          Send 14 message buffers to node 1 and receive 14 message buffers from node 2: flexrayctl -t node=1,tx 
+          Receive 14 message buffers from node 1 and send 14 message buffers to node 2: flexrayctl -t node=2,rx
+		  
+-w node,fifo,index
+          Send message buffers. Options specific to send message buffer. These options include:
+          node=1   Send message buffers to 1
+          node=2   Send message buffers to 2	
+          fifo=0   Send 14 message buffers
+          fifo=1   Send 14 message buffers		  
+          index:   The message buffer index. This option is only availabe for fifo=0
+          For example:  
+          Send 14 message buffers to node 1: flexrayctl -w node=1,fifo=0 
+          Send 14 message buffers to node 2: flexrayctl -w node=2,fifo=0 
+          Send 14 message buffers to node 1: flexrayctl -w node=1,fifo=1 
+          Send 14 message buffers to node 2: flexrayctl -w node=2,fifo=1 		  
+          Send message buffer 2 to node 1:   flexrayctl -w node=1,index=2
+          Send message buffer 15 to node 2:  flexrayctl -w node=2,index=15    

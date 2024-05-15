@@ -1,0 +1,26 @@
+modi,R_OSAL_IoGetDeviceList,07_002,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetNumOfDevice,R_OSAL_DCFG_GetNumOfDevice,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetDeviceInfo,R_OSAL_DCFG_GetDeviceInfo,,,,,,,,,,,,,
+%,AMSTB_osal_internal_compare_string,osal_internal_compare_string,,,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,$@p_device_type_name,@p_num_of_byte,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_strnlen@AM_count,AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetNumOfDevice@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_internal_compare_string@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AM_count,g_st_osal_device_control.dev_info,R_OSAL_IoGetDeviceList@@,;
+,1,1,array_sizet,str,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_OK,;Normal operation
+,0,1,array_sizet,str,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false
+,1,0,array_sizet,str,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_PAR,;p_device_type_name is NULL
+,1,1,0,str,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_PAR,;p_num_of_byte is NULL
+,1,1,array_sizet,str,255,0,28,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_PAR,;p_deviceType is bigger than OSAL_DEVICE_TYPE_NAME_MAX_LENGTH
+,1,1,array_sizet,0,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_PAR,;p_buffer is NULL and buffer_size is not 0
+,1,1,array_sizet,str,0,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_PAR,;p_buffer is not NULL and buffer_size is 0
+,1,1,array_sizet,0,0,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_OK_RQST,;p_buffer is NULL and buffer_size is 0
+,1,1,array_sizet,str,255,0,10,10,2,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_FAIL,;R_OSAL_DCFG_GetDeviceInfo() return OSAL_RETURN_FAIL
+,1,1,array_sizet,str,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,1,-,OSAL_RETURN_FAIL,;The aquierd device_control is NULL
+,1,1,array_sizet,str,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,2,0,OSAL_RETURN_FAIL,;The aquierd device_control->dev_info is NULL
+,1,1,array_sizet,str,255,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,g_st_osal_device_info,OSAL_RETURN_UNKNOWN_NAME,;osal_internal_compare_string() return OSAL_RETURN_FAIL
+,1,1,array_sizet,0,0,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,g_st_osal_device_info,OSAL_RETURN_UNKNOWN_NAME,;osal_internal_compare_string() return OSAL_RETURN_FAIL
+,1,1,array_sizet,str,255,0,10,32,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_FAIL,;name_length is bigger than OSAL_DEVICE_NAME_MAX_LENGTH
+,1,1,array_sizet,0,0,0,10,32,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_FAIL,;name_length is bigger than OSAL_DEVICE_NAME_MAX_LENGTH and p_buffer is NULL and buffer_size is 0
+,1,1,array_sizet,str,2,0,10,10,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_device_info,OSAL_RETURN_PAR,;(local_total_length + 1) is bigger than buffer_size

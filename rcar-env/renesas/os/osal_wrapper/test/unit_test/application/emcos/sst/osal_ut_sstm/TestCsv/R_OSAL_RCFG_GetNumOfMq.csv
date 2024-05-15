@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_GetNumOfMq,04_022,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_message.c/gs_osal_mq_is_initialized,r_osal_usr_cfg.c/gsp_osal_mq_config,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,r_osal_usr_cfg.c/gsp_osal_mq_config,R_OSAL_RCFG_GetNumOfMq@@,;,,,,,,,,
+,1,g_osal_mq_config,143,;Normal operation ,,,,,,,,
+,1,g_osal_mq_config_dummy,0,;Invalid config,,,,,,,,

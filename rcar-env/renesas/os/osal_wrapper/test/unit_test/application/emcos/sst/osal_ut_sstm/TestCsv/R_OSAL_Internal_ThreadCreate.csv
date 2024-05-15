@@ -1,0 +1,10 @@
+modi,R_OSAL_Internal_ThreadCreate,01_015,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,
+%,AMSTB_pthread_create,pthread_create,,,,,,,,,,
+#COMMENT,$@p_config,$@p_handle,AMSTB_SrcFile.c/AMSTB_malloc@AM_count,AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_create@AMIN_return,R_OSAL_Internal_ThreadCreate@@,;,,,,,
+,1,1,0,g_st_inner_thread_control_p,0,OSAL_RETURN_OK,;Normal operation ,,,,,
+,1,1,0,0,0,OSAL_RETURN_MEM,;p_tmp_attr is NULL.,,,,,
+,1,1,0,g_st_inner_thread_control_p,1,OSAL_RETURN_FAIL,;pthread_create() is return non-zero.,,,,,

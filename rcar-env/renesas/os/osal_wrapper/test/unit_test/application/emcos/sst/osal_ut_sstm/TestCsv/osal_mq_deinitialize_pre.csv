@@ -1,0 +1,20 @@
+modi,osal_mq_deinitialize_pre,04_014,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetMqInfo,R_OSAL_RCFG_GetMqInfo,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfMq,R_OSAL_RCFG_GetNumOfMq,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMqInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfMq@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMqInfo@AM_count,g_st_osal_mq_control.send_wait,g_st_osal_mq_control.receive_wait,osal_mq_deinitialize_pre@@,;
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,2,0,0,OSAL_RETURN_OK,;Normal operation
+,0,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,2,0,0,OSAL_RETURN_STATE,;gs_osal_mq_is_initialized is false
+,1,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,2,0,0,OSAL_RETURN_OK,;R_OSAL_RCFG_GetNumOfMq returns 0.
+,1,OSAL_RETURN_FAIL,2,0,OSAL_RETURN_OK,0,0,2,0,0,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetMqInfo() return OSAL_RETURN_FAIL
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,1,0,0,OSAL_RETURN_FAIL,;The aquired mq_control is 0
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,3,0,0,OSAL_RETURN_FAIL,;The aquired mq_control->usr_config is 0
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,0,0,2,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,2,1,0,OSAL_RETURN_BUSY,;mq_control->send_wait is true
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,2,0,1,OSAL_RETURN_BUSY,;mq_control->receive_wait is true
+,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,-1,2,0,0,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

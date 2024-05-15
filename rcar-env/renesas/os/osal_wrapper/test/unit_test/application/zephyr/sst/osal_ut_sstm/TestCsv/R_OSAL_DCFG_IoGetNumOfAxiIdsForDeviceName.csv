@@ -1,0 +1,12 @@
+modi,R_OSAL_DCFG_IoGetNumOfAxiIdsForDeviceName,07_020,9,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_io.c/gp_osal_device_control,g_st_osal_device_control.dev_info,g_st_osal_device_info.utlb_assignment,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,,,,,,,,
+0,0,0,0,0,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gp_osal_device_control,g_st_osal_device_control.dev_info,g_st_osal_device_info.utlb_assignment,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,$@p_device_name,@p_num_of_axi_ids,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],R_OSAL_DCFG_IoGetNumOfAxiIdsForDeviceName@@,;,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,1,1,array_sizet,0,0,0,OSAL_RETURN_OK,;Normal operation,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,1,1,array_sizet,0,-1,-1,OSAL_RETURN_UNKNOWN_NAME,;strncmp() return non-zero,
+,g_st_osal_device_control,g_st_osal_device_info,0,1,1,array_sizet,0,0,0,OSAL_RETURN_OK,;device_control->dev_info->utlb_assignment is NULL,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,0,1,array_sizet,0,0,0,OSAL_RETURN_UNKNOWN_NAME,;find_flg is false and return code is OSAL_RETURN_OK,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,1,array_sizet,0,0,0,OSAL_RETURN_OK,;g_osal_num_of_device_table is 2,

@@ -1,0 +1,21 @@
+modi,osal_memory_initialize,09_020,11,1,,,,CPP,,,,0,
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,,
+0,0,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_init,pthread_mutexattr_init,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_settype,pthread_mutexattr_settype,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetNumOfMemoryRegionInfo,R_OSAL_DCFG_GetNumOfMemoryRegionInfo,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_destroy,pthread_mutexattr_destroy,,,,,,,,,,,
+%,AMSTB_osal_memory_deinitialize,osal_memory_deinitialize,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_settype@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetNumOfMemoryRegionInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_malloc@AM_count,AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_memory_deinitialize@AMIN_return,osal_memory_initialize@@,;
+,0,0,0,1,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,1,0,0,1,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,0,0,OSAL_RETURN_OK,OSAL_RETURN_STATE,;gs_osal_memory_is_initialized is not equals OSAL_MMNGR_STATE_NONE
+,0,-1,0,1,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_mutexattr_init() return non-zero
+,0,0,-1,1,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_mutexattr_settype() return non-zero
+,0,0,0,1,0,0,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,0,0,OSAL_RETURN_OK,OSAL_RETURN_MEM,;gsp_osal_memory_manager is NULL
+,0,0,0,1,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,-1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_mutex_init() return non-zero
+,0,0,0,1,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,0,-1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy() return non-zero

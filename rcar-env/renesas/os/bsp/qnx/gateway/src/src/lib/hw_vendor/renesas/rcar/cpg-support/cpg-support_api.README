@@ -1,0 +1,284 @@
+QNX generic CPG Controller library interface (cpg-support lib)
+-----------------------------------------------------------
+
+A. Abstract
+
+The CPG Controler library interface (cpg-support lib) allows rcar-cpg-mgr driver or startup module
+to enable/disable/change clock divider and to enable/disable clock supply directly.
+
+This cpg-support lib is compiled under static and DDL library:
+    - Static library : libcpg-support.a (this version must be used in startup module)
+    - DLL : cpg-support.so (this version is used in rcar-cpg-mgr driver)
+
+                           -----------------------
+                           | rcar-cpg-mgr driver |
+                           -----------------------
+                                     |
+                                     |
+                      ---------------v--------------     -----------
+                      |       cpg-support lib       |<----| startup |
+Software              ------------------------------     -----------
+----------------------------|-------------------|-----------------------
+Hardware                    |                   |
+                    --------v------------- -----v------------
+                    |       CPG HW       | |     MSTP HW    |
+                    |  (Clock divider)   | | (Clock Supply) |
+                    ---------------------- ------------------
+                                 |                  |
+                                 |                  |
+                    -------------v------------------v--------
+                    |               Modules HW              |
+                    -----------------------------------------
+
+B. API
+
+I. CLock API
+
+    Structure:
+        cpg_support_funcs_t cpg_support_funcs = {
+            .init = cpg_init,
+            .deinit = cpg_deinit,
+
+            .mstp_config = mstp_config,
+            .mstp_status = mstp_status,
+            .mstp_reset  = mstp_reset,
+            .mstp_reset_config = mstp_reset_config,
+
+            .clk_config  = clk_config,
+            .clk_rate    = clk_rate,
+            .clk_divider = clk_divider,
+            .clk_status  = clk_status,
+        };
+
+    API:
+        The meaning of some following common parameters are described as below:
+
+        - 'clk_id' parameter is one of the following modules' clock divider:
+            CPG_CLK_HDMI for HDMI
+            CPG_CLK_CANFD for CANFD
+            CPG_CLK_MSIOF for MSIOF
+            CPG_CLK_CSI2 for CSI2
+            CPG_CLK_DSI for DSI
+            CPG_CLK_IPC for IPC
+            CPG_CLK_FRAY for FRAY (V3M/V3H/V3U)
+            CPG_CLK_RGX for RGX
+            CPG_CLK_SDHI for SDHIn
+            CPG_CLK_RPC for RPC (flash)
+            CPG_CLK_CPU for (H3/M3: idx=1 for CA57, idx=0 for CA53. Others only idx=0 is supported)
+            CPG_CLK_PLL for PLLn
+            CPG_CLK_POST for POSTn
+            CPG_CLK_RSW2 for RSwitch2
+
+        - 'mod_id' MSTP Moudle ID defined in rcar_cpg.h 
+
+        - 'idx' parameter in the following functions is channel index of:
+            For example:
+            + SDHIn: idx = 0 for SDHI0 (H3/M3/M3N/E3/V3M/V3H/V3U)
+                     idx = 1 for SDHI1 (H3/M3/M3N/E3)
+                     idx = 2 for SDHI2 (H3/M3/M3N/D3)
+                     idx = 3 for SDHI3 (H3/M3/M3N/E3)
+
+            + POSTn: idx = 0 for POST  (H3/M3/M3N/E3/D3/V3M/V3H/V3U)
+                     idx = 2 for POST2 (H3/M3/M3N/E3/D3/V3M/V3H/V3U)
+                     idx = 3 for POST3 (H3/M3N/E3/D3/V3U)
+                     idx = 4 for POST4 (V3H/V3U)
+
+            + For PLLn: should us the following macro:
+                CPG_CLK_PLL0 for PLL0
+                CPG_CLK_PLL1 for PLL1
+                CPG_CLK_PLL2 for PLL2
+                CPG_CLK_PLL20 for PLL20 (For V3U only)
+                CPG_CLK_PLL21 for PLL21 (For V3U only)
+                CPG_CLK_PLL3 for PLL3
+                CPG_CLK_PLL30 for PLL30 (For V3U only)
+                CPG_CLK_PLL31 for PLL31 (For V3U only)
+                CPG_CLK_PLL4 for PLL4
+                CPG_CLK_PLL5 for PLL5
+            + idx = 0 for Other modules
+
+1. Function int cpg_init:
+
+    int cpg_init(const cpg_opts_t* const cpg_opts, const avs_opts_t* const avs_opts)
+
+        Input Parameters:
+            const cpg_opts_t* const cpg_opts : Pointer to cpg_opts_t struct
+                                               must to  provide this pointer
+            const avs_opts_t* const avs_opts : Pointer to avs_opts_t struct
+                                               Need to provide this pointer in case of change CPU clock to 2GHz for H3/M3/M3N
+
+        Return Value :
+            0    - Successful
+           Other - Failure
+    
+        This function will do CPG register mmap, get product ID from HWinfo, .... 
+        It must be called before calling other functions.
+
+2. Function void cpg_deinit:
+
+    int cpg_init()
+    
+        This function will clean memory after using
+        It needs to be called after finishing
+
+3. Function clk_config:
+
+    static int clk_config(const cpg_clk_id_t clk_id, const int idx, const int enable)
+
+        Input Parameters:
+            clk_id clk_id : Clock ID
+            const int idx : Channel index
+            const int enable :
+                1 - Enable Clock
+                0 - Disable Clock
+
+        Return Value :
+            0    - Successful
+           Other - Failure
+
+        This function is used to enable/disable a module clock divider.
+
+4. Function clk_rate:
+
+    static int clk_rate(const cpg_clk_id_t clk_id, const int idx, unsigned *rate, const int set):
+
+        Input Parameters:
+            clk_id clk_id : Clock ID
+            const int idx : Channel index
+            unsigned *rate : Clock value
+            const int set :
+                1 - Set Clock
+                0 - Get Clock
+
+        Output Parameters:
+            unsigned *rate : Clock value
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to get/set the clock rate of a module clock divider
+        rate = parent clock (800MHz)*1/(division setting + 1)
+
+5. Function clk_divider:
+
+    static int clk_divider(const cpg_clk_id_t clk_id, const int idx, unsigned *clk_div, const int set):
+
+        Input Parameters:
+            clk_id clk_id : Clock ID
+            const int idx : Channel index
+            unsigned *clk_div : Division value
+            const int set :
+                1 - Set Clock Division
+                0 - Get Clock Division
+
+        Output Parameters:
+            unsigned *clk_div : Division value
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to get/set to get/set division value of a module clock divider
+
+6. Function clk_status:
+
+    static int clk_status(const cpg_clk_id_t clk_id, const int idx, int *status):
+
+        Input Parameters:
+            clk_id clk_id : Clock ID
+            const int idx : Channel index
+
+        Output Parameters:
+            int *status : clock divider status
+                1 - Clock divider is enabled
+                0 - Clock divider is disabled
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to get/set status of a module clock divider
+
+7. Function mstp_config:
+
+    int mstp_config(const int mod_id, const int enable)
+
+    Input Parameters:
+            const int mod_id : MSTP module ID
+            const int enable :
+                1 - Enable Clock
+                0 - Disable Clock
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to enable/disable clock supply to a module
+
+8. Function mstp_status:
+
+    int mstp_status(const int mod_id, int *status)
+
+    Input Parameters:
+            const int mod_id : MSTP module ID
+
+        Output Parameters:
+            int *status : clock divider status
+                1 - Clock supply is enabled
+                0 - Clock supply is disabled
+             Other - Unknown state
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to get status of clock supply to a module
+
+9. Function mstp_reset:
+
+    int mstp_reset(const int mod_id)
+
+    Input Parameters:
+            const int mod_id : MSTP module ID
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to reset a module
+
+10. Function mstp_reset_config:
+
+    int mstp_reset_config(const int mod_id, const int assert)
+
+    Input Parameters:
+            const int mod_id : MSTP module ID
+            const int assert :
+                1 - Reset
+                0 - Clear Reset
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to assert/clear reset a module
+
+11. Function mstp_reset_state:
+
+    int mstp_reset_state(const int mod_id, int *status)
+
+    Input Parameters:
+            const int mod_id : MSTP module ID
+
+        Output Parameters:
+            int *status : clock divider status
+                1 - Clock supply is enabled
+                0 - Clock supply is disabled
+             Other - Unknown state
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+        This function is used to check reset state of a module
+

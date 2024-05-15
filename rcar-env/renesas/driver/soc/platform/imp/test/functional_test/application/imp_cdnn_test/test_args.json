@@ -1,0 +1,14 @@
+{
+  "_comment": "Input paramater for impsample_dsp_cdnn",
+  "configurations": 
+  [
+    {
+      "args": [
+        "${CI_TEST_DATA}/application/input/sample.cdnnQdata",
+        "${CI_TEST_DATA}/application/input/cl_cnn0.bin",
+        "${CI_TEST_DATA}/application/input/image.bin",
+        "${CI_TEST_DATA}/application/input/image_config.txt"
+      ]
+    }
+  ]
+}

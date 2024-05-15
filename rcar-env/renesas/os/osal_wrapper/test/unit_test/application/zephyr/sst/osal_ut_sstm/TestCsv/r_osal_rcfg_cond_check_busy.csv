@@ -1,0 +1,16 @@
+modi,r_osal_rcfg_cond_check_busy,03_025,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,r_osal_res_cfg_threadsync.c/gsp_osal_cond_control,g_st_osal_cond_control_array[0].use_count,g_st_osal_cond_control_array[1].use_count,,,,,,,,
+0,0,0,0,0,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,r_osal_res_cfg_threadsync.c/gsp_osal_cond_control,g_st_osal_cond_control_array[0].use_count,g_st_osal_cond_control_array[1].use_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[1],r_osal_rcfg_cond_check_busy@@,;
+,1,g_st_osal_cond_control_array,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,1,g_st_osal_cond_control_array,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,2,g_st_osal_cond_control_array,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() returns OSAL_RETURN_FAIL
+,1,g_st_osal_cond_control_array,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,OSAL_RETURN_BUSY,;cond_control->use_count is not 0.
+,0,g_st_osal_cond_control_array,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;gs_osal_num_of_cond_table is 0
+,2,g_st_osal_cond_control_array,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;gs_osal_num_of_cond_table is 2

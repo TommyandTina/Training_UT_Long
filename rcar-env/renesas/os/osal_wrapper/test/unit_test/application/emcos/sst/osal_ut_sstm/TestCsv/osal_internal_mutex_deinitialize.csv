@@ -1,0 +1,12 @@
+modi,osal_internal_mutex_deinitialize,03_015,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfMutex,R_OSAL_RCFG_GetNumOfMutex,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetMutexInfo,R_OSAL_RCFG_GetMutexInfo,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfMutex@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMutexInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMutexInfo@AM_count,osal_internal_mutex_deinitialize@@,;,,,,,
+,1,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;Normal operation,,,,,
+,2,OSAL_RETURN_FAIL,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetMutexInfo() returns OSAL_RETURN FAIL.,,,,,
+,1,OSAL_RETURN_OK,0,0,1,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetMutexInfo() returns mutex_control is NULL.,,,,,
+,1,OSAL_RETURN_OK,0,-1,0,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy() returns is not 0.,,,,,

@@ -1,0 +1,13 @@
+modi,R_OSAL_RCFG_MmngrClose,09_006,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_cmn_get_handle_state,r_osal_rcfg_mmngr_cmn_get_handle_state,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_close,r_osal_rcfg_mmngr_close,,,,,,,,,,
+#COMMENT,@hndl_mmngr,g_st_osal_memory_manager_obj[0].p_ptr_self,g_st_osal_mem_mmngr_ptr_self[0].handle_id,g_st_osal_mem_mmngr_ptr_self[0].p_buffers,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_cmn_get_handle_state@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_close@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_cmn_get_handle_state@AMIN_p_state,R_OSAL_RCFG_MmngrClose@@,;,,,
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_OK,;Normal operation,,,
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,OSAL_RETURN_HANDLE,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_HANDLE,;r_osal_rcfg_mmngr_cmn_get_handle_state() return non-OSAL_RETURN_OK,,,
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_STATE,;state is not OSAL_MANAGER_STATE_MEMOPENED,,,
+,g_st_osal_memory_manager_obj,0,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_HANDLE,;hndl_mmngr->p_ptr_self is NULL,,,
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,0,g_st_osal_mem_mmngr_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_HANDLE,;p_mngr_control->handle_id is not OSAL_RES_CFG_MEMORY_HANDLE_ID,,,
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_HANDLE,;p_mngr_control->p_buffers is NULL,,,
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_FAIL,;r_osal_rcfg_mmngr_close() return OSAL_RETURN_FAIL,,,

@@ -1,0 +1,40 @@
+modi,osal_thread_initialize,02_009,21,1,,,,CPP,,,,0,,,,,,,,,,,
+#InitWheneverCall,r_osal_thread.c/gs_osal_thread_is_initialized,,,,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_init,pthread_mutexattr_init,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_settype,pthread_mutexattr_settype,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfThread,R_OSAL_RCFG_GetNumOfThread,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetThreadInfo,R_OSAL_RCFG_GetThreadInfo,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_init,pthread_attr_init,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setinheritsched,pthread_attr_setinheritsched,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedpolicy,pthread_attr_setschedpolicy,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedparam,pthread_attr_setschedparam,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setstacksize,pthread_attr_setstacksize,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_create,pthread_create,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_destroy,pthread_attr_destroy,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_destroy,pthread_mutexattr_destroy,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_thread_deinitialize,osal_thread_deinitialize,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_thread.c/gs_osal_thread_is_initialized,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_settype@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfThread@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetThreadInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_attr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setinheritsched@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedpolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedparam@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setstacksize@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_create@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_thread_deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetThreadInfo@AM_count,AMSTB_SrcFile.c/g_st_osal_rcfg_thread_config.config.priority,AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AMIN_return[1],AMSTB_SrcFile.c/g_st_osal_rcfg_thread_config.config.stack_size,osal_thread_initialize@@,;
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_OK,;Normal operation
+,1,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_STATE,;gs_osal_thread_is_initialized is false
+,0,-1,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_mutexattr_init() return non-zero
+,0,0,-1,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_mutexattr_settype() return non-zero
+,0,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_CONF,;R_OSAL_RCFG_GetNumOfThread() return 0
+,0,0,0,2,OSAL_RETURN_FAIL,0,0,0,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetThreadInfo() return OSAL_RETURN_FAIL
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,1,14,0,0,512,OSAL_RETURN_FAIL,;The aquired thread_control is 0
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,3,14,0,0,512,OSAL_RETURN_FAIL,;The aquired thread_control->usr_config is 0
+,0,0,0,1,OSAL_RETURN_OK,-1,0,0,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_mutex_init() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,-1,0,512,OSAL_RETURN_FAIL,;pthread_cond_init() return non-zero (spesific create_cond)
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,0,-1,512,OSAL_RETURN_FAIL,;pthread_cond_init() return non-zero (spesific join_cond)
+,0,0,0,2,OSAL_RETURN_OK,0,0,-1,0,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_attr_init() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,-1,0,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_attr_setinheritsched() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,-1,0,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_attr_setschedpolicy() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,15,0,0,512,OSAL_RETURN_CONF,;config->priority is greater than OSAL_THREAD_PRIORITY_HIGHEST
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,0,,2,14,0,0,0,OSAL_RETURN_CONF,;config->stacksize is 0
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,-1,0,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_attr_setschedparam() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,-1,0,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_attr_setstacksize() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,-1,0,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_create() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,-1,0,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_attr_destroy() return non-zero
+,0,0,0,1,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,0,-1,,2,14,0,0,512,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy() return non-zero

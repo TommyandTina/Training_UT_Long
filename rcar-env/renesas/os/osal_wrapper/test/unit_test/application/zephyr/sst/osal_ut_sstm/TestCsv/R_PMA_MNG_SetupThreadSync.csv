@@ -1,0 +1,16 @@
+modi,R_PMA_MNG_SetupThreadSync,02_015,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_pma_manager.c/g_osal_os_condattr,r_pma_manager.c/g_osal_os_condattr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondStaticCreate@AM_count,,,,,,,,,
+0,0,0,0,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate,R_OSAL_OS_MutexCreate,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondInitAttr,R_OSAL_OS_CondInitAttr,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondStaticCreate,R_OSAL_OS_CondStaticCreate,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate,R_OSAL_OS_MutexCreate,,,,,,,,,,
+#COMMENT,$@pSetMutex,$@pSetCond,r_pma_manager.c/g_osal_os_condattr,r_pma_manager.c/g_osal_os_condattr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondStaticCreate@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondStaticCreate@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate@AMOUT_p_mutex,R_PMA_MNG_SetupThreadSync@@,;
+,0,1,1,1,0,,,,,,R_PMA_NG,;pSetMutex is NULL
+,1,0,1,1,0,,,,,,R_PMA_NG,;pSetMutex is NULL
+,1,1,1,1,0,OSAL_RETURN_FAIL,,,,,R_PMA_NG,;R_OSAL_OS_MutexInitAttr() returns OSAL_RETURN_FAIL
+,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,,,1,R_PMA_NG,;R_OSAL_OS_MutexCreate() returns OSAL_RETURN_FAIL
+,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,,1,R_PMA_NG,;R_OSAL_OS_CondInitAttr() returns OSAL_RETURN_FAIL
+,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,1,R_PMA_NG,;R_OSAL_OS_CondStaticCreate() returns OSAL_RETURN_FAIL
+,1,1,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,1,R_PMA_OK,;Normal operation

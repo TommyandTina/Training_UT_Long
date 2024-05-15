@@ -1,0 +1,11 @@
+modi,R_PMA_BSP_WRAP_SetCpgOFF,05_004,4,1,,,,CPP,,,,0
+#InitWheneverCall,r_pma_bsp_wrapper.c/cpg_idmax,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_clock_control_off,clock_control_off,,,,,,,,,,
+%,AMSTB_clock_control_get_status,clock_control_get_status,,,,,,,,,,
+#COMMENT,@modId,r_pma_bsp_wrapper.c/cpg_idmax,AMSTB_SrcFile.c/AMSTB_clock_control_off@AMIN_return,AMSTB_SrcFile.c/AMSTB_clock_control_get_status@AMIN_return,R_PMA_BSP_WRAP_SetCpgON@@,;,,,,,,
+,0,1,0,1,R_PMA_OK,;Normal case,,,,,,
+,2,1,0,1,R_PMA_INVALID_ARGUMENT,;modId is larger than the max number of CPG ID.,,,,,,
+,0,1,1,1,R_PMA_BSP_ECPG,;clock_control_on() returns non-zero value.,,,,,,
+,0,1,0,2,R_PMA_NG,;clock_control_get_status() returns CLOCK_CONTROL_STATUS_OFF.,,,,,,
+,0,1,0,10,R_PMA_BSP_ECPG,;clock_control_get_status() returns unknown value.,,,,,,

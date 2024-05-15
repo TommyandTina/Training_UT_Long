@@ -1,0 +1,19 @@
+    The TPU driver for RENESAS R-Car V3U, R-Car V4H board
+
+    CREATED   : 12.18.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-CarV3U, R-Car V4H board
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+               12.18.2020 : Ver.0.1
+               - Create new version
+               02.28.2022 :  
+               - Support for R-Car V4H
+               08.18.2022 : Ver.0.2
+               - Fix issue for a new waveform configuration in tpu_config_waveform_config()
+-----------------------------------------------------------------------------
+ Known limitations with this version
+-----------------------------------------------------------------------------
+No support stepping-Motor control.

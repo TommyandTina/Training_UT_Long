@@ -1,0 +1,15 @@
+modi,osal_internal_mem_open,09_024,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,r_osal_memory.c/gsp_osal_memory_manager,g_memory_manager_handle,g_st_osal_memory_manager_obj[0].p_ptr_self,,,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mem_open_map,osal_internal_mem_open_map,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mem_open_malloc,osal_internal_mem_open_malloc,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,r_osal_memory.c/gsp_osal_memory_manager,g_memory_manager_handle,g_st_osal_memory_manager_obj[0].p_ptr_self,$@p_usr_config,@p_usr_config[0].memory_limit,@region_idx,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_osal_internal_mem_open_map@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_internal_mem_open_malloc@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],osal_internal_mem_open@@,;
+,1,g_memory_manager_handle,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation
+,1,g_memory_manager_handle,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_memory_manager_handle,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,;osal_internal_mem_open_map() return OSAL_RETURN_FAIL
+,1,g_memory_manager_handle,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,;osal_internal_mem_open_malloc() return OSAL_RETURN_FAIL
+,1,g_memory_manager_handle,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

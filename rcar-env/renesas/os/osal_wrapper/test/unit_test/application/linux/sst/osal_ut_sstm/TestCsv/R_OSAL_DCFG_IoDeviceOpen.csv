@@ -1,0 +1,35 @@
+modi,R_OSAL_DCFG_IoDeviceOpen,06_008,21,1,,,,CPP,,,,0,,,,,,,,,,,
+#InitWheneverCall,r_osal_dev_cfg_io.c/gs_io_handle_count,,,,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate_multiple,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDeinitAttr,R_OSAL_OS_MutexDeinitAttr,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoDeviceOpen,R_OSAL_OS_IoDeviceOpen,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gs_io_handle_count,@p_id,@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_p_mutex_attr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate_multiple@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoDeviceOpen@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_DCFG_IoDeviceOpen@@,;
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,0,str,g_osal_device_handle_t,0,0,str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[0] returns NULL
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],0,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[1] returns NULL
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexInitAttr returns OSAL_RETURN_FAIL
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate[0] returns OSAL_RETURN_FAIL (DeinitAttr is OK)
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate[0] returns OSAL_RETURN_FAIL (DeinitAttr is FAIL)
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate[1] returns OSAL_RETURN_FAIL
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDeinitAttr returns OSAL_RETURN_FAIL
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod returns OSAL_RETURN_TIME
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_BUSY,;R_OSAL_OS_IoDeviceOpen returns OSAL_RETURN_BUSY
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_ID,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_ID,;R_OSAL_OS_IoDeviceOpen returns OSAL_RETURN_ID (Unlock is OK)
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_ID,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_ID,;R_OSAL_OS_IoDeviceOpen returns OSAL_RETURN_ID (Unlock is FAIL)
+,0,str,g_osal_device_handle_t,0,g_st_osal_device_control_t[0],str,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL

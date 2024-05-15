@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_IoWrite,15_108,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].base_addr,@offset,@size,@unit_size,@p_data,R_OSAL_OS_IoWrite@@,;,,,,
+,g_st_osal_device_control_t[0],g_uint8_t,0,1,1,array_uint8,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint8_t)),,,,
+,0,g_uint8_t,0,1,1,array_uint8,OSAL_RETURN_FAIL,;handle is NULL,,,,
+,g_st_osal_device_control_t[0],g_uint8_t,0,1,1,0,OSAL_RETURN_FAIL,;p_data is NULL,,,,
+,g_st_osal_device_control_t[0],g_uint16_t,0,2,2,array_uint8,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint16_t),,,,
+,g_st_osal_device_control_t[0],g_uint32_t,0,4,4,array_uint8,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint32_t),,,,
+,g_st_osal_device_control_t[0],g_uint64_t,0,8,8,array_uint8,OSAL_RETURN_OK,;Normal operation (unit_size is sizeof(uint64_t),,,,
+,g_st_osal_device_control_t[0],g_uint8_t,0,3,3,array_uint8,OSAL_RETURN_FAIL,;unit_size is other,,,,

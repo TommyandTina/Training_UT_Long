@@ -1,0 +1,12 @@
+modi,R_OSAL_ThsyncMutexUnlock,03_006,6,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,@handle,g_st_osal_mutex_control.handle_id,g_st_osal_mutex_control.active,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],R_OSAL_ThsyncMutexUnlock@@,;,,,,
+,1,g_st_osal_mutex_control,OSAL_MUTEX_HANDLE_ID,1,0,0,OSAL_RETURN_OK,;Normal operation,,,,
+,0,g_st_osal_mutex_control,OSAL_MUTEX_HANDLE_ID,1,0,0,OSAL_RETURN_STATE,;gs_osal_threadsync_is_initialized is false,,,,
+,1,0,OSAL_MUTEX_HANDLE_ID,1,0,0,OSAL_RETURN_HANDLE,;handle is NULL,,,,
+,1,g_st_osal_mutex_control,0,1,0,0,OSAL_RETURN_HANDLE,;handle->handle_id is not OSAL_MUTEX_HANDLE_ID.,,,,
+,1,g_st_osal_mutex_control,OSAL_MUTEX_HANDLE_ID,0,0,0,OSAL_RETURN_HANDLE,;handle->active is false.,,,,
+,1,g_st_osal_mutex_control,OSAL_MUTEX_HANDLE_ID,1,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() returns is not 0.,,,,

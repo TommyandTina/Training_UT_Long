@@ -1,0 +1,7 @@
+modi,R_OSAL_RCFG_ThreadSleepForTimePeriod,02_010,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ThreadSleepForTimePeriod,R_OSAL_HIF_ThreadSleepForTimePeriod,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_osal_thread_is_initialized_enu,@time_period,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ThreadSleepForTimePeriod@AMIN_return,R_OSAL_RCFG_ThreadSleepForTimePeriod@@,;,,,,,,,
+,1,10,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,1,10,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_HIF_ThreadSleepForTimePeriod return OSAL_RETURN_FAIL,,,,,,,

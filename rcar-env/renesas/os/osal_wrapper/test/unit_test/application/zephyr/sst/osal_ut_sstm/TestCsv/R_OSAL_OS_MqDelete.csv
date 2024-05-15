@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_MqDelete,10_002,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_sem_destroy,sem_destroy,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].numofmsg,g_st_osal_os_mq[0].rcv_wait_count,g_st_osal_os_mq[0].snd_wait_count,AMSTB_SrcFile.c/AMSTB_sem_destroy@AMIN_return,R_OSAL_OS_MqDelete@@,;,,,,,
+,g_st_osal_os_mq,0,0,0,0,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,0,0,0,0,OSAL_RETURN_FAIL,;mq is NULL.,,,,,
+,g_st_osal_os_mq,1,0,0,0,OSAL_RETURN_BUSY,;mq->numofmsg is not 0.,,,,,
+,g_st_osal_os_mq,0,1,0,0,OSAL_RETURN_BUSY,;mq->receive_wait is larger than 0.,,,,,
+,g_st_osal_os_mq,0,0,1,0,OSAL_RETURN_BUSY,;mq->send_wait is larger than 0.,,,,,
+,g_st_osal_os_mq,0,0,0,1,OSAL_RETURN_FAIL,;sem_destroy() returns non-zero value.,,,,,

@@ -1,0 +1,13 @@
+modi,R_OSAL_DCFG_IoCheckBusy,06_005,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_io.c/gs_io_handle_count,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gs_io_handle_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_DCFG_IoCheckBusy@@,;,,,,,
+,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,0,OSAL_RETURN_TIME,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod returns OSAL_RETURN_TIME,,,,,
+,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;gs_io_handle_count is not 0 (Unlock is OK),,,,,
+,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_BUSY,;gs_io_handle_count is not 0 (Unlock is FAIL),,,,,
+,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL,,,,,

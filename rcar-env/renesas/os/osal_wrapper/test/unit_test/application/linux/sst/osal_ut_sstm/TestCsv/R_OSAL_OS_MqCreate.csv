@@ -1,0 +1,22 @@
+modi,R_OSAL_OS_MqCreate,19_102,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondCreate,R_OSAL_OS_CondCreate,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_cond_destroy,r_osal_os_mq_cond_destroy,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_cond_destroy,r_osal_os_mq_cond_destroy,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_cond_destroy,r_osal_os_mq_cond_destroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,
+#COMMENT,@p_config,@mq_attr,@p_mq,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondCreate@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_cond_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_cond_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_cond_destroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_OS_MqCreate@@,;
+,g_st_osal_mq_config_t,g_st_osal_os_mqattr_t,g_osal_os_mq_t,0,g_st_osal_os_mq_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,0,g_st_osal_os_mqattr_t,g_osal_os_mq_t,0,g_st_osal_os_mq_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_config is NULL
+,g_st_osal_mq_config_t,0,g_osal_os_mq_t,0,g_st_osal_os_mq_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;mq_attr is NULL
+,g_st_osal_mq_config_t,g_st_osal_os_mqattr_t,0,0,g_st_osal_os_mq_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_mq is NULL
+,g_st_osal_mq_config_t,g_st_osal_os_mqattr_t,g_osal_os_mq_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc returns NULL
+,g_st_osal_mq_config_t,g_st_osal_os_mqattr_t,g_osal_os_mq_t,0,g_st_osal_os_mq_t,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_CondCreate[0] returns OSAL_RETURN_FAIL
+,g_st_osal_mq_config_t,g_st_osal_os_mqattr_t,g_osal_os_mq_t,0,g_st_osal_os_mq_t,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_CondCreate[1] returns OSAL_RETURN_FAIL
+,g_st_osal_mq_config_t,g_st_osal_os_mqattr_t,g_osal_os_mq_t,0,g_st_osal_os_mq_t,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate returns OSAL_RETURN_FAIL

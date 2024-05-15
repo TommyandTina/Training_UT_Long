@@ -1,0 +1,2380 @@
+diff --git a/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig b/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig
+index b6e39e55e5..c2a99c3ab9 100644
+--- a/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig
++++ b/boards/arm/rcar_v4h_white_hawk/rcar_v4h_white_hawk_cr52_defconfig
+@@ -18,6 +18,7 @@ CONFIG_UART_INTERRUPT_DRIVEN=y
+ CONFIG_CACHE_MANAGEMENT=y
+ CONFIG_DCACHE_LINE_SIZE_DETECT=y
+ CONFIG_ICACHE_LINE_SIZE_DETECT=y
++CONFIG_OUTPUT_DISASSEMBLE_ALL=y
+ 
+ # Log level
+ CONFIG_I2C_LOG_LEVEL_DBG=y
+@@ -28,4 +29,23 @@ CONFIG_POWER_DOMAIN_LOG_LEVEL_INF=y
+ CONFIG_POSIX_API=y
+ 
+ # For Shell
+-CONFIG_MINIMAL_LIBC=y
++CONFIG_NEWLIB_LIBC=y
++CONFIG_CPLUSPLUS=y
++CONFIG_LIB_CPLUSPLUS=y
++CONFIG_NEWLIB_LIBC_NANO=n
++CONFIG_EXCEPTIONS=y
++
++# For Renesas OSAL Wrapper
++CONFIG_PTHREAD_IPC=y
++CONFIG_MAX_PTHREAD_COUNT=255
++CONFIG_SEM_VALUE_MAX=32767
++CONFIG_HEAP_MEM_POOL_SIZE=1048576
++#CONFIG_MINIMAL_LIBC=y
++#CONFIG_MINIMAL_LIBC_CALLOC=y
++#CONFIG_MINIMAL_LIBC_MALLOC=y
++#CONFIG_MINIMAL_LIBC_MALLOC_ARENA_SIZE=1048576
++CONFIG_DYNAMIC_INTERRUPTS=y
++CONFIG_MAIN_STACK_SIZE=4096
++CONFIG_SCHED_CPU_MASK=y
++CONFIG_THREAD_NAME=y
++CONFIG_THREAD_MAX_NAME_LEN=16
+diff --git a/cmake/compiler/armclang/target.cmake b/cmake/compiler/armclang/target.cmake
+index 23151023cb..54056445a0 100644
+--- a/cmake/compiler/armclang/target.cmake
++++ b/cmake/compiler/armclang/target.cmake
+@@ -57,7 +57,7 @@ foreach(file_name include/stddef.h)
+ endforeach()
+ 
+ foreach(isystem_include_dir ${NOSTDINC})
+-  list(APPEND isystem_include_flags -isystem ${isystem_include_dir})
++  list(APPEND isystem_include_flags "-isystem \"${isystem_include_dir}\"")
+ endforeach()
+ 
+ set(CMAKE_REQUIRED_FLAGS ${isystem_include_flags})
+diff --git a/dts/arm/renesas/gen4/rcar_gen4_cr52.dtsi b/dts/arm/renesas/gen4/rcar_gen4_cr52.dtsi
+index 78c07e9369..6539c5258c 100644
+--- a/dts/arm/renesas/gen4/rcar_gen4_cr52.dtsi
++++ b/dts/arm/renesas/gen4/rcar_gen4_cr52.dtsi
+@@ -10,6 +10,8 @@
+ #include <dt-bindings/clock/renesas_rcar_cpg.h>
+ #include <dt-bindings/i2c/i2c.h>
+ 
++#define POWER_DOMAIN_ALWAYS_ON 0xFFFF
++
+ / {
+ 	aliases {
+ 		i2c0 = &i2c0;
+@@ -35,6 +37,11 @@
+ 			reg = <0xe2100000 0x1B00000>;
+ 		};
+ 
++		iccommem_00: iccommem@47fc7000 {
++			compatible = "mmio-sram";
++			reg = <0x47fc7000 0x10000>;
++		};
++
+ 		gic: interrupt-controller@f0000000 {
+ 			compatible = "arm,gic";
+ 			reg = <0xf0000000 0x100000>,
+@@ -49,6 +56,7 @@
+ 			compatible = "renesas,rcar-cpg-mssr";
+ 			reg = <0xe6150000 0x4000>;
+ 			#clock-cells = <2>;
++			#reset-cells = <1>;
+ 			label = "cpg";
+ 		};
+ 
+@@ -83,6 +91,7 @@
+ 			compatible = "syscon";
+ 			status = "okay";
+ 			reg = <0xe6180000 0x2000>;
++			#power-domain-cells = <1>;
+ 			label = "SYSC";
+ 		};
+ 
+@@ -353,4 +362,1965 @@
+ 			syscon = <&sysc>;
+ 		};
+ 	};
++
++	/* OSAL Device Configuration */
++    osal_device: osal {
++            #address-cells = <1>;
++            #size-cells = <1>;
++            /* for OSAL Memory Manager */
++        osal_mmngr: memory{
++            #address-cells = <1>;
++            #size-cells = <1>;
++		    compatible = "renesas,osal";
++		    device_type = "memory";
++		    label = "osal_mmngr";
++		    num_of_memory_regions = <1>;
++		    osal_mmngr_00: memory@a0000000 {
++		        reg = <0x60000000 0x20000000>;
++		        interrupt-parent = <&gic>;
++		        label = "osal_mmngr_00";
++		        status = "okay";
++		    };
++		};
++		/* For OSAL Device Managers(IO, Interrupt, Power) */
++		ims_00: ims@fe860000 {
++		    device_type = "ims";
++		    compatible = "renesas,osal";
++		    reg = <0xfe860000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 579 IRQ_TYPE_LEVEL 0>;
++		    label = "ims_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 529>;
++		    resets = <&cpg 529>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vc";
++		    iommus = <&ipmmu_cache_vc 8>;
++		};
++		ims_01: ims@fe870000 {
++		    device_type = "ims";
++		    compatible = "renesas,osal";
++		    reg = <0xfe870000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL 0>;
++		    label = "ims_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 530>;
++		    resets = <&cpg 530>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vc";
++		    iommus = <&ipmmu_cache_vc 9>;
++		};
++		imr_00: imr@fe880000 {
++		    device_type = "imr";
++		    compatible = "renesas,osal";
++		    reg = <0xfe880000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL 0>;
++		    label = "imr_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 525>;
++		    resets = <&cpg 525>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vc";
++		    iommus = <&ipmmu_cache_vc 0>,<&ipmmu_cache_vc 4>;
++		};
++		imr_01: imr@fe890000 {
++		    device_type = "imr";
++		    compatible = "renesas,osal";
++		    reg = <0xfe890000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL 0>;
++		    label = "imr_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 526>;
++		    resets = <&cpg 526>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vc";
++		    iommus = <&ipmmu_cache_vc 1>, <&ipmmu_cache_vc 5>;
++		};
++		imr_02: imr@fe8a0000 {
++		    device_type = "imr";
++		    compatible = "renesas,osal";
++		    reg = <0xfe8a0000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL 0>;
++		    label = "imr_02";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 527>;
++		    resets = <&cpg 527>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vc";
++		    iommus = <&ipmmu_cache_vc 2>, <&ipmmu_cache_vc 6>;
++		};
++		imp_top_00: imp_top@ff900000 {
++		    device_type = "imp_top";
++		    compatible = "renesas,osal";
++		    reg = <0xff900000 0x6000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 565 IRQ_TYPE_LEVEL 0>, <GIC_SPI 566 IRQ_TYPE_LEVEL 0>, <GIC_SPI 567 IRQ_TYPE_LEVEL 0>;
++		    label = "imp_top_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 118>;
++		    resets = <&cpg 118>;
++		    power-domains = <&sysc 43>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>,
++		              <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_00: imp@ffa00000 {
++		    device_type = "imp";
++		    compatible = "renesas,osal";
++		    reg = <0xffa00000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 24>;
++		    resets = <&cpg 24>;
++		    power-domains = <&sysc 34>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_01: imp@ffa20000 {
++		    device_type = "imp";
++		    compatible = "renesas,osal";
++		    reg = <0xffa20000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 25>;
++		    resets = <&cpg 25>;
++		    power-domains = <&sysc 34>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_02: imp@ffb00000 {
++		    device_type = "imp";
++		    compatible = "renesas,osal";
++		    reg = <0xffb00000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_02";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 103>;
++		    resets = <&cpg 103>;
++		    power-domains = <&sysc 46>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_03: imp@ffb20000 {
++		    device_type = "imp";
++		    compatible = "renesas,osal";
++		    reg = <0xffb20000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_03";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 104>;
++		    resets = <&cpg 104>;
++		    power-domains = <&sysc 46>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_ocv_00: imp_ocv@ffa40000 {
++		    device_type = "imp_ocv";
++		    compatible = "renesas,osal";
++		    reg = <0xffa40000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_ocv_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2706>;
++		    resets = <&cpg 2706>;
++		    power-domains = <&sysc 36>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_ocv_01: imp_ocv@ffa50000 {
++		    device_type = "imp_ocv";
++		    compatible = "renesas,osal";
++		    reg = <0xffa50000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_ocv_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2707>;
++		    resets = <&cpg 2707>;
++		    power-domains = <&sysc 37>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_ocv_02: imp_ocv@ffa60000 {
++		    device_type = "imp_ocv";
++		    compatible = "renesas,osal";
++		    reg = <0xffa60000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_ocv_02";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2708>;
++		    resets = <&cpg 2708>;
++		    power-domains = <&sysc 48>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_ocv_03: imp_ocv@ffa70000 {
++		    device_type = "imp_ocv";
++		    compatible = "renesas,osal";
++		    reg = <0xffa70000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_ocv_03";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2709>;
++		    resets = <&cpg 2709>;
++		    power-domains = <&sysc 49>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_dma_00: imp_dma@ffa80000 {
++		    device_type = "imp_dma";
++		    compatible = "renesas,osal";
++		    reg = <0xffa80000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_dma_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 26>;
++		    resets = <&cpg 26>;
++		    power-domains = <&sysc 35>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_dma_01: imp_dma@ffb80000 {
++		    device_type = "imp_dma";
++		    compatible = "renesas,osal";
++		    reg = <0xffb80000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_dma_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 105>;
++		    resets = <&cpg 105>;
++		    power-domains = <&sysc 47>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_psc_00: imp_psc@ffa84000 {
++		    device_type = "imp_psc";
++		    compatible = "renesas,osal";
++		    reg = <0xffa84000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_psc_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 27>;
++		    resets = <&cpg 27>;
++		    power-domains = <&sysc 35>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_dta_00: imp_dta@ffa88000 {
++		    device_type = "imp_dta";
++		    compatible = "renesas,osal";
++		    reg = <0xffa88000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_dta_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 116>;
++		    resets = <&cpg 116>;
++		    power-domains = <&sysc 43>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 16>, <&ipmmu_cache_ir 17>,
++		              <&ipmmu_cache_ir 18>, <&ipmmu_cache_ir 19>,
++		              <&ipmmu_cache_ir 20>, <&ipmmu_cache_ir 21>,
++		              <&ipmmu_cache_ir 22>, <&ipmmu_cache_ir 23>;
++		};
++		imp_dma_slim_00: imp_dma_slim@ffa90000 {
++		    device_type = "imp_dma_slim";
++		    compatible = "renesas,osal";
++		    reg = <0xffa90000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_dma_slim_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2712>;
++		    resets = <&cpg 2712>;
++		    power-domains = <&sysc 42>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_dma_slim_01: imp_dma_slim@ffa94000 {
++		    device_type = "imp_dma_slim";
++		    compatible = "renesas,osal";
++		    reg = <0xffa94000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_dma_slim_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2713>;
++		    resets = <&cpg 2713>;
++		    power-domains = <&sysc 42>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_cnn_00: imp_cnn@ffaa0000 {
++		    device_type = "imp_cnn";
++		    compatible = "renesas,osal";
++		    reg = <0xffaa0000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_cnn_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 22>;
++		    resets = <&cpg 22>;
++		    power-domains = <&sysc 41>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_spmi_00: imp_spmi@ed300000 {
++		    device_type = "imp_spmi";
++		    compatible = "renesas,osal";
++		    reg = <0xed300000 0x100000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_spmi_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 120>;
++		    resets = <&cpg 120>;
++		    power-domains = <&sysc 43>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_spmc_00: imp_spmc@ed400000 {
++		    device_type = "imp_spmc";
++		    compatible = "renesas,osal";
++		    reg = <0xed400000 0x200000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_spmc_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 23>;
++		    resets = <&cpg 23>;
++		    power-domains = <&sysc 42>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_reg_spmi_00: imp_reg_spmi@ffa8c000 {
++		    device_type = "imp_reg_spmi";
++		    compatible = "renesas,osal";
++		    reg = <0xffa8c000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_reg_spmi_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 120>;
++		    resets = <&cpg 120>;
++		    power-domains = <&sysc 43>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		imp_reg_spmc_00: imp_reg_spmc@ffab0000 {
++		    device_type = "imp_reg_spmc";
++		    compatible = "renesas,osal";
++		    reg = <0xffab0000 0x4000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_reg_spmc_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 23>;
++		    resets = <&cpg 23>;
++		    power-domains = <&sysc 42>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++		vdsp00_00: vdsp00@f1400000 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    reg = <0xf1400000 0x1a0000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 478 IRQ_TYPE_LEVEL 0>, <GIC_SPI 479 IRQ_TYPE_LEVEL 0>, <GIC_SPI 480 IRQ_TYPE_LEVEL 0>, <GIC_SPI 481 IRQ_TYPE_LEVEL 0>, <GIC_SPI 482 IRQ_TYPE_LEVEL 0>;
++		    label = "vdsp00_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2821>;
++		    resets = <&cpg 2825>;
++		    power-domains = <&sysc 33>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 13>, <&ipmmu_cache_ir 14>;
++		};
++		vdsp00_01 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp00_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2801>;
++		    resets = <&cpg 2821>;
++		    power-domains = <&sysc 33>;
++		};
++		vdsp00_02 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp00_02";
++		    status = "okay";
++		    resets = <&cpg 2822>;
++		};
++		vdsp00_03 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp00_03";
++		    status = "okay";
++		    resets = <&cpg 2823>;
++		};
++		vdsp00_04 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp00_04";
++		    status = "okay";
++		    resets = <&cpg 2824>;
++		};
++		vdsp00_05 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp00_05";
++		    status = "okay";
++		    resets = <&cpg 2826>;
++		};
++		vdsp00_06 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp00_06";
++		    status = "okay";
++		    resets = <&cpg 2827>;
++		};
++		vdsp00_07 {
++		    device_type = "vdsp00";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp00_07";
++		    status = "okay";
++		    resets = <&cpg 2828>;
++		};
++		vdsp01_00: vdsp01@f1600000 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    reg = <0xf1600000 0x1a0000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 483 IRQ_TYPE_LEVEL 0>, <GIC_SPI 484 IRQ_TYPE_LEVEL 0>, <GIC_SPI 485 IRQ_TYPE_LEVEL 0>, <GIC_SPI 486 IRQ_TYPE_LEVEL 0>, <GIC_SPI 487 IRQ_TYPE_LEVEL 0>;
++		    label = "vdsp01_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2830>;
++		    resets = <&cpg 2902>;
++		    power-domains = <&sysc 45>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 13>, <&ipmmu_cache_ir 14>;
++		};
++		vdsp01_01 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp01_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2802>;
++		    resets = <&cpg 2830>;
++		    power-domains = <&sysc 45>;
++		};
++		vdsp01_02 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp01_02";
++		    status = "okay";
++		    resets = <&cpg 2831>;
++		};
++		vdsp01_03 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp01_03";
++		    status = "okay";
++		    resets = <&cpg 2900>;
++		};
++		vdsp01_04 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp01_04";
++		    status = "okay";
++		    resets = <&cpg 2901>;
++		};
++		vdsp01_05 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp01_05";
++		    status = "okay";
++		    resets = <&cpg 2903>;
++		};
++		vdsp01_06 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp01_06";
++		    status = "okay";
++		    resets = <&cpg 2904>;
++		};
++		vdsp01_07 {
++		    device_type = "vdsp01";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp01_07";
++		    status = "okay";
++		    resets = <&cpg 2905>;
++		};
++		vdsp02_00: vdsp02@f1800000 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    reg = <0xf1800000 0x1a0000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 488 IRQ_TYPE_LEVEL 0>, <GIC_SPI 489 IRQ_TYPE_LEVEL 0>, <GIC_SPI 490 IRQ_TYPE_LEVEL 0>, <GIC_SPI 491 IRQ_TYPE_LEVEL 0>, <GIC_SPI 492 IRQ_TYPE_LEVEL 0>;
++		    label = "vdsp02_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2907>;
++		    resets = <&cpg 2911>;
++		    power-domains = <&sysc 53>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 13>, <&ipmmu_cache_ir 14>;
++		};
++		vdsp02_01 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp02_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2803>;
++		    resets = <&cpg 2907>;
++		    power-domains = <&sysc 53>;
++		};
++		vdsp02_02 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp02_02";
++		    status = "okay";
++		    resets = <&cpg 2908>;
++		};
++		vdsp02_03 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp02_03";
++		    status = "okay";
++		    resets = <&cpg 2909>;
++		};
++		vdsp02_04 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp02_04";
++		    status = "okay";
++		    resets = <&cpg 2910>;
++		};
++		vdsp02_05 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp02_05";
++		    status = "okay";
++		    resets = <&cpg 2912>;
++		};
++		vdsp02_06 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp02_06";
++		    status = "okay";
++		    resets = <&cpg 2913>;
++		};
++		vdsp02_07 {
++		    device_type = "vdsp02";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp02_07";
++		    status = "okay";
++		    resets = <&cpg 2914>;
++		};
++		vdsp03_00: vdsp03@f1a00000 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    reg = <0xf1a00000 0x1a0000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 493 IRQ_TYPE_LEVEL 0>, <GIC_SPI 494 IRQ_TYPE_LEVEL 0>, <GIC_SPI 495 IRQ_TYPE_LEVEL 0>, <GIC_SPI 496 IRQ_TYPE_LEVEL 0>, <GIC_SPI 497 IRQ_TYPE_LEVEL 0>;
++		    label = "vdsp03_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2916>;
++		    resets = <&cpg 2920>;
++		    power-domains = <&sysc 54>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 13>, <&ipmmu_cache_ir 14>;
++		};
++		vdsp03_01 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp03_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2804>;
++		    resets = <&cpg 2916>;
++		    power-domains = <&sysc 54>;
++		};
++		vdsp03_02 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp03_02";
++		    status = "okay";
++		    resets = <&cpg 2917>;
++		};
++		vdsp03_03 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp03_03";
++		    status = "okay";
++		    resets = <&cpg 2918>;
++		};
++		vdsp03_04 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp03_04";
++		    status = "okay";
++		    resets = <&cpg 2919>;
++		};
++		vdsp03_05 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp03_05";
++		    status = "okay";
++		    resets = <&cpg 2921>;
++		};
++		vdsp03_06 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp03_06";
++		    status = "okay";
++		    resets = <&cpg 2922>;
++		};
++		vdsp03_07 {
++		    device_type = "vdsp03";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    label = "vdsp03_07";
++		    status = "okay";
++		    resets = <&cpg 2923>;
++		};
++		dof_00: dof@e7a10000 {
++		    device_type = "dof";
++		    compatible = "renesas,osal";
++		    reg = <0xe7a10000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 861 IRQ_TYPE_LEVEL 0>, <GIC_SPI 862 IRQ_TYPE_LEVEL 0>;
++		    label = "dof_00";
++		    status = "okay";
++		    ipmmu-id = "vip0";
++		    clocks = <&cpg CPG_MOD 9>;
++		    resets = <&cpg 9>;
++		    power-domains = <&sysc 56>;
++		    iommus = <&ipmmu_cache_vip0 3>;
++		};
++		smd_ps_00: smd_ps@e7a20000 {
++		    device_type = "smd_ps";
++		    compatible = "renesas,osal";
++		    reg = <0xe7a20000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 873 IRQ_TYPE_LEVEL 0>, <GIC_SPI 874 IRQ_TYPE_LEVEL 0>;
++		    label = "smd_ps_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 7>;
++		    resets = <&cpg 7>;
++		    power-domains = <&sysc 58>;
++		    ipmmu-id = "vip0";
++		    iommus = <&ipmmu_cache_vip0 2>;
++		};
++		smd_post_00: smd_post@e7a40000 {
++		    device_type = "smd_post";
++		    compatible = "renesas,osal";
++		    reg = <0xe7a40000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 871 IRQ_TYPE_LEVEL 0>, <GIC_SPI 872 IRQ_TYPE_LEVEL 0>;
++		    label = "smd_post_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 5>;
++		    resets = <&cpg 5>;
++		    power-domains = <&sysc 58>;
++		    ipmmu-id = "vip0";
++		    iommus = <&ipmmu_cache_vip0 1>;
++		};
++		dof_fcprm_00: dof_fcprm@e7ab1000 {
++		    device_type = "dof_fcprm";
++		    compatible = "renesas,osal";
++		    reg = <0xe7ab1000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    label = "dof_fcprm_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 9>;
++		    resets = <&cpg 9>;
++		    power-domains = <&sysc 56>;
++		    ipmmu-id = "vip0";
++		    iommus = <&ipmmu_cache_vip0 3>;
++		};
++		vip_wrap_00: vip_wrap@e7b3b000 {
++		    device_type = "vip_wrap";
++		    compatible = "renesas,osal";
++		    reg = <0xe7b3b000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    label = "vip_wrap_00";
++		    status = "okay";
++		    ipmmu-id = "vip0";
++		    iommus = <&ipmmu_cache_vip0 1>, <&ipmmu_cache_vip0 2>,
++		              <&ipmmu_cache_vip0 3>;
++		};
++		iccom_reg_00: iccom_reg@e6260000 {
++		    device_type = "iccom_reg";
++		    compatible = "renesas,osal";
++		    reg = <0xe6260000 0x10000>;
++		    label = "iccom_reg_00";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		iccom_00 {
++		    device_type = "iccom";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL 0>;
++		    label = "iccom_00";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		iccom_01 {
++		    device_type = "iccom";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL 0>;
++		    label = "iccom_01";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		iccom_02 {
++		    device_type = "iccom";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL 0>;
++		    label = "iccom_02";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		iccom_03 {
++		    device_type = "iccom";
++		    compatible = "renesas,osal";
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL 0>;
++		    label = "iccom_03";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		cisp_00: cisp@fec00000 {
++		    device_type = "cisp";
++		    compatible = "renesas,osal";
++		    reg = <0xfec00000 0x100000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 475 IRQ_TYPE_LEVEL 0>;
++		    label = "cisp_00";
++		    status = "okay";
++		    ipmmu-id = "vi0";
++		    clocks = <&cpg CPG_MOD 16>;
++		    resets = <&cpg 16>;
++		    power-domains = <&sysc 60>;
++		    iommus = <&ipmmu_cache_vi0 10>, <&ipmmu_cache_vi0 14>,
++		              <&ipmmu_cache_vi0 18>, <&ipmmu_cache_vi0 22>,
++		              <&ipmmu_cache_vi0 26>;
++		};
++		cisp_01: cisp@fee00000 {
++		    device_type = "cisp";
++		    compatible = "renesas,osal";
++		    reg = <0xfee00000 0x100000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 476 IRQ_TYPE_LEVEL 0>;
++		    label = "cisp_01";
++		    status = "okay";
++		    ipmmu-id = "vi0";
++		    clocks = <&cpg CPG_MOD 17>;
++		    resets = <&cpg 17>;
++		    power-domains = <&sysc 61>;
++		    iommus = <&ipmmu_cache_vi0 11>, <&ipmmu_cache_vi0 15>,
++		              <&ipmmu_cache_vi0 19>, <&ipmmu_cache_vi0 23>,
++		              <&ipmmu_cache_vi0 27>;
++		};
++		tisp_00: tisp@fed00000 {
++		    device_type = "tisp";
++		    compatible = "renesas,osal";
++		    reg = <0xfed00000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL 0>;
++		    label = "tisp_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 612>;
++		    resets = <&cpg 612>;
++		    power-domains = <&sysc 60>;
++		};
++		tisp_01: tisp@fed20000 {
++		    device_type = "tisp";
++		    compatible = "renesas,osal";
++		    reg = <0xfed20000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 474 IRQ_TYPE_LEVEL 0>;
++		    label = "tisp_01";
++		    clocks = <&cpg CPG_MOD 613>;
++		    resets = <&cpg 613>;
++		    power-domains = <&sysc 61>;
++		    status = "okay";
++		};
++		vspx_00: vspx@fedd0000 {
++		    device_type = "vspx";
++		    compatible = "renesas,osal";
++		    reg = <0xfedd0000 0x8000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 556 IRQ_TYPE_LEVEL 0>;
++		    label = "vspx_00";
++		    status = "okay";
++		    ipmmu-id = "vi1";
++		    clocks = <&cpg CPG_MOD 1028>;
++		    resets = <&cpg 1028>;
++		    power-domains = <&sysc 60>;
++		    iommus = <&ipmmu_cache_vi0 24>;
++		};
++		vspx_01: vspx@fedd8000 {
++		    device_type = "vspx";
++		    compatible = "renesas,osal";
++		    reg = <0xfedd8000 0x8000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 557 IRQ_TYPE_LEVEL 0>;
++		    label = "vspx_01";
++		    status = "okay";
++		    ipmmu-id = "vi1";
++		    clocks = <&cpg CPG_MOD 1029>;
++		    resets = <&cpg 1029>;
++		    power-domains = <&sysc 61>;
++		    iommus = <&ipmmu_cache_vi0 25>;
++		};
++		fcpvx_00: fcpvx@fedb0000 {
++		    device_type = "fcpvx";
++		    compatible = "renesas,osal";
++		    reg = <0xfedb0000 0x8000>;
++		    interrupt-parent = <&gic>;
++		    label = "fcpvx_00";
++		    status = "okay";
++		    ipmmu-id = "vi1";
++		    clocks = <&cpg CPG_MOD 1100>;
++		    resets = <&cpg 1100>;
++		    power-domains = <&sysc 60>;
++		    iommus = <&ipmmu_cache_vi0 24>;
++		};
++		fcpvx_01: fcpvx@fedb8000 {
++		    device_type = "fcpvx";
++		    compatible = "renesas,osal";
++		    reg = <0xfedb8000 0x8000>;
++		    interrupt-parent = <&gic>;
++		    label = "fcpvx_01";
++		    status = "okay";
++		    ipmmu-id = "vi1";
++		    clocks = <&cpg CPG_MOD 1101>;
++		    resets = <&cpg 1101>;
++		    power-domains = <&sysc 61>;
++		    iommus = <&ipmmu_cache_vi0 25>;
++		};
++		fbc_00: fbc@ff830000 {
++		    device_type = "fbc";
++		    compatible = "renesas,osal";
++		    reg = <0xff830000 0x2000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 852 IRQ_TYPE_LEVEL 0>;
++		    label = "fbc_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_ims0: fba@fe605000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfe605000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 695 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_ims0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_ims1: fba@fe606000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfe606000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 696 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_ims1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imr0: fba@fe601000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfe601000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 691 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imr0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imr1: fba@fe602000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfe602000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 692 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imr1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imr2: fba@fe603000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfe603000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 693 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imr2";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp0: fba@ff8c0000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c0000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 713 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp1: fba@ff8c1000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c1000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 714 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp2: fba@ff8c2000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c2000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 715 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp2";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp3: fba@ff8c3000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c3000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp3";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_ocv0: fba@ff8c4000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c4000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 719 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_ocv0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_ocv1: fba@ff8c5000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c5000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 720 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_ocv1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_ocv2: fba@ff8c6000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c6000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 721 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_ocv2";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_ocv3: fba@ff8c7000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8c7000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 722 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_ocv3";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_dp0: fba@fff56000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff56000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 717 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_dp0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_dp1: fba@fff57000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff57000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 718 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_dp1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_cnn0: fba@fff50000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff50000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 727 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_cnn0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_dsp0: fba@fff64000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff64000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 738 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_dsp0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_dsp1: fba@fff65000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff65000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 739 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_dsp1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_dsp2: fba@fff66000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff66000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 740 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_dsp2";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_dsp3: fba@fff67000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff67000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 741 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_dsp3";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_cnram0: fba@fff55000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfff55000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 744 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_cnram0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_slim0: fba@ff8f4000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8f4000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 745 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_slim0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_imp_slim1: fba@ff8f5000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xff8f5000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 746 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_imp_slim1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_umfl0: fba@e7b61000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xe7b61000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 701 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_umfl0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 4>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_smps0: fba@e7b64000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xe7b64000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 703 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_smps0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 4>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_smpo0: fba@e7b63000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xe7b63000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 707 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_smpo0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 4>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_pap0: fba@e7b62000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xe7b62000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 699 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_pap0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 4>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_isp0: fba@feac1000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfeac1000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 686 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_isp0";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fba_isp1: fba@feac2000 {
++		    device_type = "fba";
++		    compatible = "renesas,osal";
++		    reg = <0xfeac2000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 687 IRQ_TYPE_LEVEL 0>;
++		    label = "fba_isp1";
++		    status = "okay";
++		    clocks = <&cpg CPG_CORE 0>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_00: rfso@ffe80000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe80000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_00";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_01: rfso@ffe81000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe81000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_01";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_02: rfso@ffe82000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe82000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_02";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_03: rfso@ffe83000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe83000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 230 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_03";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_04: rfso@ffe84000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe84000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 231 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_04";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_05: rfso@ffe85000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe85000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_05";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_06: rfso@ffe86000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe86000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_06";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_07: rfso@ffe87000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe87000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_07";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_08: rfso@ffe88000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe88000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_08";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_09: rfso@ffe89000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe89000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_09";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		rfso_10: rfso@ffe8a000 {
++		    device_type = "rfso";
++		    compatible = "renesas,osal";
++		    reg = <0xffe8a000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL 0>;
++		    label = "rfso_10";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		vin_00: vin@e6ef0000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef0000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 730>;
++		    resets = <&cpg 730>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_01: vin@e6ef1000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef1000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 731>;
++		    resets = <&cpg 731>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_02: vin@e6ef2000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef2000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_02";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 800>;
++		    resets = <&cpg 800>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_03: vin@e6ef3000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef3000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_03";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 801>;
++		    resets = <&cpg 801>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_04: vin@e6ef4000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef4000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_04";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 802>;
++		    resets = <&cpg 802>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_05: vin@e6ef5000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef5000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 534 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_05";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 803>;
++		    resets = <&cpg 803>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_06: vin@e6ef6000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef6000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_06";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 804>;
++		    resets = <&cpg 804>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_07: vin@e6ef7000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef7000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_07";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 805>;
++		    resets = <&cpg 805>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 0>;
++		};
++		vin_10: vin@e6ef8000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef8000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 537 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_10";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 806>;
++		    resets = <&cpg 806>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vin_11: vin@e6ef9000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6ef9000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 538 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_11";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 807>;
++		    resets = <&cpg 807>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vin_12: vin@e6efa000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6efa000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 539 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_12";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 808>;
++		    resets = <&cpg 808>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vin_13: vin@e6efb000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6efb000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 540 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_13";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 809>;
++		    resets = <&cpg 809>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vin_14: vin@e6efc000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6efc000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 541 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_14";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 810>;
++		    resets = <&cpg 810>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vin_15: vin@e6efd000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6efd000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 542 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_15";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 811>;
++		    resets = <&cpg 811>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vin_16: vin@e6efe000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6efe000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 543 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_16";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 812>;
++		    resets = <&cpg 812>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vin_17: vin@e6eff000 {
++		    device_type = "vin";
++		    compatible = "renesas,osal";
++		    reg = <0xe6eff000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 544 IRQ_TYPE_LEVEL 0>;
++		    label = "vin_17";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 813>;
++		    resets = <&cpg 813>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi0";
++		    iommus = <&ipmmu_cache_vi0 1>;
++		};
++		vsp_00: vsp@fea20000 {
++		    device_type = "vsp";
++		    compatible = "renesas,osal";
++		    reg = <0xfea20000 0x8000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 546 IRQ_TYPE_LEVEL 0>;
++		    label = "vsp_00";
++		    status = "okay";
++		    ipmmu-id = "vi1";
++		    clocks = <&cpg CPG_MOD 830>;
++		    resets = <&cpg 830>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    iommus = <&ipmmu_cache_vi1 6>;
++		};
++		vsp_01: vsp@fea28000 {
++		    device_type = "vsp";
++		    compatible = "renesas,osal";
++		    reg = <0xfea28000 0x8000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL 0>;
++		    label = "vsp_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 831>;
++		    resets = <&cpg 831>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi1";
++		    iommus = <&ipmmu_cache_vi1 7>;
++		};
++		csi_00: csi@fe500000 {
++		    device_type = "csi";
++		    compatible = "renesas,osal";
++		    reg = <0xfe500000 0x40000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 499 IRQ_TYPE_LEVEL 0>;
++		    label = "csi_00";
++		    clocks = <&cpg CPG_MOD 331>;
++		    resets = <&cpg 331>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    status = "okay";
++		};
++		csi_01: csi@fe540000 {
++		    device_type = "csi";
++		    compatible = "renesas,osal";
++		    reg = <0xfe540000 0x40000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 500 IRQ_TYPE_LEVEL 0>;
++		    label = "csi_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 400>;
++		    resets = <&cpg 400>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		du_00: du@feb00000 {
++		    device_type = "du";
++		    compatible = "renesas,osal";
++		    reg = <0xfeb00000 0x40000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 523 IRQ_TYPE_LEVEL 0>, <GIC_SPI 524 IRQ_TYPE_LEVEL 0>;
++		    label = "du_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 411>;
++		    resets = <&cpg 411>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		dsi_00: dsi@fed80000 {
++		    device_type = "dsi";
++		    compatible = "renesas,osal";
++		    reg = <0xfed80000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 502 IRQ_TYPE_LEVEL 0>, <GIC_SPI 503 IRQ_TYPE_LEVEL 0>, <GIC_SPI 504 IRQ_TYPE_LEVEL 0>, <GIC_SPI 505 IRQ_TYPE_LEVEL 0>, <GIC_SPI 506 IRQ_TYPE_LEVEL 0>, <GIC_SPI 507 IRQ_TYPE_LEVEL 0>, <GIC_SPI 508 IRQ_TYPE_LEVEL 0>, <GIC_SPI 509 IRQ_TYPE_LEVEL 0>, <GIC_SPI 510 IRQ_TYPE_LEVEL 0>;
++		    label = "dsi_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 415>;
++		    resets = <&cpg 415>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi1";
++		    iommus = <&ipmmu_cache_vi1 18>;
++		};
++		dsi_01: dsi@fed90000 {
++		    device_type = "dsi";
++		    compatible = "renesas,osal";
++		    reg = <0xfed90000 0x10000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 511 IRQ_TYPE_LEVEL 0>, <GIC_SPI 512 IRQ_TYPE_LEVEL 0>, <GIC_SPI 513 IRQ_TYPE_LEVEL 0>, <GIC_SPI 514 IRQ_TYPE_LEVEL 0>, <GIC_SPI 515 IRQ_TYPE_LEVEL 0>, <GIC_SPI 516 IRQ_TYPE_LEVEL 0>, <GIC_SPI 517 IRQ_TYPE_LEVEL 0>, <GIC_SPI 518 IRQ_TYPE_LEVEL 0>, <GIC_SPI 519 IRQ_TYPE_LEVEL 0>;
++		    label = "dsi_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 416>;
++		    resets = <&cpg 416>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		fcpvd_00: fcpvd@fea10000{
++		    device_type = "fcpvd";
++		    compatible = "renesas,osal";
++		    reg = <0xfea10000 0x1000>;
++		    label = "fcpvd_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 508>;
++		    resets = <&cpg 508>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi1";
++		    iommus = <&ipmmu_cache_vi1 6>;
++		};
++		fcpvd_01: fcpvd@fea11000{
++		    device_type = "fcpvd";
++		    compatible = "renesas,osal";
++		    reg = <0xfea11000 0x1000>;
++		    label = "fcpvd_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 509>;
++		    resets = <&cpg 509>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		    ipmmu-id = "vi1";
++		    iommus = <&ipmmu_cache_vi1 7>;
++		};
++		wwdt_00: wwdt@ffc90000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xffc90000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL 0>, <GIC_SPI 311 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_00";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_01: wwdt@ffca0000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xffca0000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 312 IRQ_TYPE_LEVEL 0>, <GIC_SPI 313 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_01";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_02: wwdt@ffcb0000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xffcb0000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 314 IRQ_TYPE_LEVEL 0>, <GIC_SPI 315 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_02";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_03: wwdt@ffcc0000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xffcc0000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 316 IRQ_TYPE_LEVEL 0>, <GIC_SPI 317 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_03";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_04: wwdt@ffcf0000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xffcf0000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 318 IRQ_TYPE_LEVEL 0>, <GIC_SPI 319 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_04";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_05: wwdt@ffef0000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xffef0000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 320 IRQ_TYPE_LEVEL 0>, <GIC_SPI 321 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_05";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_06: wwdt@fff10000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xfff10000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 322 IRQ_TYPE_LEVEL 0>, <GIC_SPI 323 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_06";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_07: wwdt@fff20000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xfff20000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL 0>, <GIC_SPI 325 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_07";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_08: wwdt@fff30000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xfff30000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 326 IRQ_TYPE_LEVEL 0>, <GIC_SPI 327 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_08";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		wwdt_09: wwdt@fff40000 {
++		    device_type = "wwdt";
++		    compatible = "renesas,osal";
++		    reg = <0xfff40000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 328 IRQ_TYPE_LEVEL 0>, <GIC_SPI 329 IRQ_TYPE_LEVEL 0>;
++		    label = "wwdt_09";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		dsc_00: dsc@feb8d000 {
++		    device_type = "dsc";
++		    compatible = "renesas,osal";
++		    reg = <0xfeb8d000 0x1000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 559 IRQ_TYPE_LEVEL 0>;
++		    label = "dsc_00";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 2819>;
++		    resets = <&cpg 2819>;
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		system_ram_00: system_ram@e6300000 {
++		    device_type = "system_ram";
++		    compatible = "renesas,osal";
++		    reg = <0xe6300000 0x100000>;
++		    interrupt-parent = <&gic>;
++		    label = "system_ram_00";
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_mm_00: iommu@eefc0000 {
++		    device_type = "ipmmu_mm";
++		    compatible = "renesas,osal";
++		    reg = <0xeefc0000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL 0>, <GIC_SPI 211 IRQ_TYPE_LEVEL 0>;
++		    label = "ipmmu_mm_00";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_vi0: iommu@eee80000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeee80000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_vi0";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_vi1: iommu@eeec0000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeeec0000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_vi1";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_vc: iommu@eedc0000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeedc0000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_vc";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_ir: iommu@eed80000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeed80000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_ir";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc 43>;
++		};
++		ipmmu_cache_rt0: iommu@ee480000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xee480000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_rt0";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_rt1: iommu@ee4c0000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xee4c0000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_rt1";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_ds0: iommu@eed00000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeed00000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_ds0";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_hsc: iommu@eed40000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeed40000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_hsc";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_vip0: iommu@eef00000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeef00000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_vip0";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_vip1: iommu@eef40000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeef40000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_vip1";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		ipmmu_cache_3dg: iommu@eee00000 {
++		    device_type = "ipmmu_cache";
++		    compatible = "renesas,osal";
++		    reg = <0xeee00000 0x20000>;
++		    interrupt-parent = <&gic>;
++		    label = "ipmmu_cache_3dg";
++		    #iommu-cells = <1>;
++		    status = "okay";
++		    power-domains = <&sysc POWER_DOMAIN_ALWAYS_ON>;
++		};
++		imp_spmc_01: imp_spmc@ed600000 {
++		    device_type = "imp_spmc";
++		    compatible = "renesas,osal";
++		    reg = <0xed600000 0x80000>;
++		    interrupt-parent = <&gic>;
++		    label = "imp_spmc_01";
++		    status = "okay";
++		    clocks = <&cpg CPG_MOD 23>;
++		    resets = <&cpg 23>;
++		    power-domains = <&sysc 42>;
++		    ipmmu-id = "ir";
++		    iommus = <&ipmmu_cache_ir 24>, <&ipmmu_cache_ir 25>,
++		              <&ipmmu_cache_ir 26>, <&ipmmu_cache_ir 27>,
++		              <&ipmmu_cache_ir 28>, <&ipmmu_cache_ir 29>,
++		              <&ipmmu_cache_ir 30>, <&ipmmu_cache_ir 31>;
++		};
++	};
+ };
+diff --git a/dts/bindings/clock/renesas,rcar-cpg-mssr.yaml b/dts/bindings/clock/renesas,rcar-cpg-mssr.yaml
+index 2dd74f8e92..8959b2a078 100644
+--- a/dts/bindings/clock/renesas,rcar-cpg-mssr.yaml
++++ b/dts/bindings/clock/renesas,rcar-cpg-mssr.yaml
+@@ -14,6 +14,13 @@ properties:
+     "#clock-cells":
+       const: 2
+ 
++    resets:
++      type: phandle-array
++      required: false
++
+ clock-cells:
+   - domain
+   - module
++
++reset-cells:
++  - module
+diff --git a/dts/bindings/osal/renesas,osal.yaml b/dts/bindings/osal/renesas,osal.yaml
+new file mode 100644
+index 0000000000..6cd0dc79e8
+--- /dev/null
++++ b/dts/bindings/osal/renesas,osal.yaml
+@@ -0,0 +1,55 @@
++#
++# Copyright (c) 2020 IoT.bzh
++#
++# SPDX-License-Identifier: Apache-2.0
++#
++
++description: renesas osal device configuration
++
++compatible: "renesas,osal"
++
++include: [base.yaml]
++
++properties:
++    reg:
++      required: false
++
++    label:
++      required: true
++
++    interrupts:
++      required: false
++
++    device_type:
++      type: string
++      required: true
++      default: "invalid"
++
++    ipmmu-id:
++      type: string
++      required: false
++
++    iommus:
++      type: phandle-array
++      required: false
++
++    resets:
++      type: phandle-array
++      required: false
++
++    power-domains:
++      type: phandle-array
++      required: false
++
++    num_of_memory_regions:
++      type: int
++      required: false
++
++interrupt-cells:
++  - type
++  - irq
++  - flags
++  - priority
++
++iommu-cells:
++  - utlb
+diff --git a/dts/bindings/syscon/syscon.yaml b/dts/bindings/syscon/syscon.yaml
+index d5e4fcd27b..62bf54d533 100644
+--- a/dts/bindings/syscon/syscon.yaml
++++ b/dts/bindings/syscon/syscon.yaml
+@@ -14,3 +14,6 @@ properties:
+       type: int
+       required: false
+       description: The width of the registers in the syscon region in bytes. Default is 4 bytes.
++
++power-domain-cells:
++ - sysc
+diff --git a/lib/libc/newlib/CMakeLists.txt b/lib/libc/newlib/CMakeLists.txt
+index b8a74d067d..ac08397467 100644
+--- a/lib/libc/newlib/CMakeLists.txt
++++ b/lib/libc/newlib/CMakeLists.txt
+@@ -1,8 +1,7 @@
+ # SPDX-License-Identifier: Apache-2.0
+ 
+ zephyr_library()
+-zephyr_library_sources(libc-hooks.c)
+-
++zephyr_library_sources(libc-hooks.c memset.c stub.c string.c)
+ # Zephyr normally uses -ffreestanding, which with current GNU toolchains
+ # means that the flag macros used by newlib 3.x <inttypes.h> to signal
+ # support for PRI.64 macros are not present.  To make them available we
+diff --git a/lib/libc/newlib/memset.c b/lib/libc/newlib/memset.c
+new file mode 100644
+index 0000000000..d0c1acc8c5
+--- /dev/null
++++ b/lib/libc/newlib/memset.c
+@@ -0,0 +1,38 @@
++/*
++ * Copyright (c) 2022, Renesas
++ *
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++#include <sys/types.h>
++#include <stdio.h>
++#include <toolchain/common.h>
++
++/*
++ * The mem_word_t should match the optimal memory access word width
++ * on the target platform. Here we defaults it to uintptr_t.
++ */
++
++typedef uintptr_t mem_word_t;
++
++/**
++ *
++ * @brief Set bytes in memory
++ *
++ * @return pointer to start of buffer
++ */
++
++void *memset(void *buf, int c, size_t n)
++{
++	/* do byte-sized initialization until word-aligned or finished */
++
++	unsigned char *d_byte = (unsigned char *)buf;
++	unsigned char c_byte = (unsigned char)c;
++	while (n > 0) {
++		*(d_byte++) = c_byte;
++		n--;
++	}
++
++	return buf;
++}
++
+diff --git a/lib/libc/newlib/string.c b/lib/libc/newlib/string.c
+new file mode 100644
+index 0000000000..fb5513429c
+--- /dev/null
++++ b/lib/libc/newlib/string.c
+@@ -0,0 +1,40 @@
++/* string.c - common string routines */
++
++/*
++ * Copyright (c) 2014 Wind River Systems, Inc.
++ * Copyright (c) 2023 Renesas
++ *
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++#include <stdint.h>
++#include <sys/types.h>
++#include <toolchain/common.h>
++
++
++/**
++ *
++ * @brief Copy part of a string
++ *
++ * @return pointer to destination buffer <d>
++ */
++
++char *strncpy(char *ZRESTRICT d, const char *ZRESTRICT s, size_t n)
++{
++       char *dest = d;
++
++       while ((n > 0) && *s != '\0') {
++               *d = *s;
++               s++;
++               d++;
++               n--;
++       }
++
++       while (n > 0) {
++               *d = '\0';
++               d++;
++               n--;
++       }
++
++       return dest;
++}
+diff --git a/lib/libc/newlib/stub.c b/lib/libc/newlib/stub.c
+new file mode 100644
+index 0000000000..748d430b64
+--- /dev/null
++++ b/lib/libc/newlib/stub.c
+@@ -0,0 +1,33 @@
++/*
++ * Copyright (c) 2022, Renesas
++ *
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++#include <sys/types.h>
++#include <stdio.h>
++#include <string.h>
++
++int mkdir(const char *path, mode_t mode){
++  return 0;
++};
++
++char *getcwd(char *buf, size_t size){
++    char* zephyr_dir  = "/";
++    strcpy(buf, zephyr_dir);
++    return buf;
++};
++
++int _open(const char *name, int flags, int mode)
++{
++    return 0;
++};
++
++int _stat(){
++    return 0;
++};
++
++int _unlink(){
++    return 0;
++};
++
+diff --git a/scripts/kconfig/kconfig.py b/scripts/kconfig/kconfig.py
+index e6cd75e12e..953537d764 100755
+--- a/scripts/kconfig/kconfig.py
++++ b/scripts/kconfig/kconfig.py
+@@ -230,7 +230,7 @@ def write_kconfig_filenames(kconf, kconfig_list_path):
+     # needs to be deterministic.
+ 
+     with open(kconfig_list_path, 'w') as out:
+-        for path in sorted({os.path.realpath(os.path.join(kconf.srctree, path))
++        for path in sorted({os.path.realpath(os.path.join(kconf.srctree, path)).replace("\\","/")
+                             for path in kconf.kconfig_filenames}):
+             print(path, file=out)
+ 
+diff --git a/scripts/subfolder_list.py b/scripts/subfolder_list.py
+index 8f5288928a..7ed512ad42 100644
+--- a/scripts/subfolder_list.py
++++ b/scripts/subfolder_list.py
+@@ -47,9 +47,9 @@ def get_subfolder_list(directory, create_links=None):
+         symlink = create_links + os.path.sep + symbase
+         if not os.path.exists(symlink):
+             os.symlink(directory, symlink)
+-        dirlist.append(symlink)
++        dirlist.append(symlink.replace("\\","/"))
+     else:
+-        dirlist.append(directory)
++        dirlist.append(directory.replace("\\","/"))
+ 
+     for root, dirs, _ in os.walk(directory, topdown=True):
+         dirs.sort()
+@@ -61,9 +61,9 @@ def get_subfolder_list(directory, create_links=None):
+                 symlink = create_links + os.path.sep + linkname
+                 if not os.path.exists(symlink):
+                     os.symlink(targetdirectory, symlink)
+-                dirlist.append(symlink)
++                dirlist.append(symlink.replace("\\","/"))
+             else:
+-                dirlist.append(os.path.join(root, subdir))
++                dirlist.append(os.path.join(root, subdir).replace("\\","/"))
+ 
+     return dirlist
+ 
+diff --git a/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c b/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c
+index b82450cb6d..b86536fd3a 100644
+--- a/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c
++++ b/soc/arm/renesas_rcar/gen4/arm_mpu_regions.c
+@@ -5,6 +5,20 @@
+ 
+ #include <kernel.h>
+ #include <arch/arm/aarch32/mpu/arm_mpu.h>
++#include <zephyr/linker/devicetree_regions.h>
++
++#if defined(REGION_RAM_ATTR)
++#undef REGION_RAM_ATTR
++#endif
++#define REGION_RAM_ATTR		ATTR_RW_C_B
++
++#define ARM_MPU_REGION_INIT(p_name, p_base, p_size, p_attr) \
++	{                                          \
++		.name = p_name,                        \
++		.base = p_base,                        \
++		.size = p_size,                        \
++		.attr = p_attr,                        \
++	}
+ 
+ 	/* AttrIndx=000 xx SH=00 AP=11 XN=0 */
+ #define ATTR_RO_C_B \
+@@ -28,7 +42,6 @@
+ 		.rasr = 0x0203	\
+ 	}
+ 
+-
+ extern uint32_t __mpu_ram_start;
+ extern uint32_t __text_rodata_region_size;
+ #ifdef CONFIG_ETH_RCAR
+@@ -82,6 +95,15 @@ static const struct arm_mpu_region mpu_regions[] = {
+ 			(uint32_t)&__data_bss_region_size,
+ 			ATTR_RW_C_B),
+ #endif
++	MPU_REGION_ENTRY("OSAL_MMNGR",
++			DT_PROP_BY_IDX(DT_NODELABEL(osal_mmngr_00), reg, 0),
++			DT_PROP_BY_IDX(DT_NODELABEL(osal_mmngr_00), reg, 1),
++			ATTR_RW_C_B),
++
++	MPU_REGION_ENTRY("ICCOMMEM",
++			DT_PROP_BY_IDX(DT_NODELABEL(iccommem_00), reg, 0),
++			DT_PROP_BY_IDX(DT_NODELABEL(iccommem_00), reg, 1),
++			ATTR_RW_NC),
+ };
+ 
+ const struct arm_mpu_config mpu_config = {

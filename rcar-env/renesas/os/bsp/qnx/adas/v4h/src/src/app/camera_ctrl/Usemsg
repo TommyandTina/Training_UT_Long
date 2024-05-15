@@ -1,0 +1,54 @@
+%C[Options]
+options:
+    -display=[int]   Sets the display id
+    -pipeline=[int]  Sets the wfd pipeline id
+    -device=[int]    Sets the device index. 
+    -source=[int]    Sets the source index
+    -bsize=[width]x[height] Sets the buffer size. Need to determine the size of video source
+        width - the horizontal resolution of the Video capture buffer. 
+        height - the vertical resolution of the Video capture buffer.
+    -format=[str]  Sets the buffer format. Default format is uyvy
+    -size=[width]x[height]  Sets the size of the window
+    -csize=[width]x[height] Sets the size for cropping
+    -cpos=[x],[y]           Sets the position for cropping. The top and left coordinates of the clipped area.
+    -ipmmu=[on/off]         Sets the support of IPMMU. Default setting is off
+    -gmsl=[1/2]             Sets GMSL mode. Default setting is GMSL1
+                             1 : GMSL1 mode
+                             2 : GMSL2 mode
+
+Build:
+    - Color patern test: Uncmoment following line in ../src/lib/vin/common.mk as below 
+      ...
+      CCFLAGS += -DMAX96712_COLOR_PATTERN_TEST
+      ...
+    - Camera input test: Comment following line in ../src/lib/vin/common.mk as below
+      ...
+      #CCFLAGS += -DMAX96712_COLOR_PATTERN_TEST
+      ...
+
+Test:
+    - MAX96712 (U10) CN5
+        + Color patern test (CSI channel 0)
+          # camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -device=0 
+          # vcapture-demo -std=user-defined -format=rgba8888 -device=0 -dmode=adaptive -frame-size=1920x1080
+        + GMSL1 Camera test (CSI channel 0)
+          # camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1280x1080 -device=0 [-source=n(n=0..3)]
+          # vcapture-demo -std=user-defined -format=uyvy -device=0 -dmode=adaptive -frame-size=1280x1080 -source=n(n=0..3)
+        + GMSL2 Camera test (CSI channel 0)
+          # camera_ctrl -display=1 -pipeline=1 -size=1920x1020 -bsize=1920x1020 -device=0 -gmsl=2 -format=yuv10 -source=n(n=0..3)]
+
+    - MAX96712 (U7) CN4
+        + Color patern test (CSI channel 1)
+          # camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -device=1
+          # vcapture-demo -std=user-defined -format=rgba8888 -device=1 -dmode=adaptive -frame-size=1920x1080
+        + GMSL1 Camera test (CSI channel 1)
+          # camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1280x1080 -device=1 [-source=n(n=0..3)]
+          # vcapture-demo -std=user-defined -format=uyvy -device=1 -dmode=adaptive -frame-size=1280x1080 -source=n(n=0..3)
+        + GMSL2 Camera test (CSI channel 1)
+          # camera_ctrl -display=1 -pipeline=1 -size=1920x1020 -bsize=1920x1020 -device=1 -gmsl=2 -format=yuv10 -source=n(n=0..3)]
+
+    - Both MAX96712 (U7) CN4 and MAX96712 (U5) CN10
+        + Color patern test
+          # camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1920x1080 -format=rgba8888
+        + Camera test
+          # camera_ctrl -display=1 -pipeline=2 -size=1920x1080 -bsize=1280x1080 [-source=n(n=0..3)]

@@ -1,0 +1,15 @@
+	The CMM driver for RENESAS R-CarGen3e boards
+
+    CREATED   : 05.30.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-CarGen3e boards
+    TARGET OS : QNX SDP 7.1 
+
+    HISTORY   :
+                05.30.2020 : Ver.0.1
+                - Create release code for H3/M3/M3N/E3/D3
+                06.30.2021 : Ver.0.2
+                - Apply REL's original CMM driver
+                09.30.2021 : ver.0.3
+                - Fix flicker on M3N

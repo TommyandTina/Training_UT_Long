@@ -1,0 +1,9 @@
+Write a long word to a physical register/memory
+-----------------------------------------------
+Synctax : out32 addr val
+
+arguments:
+    addr  : the physical address
+    val   : the value is written to the physical register/memory
+
+Ex: out32 0xe6060000 0x000000ff

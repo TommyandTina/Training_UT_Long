@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_CondSignal,11_204,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_cond_signal,pthread_cond_signal,,,,,,,,,,
+#COMMENT,@cond,AMSTB_SrcFile.c/AMSTB_pthread_cond_signal@AMIN_return,R_OSAL_OS_CondSignal@@,;,,,,,,,,
+,g_st_osal_os_cond_t,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,0,0,OSAL_RETURN_FAIL,;cond is NULL,,,,,,,,
+,g_st_osal_os_cond_t,1,OSAL_RETURN_FAIL,;pthread_cond_signal() return error,,,,,,,,

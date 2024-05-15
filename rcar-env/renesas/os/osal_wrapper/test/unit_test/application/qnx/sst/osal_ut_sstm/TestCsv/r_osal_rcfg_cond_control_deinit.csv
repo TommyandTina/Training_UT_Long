@@ -1,0 +1,20 @@
+modi,r_osal_rcfg_cond_control_deinit,03_024,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,r_osal_res_cfg_threadsync.c/gsp_osal_cond_control,g_st_osal_cond_control_array[0].cond,g_st_osal_cond_control_array[1].cond,g_st_osal_cond_control_array[0].inner_mtx,g_st_osal_cond_control_array[1].inner_mtx,,,,,,,,,
+0,0,0,0,0,0,0,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,r_osal_res_cfg_threadsync.c/gsp_osal_cond_control,g_st_osal_cond_control_array[0].cond,g_st_osal_cond_control_array[1].cond,g_st_osal_cond_control_array[0].inner_mtx,g_st_osal_cond_control_array[1].inner_mtx,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AMOUT_p_ptr,r_osal_rcfg_cond_control_deinit@@,;
+,2,g_st_osal_cond_control_array,g_osal_os_cond,g_osal_os_cond,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,2,0,g_osal_os_cond,g_osal_os_cond,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;gsp_osal_cond_control is NULL
+,2,g_st_osal_cond_control_array,0,0,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;p_cond_control->cond is NULL
+,2,g_st_osal_cond_control_array,g_osal_os_cond,g_osal_os_cond,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_CondDestroy() returns OSAL_RETURN_FAIL
+,2,g_st_osal_cond_control_array,g_osal_os_cond,g_osal_os_cond,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;p_cond_control->inner_mtx is NULL
+,2,g_st_osal_cond_control_array,g_osal_os_cond,g_osal_os_cond,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDestroy() returns OSAL_RETURN_FAIL
+,2,g_st_osal_cond_control_array,g_osal_os_cond,g_osal_os_cond,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;CondDestroy() is failed and MutexDestroy() is failed
+,0,g_st_osal_cond_control_array,g_osal_os_cond,g_osal_os_cond,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;gs_osal_num_of_cond_table is 0
+,1,g_st_osal_cond_control_array,g_osal_os_cond,g_osal_os_cond,g_osal_os_mutex,g_osal_os_mutex,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;gs_osal_num_of_cond_table is 1

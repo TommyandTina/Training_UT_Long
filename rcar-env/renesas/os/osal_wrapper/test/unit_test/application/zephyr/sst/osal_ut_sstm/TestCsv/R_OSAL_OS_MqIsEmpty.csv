@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_MqIsEmpty,10_009,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].numofmsg,@p_result,R_OSAL_OS_MqIsEmpty@@,;,,,,,,,
+,g_st_osal_os_mq,1,g_bool,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,0,1,g_bool,OSAL_RETURN_FAIL,;mq is NULL.,,,,,,,
+,g_st_osal_os_mq,1,0,OSAL_RETURN_FAIL,;p_result is NULL.,,,,,,,
+,g_st_osal_os_mq,0,g_bool,OSAL_RETURN_OK,;mq->numofmsg is 0.,,,,,,,

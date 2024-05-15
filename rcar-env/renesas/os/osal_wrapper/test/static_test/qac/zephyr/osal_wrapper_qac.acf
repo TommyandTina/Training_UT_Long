@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acf xmlversion="2.0.0">
+    <components>
+        <component version="9.5.0" target="C" name="qac"/>
+        <component version="4.3.0" target="C++" name="qacpp"/>
+        <component version="1.7.2" target="C_CPP" name="rcma"/>
+        <component version="2.3.5" target="C" name="m3cm"/>
+    </components>
+    <component_settings>
+        <input_to version="9.5.0" target="C" component="qac">
+            <option argument="wchar_t=unsigned int" name="-intrinsictype "/>
+            <option argument="63" name="-namelength "/>
+            <option argument="63" name="-xnamelength "/>
+            <option argument="+" name="-enabledataflow"/>
+            <option argument="df::inter=1" name="-prodoption "/>
+            <option argument="df::query_timeout=1500" name="-prodoption"/>
+            <option argument="df::function_timeout=600000" name="-prodoption"/>
+            <option argument="df::query_timeout_message+" name="-prodoption"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include" name="-i"/>
+            <option argument="${PROJECT_ROOT}\..\..\..\..\build\zephyr\include\generated" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\soc\arm\renesas_rcar\gen4" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\lib\libc\newlib\include" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\cmsis\CMSIS\Core_R\Include" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\atmel\include" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr\posix" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include-fixed" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\sys-include" name="-i"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\include" name="-i"/>
+            <option argument="${ARM_INC_PATH}" name="-i "/>
+            <option argument="${ARM_INC_PATH}" name="-quiet "/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include" name="-quiet"/>
+            <option argument="${PROJECT_ROOT}\..\..\..\..\build\zephyr\include\generated" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\soc\arm\renesas_rcar\gen4" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\lib\libc\newlib\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\cmsis\CMSIS\Core_R\Include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\atmel\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr\posix" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include-fixed" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\sys-include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\include" name="-quiet"/>
+            <option argument="${Zephyr-sdk_DIR}\zephyr\arch" name="-quiet"/>
+            <option argument="${Zephyr-sdk_DIR}\zephyr\kernel" name="-quiet"/>
+            <option argument="STCYC>19:9103" name="-threshold "/>
+            <option argument="STPTH>200:9104" name="-threshold "/>
+            <option argument="STGTO>0:9105" name="-threshold "/>
+            <option argument="STCAL>7:9107" name="-threshold "/>
+            <option argument="STPAR>5:9108" name="-threshold "/>
+            <option argument="STST3>50:9109" name="-threshold "/>
+            <option argument="STMIF>4:9110" name="-threshold "/>
+            <option argument="STM19>1:9111" name="-threshold "/>
+            <option argument="R_ACF_SYS" name="-undef "/>
+            <option argument="R_DOF_SYS" name="-undef "/>
+            <option argument="R_STV_SYS" name="-undef "/>
+            <option argument="__WORDSIZE=32" name="-d "/>
+            <option argument="__clang__" name="-d "/>
+            <option argument="__ZEPHYR__=1" name="-d "/>
+            <option argument="__PROGRAM_START" name="-d "/>
+            <option argument="_FORTIFY_SOURCE=2" name="-d "/>
+            <option argument="KERNEL" name="-d "/>
+            <option argument="CONFIG_ADDR_STACK" name="-d "/>
+            <option argument="NDEBUG" name="-d "/>
+        </input_to>
+        <input_to version="4.3.0" target="C++" component="qacpp">
+            <option argument="+" name="-enabledataflow"/>
+            <option argument="df::inter=1" name="-prodoption "/>
+            <option argument="df::query_timeout=1500" name="-prodoption "/>
+            <option argument="df::function_timeout=60000" name="-prodoption "/>
+            <option argument="df::analyse_header_functions=inter" name="-prodoption "/>
+        </input_to>
+        <input_to version="1.7.2" target="C_CPP" component="rcma">
+            <option argument="${ARM_INC_PATH}" name="-quiet "/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include" name="-quiet"/>
+            <option argument="${PROJECT_ROOT}\..\..\..\..\build\zephyr\include\generated" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\soc\arm\renesas_rcar\gen4" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\lib\libc\newlib\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\cmsis\CMSIS\Core_R\Include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\atmel\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr\posix" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include-fixed" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\sys-include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\include" name="-quiet"/>
+            <option argument="STM29>5:9106" name="-threshold "/>
+            <option argument="STNRA>0:9112" name="-threshold "/>
+            <option argument="STM28\STM22>0.2:9113" name="-threshold "/>
+        </input_to>
+        <input_to version="2.3.5" target="C" component="m3cm">
+            <option argument="${ARM_INC_PATH}" name="-quiet "/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include" name="-quiet"/>
+            <option argument="${PROJECT_ROOT}\..\..\..\..\build\zephyr\include\generated" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\soc\arm\renesas_rcar\gen4" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\lib\libc\newlib\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\cmsis\CMSIS\Core_R\Include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\modules\hal\atmel\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr\include\zephyr\posix" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\lib\gcc\arm-zephyr-eabi\10.3.0\include-fixed" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\sys-include" name="-quiet"/>
+			<option argument="${Zephyr-sdk_DIR}\zephyr-sdk-0.14.2\arm-zephyr-eabi\arm-zephyr-eabi\include" name="-quiet"/>
+        </input_to>
+    </component_settings>
+</acf>

@@ -1,0 +1,15 @@
+	The CMT Library for RENESAS R-Car V3U, R-Car V4H board
+
+    CREATED   : 12.18.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-Car V3U, R-Car V4H board
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+				12.18.2020 : Ver.0.1
+				- Create release code
+                05.19.2021 : Ver.0.2
+                - Support HW info for RCLK, CPEX and PSEU clock 
+				02.28.2022 :  
+				- Support for R-Car V4H

@@ -1,0 +1,152 @@
+diff --git a/build/parts/drv/renesas_isr/renesas_pdev_vin_isr_handler.c b/build/parts/drv/renesas_isr/renesas_pdev_vin_isr_handler.c
+new file mode 100644
+index 0000000..f37bbe6
+--- /dev/null
++++ b/build/parts/drv/renesas_isr/renesas_pdev_vin_isr_handler.c
+@@ -0,0 +1,146 @@
++/***********************************************************************************************************************
++* Copyright [2022] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
++*
++* The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
++* and/or its licensors ("Renesas") and subject to statutory and contractual protections.
++*
++* Unless otherwise expressly agreed in writing between Renesas and you: 1) you may not use, copy, modify, distribute,
++* display, or perform the contents; 2) you may not use any name or mark of Renesas for advertising or publicity
++* purposes or in connection with your use of the contents; 3) RENESAS MAKES NO WARRANTY OR REPRESENTATIONS ABOUT THE
++* SUITABILITY OF THE CONTENTS FOR ANY PURPOSE; THE CONTENTS ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
++* WARRANTY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
++* NON-INFRINGEMENT; AND 4) RENESAS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR CONSEQUENTIAL DAMAGES,
++* INCLUDING DAMAGES RESULTING FROM LOSS OF USE, DATA, OR PROJECTS, WHETHER IN AN ACTION OF CONTRACT OR TORT, ARISING
++* OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE CONTENTS. Third-party contents included in this file may
++* be subject to different terms.
++***********************************************************************************************************************/
++/****************************************************************************
++ISR handler function for GIC problem workaround
++****************************************************************************/
++#include "renesas_isr_common.h"
++
++/* refer to bios_ep/chip/rcar4/bios/pdev_rcar4_v4h.c for interrupt function registered in pdev. */
++void rcar_pdev_vin_isr_handler(uint16_t iid, uintptr_t param)
++{
++
++    int32_t ret = MCOS_EOK;
++
++    switch(iid)
++    {
++        case RCAR4_INTNO_VIN_0_CH_0: /* refer to include/bios_ep/chip/rcar4/rcar4_v4h.h for definition */
++            /* Disable VIN_CH0(interrupt No: 529 is VIN_0_CH_0) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef0000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_0_CH_1:
++            /* Disable VIN_CH1(interrupt No: 530 is VIN_0_CH_1) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef1000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_0_CH_2:
++            /* Disable VIN_CH2(interrupt No: 531 is VIN_0_CH_2) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef2000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_0_CH_3:
++            /* Disable VIN_CH3(interrupt No: 532 is VIN_0_CH_3) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef3000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_0_CH_4:
++            /* Disable VIN_CH4(interrupt No: 533 is VIN_0_CH_4) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef4000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_0_CH_5:
++            /* Disable VIN_CH5(interrupt No: 534 is VIN_0_CH_5) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef5000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_0_CH_6:
++            /* Disable VIN_CH6(interrupt No: 535 is VIN_0_CH_6) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef6000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_0_CH_7:
++            /* Disable VIN_CH7(interrupt No: 536 is VIN_0_CH_7) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef7000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_0:
++            /* Disable VIN_CH8(interrupt No: 537 is VIN_1_CH_0) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef8000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_1:
++            /* Disable VIN_CH9(interrupt No: 538 is VIN_1_CH_1) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6ef9000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_2:
++            /* Disable VIN_CH10(interrupt No: 539 is VIN_1_CH_2) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6efa000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_3:
++            /* Disable VIN_CH11(interrupt No: 540 is VIN_1_CH_3) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6efb000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_4:
++            /* Disable VIN_CH12(interrupt No: 541 is VIN_1_CH_4) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6efc000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_5:
++            /* Disable VIN_CH13(interrupt No: 542 is VIN_1_CH_5) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6efd000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_6:
++            /* Disable VIN_CH14(interrupt No: 543 is VIN_1_CH_6) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6efe000 + 0x0040)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_VIN_1_CH_7:
++            /* Disable VIN_CH15(interrupt No: 544 is VIN_1_CH_7) */
++            /* Disable interrupt by Video n Interrput Enable register */
++            *((volatile uint64_t*)(0xffffffff00000000 + 0xe6eff000 + 0x0040)) = 0x00000000;
++            break;
++        default:
++            ret = MCOS_ENOEXS; /* refer to include/mcos/mcos.h for error code */
++        break;
++    }
++
++    if (ret != MCOS_EOK)
++    {
++        mcos_debug_printf(
++                "interrupt %d: mcos_interrupt_disable error (%d) in %s/n",
++                iid, ret, __func__);
++    }
++    else
++    {
++        pdev_intentry_t *intentry = (pdev_intentry_t *) param;
++        struct lfs_devgetdone req;
++        req.code = DEV_DEVGETDONE;
++        req.type = GETDONE_NONBLOCK | (intentry->intno << 8);
++        req.ptr = (lfs_t**) intentry->itr_config.param;
++        if (intentry->itr_config.uring != NULL)
++        {
++            ret = uring_interrupt_notify_internal(intentry->itr_config.uring, &req, sizeof(struct lfs_devgetdone), true);
++        }
++        else
++        {
++            ret = mcos_rrmessage_send(intentry->itr_config.tid, DEV_DEVGETDONE, &req, sizeof(req), NULL, NULL, 0);
++        }
++
++        if (ret != MCOS_EOK)
++        {
++            mcos_debug_printf(
++                            "interrupt %d: mcos_rrmessage_send error in %s/n",
++                            iid, __func__);
++        }
++    }
++
++}
++

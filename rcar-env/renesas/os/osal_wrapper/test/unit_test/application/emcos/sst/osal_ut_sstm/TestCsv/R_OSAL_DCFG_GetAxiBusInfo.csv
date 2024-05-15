@@ -1,0 +1,6 @@
+modi,R_OSAL_DCFG_GetAxiBusInfo,07_037,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,$@pp_info,R_OSAL_DCFG_GetAxiBusInfo@@,;,,,,,,,,
+,1,1,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,1,0,OSAL_RETURN_PAR,;pp_info is NULL.,,,,,,,,

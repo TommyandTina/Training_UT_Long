@@ -1,0 +1,11 @@
+modi,R_PMA_BSP_WRAP_EnablePostClock,05_012,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_pma_bsp_wrapper.c/clkhwfuncs.clk_is_enabled,r_pma_bsp_wrapper.c/clkhwfuncs.clk_enable,,,,,,,,,,
+0,0,0,,,,,,,,,,
+%,AMSTB_dummy_clk_is_enabled,dummy_clk_is_enabled,,,,,,,,,,
+%,AMSTB_dummy_clk_enable,dummy_clk_enable,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode,R_PMA_BSP_WRAP_Exchange_ErrCode,,,,,,,,,,
+#COMMENT,@chanIdx,r_pma_bsp_wrapper.c/clkhwfuncs.clk_is_enabled,r_pma_bsp_wrapper.c/clkhwfuncs.clk_enable,AMSTB_SrcFile.c/AMSTB_dummy_clk_is_enabled@AMIN_return,AMSTB_SrcFile.c/AMSTB_dummy_clk_enable@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode@AMIN_return,AMSTB_SrcFile.c/AMSTB_dummy_clk_is_enabled@AMOUT_id,AMSTB_SrcFile.c/AMSTB_dummy_clk_is_enabled@AMOUT_idx,AMSTB_SrcFile.c/AMSTB_dummy_clk_enable@AMOUT_id,AMSTB_SrcFile.c/AMSTB_dummy_clk_enable@AMOUT_idx,R_PMA_BSP_WRAP_EnablePostClock@@,;
+,0,dummy_clk_is_enabled,dummy_clk_enable,CPG_RET_ERROR,,R_PMA_NG,CPG_CLK_POST,0,CPG_CLK_POST,,R_PMA_NG,;clk_is_enabled() returns CPG_RET_ERROR
+,0,dummy_clk_is_enabled,dummy_clk_enable,R_PMA_CLK_ENABLE,,,CPG_CLK_POST,0,CPG_CLK_POST,,R_PMA_OK,;Normal operation
+,0,dummy_clk_is_enabled,dummy_clk_enable,R_PMA_CLK_DISABLE,CPG_RET_ERROR,R_PMA_NG,CPG_CLK_POST,0,CPG_CLK_POST,0,R_PMA_NG,;clk_enable() returns CPG_RET_ERROR
+,1,dummy_clk_is_enabled,dummy_clk_enable,R_PMA_CLK_DISABLE,CPG_RET_OK,,CPG_CLK_POST,1,CPG_CLK_POST,1,R_PMA_OK,;Normal operation

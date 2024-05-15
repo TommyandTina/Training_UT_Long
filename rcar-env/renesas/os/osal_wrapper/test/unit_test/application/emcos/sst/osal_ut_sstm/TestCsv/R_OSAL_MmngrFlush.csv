@@ -1,0 +1,8 @@
+modi,R_OSAL_MmngrFlush,09_014,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,@offset,@size,g_st_osal_memory_buffer_obj.p_flush,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_MmngrFlush@@,;,,,,,
+,g_st_osal_memory_buffer_obj,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;memory_buffer_obj_hndl is equals 0,,,,,
+,g_st_osal_memory_buffer_obj,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;memory_buffer_obj_hndl->p_flush is 0,,,,,
+,g_st_osal_memory_buffer_obj,1,1,AMSTB_osal_mem_internal,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;memory_buffer_obj_hndl->p_flush returns OSAL_RETURN_FAIL,,,,,

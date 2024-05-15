@@ -1,0 +1,7 @@
+modi,R_OSAL_HIF_ClockTimeRoundupByTimeStamp,04_001,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_time_stamp_in,@p_time_stamp_in[0].tv_sec,@p_time_stamp_in[0].tv_nsec,$@p_time_stamp_out,g_dummy,;,,,,,,
+,1,1,999999999,1,,;Normal operation (p_time_stamp_in contain values less than ms and tv_nsec is overflowing),,,,,,
+,1,1,900000000,1,,;Normal operation (p_time_stamp_in not contain values less than ms and tv_nsec isn't overflowing),,,,,,
+,1,1,1000001,1,,;Normal operation (p_time_stamp_in contain values less than ms and tv_nsec isn't overflowing),,,,,,

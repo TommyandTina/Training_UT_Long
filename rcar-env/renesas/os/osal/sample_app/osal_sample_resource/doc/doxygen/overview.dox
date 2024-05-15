@@ -1,0 +1,28 @@
+/**
+ * @page overview Overview
+ * OSAL Sample Resource Application is a sample code which provides the basic sequences using OSAL Thread, ThreadSync, Clock&Time and Message Queue management.
+ * @version OSAL Sample Resource Application version: 3.3.0
+ * @version OSAL API version: 3.7.0
+ * @version OSAL API User Manual version: 3.11E
+ * @section overview_features Features
+ * The following functions supported by OSAL Sample Resource Application are based on the sequences described in OSAL API User Manual
+ * -# Thread operation
+ *      - Create & Join function
+ *      - Sleep function and Utility function
+ * -# ThreadSync operation
+ *      - Mutex function
+ *      - Condition variable function
+ * -# Clock&Time operation
+ *      - Get time & calculate difference time
+ * -# Message Queue operation
+ *      - Message send & receive
+ *      - Queue remain
+ *
+ * @section overview_def Pre-definition
+ * OSAL Sample Resource Application doesn't have any pre-definition.
+ * 
+ * @section note Note
+ * -# The sample code sequences may have a little differences in comparison with OSAL User Manual because OSAL Sample Resource Application want to support all of APIs in each target OSAL manager.
+ * -# The pre-definition is dependent on each system and only available for OSAL Sample Resource Application. Users need to define the pre-definition at the build-time of sample application.
+ *
+ */

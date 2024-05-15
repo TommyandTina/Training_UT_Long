@@ -1,0 +1,10 @@
+modi,r_osal_dcfg_io_register_axibus_info,07_022,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_register_axibus_info_proc,r_osal_dcfg_io_register_axibus_info_proc,,,,,,,,,,
+#COMMENT,@p_device_control,g_st_osal_device_control.dev_info,g_st_osal_device_info.utlb_assignment,g_st_assignment.table_size,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_register_axibus_info_proc@AMIN_return,r_osal_dcfg_io_register_axibus_info@@,;,,,,,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,
+,g_st_osal_device_control,g_st_osal_device_info,0,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;p_device_control->dev_info->utlb_assignment is NULL,,,,,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,OSAL_RETURN_MEM,OSAL_RETURN_MEM,;r_osal_dcfg_io_register_axibus_info_proc() return OSAL_RETURN_MEM.,,,,,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;p_device_control->dev_info->utlb_assignment->table_size is 0,,,,,
+,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;p_device_control->dev_info->utlb_assignment->table_size is 1,,,,,

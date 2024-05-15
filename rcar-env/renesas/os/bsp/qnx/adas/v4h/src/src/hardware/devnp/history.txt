@@ -1,0 +1,54 @@
+    The io-pkt based Ethernet driver for R-Car Gen4 boards
+
+    CREATED   : 10.30.2021
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen4 (S4, V4H) boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.30.2021 : Ver.0.1
+            - Support eTSN (rswtich2) driver for S4
+            11.30.2021 : Ver.0.2
+            - Support gPTP.
+            01.30.2022 : Ver.0.3
+            - Port AVB driver from Gen3e BSP v.0.8 for V4H AVB0 
+            03.30.2022 : Ver.0.4
+            - Code optimization/enhancement based on code review, Linux code and Hardware manual
+            05.30.2022 : Ver.0.5
+            - Support TSN driver for V4H
+            - Merge new update for rswtich2 from S4 v0.7 BSP
+            07.18.2022 : Ver.0.7
+            - Add in AVB1 and AVB2 and Marvel 88Q2110 Phy supports to AVB driver
+            - Update Phy m88e2110_parse_status() to set speed to 2.5G if parsing speed is 5000Mbps and 10000Mbps of RSwitch driver
+            - Fix gPTP offset and update eTSN driver
+            - Fix 'devad' and 'regad' parametter order in rtsnes_mii_read_cl45() calls in rtsnes_do_mv_monitor() of eTSN driver
+            08.10.2022 : Ver.0.8
+            - Add in 'resource seed' to avoid HW access confliction for RSwitch driver
+            11.20.2022 : Ver.0.9
+            - Change rtsnes name into rtsn
+            - Update Phy M88Q2110 Software Reset from RVC's code
+            - Remove mhd, rmac, axibmi struct
+            - Update eTSN driver basing on Linux rcar-5.1.7.rc5
+            11.20.2022 : Ver.1.0
+            - Update Phy M88Q2110's initQ2112A0Ge() for eTSN and AVB1 and AVB2 (ravb)
+            - Remove TX internal delay setting for AVB (ravb)
+            12.22.2022 : Ver.1.1
+            - Add in IPMMU over-32-bit to 32-bit address translation support
+            02.10.2023 : Ver.1.2
+            - Fix receiving issue in rtsnes_receive() (when receiving descriptor index 1022 (max) but not be back to 0) for eTSN:
+              Set DT_LINK for link descritor 1023 before return rtsnes_receive()
+            - Add a loop to check at least one txdone descriptor in rtsnes_start().
+            - Disable TX clock internal delay mode by default
+            - Add a loop to check at least one txdone descriptor in ravb_start() to fix Receiving loss almost package 
+              in command 'iperf3 -c <iperf3 server ip> -u -w220K -l32k -b0'
+            04.24.2023 : Ver.1.3
+            - Remove 'ipmmu' option and add 'ipmmu' compiler variant
+            08.30.2023 : Ver.1.4
+            - Intergate IPMMU from BB's BSP "SVN Revision Number:  977770"
+-----------------------------------------------------------------------------
+ Known limitations
+-----------------------------------------------------------------------------            
+1) TSN driver only support below:
+    - Read/write Marvel M88Q2110 PHY.
+    - Send/receive using internal loopback in RMAC.

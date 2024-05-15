@@ -1,0 +1,17 @@
+modi,R_OSAL_DCFG_IoRead,07_005,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,r_osal_dev_cfg_io.c/gs_osal_io_is_initialized_enu,r_osal_dev_cfg_io.c/gp_osal_device_control,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,,,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoRead,R_OSAL_OS_IoRead,,,,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gs_osal_io_is_initialized_enu,r_osal_dev_cfg_io.c/gp_osal_device_control,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,@handle,g_st_osal_device_control_array[0].handle_id,g_st_osal_device_control_array[0].dev_info,g_st_osal_device_control_array[0].active,g_st_osal_device_control_array[0].base_addr,g_st_osal_device_info.range,@offset,@size,@unit_size,@p_data,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoRead@AMIN_return,R_OSAL_DCFG_IoRead@@,;
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,1,0xFFFFFF00,2,0,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle less than (uintptr_t)&gp_osal_device_control[0]
+,1,0xFFFFFF00,2,0xFFFFFFF0,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle more than (uintptr_t)&gp_osal_device_control[(g_osal_num_of_device_table - (size_t)1)]
+,1,0xFFFFFF00,2,0xFFFFFF01,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;0U not equal ((uintptr_t)handle & (sizeof(uintptr_t) - 1U))
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,0,g_st_osal_device_info,1,array_uint8,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is not equals OSAL_DEVICE_HANDLE_ID
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,0,array_uint8,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->active is false
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,0,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->base_addr is NULL
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,0,1,array_uint8,-,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->dev_info is NULL
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8+1,10,1,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(handle->base_addr & (unit_size - 1U)) not equal 0
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8,10,15,4,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_PAR,;offset  is bigger than handle->dev_info->range
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8,10,1,15,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_PAR,;size is bigger than handle->dev_info->range
+,1,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,g_st_osal_device_info,1,array_uint8,10,5,10,8,array_uint8,OSAL_RETURN_OK,OSAL_RETURN_PAR,;size is bigger than (handle->dev_info->range - offset)

@@ -1,0 +1,327 @@
+CMT library interface for the Renesas R-Car Gen3, R-Car Gen4 platform
+--------------------------------------------------------
+
+1. Abstract
+
+The CMT library interface allows generic modules to be written that
+can abstract the details of programming a Compare Match Timer (CMT) 
+from individual drivers.  This allows drivers to work with multiple
+CMT channel, and also allows multiple drivers to share the code that
+controls the CMT module.
+
+2. Supported CMT features
+
+One-shot and free-running operations are supported.
+
+Interrupt-on-overflow support: the CMT can be configured to generate
+an interrupt of a compare match. There are 2 interrupt service types 
+that the driver needs to designate:
+  - To receive interrupt notification from the library, the driver needs 
+    to supply a structure of type "struct sigevent" to the library. This 
+    event will be delivered by the library upon reception of an interrupt.
+  - To be serviced from the library, the driver needs to supply a handler 
+    function pointer and an user-data pointer to the lebrary. This function 
+    will be executed and this user-data pointer will be passed to this 
+    function as an argument by the library upon happening of an interrupt.
+
+3. API
+
+The primary CMT library entry point is get_cmtfuncs(). This entry
+point is called to retrieve the remainder of the libraries entry
+points.  This allows the library to be provided as a DLL, or as a
+static or shared library.  In the case of the library being used
+as a DLL, the driver would call dlsym() to find the get_cmtfuncs()
+entry point, otherwise the driver would just reference get_cmtfuncs()
+directly.
+
+The structures and defines used by CMT libraries and drivers that 
+use the libraries, are contained in <hw/cmt.h>
+
+The remainder of the entry points, which are stored in the cmt_functions_t 
+structure, are as follows:
+
+static int 	(*query_channel)(void *handle, cmt_channel_query_t *chinfo);
+	
+    Retrieves selected arguments of the CMT channel. The structure
+	that "chinfo" points to contains the following members:
+
+	_Uint32t		cmt_idx;
+
+		CMT index CMT0, CMT1, CMT2, or CMT3
+
+	_Uint32t		chan_idx;
+
+		Channel index in CMT0, CMT1, CMT2 or CMT3
+
+	_Uint32t		irq;
+
+		CMT channel interrupt number.
+
+	_Uint32t		counter_size;
+
+		Counter size in bit
+
+	_Uint32t        clock_div;
+
+		Clock divider ratio
+        
+    _Uint32t        frequency;
+    
+        Counter frequency
+
+static in rcar_cmt_channel_info(int cmt_idx, int chan_idx, cmt_channel_info_t *chinfo)
+
+    Retrieves info of a CMT channel.  The structure
+        that "chinfo" points to contains the following members:
+
+    _Uint32t    counter_size_max;
+
+        Max counter size
+        
+    _Uint32t    clock_src;
+    
+        Clock source
+
+    _Uint32t    frequency_max;       /* max clock value */
+        
+        Max clock value
+
+void *	(*channel_attach)(const struct sigevent *event, const struct sigevent * (* handler)(void *, int),
+            const void * data, int priority, int timer_bitsz, cmt_attach_flags flags);
+
+	Attach to a CMT channel.
+
+	"event" describes an event to be delivered when an overflow interrupt
+	occurs.  This structure will be passed to InterruptAttachEvent() when the 
+	library attaches to the interrupt number associated with the CMT channel.
+
+	"handler" defines a handler function to be executed when an overflow interrupt
+	occurs. This function will be passed to InterruptAttach() when the library 
+	attaches to the interrupt number associated with the CMT channel.
+
+	"data" points to communications area that the library will pass to InterruptAttach().
+    "data" is valid when CMT_ATTACH_ISR_ON_OVERFLOW is specified and it is passed to "handler".
+
+	"priority" controls the priority assigned to the CMT channel being attached to.  
+    If CMT_ATTACH_PRIORITY_STRICT is specified, then "priority" is CMT channel will be used, 
+    othervise the library will find a free channel to attach to.  
+    Upon return, channel points to the CMT channel number that was actually attached to.
+    
+    "timer_bitsz" specifies size of bit for counter
+
+	Valid values for "flags" are:
+
+		CMT_ATTACH_ANY_CHANNEL
+
+			Instead of attempting to attach to the CMT
+			channel number that "priority" points to,
+			the library will attach to a free CMT
+			channel, if any are available.
+
+		CMT_ATTACH_PRIORITY_STRICT
+
+			Specifies that the CMT channel must be
+			assigned the exact priority level specified.
+			If the CMT channel cannot be assigned this
+			priority level, the attach will fail.
+
+            There are 2 CMT types that is CMT Type0 and CMT Type1,
+            the library defines channels 0 and 1 belong to CMT Type0,
+            others channel (3, 4, ...) belongs to CMT Type1.
+            If the driver uses CMT Type0 channels, should
+            specify this flag and "priority" of 0 or 1.
+
+		CMT_ATTACH_EVENT_ON_OVERFLOW
+
+			Specifies that the structure that "event" points
+			to is valid, and that this event should be
+			delivered each time an overflow interrupt occurs.
+
+		CMT_ATTACH_ISR_ON_OVERFLOW
+
+			Specifies that the function that "handler" points
+			to is valid, and that this handler should be
+			called each time an overflow interrupt occurs.
+
+	Upon success, this function returns a handle that is used upon
+	subsequent calls to the library that are associated with the
+	attached channel.
+
+	Upon failure, NULL is returned, and errno is set as appropriate.
+
+void	(*channel_release)(void *handle);
+
+	Releases a CMT channel.  The driver calls this when it no
+	longer needs to use the CMT channel.  "handle" is the value
+	that was returned from a successful call to channel_attach.
+	The handle is no longer valid after this function returns.
+
+int  (*set_const)(void *handle, uint64_t cmconst);
+    
+    Set the Compare Match Timer Constant (CMCOR) value. When the counter
+    counts up to this value, a compare match occurs.
+    
+    uint64_t cmconst;
+
+		A pre-define constant that when the counter matches, an overfow occurs 
+        and the counter re-start counting from zero.
+
+int  (*set_count)(void *handle, const uint64_t count);
+    
+    Currently set the Compare Match Timer Counter (CMCNT) value. The value 
+    of "count" is set to CMCNT and when start, the counter counts up from 
+    this value until a compare match occurs.
+
+uint64_t  (*get_count)(void *handle, int stop);
+    
+    Retrieves the current value of the Compare Match Timer Counter (CMCNT).
+
+    int stop
+    
+        Get CMCNT register after the counter is stopped or not. Valid values:
+            1 : Get CMCNT register after the counter is stopped
+            0 : Get CMCNT register while the counter is running
+
+int		(*setup_count)(void *handle, uint64_t cmconst, int cntr_size, 
+            cmt_cm_mode_flags mode, cmt_clk_div_flags cks_div);
+
+	Setup the CMT channel for an up-counter before starting counting. 
+
+	uint64_t cmconst;
+
+		A pre-define constant that when the counter matches, an overfow occurs 
+        and the counter re-start counting from zero. If this value is zero, a
+        maximun constant value will be used.
+
+	int cntr_size;
+
+		Specifies Size of the counter. Valid values are:
+            16  counter is 16 bits
+            32  counter is 32 bits
+            48  counter is 48 bits
+
+	cmt_cm_mode_flags mode;
+
+		These flags describe the operation mode of the counter.  
+        Valid values are:
+
+		CMT_MODE_ONE_SHOT
+
+			One-shot mode
+			
+		CMT_MODE_FREE_RUNING
+
+			Free-running mode
+
+    cmt_clk_div_flags cks_div;
+    
+        These flags describe the clock divider ratio.  Valid values are:
+
+            CMT_CKS_CPEX_DIV_8
+
+                The counter counts on CPEXφ/8
+
+            CMT_CKS_PEX_DIV_32
+
+                The counter counts on CPEXφ/32
+
+            CMT_CKSCPEX_DIV_128
+                
+                The counter counts on CPEXφ/128
+
+            CMT_CKS_RCLK_DIV_8
+
+                The counter counts on RCLK/8
+
+            CMT_CKS_RCLK_DIV_32
+
+                The counter counts on RCLK/32
+
+            CMT_CKS_RCLK_DIV_128
+
+                The counter counts on RCLK/128
+
+            CMT_CKS_RCLK_DIV_1
+
+                The counter counts on RCLK/1
+
+            CMT_CKS_PSEU_DIV_8
+
+                The counter counts on Pseudo 32kHz/8
+
+            CMT_CKS_PSEU_DIV_32
+
+                The counter counts on Pseudo 32kHz/32
+
+            CMT_CKS_PSEU_DIV_128
+
+                The counter counts on Pseudo 32kHz/128
+
+            CMT_CKS_PSEU_DIV_1
+
+                The counter counts on Pseudo 32kHz/1
+
+int		(*start_count)(void *handle);
+
+	Commence a CMT counter.  There must not be an
+	outstanding CMT counting in progress. counter_setup(),
+	can have been called at some point since channel_attach() 
+    was called, in order to setup the CMT for counting.
+
+int  (*stop_count)(void *handle)
+	
+	Stop a CMT counter that is currently counting.
+	When this function returns, it is possible to initiate
+	a new counter by calling  counter_setup() to re-configure 
+    the CMT by calling counter_start().
+
+int	   (*overflow)(void *handle);
+
+	The counter matches to the pre-define constant.
+
+	There are two cases when this function should be called:
+	If the driver receives an event from the CMT library (as
+	a result of having specified DMA_ATTACH_EVENT_ON_OVERFLOW)
+    or it is called somewhere inside attached interrupt handler "handler" 
+    (as a result of having specified DMA_ATTACH_ISR_ON_OVERFLOW).
+
+	When the driver receives an event from the CMT library or 
+    an attached interrupt handler "handler" of the driver is called,
+	it should call this function before engaging in any other
+	interaction with the CMT library. Internally, the CMT
+	library might need to clear and/or unmask an interrupt
+	source, for example.
+    
+    "handler" is attached in channel_attach().
+
+uint64_t    (*get_count)(void *handle);
+
+    Retrieves the curent counter register value.
+
+uint64_t    (*get_cycle)(void *handle);
+
+    Retrieves overlapped cycle number.
+    
+uint64_t    (*change_cycle_to_ns)(void *handle, uint64_t cnt, cmt_clk_div_flags clk_div);
+
+    Converts a cycle number to time in nano seconds with a prefined clock.
+
+    uint64_t cnt;
+
+        A cycle variable needs to be converted to nano seconds.
+
+    cmt_clk_div_flags clk_div;
+
+        Clock ratio
+
+uint64_t    (*change_ns_to_cycle)(void *handle, uint64_t ns, cmt_clk_div_flags clk_div);
+
+    Converts a nano second number to cycle number with a prefined clock.
+
+    uint64_t ns;
+
+        A time variable in nano second needs to be converted to cycles.
+
+    cmt_clk_div_flags clk_div;
+
+        Clock ratio

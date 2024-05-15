@@ -1,0 +1,10 @@
+modi,R_OSAL_Internal_TimespecAdd,01_009,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimeRoundUp,R_OSAL_Internal_TimeRoundUp,,,,,,,,,,
+#COMMENT,$@p_timespec,@p_timespec[0].tv_nsec,$@p_time_period,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimeRoundUp@AMIN_return,R_OSAL_Internal_TimespecAdd@@,;,,,,,,
+,1,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,0,1,1,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_timespec is NULL.,,,,,,
+,1,1,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_time_period is NULL.,,,,,,
+,1,1000000000,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;p_timespec->tv_nsec more than OSAL_MAX_TV_NSEC,,,,,,
+,1,1,1,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimeRoundUp() return OSAL_RETURN_FAIL,,,,,,

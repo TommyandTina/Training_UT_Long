@@ -1,0 +1,8 @@
+modi,R_MEML_Dealloc,09_104,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_manage,@p_manage[0].p_deallocate,@address,R_MEML_Dealloc@@,;,,,,,,,
+,1,meml_dealloc_dummy,1,MEML_RETURN_OK,;Normal operation,,,,,,,
+,0,meml_dealloc_dummy,1,MEML_RETURN_PAR,;p_manage is NULL.,,,,,,,
+,1,0,1,MEML_RETURN_PAR,;p_manage.p_deallocate is NULL.,,,,,,,
+,1,meml_dealloc_dummy,0,MEML_RETURN_OK,;address is NULL,,,,,,,

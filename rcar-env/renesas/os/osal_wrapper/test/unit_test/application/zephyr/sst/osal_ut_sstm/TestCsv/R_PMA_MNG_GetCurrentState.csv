@@ -1,0 +1,11 @@
+modi,R_PMA_MNG_GetCurrentState,02_011,11,3,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_GetHwaState,R_PMA_SM_GetHwaState,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_GetResetState,R_PMA_SM_GetResetState,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+#COMMENT,@handle,@hwaId,$@pHwaState,$@pCurHwaState,$@pCurRstStat,@pHwaState[0].enReqState,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_GetHwaState@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_GetResetState@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_control,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_GetHwaState@AMOUT_hwaId,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_GetResetState@AMOUT_hwaId,R_PMA_MNG_GetCurrentState@@,;
+,1,1,1,1,1,0,R_PMA_BSP_ETIMEDOUT,,OSAL_RETURN_OK,0,0,1,,R_PMA_BSP_ETIMEDOUT,;R_PMA_SM_GetHwaState() returns R_PMA_BSP_ETIMEDOUT
+,1,1,1,1,1,R_PMA_HWA_RELEASED,R_PMA_OK,,OSAL_RETURN_OK,0,0,1,,R_PMA_OK,;Normal operation
+,1,1,1,1,1,R_PMA_HWA_REQUESTED,R_PMA_OK,R_PMA_INVALID_HANDLE,OSAL_RETURN_OK,0,0,1,1,R_PMA_INVALID_HANDLE,;R_PMA_SM_GetResetState() returns R_PMA_INVALID_HANDLE
+,1,1,1,1,1,R_PMA_HWA_REQUESTED,R_PMA_OK,R_PMA_OK,OSAL_RETURN_OK,0,0,1,1,R_PMA_OK,;Normal operation

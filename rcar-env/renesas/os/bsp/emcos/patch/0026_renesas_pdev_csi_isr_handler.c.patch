@@ -1,0 +1,106 @@
+diff --git a/build/parts/drv/renesas_isr/renesas_pdev_csi_isr_handler.c b/build/parts/drv/renesas_isr/renesas_pdev_csi_isr_handler.c
+new file mode 100644
+index 0000000..d3ec875
+--- /dev/null
++++ b/build/parts/drv/renesas_isr/renesas_pdev_csi_isr_handler.c
+@@ -0,0 +1,100 @@
++/***********************************************************************************************************************
++* Copyright [2022] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
++*
++* The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
++* and/or its licensors ("Renesas") and subject to statutory and contractual protections.
++*
++* Unless otherwise expressly agreed in writing between Renesas and you: 1) you may not use, copy, modify, distribute,
++* display, or perform the contents; 2) you may not use any name or mark of Renesas for advertising or publicity
++* purposes or in connection with your use of the contents; 3) RENESAS MAKES NO WARRANTY OR REPRESENTATIONS ABOUT THE
++* SUITABILITY OF THE CONTENTS FOR ANY PURPOSE; THE CONTENTS ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
++* WARRANTY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
++* NON-INFRINGEMENT; AND 4) RENESAS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR CONSEQUENTIAL DAMAGES,
++* INCLUDING DAMAGES RESULTING FROM LOSS OF USE, DATA, OR PROJECTS, WHETHER IN AN ACTION OF CONTRACT OR TORT, ARISING
++* OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE CONTENTS. Third-party contents included in this file may
++* be subject to different terms.
++***********************************************************************************************************************/
++/****************************************************************************
++ISR handler function for GIC problem workaround
++****************************************************************************/
++#include "renesas_isr_common.h"
++
++#define VIRTUAL_ADDRESS_OFFSET         0xFFFFFFFF00000000
++#define CSI2_BASEADDRESS_CH0           0xFE500000
++#define CSI2_BASEADDRESS_CH1           0xFE540000
++#define CSI2_INT_MSK_PHY_FATAL         0x00E4
++#define CSI2_INT_MSK_PKT_FATAL         0x00F4
++#define CSI2_INT_MSK_PHY               0x0114
++#define CSI2_INT_MSK_LINE              0x0134
++#define CSI2_INT_MSK_PLD_CRC_FATAL     0x02B4
++#define CSI2_INT_MSK_DATA_ID           0x02C4
++#define CSI2_INT_MSK_ECC_CORRECTED     0x02D4
++#define CSI2_INT_MSK_FAP_ECC_CORRECTED 0x0474
++
++void rcar_pdev_csi_isr_handler(uint16_t iid, uintptr_t param)
++{
++    int32_t ret = MCOS_EOK;
++
++    switch(iid)
++    {
++        case RCAR4_INTNO_CSI_0: /* refer to include/bios_ep/chip/rcar4/rcar4_v4h.h for definition */
++            /* Disable CSI2_0(interrupt No: 499 is CISP0) */
++
++            /* Disable interrupt by ISP Interrupt enable Register */
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_PHY_FATAL))         = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_PKT_FATAL))         = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_PHY))               = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_LINE))              = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_PLD_CRC_FATAL))     = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_DATA_ID))           = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_ECC_CORRECTED))     = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH0 + CSI2_INT_MSK_FAP_ECC_CORRECTED)) = 0x00000000;
++            break;
++        case RCAR4_INTNO_CSI_1:
++            /* Disable CSI2_1(interrupt No: 500 is CSI2 1) */
++
++            /* Disable interrupt by ISP Interrupt enable Register */
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_PHY_FATAL))         = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_PKT_FATAL))         = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_PHY))               = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_LINE))              = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_PLD_CRC_FATAL))     = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_DATA_ID))           = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_ECC_CORRECTED))     = 0x00000000;
++            *((volatile uint32_t*)(VIRTUAL_ADDRESS_OFFSET + CSI2_BASEADDRESS_CH1 + CSI2_INT_MSK_FAP_ECC_CORRECTED)) = 0x00000000;
++            break;
++        default:
++            ret = MCOS_ENOEXS; /* refer to include/mcos/mcos.h for error code */
++        break;
++    }
++
++    if (ret != MCOS_EOK)
++    {
++        mcos_debug_printf(
++                "interrupt %d: mcos_interrupt_disable error (%d) in %s/n",
++                iid, ret, __func__);
++    }
++    else
++    {
++        pdev_intentry_t *intentry = (pdev_intentry_t *) param;
++        struct lfs_devgetdone req;
++        req.code = DEV_DEVGETDONE;
++        req.type = GETDONE_NONBLOCK | (intentry->intno << 8);
++        req.ptr = (lfs_t**) intentry->itr_config.param;
++        if (intentry->itr_config.uring != NULL)
++        {
++            ret = uring_interrupt_notify_internal(intentry->itr_config.uring, &req, sizeof(struct lfs_devgetdone), true);
++        }
++        else
++        {
++            ret = mcos_rrmessage_send(intentry->itr_config.tid, DEV_DEVGETDONE, &req, sizeof(req), NULL, NULL, 0);
++        }
++
++        if (ret != MCOS_EOK)
++        {
++            mcos_debug_printf(
++                            "interrupt %d: mcos_rrmessage_send error in %s/n",
++                            iid, __func__);
++        }
++    }
++}

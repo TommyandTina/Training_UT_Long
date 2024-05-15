@@ -1,0 +1,12 @@
+modi,R_OSAL_OS_ThreadWaitFinish,09_102,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,
+#COMMENT,@thread,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_return,R_OSAL_OS_ThreadWaitFinish@@,;,,,,,,,
+,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,0,0,0,OSAL_RETURN_FAIL,;thread is NULL,,,,,,,
+,g_st_osal_os_thread_t,0,3,OSAL_RETURN_HANDLE,;pthread_join return() ESRCH,,,,,,,
+,g_st_osal_os_thread_t,0,22,OSAL_RETURN_HANDLE,;pthread_join return() EINVAL,,,,,,,
+,g_st_osal_os_thread_t,0,35,OSAL_RETURN_HANDLE,;pthread_join return() EDEADLK,,,,,,,
+,g_st_osal_os_thread_t,0,1,OSAL_RETURN_FAIL,;pthread_join return() error,,,,,,,

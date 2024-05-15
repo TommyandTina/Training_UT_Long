@@ -1,0 +1,12 @@
+modi,R_OSAL_MmngrClose,09_005,7,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_osal_internal_mem_close,osal_internal_mem_close,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,@hndl_mmngr,g_st_osal_memory_manager_obj[0].p_ptr_self,g_st_osal_mem_mmngr_ptr_self[0].handle_id,g_st_osal_mem_mmngr_ptr_self[0].p_buffers,g_st_osal_mem_mmngr_ptr_self[0].p_monitor,AMSTB_SrcFile.c/AMSTB_osal_internal_mem_close@AMIN_return,R_OSAL_MmngrClose@@,;,,,
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,
+,0,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,OSAL_RETURN_OK,OSAL_RETURN_STATE,;gs_osal_memory_is_initialized is not OSAL_MMNGR_STATE_OPEN,,,
+,1,0,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;hndl_mmngr is NULL,,,
+,1,g_st_osal_memory_manager_obj,0,OSAL_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;hndl_mmngr->p_ptr_self is NULL,,,
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,0,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;p_mngr_control->handle_id is not OSAL_MEMORY_HANDLE_ID,,,
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,0,g_st_osal_mem_monitor_desc,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;p_mngr_control->p_buffers is NULL,,,
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,g_st_osal_mem_mmngr_ptr_self,g_st_osal_mem_monitor_desc,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;osal_internal_mem_close() return OSAL_RETURN_FAIL,,,

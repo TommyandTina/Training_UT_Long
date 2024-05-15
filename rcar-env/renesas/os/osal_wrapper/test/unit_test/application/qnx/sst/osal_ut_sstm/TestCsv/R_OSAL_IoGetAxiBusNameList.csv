@@ -1,0 +1,13 @@
+modi,R_OSAL_IoGetAxiBusNameList,07_026,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_IoGetAxiBusNameList,R_OSAL_DCFG_IoGetAxiBusNameList,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_IoGetInitStatus,R_OSAL_DCFG_IoGetInitStatus,,,,,,,,,,
+#COMMENT,@buffer_size,@p_buffer,@p_num_of_byte,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_IoGetAxiBusNameList@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_IoGetInitStatus@AMIN_return,R_OSAL_IoGetAxiBusNameList@@,;,,,,,
+,10,str,g_size_t,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,;Normal operation ,,,,,
+,10,str,g_size_t,OSAL_RETURN_OK,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_STATE,;R_OSAL_DCFG_IoGetInitStatus return OSAL_MANAGER_STATE_UNINITIALIZED,,,,,
+,10,str,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_PAR,;p_num_of_byte is NULL,,,,,
+,10,0,g_size_t,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_PAR,;p_buffer is NULL and buffer_size is not 0,,,,,
+,0,str,g_size_t,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,;p_buffer is not NULL and buffer_size is 0,,,,,
+,0,0,g_size_t,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK_RQST,;p_buffer is NULL and buffer_size is 0,,,,,
+,10,str,g_size_t,OSAL_RETURN_PAR,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_PAR,;R_OSAL_DCFG_IoGetAxiBusNameList () return OSAL_RETURN_PAR,,,,,

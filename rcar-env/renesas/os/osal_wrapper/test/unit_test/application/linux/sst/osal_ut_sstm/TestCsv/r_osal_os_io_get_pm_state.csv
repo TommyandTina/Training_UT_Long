@@ -1,0 +1,13 @@
+modi,r_osal_os_io_get_pm_state,15_142,13,5,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,,,,,,,,
+#COMMENT,@p_device,@p_device[0].pm_control.power_shared,@p_device[0].pm_control.is_power_support,@p_device[0].pm_control.is_clock_support,@p_device[0].pm_control.is_reset_support,@p_pw_state,@p_pw_state[0],@p_clock_state,@p_clock_state[0],AMSTB_SrcFile.c/AMSTB_ioctl@AM_count,AMSTB_SrcFile.c/AMSTB_ioctl@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_ioctl@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_ioctl@AMIN_return[2],@p_device[0].pm_control.is_power_support,@p_device[0].pm_control.is_clock_support,@p_device[0].pm_control.is_reset_support,@p_pw_state[0],@p_clock_state[0],;
+,g_st_osal_device_control_t[0],OSAL_PM_DOMAIN_NOT_SHARED,true,true,true,g_array_dummy[0],0,g_array_dummy[1],1,0,0,0,0,true,true,true,0,1,;ioctl[0] returns 0 and power_shared is not OSAL_PM_DOMAIN_SHARED
+,g_st_osal_device_control_t[0],OSAL_PM_DOMAIN_SHARED,true,true,true,g_array_dummy[0],0,g_array_dummy[1],1,0,0,0,0,false,true,true,0,1,;ioctl[0] returns 0 and power_shared is OSAL_PM_DOMAIN_SHARED
+,g_st_osal_device_control_t[0],OSAL_PM_DOMAIN_NOT_SHARED,true,true,true,g_array_dummy[0],0,g_array_dummy[1],1,0,-1,0,0,false,true,true,1,1,;ioctl[0] returns -1
+,g_st_osal_device_control_t[0],OSAL_PM_DOMAIN_NOT_SHARED,true,true,true,g_array_dummy[0],0,g_array_dummy[1],1,0,0,-1,0,true,false,true,0,0,;ioctl[1] returns -1
+,g_st_osal_device_control_t[0],OSAL_PM_DOMAIN_NOT_SHARED,true,true,true,g_array_dummy[0],0,g_array_dummy[1],1,0,0,0,-1,true,true,false,0,1,;ioctl[2] returns -1

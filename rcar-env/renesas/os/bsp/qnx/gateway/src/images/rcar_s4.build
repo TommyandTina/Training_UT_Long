@@ -1,0 +1,610 @@
+###########################################################################
+##
+## QNX Neutrino 7.1 on the R-Car S4 (ARMv8A Cortex-A55 core) Spider Board
+##
+###########################################################################
+##
+## SUPPORTED DEVICES:
+##
+## SERIAL: SCIF0/SCIF3,HSCIF0/HSCIF1
+## I2C: I2C0,I2C1,I2C2,I2C3,I2C5
+## SPI FLASH
+## MMC: MMC0
+## SYS-DMAC/RT-DMAC
+## SPI MASTER MODE AND SPI SLAVE MODE
+## NETWORK: eTSN
+## WATCHDOG
+## GPIO
+##
+###########################################################################
+##
+## NOTES:
+##
+###########################################################################
+
+###########################################################################
+## START OF BUILD SCRIPT
+###########################################################################
+
+#[+keeplinked]
+[+compress]
+[image=0x50100000]
+[virtual=aarch64le,raw] .bootstrap = {
+    ## Options specific to this BSP:
+    ## -c is XTal clock
+    ## Without "-c", default Xtal = 20000000
+    ## -D is to specify baudrate 
+    ## If use different baudrate, specify it by -D option. If not, bootloader's 
+    ## baudrate will be used
+    ## -a is applying the Inter Core interrupt Errata
+    #startup-rcar_s4 -P8 -W  -Dscif3..115200
+    startup-rcar_s4 -P8 -W  -Dhscif0
+    #######################################################################
+    ## PATH set here is the *safe* path for executables.
+    ## LD_LIBRARY_PATH set here is the *safe* path for libraries.
+    ##     i.e. These are the paths searched by setuid/setgid binaries.
+    ##          (confstr(_CS_PATH...) and confstr(_CS_LIBPATH...))
+    #######################################################################
+    PATH=/proc/boot:/bin:/usr/bin:/opt/bin:/sbin:/usr/sbin:/usr/lib:/tmp:/etc
+    LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll:/opt/lib:/usr/lib:/tmp:/etc procnto-smp-instr -ae
+}
+
+[+script] .script = {
+    # Initialise the console
+    procmgr_symlink ../../proc/boot/ldqnx-64.so.2 /usr/lib/ldqnx-64.so.2
+
+    display_boardname "Welcome to QNX Neutrino 7.1.0 on"
+
+    # Setup Environment variables
+    ENV=/etc/profile
+
+    # Start some common servers
+    display_msg Starting slogger and pipe servers...
+    slogger2
+    pipe &
+    random -t
+    waitfor /dev/random 5
+    mqueue &
+
+    #######################################################################
+    ## WatchDog utility
+    ## If startup is given '-W' parameter then the 'wdtkick' utility MUST
+    ## be uncommented below.
+    #######################################################################
+    display_msg Starting watchdog ...
+    wdtkick-rcar -W 0x0:0x5A5AFF00
+
+    #######################################################################
+    ## Resource seed
+    #######################################################################
+    resource_seed dma=sys=0,31 dma=rt=0,63 mem=sysdesc=0,255 mem=rtdesc=0,511
+
+    #######################################################################
+    ## CPG Clock driver
+    #######################################################################
+    rcar-cpg-mgr -d support &
+    waitfor /dev/cpg 4
+
+    #######################################################################
+    ## SYSC driver
+    #######################################################################
+    rcar-sysc-mgr -d support &
+    waitfor /dev/sysc 4
+
+    #######################################################################
+    ## SERIAL driver:
+    ## - For using SCIF: 
+    ##   devc-serscif -e -F -b115200 -t 14 scif0 &
+    ## - For using HSCIF: 
+    ##   devc-serscif -e -F -b115200 -t 64 hscif0 &
+    ## - Notice: Can use baudrate setting of the bootloader by without 
+    ##   specifying -b option. Suggestion is : should specify baudrate by -b option
+    #######################################################################
+    display_msg Starting Serial driver...
+    #devc-serscif -e -F -b115200 -t 14 scif3 &
+    #devc-serscif -e -F -b1843200 -c266666666/16 -X -t 64 hscif0 &
+    devc-serscif -e -F -b1843200 -t 64 hscif0 &
+    waitfor /dev/ser1 4
+    reopen /dev/ser1
+
+    #######################################################################
+    ## I2C driver
+    #######################################################################
+    display_msg "Starting I2C driver ..."
+    # I2C0
+    i2c-rcar-A -I0 -v -d --u0 &
+    # I2C1
+    i2c-rcar-A -I1 -v -d --u1 &
+    # I2C2
+    i2c-rcar-A -I2 -v -d --u2 &
+    # I2C3
+    i2c-rcar-A -I3 -v -d --u3 &
+    # I2C4
+    i2c-rcar-A -I4 -v -d --u4 &
+    # I2C5
+    i2c-rcar-A -I5 -v -d --u5 &
+
+    #######################################################################
+    ## SPI Flash driver
+    #######################################################################
+    display_msg "Starting SPI Flash driver..."
+    devf-rcar_qspi &
+
+    #######################################################################
+    ## eMMC flash driver
+    ## For more aggressive MMC R/W performance, please use the following command:
+    ## devb-sdmmc-rcar blk maxio=256,cache=1m,ra=256k:512k,rapolicy=aggressive,commit=none cam cache,async mem name=below4G sdio idx=2,emmc,~ac12 sdmmc cache=on disk name=mmc@0
+    ## Please note that there are risks involved with using such command.
+    ## For details, please visit: http://www.qnx.com/support/knowledgebase.html?id=501a0000000Mpbr
+    ## NOTE: Any reset with volatile cache enabled will cause the qnx6 filesystem to go read only.  Resets can be common based on incorrect tuning and driver quality.
+    #######################################################################
+    display_msg "Starting MMC memory flash driver ..."
+    #devb-sdmmc-rcar blk maxio=1024,cache=64m,delwri=0:0,ra=256k:1024k cam cache,async,bounce=1024k mem name=below4G sdio idx=0,emmc sdmmc cache=on disk name=mmc@0,maxio=1024
+    devb-sdmmc-rcar blk cache=64m cam cache,async,bounce=1024k mem name=below4G sdio idx=0,emmc sdmmc partitions=on disk name=mmc@0
+    waitfor /dev/mmc0 1
+
+    #######################################################################
+    ## SD memory card driver
+    ## - Comment devb starting command for eMMC
+    ## - Set SW3 to 1-2 to route pins to mini-SD card slot
+    ## - After above, run following command to start the driver for mini SD card
+    #######################################################################
+    #display_msg "Starting SDHI memory card driver ..."
+    #devb-sdmmc-rcar blk cache=64m cam cache,async,pnp,bounce=1024k mem name=below4G sdio idx=0,bs=nowp disk name=sd@0,maxio=1024
+
+    #######################################################################
+    ## Network driver
+    #######################################################################
+    display_msg "Starting Networking ..."
+    sh /proc/boot/network_start.sh
+    #io-pkt-v6-hc -d rswitch mac=2e090a02eea1 -p tcpip pkt_typed_mem=below4G,smmu=off
+    #dhclient -m -lf /dev/shmem/dhclient.leases -pf /dev/shmem/dhclient.pid -nw tsn0
+
+    #######################################################################
+    ## Remote debug
+    #######################################################################
+    inetd
+    devc-pty
+    waitfor /dev/ptyp0 4
+    waitfor /dev/socket 4
+    qconn port=8000
+
+    #######################################################################
+    ## SPI driver
+    #######################################################################
+    display_msg "Starting SPI driver..."
+    spi-master -u 0 -d /proc/boot/spi-rcar.so channel=0,blksize=64
+    waitfor /dev/spi0
+
+    #######################################################################
+    ## Thermal
+    #######################################################################
+    display_msg Starting Thermal ...
+    rcar-thermal -v -u50:20 &
+
+    #######################################################################
+    ## Start the main shell
+    #######################################################################
+    [+session] ksh &
+}
+
+# Redirect console messages
+[type=link] /bin/sh=/proc/boot/ksh
+[type=link] /dev/console=/dev/ser1
+[type=link] /tmp=/dev/shmem
+[type=link] /bin/waitfor=/bin/on
+[type=link] /sbin/devc-serscif=/proc/boot/devc-serscif
+[type=link] /sbin/devc-pty=/proc/boot/devc-pty
+[type=link] /usr/bin/pdebug=/proc/boot/pdebug
+
+###########################################################################
+## Shared Libraries
+###########################################################################
+libc.so
+libgcc_s.so.1
+ldqnx-64.so.2
+libregex.so
+libqh.so
+libc++.so
+libpps.so
+libm.so
+libsecpol.so
+libz.so
+libslog2.so
+libslog2parse.so
+libslog2shim.so
+libtracelog.so
+libcatalog.so
+
+# Block device
+libcam.so
+io-blk.so
+cam-disk.so
+fs-qnx6.so
+fs-dos.so
+libncursesw.so.1
+
+# Network driver
+libsocket.so
+libcrypto.so
+libqcrypto.so
+qcrypto-openssl.so
+devnp-rswitch.so
+# Support ASIX-based USB to Ethernet Dongles
+# devnp-asix.so
+#devnp-usbdnet.so
+
+###########################################################################
+## libqcrypto support
+###########################################################################
+[perms=644] /etc/qcrypto.conf = {
+openssl     tags=*
+}
+
+# Create a profile so telnet sessions will get environment variables
+/etc/profile={
+export SYSNAME=nto
+export TERM=qansi
+export HOME=/
+export LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll
+export PATH=/proc/boot:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/lib:/opt/bin
+export SHELL=/bin/sh
+export DISPLAY=127.1:0
+export HOSTNAME=Neutrino
+export TMPDIR=/tmp
+export LOGNAME=root
+}
+
+###########################################################################
+## WatchDog utility
+###########################################################################
+wdtkick-rcar
+
+###########################################################################
+## Resource seed
+###########################################################################
+/proc/boot/resource_seed=resource_seed
+
+###########################################################################
+## HW vendor
+###########################################################################
+rcar-cpg-mgr
+cpg-support.so
+rcar-sysc-mgr
+sysc-support.so
+cpg_ctrl
+sysc_ctrl
+display_boardname
+
+###########################################################################
+## Serial driver
+###########################################################################
+devc-serscif
+
+###########################################################################
+## I2C driver
+###########################################################################
+i2c-rcar-A
+isend
+isendrecv
+
+###########################################################################
+## SPI driver
+###########################################################################
+spi-master
+spi-rcar.so
+spi-control
+spi-slave-rcar
+spi-slave-control
+
+###########################################################################
+## SPI Flash driver
+###########################################################################
+devf-rcar_qspi
+flashctl
+
+###########################################################################
+## Network driver
+###########################################################################
+io-pkt-v6-hc
+nicinfo
+ping
+ftp
+fs-nfs3
+ifconfig
+if_up
+inetd
+telnet
+ssh-keygen
+sshd
+genmac-random
+rcar-uboot-env
+arp
+hostname
+omshell
+route
+shutdown
+brconfig
+ptpd2
+ptpd-avb
+tcpdump
+
+network_start.sh {
+    #!/bin/sh
+    waitfor /dev/mmc2 1 > /dev/null 2>&1
+    if [ $? == 0 ]; then
+        ETHADDR=`rcar-uboot-env /dev/mmc2 ethaddr 2> /dev/null`
+
+        if [ $? == 0 ]; then
+            ETHADDR=`echo $ETHADDR | sed -e "s/ethaddr=//g;s/://g"`
+        else
+            ETHADDR=""
+        fi
+    fi
+
+    if [ -z "$ETHADDR" ]; then
+        ETHADDR=`genmac-random -m`
+    fi
+    io-pkt-v6-hc -d rswitch mac=$ETHADDR -p tcpip pkt_typed_mem=below4G,smmu=off
+    dhclient -m -lf /dev/shmem/dhclient.leases -pf /dev/shmem/dhclient.pid -nw tsn0
+}
+
+###########################################################################
+## dhclient support
+###########################################################################
+dhclient
+/sbin/ifconfig=ifconfig
+[search=${QNX_TARGET}/sbin perms=a+x] /sbin/dhclient-script=dhclient-script
+[search=${QNX_TARGET}/etc]/etc/dhclient.conf=dhclient.conf
+
+###########################################################################
+## Remote debug
+###########################################################################
+qconn
+pdebug
+
+###########################################################################
+## Network services (telnet) support
+###########################################################################
+devc-pty
+tftp
+
+/etc/hosts=${QNX_TARGET}/etc/hosts
+/etc/services=${QNX_TARGET}/etc/services
+
+/etc/inetd.conf = {
+ftp        stream tcp nowait root  /usr/sbin/ftpd           in.ftpd -l
+telnet     stream tcp nowait root  /usr/sbin/telnetd        in.telnetd
+}
+
+/etc/ftpusers=${QNX_TARGET}/etc/ftpusers
+
+/etc/ftpd.conf = {
+/* Make things a+rw by default */
+umask all 0000
+}
+
+[uid=0 gid=0 perms=0644] /etc/passwd = {
+root::0:0:Superuser:/var/root:/bin/sh
+sshd:x:15:6:sshd:/var/chroot/sshd:/bin/false
+qnxuser:x:1000:1000:QNX User:/home/qnxuser:/bin/sh
+}
+
+# Enabled Username/Password: root/root, qnxuser/qnxuser
+[uid=0 gid=0 perms=0600] /etc/shadow = {
+root:@S@NKlWES1quMp1wmqugkUSnFEpPGn58kIs4wQOgDDNs06vimR+bbGPUKM+9P6jbFUzo3Rm+Qe5MS+17xKhwaeJEg==@Mjg5ZTJiMTM0YTRjYTE2ZGFjMDdhZTFlY2NlMDVmNmE=:1468494669:0:0
+sshd:*:1231323780:0:0
+qnxuser:@S@HZERXjgixvb3157FFeraShhvTVw+10ccUtVUVZbi0fUwpzlzBZFw5gHiFd1XHKit8D39Whe749XAY8fV4P5ANQ==@Y2ZlOTg3M2RhNTM4Y2M2ODY0OWZhODdiNDRkMmU5Nzg=:1468488235:0:0
+}
+
+[uid=0 gid=0 perms=0644] /etc/group = {
+root:x:0:root
+sshd:x:6:
+qnxuser:x:qnxuser
+}
+
+###########################################################################
+## PAM configurations addon build file
+###########################################################################
+[uid=0 gid=0 perms=4755] /bin/login=login
+[uid=0 gid=0 perms=4755] /bin/passwd=passwd
+[uid=0 gid=0 perms=4755] /bin/su=su
+[uid=0 gid=0 perms=0755] /usr/sbin/sshd=sshd
+[uid=0 gid=0 perms=0755] /usr/sbin/ftpd=ftpd
+[uid=0 gid=0 perms=0755] /usr/sbin/inetd=inetd
+[uid=0 gid=0 perms=0755] /usr/sbin/telnetd=telnetd
+
+[uid=0 gid=0 type=dir dperms=0755] /usr
+[uid=0 gid=0 type=dir dperms=0755] /usr/lib
+[uid=0 gid=0 type=dir dperms=0755] /etc
+[uid=0 gid=0 type=dir dperms=0755] /etc/pam.d
+[uid=0 gid=0 perms=0644] /etc/pam.d/login=${QNX_TARGET}/etc/pam.d/login
+[uid=0 gid=0 perms=0644] /etc/pam.d/passwd=${QNX_TARGET}/etc/pam.d/passwd
+[uid=0 gid=0 perms=0644] /etc/pam.d/su=${QNX_TARGET}/etc/pam.d/su
+[uid=0 gid=0 perms=0644] /etc/pam.d/ftpd=${QNX_TARGET}/etc/pam.d/ftpd
+
+[uid=0 gid=0 perms=0755] /usr/lib/libpam.so=libpam.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_ftpusers.so=pam_ftpusers.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_rootok.so=pam_rootok.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_qnx.so=pam_qnx.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_deny.so=pam_deny.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_echo.so=pam_echo.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_exec.so=pam_exec.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_group.so=pam_group.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_mac.so=pam_mac.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_permit.so=pam_permit.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_self.so=pam_self.so
+
+libsecpol.so
+
+###########################################################################
+## SD/MMC block driver support files
+###########################################################################
+devb-sdmmc-rcar
+
+###########################################################################
+## Filesystems support
+###########################################################################
+fdisk
+mkdosfs
+mkqnx6fs
+devb-ram
+
+###########################################################################
+## Thermal driver
+###########################################################################
+rcar-thermal
+thermal_test
+
+###########################################################################
+## GPIO driver
+###########################################################################
+rcar-gpio
+gpio_test
+
+###########################################################################
+## DMA memory to memory app test
+###########################################################################
+dma-memtomem-test
+
+###########################################################################
+## Font libraries
+###########################################################################
+/usr/lib/libfontconfig.so=libfontconfig.so
+/usr/lib/libfreetype.so=libfreetype.so
+
+###########################################################################
+## Test script support
+###########################################################################
+[perms=755] /etc/test_script/s4_test.sh=../install/etc/test_scripts/s4_test.sh
+
+###########################################################################
+###########################################################################
+## System Memory Management Unit (smmu)
+###########################################################################
+smmuman
+smmu-rcar4.so
+[search=../install/etc:${QNX_TARGET}/etc]/etc/rcar4-s4_r10.smmu=rcar4-s4_r10.smmu
+smmu_start.sh {
+    #!/bin/sh
+    soc=`/proc/boot/uname -m`
+
+    case "$soc" in
+        *rev_1.0*)
+            smmuman @/etc/rcar4-s4_r10.smmu
+            ;;
+        *)
+            echo "Unable to start SMMU Manager: unsupported soc"
+            ;;
+    esac
+}
+###########################################################################
+## general commands
+###########################################################################
+cp
+ls
+cat
+ksh
+pipe
+pidin
+uname
+slogger2
+slog2info
+slay
+mount
+umount
+use
+date
+shutdown
+chmod
+ln
+rm
+mv
+on
+sleep
+dd
+top
+grep
+df
+find
+mkdir
+pwd
+waitfor
+echo
+dumper
+random
+sed
+getconf
+setconf
+more
+ps
+awk
+iperf2
+iperf3
+ptpd2
+ptpd-avb
+mqueue
+sed
+diff
+io
+grep
+awk
+printf
+tty
+stty
+
+###########################################################################
+## END OF BUILD SCRIPT
+###########################################################################
+###########################################################################
+##
+## INTERRUPT MAP
+##
+## The Interrupt Map is arranged by vector number in ascending order.
+## Related interrupts that are grouped together list the vector numbers
+## according to the device name.
+## For example:
+##     vector: 319,320,318,322,51-53
+##     device: I2C0-I2C6
+## I2C2 has a vector number of 318.
+## I2C5 has a vector number of 52.
+##
+###########################################################################
+##
+## vector: 382-991
+## trigger: N/A
+## device: Reserved
+##
+## vector 992-1023
+## trigger: N/A
+## device: GPIO0[0-31]
+##
+## vector 1024-1055
+## trigger: N/A
+## device: GPIO1[0-31]
+##
+## vector 1056-1087
+## trigger: N/A
+## device: GPIO2[0-31]
+##
+## vector 1088-1119
+## trigger: N/A
+## device: GPIO3[0-31]
+##
+## vector 1120-1151
+## trigger: N/A
+## device: GPIO4[0-31]
+##
+## vector 1152-1183
+## trigger: N/A
+## device: GPIO5[0-31]
+##
+## vector 1184-1215
+## trigger: N/A
+## device: GPIO6[0-31]
+##
+## vector 1216-1247
+## trigger: N/A
+## device: GPIO7[0-31]
+##
+###########################################################################

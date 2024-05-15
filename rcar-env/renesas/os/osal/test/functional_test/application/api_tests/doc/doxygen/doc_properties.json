@@ -1,0 +1,475 @@
+{
+    "module_name": "OSAL Test Specification",
+    "filename": "R-Car_OSAL_TestSpecification",
+    "module_short_name": "OSAL Test Specification",
+    "document_type": "API Functional Test",
+    "document_status": "Released",
+    "document_number": "LLWEB-20110783",
+    "history": [{
+            "version": "0.10E",
+            "date": "Jun.6,2021",
+            "change": [{
+                "page": "-",
+                "content": "Newly Created."
+            }]
+        },
+        {
+            "version": "0.20E",
+            "date": "Jul.9,2021",
+            "change": [{
+                "page": "-",
+                "content": "Decompose the test between Normal and Abnormal"
+            }]
+        },
+        {
+            "version": "0.30E",
+            "date": "Jul.29,2021",
+            "change": [{
+                "page": "p115",
+                "content": "Add OSAL Resource Performance Test"
+            }]
+        },
+        {
+            "version": "0.40E",
+            "date": "Aug.25,2021",
+            "change": [{
+                    "page": "p403",
+                    "content": "- Add “OSAL Get Device Lowest Intermediate State API Usage” Section"
+                },
+                {
+                    "page": "-",
+                    "content": "Allocate a Related ID each Test case"
+                }
+            ]
+        },
+        {
+            "version": "0.50E",
+            "date": "Aug.30,2021",
+            "change": [{
+                "page": "-",
+                "content": "Add tests for each Allocation Mode in Memory Manager\n- STACK mode\n- STACK_PROT mode\n- FREE_LIST mode\n- FREE_LIST_PROT mode"
+            }]
+        },
+        {
+            "version": "0.60E",
+            "date": "Sep.2,2021",
+            "change": [{
+                "page": "-",
+                "content": "- Add “-Test Code Example” Section for each Test Case\n-Add code snippet of function example before and after test execution in each Test Suite"
+            }]
+        },
+        {
+            "version": "0.70E",
+            "date": "Sep.6,2021",
+            "change": [{
+                    "page": "-",
+                    "content": "Remove Test Case 03_009_006 from ISRMqNormalSingleThread"
+                },
+                {
+                    "page": "-",
+                    "content": "Remove Test Case 03_010_007 from ISRMqNormalSingleThread"
+                },
+                {
+                    "page": "-",
+                    "content": "Remove Test Case 05_001_006 from ISRInterruptManagerNormal"
+                },
+                {
+                    "page": "-",
+                    "content": "Remove Test Case 06_001_006 from ISRIOManagerNormal"
+                },
+                {
+                    "page": "-",
+                    "content": "Remove Test Case 06_002_011 from ISRIOManagerNormal"
+                },
+                {
+                    "page": "-",
+                    "content": "Remove Test Case 01_005_007/01_005_008 from ISRThreadNormalMultiThread"
+                },
+                {
+                    "page": "-",
+                    "content": "Add Test Case 02_013_004"
+                }
+            ]
+        },
+        {
+            "version": "0.80E",
+            "date": "Sep.13,2021",
+            "change": [{
+                    "page": "-",
+                    "content": "Changed the synchronization mechanism between the interrupt thread and the main thread from ThsyncSignal to MqSend/Receive\n- Target is OSALINTTESTS Test Suits"
+                },
+                {
+                    "page": "p163",
+                    "content": "Add “OSALINTTESTS.ISRThsyncMemoryBarrierNormal” Section"
+                },
+                {
+                    "page": "p250",
+                    "content": "Corrected the pass/false judement\n- 03_010_004"
+                },
+                {
+                    "page": "p691-716",
+                    "content": "Add ”Initialization and deinitialization API Test” Section"
+                }
+            ]
+        },
+        {
+            "version": "1.00E",
+            "date": "Sep.24,2021",
+            "change": [{
+                    "page": "p9-10",
+                    "content": "Add abnormal case test of absolute time of as Test Case 01_002_009"
+                },
+                {
+                    "page": "p66-69",
+                    "content": "Add abnormal case test of absolute time of as Test Case 02_004_015"
+                },
+                {
+                    "page": "p134-138",
+                    "content": "Add abnormal case test of absolute time of as Test Case 02_010_015"
+                },
+                {
+                    "page": "p197-201",
+                    "content": "Add abnormal case test of absolute time of as Test Case 03_003_021"
+                },
+                {
+                    "page": "p223-227",
+                    "content": "Add abnormal case test of absolute time of as Test Case 03_005_020"
+                },
+                {
+                    "page": "p294-296",
+                    "content": "Add abnormal case test of absolute time of as Test Case 04_002_012, 04 _002_013"
+                },
+                {
+                    "page": "p452-487",
+                    "content": "Add “PMApiSequenceTest” Test Suits"
+                }
+            ]
+        },
+        {
+            "version": "1.10E",
+            "date": "Oct.6,2021",
+            "change": [{
+                    "page": "p1",
+                    "content": "Add “Defined Value” Section"
+                },
+                {
+                    "page": "-",
+                    "content": "Changed the description of Stack Size of Thread used in the test from 2MB to the defined valun\nChanged the description of the resource ID used in the test to the defined value"
+                },
+                {
+                    "page": "p41, p85, p154, p267, p299, p327, p377",
+                    "content": "Update the description of Prerequsite/Precondition for the OSAL_RETURN_STATE test."
+                },
+                {
+                    "page": "p736, p739, p741",
+                    "content": "Added case classification of expected value when the test target is Dynamic Environment or Static Environmet "
+                }
+            ]
+        },
+        {
+            "version": "1.20E",
+            "date": "Oct.19,2021",
+            "change": [{
+                "page": "-",
+                "content": "Change Document Template"
+            }]
+        },
+        {
+            "version": "1.30E",
+            "date": "Nov.08,2021",
+            "change": [{
+                "page": "-",
+                "content": "Add MMngrGenericInterfaceImpl.MmngrHandle"
+            },
+            {
+                "page": "-",
+                "content": "Add MMngrGenericInterfaceImpl.BufferObject"
+            },
+            {
+                "page": "-",
+                "content": "Add MmngrAlloc_TC_09_003_046\n MmngrDealloc_TC_09_004_040\n MmngrDealloc_TC_09_004_041\n MmngrDealloc_TC_09_004_042\n MmngrDealloc_TC_09_004_043\n MmngrGetConfig_TC_09_005_010\n MmngrRegisterMonitor_TC_09_007_014\n MmngrDebugMmngrPrint_TC_09_015_021"
+            }]
+        },
+        {
+            "version": "1.40E",
+            "date": "Nov.18,2021",
+            "change": [{
+                "page": "p1",
+                "content": "Add Overview Section"
+            },
+            {
+                "page": "-",
+                "content": "Delete Test Case of 09_015_009, 09_016_005"
+            },
+            {
+                "page": "-",
+                "content": "Add Tests of IoAXIBusNameApiTest Section"
+            }]
+        },
+        {
+            "version": "1.50E",
+            "date": "Dec.15,2021",
+            "change": [{
+                    "page": "p1",
+                    "content": "Update Test Program Version"
+                },
+                {
+                    "page": "p1404 - p1412",
+                    "content": "Add Interrupt Sequence Tests"
+                }
+            ]
+        },
+        {
+            "version": "2.00E",
+            "date": "Dec.22,2021",
+            "change": [{
+                "page": "-",
+                "content": "Update Document Version to 2.00E"
+            }]
+        },
+        {
+            "version": "3.00E",
+            "date": "Mar.10,2022",
+            "change": [{
+                "page": "p776 - p778",
+                "content": "Update Description of ThreadEqual_TC_01_005_002"
+            },
+            {
+                "page": "p1614 - p1620",
+                "content": "Add new System Ram tests:\n IoOpenClose_TC_014_001_001\n IoReadWrite_TC_014_001_002\n IoReadWrite_TC_014_001_003\n IoReadWrite_TC_014_001_004\n IoReadWrite_TC_014_001_005"
+            }]
+        },
+        {
+            "version": "3.10E",
+            "date": "Mar.25,2022",
+            "change": [{
+                "page": "p1444",
+                "content": "Add condition checking for “is_isr” that exepect is true in test InterruptIsISRContext_TC_05_007_004"
+            },
+            {
+                "page": "p1398 - p1399",
+                "content": "Add new test InterruptUnregisterIsr_TC_05_003_013"
+            },
+            {
+                "page": "p809 - p810",
+                "content": "Add new test ThreadSelf_TC_01_004_004"
+            },
+            {
+                "page": "p289 - p291, p308 - p310, p328 - p330, p347 - p349, p366 - p368, p386 - p388, p406 - p408, p426 - p428",
+                "content": "Add new test for IO read/write multi-block with size is zero:\n IoBlockRead8_TC_06_009_010\n IoBlockRead16_TC_06_010_010\n IoBlockRead32_TC_06_011_010\n IoBlockRead64_TC_06_012_010\n IoBlockWrite8_TC_06_017_010\n IoBlockWrite16_TC_06_018_010\n IoBlockWrite32_TC_06_019_010\n IoBlockWrite64_TC_06_020_010"
+            },
+            {
+                "page": "p566 - p567",
+                "content": "Update test content of MqReceiveForTimePeriod_TC_03_006_005 to be the same as test specification"
+            }]
+        },
+        {
+            "version": "3.20E",
+            "date": "Apr.28,2022",
+            "change": [{
+                "page": "-",
+                "content": "Update synchronization method for following test:\n ThsyncCondDestroy_TC_02_008_004\n CondVar_TC_12_001_002\n ThreadEqual_TC_01_005_001\n IoDeviceClose_TC_06_004_006\n MqDelete_TC_03_002_005\n MqSendUntilTimeStamp_TC_03_003_013\n MqSendUntilTimeStamp_TC_03_003_014\n MqSendForTimePeriod_TC_03_004_009\n MqSendForTimePeriod_TC_03_004_010\n MqReceiveUntilTimeStamp_TC_03_005_013\n MqReceiveUntilTimeStamp_TC_03_005_014\n MqReceiveForTimePeriod_TC_03_006_009\n MqReceiveForTimePeriod_TC_03_006_010\n MqReceiveForTimePeriod_TC_03_006_012\n MqReset_TC_03_010_004\n MqReset_TC_03_010_005\n MqReset_TC_03_010_008\n MqReset_TC_03_010_009\n InitDeinit_TC_10_001_008\n InitDeinit_TC_10_001_010\n InitDeinit_TC_10_001_011\n InitDeinit_TC_10_001_014"
+            },
+            {
+                "page": "p1357 - p1359",
+                "content": "Fix test code of MmngrHandle_TC_09_020_001 to assign a valid value to the invalid buffer_hndl"
+            }]
+        },
+        {
+            "version": "3.30E",
+            "date": "May.24,2022",
+            "change": [{
+                "page": "-",
+                "content": "Remove software reset applying using OSAL APIs in OSALINTTESTS\n Add read/write-back initialized value to OSALINTTESTS SetUp/TearDown"
+            },
+            {
+                "page": "-",
+                "content": "Remove software reset applying using OSAL APIs in PMApiSequenceTest\n Add read/write-back initialized value to PMApiSequenceTest SetUp/TearDown\n Update target register and written data for PM sequence test on V4H and V3x"
+            },
+            {
+                "page": "-",
+                "content": "Remove clean_register() function\n Add read/write-back initialized value to IO test to reset the target register\n Update target register and written data for IO API test on V4H and V3x"
+            },
+            {
+                "page": "p1634 - p1644",
+                "content": "Add new test to confirm the software reset feature:\n PmSoftwareReset_TC_07_012_001\n PmSoftwareReset_TC_07_012_002\n PmSoftwareReset_TC_07_012_003\n PmSoftwareReset_TC_07_012_004"
+            }]
+        },
+        {
+            "version": "3.40E",
+            "date": "Jun.24,2022",
+            "change": [{
+                "page": "-",
+                "content": "Update the below test cases of R_OSAL_IoGetAxiBusName and R_OSAL_IoGetAxiBusNameList APIs as new requirements:\n IoGetAxiBusName_TC_06_022_001\n IoGetAxiBusName_TC_06_022_002\n IoGetAxiBusName_TC_06_022_003\n IoGetAxiBusName_TC_06_022_004\n IoGetAxiBusNameList_TC_06_023_001"
+            },
+            {
+                "page": "-",
+                "content": "Update the expected data of AXI bus name for IoGetAxiBusIdFromDeviceName and IoGetDeviceAxiBusId tests in section 20.1. OSAL device defined value"
+            },
+            {
+                "page": "-",
+                "content": "Add new test cases for new multi memory region APIs"
+            }]
+        },
+        {
+            "version": "3.50E",
+            "date": "Jul.11,2022",
+            "change": [{
+                "page": "-",
+                "content": "Add new test cases using assigned device handle that isn't supported by PM:\n PmSetRequiredState_TC_07_001_010\n PmSetRequiredState_TC_07_001_011\n PmGetRequiredState_TC_07_002_007\n PmGetRequiredState_TC_07_002_008\n PmWaitForState_TC_07_003_020\n PmWaitForState_TC_07_003_021\n PmGetState_TC_07_004_010\n PmGetState_TC_07_004_011\n PmSetPolicy_TC_07_005_018\n PmSetPolicy_TC_07_005_019\n PmGetPolicy_TC_07_006_008\n PmGetPolicy_TC_07_006_009\n PmSetResetState_TC_07_007_008\n PmGetResetState_TC_07_008_007\n PmGetLowestIntermediatePowerState_TC_07_010_010\n PmGetLowestIntermediatePowerState_TC_07_010_011"
+            },
+            {
+                "page": "-",
+                "content": "Add new memory test cases using multi-threads:\n MmngrOpen_TC_09_001_055\n MmngrOpen_TC_09_001_056\n MmngrOpenFromRegionIdx_TC_09_021_048\n MmngrOpenFromRegionIdx_TC_09_021_049\n MmngrOpenFromRegionIdx_TC_09_021_050\n MmngrOpenFromRegionIdx_TC_09_021_051"
+            },
+            {
+                "page": "-",
+                "content": "Move InitDeinit_TC_10_001_015 and InitDeinit_TC_10_001_016 to InitDeinitApiTest"
+            }]
+        },
+		{
+            "version": "3.60E",
+            "date": "Aug.26,2022",
+            "change": [{
+                "page": "-",
+                "content": "Add IO Tests about one handle access from Multi threads:\n IoDeviceOpen_TC_06_003_008\n IoWrite8_TC_06_013_008\n IoWrite16_TC_06_014_008\n IoWrite32_TC_06_015_008\n IoWrite64_TC_06_016_008\n IoBlockWrite8_TC_06_017_011\n IoBlockWrite16_TC_06_018_011\n IoBlockWrite32_TC_06_019_011\n IoBlockWrite64_TC_06_020_011"
+            }]
+        },
+        {
+            "version": "3.70E",
+            "date": "Oct.26,2022",
+            "change": [{
+                "page": "-",
+                "content": "Update allocate_setup_data_memory function to use R_OSAL_IoGetAxiIdListForDeviceName in test_common.hpp"
+            }]
+        },
+        {
+            "version": "3.80E",
+            "date": "Nov.21,2022",
+            "change": [{
+                "page": "-",
+                "content": "Add test cases of MmngrGetHwAddr with invalid AXI ID:\n MmngrGetHwAddr_TC_09_012_009\n MmngrGetHwAddr_TC_09_012_010\n MmngrGetHwAddr_TC_09_012_011\n MmngrGetHwAddr_TC_09_012_012"
+            },
+            {
+                "page": "-",
+                "content": "Add the below new macros for PM test:\n TEST_PM_DEVICE_2_DEPENDENCE\n TEST_PM_DEVICE_SEQUENCE_PG\n Add reinitialize power policy of devices in the SetUp and TearDown of PMApiTest\n Add new test for initialize leak check of power lowest state 07_010_012 to 07_010_014\n Add new test for checking set policy of device into PG 07_011_022 to 07_011_027\n Add powering down operation of imp_01 device for test cases that set imp_00 to PG"
+            },
+            {
+                "page": "-",
+                "content": "Add new test cases to confirm the PM required state transition:\n PmSetRequiredState_TC_07_001_012\n PmSetRequiredState_TC_07_001_013\n PmSetRequiredState_TC_07_001_014\n PmSetRequiredState_TC_07_001_015\n PmSetRequiredState_TC_07_001_016\n PmSetRequiredState_TC_07_001_017\n PmSetRequiredState_TC_07_001_018\n PmSetRequiredState_TC_07_001_019\n PmSetRequiredState_TC_07_001_020"
+            }]
+        },
+        {
+            "version": "3.90E",
+            "date": "Dec.15,2022",
+            "change": [{
+                "page": "-",
+                "content": "Add new test cases as below:\n ClockTimeCalculateTimeDifference_TC_04_002_014\n ClockTimeCalculateTimeDifference_TC_04_002_015\n ClockTimeCalculateTimeDifference_TC_04_002_016\n ClockTimeCalculateTimeDifference_TC_04_002_017\n ClockTimeCalculateTimeDifference_TC_04_002_018\n ClockTimeCalculateTimeDifference_TC_04_002_019"
+            }]
+        },
+        {
+            "version": "3.100E",
+            "date": "Jan.11,2023",
+            "change": [{
+                "page": "p1371 - p1372, p1375 - p1377, p1379 - p1381, p1383 - p1385",
+                "content": "Remove the overflow/underflow without PROT test cases:\n MmngrCheckBuffer_TC_09_014_005\n MmngrCheckBuffer_TC_09_014_007\n MmngrCheckBuffer_TC_09_014_009\n MmngrCheckBuffer_TC_09_014_011"
+            },
+            {
+                "page": "-",
+                "content": "Add test cases in resource managers to cover OSAL API specification as below:\n ThreadCreate_TC_01_001_012\n ThsyncMutexUnlock_TC_02_006_009\n MqCreate_TC_03_001_006\n MqCreate_TC_03_001_007\n MqCreate_TC_03_001_008"
+            },
+            {
+                "page": "-",
+                "content": "Update the below test cases in resource managers to cover OSAL API specification:\n ThreadCreate_TC_01_001_005\n ThreadCreate_TC_01_001_007\n ThreadCreate_TC_01_001_008\n ThreadCreate_TC_01_001_010\n ThreadInitializeThreadConfigSt_TC_01_007_003\n ThsyncMutexCreate_TC_02_001_004\n ThsyncCondCreate_TC_02_007_004\n MqCreate_TC_03_001_002\n MqCreate_TC_03_001_005\n MqInitializeMqConfigSt_TC_03_011_003"
+            },
+            {
+                "page": "-",
+                "content": "Add new test cases in device managers to cover OSAL API specification as below:\n InterruptRegisterIsr_TC_05_002_012\n InterruptRegisterIsr_TC_05_002_013\n IoGetNumOfAxiIdsForDeviceHdl_TC_06_026_006\n IoGetAxiIdListForAxiBusName_TC_06_028_014\n IoGetAxiIdListForDeviceHdl_TC_06_029_012\n IoGetAxiIdListForDeviceName_TC_06_030_012\n IoGetNumOfDevices_TC_06_001_006\n IoGetDeviceList_TC_06_002_011\n IoGetDeviceAxiBusId_TC_06_024_005"
+            },
+            {
+                "page": "-",
+                "content": "Update the below test cases in device managers to cover OSAL API specification:\n IoGetNumOfAxiIdsForDeviceName_TC_06_027_005\n IoGetAxiIdListForDeviceName_TC_06_030_006\n IoDeviceOpen_TC_06_003_002\n IoDeviceOpen_TC_06_003_003\n IoDeviceOpen_TC_06_003_004\n IoDeviceOpen_TC_06_003_007"
+            }]
+        },
+        {
+            "version": "3.110E",
+            "date": "Feb.02,2023",
+            "change": [{
+                "page": "-",
+                "content": "Update Overview: \n Update API Specification from 3.6.0 to 3.7.0. \n Update Test version from 3.10.0 to 3.11.0"
+            },
+            {
+                "page": "-",
+                "content": "Add the new boundary test cases for resource manager:\n ThreadSleepUntilTimeStamp_TC_01_002_010\n ThreadSleepUntilTimeStamp_TC_01_002_011\n ThreadSleepUntilTimeStamp_TC_01_002_012\n ThreadSleepUntilTimeStamp_TC_01_002_013\n ThsyncCondWaitUntilTimeStamp_TC_02_010_016\n ThsyncCondWaitUntilTimeStamp_TC_02_010_017\n ThsyncCondWaitUntilTimeStamp_TC_02_010_018\n ThsyncCondWaitUntilTimeStamp_TC_02_010_019\n MqSendUntilTimeStamp_TC_03_003_023\n MqSendUntilTimeStamp_TC_03_003_024\n MqSendUntilTimeStamp_TC_03_003_025\n MqSendUntilTimeStamp_TC_03_003_026\n MqReceiveUntilTimeStamp_TC_03_005_022\n MqReceiveUntilTimeStamp_TC_03_005_023\n MqReceiveUntilTimeStamp_TC_03_005_024\n MqReceiveUntilTimeStamp_TC_03_005_025\n ThsyncMutexLockUntilTimeStamp_TC_02_004_016\n ThsyncMutexLockUntilTimeStamp_TC_02_004_017\n ThsyncMutexLockUntilTimeStamp_TC_02_004_018\n ThsyncMutexLockUntilTimeStamp_TC_02_004_019"
+            },
+            {
+                "page": "-",
+                "content": "Add the new boundary test cases for device manager:\n InterruptRegisterIsr_TC_05_002_014\n InterruptRegisterIsr_TC_05_002_015\n IoGetNumOfDevices_TC_06_001_007\n IoGetDeviceList_TC_06_002_012\n IoGetAxiBusName_TC_06_022_006\n PmSetRequiredState_TC_07_001_021\n PmWaitForState_TC_07_003_022\n PmSetPolicy_TC_07_005_020\n PmSetResetState_TC_07_007_009\n PmSetPostClock_TC_07_009_016\n PmSetPostClock_TC_07_009_017\n PmSetPostClock_TC_07_009_019"
+            },
+            {
+                "page": "-",
+                "content": "Add the new boundary test cases for memory manager:\n MmngrOpen_TC_09_001_057\n MmngrOpen_TC_09_001_058\n MmngrOpen_TC_09_001_059\n MmngrOpen_TC_09_001_060\n MmngrOpen_TC_09_001_061\n MmngrAlloc_TC_09_003_047\n MmngrAlloc_TC_09_003_048\n MmngrAlloc_TC_09_003_049\n MmngrAlloc_TC_09_003_050\n MmngrAlloc_TC_09_003_051\n MmngrAlloc_TC_09_003_052\n MmngrAlloc_TC_09_003_053\n MmngrAlloc_TC_09_003_054\n From MmngrOpenFromRegionIdx_TC_09_021_053 to MmngrOpenFromRegionIdx_TC_09_021_057"
+            },
+            {
+                "page": "-",
+                "content": "Add new test cases in memory manager to cover OSAL API specification as below:\n From MmngrClose_TC_09_002_019 to MmngrClose_TC_09_002_023\n From MmngrAlloc_TC_09_003_055 to MmngrAlloc_TC_09_003_062\n From MmngrDealloc_TC_09_004_044 to MmngrDealloc_TC_09_004_051\n From MmngrGetConfig_TC_09_005_011 to MmngrGetConfig_TC_09_005_017\n From MmngrRegisterMonitor_TC_09_007_015 to MmngrRegisterMonitor_TC_09_007_024\n From MmngrGetCpuPtr_TC_09_008_011 to MmngrGetCpuPtr_TC_09_008_024\n From MmngrGetConstCpuPtr_TC_09_009_011 to MmngrGetConstCpuPtr_TC_09_009_024\n From MmngrFlush_TC_09_010_019 to MmngrFlush_TC_09_010_048\n From MmngrInvalidate_TC_09_011_019 to MmngrInvalidate_TC_09_011_048\n From MmngrGetHwAddr_TC_09_012_013 to MmngrGetHwAddr_TC_09_012_028\n From MmngrGetSize_TC_09_013_013 to MmngrGetSize_TC_09_013_026\n From MmngrCheckBuffer_TC_09_014_018 to MmngrCheckBuffer_TC_09_014_033\n From MmngrDebugMmngrPrint_TC_09_015_022 to MmngrDebugMmngrPrint_TC_09_015_029\n From MmngrDebugBufferPrint_TC_09_016_012 to MmngrDebugBufferPrint_TC_09_016_015\n MmngrOpenFromRegionIdx_TC_09_021_052"
+            }]
+        },
+        {
+            "version": "3.120E",
+            "date": "Feb.21,2023",
+            "change": [{
+                "page": "-",
+                "content": "Add new test cases for R_OSAL_MmngrClose as below:\n MmngrClose_TC_09_002_024\n MmngrClose_TC_09_002_025\n MmngrClose_TC_09_002_026\n MmngrClose_TC_09_002_027"
+            },
+            {
+                "page": "-",
+                "content": "Add PmSetPostClock_TC_07_009_018"
+            }]
+        },
+        {
+            "version": "3.130E",
+            "date": "Mar.07,2023",
+            "change": [{
+                "page": "-",
+                "content": "Add new interrupt context test cases for MQ receive APIs as below:\n MqReceiveUntilTimeStamp_TC_03_005_026\n MqReceiveForTimePeriod_TC_03_006_020"
+            },
+            {
+                "page": "-",
+                "content": "Update document status “Draft” -> “Released”"
+            }]
+        },
+        {
+            "version": "3.140E",
+            "date": "Apr.10,2023",
+            "change": [{
+                "page": "-",
+                "content": "Update expected value for test case MmngrClose_TC_09_002_019"
+            },
+            {
+                "page": "-",
+                "content": "Update expected value of median time on SIL Windows performance test"
+            },
+            {
+                "page": "-",
+                "content": "Update the thread synchronization for test ThreadJoin_TC_01_006_006"
+            },
+            {
+                "page": "-",
+                "content": "Update value of the following macros for SIL test V3M2/V3Hx:\n - TEST_UNSUPPORT_POWER_DEVICE\n - TEST_UNSUPPORT_CLOCK_DEVICE\n - TEST_UNSUPPORT_RESET_DEVICE\n - PM_UNSUPPORT_PM_EXPECTED_VALUE"
+            }]
+        },
+        {
+            "version": "3.150E",
+            "date": "Jan.09,2024",
+            "change": [{
+                "page": "-",
+                "content": "Add following new test cases: \n - MmngrOpenFromRegionIdx_TC_09_021_058\n - From MmngrAlloc_TC_09_003_063 to MmngrAlloc_TC_09_003_079"
+            },
+            {
+                "page": "-",
+                "content": "Update the initialized value of HW address in test bufferAccess_TC_12_001_021"
+            }]
+        }
+    ]
+}

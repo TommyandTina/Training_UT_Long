@@ -1,0 +1,8 @@
+modi,r_osal_os_mq_receive,19_114,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@mq,@mq[0].head,@mq[0].head[0].next,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,g_dummy,;,,,,
+,g_st_osal_os_mq_t,0,g_st_osal_mq_node_t[1],0,0,0,,;mq->head is NULL,,,,
+,g_st_osal_os_mq_t,g_st_osal_mq_node_t[0],0,0,0,0,,";mq->head is not NULL, mq->head->next is NULL",,,,
+,g_st_osal_os_mq_t,g_st_osal_mq_node_t[0],g_st_osal_mq_node_t[1],0,0,0,,";mq->head is not NULL, mq->head->next is not NULL",,,,

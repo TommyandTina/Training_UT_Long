@@ -1,0 +1,12 @@
+modi,r_osal_dcfg_io_sort_axi_bus_list,07_023,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+#COMMENT,@array_num,$@p_axi_bus_list,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],g_dummy,;,,,,,
+,2,1,0,0,0,-,;Normal operation,,,,,
+,2,1,0,1,1,-,;The return value by strncmp() is more than 0,,,,,
+,0,1,0,0,0,-,;array_num is 0,,,,,
+,1,1,0,0,0,-,;array_num is 1,,,,,
+,3,1,0,0,0,-,;array_num is 3,,,,,

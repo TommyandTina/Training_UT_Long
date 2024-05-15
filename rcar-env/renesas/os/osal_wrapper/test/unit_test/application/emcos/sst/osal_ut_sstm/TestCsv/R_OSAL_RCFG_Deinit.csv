@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_Deinit,01_031,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_usr_cfg.c/gsp_osal_thread_config,r_osal_usr_cfg.c/gsp_osal_mutex_config,r_osal_usr_cfg.c/gsp_osal_cond_config,r_osal_usr_cfg.c/gsp_osal_mq_config,r_osal_usr_cfg.c/gsp_osal_interrupt_thread_config,,,,,,,
+0,0,0,0,0,0,,,,,,,
+#COMMENT,r_osal_usr_cfg.c/gsp_osal_thread_config,r_osal_usr_cfg.c/gsp_osal_mutex_config,r_osal_usr_cfg.c/gsp_osal_cond_config,r_osal_usr_cfg.c/gsp_osal_mq_config,r_osal_usr_cfg.c/gsp_osal_interrupt_thread_config,g_dummy,;,,,,,
+,g_osal_thread_config,g_osal_mutex_config,g_osal_cond_config,g_osal_mq_config,g_osal_interrupt_thread_config,,;Normal operation ,,,,,

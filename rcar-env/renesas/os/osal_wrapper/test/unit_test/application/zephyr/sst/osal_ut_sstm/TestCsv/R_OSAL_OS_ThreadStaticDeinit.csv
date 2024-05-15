@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_ThreadStaticDeinit,02_102,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,r_osal_os_thread.c/gsp_osal_thread_self_control,g_dummy,;,,,,,,,,,
+,g_st_osal_thread_self_control,-,;Normal operation ,,,,,,,,,
+,0,-,;gsp_osal_thread_self_control is NULL.,,,,,,,,,

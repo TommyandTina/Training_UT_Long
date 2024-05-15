@@ -1,0 +1,5 @@
+modi,osal_thread_set_is_init,02_012,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_thread.c/gs_osal_thread_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_thread.c/gs_osal_thread_is_initialized,g_dummy,;,,,,,,,,,
+,1,,;Normal operation,,,,,,,,,

@@ -1,0 +1,20 @@
+modi,R_OSAL_IoGetAxiIdListForDeviceHdl,07_041,16,1,,,,CPP,,,,0,,,,,,
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,r_osal_io.c/gsp_axi_bus_name_info,,,,,,,,,,,,,,,,
+0,0,0,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,r_osal_io.c/gsp_axi_bus_name_info,@device_hdl,g_st_osal_device_control.handle_id,g_st_osal_device_control.active,g_st_osal_device_control.dev_info,$@p_array,@p_array[0],@p_array[1],@p_array[2],@array_size,@p_num_of_written_axi_ids,AMSTB_SrcFile.c/AMSTB_strstr@AM_count,AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[2],R_OSAL_IoGetAxiIdListForDeviceHdl@@,;
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,array_sizet,0,1,1,1,OSAL_RETURN_OK,;Normal operation
+,0,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,array_sizet,0,1,1,1,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false
+,1,g_axi_bus_name_info_1,0,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,array_sizet,0,1,1,1,OSAL_RETURN_HANDLE,;device_hdl is NULL
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,0,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,array_sizet,0,1,1,1,OSAL_RETURN_HANDLE,;device_hdl->handle_id is not OSAL_DEVICE_HANDLE_ID
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,0,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,array_sizet,0,1,1,1,OSAL_RETURN_HANDLE,;device_hdl->active is false
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,0,0,1,1,1,OSAL_RETURN_PAR,;p_num_of_written_axi_ids is NULL
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,0,0,0,0,3,array_sizet,0,1,1,1,OSAL_RETURN_PAR,;p_array is NULL and array_size is not 0
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,array_sizet,0,0,0,0,OSAL_RETURN_OK,;strstr() is return NULL
+,1,g_axi_bus_name_info_2,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,3,array_sizet,0,1,1,1,OSAL_RETURN_OK,;gsp_axi_bus_name_info[count].utlb is equals OSAL_INVALID_UTLB
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,1,array_sizet,0,1,1,1,OSAL_RETURN_PAR,;pp_list_size less than match_count
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,3,g_uint64_t,g_uint64_t,g_uint64_t,1,array_sizet,0,1,1,1,OSAL_RETURN_PAR,;p_array is not NULL and array_size is less than numofaxiids
+,1,g_axi_bus_name_info_1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,0,0,0,0,0,array_sizet,0,1,1,1,OSAL_RETURN_OK_RQST,;p_array is NULL and array_size is 0

@@ -1,0 +1,19 @@
+modi,R_PMA_SM_ChangePolicyHWA,03_007,10,5,,,,CPP,,,,0,,,,
+#InitWheneverCall,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enReqStat,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enPwrPolicy,,,,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_ChangeStateToHP,R_PMA_SM_ChangeStateToHP,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_ChangeStateToCG,R_PMA_SM_ChangeStateToCG,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_ChangeStateToPG,R_PMA_SM_ChangeStateToPG,,,,,,,,,,,,,,
+#COMMENT,@handle,@hwaId,@policy,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enReqStat,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enPwrPolicy,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_ChangeStateToHP@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_ChangeStateToCG@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_ChangeStateToPG@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_ChangeStateToHP@AMOUT_pStatemachine[0].handle,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_ChangeStateToCG@AMOUT_pStatemachine[0].handle,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_ChangeStateToPG@AMOUT_pStatemachine[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enPwrPolicy,R_PMA_SM_ChangePolicyHWA@@,;
+,0,R_PMA_HWA_ID_V4H_VDSP1_GLOBAL,0,R_PMA_HWA_ID_NUM,0,0,0,,,,,,,0,R_PMA_INVALID_ARGUMENT,;handle is NULL
+,dummy_handle,R_PMA_HWA_ID_NUM,0,R_PMA_HWA_ID_NUM,0,0,0,,,,,,,0,R_PMA_INVALID_ARGUMENT,;hwaId is R_PMA_HWA_ID_NUM
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,0,R_PMA_HWA_ID_NUM,0,0,0,,,,,,,0,R_PMA_INVALID_HANDLE,;g_pma_sm_info_tbl[hwaId].handle != handle
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,0,R_PMA_HWA_ID_NUM,dummy_handle,-1,0,,,,,,,0,R_PMA_NG,;g_pma_sm_info_tbl[hwaId].enReqStat is impossible value
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_PG_MODE,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_REQUESTED,-1,,,,,,,R_PMA_PG_MODE,R_PMA_OK,;g_pma_sm_info_tbl[hwaId].enReqStat is R_PMA_HWA_REQUESTED
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,-1,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_RELEASED,-1,,,,,,,-1,R_PMA_NG,;policy is impossible value
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HP_MODE,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_RELEASED,-1,R_PMA_OK,,,dummy_handle,,,R_PMA_HP_MODE,R_PMA_OK,;Normal operation
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HP_MODE,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_RELEASED,-1,R_PMA_INVALID_ARGUMENT,,,dummy_handle,,,-1,R_PMA_INVALID_ARGUMENT,;R_PMA_SM_ChangeStateToHP() returns R_PMA_INVALID_ARGUMENT
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_CG_MODE,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_RELEASED,-1,,R_PMA_OK,,,dummy_handle,,R_PMA_CG_MODE,R_PMA_OK,;Normal operation
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_CG_MODE,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_RELEASED,-1,,R_PMA_INVALID_ARGUMENT,,,dummy_handle,,-1,R_PMA_INVALID_ARGUMENT,;R_PMA_SM_ChangeStateToCG() returns R_PMA_INVALID_ARGUMENT
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_PG_MODE,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_RELEASED,-1,,,R_PMA_OK,,,dummy_handle,R_PMA_PG_MODE,R_PMA_OK,;Normal operation
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_PG_MODE,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_HWA_RELEASED,-1,,,R_PMA_INVALID_ARGUMENT,,,dummy_handle,-1,R_PMA_INVALID_ARGUMENT,;R_PMA_SM_ChangeStateToPG() returns R_PMA_INVALID_ARGUMENT

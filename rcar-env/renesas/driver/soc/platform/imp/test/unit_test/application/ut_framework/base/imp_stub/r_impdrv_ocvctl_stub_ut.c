@@ -1,0 +1,74 @@
+/* impdrv_ocvctl_get_inten_val */
+#define impdrv_ocvctl_get_inten_val impdrv_ocvctl_get_inten_val_(__LINE__)
+#define impdrv_ocvctl_get_inten_val_(line) impdrv_ocvctl_get_inten_val__(line)
+#define impdrv_ocvctl_get_inten_val__(line) impdrv_ocvctl_get_inten_val_ut_##line
+/* V3H2 */
+#define impdrv_ocvctl_get_inten_val_ut_378 impdrv_ocvctl_get_inten_val
+#define impdrv_ocvctl_get_inten_val_ut_1133 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1307 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1466 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_2087 impdrv_ocvctl_get_inten_val
+/* V3H1 */
+#define impdrv_ocvctl_get_inten_val_ut_393 impdrv_ocvctl_get_inten_val
+#define impdrv_ocvctl_get_inten_val_ut_1166 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1340 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1499 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_2127 impdrv_ocvctl_get_inten_val
+/* V3M2 */
+#define impdrv_ocvctl_get_inten_val_ut_388 impdrv_ocvctl_get_inten_val
+#define impdrv_ocvctl_get_inten_val_ut_1160 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1334 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1493 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_2128 impdrv_ocvctl_get_inten_val
+/* V4H, V4H2 */
+#define impdrv_ocvctl_get_inten_val_ut_420 impdrv_ocvctl_get_inten_val
+#define impdrv_ocvctl_get_inten_val_ut_1349 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1524 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_1690 impdrv_ocvctl_get_inten_val_stub
+#define impdrv_ocvctl_get_inten_val_ut_2373 impdrv_ocvctl_get_inten_val
+
+/* impdrv_ocvctl_set_state */
+#define  impdrv_ocvctl_set_state  impdrv_ocvctl_set_state_(__LINE__)
+#define  impdrv_ocvctl_set_state_(line)  impdrv_ocvctl_set_state__(line)
+#define  impdrv_ocvctl_set_state__(line)  impdrv_ocvctl_set_state_ut_##line
+/* V3H2 */
+#define  impdrv_ocvctl_set_state_ut_571  impdrv_ocvctl_set_state
+#define  impdrv_ocvctl_set_state_ut_762  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_815  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1177  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1206  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1338  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1413  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1496  impdrv_ocvctl_set_state_stub
+/* V3H1 */
+#define  impdrv_ocvctl_set_state_ut_604  impdrv_ocvctl_set_state
+#define  impdrv_ocvctl_set_state_ut_795  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_848  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1210  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1239  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1371  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1446  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1529  impdrv_ocvctl_set_state_stub
+/* V3M2 */
+#define  impdrv_ocvctl_set_state_ut_599  impdrv_ocvctl_set_state
+#define  impdrv_ocvctl_set_state_ut_790  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_843  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1204  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1233  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1365  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1440  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1523  impdrv_ocvctl_set_state_stub
+/* V4H, V4H2 */
+#define  impdrv_ocvctl_set_state_ut_613  impdrv_ocvctl_set_state
+#define  impdrv_ocvctl_set_state_ut_804  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_857  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1393  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1422  impdrv_ocvctl_set_state
+#define  impdrv_ocvctl_set_state_ut_1555  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1631  impdrv_ocvctl_set_state_stub
+#define  impdrv_ocvctl_set_state_ut_1720  impdrv_ocvctl_set_state
+
+#include "r_impdrv_ocvctl.c"
+
+#undef impdrv_ocvctl_get_inten_val
+#undef impdrv_ocvctl_set_state

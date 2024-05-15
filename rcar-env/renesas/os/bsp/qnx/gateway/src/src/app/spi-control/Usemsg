@@ -1,0 +1,65 @@
+%C SPI master driver test utility
+
+Syntax:
+# spi-control <spi path> [-s device] [-i] | [[-c | -d | -r | -w] [-W] [-o] [-v]]
+
+Options:
+    -<spi path>: spi path of device, e.g. "/dev/spi0"
+    -s    : Select device, default: 0
+    -i    : Show driver & device information
+    -c    : Set device config
+          clock : Set device clock rate
+          mode : Set device mode
+          0 : Unset mode (SPI_MODE_CKPOL_HIGH | SPI_MODE_CKPHASE_HALF)
+          1 : Set mode SPI_MODE_CKPOL_HIGH
+          2 : Set mode (SPI_MODE_CKPOL_HIGH | SPI_MODE_CKPHASE_HALF)
+          size :  Set Data Size (8,16,32 bits)
+    -w    : Specify number of data byte to transmit
+            Writing data is 0, 1, 2, ...
+    -W    : Specify data to transmit
+    -r    : Specify number of data byte to receive
+    -d    : Specify using dma in transfer
+    -x    : Specify number of data byte to transmit and receive by using dma
+            Writing data is 0, 1, 2, ...
+    -o    : Specify transmit data is random, value of -o option is transfered to srand()
+            This option has to use with -w or -x option
+    -m    : Send command and receive data
+        cmd   : Command to send
+        rlen  : Number of word count to read
+    -v    : verbosity
+
+Examples:
+    - Display device 0 information:
+     # spi-control /dev/spi2 -s0 -i
+
+    - Transmit 8 bytes 0, 1,..7 to device 0:
+     # spi-control /dev/spi2 -s0 -w 8 -v
+
+    - Transmit 8 random bytes to device 0:
+     # spi-control /dev/spi2 -s0 -o123 -w 8 -v
+
+    - Transmit 64 bytes 0, 1,..63 to device 0 using dma:
+     # spi-control /dev/spi2 -s0 -d -w 64 -v
+
+     - Receive 8 bytes from device 0:
+     # spi-control /dev/spi2 -s0 -r 8 -v
+
+    - Transmit 64 bytes to device 0 using dma:
+     # spi-control /dev/spi2 -s0 -x 64 -v
+
+    - Read 64 bytes to device 0 using dma:
+     # spi-control /dev/spi2 -s0 -d -r 64 -v
+
+    - Send "9F" command to device 1 then read 3 bytes of data:
+     # spi-control /dev/spi2 -s0 -r cmd=9F,rlen=3 -v
+
+    - Set device clock:
+     # spi-control /dev/spi2 -s0 -c clock=5000000
+
+    - Set data size to 32 bit:
+     # spi-control /dev/spi2 -s0 -c size=32
+
+    - Set data size to 16 bit:
+     # spi-control /dev/spi2 -s0 -c size=16
+
+Note: For R-CarV4H maximum of data is 256*4 bytes, for other product maximum of data is 64*4 bytes

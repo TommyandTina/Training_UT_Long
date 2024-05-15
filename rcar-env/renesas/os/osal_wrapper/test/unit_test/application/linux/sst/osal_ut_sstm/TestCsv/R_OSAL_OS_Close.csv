@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_Close,18_102,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_close,close,,,,,,,,,,
+#COMMENT,@fd,AMSTB_SrcFile.c/AMSTB_close@AMIN_return,R_OSAL_OS_Close@@,;,,,,,,,,
+,0,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,0,1,OSAL_RETURN_FAIL,;close() return error,,,,,,,,

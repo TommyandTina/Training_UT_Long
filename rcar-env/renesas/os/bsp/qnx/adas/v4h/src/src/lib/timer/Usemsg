@@ -1,0 +1,21 @@
+Usage: timer_test [options]
+
+  This program is a demonstration of R-Car Timer API that based on CMT/TMU module.
+
+  Options:
+    --module=[string]     Select cmt or tmu
+    --tmode=[string]      Select test mode, there are two modes available: gettime and settime (default)
+    --period_sec=[int]    Select expiration time in second unit
+    --period_nsec=[int]   Select expiration time in nanosecond unit
+
+  Note:
+    1) No need to set option period_sec and period_nsec in gettime mode
+    2) Default expiration time is set to 100 milliseconds
+
+  Example:
+    1) Select CMT module, test mode is settime, expiration time is 1.5 second
+       # timer_test --module=cmt --period_sec=1 --period_nsec=500000000
+    2) Select TMU module, test mode is settime, expiration time is 123456789 nanosecond
+       # timer_test --module=tmu --period_sec=0 --period_nsec=123456789
+    3) Select CMT module, test mode is gettime
+       # timer_test --module=tmu --tmode=gettime

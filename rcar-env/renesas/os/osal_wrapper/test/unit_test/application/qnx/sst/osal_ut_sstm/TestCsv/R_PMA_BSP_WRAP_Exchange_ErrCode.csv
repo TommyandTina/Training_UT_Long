@@ -1,0 +1,10 @@
+modi,R_PMA_BSP_WRAP_Exchange_ErrCode,05_014,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@errNo,R_PMA_BSP_WRAP_Exchange_ErrCode@@,;,,,,,,,,,
+,R_PMA_BSP_RET_OK,R_PMA_OK,;errNo is R_PMA_BSP_RET_OK,,,,,,,,,
+,R_PMA_BSP_RET_ERROR,R_PMA_BSP_EINVAL,;errNo is R_PMA_BSP_RET_ERROR,,,,,,,,,
+,R_PMA_BSP_RET_HWFAIL,R_PMA_BSP_EINVAL,;errNo is R_PMA_BSP_RET_HWFAIL,,,,,,,,,
+,R_PMA_BSP_RET_TIMEOUT,R_PMA_BSP_ETIMEDOUT,;errNo is R_PMA_BSP_RET_TIMEOUT,,,,,,,,,
+,R_PMA_BSP_RET_INVALPARA,R_PMA_BSP_EIO,;errNo is R_PMA_BSP_RET_INVALPARA,,,,,,,,,
+,-2,R_PMA_NG,;errNo is -2,,,,,,,,,

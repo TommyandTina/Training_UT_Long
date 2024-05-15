@@ -1,0 +1,40 @@
+    The Ethernet (Switch2) driver for R-Car S4 boards
+
+    CREATED   : 10.30.2021
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car S4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.30.2021 : Ver.0.1
+            - Support eTSN (rswtich2) driver for S4
+            11.30.2021 : Ver.0.2
+            - Support gPTP.
+            04.12.2022 : Ver.0.3
+            - Change to base addr instead struct rswitch2_serdes_t for read/write Serdes register
+            - Add rswitch2_serdes_common_init_ram() and rswitch2_serdes_common_setting()
+            - Change only sue GWCA0 for 3 ports (same as Linux)
+            - Remove settings for IPV remapping configuration, Reset TAS RAM, Setting flow (U-boot uses, Linux doesn't)
+            - Optimize/enhance Event, Transfer and Receive code to improve tx and rx performance
+            06.30.2022 : Ver.0.4
+            - eTSN (rswtich2) driver : Add interrupt delay to improve performance, this is based on HWM:
+                                     "Interrupt delay function aims at delaying data interrupts 
+                                      to accumulate data during a certain among of time before requesting software 
+                                      to process the data. As a result, software load is diminished, and data latency 
+                                      is still guaranteed."
+            07.30.2022 : Ver.0.5
+            - Update Phy m88e2110_parse_status() to set speed to 2.5G if parsing speed is 5000Mbps and 10000Mbps
+            - Add in 'resource seed' to avoid HW access confliction.
+            11.03.2022 : Ver.0.6
+            - Add parallel_mode support to operate with Realtime core simultaneously.
+            - Add limit rate setting for GWCA.
+            - Fix ping duplicate and lost packets issue when 2 ports using same GWCA.
+            22.02.2023 : Ver.0.7
+            - Update interrupt handler to fix receiving interrupt lost
+            - Fix 'SerDes Link up' issue when booting QNX ifs image from eMMC
+            - Correct base address in serdes common setting (in different channel 0 setting)
+-----------------------------------------------------------------------------
+ Known limitations
+-----------------------------------------------------------------------------            
+

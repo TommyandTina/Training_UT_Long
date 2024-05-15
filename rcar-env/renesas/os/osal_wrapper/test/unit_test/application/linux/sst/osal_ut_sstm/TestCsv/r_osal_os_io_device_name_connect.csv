@@ -1,0 +1,15 @@
+modi,r_osal_os_io_device_name_connect,15_123,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_os_io.c/gs_axi_bus_name_info,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,r_osal_os_io.c/gs_axi_bus_name_info,@p_device_name,@connect_index,AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_device_name_connect@@,;
+,g_st_osal_axi_bus_name_info_t,0,0,0,str,0,str,0,0,0,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_axi_bus_name_info_t,0,0,0,0,0,str,0,0,0,OSAL_RETURN_MEM,;realloc returns NULL
+,g_st_osal_axi_bus_name_info_t,0,0,0,str,0,0,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc returns NULL
+,g_st_osal_axi_bus_name_info_t,0,0,0,str,0,str,0,-1,0,OSAL_RETURN_FAIL,;snprintf returns -1

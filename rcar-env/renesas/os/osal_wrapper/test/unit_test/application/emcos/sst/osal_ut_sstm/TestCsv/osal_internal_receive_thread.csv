@@ -1,0 +1,22 @@
+modi,osal_internal_receive_thread,06_013,25,1,,,,CPP,,,,0,,,,,,,,,,,,,,,
+#InitWheneverCall,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,,,,,,,,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_uring_interrupt_receive,uring_interrupt_receive,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_signal,pthread_cond_signal,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,p_gs_osal_interrupt_is_initialized_dummy,AMSTB_SrcFile.c/AMSTB_uring_interrupt_receive@AM_init_ope,@p_arg,g_osal_pdev_entry.control_table[0],AMSTB_SrcFile.c/AMSTB_posix_devctl@AM_count,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_uring_interrupt_receive@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_cond_signal@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[0],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[1],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[2],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[3],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[4],AMSTB_SrcFile.c/AMSTB_uring_interrupt_receive@AMIN_data.type,AMSTB_SrcFile.c/g_interrupt_count,osal_internal_receive_thread@@,;
+,1,gs_osal_interrupt_is_initialized,1,g_osal_pdev_entry,g_st_osal_interrupt_thread_control,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,g_interrupt_count,0,0,g_interrupt_count,0,255,1,0,;Normal operation 
+,1,gs_osal_interrupt_is_initialized,1,0,g_st_osal_interrupt_thread_control,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,g_interrupt_count,0,0,g_interrupt_count,0,255,1,0,;p_arg is NULL.
+,1,gs_osal_interrupt_is_initialized,1,g_osal_pdev_entry,g_st_osal_interrupt_thread_control,0,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,0,0,0,g_interrupt_count,0,0,g_interrupt_count,0,255,1,0,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,gs_osal_interrupt_is_initialized,1,g_osal_pdev_entry,g_st_osal_interrupt_thread_control,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,-1,g_interrupt_count,0,0,g_interrupt_count,0,255,1,0,;pthread_mute_unlock() return non-zero
+,0,gs_osal_interrupt_is_initialized,1,g_osal_pdev_entry,g_st_osal_interrupt_thread_control,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,g_interrupt_count,0,0,g_interrupt_count,0,255,1,0,;gs_osal_interrupt_is_initialized is false

@@ -1,0 +1,43 @@
+<!-- Unless otherwise specified, values/attributes are free-form strings -->
+    <!-- type is currently either BSP or SourceOnly -->
+<sourcePackage type="BSP" id="bsp-renesas-r-car-gen3">
+    <title>Renesas R-CarGen3e BSP for QNX SDP 7.1</title>
+    <release></release>
+    <maturity>Development Build</maturity>
+    <license>QDL and Apache II</license>
+    <requires>package: com.qnx.${baselineId}.target.connectivity.pci.hw.pci_hw_rcar_salvator_x</requires>
+    <requires>package: com.qnx.${baselineId}.target.connectivity.pci.hw.pci_hw_rcar_v3h</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.device_input_screen</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.fonts.engine</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.img_codecs</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.board.rcar3.common</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.board.rcarh3</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.board.rcarm3</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.board.rcarm3n</requires>
+    <requires>package: com.qnx.${baselineId}.target.screen.board.rcarv3h</requires>
+    <requires>package: com.qnx.${baselineId}.target.os_services.smmu.cfg.rcar3</requires>
+    <startup>startup-rcar_h3</startup>
+    <startup>startup-rcar_m3</startup>
+    <startup>startup-rcar_e3</startup>
+    <startup>startup-rcar_d3</startup>
+    <startup>startup-rcar_v3h</startup>
+    <startup>startup-rcar_v3m</startup>
+    <startup>startup-rcar_v3u</startup>
+    <description> This package contains the source and build files for targeting QNX/Neutrino on the Renesas R-Car Gen3.</description>
+    <vendor>QNX Software Systems</vendor>
+    <qnxTargetVersion>SDP 7.1</qnxTargetVersion>
+    <qnxTargetCPU variant="aarch64">ARMv8</qnxTargetCPU>
+    <bsp type="import">
+        <import id="r-car-h3">images/rcar_h3.build</import>
+        <import id="r-car-h3sk">images/rcar_h3sk.build</import>
+        <import id="r-car-m3">images/rcar_m3.build</import>
+        <import id="r-car-m3sk">images/rcar_m3sk.build</import>        
+        <import id="r-car-m3n">images/rcar_m3n.build</import>
+        <import id="r-car-e3">images/rcar_e3.build</import>
+        <import id="r-car-d3">images/rcar_d3.build</import>
+        <import id="r-car-v3h">images/rcar_v3h.build</import>
+        <import id="r-car-v3m">images/rcar_v3m.build</import>
+        <import id="r-car-v3msk">images/rcar_v3msk.build</import>
+        <import id="r-car-v3u">images/rcar_v3u.build</import>
+    </bsp>    
+</sourcePackage>

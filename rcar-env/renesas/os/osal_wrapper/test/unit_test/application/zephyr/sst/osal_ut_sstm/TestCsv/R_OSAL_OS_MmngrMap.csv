@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_MmngrMap,09_101,6,1,,,,CPP,,,,0
+#InitWheneverCall,$g_osal_memory_region_info_list.p_info,g_osal_memory_region_info_list.p_info[0].offset,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,$g_osal_memory_region_info_list.p_info,g_osal_memory_region_info_list.p_info[0].offset,$@mngr_control,$@p_usr_config,@p_usr_config[0].memory_limit,@region_idx,R_OSAL_OS_MmngrMap@@,;,,,,
+,1,4096,1,1,4096,0,OSAL_RETURN_OK,;Normal operation,,,,
+,1,0,1,1,4096,0,OSAL_RETURN_MEM,;Address of the target region is NULL,,,,

@@ -1,0 +1,9 @@
+modi,r_osal_dcfg_io_search,07_027,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+#COMMENT,@p_key,@p_search_info,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],r_osal_dcfg_io_search@@,;,,,,,,
+,str,g_st_osal_device_control,0,0,0,;Normal operation(same id),,,,,,
+,str,g_st_osal_device_control,0,1,1,;strncmp() return more than zero.,,,,,,
+,str,g_st_osal_device_control,0,-1,-1,;strncmp() return less than zero.,,,,,,

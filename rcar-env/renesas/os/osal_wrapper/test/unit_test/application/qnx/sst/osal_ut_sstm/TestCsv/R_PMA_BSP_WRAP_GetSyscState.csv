@@ -1,0 +1,10 @@
+modi,R_PMA_BSP_WRAP_GetSyscState,05_008,10,3,,,,CPP,,,,0,,
+#InitWheneverCall,r_pma_bsp_wrapper.c/sysc_idmax,r_pma_bsp_wrapper.c/syschwfuncs.power_is_off,$g_pma_bsp_wrap_sysc_id_tbl,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_sysc_id_tbl[0],r_pma_bsp_wrapper.c/g_pma_bsp_wrap_sysc_id_tbl[22],,,,,,,,,
+0,0,0,0,0,0,,,,,,,,,
+%,AMSTB_dummy_sysc_power_is_off,dummy_sysc_power_is_off,,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode,R_PMA_BSP_WRAP_Exchange_ErrCode,,,,,,,,,,,,
+#COMMENT,@modId,@modState,*@modState,r_pma_bsp_wrapper.c/sysc_idmax,r_pma_bsp_wrapper.c/syschwfuncs.power_is_off,$g_pma_bsp_wrap_sysc_id_tbl,r_pma_bsp_wrapper.c/g_pma_bsp_wrap_sysc_id_tbl[0],r_pma_bsp_wrapper.c/g_pma_bsp_wrap_sysc_id_tbl[22],AMSTB_SrcFile.c/AMSTB_dummy_sysc_power_is_off@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode@AMIN_return,@modState[0],AMSTB_SrcFile.c/AMSTB_dummy_sysc_power_is_off@AMOUT_pdr_number,R_PMA_BSP_WRAP_GetSyscState@@,;
+,R_PMA_SYSC_DOMAIN_ID_V4H_NUM,dummy_modState,-1,R_PMA_SYSC_DOMAIN_ID_V4H_NUM,dummy_sysc_power_is_off,2,0,22,,,-1,,R_PMA_INVALID_ARGUMENT,;modId is R_PMA_CPG_DOMAIN_ID_V4H_NUM
+,R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0,dummy_modState,-1,R_PMA_SYSC_DOMAIN_ID_V4H_NUM,dummy_sysc_power_is_off,2,0,22,SYSC_RET_ERROR,R_PMA_NG,-1,0,R_PMA_NG,;power_is_off() returns SYSC_RET_ERROR
+,R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0,dummy_modState,-1,R_PMA_SYSC_DOMAIN_ID_V4H_NUM,dummy_sysc_power_is_off,2,0,22,0,,R_PMA_SYSC_POWER_ON,0,R_PMA_OK,;power_is_off() returns 0(ON)
+,R_PMA_SYSC_DOMAIN_ID_V4H_A33DGA,dummy_modState,-1,R_PMA_SYSC_DOMAIN_ID_V4H_NUM,dummy_sysc_power_is_off,2,0,22,1,,R_PMA_SYSC_POWER_OFF,22,R_PMA_OK,;power_is_off() returns 1(OFF)

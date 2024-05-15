@@ -1,0 +1,10 @@
+modi,R_OSAL_DCFG_IoGetDeviceList,06_007,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetDeviceList,R_OSAL_OS_IoGetDeviceList,,,,,,,,,,
+#COMMENT,@p_device_type_name,@p_buffer,@buffer_size,@p_num_of_byte,AMSTB_SrcFile.c/AMSTB_strlen@AM_count,AMSTB_SrcFile.c/AMSTB_strlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetDeviceList@AMIN_return,R_OSAL_DCFG_IoGetDeviceList@@,;,,,
+,str[0],str[127],16,g_size_t,0,28,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,
+,str[0],str[127],16,g_size_t,0,29,OSAL_RETURN_OK,OSAL_RETURN_PAR,;Length of p_device_type_name longer than the OSAL_DEVICE_TYPE_NAME_MAX_LENGTH,,,
+,str[0],str[127],16,g_size_t,0,28,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_IoGetDeviceList returns OSAL_RETURN_FAIL,,,

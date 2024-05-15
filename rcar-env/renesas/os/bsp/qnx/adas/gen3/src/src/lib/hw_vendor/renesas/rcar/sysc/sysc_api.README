@@ -1,0 +1,154 @@
+QNX generic SYSC interface libraries
+------------------------------------------------
+
+These libraries allow various generic modules to control Power-OFF or Power-ON for Power Domains.
+
+These libraries provide the following interface APIs to interface with Resource Manager driver and SYSC client.
+
+
+Usage Example:
+    static sysc_mgr_funcs_t syschwfuncs;
+    sysc_mgr_getfuncs(&clkhwfuncs, sizeof(sysc_mgr_funcs_t);
+    syschwfuncs.init(...);
+    syschwfuncs.deinit(...);
+    syschwfuncs.power_is_off(...);
+    syschwfuncs.power_off(...);
+    syschwfuncs.power_on(...);
+    syschwfuncs.read_pdmode(...);
+
+Note:
+
+    The meaning of some following common parameters in the functions are described as below:
+
+      - 'pdr_number' parameter is power domain id defined in rcar_sysc.h:
+
+        + For H3/M3/M3N/E3/D3/V3M/V3H, pdr_number is one the following macros:
+        (Not all is supported, please check SYSC HW manual to know which one is supported for specific SoC)
+            SYSC_PDR_GEN3_CA57_SCU
+            SYSC_PDR_GEN3_CA53_SCU
+            SYSC_PDR_GEN3_CR7
+            SYSC_PDR_GEN3_A3IR
+            SYSC_PDR_GEN3_A2IR0
+            SYSC_PDR_GEN3_A2IR1
+            SYSC_PDR_GEN3_A2IR2
+            SYSC_PDR_GEN3_A2IR3
+            SYSC_PDR_GEN3_A2IR4
+            SYSC_PDR_GEN3_A2IR5
+            SYSC_PDR_GEN3_A2SC0
+            SYSC_PDR_GEN3_A2SC1
+            SYSC_PDR_GEN3_A2SC2
+            SYSC_PDR_GEN3_A2SC3
+            SYSC_PDR_GEN3_A2SC4
+            SYSC_PDR_GEN3_A2DP0
+            SYSC_PDR_GEN3_A2DP1
+            SYSC_PDR_GEN3_A2DP
+            SYSC_PDR_GEN3_A2CN
+            SYSC_PDR_GEN3_A3VIP0
+            SYSC_PDR_GEN3_A3VIP1
+            SYSC_PDR_GEN3_A3VIP2
+            SYSC_PDR_GEN3_A3VP
+            SYSC_PDR_GEN3_A3VC
+            SYSC_PDR_GEN3_A2VC0
+            SYSC_PDR_GEN3_A2VC1
+            SYSC_PDR_GEN3_3DGA
+            SYSC_PDR_GEN3_3DGB
+            SYSC_PDR_GEN3_3DGC
+            SYSC_PDR_GEN3_3DGD
+            SYSC_PDR_GEN3_3DGE
+
+        + For V3U/S4, pdr_number is is one the following macros:
+            SYSC_PDR_V3U_A1E0D0C0
+            SYSC_PDR_V3U_A1E0D0C1
+            SYSC_PDR_V3U_A1E0D1C0
+            SYSC_PDR_V3U_A1E0D1C1
+            SYSC_PDR_V3U_A1E1D0C0
+            SYSC_PDR_V3U_A1E1D0C1
+            SYSC_PDR_V3U_A1E1D1C0
+            SYSC_PDR_V3U_A1E1D1C1
+            SYSC_PDR_V3U_A2E0D0
+            SYSC_PDR_V3U_A2E0D1
+            SYSC_PDR_V3U_A2E1D0
+            SYSC_PDR_V3U_A2E1D1
+            SYSC_PDR_V3U_A3E0
+            SYSC_PDR_V3U_A3E1
+            SYSC_PDR_V3U_3DGA
+            SYSC_PDR_V3U_3DGB
+            SYSC_PDR_V3U_A1CNN2
+            SYSC_PDR_V3U_A1DSP0
+            SYSC_PDR_V3U_A2IMP0
+            SYSC_PDR_V3U_A2DP0
+            SYSC_PDR_V3U_A2CV0
+            SYSC_PDR_V3U_A2CV1
+            SYSC_PDR_V3U_A2CV4
+            SYSC_PDR_V3U_A2CV6
+            SYSC_PDR_V3U_A2CN2
+            SYSC_PDR_V3U_A1CNN0
+            SYSC_PDR_V3U_A2CN0
+            SYSC_PDR_V3U_A3IR
+            SYSC_PDR_V3U_A1CNN1
+            SYSC_PDR_V3U_A1DSP1
+            SYSC_PDR_V3U_A2IMP2
+            SYSC_PDR_V3U_A2DP1
+            SYSC_PDR_V3U_A2CV2
+            SYSC_PDR_V3U_A2CV3
+            SYSC_PDR_V3U_A2CV5
+            SYSC_PDR_V3U_A2CV7
+            SYSC_PDR_V3U_A2CN1
+            SYSC_PDR_V3U_A3VIP0
+            SYSC_PDR_V3U_A3VIP1
+            SYSC_PDR_V3U_A3VIP2
+            SYSC_PDR_V3U_A3VIP3
+            SYSC_PDR_V3U_A3ISP01
+            SYSC_PDR_V3U_A3ISP23
+
+    1. int (*init) (void);
+        Open an instant of SYSC resource manager (rcar_sysc_mgr-*).
+        Require rcar_sysc_mgr-* is running:
+         # rcar_sysc_mgr-* &
+
+        Return EOK if success, return EIO if error.
+
+    2. void (*deinit) (void);
+
+    3. int (*power_is_off) (int pdr_number);
+        Check Power status:
+
+        int     pdr_number;
+
+            Power Domain Register Number.
+            There are 64 Power Domains from 0 to 63. Refer to rcar_sysc_*.h
+
+        If power is OFF, return 1; 
+        If power is ON, return 0; 
+        If error, return negative number
+
+    4. int (*power_off) (int pdr_number);
+        Execute Power-OFF for a Power Domain. If Powered OFF already,
+        this function return EOK without submit Power-OFF request.
+
+        int     pdr_number;
+
+            Power Domain Register Number.
+            There are 64 Power Domains from 0 to 63. Refer to rcar_sysc_*.h
+
+        If success, return 0; 
+        If error, return -1;
+
+    5. int (*power_on) (int pdr_number);
+        Execute Power-ON for a Power Domain. If Powered ON already,
+        this function return EOK without submit Power-ON request.
+
+        int     pdr_number;
+
+            Power Domain Register Number.
+            There are 64 Power Domains from 0 to 63. Refer to rcar_sysc_*.h
+
+        If success, return 0; 
+        If error, return -1;
+
+    6. int (*read_pdmode) (void);
+        Read PDMODE value, this function is valid in V3H 2.x only.
+
+
+        If success, return positive number; 
+        If error, return negative number;

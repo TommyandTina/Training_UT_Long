@@ -1,0 +1,51 @@
+
+CMM Test Utility for R-Car Gen3 based platforms
+
+Description
+===========
+  cmm_test is a test utility that allow user verify supported functions of CMM driver. The utility 
+  support various CMM functions, such as:
+    + Change display color tone through a set of built-in 1D/3D color lookup table (LUT)
+    + Configure method for color histogram calculation
+    + Read color histogram data and display bar chart
+
+Options
+=======
+  --display -d
+    Screen ID of display used for the test.
+
+  --image -i
+    File system path of the image being used for the test. Accepted image format are JPEG, PNG.
+
+  --command -c
+    Select supported testing functions, default is set-lut command. Following values are accepted:
+       set-lut
+       set-clu
+       read-hgo
+
+  --hgo-ctrl -p
+    Select whether color histogram is calculated before LUT or CLU. Default is before CLU. This option 
+    is used combined with read-hgo command. Following values are accepted:
+       before-clu
+       before-lut
+
+  --hgo-mode -m
+    Configure method to calculate color histogram. User should set a 8-bits value that is correspond to
+    bit 0-7 of CM2_HGO_MODE register. This option is used combined with read-hgo command. Default mode
+    is 0x00.
+
+  --hgo-rect -r
+    Select image ROI that need to be calculated color histogram. This option is used combined with 
+    read-hgo command.
+
+Example
+=======
+  1) Change display color tone using builtin 1D LUT:
+     $ cmm_test --display=1 --command=set-lut --image=/tmp/sample.jpg
+
+  2) Change display color tone using builtin 3D LUT (CLU):
+     $ cmm_test --display=1 --command=set-clu --image=/tmp/sample.jpg
+
+  3) Calculate and show color histogram:
+     $ cmm_test --display=1 --command=read-hgo --hgo-rect=0,0,1280,720 --image=/tmp/sample.jpg
+

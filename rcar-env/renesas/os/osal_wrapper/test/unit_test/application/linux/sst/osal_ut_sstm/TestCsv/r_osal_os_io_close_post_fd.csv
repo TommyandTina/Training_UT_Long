@@ -1,0 +1,10 @@
+modi,r_osal_os_io_close_post_fd,15_145,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_flock,flock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Close,R_OSAL_OS_Close,,,,,,,,,,
+#COMMENT,@handle,AMSTB_SrcFile.c/AMSTB_flock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Close@AMIN_return[0],r_osal_os_io_close_post_fd@@,;,,,,,,
+,g_st_osal_device_control_t[0],0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,
+,g_st_osal_device_control_t[0],-1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;flock returns -1,,,,,,
+,g_st_osal_device_control_t[0],0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_Close returns OSAL_RETURN_FAIL,,,,,,

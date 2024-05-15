@@ -1,0 +1,6 @@
+modi,R_OSAL_IoWrite16,07_010,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_IoBlockWrite16,R_OSAL_IoBlockWrite16,,,,,,,,,,
+#COMMENT,@handle,@offset,@data,AMSTB_SrcFile.c/AMSTB_R_OSAL_IoBlockWrite16@AMIN_return,R_OSAL_IoWrite16@@,;,,,,,,
+,g_st_osal_common_device_control,1,10,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,

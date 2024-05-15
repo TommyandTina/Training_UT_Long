@@ -1,0 +1,24 @@
+modi,R_PMA_MNG_Init,02_001,16,7,,,,CPP,,,,0,,,,,,,,,,,,
+#InitWheneverCall,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_queue,r_pma_manager.c/g_pma_mng_thread,r_pma_manager.c/g_pma_mng_timeout,g_osal_device_soc_type.device_soc_type,,,,,,,,,,,,,,,,,,
+0,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_CheckConfigParam,R_PMA_MNG_CheckConfigParam,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_SetupThreadSync,R_PMA_MNG_SetupThreadSync,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_SetupQueue,R_PMA_MNG_SetupQueue,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_MNG_SetupTask,R_PMA_MNG_SetupTask,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Init,R_PMA_BSP_WRAP_Init,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_Init,R_PMA_HW_DEP_Init,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_Init,R_PMA_SM_Init,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,$@pConfig,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_queue,r_pma_manager.c/g_pma_mng_thread,r_pma_manager.c/g_pma_mng_timeout,g_osal_device_soc_type.device_soc_type,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_CheckConfigParam@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_SetupThreadSync@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_SetupQueue@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_SetupTask@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Init@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_Init@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_Init@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_CheckConfigParam@AMOUT_pParam.timeout_ticks,AMSTB_SrcFile.c/AMSTB_R_PMA_MNG_CheckConfigParam@AMOUT_pParam.task_priority,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_manager.c/g_pma_mng_timeout,AMSTB_R_PMA_MNG_SetupTask@AMOUT_taskPriority,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Init@AMOUT_pma_soc_type,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_Init@AMOUT_pma_soc_type,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_Init@AMOUT_maxHwaId,R_PMA_MNG_Init@@,;
+,1,0,1,1,1,0,,R_PMA_INVALID_ARGUMENT,,,,,,,0,0,0,0,,,,,R_PMA_NG,;R_PMA_MNG_CheckConfigParam() returns R_PMA_INVALID_ARGUMENT
+,1,0,1,1,1,0,,R_PMA_OK,R_PMA_NG,,,,,,10,0,0,10,,,,,R_PMA_NG,;R_PMA_MNG_SetupThreadSync() returns R_PMA_NG
+,1,0,1,1,1,0,,R_PMA_OK,R_PMA_OK,R_PMA_NG,,,,,1,0,0,1,,,,,R_PMA_NG,;R_PMA_MNG_SetupQueue() returns R_PMA_NG
+,1,0,1,1,1,0,,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_NG,,,,1,10,0,1,10,,,,R_PMA_NG,;R_PMA_MNG_SetupTask() returns R_PMA_NG
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_INVALID,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,,,,1,1,0,1,1,,,,R_PMA_NG,;g_osal_device_soc_type.device_soc_type is OSAL_DEVICE_SOC_TYPE_INVALID
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_V3M,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_NG,,,1,1,R_PMA_HWA_ID_V3M_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_V3M,,,R_PMA_NG,;R_PMA_BSP_WRAP_Init() returns R_PMA_NG
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_V3H1,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_NG,,1,1,R_PMA_HWA_ID_V3H1_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_V3H1,R_PMA_DEVICE_SOC_TYPE_V3H1,,R_PMA_NG,;R_PMA_HW_DEP_Init() returns R_PMA_NG
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_V3H2,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_BSP_EINVAL,,1,1,R_PMA_HWA_ID_V3H2_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_V3H2,R_PMA_DEVICE_SOC_TYPE_V3H2,,R_PMA_BSP_EINVAL,;R_PMA_HW_DEP_Init() returns R_PMA_BSP_EINVAL
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_V4H,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_BSP_ETIMEDOUT,,1,1,R_PMA_HWA_ID_V4H_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_V4H,R_PMA_DEVICE_SOC_TYPE_V4H,,R_PMA_BSP_ETIMEDOUT,;R_PMA_HW_DEP_Init() returns R_PMA_BSP_ETIMEDOUT
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_S4,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_BSP_EIO,,1,1,R_PMA_HWA_ID_S4_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_S4,R_PMA_DEVICE_SOC_TYPE_S4,,R_PMA_BSP_EIO,;R_PMA_HW_DEP_Init() returns R_PMA_BSP_EIO
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_V4H2,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_NG,1,1,R_PMA_HWA_ID_V4H_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_V4H,R_PMA_DEVICE_SOC_TYPE_V4H,R_PMA_HWA_ID_V4H_NUM,R_PMA_NG,;R_PMA_SM_Init() returns R_PMA_NG
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_V3H2,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,1,1,R_PMA_HWA_ID_V3H2_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_V3H2,R_PMA_DEVICE_SOC_TYPE_V3H2,R_PMA_HWA_ID_V3H2_NUM,R_PMA_OK,;Normal operation
+,1,0,1,1,1,0,OSAL_DEVICE_SOC_TYPE_V4M,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_OK,1,1,R_PMA_HWA_ID_V4M_NUM,1,1,R_PMA_DEVICE_SOC_TYPE_V4M,R_PMA_DEVICE_SOC_TYPE_V4M,R_PMA_HWA_ID_V4M_NUM,R_PMA_OK,;Normal operation

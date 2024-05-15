@@ -1,0 +1,8 @@
+modi,r_osal_os_mq_mutex_until_timestamp,19_117,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTimedLock,R_OSAL_OS_MutexTimedLock,,,,,,,,,,
+#COMMENT,@mutex,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTimedLock@AMIN_return,r_osal_os_mq_mutex_until_timestamp@@,;,,,,,,,
+,g_st_osal_os_mutex_t[0],g_st_osal_time_t,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,g_st_osal_os_mutex_t[0],g_st_osal_time_t,OSAL_RETURN_HANDLE,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexTimedLock returns HANDLE,,,,,,,
+,g_st_osal_os_mutex_t[0],g_st_osal_time_t,OSAL_RETURN_TIME,OSAL_RETURN_TIME,;R_OSAL_OS_MutexTimedLock returns TIME,,,,,,,

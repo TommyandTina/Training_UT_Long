@@ -1,0 +1,15 @@
+--- a/build/parts/drv/CMakeLists.txt	2022-03-28 11:43:24.000000000 +0000
++++ b/build/parts/drv/CMakeLists.txt	2022-05-25 06:24:51.192760108 +0000
+@@ -114,6 +114,12 @@
+   endif()
+ endif()
+ 
++if(MCOS_TARGET_BOARD STREQUAL "whitehawk")
++  if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/renesas_isr)
++      add_subdirectory(renesas_isr)
++  endif()
++endif()
++
+ if(${DO_LINK})
+   target_link_libraries(${OUTPUT_TARGET} portable_drv)
+   target_link_libraries(${OUTPUT_TARGET} enet)

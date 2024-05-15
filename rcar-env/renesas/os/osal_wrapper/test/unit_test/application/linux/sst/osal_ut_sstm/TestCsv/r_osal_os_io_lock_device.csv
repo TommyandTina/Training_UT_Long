@@ -1,0 +1,13 @@
+modi,r_osal_os_io_lock_device,15_135,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,r_osal_os_io.c/gsp_device_list,r_osal_os_io.c/gsp_device_list[0].fd,r_osal_os_io.c/gsp_device_list[1].fd,r_osal_os_io.c/gsp_device_list[2].fd,r_osal_os_io.c/gsp_device_list[0].locked,r_osal_os_io.c/gsp_device_list[1].locked,,,,,,,,
+0,0,0,0,0,0,0,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,
+%,AMSTB_flock,flock,,,,,,,,,,,,
+#COMMENT,r_osal_os_io.c/gsp_device_list,r_osal_os_io.c/gsp_device_list[0].fd,r_osal_os_io.c/gsp_device_list[1].fd,r_osal_os_io.c/gsp_device_list[2].fd,r_osal_os_io.c/gsp_device_list[0].locked,r_osal_os_io.c/gsp_device_list[1].locked,@handle,@p_id,AMSTB_SrcFile.c/AMSTB_strcmp@AM_count,AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_flock@AMIN_return,r_osal_os_io_lock_device@@,;
+,g_st_osal_device_list_t,0,1,-1,0,0,g_st_osal_device_control_t[0],0,0,0,1,0,OSAL_RETURN_OK,;Normal operation (gsp_device_list[0] is match)
+,g_st_osal_device_list_t,0,1,-1,0,0,g_st_osal_device_control_t[0],0,0,1,0,0,OSAL_RETURN_OK,;Normal operation (gsp_device_list[1] is match)
+,g_st_osal_device_list_t,0,1,-1,0,0,g_st_osal_device_control_t[0],0,0,1,1,0,OSAL_RETURN_ID,;gsp_device_list[1] is not match
+,g_st_osal_device_list_t,0,1,-1,0,1,g_st_osal_device_control_t[0],0,0,1,0,0,OSAL_RETURN_BUSY,;gsp_device_list[1] is already locked
+,g_st_osal_device_list_t,0,1,-1,0,0,g_st_osal_device_control_t[0],0,0,0,1,-1,OSAL_RETURN_BUSY,;flock returns -1

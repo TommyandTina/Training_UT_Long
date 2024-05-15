@@ -1,0 +1,10 @@
+modi,r_osal_os_io_utlb_parser_sub2,15_160,8,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+#COMMENT,@pp_list,@pp_list[0],@pp_list[0][0],@p_index,@p_index[0],@num,AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],r_osal_os_io_utlb_parser_sub2@@,;,,
+,gp_int32_t,array_int32,0,g_size_t,1,1,0,array_int32,OSAL_RETURN_OK,;Normal operation,,
+,gp_int32_t,array_int32,0,g_size_t,0,1,0,array_int32,OSAL_RETURN_UNKNOWN_NAME,;*p_index is 0,,
+,gp_int32_t,array_int32,0,g_size_t,1,0,0,array_int32,OSAL_RETURN_UNKNOWN_NAME,;num less than *pp_list[0],,
+,gp_int32_t,array_int32,0,g_size_t,1,1,0,0,OSAL_RETURN_FAIL,;realloc returns NULL,,

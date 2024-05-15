@@ -1,0 +1,20 @@
+modi,osal_internal_mem_open_map,09_025,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,
+%,AMSTB_open,open,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetMaxConfigOfMemory,R_OSAL_DCFG_GetMaxConfigOfMemory,,,,,,,,,,,,,,,
+%,AMSTB_mmap,mmap,,,,,,,,,,,,,,,
+%,AMSTB_R_MEML_Initialize,R_MEML_Initialize,,,,,,,,,,,,,,,
+%,AMSTB_close,close,,,,,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,$@p_mngr_control,$@p_usr_config,@p_usr_config[0].mode,@p_usr_config[0].memory_limit,@region_idx,AMSTB_SrcFile.c/AMSTB_open@AMIN_return,AMSTB_SrcFile.c/AMSTB_posix_devctl@AM_count,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetMaxConfigOfMemory@AMIN_return,AMSTB_SrcFile.c/AMSTB_mmap@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_MEML_Initialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_close@AMIN_return,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[0],g_pdevmr.base,osal_internal_mem_open_map@@,;
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,4096,0,0,0,0,0,0,0,0,g_pdevmr,0x440000000,OSAL_RETURN_OK,;Normal operation
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,0xfffffffffffffffe,0,0,0,0,0,0,0,0,g_pdevmr,0x440000000,OSAL_RETURN_OK,;memory_limit is equals 0xffffffffffffffff-1
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,4096,0,-1,0,0,0,0,0,0,g_pdevmr,0x440000000,OSAL_RETURN_DEV,;open() return -1
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,4096,0,0,0,0,0,-1,0,0,g_pdevmr,0x440000000,OSAL_RETURN_MEM,;mmap() return MAP_FAILED
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,4096,0,0,0,0,0,0,MEML_RETURN_FAIL,0,g_pdevmr,0x440000000,OSAL_RETURN_FAIL,;R_MEML_Initialize() return MEML_RETURN_FAIL
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,4096,0,0,0,0,0,0,0,-1,g_pdevmr,0x440000000,OSAL_RETURN_FAIL,;close() return non-zero
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,4096,0,0,0,0,0,0,0,0,g_pdevmr,0x440000000,OSAL_RETURN_OK,;Normal operation (mode is STACK_PROT)
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_FREE_LIST,4096,0,0,0,0,0,0,0,0,g_pdevmr,0x440000000,OSAL_RETURN_OK,;Normal operation (mode is FREE_LIST)
+,1,1,1,OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT,4096,0,0,0,0,0,0,0,0,g_pdevmr,0x440000000,OSAL_RETURN_OK,;Normal operation (mode is FREE_LIST_PROT)

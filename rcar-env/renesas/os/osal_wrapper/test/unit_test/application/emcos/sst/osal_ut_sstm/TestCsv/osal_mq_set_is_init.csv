@@ -1,0 +1,5 @@
+modi,osal_mq_set_is_init,04_017,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,g_dummy,;,,,,,,,,,
+,1,-,;Normal operation,,,,,,,,,

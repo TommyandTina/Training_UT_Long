@@ -1,0 +1,9 @@
+modi,R_OSAL_Internal_GetHighPrecisTimeStamp,01_026,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_GetTimestamp,R_OSAL_Internal_GetTimestamp,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimeRoundUp,R_OSAL_Internal_TimeRoundUp,,,,,,,,,,
+#COMMENT,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_GetTimestamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimeRoundUp@AMIN_return,R_OSAL_Internal_GetHighPrecisTimeStamp@@,;,,,,,,,
+,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation Is Normal Context,,,,,,,
+,g_st_osal_time,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_Internal_GetTimestamp() return OSAL_RETURN_FAIL.,,,,,,,
+,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimeRoundUp() return OSAL_RETURN_FAIL.,,,,,,,

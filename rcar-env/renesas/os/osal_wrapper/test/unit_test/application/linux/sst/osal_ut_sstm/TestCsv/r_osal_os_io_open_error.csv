@@ -1,0 +1,20 @@
+modi,r_osal_os_io_open_error,15_143,23,1,,,,CPP,,,,0,,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_munmap,munmap,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_flock,flock,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].irq_num,@handle[0].int_handle,@handle[0].int_handle[0].irq_cond,@handle[0].int_handle[1].irq_cond,@handle[0].int_handle[0].irq_mtx,@handle[0].int_handle[1].irq_mtx,@handle[0].int_handle[0].irq_thread_mtx,@handle[0].int_handle[1].irq_thread_mtx,@handle[0].base_addr,@handle[0].dev_fd,@handle[0].dev_index,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_munmap@AMIN_return,AMSTB_SrcFile.c/AMSTB_flock@AMIN_return,g_dummy,;
+,g_st_osal_device_control_t[0],2,g_st_osal_interrupt_control_t,g_st_osal_os_cond_t[0],g_st_osal_os_cond_t[1],g_st_osal_os_mutex_t[0],g_st_osal_os_mutex_t[1],g_st_osal_os_mutex_t[2],g_st_osal_os_mutex_t[3],1,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,-,;Normal operation
+,0,2,g_st_osal_interrupt_control_t,g_st_osal_os_cond_t[0],g_st_osal_os_cond_t[1],g_st_osal_os_mutex_t[0],g_st_osal_os_mutex_t[1],g_st_osal_os_mutex_t[2],g_st_osal_os_mutex_t[3],1,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,-,;handle is NULL
+,g_st_osal_device_control_t[0],2,0,g_st_osal_os_cond_t[0],g_st_osal_os_cond_t[1],g_st_osal_os_mutex_t[0],g_st_osal_os_mutex_t[1],g_st_osal_os_mutex_t[2],g_st_osal_os_mutex_t[3],1,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,-,;int_handle is NULL
+,g_st_osal_device_control_t[0],2,g_st_osal_interrupt_control_t,g_st_osal_os_cond_t[0],g_st_osal_os_cond_t[1],g_st_osal_os_mutex_t[0],g_st_osal_os_mutex_t[1],g_st_osal_os_mutex_t[2],g_st_osal_os_mutex_t[3],0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,-,;base_addr is NULL
+,g_st_osal_device_control_t[0],2,g_st_osal_interrupt_control_t,g_st_osal_os_cond_t[0],g_st_osal_os_cond_t[1],g_st_osal_os_mutex_t[0],g_st_osal_os_mutex_t[1],g_st_osal_os_mutex_t[2],g_st_osal_os_mutex_t[3],1,-1,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,-,;dev_fd is -1

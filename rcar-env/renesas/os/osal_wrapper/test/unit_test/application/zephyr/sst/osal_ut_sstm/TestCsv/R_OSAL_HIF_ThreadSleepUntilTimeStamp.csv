@@ -1,0 +1,5 @@
+modi,R_OSAL_HIF_ThreadSleepUntilTimeStamp,02_102,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_time_stamp,R_OSAL_HIF_ThreadSleepUntilTimeStamp@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,

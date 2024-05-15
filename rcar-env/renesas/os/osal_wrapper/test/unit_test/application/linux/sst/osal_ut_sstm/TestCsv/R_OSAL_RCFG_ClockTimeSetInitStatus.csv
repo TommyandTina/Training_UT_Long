@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_ClockTimeSetInitStatus,04_002,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@status,g_dummy,;,,,,,,,,,
+,OSAL_MANAGER_STATE_INITIALIZED,-,;Normal operation ,,,,,,,,,

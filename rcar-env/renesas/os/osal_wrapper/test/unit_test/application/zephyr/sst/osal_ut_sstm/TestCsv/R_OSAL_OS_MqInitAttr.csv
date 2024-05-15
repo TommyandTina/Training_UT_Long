@@ -1,0 +1,5 @@
+modi,R_OSAL_OS_MqInitAttr,10_003,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_mq_attr,R_OSAL_OS_MqInitAttr@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation,,,,,,,,,

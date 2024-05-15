@@ -1,0 +1,44 @@
+	The SPI driver for RENESAS Rcar Gen3 and Gen4 boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference Rcar Gen3 and Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.28.2020 : Ver.0.1
+            - Create new version ported from QNX7.0 driver for V3U
+            11.20.2020 : Ver.0.2
+            - Updated SYNC active level from ACTIVE_LOW to ACTIVE_HIGH 
+              to fix the issue of some unexpected data capturing in 
+              SLAVE RECEIVE mode
+            10.28.2020 : Ver.0.3
+            - Support V3H
+            04.30.2021 : Ver.0.4
+            - Support Rcar Gen3
+            06.30.3021 : Ver.0.5
+            - Update msiof_setup() in configuration for each H3 reversion
+            - Fix the first byte of 0x00 in Slave side for the first receiving try after boot board
+            10.30.2021 : Ver.0.6
+            - Support for S4
+            03.30.2022 : Ver.0.7
+            - Support for V4H
+            - Removed callee nanospin_calibrate in "msiof_init" function
+            - Updated priority for dma transfer
+            - Remove limit 64KB of data at one time in "msiof_xfer" function
+            - Remove "rsmgr_run" function in spi_slave_init.c
+            - Change name "spi_slave_attach_intr" to "spi_slave_intr" in "intr.c" file
+            04.28.2022 : Ver.0.8
+            - Optimize/enhance code
+            05.30.2022 : Ver.0.9
+            - Update in DMA init function due to update of DMA lib
+            07.20.2022 : Ver.1.0
+            - Fix bytes order issue when transferring with bus width bigger than 8 bits in slave driver
+            - Fix lost bytes in master read
+            09.30.2022 : Ver.1.1
+            - Add in memory type for DMA buffer allocation (e.g. specify 32-bit or 40-bit memory for DMA buffer)
+            12.19.2022 : Ver.1.2
+            - Use 'USE_SMMU' to guard smmu functions
+            02.22.2023 : Ver.1.3
+            - Update "spi_slave_intr" function to fix lost bytes in slave read with bitlen = 8 and master clock > 2Mhz

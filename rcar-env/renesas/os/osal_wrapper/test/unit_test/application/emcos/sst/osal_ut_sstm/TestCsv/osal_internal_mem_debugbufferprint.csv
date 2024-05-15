@@ -1,0 +1,10 @@
+modi,osal_internal_mem_debugbufferprint,09_046,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,
+%,AMSTB_fprintf,fprintf,,,,,,,,,,
+#COMMENT,@p_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,@p_output,AMSTB_SrcFile.c/AMSTB_fprintf@AM_count,AMSTB_SrcFile.c/AMSTB_fprintf@AMIN_return[0],osal_internal_mem_debugbufferprint@@,;,,,,,
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_FILE,0,0,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,g_osal_mem_buf_ptr_self,g_FILE,0,0,OSAL_RETURN_HANDLE,;p_ptr_self is NULL,,,,,
+,g_st_osal_memory_buffer_obj,0,g_FILE,0,0,OSAL_RETURN_HANDLE,;buffer_obj->p_ptr_self is NULL,,,,,
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_FILE,0,-1,OSAL_RETURN_IO,;fprintf() return -1,,,,,

@@ -1,0 +1,12 @@
+modi,r_osal_os_interrupt_execute_userfunction,14_112,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_setcancelstate,pthread_setcancelstate,,,,,,,,,,
+%,AMSTB_pthread_setcancelstate,pthread_setcancelstate,,,,,,,,,,
+%,AMSTB_pthread_setcancelstate,pthread_setcancelstate,,,,,,,,,,
+#COMMENT,@p_handle,@p_handle[0].irq_func,@p_handle[0].irq_enable,AMSTB_SrcFile.c/AMSTB_pthread_setcancelstate@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_setcancelstate@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_setcancelstate@AMIN_return[1],r_osal_os_interrupt_execute_userfunction@@,;,,,,
+,g_st_osal_interrupt_control_t[0],AMSTB_p_osal_isr_func_t,1,0,0,0,OSAL_RETURN_OK,;Normal operation,,,,
+,g_st_osal_interrupt_control_t[0],0,1,0,0,0,OSAL_RETURN_OK,;irq_func is NULL,,,,
+,g_st_osal_interrupt_control_t[0],AMSTB_p_osal_isr_func_t,0,0,0,0,OSAL_RETURN_OK,;irq_enable is false,,,,
+,g_st_osal_interrupt_control_t[0],AMSTB_p_osal_isr_func_t,1,0,-1,0,OSAL_RETURN_FAIL,;pthread_setcancelstate[0] returns -1,,,,
+,g_st_osal_interrupt_control_t[0],AMSTB_p_osal_isr_func_t,1,0,0,-1,OSAL_RETURN_FAIL,;pthread_setcancelstate[1] returns -1,,,,

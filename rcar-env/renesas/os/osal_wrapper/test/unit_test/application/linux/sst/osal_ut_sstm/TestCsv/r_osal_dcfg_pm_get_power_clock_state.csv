@@ -1,0 +1,13 @@
+modi,r_osal_dcfg_pm_get_power_clock_state,07_016,9,3,,,,CPP,,,,0,
+#InitWheneverCall,,,,,,,,,,,,,
+0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_PmGetPowerState,R_OSAL_OS_PmGetPowerState,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_PmGetClockState,R_OSAL_OS_PmGetClockState,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_PmGetPowerState,R_OSAL_OS_PmGetPowerState,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_PmGetClockState,R_OSAL_OS_PmGetClockState,,,,,,,,,,,
+#COMMENT,@handle,@p_pwr_status,@p_pwr_status[0],@p_clk_status,@p_clk_status[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_PmGetPowerState@AM_status,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_PmGetClockState@AM_status,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_PmGetPowerState@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_PmGetClockState@AMIN_return,r_osal_dcfg_pm_get_power_clock_state@@,@p_pwr_status[0],@p_clk_status[0],;
+,g_st_osal_device_control_t[0],g_array_dummy[0],-1,g_array_dummy[1],-1,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,1,;Normal operation 
+,g_st_osal_device_control_t[0],g_array_dummy[0],-1,g_array_dummy[1],-1,0,1,OSAL_RETURN_UNSUPPORTED_OPERATION,OSAL_RETURN_OK,OSAL_RETURN_OK,1,1,;R_OSAL_OS_PmGetPowerState() return OSAL_RETURN_UNSUPPORTED_OPERATION
+,g_st_osal_device_control_t[0],g_array_dummy[0],-1,g_array_dummy[1],-1,0,1,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,,,;R_OSAL_OS_PmGetPowerState() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],g_array_dummy[0],-1,g_array_dummy[1],-1,0,1,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,OSAL_RETURN_OK,0,0,;R_OSAL_OS_PmGetClockState() return OSAL_RETURN_UNSUPPORTED_OPERATION
+,g_st_osal_device_control_t[0],g_array_dummy[0],-1,g_array_dummy[1],-1,0,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,,,;R_OSAL_OS_PmGetClockState() return OSAL_RETURN_FAIL

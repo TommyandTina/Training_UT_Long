@@ -1,0 +1,572 @@
+/***********************************************************************************************************************
+* Copyright [2020-2021] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+*
+* The contents of this file (the "contents") are proprietary and confidential to Renesas Electronics Corporation
+* and/or its licensors ("Renesas") and subject to statutory and contractual protections.
+*
+* Unless otherwise expressly agreed in writing between Renesas and you: 1) you may not use, copy, modify, distribute,
+* display, or perform the contents; 2) you may not use any name or mark of Renesas for advertising or publicity
+* purposes or in connection with your use of the contents; 3) RENESAS MAKES NO WARRANTY OR REPRESENTATIONS ABOUT THE
+* SUITABILITY OF THE CONTENTS FOR ANY PURPOSE; THE CONTENTS ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+* WARRANTY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+* NON-INFRINGEMENT; AND 4) RENESAS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, OR CONSEQUENTIAL DAMAGES,
+* INCLUDING DAMAGES RESULTING FROM LOSS OF USE, DATA, OR PROJECTS, WHETHER IN AN ACTION OF CONTRACT OR TORT, ARISING
+* OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE CONTENTS. Third-party contents included in this file may
+* be subject to different terms.
+***********************************************************************************************************************/
+/***********************************************************************************************************************
+* File Name :    r_osal_dev_cfg_v3h2.h
+* Version :      0.1.0
+* Product Name : OSAL
+* Device(s) :    R-Car V3H2
+* Description :  OSAL device configuration file for R-Car V3H2
+***********************************************************************************************************************/
+#ifndef OSAL_DEV_CFG_V3H2_H
+#define OSAL_DEV_CFG_V3H2_H
+
+/*******************************************************************************************************************//**
+ * includes
+***********************************************************************************************************************/
+#include "rcar-xos/osal/r_osal.h"
+#include "rcar-xos/osal_dev_cfg/freertos/r_osal_dev_cfg_info.h"
+
+
+/*******************************************************************************************************************//**
+ * @ingroup OSAL_WRAPPER_QNX_DEV_CFG
+ * @defgroup OSAL_Private_Defines_Static_Variables_DevConfig Device Condifurator Private static variables
+ *
+ * @{
+ **********************************************************************************************************************/
+/*******************************************************************************************************************//**
+ * @var gs_int_ims
+ * osal device configuration : IMS interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_ims[4][1] =
+{
+    {
+        {192}
+    },
+    {
+        {193}
+    },
+    {
+        {194}
+    },
+    {
+        {195}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_imr
+ * osal device configuration : IMR interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_imr[2][1] =
+{
+    {
+        {254}
+    },
+    {
+        {255}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_dof
+ * osal device configuration : DOF interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_dof[1][2] =
+{
+    {
+        {242}, {243}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_stv
+ * osal device configuration : STV interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_stv[1][2] =
+{
+    {
+        {238}, {239}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_acf
+ * osal device configuration : ACF interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_acf[5][2] =
+{
+    {
+        {71}, {97}
+    },
+    {
+        {98}, {99}
+    },
+    {
+        {100}, {101}
+    },
+    {
+        {102}, {103}
+    },
+    {
+        {104}, {108}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_iccom
+ * osal device configuration : ICCOM interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_iccom[8] =
+{
+    {224}, {225}, {226}, {227}, {228}, {229}, {230}, {231}
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_ivcp1e
+ * osal device configuration : IVCP1E interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_ivcp1e[2] =
+{
+    {300}, {170}
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_imp_top
+ * osal device configuration : IMP interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_imp_top[5] =
+{
+    {281}, {282}, {283}, {284}, {285}
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_isp_cisp
+ * osal device configuration : ISP interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_isp_cisp[2][1] =
+{
+    {
+        {26}
+    },
+    {
+        {109}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_isp_tisp
+ * osal device configuration : ISP interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_isp_tisp[2][1] =
+{
+    {
+        {25}
+    },
+    {
+        {27}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_fbc
+ * osal device configuration : FBC interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_fbc[2] =
+{
+    {14}, {15}
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_rtt
+ * osal device configuration : RTT interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_rtt[11][1] =
+{
+    {
+        {32}
+    },
+    {
+        {33}
+    },
+    {
+        {34}
+    },
+    {
+        {35}
+    },
+    {
+        {36}
+    },
+    {
+        {37}
+    },
+    {
+        {221}
+    },
+    {
+        {186}
+    },
+    {
+        {187}
+    },
+    {
+        {185}
+    },
+    {
+        {247}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_dhd
+ * osal device configuration : DHD interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_dhd[3] =
+{
+    {97}, {98}, {99}
+};
+
+
+
+/*******************************************************************************************************************//**
+ * @var gs_int_decoder
+ * osal device configuration : DECODER interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_decoder[3] =
+{
+    {380}, {381}, {223}
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_du
+ * osal device configuration : DU interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_du[4][1] =
+{
+    {
+        {256}
+    },
+    {
+        {268}
+    },
+    {
+        {269}
+    },
+    {
+        {270}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_vspd
+ * osal device configuration : VSPD interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_vspd[3][1] =
+{
+    {
+        {466}
+    },
+    {
+        {467}
+    },
+    {
+        {468}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_vin
+ * osal device configuration : VIN interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_vin[8][1] =
+{
+    {
+        {188}
+    },
+    {
+        {189}
+    },
+    {
+        {190}
+    },
+    {
+        {191}
+    },
+    {
+        {174}
+    },
+    {
+        {175}
+    },
+    {
+        {176}
+    },
+    {
+        {171}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_csi2
+ * osal device configuration : CSI2 interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_csi2[3][1] =
+{
+    {
+        {184}
+    },
+    {
+        {246}
+    },
+    {
+        {247}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_doc
+ * osal device configuration : DOC interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_doc[2][2] =
+{
+    {
+        {432}, {433}
+    },
+    {
+        {434}, {435}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_hdmi
+ * osal device configuration : HDMI interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_hdmi[2][3] =
+{
+    {
+        {389}, {391}, {392}
+    },
+    {
+        {436}, {438}, {447}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_canfd
+ * osal device configuration : CAN-FD interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_canfd[1][2] =
+{
+    {
+        {29}, {30}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_ethernet
+ * osal device configuration : ETHERNET interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_ethernet[1][25] =
+{
+    {
+        {39}, {40}, {41}, {42}, {43},
+        {44}, {45}, {46}, {47}, {48},
+        {49}, {50}, {51}, {52}, {53},
+        {54}, {55}, {56}, {57}, {58},
+        {59}, {60}, {61}, {62}, {63}
+    }
+};
+
+/*******************************************************************************************************************//**
+ * @var gs_int_dmac
+ * osal device configuration : DMAC interrupt
+***********************************************************************************************************************/
+static st_osal_interrupt_info_t gs_int_dmac[2][8] =
+{
+    {
+        {449}, {450}, {451}, {452}, {453}, {454}, {455}, {456}
+    },
+    {
+        {457}, {458}, {459}, {460}, {461}, {462}, {463}, {464}
+    }
+};
+
+
+
+/** @} */
+
+/*******************************************************************************************************************//**
+ * @ingroup OSAL_WRAPPER_QNX_DEV_CFG
+ * @defgroup OSAL_Private_Defines_Extern_Variables_DevConfig Device Condifurator Private extern variables
+ *
+ * @{
+ **********************************************************************************************************************/
+/*******************************************************************************************************************//**
+ * @var gs_osal_device_info
+ * osal device configuration : device information structure
+***********************************************************************************************************************/
+st_osal_device_info_t gs_osal_device_info[] =
+{
+    /* device unique ID,      device type,    physical address,    range,     interrupt,    number of interrupts, power manager id,   initial policy,      AXI bus name,    assignment */
+
+    /* VISIONIP */
+    {"dof_00",                "dof",               0xE7A10000U, 0x00010000U, gs_int_dof[0],           2U, R_PMA_HWA_ID_VIP_UMFL0,     OSAL_PM_POLICY_CG,       "vip1"},
+    {"stv_00",                "stv",               0xE7A00000U, 0x00010000U, gs_int_stv[0],           2U, R_PMA_HWA_ID_VIP_DISP0,     OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"acf_00",                "acf",               0xE7A50000U, 0x00010000U, gs_int_acf[0],           2U, R_PMA_HWA_ID_VIP_ACF0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"acf_01",                "acf",               0xE7A60000U, 0x00010000U, gs_int_acf[1],           2U, R_PMA_HWA_ID_VIP_ACF1,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"acf_02",                "acf",               0xE7A70000U, 0x00010000U, gs_int_acf[2],           2U, R_PMA_HWA_ID_VIP_ACF2,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"acf_03",                "acf",               0xE7A80000U, 0x00010000U, gs_int_acf[3],           2U, R_PMA_HWA_ID_VIP_ACF3,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"acf_04",                "acf",               0xE7A90000U, 0x00010000U, gs_int_acf[4],           2U, R_PMA_HWA_ID_VIP_ACF4,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+
+    /* ICCOM */
+    {"iccom_00",              "iccom",             0xE6260000U, 0x00001000U, gs_int_iccom,            8U, R_PMA_HWA_ID_ICCOM,         OSAL_PM_POLICY_CG,       "mm(ipa)"},
+
+    /* ENCODER */
+    {"ivcp1e_00",             "ivcp1e",            0xFEA00000U, 0x00010000U, gs_int_ivcp1e,           2U, R_PMA_HWA_ID_VCP_IVCP1E,    OSAL_PM_POLICY_CG,       "vi0"},
+
+     /* IMP */
+    {"imp_top_00",            "imp_top",           0xFFA00000U, 0x00010000U, gs_int_imp_top,          5U, R_PMA_HWA_ID_IMP_TOP,       OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_00",                "imp",               0xFF900000U, 0x00020000U, NULL,                    0U, R_PMA_HWA_ID_IMP_CORE0,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_01",                "imp",               0xFF920000U, 0x00020000U, NULL,                    0U, R_PMA_HWA_ID_IMP_CORE1,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_02",                "imp",               0xFF940000U, 0x00020000U, NULL,                    0U, R_PMA_HWA_ID_IMP_CORE2,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_03",                "imp",               0xFF960000U, 0x00020000U, NULL,                    0U, R_PMA_HWA_ID_IMP_CORE3,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_04",                "imp",               0xFFA80000U, 0x00020000U, NULL,                    0U, R_PMA_HWA_ID_IMP_CORE3,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_slim_00",           "imp_slim",          0xFF9C0000U, 0x00010000U, NULL,                    0U, R_PMA_HWA_ID_IMP_SLIM0,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_ocv_00",            "imp_ocv",           0xFF980000U, 0x00010000U, NULL,                    0U, R_PMA_HWA_ID_IMP_OCV_CORE0, OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_ocv_01",            "imp_ocv",           0xFF990000U, 0x00010000U, NULL,                    0U, R_PMA_HWA_ID_IMP_OCV_CORE1, OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_ocv_02",            "imp_ocv",           0xFF9A0000U, 0x00010000U, NULL,                    0U, R_PMA_HWA_ID_IMP_OCV_CORE2, OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_ocv_03",            "imp_ocv",           0xFF9B0000U, 0x00010000U, NULL,                    0U, R_PMA_HWA_ID_IMP_OCV_CORE3, OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_ocv_04",            "imp_ocv",           0xFFA40000U, 0x00010000U, NULL,                    0U, R_PMA_HWA_ID_IMP_OCV_CORE4, OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_dma_00",            "imp_dma",           0xFFA10000U, 0x00004000U, NULL,                    0U, R_PMA_HWA_ID_IMP_DMAC0,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_dma_01",            "imp_dma",           0xFFA14000U, 0x00004000U, NULL,                    0U, R_PMA_HWA_ID_IMP_DMAC1,     OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_dma_slim_00",       "imp_dma_slim",      0xFFA18000U, 0x00004000U, NULL,                    0U, R_PMA_HWA_ID_IMP_DMAC_SLIM0, OSAL_PM_POLICY_CG,      "ir"},
+    {"imp_psc_00",            "imp_psc",           0xFFA20000U, 0x00004000U, NULL,                    0U, R_PMA_HWA_ID_IMP_PSC0,      OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_cnn_00",            "imp_cnn",           0xFF9E0000U, 0x00010000U, NULL,                    0U, R_PMA_HWA_ID_IMP_CNN0,      OSAL_PM_POLICY_CG,       "ir"},
+    {"imp_spmi_00",           "imp_spmi",          0xED000000U, 0x00200000U, NULL,                    0U, R_PMA_HWA_ID_IMP_SPMI0_00,  OSAL_PM_POLICY_CG,       "ir"},
+
+    /* ISP */
+    {"cisp_00",               "cisp",              0xFEC00000U, 0x00020000U, gs_int_isp_cisp[0],      1U, R_PMA_HWA_ID_ISP_CORE0,     OSAL_PM_POLICY_CG,       "vi0"},
+    {"cisp_01",               "cisp",              0xFEE00000U, 0x00020000U, gs_int_isp_cisp[1],      1U, R_PMA_HWA_ID_ISP_CORE1,     OSAL_PM_POLICY_CG,       "vi0"},
+    {"tisp_00",               "tisp",              0xFED00000U, 0x00010000U, gs_int_isp_tisp[0],      1U, R_PMA_HWA_ID_ISP_TISP0,     OSAL_PM_POLICY_CG,       "vi0"},
+    {"tisp_01",               "tisp",              0xFED20000U, 0x00010000U, gs_int_isp_tisp[1],      1U, R_PMA_HWA_ID_ISP_TISP1,     OSAL_PM_POLICY_CG,       "vi0"},
+
+    /* FieldBIST */
+    {"fbc_00",                "fbc",               0xFF830000U, 0x00002000U, gs_int_fbc,              2U, R_PMA_HWA_ID_FBC,           OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imr_00",            "fba_imr",           0xFFF80000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMR0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imr_01",            "fba_imr",           0xFFF81000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMR1,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_ims_00",            "fba_ims",           0xFFF90000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMS0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_ims_01",            "fba_ims",           0xFFF92000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMS1,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_ims_02",            "fba_ims",           0xFFF93000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMS2,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_00",            "fba_imp",           0xFF8D0000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMP0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_01",            "fba_imp",           0xFFF50000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMP1,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_02",            "fba_imp",           0xFFF60000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMP2,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_03",            "fba_imp",           0xFFF70000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMP3,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_04",            "fba_imp",           0xFF8D1000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_IMP4,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_ocv_00",        "fba_imp_ocv",       0xFFFA0000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_OCV0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_ocv_01",        "fba_imp_ocv",       0xFFFB0000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_OCV1,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_ocv_02",        "fba_imp_ocv",       0xFF8D2000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_OCV2,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_ocv_03",        "fba_imp_ocv",       0xFF8D3000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_OCV3,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_ocv_04",        "fba_imp_ocv",       0xFF8D4000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_OCV4,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_dp_00",         "fba_imp_dp",        0xFF8D5000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_DP0,       OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_dp_01",         "fba_imp_dp",        0xFF8D6000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_DP1,       OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_cnn_00",        "fba_imp_cnn",       0xFF8D7000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_CNN0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_imp_slim_00",       "fba_imp_slim",      0xFF8DC000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_SLIM0,     OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_dof_00",            "fba_dof",           0xE7930000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_DOF0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_stv_00",            "fba_stv",           0xE7950000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_STV0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_acf_00",            "fba_acf",           0xE7940000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_ACF0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_acf_01",            "fba_acf",           0xE7941000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_ACF1,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+/* TODO: Unnecessary?
+    {"fba_isp_00",            "fba_isp",           0xFEAC1000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_ISP0,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_isp_01",            "fba_isp",           0xFEAC2000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_ISP1,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_isp_02",            "fba_isp",           0xFEAC3000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_ISP2,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_isp_03",            "fba_isp",           0xFEAC4000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_ISP3,      OSAL_PM_POLICY_CG,       "mm(ipa)"},
+*/
+    {"fba_ca53d_00",          "fba_ca53d",         0xFF87C000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_CL0,       OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_ca53_00",           "fba_ca53",          0xFF877000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_CL0_CPU0,  OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_ca53_01",           "fba_ca53",          0xFF878000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_CL0_CPU1,  OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_ca53_02",           "fba_ca53",          0xFF879000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_CL1_CPU2,  OSAL_PM_POLICY_CG,       "mm(ipa)"},
+    {"fba_ca53_03",           "fba_ca53",          0xFF87A000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FBA_CL1_CPU3,  OSAL_PM_POLICY_CG,       "mm(ipa)"},
+
+    /* RTT */
+    {"rfso_000",              "rfso",              0xFFE80000U, 0x00001000U, gs_int_rtt[0],           1U, R_PMA_HWA_ID_RFSO0,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_001",              "rfso",              0xFFE81000U, 0x00001000U, gs_int_rtt[1],           1U, R_PMA_HWA_ID_RFSO1,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_002",              "rfso",              0xFFE82000U, 0x00001000U, gs_int_rtt[2],           1U, R_PMA_HWA_ID_RFSO2,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_003",              "rfso",              0xFFE83000U, 0x00001000U, gs_int_rtt[3],           1U, R_PMA_HWA_ID_RFSO3,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_004",              "rfso",              0xFFE84000U, 0x00001000U, gs_int_rtt[4],           1U, R_PMA_HWA_ID_RFSO4,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_005",              "rfso",              0xFFE85000U, 0x00001000U, gs_int_rtt[5],           1U, R_PMA_HWA_ID_RFSO5,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_006",              "rfso",              0xFFE86000U, 0x00001000U, gs_int_rtt[6],           1U, R_PMA_HWA_ID_RFSO6,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_007",              "rfso",              0xFFE87000U, 0x00001000U, gs_int_rtt[7],           1U, R_PMA_HWA_ID_RFSO7,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_008",              "rfso",              0xFFE88000U, 0x00001000U, gs_int_rtt[8],           1U, R_PMA_HWA_ID_RFSO8,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_009",              "rfso",              0xFFE89000U, 0x00001000U, gs_int_rtt[9],           1U, R_PMA_HWA_ID_RFSO9,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"rfso_010",              "rfso",              0xFFE8A000U, 0x00001000U, gs_int_rtt[10],          1U, R_PMA_HWA_ID_RFSO10,        OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* DECODER */
+    {"ivdp1c_00",             "ivdp1c",            0xFE8D0000U, 0x00001000U, gs_int_decoder,          3U, R_PMA_HWA_ID_IVDP1C,        OSAL_PM_POLICY_CG,       "invalid"},
+    {"fcpc_00",               "fcpc",              0xFE90F000U, 0x00001000U, NULL,                    0U, R_PMA_HWA_ID_FCPC,          OSAL_PM_POLICY_CG,       "vc0"    },
+
+    /* IMR */
+    {"imr_00",                "imr",               0xFE860000U, 0x00002000U, gs_int_ims[0],           1U, R_PMA_HWA_ID_IMR_LX4_CH0,   OSAL_PM_POLICY_CG,       "vc0"},
+    {"imr_01",                "imr",               0xFE870000U, 0x00002000U, gs_int_ims[1],           1U, R_PMA_HWA_ID_IMR_LX4_CH1,   OSAL_PM_POLICY_CG,       "vc0"},
+    {"imr_02",                "imr",               0xFE880000U, 0x00002000U, gs_int_ims[2],           1U, R_PMA_HWA_ID_IMR_LX4_CH2,   OSAL_PM_POLICY_CG,       "vc0"},
+    {"imr_03",                "imr",               0xFE890000U, 0x00002000U, gs_int_ims[3],           1U, R_PMA_HWA_ID_IMR_LX4_CH3,   OSAL_PM_POLICY_CG,       "vc0"},
+
+    /* DHD */
+    {"dhd_00",                "dhd",               0xE6720000U, 0x00001000U, gs_int_dhd,              3U, R_PMA_HWA_ID_DHD,           OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* DU */
+    {"du_00",                 "du",                0xFEB00000U, 0x00030000U, gs_int_du[0],            1U, R_PMA_HWA_ID_DU0,           OSAL_PM_POLICY_CG,       "invalid"},
+    {"du_01",                 "du",                0xFEB30000U, 0x00010000U, gs_int_du[1],            1U, R_PMA_HWA_ID_DU1,           OSAL_PM_POLICY_CG,       "invalid"},
+    {"du_02",                 "du",                0xFEB40000U, 0x00030000U, gs_int_du[2],            1U, R_PMA_HWA_ID_DU2,           OSAL_PM_POLICY_CG,       "invalid"},
+    {"du_03",                 "du",                0xFEB70000U, 0x00010000U, gs_int_du[3],            1U, R_PMA_HWA_ID_DU3,           OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* VSPD */
+    {"vspd_00",               "vspd",              0xFEA20000U, 0x00008000U, gs_int_vspd[0],          1U, R_PMA_HWA_ID_VSPD0,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"vspd_01",               "vspd",              0xFEA28000U, 0x00008000U, gs_int_vspd[1],          1U, R_PMA_HWA_ID_VSPD1,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"vspd_02",               "vspd",              0xFEA30000U, 0x00008000U, gs_int_vspd[2],          1U, R_PMA_HWA_ID_VSPD2,         OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* VIN */
+    {"vin_00",                "vin",               0xE6EF0000U, 0x00001000U, gs_int_vin[0],           1U, R_PMA_HWA_ID_VIN0,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"vin_01",                "vin",               0xE6EF1000U, 0x00001000U, gs_int_vin[1],           1U, R_PMA_HWA_ID_VIN1,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"vin_02",                "vin",               0xE6EF2000U, 0x00001000U, gs_int_vin[2],           1U, R_PMA_HWA_ID_VIN2,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"vin_03",                "vin",               0xE6EF3000U, 0x00001000U, gs_int_vin[3],           1U, R_PMA_HWA_ID_VIN3,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"vin_04",                "vin",               0xE6EF4000U, 0x00001000U, gs_int_vin[4],           1U, R_PMA_HWA_ID_VIN4,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"vin_05",                "vin",               0xE6EF5000U, 0x00001000U, gs_int_vin[5],           1U, R_PMA_HWA_ID_VIN5,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"vin_06",                "vin",               0xE6EF6000U, 0x00001000U, gs_int_vin[6],           1U, R_PMA_HWA_ID_VIN6,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"vin_07",                "vin",               0xE6EF7000U, 0x00001000U, gs_int_vin[7],           1U, R_PMA_HWA_ID_VIN7,          OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* CSI2 */
+    {"csi_20",                "csi2",              0xFEA80000U, 0x00000300U, gs_int_csi2[0],          1U, R_PMA_HWA_ID_CSI20,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"csi_40",                "csi2",              0xFEAA0000U, 0x00000300U, gs_int_csi2[1],          1U, R_PMA_HWA_ID_CSI40,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"csi_41",                "csi2",              0xFEAB0000U, 0x00000300U, gs_int_csi2[2],          1U, R_PMA_HWA_ID_CSI41,         OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* DOC */
+    {"doc_00",                "doc",               0xFEBA0000U, 0x00018000U, gs_int_doc[0],           2U, R_PMA_HWA_ID_DOC0,          OSAL_PM_POLICY_CG,       "invalid"},
+    {"doc_01",                "doc",               0xFEBB8000U, 0x00018000U, gs_int_doc[1],           2U, R_PMA_HWA_ID_DOC1,          OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* HDMI */
+    {"hdmi_00",               "hdmi",              0xFEAD0000U, 0x00008000U, gs_int_hdmi[0],          3U, R_PMA_HWA_ID_HDMI0,         OSAL_PM_POLICY_CG,       "invalid"},
+    {"hdmi_01",               "hdmi",              0xFEAE0000U, 0x00008000U, gs_int_hdmi[1],          3U, R_PMA_HWA_ID_HDMI1,         OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* LVDS */
+    {"lvds_00",               "lvds",              0xFEB90000U, 0x00000200U, NULL,                    0U, R_PMA_HWA_ID_LVDS,          OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* CAN-FD */
+    {"canfd",                 "canfd",             0xE66C0000U, 0x00008000U, gs_int_canfd[0],         2U, R_PMA_HWA_ID_CANFD,         OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* ETHERNET */
+    {"ethernet",              "ethernet",          0xE6800000U, 0x00000800U, gs_int_ethernet[0],     25U, R_PMA_HWA_ID_ETHERNET,      OSAL_PM_POLICY_CG,       "invalid"},
+
+    /* DMAC */
+    {"rtdmac",                "rtdmac_00",         0xFFC10000U, 0x00008400U, gs_int_dmac[0],          8U, R_PMA_HWA_ID_RTDMAC0,       OSAL_PM_POLICY_CG,       "invalid"},
+    {"rtdmac",                "rtdmac_01",         0xFFC20000U, 0x00008400U, gs_int_dmac[1],          8U, R_PMA_HWA_ID_RTDMAC0,       OSAL_PM_POLICY_CG,       "invalid"},
+
+    {.id = OSAL_DEVICE_INVALID_ID}
+};
+
+/** @} */
+
+#endif /* OSAL_DEV_CFG_V3H2_H */

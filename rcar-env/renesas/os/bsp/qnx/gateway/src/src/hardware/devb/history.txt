@@ -1,0 +1,192 @@
+    The SD/eMMC driver for R-Car Gen3 & Gen4 boards
+
+    CREATED   : 02.28.2021
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 & Gen4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+    HISTORY   :
+            12.22.2016 : Ver.1.0
+            - Create QNX7.0 version new
+            08.07.2017 : Ver.1.0
+            - Support for Stater Kit WS2.0
+            05.02.2018 : Ver.1.1
+            - Use PIO for Identify command for SATA driver    
+            - Support HS400 mode for eMMC driver
+            12.25.2018 : Ver.1.1
+            - Apply software work around to eMMC driver for M3N
+            02.18.2019 : Ver.1.1
+            - Update eMMC following R-Car Gen3 W/A change of eMMC restriction OPC #109 (rcar.c)
+            - Fix WA is not executed when eMMC driver is re-initialized (mmc.c)
+                + Add _mmc_switch()
+                + Modify mmc_init_hs400() to call _mmc_switch()
+            03.13.2019 : Ver.1.2
+            - Support retune for eMMC driver (mmc.c and sdmmc.c)
+                + Add mmc_hs400_to_hs() (mmc.c)
+                + Modidify mmc_bus_error to call mmc_hs400_to_hs() (mmc.c)
+                + Modify sdmmc_rw() (sdmmc.c)
+            04.03.2019 : Ver.1.3
+            - Update to New framework (QSSL SVN Revision Number:  876259)
+            - Update rcar.c from document ver.0027:
+                + Remove MASK bits 4 and 8 (CC_EXT_MODE_MSK = 0) of CC_EXT_MODE register 
+                + Change address alignment to 128 byte for MMC_DM_DTRAN_ADDR register
+                + Support TAP position manual correction mode for SCC (add rcar_sdmmc_scc_manual_correct()) (this mode is selected by '#define SCC_MANUAL_CORRECT')
+                + Change bit RVSW.SCC_RVSCNTL to 0
+            - Other Update rcar.c:
+                + Add rcar_sdmmc_disable_scc()
+                + Remove rcar_sdmmc_scc_reset() called in rcar_sdmmc_tune()
+            - Add SCC register debugging slogs
+            - Fix CMD17/CMD18 errors occur sometime on R-Car M3N:
+                + Change line 272, sdmmc_dev_cfg( ), sim_sdmmc.c
+                  Before fixing:
+                    ...
+                    if( ( ext->dev_inf.caps & DEV_CAP_CACHE ) && ( ext->eflags & SDMMC_EFLAG_CACHE ) ) {
+                        if( sdio_cache( ext->device, ( ext->eflags & SDMMC_EFLAG_CACHE ) ? SDIO_CACHE_ENABLE : SDIO_CACHE_DISABLE, SDIO_TIME_DEFAULT ) ) {
+                            cam_slogf( _SLOGC_SIM_MMC, _SLOG_ERROR, 1, 1, "%s:  Error %s volatile cache", __FUNCTION__, ( ext->eflags & SDMMC_EFLAG_CACHE ) ? "Enabling" : "Disabling" );
+                        }
+                    }  
+                    ...              
+                  After fixing:
+                    ...
+                    if( ( ext->dev_inf.caps & DEV_CAP_CACHE ) ) {
+                        if( sdio_cache( ext->device, ( ext->eflags & SDMMC_EFLAG_CACHE ) ? SDIO_CACHE_ENABLE : SDIO_CACHE_DISABLE, SDIO_TIME_DEFAULT ) ) {
+                            cam_slogf( _SLOGC_SIM_MMC, _SLOG_ERROR, 1, 1, "%s:  Error %s volatile cache", __FUNCTION__, ( ext->eflags & SDMMC_EFLAG_CACHE ) ? "Enabling" : "Disabling" );
+                        }
+                    }               
+                    ... 
+            04.05.2019 : Ver.1.4
+            - Update retune:     
+                + Remove mmc_hs400_to_hs() (Files are affected: mmc.c)
+                + Add mmc_retune() (Files are affected: mmc.c)
+                + Add code to sdio_retune() to call mmc_retune() (Files are affected: base.c)
+                    if (hc->device.dtype == DEV_TYPE_MMC) {
+                        return ( mmc_retune(hc) );
+                    }
+                + Restore condition to call sdio_bus_error() in sdmmc_rw() (Files are affected: sim_sdmmc.c) 
+                    change line 1502 & 1503
+                        //if( bus_err && ( ext->instance.ident.dtype == DEV_TYPE_SD ) ) {	// inform sdio layer of bus error (layer will reduce transfer mode after 2 errors).
+                        if( bus_err ) {	// inform sdio layer of bus error (layer will reduce transfer mode after 2 errors).
+                    into 
+                        if( bus_err && ( ext->instance.ident.dtype == DEV_TYPE_SD ) ) {	// inform sdio layer of bus error (layer will reduce transfer mode after 2 errors).
+                + Replace retune condition (Files are affected: rcar.c)
+                    In rcar_sdmmc_scc_correction_error() and rcar_sdmmc_scc_manual_correct()
+                        hc->bus_errs += SDIO_MAX_BUS_ERRS; 
+                        return (EIO);
+                    into 
+                        atomic_set( &hc->flags, HC_FLAG_TUNE );
+                    And in rcar_sdmmc_intr_event()
+                        if (rcar_sdmmc_scc_correction_error(hc, stat2)) 
+                        cs = CS_DATA_END_ERR; // FIXME: Use this error Flag to request a re-tuning  
+                    into
+                        rcar_sdmmc_scc_correction_error(hc, stat2);
+                + Add code to request a retune when SD_INFO2 including errors in rcar_sdmmc_scc_correction_error()
+            04.17.2019 : Ver.1.5
+            - Add SATA driver (add rcarsata folder) for M3
+            04.23.2019 : Ver.1.6
+            - Change mmc_retune() (Files are affected mmc.c)
+                + Set clock to switch to HS mode to initial clock (400,000Hz)
+                + Add _sdio_stop_transmission() execution when a Host CMD18/CMD25 CRC, END, ... error 
+                + Remove mmc_init_bus() calling 
+                + Add code to setup HS200/HS400 mode inside
+             - Add retune when REQTAPUP/REQTAPDWN is set (feedback from REL) and this is selected by macro SCC_MANUAL_CORRECT_RETUNE and other extra update in rcar.c 
+             - Make bs structure same for all plapforms (Files bs.c, init_hwinfo.c (startup), hwinfo_rcar.h (startup/lib))
+             - Update signal_voltage (Files are effected bs.c)
+                + Reduce msec in delay() follow point (2) of section 70.3.1 of document ver.0027
+            05.03.2019 : Ver.1.7
+            - Change macros SCC_MANUAL_CORRECT and SCC_MANUAL_CORRECT_RETUNE to select SCC correction method after tuning by 'hs' starting command options:
+                + Add rcar_sdmmc_hs_args() and rcar_sdmmc_getsubopt() to rcar.c
+            05.24.2019 : Ver.1.8
+            - Correct minor syntax in rcar_sdmmc_scc_correction_error() (Files are affected rcar.c)
+            - Change mmc_switch() (Files are affected mmc.c)
+                + Replace delay(1) by nanospin_ns(1000000L) because delay(1) can take 2ms to 4ms. 
+            - Add scc_mclk to control Minximun SDnH for SCC in HS200, HS400, SDR104 mode (Files are affected rcar.h, rcar.c)
+            06.12.2019 : Ver.1.9
+            - Add 'hs400_bad_tap' to 'struct _rcar_sdmmc_t' (rcar.c and rcar.h) to set bad TAP need to avoid in HS400 
+            - Add 'hs400_ignore_dat_correction' to 'struct _rcar_sdmmc_t' (rcar.c and rcar.h) for ignoring DAT correction error status in manual correction in HS400
+            - Add 'hs400_scc_correction_disabled' to 'struct _rcar_sdmmc_t' (rcar.c and rcar.h) for disabling auto correction in HS400 
+            - Update manual correction (rcar.c and rcar.h)
+                + Update rcar_sdmmc_scc_manual_correction(): Read and parse MMC_SCC_SMPCMP register to update MMC_SCC_TAPSET register 
+            07.02.2019 : Ver.1.9
+            - Change header file from r-car-m3.h to r-car-gen3.h
+            08.12.2019 : Ver.1.9
+            - Optimize the code
+            09.18.2019 : Ver.2.0
+            - Remove 'hs' option parse  (rcar.c) 
+            - Update from Step1 Linux patches files:
+                    0001-mmc-renesas_sdhi-Improved-the-data-structure-of-quir.patch
+                    0002-mmc-renesas_sdhi-Fix-value-of-Hardware-Adjustment-Re.patch
+                    0003-mmc-renesas_sdhi-Add-manual-correction.patch
+                    0004-mmc-renesas_sdhi-Use-manual-correction-in-HS400.patch
+                    0005-mmc-renesas_sdhi-Ignore-DAT-correction-error-status-.patch
+                    0006-mmc-renesas_sdhi-Avoid-bad-TAP-in-HS400.patch
+                    0007-Revert-arm64-dts-r8a7796-salvator-xs-2x4g-Disable-HS.patch
+                (Most updates from these patches were done in 06.12.2019 update)
+                + Remove hs400_scc_correction_disabled and add hs400_manual_correction to 'struct _rcar_sdmmc_t' (rcar.c and rcar.h) 
+                + Update bad taps for M3W 1.3 and 3.0 (rcar.c) 
+                + Update rcar_sdmmc_scc_manual_correction()function: Retune if smpcmp[err_tap] is OK and new_tap is one of bad taps (rcar.c) 
+            10.16.2019 : Ver.2.1
+            - Fix tuning error on M3W 3.0 board:
+              + Return rcar_sdmmc_intr_event() after starting DMA transfer
+              + Enable CMD interrupts only in rcar_sdmmc_cmd()
+              + Enable DATA interrupts in rcar_sdmmc_dma_start()
+            10.18.2019 : Ver.2.2
+            - Update from Step2 Linux patches files 
+              + Add Calibration tables
+              + Use Calib value in Calib table in HS400 Manual Calibration Adjustment (rcar_sdmmc_hs400_adjust_enable())
+            01.16.2020 : Ver.2.3
+            - Add Responce Timeout, Command CRC, Command End Error checking, not starting DMA with these errors  
+                 to avoid unexpected illegal buffer access interrupts (in rcar_sdmmc_intr_event of rcar.c)
+            - Clear DMA INFO1 status when DMA completion (in rcar_sdmmc_intr_event of rcar.c)
+            - Disable SD_INFO1 and SD_INFO2 interrupts when command completion (in rcar_sdmmc_intr_event of  rcar.c)
+            - Fix to write 0 to reserved bits (from bit 16 or 17 to bit 31) of INFO1, INFO2, INFO1_MASK, INFO2_MASK 
+                 in writing operation to these registers (rcar.c and rcar.h) (based on spec)
+            - Fix to write 1 to bit 0 of DM_CM_RST (rcar.c) (no perform Sequencer Reset)
+            - Update framework from QSSL's '$Rev: 680332' release (base.c, mmc.c, sd.c, sim_sdmmc.c,...)
+            02.03.2020 : Ver.2.4
+            - Recover Auto Calibration Adjustment for H3 3.0 and M3W 3.0 (Apply Linux patch 20200120)
+            03.30.2020 : Ver.2.5
+            - Update Calibration Adjustment tables for M3N, E3 and M3W 1.3 (Apply Linux patch bsp398 on 2020.03.30)
+            04.14.2020 : Ver.2.6
+            - Fix CMD38 timeout by adding code in interrupt handler to query DAT0 line (Following Description of bit7 of SD_INFO2 register of HWM)
+            06.25.2020 : Ver.2.7
+            - Fix HS400 mode for M3W 1.3 by changing "sdmmc->sdckcr_val_for_hs400 = 4" (RCAR_GEN3_CPG_SD2CKCR = 4)
+            11.23.2020 : Ver.2.8
+            - Add delay(4) after error during tuning process
+            02.28.2021 : Ver.2.9
+            - Upgrade QNX7.0 devb to QNX7.1
+            - Add RCAR_NEED_RETUNING flag to avoid retune is triggered again during tuning
+            - Some minor update tuning setting based on rcar-4.1.0-rc4 Linux
+            - CPG clock register change moved to use CPG driver
+            - Support for V3U
+            03.23.2021 : Ver.3.0
+            - Port hs200/hs400 retune proposal from QNX7.0 fixning to QNX7.1
+            06.30.2021 : Ver.3.1
+            - Update MMC retune based on QSSL's QNX7.0 devb released on May 2021
+            10.30.2021 : Ver.3.2
+            - Support for S4
+            11.30.2021 : Ver.3.3
+            - Support HS400 for V3H Rev.2.1
+            12.30.2921 : ver.3.4
+            - Update driver framework from QNX Rev: 933176
+            02.30.2022 : Ver.3.5
+            - Support for V4H
+            07.20.2022 : Ver.3.6
+            - Update to New framework from QNX Rev: SVN957830
+            - Update code for changing SD card VDD power and IO voltage power
+            09.30.2022 : Ver.3.7
+            - Support power suspend and power resume
+            - Comment _sdio_reset() call in line 608 in _sdio_pwrmgnt() in base.c : 
+                            case PM_ACTIVE:
+                    //			sdio_slogf( _SLOGC_SDIODI, _SLOG_INFO, hc->cfg.verbosity, 3, "%s (path %d): active", __FUNCTION__, hc->path );
+
+                                hc->entry.pm( hc, pm );
+                                if( hc->pm_state == PM_SUSPEND ) {
+                                // Don't need to call _sdio_reset() here, let the host controller driver recover state before suspend
+                                //hc->pm_state = pm;
+                                //_sdio_reset( dev );
+              Suspend process in the host driver only disables clock supplly and disables all the host interrupt 
+              And resume process in the host driver will recover the host state before suspend so _sdio_reset( dev ) call seems unnecessary
+            10.17.2022 : Ver.3.8
+            - Update in rcar_sdmmc_intr_event() to always reset DMAC when any error occurs regardless DMAC is stared or not

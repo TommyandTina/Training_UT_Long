@@ -1,0 +1,10 @@
+modi,R_OSAL_Internal_MutexInit,01_018,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,
+#COMMENT,$@p_mutex_attr,$@p_handle,AMSTB_SrcFile.c/AMSTB_malloc@AM_count,AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,R_OSAL_Internal_MutexInit@@,;,,,,,
+,1,1,0,1,0,OSAL_RETURN_OK,;Normal operation ,,,,,
+,1,1,0,0,0,OSAL_RETURN_MEM,;p_tmp_handle is NULL.,,,,,
+,1,1,0,1,-1,OSAL_RETURN_FAIL,;pthread_mutex_init() is return non-zero.,,,,,

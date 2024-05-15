@@ -1,0 +1,19 @@
+%C DMA lib test utility
+
+Syntax:
+# dma-memtomem-test dma=<dma_type>,desc=<desc_num>,chan=<chan_idx>,mbu=<burst_unit>,ulb=<buffer_size>
+
+Options:
+    <dma_type>    : rt or sys
+    <desc_num>    : descriptor number (1-255)
+    <chan_idx>    : channel index (depends on SoC, it can be 0-64)
+    <burst_unit>  : maximum burst unit for SDRAM, power-of-two values are recommended
+                    + For V3U: default is 128 (bytes), maximum is 512 (bytes)
+                    + For others: default is 128 (bytes), maximum is 256 (bytes)
+    <buffer_size> : upper limit on buffer size, power-of-two values are recommended
+                    + For V3U: default is 512 (bytes), maximum is 1024 (bytes)
+                    + For others: default is 256 (bytes), maximum is 512 (bytes)
+
+Examples:
+    # dma-memtomem-test dma=sys,desc=2,chan=46
+    # dma-memtomem-test dma=sys,desc=2,chan=46,mbu=64

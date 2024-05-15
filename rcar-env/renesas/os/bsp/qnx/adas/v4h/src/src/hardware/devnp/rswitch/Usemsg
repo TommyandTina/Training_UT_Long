@@ -1,0 +1,116 @@
+%C Driver for Renesas eTSN Ethernet interface
+
+
+Syntax:
+  io-pkt-v6-hc -d rswitch [option[,option ...]] ...
+
+Options:
+  speed=100|1000       Force media data rate in Megabits/Second
+  duplex=0|1           Force half (0) or full (1) duplex mode.
+  flow=0|1|2|3         Force flow control
+                         0=off,
+                         1=Bidirectional pause,
+                         2=Rx pause frames,
+                         3=Tx pause frames
+  mii                  Use the XGMII interface between the RSWITCH2 and the PHY.
+                       Default is SGMII.
+  iorange=0xXXXXXXXX   IO base address.
+  irq=num              IRQ of the interface.
+  mac=XXXXXXXXXXXX     Interface address of the controller.
+  verbose(=N)          Set verbosity level. With no N then level 1,
+                       repeated settings increase verbosity. N is a mask:
+                         1=general, 2=PHY, 4=Rx, 8=Tx.
+  avb                  Set driver in AVB mode.
+  deviceidx            Specify port index 
+                         deviceidx=0 : port 0 (CN101)
+                         deviceidx=1 : port 1 (CN201)
+                         deviceidx=2 : port 2 (CN301)
+                         Default port 0
+  portnum              Specify number  of port enabled, default 1 port is enabled
+  port0_reset          Reset Port 0 : 1 reset, 0 not to reset (If port 0 is used in bootloader, doesn't need to reset it)
+
+Examples:
+
+How to start and test the eTSN driver
+  1) Before start the eTSN driver, let start two commands below to get MAC address that it is stored in eMMC.
+      #ETHADDR=`rcar-uboot-env /dev/mmc2 ethaddr 2> /dev/null`
+      #ETHADDR=`echo $ETHADDR | sed -e "s/ethaddr=//g;s/://g"`
+  2) Start the eTSN driver
+      - Start the eTSN driver with port 0 (default)
+        #io-pkt-v6-hc -d rswitch mac=$ETHADDR -p tcpip pkt_typed_mem=below4G,smmu=off
+
+      - Start the eTSN driver with port 1
+        #io-pkt-v6-hc -d rswitch mac=$ETHADDR,deviceidx=1 -p tcpip pkt_typed_mem=below4G,smmu=off
+
+      - Start the eTSN driver with port 2
+        #io-pkt-v6-hc -d rswitch mac=$ETHADDR,deviceidx=2 -p tcpip pkt_typed_mem=below4G,smmu=off
+
+      - Start the eTSN driver with 3 ports
+        #io-pkt-v6-hc -d rswitch mac=$ETHADDR,portnum=3 -p tcpip pkt_typed_mem=below4G,smmu=off
+
+   3) How to test the eTSN driver
+      a) Test the eTSN driver when start the driver with 1 port
+         Use the basic commands for testing such as #ping, #telnet and copy files to IDE momentics.
+
+      b) Test the eTSN driver when start the driver with 3 ports, have 2 ways for testing.
+         b1) Setup 3 ports work concurrently: 
+              - Must assign IP address for 3 ports with different Subnetworks.
+                For example:
+                  Port0 (tsn0): #ifconfig tsn0 169.254.48.158
+                  Port1 (tsn1): #ifconfig tsn1 170.254.48.159
+                  Port2 (tsn2): #ifconfig tsn2 171.254.48.160
+              - Assign IP address for Desktop PC or other boards as the following.
+                For example:
+                  PC1 or Board1: #ifconfig tsn0 169.254.48.170
+                  PC2 or Board2: #ifconfig tsn1 170.254.48.171
+                  PC3 or Board3: #ifconfig tsn2 171.254.48.172
+              - Use the command #ping for testing.
+
+          b2) Create a Network bridge
+              - Run the commands below
+                #ifconfig bridge0 create
+                #ifconfig tsn0 up
+                #ifconfig tsn1 up
+                #ifconfig tsn2 up
+                #brconfig bridge0 add tsn0 stp tsn0 add tsn1 stp tsn1 add tsn2 stp tsn2 up
+              - Connnect Desktop PCs or other boards to the 3  ports tsn0, tsn1 and tsn2 on S4 Spider board.
+              - Assign IP address for Desktop PCs or other boards.
+              - Use the command #ping for testing.
+
+      c) Test gPTP
+        - Need two boards for testing gPTP (Master/Slave), one board for Master and other board for Slave, and vice versa. 
+          Use the application test from QNX (ptpd2 or ptpd-avb) for testing.
+        - Using ptpd2
+          Master: #ptpd2 -M -i interface_name -r -5 -V -DDD
+          Slave:  #ptpd2 -s -i interface_name -V -DDD
+        - Using ptpd_avb
+          Master: #ptpd-avb -G -b interface_name -cC -DVfS
+          Slave:  #ptpd-avb -g -b interface_name -cC -DVfSs
+        For example:
+          For ptpd2:
+            a) Using ptpd2 for case1: 
+              - On S4 Spider board, run command for Master
+                #ptpd2 -M -i tsn0 -r -5 -V -DDD
+              - On R-CarGen3 board, run command for Slave
+                #ptpd2 -s -i ravb0 -V -DDD
+            b) Using ptpd2 for case2: 
+              - On S4 Spider board, run command for Slave
+                #ptpd2 -s -i tsn0 -V -DDD
+              - On R-CarGen3 board, run Command for Master
+                #ptpd2 -M -i ravb0 -r -5 -V -DDD
+
+          For ptpd_avb:
+            a) Using ptpd_avb for case1: 
+              - On S4 Spider board, run command for Master
+                #ptpd-avb -G -b tsn0 -cC -DVfS
+              - On R-CarGen3 board, run command for Slave
+                #ptpd-avb -g -b ravb0 -cC -DVfS
+            b) Using ptpd_avb for case2: 
+              - On S4 Spider board, run command for Slave
+                 #ptpd-avb -g -b tsn0 -cC -DVfS
+              - On R-CarGen3 board, run Command for Master
+                #ptpd-avb -G -b ravb0 -cC -DVfS
+
+
+
+

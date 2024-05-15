@@ -1,0 +1,5 @@
+modi,R_OSAL_OS_GetWrapperVersion,01_106,1,3,,,,CPP,,,,0
+#InitWheneverCall,g_dummy,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,g_dummy,R_OSAL_OS_GetWrapperVersion@@[0].major,R_OSAL_OS_GetWrapperVersion@@[0].minor,R_OSAL_OS_GetWrapperVersion@@[0].patch,;,,,,,,,
+,0,2,18,0,;Normal operation ,,,,,,,

@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_ThreadStaticDeinit,02_102,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,r_osal_os_thread.c/gsp_osal_thread_self_control,r_osal_os_thread.c/gsp_osal_thread_affinity_addr,g_dummy,;,,,,,,,,
+,g_st_osal_thread_self_control,g_st_osal_thread_affinity_addr_t,-,;Normal operation ,,,,,,,,
+,0,g_st_osal_thread_affinity_addr_t,-,;gsp_osal_thread_self_control is NULL.,,,,,,,,
+,g_st_osal_thread_self_control,0,-,;gsp_osal_thread_affinity_addr is NULL.,,,,,,,,

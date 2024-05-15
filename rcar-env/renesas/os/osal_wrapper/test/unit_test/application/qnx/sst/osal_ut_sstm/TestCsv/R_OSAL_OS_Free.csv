@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_Free,01_041,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_ptr,g_dummy,;,,,,,,,,,
+,g_array,,;Normal operation,,,,,,,,,
+,0,,;p_ptr is NULL.,,,,,,,,,

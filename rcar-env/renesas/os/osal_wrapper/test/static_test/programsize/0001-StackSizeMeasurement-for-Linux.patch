@@ -1,0 +1,24 @@
+From 6788360c94ba7b6d5b9d049e18763ab924619495 Mon Sep 17 00:00:00 2001
+From: Daigo Tokioka <daigo.tokioka.zc@renesas.com>
+Date: Wed, 8 Feb 2023 11:29:06 -0500
+Subject: [PATCH] StackSizeMeasurement for QNX
+
+---
+ cmake/platform.cmake | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cmake/platform.cmake b/cmake/platform.cmake
+index cb51fd054c7..6124550bee3 100644
+--- a/cmake/platform.cmake
++++ b/cmake/platform.cmake
+@@ -228,6 +228,7 @@ if (NOT ${CMAKE_C_COMPILER_ID} STREQUAL "GHS")
+         Wall
+         mno-unaligned-access
+         Werror
++        fstack-usage
+     )
+     # Temporary disable Werror for Zephyr OS
+     if (${RCAR_TARGET_OS} MATCHES "zephyr")
+-- 
+2.25.1
+

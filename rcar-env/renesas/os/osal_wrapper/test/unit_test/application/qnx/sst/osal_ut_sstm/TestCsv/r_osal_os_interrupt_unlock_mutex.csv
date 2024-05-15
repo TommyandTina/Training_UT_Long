@@ -1,0 +1,10 @@
+modi,r_osal_os_interrupt_unlock_mutex,06_113,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_getspecific,pthread_getspecific,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,$@p_info,@p_info[0].irq_channel,AMSTB_SrcFile.c/AMSTB_pthread_getspecific@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return,AMSTB_SrcFile.c/g_irq_channel,r_osal_os_interrupt_unlock_mutex@@,;,,,,,
+,1,0,0,0,1,OSAL_RETURN_OK,;Normal operation. (pthread_getspecific() return NULL),,,,,
+,1,0,g_irq_channel,0,0,OSAL_RETURN_OK,;Normal operation. (pthread_getspecific() return non-p_interrupt_control->irq_channel),,,,,
+,1,0,g_irq_channel,0,2,OSAL_RETURN_OK,;Normal operation. (pthread_getspecific() return p_interrupt_control->irq_channel),,,,,
+,1,0,0,22,1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-EOK.,,,,,

@@ -1,0 +1,8 @@
+modi,r_osal_os_interrupt_int_callback,06_110,6,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_os_interrupt.c/gs_osal_os_interrupt_init_flag,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_os_interrupt.c/gs_osal_os_interrupt_init_flag,@p_arg,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].usr_config,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_handler,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_enable,AMSTB_irq_cb_dummy@AM_flags,AMSTB_SrcFile.c/g_dummy,;,,,,
+,1,g_st_osal_interrupt_control_t,gs_osal_interrupt_config,AMSTB_irq_cb_dummy,1,1,0,;Normal operation ,,,,
+,1,g_st_osal_interrupt_control_t,gs_osal_interrupt_config,AMSTB_irq_cb_dummy,0,1,0,;Normal operation. (p_interrupt_control->irq_enable is false),,,,
+,1,g_st_osal_interrupt_control_t,gs_osal_interrupt_config,AMSTB_irq_cb_dummy,1,0,0,;Normal operation. (p_interrupt_control->irq_enable is false while executing user call back function.),,,,
+,1,0,gs_osal_interrupt_config,AMSTB_irq_cb_dummy,1,1,0,;p_arg is NULL.,,,,

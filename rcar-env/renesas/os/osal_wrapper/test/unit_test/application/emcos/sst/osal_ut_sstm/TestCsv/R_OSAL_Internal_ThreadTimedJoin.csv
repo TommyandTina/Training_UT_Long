@@ -1,0 +1,10 @@
+modi,R_OSAL_Internal_ThreadTimedJoin,01_016,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,
+%,AMSTB_pthread_join,pthread_join,,,,,,,,,,
+#COMMENT,$@handle,$@p_return_value,@time_period,AMSTB_SrcFile.c/AMSTB_pthread_join@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_join@AMIN_value_ptr,R_OSAL_Internal_ThreadTimedJoin@@,;,,,,
+,1,1,1,0,0,1,OSAL_RETURN_OK,;Normal operation ,,,,
+,1,1,1,0,-1,1,OSAL_RETURN_FAIL,;pthread_join() return is non-zero.,,,,
+,1,1,1,0,0,0,OSAL_RETURN_OK,;p_get_value is NULL.,,,,
+,1,0,1,0,0,1,OSAL_RETURN_OK,;p_return_value is NULL.,,,,

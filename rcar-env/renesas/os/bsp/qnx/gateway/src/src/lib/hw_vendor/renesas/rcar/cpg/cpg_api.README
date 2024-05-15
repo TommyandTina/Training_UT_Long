@@ -1,0 +1,255 @@
+QNX generic CPG interface library (rcar-cpg lib)
+------------------------------------------------
+
+A. Abstract
+
+    The generic CPG interface library (rcar-cpg lib) allows various drivers/applications
+    to enable/disable/change clock divider and to enable/disable clock supply.
+
+    This source code is compiled into static library and static shared library
+    (Both is used in generic modules after QNX Kernel booted up):
+        - Static library : librcar-cpg.a
+        - Static shared libary : librcar-spgS.so
+
+                      --------------------------------
+                      |    drivers/applications      |
+                      --------------------------------
+                                    |
+                                    |
+                        ------------v--------------
+                        |      rcar-cpg lib       |
+                        ---------------------------
+                                    |
+                                    |
+                         -----------v-----------
+                         | rcar-cpg-mgr driver |
+                         -----------------------
+                                    |
+                                    |
+                      --------------v---------------
+                      |        cpg-support lib     |
+Software              ------------------------------
+----------------------------|-------------------|-----------------------
+Hardware                    |                   |
+                    --------v------------- -----v------------
+                    |       CPG HW       | |     MSTP HW    |
+                    |  (Clock divider)   | | (Clock Supply) |
+                    ---------------------- ------------------
+                                 |                  |
+                                 |                  |
+                    -------------v------------------v--------
+                    |               Modules HW              |
+                    -----------------------------------------
+
+B. API
+    The rcar-cpg lib (librcar-cpg.a and librcar-cpgS.a) provides an interface between generic modules
+    and rcar-cpg-mgr driver (src/hardware/support/rcar-cpg).
+
+    rcar-cpg lib provides the following APIs :
+
+    Note:
+    - 'id' parameter in clock APIs (clk_...) is one of the following modules:
+        CPG_CLK_HDMI for HDMI
+        CPG_CLK_CANFD for CANFD
+        CPG_CLK_MSIOF for MSIOF
+        CPG_CLK_CSI2 for CSI2
+        CPG_CLK_DSI for DSI
+        CPG_CLK_IPC for IPC
+        CPG_CLK_FRAY for FRAY (V3M/V3H/V3U)
+        CPG_CLK_RGX for RGX
+        CPG_CLK_SDHI for SDHIn
+        CPG_CLK_RPC for RPC (flash)
+        CPG_CLK_CPU for CA57
+        CPG_CLK_PLL for PLLn
+        CPG_CLK_POST for POSTn
+        CPG_CLK_RSW2 for RSwitch2 (For S4 only)
+
+    - 'idx' parameter in the following functions is channel index of:
+        For example:
+        + SDHIn: idx = 0 for SDHI0 (H3/M3/M3N/E3/V3M/V3H/V3U/S4)
+                 idx = 1 for SDHI1 (H3/M3/M3N/E3)
+                 idx = 2 for SDHI2 (H3/M3/M3N/D3)
+                 idx = 3 for SDHI3 (H3/M3/M3N/E3)
+
+        + POSTn: idx = 0 for POST  (H3/M3/M3N/E3/D3/V3M/V3H/V3U/S4)
+                 idx = 2 for POST2 (H3/M3/M3N/E3/D3/V3M/V3H/V3U/S4)
+                 idx = 3 for POST3 (H3/M3N/E3/D3/V3U)
+                 idx = 4 for POST4 (V3H/V3U)
+
+        + For PLLn: should us the following macro:
+            CPG_CLK_PLL0 for PLL0
+            CPG_CLK_PLL1 for PLL1
+            CPG_CLK_PLL2 for PLL2
+            CPG_CLK_PLL20 for PLL20 (For V3U only)
+            CPG_CLK_PLL21 for PLL21 (For V3U only)
+            CPG_CLK_PLL3 for PLL3
+            CPG_CLK_PLL30 for PLL30 (For V3U only)
+            CPG_CLK_PLL31 for PLL31 (For V3U only)
+            CPG_CLK_PLL4 for PLL4
+            CPG_CLK_PLL5 for PLL5
+            CPG_CLK_PLL6 for PLL6   (For S4)
+        + idx = 0 for Other modules
+
+1. Function clk_is_enabled used to check the current input clock state of a module by CPG register
+
+    int (*clk_is_enabled) (CPG_CLK_ID id, const int idx):
+        Input Parameters:
+            id : Module ID
+            idx: Channel index
+
+        Return Value :
+            1    - Module is enabled
+            0    - Module is not enabled
+           Other - Failure
+
+2. Function clk_enable used to enable input clock of a module
+
+    int (*clk_enable) (CPG_CLK_ID id, const int idx):
+        Input Parameters:
+            id : Module ID
+            idx: Channel index
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+3. Function clk_disable used to disable input clock of a module
+
+    int (*clk_disable) (CPG_CLK_ID id, const int idx):
+        Input Parameters:
+            id : Module ID
+            idx: Channel index
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+4. Function clk_rate_get used to get the current clock rate of a module
+
+    int (*clk_rate_get) (CPG_CLK_ID id, const int idx, uint32_t *rate):
+        Input Parameters:
+            id : Module ID
+            idx: Channel index
+
+        Output Parameters:
+         rate : Current clock rate
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+5. Function clk_rate_set used to change rate of a module
+
+    int (*clk_rate_set) (CPG_CLK_ID id, int id, uint32_t *rate):
+        Input Parameters:
+            id : Module ID
+            idx: Channel index
+            *rate : Clock rate need to change to
+
+        Output Parameters:
+         *rate : Real Clock rate
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+6. Open a cpg resourse manager in /src/hardware/cpg_resmgr
+
+    int (*mstp_init)():
+       Return Value :
+        0 - Success
+        Other - Failure
+
+7. Initialize memory for clock management.
+
+    int (*clk_init) (uintptr_t *vbase):
+        Input Parameters:
+            vbase : Mapped memory address
+
+        Output Parameters:
+            vbase : Mapped memory address
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+8. DeInitialize memory for clock management.
+
+    void (*clk_deinit) (void):
+        Input Parameters:
+            None
+
+        Return Value :
+            None
+
+9. Function mstp_is_enabled used to check the current clock state of a module
+
+    int (*mstp_is_enabled) (int id):
+        Input Parameters:
+            int id: CPG MSTP id of the requested module.
+
+        Return Value :
+            1 - Module is enabled
+            0 - Module is not enabled
+          < 0 - Failure
+
+10. The mstp_enable function is used to enable clock of a module.
+
+    int (*mstp_enable) (int id):
+        Input Parameters:
+            int id: CPG MSTP id of the requested module
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+11. The mstp_disable function is used to disable clock of a module.
+
+    int (*mstp_disable) (int id):
+        Input Parameters:
+            int id: CPG MSTP id of the requested module
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+12. The mstp_reset function is used to reset a module.
+
+    int (*mstp_reset) (int id):
+        Input Parameters:
+            int id: CPG MSTP id of the requested module
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+13. The mstp_assert function is used to assert reset to a module.
+
+    int (*mstp_assert) (int id):
+        Input Parameters:
+            int id: CPG MSTP id of the requested module
+
+        Return Value :
+            0 - Success
+            Other - Failure
+
+14. The mstp_deassert function is used to deassert reset to a module.
+
+    int (*mstp_deassert) (int id):
+         Input Parameters:
+            int id: CPG MSTP id of the requested module
+
+         Return Value :
+            0 - Success
+            Other - Failure
+
+15. Function mstp_reset_state used to check the reset state of a module
+
+    int (*mstp_reset_state) (int id):
+        Input Parameters:
+            int id: CPG MSTP id of the requested module.
+
+        Return Value :
+            1 - Module is in reset state
+            0 - Module is in reset release state
+          < 0 - Failure

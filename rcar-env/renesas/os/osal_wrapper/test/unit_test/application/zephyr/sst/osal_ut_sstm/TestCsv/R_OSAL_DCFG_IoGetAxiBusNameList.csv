@@ -1,0 +1,18 @@
+modi,R_OSAL_DCFG_IoGetAxiBusNameList,07_009,10,1,,,,CPP,,,,0
+#InitWheneverCall,gs_osal_axi_bus_control.num,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,,,,,,,,,,
+0,0,0,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Strnlen,R_OSAL_OS_Strnlen,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,
+#COMMENT,gs_osal_axi_bus_control.num,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,@p_buffer,@buffer_size,@p_num_of_byte,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Strnlen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,&AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return,R_OSAL_DCFG_IoGetAxiBusNameList@@,;
+,2,g_axi_bus_name_info_6,str,255,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_OK,;Normal operation
+,2,g_axi_bus_name_info_6,str,255,g_size_t,0,2,2,0,1|1|1|1|1|1|1|1|1|1,OSAL_RETURN_OK,;strncmp() return non zero
+,2,g_axi_bus_name_info_6,0,255,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_OK,;p_buffer is NULL
+,2,g_axi_bus_name_info_2,str,0,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_PAR,;p_buffer is not NULL and buffer_size is less than (total_length + axi_bus_name_length)
+,0,g_axi_bus_name_info_6,str,255,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_OK,;gs_osal_axi_bus_control.num is 0
+,1,g_axi_bus_name_info_6,str,255,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_OK,;gs_osal_axi_bus_control.num is 1
+,2,g_axi_bus_name_info_2,str,255,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_OK,;Normal operation (utlb_cnt is 0)
+,2,g_axi_bus_name_info_3,str,255,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_OK,;Normal operation (utlb_cnt is 1)
+,2,g_axi_bus_name_info_1,str,255,g_size_t,0,2,2,0,0|0|0|0|0|0|0|0|0|0,OSAL_RETURN_OK,;Normal operation (utlb_cnt is 2)

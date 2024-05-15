@@ -1,0 +1,19 @@
+modi,r_osal_rcfg_cond_search_array,02_022,15,2,,,,CPP,,,,0,,,,,,
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gsp_cond_array,r_osal_res_cfg_threadsync.c/gsp_cond_array[0],r_osal_res_cfg_threadsync.c/gs_cond_array_size,,,,,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_BinarySearch,R_OSAL_OS_BinarySearch,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gsp_cond_array,r_osal_res_cfg_threadsync.c/gsp_cond_array[0],r_osal_res_cfg_threadsync.c/gs_cond_array_size,@search_type,@check_id,@p_index,@p_index[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_type,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_pp_array1,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_p_array1,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_id1,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_pp_array2,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_p_array2,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_BinarySearch@AMIN_id2,r_osal_rcfg_cond_search_array@@,@p_index[0],;
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t,2,OSAL_SEARCH_THSYNC_CREATE_HANDLE,0,g_size_t,-1,0,2,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[1],0,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],1,OSAL_RETURN_OK,0,;search_type is OSAL_SEARCH_THREAD_CREATE_HANDLE
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t,2,OSAL_SEARCH_THSYNC_REFER_HANDLE,0,g_size_t,-1,g_st_osal_cond_control_t_p[0],2,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[1],0,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],1,OSAL_RETURN_OK,0,;search_type is OSAL_SEARCH_THREAD_REFER_HANDLE
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t,2,OSAL_SEARCH_THSYNC_CREATE_HANDLE,0,g_size_t,-1,0,2,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[1],0,0,g_st_osal_cond_control_t[0],1,OSAL_RETURN_FAIL,-1,;gsp_thread_last_compare_addr is NULL
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t,2,OSAL_SEARCH_THSYNC_CREATE_HANDLE,0,g_size_t,-1,1,2,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[1],0,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],1,OSAL_RETURN_BUSY,-1,;res is not NULL (OSAL_SEARCH_THREAD_CREATE_HANDLE)
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t,2,OSAL_SEARCH_THSYNC_CREATE_HANDLE,0,g_size_t,-1,0,2,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[1],0,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],0,OSAL_RETURN_OK,1,;check_id equals thread_id
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t,2,OSAL_SEARCH_THSYNC_REFER_HANDLE,0,g_size_t,-1,0,2,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[1],0,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],1,OSAL_RETURN_HANDLE,-1,;res is NULL (OSAL_SEARCH_THREAD_REFER_HANDLE)
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t,2,OSAL_SEARCH_THSYNC_REFER_HANDLE,0,0,-1,g_st_osal_cond_control_t_p[0],2,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[1],0,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],1,OSAL_RETURN_OK,-,;p_index is NULL (OSAL_SEARCH_THREAD_REFER_HANDLE)

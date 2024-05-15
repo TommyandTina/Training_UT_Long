@@ -1,0 +1,24 @@
+modi,R_OSAL_IoDeviceOpen,07_003,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,gp_osal_io_is_initialized_dummy,,,,,,,,,,,,,,,,,
+0,0,0,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetNumOfDevice,R_OSAL_DCFG_GetNumOfDevice,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetDeviceInfo,R_OSAL_DCFG_GetDeviceInfo,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_compare_string,osal_internal_compare_string,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,gp_osal_io_is_initialized_dummy,$@p_id,@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetNumOfDevice@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_internal_compare_string@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_init_ope,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDeviceInfo@AM_count,g_st_osal_device_control.dev_info,g_st_osal_device_control.base_addr,g_st_osal_device_control.len,g_st_osal_device_control.active,R_OSAL_IoDeviceOpen@@,;
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,2,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_OK,;Normal operation
+,0,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,3,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false(runnning change)
+,1,r_osal_io.c/gs_osal_io_is_initialized,0,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_PAR,;p_id is NULL
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_PAR,;p_handle is NULL
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,2,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_FAIL,;R_OSAL_DCFG_GetDeviceInfo() return OSAL_RETURN_FAIL
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,1,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_FAIL,;The aquierd device_control is NULL
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,2,0,array_uint8,4096,0,OSAL_RETURN_FAIL,;The aquierd device_control->dev_info is NULL
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_ID,;osal_internal_compare_string() return OSAL_RETURN_FAIL
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,0,0,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,0,0,g_st_osal_device_info,array_uint8,4096,1,OSAL_RETURN_BUSY,;p_device_control->active is true
+,1,r_osal_io.c/gs_osal_io_is_initialized,1,g_osal_device_handle,1,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,0,-1,0,g_st_osal_device_info,array_uint8,4096,0,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero

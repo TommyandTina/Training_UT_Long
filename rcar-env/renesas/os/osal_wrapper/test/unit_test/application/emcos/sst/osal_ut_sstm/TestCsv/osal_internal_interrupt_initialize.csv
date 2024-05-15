@@ -1,0 +1,33 @@
+modi,osal_internal_interrupt_initialize,06_011,25,1,,,,CPP,,,,0,,,,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_posix_devctl,posix_devctl,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_init,pthread_attr_init,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setinheritsched,pthread_attr_setinheritsched,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedpolicy,pthread_attr_setschedpolicy,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedparam,pthread_attr_setschedparam,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setstacksize,pthread_attr_setstacksize,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_create,pthread_create,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_destroy,pthread_attr_destroy,,,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@p_info,g_st_osal_interrupt_thread_control.usr_config,g_st_osal_interrupt_thread_config.priority,g_st_osal_interrupt_thread_config.stack_size,g_st_osal_interrupt_thread_config.interrupt_timeout,g_st_osal_interrupt_thread_config.irq_number,@p_mutex_attr,@p_device_handle,AMSTB_SrcFile.c/AMSTB_posix_devctl@AM_count,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_attr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setinheritsched@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedpolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedparam@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setstacksize@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_create@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[0],AMSTB_SrcFile.c/AMSTB_posix_devctl@AMIN_data[1],AMSTB_SrcFile.c/g_interrupt_count,AMSTB_SrcFile.c/g_interrupt_id,osal_internal_interrupt_initialize@@,;
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,15,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_CONF,;p_info->usr_config->priority is more than OSAL_INTERRUPT_PRIORITY_HIGHEST
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,-1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_CONF,;p_info->usr_config->priority is less than OSAL_INTERRUPT_PRIORITY_LOWEST
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,0,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_CONF,;p_info->usr_config->stack_size is 0
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,0,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_CONF,;p_info->usr_config->interrupt_timeout is 0.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,-1,0,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,-1,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,17,OSAL_RETURN_CONF,;
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,-1,0,0,0,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_mutex_init() return non-zero.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,-1,0,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_attr_init() return non-zero.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,-1,0,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_attr_setinheritsched() return non-zero.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,-1,0,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_attr_setschedpolicy() return non-zero.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,-1,0,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_attr_setschedparam() return non-zero.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,-1,0,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_attr_setstacksize() return non-zero.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,-1,0,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_create() return non-zero.
+,g_st_osal_interrupt_thread_control,g_st_osal_interrupt_thread_config,1,1024,100,1,g_mutex_attr,g_st_osal_device_control,0,0,0,0,0,0,0,0,0,0,0,0,-1,g_interrupt_count,g_interrupt_id,1,33,OSAL_RETURN_FAIL,;pthread_attr_destroy() return non-zero.

@@ -1,0 +1,11 @@
+modi,R_OSAL_InterruptIsISRContext,06_006,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_InterruptGetInitStatus,R_OSAL_DCFG_InterruptGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_InterruptIsISRContext,R_OSAL_DCFG_InterruptIsISRContext,,,,,,,,,,
+#COMMENT,@p_is_isr,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_InterruptGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_InterruptIsISRContext@AMIN_return,R_OSAL_InterruptIsISRContext@@,;,,,,,,,
+,g_bool,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,g_bool,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;R_OSAL_DCFG_InterruptGetInitStatus() return OSAL_MANAGER_STATE_UNINITIALIZED,,,,,,,
+,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_is_isr is NULL,,,,,,,
+,g_bool,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_PAR,OSAL_RETURN_PAR,;R_OSAL_DCFG_InterruptIsISRContext return OSAL_RETURN_PAR,,,,,,,
+,g_bool,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_STATE,OSAL_RETURN_STATE,;R_OSAL_DCFG_InterruptIsISRContext return OSAL_RETURN_STATE,,,,,,,

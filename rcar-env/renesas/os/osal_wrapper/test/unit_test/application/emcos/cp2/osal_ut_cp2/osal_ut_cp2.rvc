@@ -1,0 +1,25 @@
+;ユーザーキーワード
+/keyword = far TYPEATT
+/keyword = near TYPEATT
+/keyword = __fp16 TYPE
+/keyword = __builtin_va_list TYPE
+/keyword = __unaligned TYPEATT
+/keyword = __inline IGNORE
+/keyword = __declspec IGNORE (EXPRESSION)
+/keyword = __asm ASM (EXPRESSION)
+/keyword = __asm__ ASM (STRING)
+/keyword = __uint128_t TYPE
+;置き換えキーワード
+;非抽出コメント
+/disregard = "======*"
+/disregard = "\/\/\/\/\/\/*"
+/disregard = "\+\+\+\+\+\+*"
+/disregard = "\-\-\-\-\-\-*"
+/disregard = "\*\*\*\*\*\**"
+/disregard = "[Vv][0-9]*[\.Ll][0-9]*"
+;モジュール仕様書・概要説明等の抽出定義
+/comment_skip_line = 0
+;構造体仕様書・概要説明等の抽出定義
+/data_comment_skip_line = 0
+;#pragma定義
+/flgPragmaAsm = 0

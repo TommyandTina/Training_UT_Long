@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_GetNumOfInterruptThread,06_018,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,r_osal_usr_cfg.c/gsp_osal_interrupt_thread_config,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,r_osal_usr_cfg.c/gsp_osal_interrupt_thread_config,R_OSAL_RCFG_GetNumOfInterruptThread@@,;,,,,,,,,
+,1,g_osal_interrupt_thread_config,197,;Normal operation ,,,,,,,,
+,1,g_osal_interrupt_thread_config_dummy,0,;Invalid config,,,,,,,,

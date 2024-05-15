@@ -1,0 +1,10 @@
+modi,R_OSAL_DCFG_IoRead,06_010,9,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoRead,R_OSAL_OS_IoRead,,,,,,,,,,
+#COMMENT,@handle,@handle[0].handle_id,@handle[0].base_addr,@handle[0].len,@offset,@size,@unit_size,@p_data,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoRead@AMIN_return,R_OSAL_DCFG_IoRead@@,;,
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,1,2,1,1,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,
+,g_st_osal_device_control_t[0],0,1,2,1,1,0,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle_id is not OSAL_IO_HANDLE_ID,
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,2,1,1,0,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;base_addr is NULL,
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,1,1,1,1,0,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;len is less than (offset + size),
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,1,2,1,1,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_IoRead returns OSAL_RETURN_FAIL,

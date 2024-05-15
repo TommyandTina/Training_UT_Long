@@ -1,0 +1,71 @@
+--- a/build/parts/mcos/posix/init/init_thread.c	2022-03-28 11:44:14.000000000 +0000
++++ b/build/parts/mcos/posix/init/init_thread.c	2022-04-28 10:09:46.800786931 +0000
+@@ -69,6 +69,11 @@
+ #include <mcos/mcos.h>
+ #include <mcos/mcos_ds.h>
+ 
++#include <drv/gpio/gpio_driver.h>
++#include <drv/i2c/i2c.h>
++#include <drv/cpg/cpg_driver.h>
++#include <drv/sysc/sysc.h>
++
+ #if !defined(USE_TTY_DEV_UART)
+ #define USE_TTY_DEV_UART    1
+ #endif
+@@ -652,6 +657,56 @@
+         }
+     }
+ 
++        /* Drivers sample common */
++    int32_t drv_ret;
++
++    /* Adjust timing for all previous log printing. */
++    sleep(5);
++
++    /* GPIO driver initialization sample */
++    drv_ret = gpio_driver_create("/pdev/gpio0", "/dev/gpio0");
++    if(drv_ret == 0)
++    {
++        mcos_debug_printf("SUCCESS : gpio_driver_create()/n");
++    }
++    else
++    {
++        mcos_debug_printf("FAIL : gpio_driver_create()/n");
++    }
++
++    /* I2C driver initialization sample */
++    drv_ret = i2c_driver_initialize();
++    if(drv_ret == 0)
++    {
++      mcos_debug_printf("SUCCESS : i2c_driver_initialize()/n");
++    }
++    else
++    {
++      mcos_debug_printf("FAIL : i2c_driver_initialize()/n");
++    }
++
++    /* CPG driver initialization */
++    drv_ret = cpgdrv_initialize();
++    if(drv_ret == 0)
++    {
++        mcos_debug_printf("SUCCESS : cpgdrv_initialize()/n");
++    }
++    else
++    {
++        mcos_debug_printf("FAIL : cpgdrv_initialize()/n");
++    }
++
++    /* SYSC driver initialization */
++    drv_ret = sysc_initialize();
++    if(drv_ret == 0)
++    {
++        mcos_debug_printf("SUCCESS : sysc_initialize()/n");
++    }
++    else
++    {
++        mcos_debug_printf("FAIL : sysc_initialize()/n");
++    }
++
+     return (void*)((long)sta);
+ }
+ 

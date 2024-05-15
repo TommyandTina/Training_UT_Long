@@ -1,0 +1,23 @@
+LR1 AlignExpr(GetPageSize() + SizeOfHeaders(), 0x10)
+{
+    ER_RO +0
+    {
+
+        ;If there are exception handling index tables in deffirent region, you should use
+        ;the *(.init_array) and *(eh_frame) as following to ensure that all exception
+        ;handling unwind information are contained in a single region.
+        ;*(.init_array*)
+        ;*(.eh_frame)
+
+        *(+RO)
+    }
+}
+
+LR2 +GetPageSize()
+{
+    ER_RW +0
+    {
+        *(+RW)
+        *(+ZI)
+    }
+}

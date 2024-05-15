@@ -1,0 +1,13 @@
+modi,r_osal_rcfg_mmngr_open_map,09_024,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MmngrMap,R_OSAL_OS_MmngrMap,,,,,,,,,,
+%,AMSTB_R_MEML_Initialize,R_MEML_Initialize,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MmngrUnmap,R_OSAL_OS_MmngrUnmap,,,,,,,,,,
+#COMMENT,$@p_mngr_control,$@p_usr_config,@p_usr_config[0].mode,@region_idx,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MmngrMap@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_MEML_Initialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MmngrUnmap@AMIN_return,r_osal_rcfg_mmngr_open_map@@,;,,,
+,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,0,OSAL_RETURN_OK,MEML_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,
+,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,0,OSAL_RETURN_FAIL,MEML_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MmngrMap() return OSAL_RETURN_FAIL,,,
+,1,1,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,0,OSAL_RETURN_OK,MEML_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (mode is STACK_PROT),,,
+,1,1,OSAL_MMNGR_ALLOC_MODE_FREE_LIST,0,OSAL_RETURN_OK,MEML_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (mode is FREE_LIST),,,
+,1,1,OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT,0,OSAL_RETURN_OK,MEML_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (mode is FREE_LIST_PROT),,,
+,1,1,OSAL_MMNGR_ALLOC_MODE_STACK,0,OSAL_RETURN_OK,MEML_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_MEML_Initialize() return MEML_RETURN_FAIL,,,

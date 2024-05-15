@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_MutexDestroy,10_102,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,
+#COMMENT,@mutex,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return,R_OSAL_OS_MutexDestroy@@,;,,,,,,,
+,g_st_osal_os_mutex_t[0],0,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,0,0,0,OSAL_RETURN_FAIL,;mutex is NULL,,,,,,,
+,g_st_osal_os_mutex_t[0],0,16,OSAL_RETURN_BUSY,;pthread_mutex_destroy() return EBUSY,,,,,,,
+,g_st_osal_os_mutex_t[0],0,1,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return error,,,,,,,

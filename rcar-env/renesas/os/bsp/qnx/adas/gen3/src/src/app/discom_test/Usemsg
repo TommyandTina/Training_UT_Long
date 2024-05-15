@@ -1,0 +1,40 @@
+
+DISCOM Test Utility for R-Car Gen3 based platforms
+
+Description
+===========
+
+  discom_test is a test utility of DISCOM feature in libWFD library. Given an input JPEG/PNG image, the program will 
+  decompress the image to RGBX8888 raw data, then calculate CRC32 value of raw data using CRC polynomial algorithm from 
+  IEEE-802.3. After that, this CRC32 value will be compared with CRC32 calculated from DISCOM module. This program use 
+  QNX libimg to decompress JPEG/PNG image. Please configure system to support libimg before running this program.
+
+Options
+=======
+  --display -d
+    Screen display ID of monitor that will be tested.
+
+  --image -i
+    Path of the image that will be calculated CRC32 (*.jpg, *.jpeg, *.png is accepted). Displayed position is fixed
+    to upper left corner. 
+
+  --attach -a
+    DISCOM position in VSP2 graphic pipeline. There are two possible values of attached position:
+      + input  : RPF->UIF->BRU (default)
+      + output : RPF->BRU->UIF
+
+  --rect -r
+    Image ROI that will be calculated CRC32
+      + If attach type is input, default ROI is entire given image
+      + If attach type is output, default ROI is entire image that being displayed on monitor
+
+Example
+=======
+  1) Calculate CRC32 in case Image->RPF->UIF->BRU
+     $ discom_test --display=1 --image=/tmp/sample.jpg
+
+  2) Calculate CRC32 in case Sub-Image->RPF->UIF->BRU
+     $ discom_test --display=1 --image=/tmp/sample.jpg --rect=100,100,500,500
+
+  3) Calculate CRC32 in case Image->RPF->BRU->UIF
+     $ discom_test --display=1 --image=/tmp/sample.jpg --rect=0,0,1280,720 --attach=output 

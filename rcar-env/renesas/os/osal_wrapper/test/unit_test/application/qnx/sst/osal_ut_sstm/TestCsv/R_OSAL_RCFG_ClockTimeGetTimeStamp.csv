@@ -1,0 +1,10 @@
+modi,R_OSAL_RCFG_ClockTimeGetTimeStamp,05_004,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_timeclock.c/gs_osal_clock_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighResoTimeStamp,R_OSAL_OS_ClockTimeGetHighResoTimeStamp,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_timeclock.c/gs_osal_clock_is_initialized_enu,@clock_type ,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighResoTimeStamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp@AMIN_return,R_OSAL_RCFG_ClockTimeGetTimeStamp@@,;,,,,,
+,1,1,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation(clock_type is OSAL_CLOCK_TYPE_HIGH_RESOLUTION),,,,,
+,1,2,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation(clock_type is OSAL_CLOCK_TYPE_HIGH_PRECISION),,,,,
+,1,1,g_st_osal_time,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_ClockTimeGetHighResoTimeStamp() return OSAL_RETURN_FAIL,,,,,
+,1,2,g_st_osal_time,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp() return OSAL_RETURN_FAIL,,,,,

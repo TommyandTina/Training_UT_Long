@@ -1,0 +1,17 @@
+
+CMM Resource Manager for R-Car Gen3 based platforms
+
+Description
+===========
+  rcar-cmm is a system application that allow user application use CMM feature of a given display. 
+  A set of functions is provided, include change display color tone through apply different 1D/3D 
+  color lookup tables (LUT), configure method and calculate color histogram.
+
+Options
+=======
+  -c: Select DU channel that need to be enabled CMM feature.
+
+Example
+=======
+  Enable CMM for DU1
+    $ rcar-cmm -c 1

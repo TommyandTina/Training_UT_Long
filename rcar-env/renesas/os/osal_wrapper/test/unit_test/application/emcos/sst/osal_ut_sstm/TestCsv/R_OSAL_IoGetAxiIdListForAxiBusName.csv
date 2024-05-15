@@ -1,0 +1,27 @@
+modi,R_OSAL_IoGetAxiIdListForAxiBusName,07_039,18,1,,,,CPP,,,,0,,,,,,,,
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetAxiBusInfo,R_OSAL_DCFG_GetAxiBusInfo,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_add_utlb_list,osal_internal_add_utlb_list,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,$@p_axi_bus_name,@p_array,@array_size,@p_num_of_written_axi_ids,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetAxiBusInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strnlen@AM_count,AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_osal_internal_add_utlb_list@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetAxiBusInfo@AM_count,g_st_osal_axi_bus_control.num,AMSTB_SrcFile.c/AMSTB_osal_internal_add_utlb_list@AMIN_match_count,AMSTB_SrcFile.c/AMSTB_osal_internal_add_utlb_list@AMOUT_list_buffer,R_OSAL_IoGetAxiIdListForAxiBusName@@,;
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,3,g_uint64_t,OSAL_RETURN_OK,;Normal operation
+,0,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,3,g_uint64_t,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false
+,1,0,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,3,g_uint64_t,OSAL_RETURN_PAR,;p_axi_bus_name is NULL
+,1,1,g_uint64_t,5,0,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,3,g_uint64_t,OSAL_RETURN_PAR,;p_num_of_written_axi_ids is NULL
+,1,1,0,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,3,g_uint64_t,OSAL_RETURN_PAR,;p_array is NULL and array_size is not 0
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_FAIL,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,3,g_uint64_t,OSAL_RETURN_FAIL,;R_OSAL_DCFG_GetAxiBusInfo() return OSAL_RETURN_FAIL
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,1,0,3,g_uint64_t,OSAL_RETURN_FAIL,;The aquired axi_bus_control is NULL
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,2,0,3,g_uint64_t,OSAL_RETURN_FAIL,;The aquired axi_bus_control->axi_bus_list  is NULL
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,-1,-1,0,3,3,6,OSAL_RETURN_OK,0,1,3,g_uint64_t,OSAL_RETURN_UNKNOWN_NAME,;strncmp() return non-zero
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_UNKNOWN_NAME,0,2,3,g_uint64_t,OSAL_RETURN_UNKNOWN_NAME,;osal_internal_add_utlb_list() return OSAL_RETURN_UNKNOWN_NAME
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,5,OSAL_RETURN_OK,0,2,3,g_uint64_t,OSAL_RETURN_UNKNOWN_NAME,;axi_bus_name_len is less than (offset + (size_t)3U)
+,1,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,0,g_uint64_t,OSAL_RETURN_UNKNOWN_NAME,;osal_ret = OSAL_RETURN_OK and match_count is 0.
+,1,1,g_uint64_t,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,10,g_uint64_t,OSAL_RETURN_PAR,;p_array is not NULL and array_size is less than numofaxiids
+,1,1,0,0,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,3,0,OSAL_RETURN_OK_RQST,;array_size is 0.

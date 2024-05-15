@@ -1,0 +1,24 @@
+    The Ethernet (EtherAVB) driver for R-Car Gen3 boards
+
+    CREATED   : 09.30.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            09.30.2020 : Ver.0.1
+            - Create new version
+            10.28.2020 : Ver.0.2
+            - Update new framework from QSSL 
+            02.06.2021 : Ver.0.3
+			- Support R-CarV3H
+            02.28.2021 : Ver.0.4
+            - Update and Support for R-Car Gen3
+            03.30.2022 : Ver.0.5
+            - Update AVB driver : Code optimization/enhancement based on code review, Linux code and Hardware manual
+-----------------------------------------------------------------------------
+ Known limitations for R-Car V3U.
+-----------------------------------------------------------------------------            
+    Only EAVB0 on Break board is supported on R-Car V3U.
+    EAVB1~5 on ETHERBoard are not supported due to lack of Marvell PHY datasheet.

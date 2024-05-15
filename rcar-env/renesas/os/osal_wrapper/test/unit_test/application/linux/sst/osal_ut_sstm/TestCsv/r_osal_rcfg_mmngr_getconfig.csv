@@ -1,0 +1,16 @@
+modi,r_osal_rcfg_mmngr_getconfig,09_033,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_cmn_get_handle_state,r_osal_rcfg_mmngr_cmn_get_handle_state,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,@p_ptr_self,g_st_osal_memory_manager_obj[0].p_ptr_self,g_st_osal_mem_mmngr_ptr_self[0].handle_id,@p_config,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_cmn_get_handle_state@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_cmn_get_handle_state@AMIN_p_state,r_osal_rcfg_mmngr_getconfig@@,;
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mmngr_config,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mmngr_config,OSAL_RETURN_HANDLE,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_HANDLE,;r_osal_rcfg_mmngr_cmn_get_handle_state() return non-OSAL_RETURN_OK
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mmngr_config,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_STATE,;state is not OSAL_MANAGER_STATE_MEMOPENED
+,g_st_osal_memory_manager_obj,0,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mmngr_config,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_HANDLE,;mngr_handle->p_ptr_self is NULL
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,0,g_st_osal_mmngr_config,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_HANDLE,;p_mngr_control->handle_id is not equals OSAL_RES_CFG_MEMORY_HANDLE_ID
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mmngr_config,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_RES_CFG_MEMORY_HANDLE_ID,g_st_osal_mmngr_config,OSAL_RETURN_OK,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL

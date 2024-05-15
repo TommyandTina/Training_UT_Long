@@ -1,0 +1,13 @@
+modi,R_OSAL_ThsyncMutexCreate,03_007,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_ThsyncGetInitStatus,R_OSAL_RCFG_ThsyncGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MutexCreate,R_OSAL_RCFG_MutexCreate,,,,,,,,,,
+#COMMENT,@mutex_id,@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_ThsyncGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MutexCreate@AMIN_return,R_OSAL_ThsyncMutexCreate@@,;,,,,,,
+,2,g_uts_common_thread_handle,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;03_007_001,,,,,,
+,2,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;03_007_002,,,,,,
+,2,g_uts_common_thread_handle,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;03_007_003,,,,,,
+,2,g_uts_common_thread_handle,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_PAR,OSAL_RETURN_PAR,;03_007_004,,,,,,
+,2,g_uts_common_thread_handle,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;03_007_005,,,,,,
+,2,g_uts_common_thread_handle,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_BUSY,OSAL_RETURN_BUSY,;03_007_006,,,,,,
+,2,g_uts_common_thread_handle,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_ID,OSAL_RETURN_ID,;03_007_007,,,,,,

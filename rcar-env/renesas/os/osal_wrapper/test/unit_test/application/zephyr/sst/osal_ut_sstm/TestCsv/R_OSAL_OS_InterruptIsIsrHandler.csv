@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_InterruptIsIsrHandler,06_109,5,1,,,,CPP,,,,0
+#InitWheneverCall,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_control,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_handler,,,,,,,,,
+0,0,0,0,,,,,,,,,
+#COMMENT,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_control,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_handler,@num,$@p_result,R_OSAL_InterruptIsISRContext@@,;,,,,,
+,1,g_st_osal_interrupt_control_t,1,0,1,OSAL_RETURN_OK,;Normal operation (p_interrupt_control->irq_handler is not NULL),,,,,
+,1,g_st_osal_interrupt_control_t,0,0,1,OSAL_RETURN_OK,;Normal operation (p_interrupt_control->irq_handler is NULL),,,,,
+,1,g_st_osal_interrupt_control_t,1,0,0,OSAL_RETURN_FAIL,;p_result is NULL.,,,,,
+,0,g_st_osal_interrupt_control_t,1,0,1,OSAL_RETURN_STATE,;gs_osal_os_interrupt_init_flag is false.,,,,,

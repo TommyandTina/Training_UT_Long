@@ -1,0 +1,13 @@
+modi,R_PMA_SM_SetLowestPowerState,03_018,5,2,,,,CPP,,,,0
+#InitWheneverCall,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enLowestPwrState,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_GetHwaState,R_PMA_HW_DEP_GetHwaState,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_GetHwaState,R_PMA_HW_DEP_GetHwaState,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_GetHwaState,R_PMA_HW_DEP_GetHwaState,,,,,,,,,,
+#COMMENT,@hwaId,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_GetHwaState@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_GetHwaState@AMOUT_pClkStat,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_GetHwaState@AMOUT_pPwrStat,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enLowestPwrState,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enLowestPwrState,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_GetHwaState@AMOUT_hwaId,;,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_OK,1,1,R_PMA_PG_MODE,R_PMA_STATE_ENABLED,R_PMA_HWA_ID_V4H_IMPPSC,;Normal operation Change LowestPwrState R_PMA_STATE_ENABLED,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_OK,0,1,R_PMA_PG_MODE,R_PMA_STATE_CG,R_PMA_HWA_ID_V4H_IMPPSC,;Normal operation Change LowestPwrState R_PMA_STATE_CG,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_OK,0,0,R_PMA_STATE_CG,R_PMA_PG_MODE,R_PMA_HWA_ID_V4H_IMPPSC,;Normal operation Change LowestPwrState R_PMA_STATE_PG,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_OK,1,0,R_PMA_PG_MODE,R_PMA_STATE_UNKNOWN,R_PMA_HWA_ID_V4H_IMPPSC,;,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_BSP_ECPG,1,1,R_PMA_PG_MODE,R_PMA_STATE_UNKNOWN,R_PMA_HWA_ID_V4H_IMPPSC,;,,,,
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_NG,1,1,R_PMA_PG_MODE,R_PMA_PG_MODE,R_PMA_HWA_ID_V4H_IMPPSC,;R_PMA_HW_DEP_GetHwaState() returns R_PMA_NG,,,,

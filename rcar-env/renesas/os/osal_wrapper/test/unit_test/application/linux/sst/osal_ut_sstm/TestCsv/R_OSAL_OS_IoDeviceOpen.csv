@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_IoDeviceOpen,15_105,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_open,r_osal_os_io_open,,,,,,,,,,
+%,AMSTB_r_osal_os_io_open_error,r_osal_os_io_open_error,,,,,,,,,,
+#COMMENT,@p_id,@p_handle,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_open@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_open_error@AM_count,R_OSAL_OS_IoDeviceOpen@@,;,,,,,,
+,1,g_st_osal_device_control_t,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,g_st_osal_device_control_t,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_id is NULL,,,,,,
+,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_handle is NULL,,,,,,
+,1,g_st_osal_device_control_t,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;r_osal_os_io_open returns OSAL_RETURN_FAIL,,,,,,

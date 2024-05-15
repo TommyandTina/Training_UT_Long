@@ -1,0 +1,61 @@
+%C Driver for R-Car SATA controller.
+
+Syntax:
+devb-rcarsata [blk io-blk_options] [cam cam_options] [rcar-sata rcar-sata_options] &
+
+Options:  All options are separated by commas.
+
+cam options:
+    async          Perform CPU cache invalidation after an I/O operation in a
+                   thread that's separate from the one that's notifying the
+                   upper layer. In some cases, and on some boards,
+                   this can provide a performance boost.  Default off.
+    bounce=[size]  This option specifies the size of bounce buffer to use.
+                   The bounce buffer acts as an intermediate buffer for doing
+                   transfers to/from the media. Bounce buffers are useful for
+                   devices which cannot access the full range of memory
+                   available to the CPU (32 vs 64-bit architecture etc).  When
+                   used, size should be sufficiently large such that the CAM
+                   library doesn't fragment the I/O requests from io-blk, this
+                   will show markedly better performance. This option will
+                   automatically be enabled when cached memory buffer usage
+                   is disabled or when the hw doesn't support snooping.  The
+                   size argument can include a case-insensitve suffix that
+                   indicates the units: B (bytes; the default), K (kilobytes),
+                   M (megabytes), or P (pages).  The default size=32k.
+    cache=[on|off] Turn on/off usage of cached memory buffers.  Default on.
+
+    lun=mask       Enable Logical Unit Number (LUN) scan for the devices
+                   specified in mask. The mask is a hex bitmask specifying
+                   which IDs to scan for; the default is 0x00.
+    nopriv         Don't call ThreadCtl(_NTO_TCTL_IO_PRIV).
+    pnp            Enable CAM plug and play (i.e. don't exit at startup when
+                   no devices are found).  Default off.
+    resmgr=m:l:h:d Enable /dev/camX/XXX interface and set max/lo/hi/devno
+                   thread pool parameters (default: "5:1:2:-1")
+    user=UID:GID   Operate as the specified user and group IDs. The driver
+                   retains the necessary process-manager abilities.
+    smmu=[on|off]  Turn on/off (1/0) the use of IO MMU protection services.
+                   Default off.
+    verbose        Be verbose: display full information about SCSI units
+                   (devices) on startup.
+
+mem options:
+    name=name      Typed memory name to use.  Default sysram&below4G).
+                   See also blk layer option for typed memory.
+
+sata options:
+    The rcarSata options control the drivers interface to the R-Car SATA
+    controller.
+
+  interface specific options:
+    ioport=addr      Address of the SATA controller registers memory map.
+    ioportlen=len    Lenghth of the address space. Default : 0x2000
+    irq=req          Interrupt used by the controller.
+    verbose          Display information about SATA driver activity
+    priority=prio    Set the priority of the processing thread. Default : 21
+    timeout=timeout  Set the I/O request timeout in seconds. Default : 5
+
+Examples:
+    Driver instance for the SATA interface
+    devb-rcarsata blk cache=2m cam cache rcarsata ioport=0xEE300000,irq=137

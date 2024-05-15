@@ -1,0 +1,24 @@
+modi,osal_internal_mem_close,09_027,19,1,,,,CPP,,,,0,,,,,,,,,
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_mem_dealloc_proc,osal_internal_mem_dealloc_proc,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_MEML_Deinitialize,R_MEML_Deinitialize,,,,,,,,,,,,,,,,,,,
+%,AMSTB_munmap,munmap,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,@hndl_mmngr,g_st_osal_memory_manager_obj[0].p_ptr_self,g_st_osal_mem_mmngr_ptr_self[0].config.max_allowed_allocations,g_st_osal_mem_mmngr_ptr_self[0].config.memory_limit,g_st_osal_mem_mmngr_ptr_self[0].num_buffers,g_st_osal_mem_mmngr_ptr_self[0].size,g_st_osal_mem_mmngr_ptr_self[0].use_buffer_total,g_st_osal_mem_mmngr_ptr_self[0].p_buffers,g_osal_mem_buf_ptr_self.mbuff_obj.p_ptr_self,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_osal_internal_mem_dealloc_proc@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_MEML_Deinitialize@AMIN_return,AMSTB_SrcFile.c/AMSTB_munmap@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],osal_internal_mem_close@@,;
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation(gs_osal_memory_is_initialized is NONE)
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,0,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation(num_buffer is 0)
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,MEML_RETURN_OK,0,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,0,0,0,0,0,OSAL_RETURN_HANDLE,;mngr_buffer_hndl->p_ptr_self is NULL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,MEML_RETURN_OK,0,0,0,0,0,OSAL_RETURN_FAIL,;osal_internal_mem_dealloc_proc() return OSAL_RETURN_FAIL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_FAIL,0,0,0,0,0,OSAL_RETURN_MEM,;R_MEML_Deinitialize() return MEML_RETURN_FAIL
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,-1,0,0,0,0,OSAL_RETURN_MEM,;munmap() return non-zero
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,2,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,0,0,-1,0,0,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,0,0,0,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero
+,1,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,1,8192,1,1,1,g_osal_mem_buf_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,0,OSAL_RETURN_OK,OSAL_RETURN_OK,MEML_RETURN_OK,-1,0,0,0,-1,OSAL_RETURN_MEM,;pthread_mutex_unlock() return non-zero (Aleady FAILed)

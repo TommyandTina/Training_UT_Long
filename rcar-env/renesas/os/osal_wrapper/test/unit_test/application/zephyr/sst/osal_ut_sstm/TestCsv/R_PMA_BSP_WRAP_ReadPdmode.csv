@@ -1,0 +1,5 @@
+modi,R_PMA_BSP_WRAP_ReadPdmode,05_014,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@pdMode,R_PMA_BSP_WRAP_ReadPdmode@@,;,,,,,,,,,
+,0,R_PMA_OK,;Normal operation,,,,,,,,,

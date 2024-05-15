@@ -1,0 +1,18 @@
+modi,osal_internal_mq_rcv_is_isr,04_021,11,1,,,,CPP,,,,0,
+#InitWheneverCall,,,,,,,,,,,,,
+0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,
+%,AMSTB_osal_internal_mq_rcv,osal_internal_mq_rcv,,,,,,,,,,,
+%,AMSTB_pthread_cond_broadcast,pthread_cond_broadcast,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,@handle,g_st_osal_mq_control.numofmsg,g_st_osal_mq_control.send_wait,@p_buffer,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_osal_internal_mq_rcv@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_broadcast@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],osal_internal_mq_recv_is_isr@@,;
+,1,g_st_osal_mq_control,1,1,gp_void,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;Normal operation
+,1,g_st_osal_mq_control,1,1,gp_void,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,1,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,0,g_st_osal_mq_control,1,1,gp_void,0,OSAL_RETURN_OK,OSAL_RETURN_OK,1,0,0,OSAL_RETURN_STATE,;gs_osal_mq_is_initialized is false
+,1,g_st_osal_mq_control,0,1,gp_void,0,OSAL_RETURN_OK,OSAL_RETURN_OK,1,0,0,OSAL_RETURN_BUSY,;handle->numofmsg is eqaul 0
+,1,g_st_osal_mq_control,1,1,gp_void,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,1,0,0,OSAL_RETURN_FAIL,;osal_internal_mq_rcv() return OSAL_RETURN_FAIL
+,1,g_st_osal_mq_control,1,1,gp_void,0,OSAL_RETURN_OK,OSAL_RETURN_OK,-1,0,0,OSAL_RETURN_FAIL,;pthread_cond_broadcast() return non-zero
+,1,g_st_osal_mq_control,1,1,gp_void,0,OSAL_RETURN_OK,OSAL_RETURN_OK,1,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero
+,1,g_st_osal_mq_control,1,0,gp_void,0,OSAL_RETURN_OK,OSAL_RETURN_OK,1,0,0,OSAL_RETURN_OK,;handle->send_wait is false

@@ -1,0 +1,25 @@
+modi,R_OSAL_RCFG_MutexDestroy,02_007,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_inner_mutex_mtx,r_osal_res_cfg_threadsync.c/gsp_mutex_array,r_osal_res_cfg_threadsync.c/gsp_mutex_array[0],r_osal_res_cfg_threadsync.c/gsp_mutex_array[1],r_osal_res_cfg_threadsync.c/gs_mutex_array_size,,,,,,,,,,,,,,
+0,0,0,0,0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mutex_search_array,r_osal_rcfg_mutex_search_array,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mutex_search_array,r_osal_rcfg_mutex_search_array,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_inner_mutex_mtx,r_osal_res_cfg_threadsync.c/gsp_mutex_array,r_osal_res_cfg_threadsync.c/gsp_mutex_array[0],r_osal_res_cfg_threadsync.c/gsp_mutex_array[1],r_osal_res_cfg_threadsync.c/gs_mutex_array_size,@handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mutex_search_array@AMIN_index,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mutex_search_array@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_RCFG_MutexDestroy@@,;
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,g_osal_mutex_handle_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,g_osal_mutex_handle_t,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],0,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,g_osal_mutex_handle_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;gsp_mutex_array is NULL
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,g_osal_mutex_handle_t,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;r_osal_rcfg_mutex_search_array() return OSAL_RETURN_HANDLE
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,g_osal_mutex_handle_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_BUSY,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;R_OSAL_OS_MutexDestroy() return OSAL_RETURN_BUSY
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,3,g_osal_mutex_handle_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_MEM,;realloc return NULL
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],1,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,g_osal_mutex_handle_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,g_osal_mutex_handle_t,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],g_osal_mutex_handle_t,g_st_osal_mutex_control_t[0],g_st_osal_mutex_control_t[1],2,g_st_osal_mutex_control_t[2],0,0,0,0,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_MEM,;realloc return NULL and R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL

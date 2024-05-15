@@ -1,0 +1,9 @@
+modi,R_OSAL_Internal_GetTimestamp,01_005,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_clock_gettime,clock_gettime,,,,,,,,,,
+#COMMENT,$@p_time_stamp,AMSTB_SrcFile.c/AMSTB_clock_gettime@input_tv_nsec,AMSTB_SrcFile.c/AMSTB_clock_gettime@input_tv_sec,AMSTB_SrcFile.c/AMSTB_clock_gettime@AMIN_return,R_OSAL_Internal_GetTimestamp@@,;,,,,,,
+,1,1,0,0,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,0,1,0,0,OSAL_RETURN_PAR,;p_time_stamp is NULL.,,,,,,
+,1,1,0,-1,OSAL_RETURN_FAIL,;clock_gettime() is non-zero.,,,,,,
+,1,1000000000,0,0,OSAL_RETURN_FAIL,;p_time_stamp->tv_nsec more than OSAL_MAX_TV_NSEC.,,,,,,

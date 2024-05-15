@@ -1,0 +1,26 @@
+modi,R_OSAL_ThsyncMutexLockUntilTimeStamp,03_004,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_CheckTimestamp,R_OSAL_Internal_CheckTimestamp,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_GetThreadSpecific,R_OSAL_Internal_GetThreadSpecific,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_trylock,pthread_mutex_trylock,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_trylock,pthread_mutex_trylock,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimeRoundUp,R_OSAL_Internal_TimeRoundUp,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_timedlock,pthread_mutex_timedlock,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_timedlock,pthread_mutex_timedlock,,,,,,,,,,,,,
+#COMMENT,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,@handle,g_st_osal_mutex_control.handle_id,g_st_osal_mutex_control.active,@p_time_stamp,gs_osal_threadsync_is_initialized_dummy,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_CheckTimestamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_GetThreadSpecific@AM_num,AMSTB_SrcFile.c/AMSTB_pthread_mutex_trylock@AM_init_ope,AMSTB_SrcFile.c/AMSTB_pthread_mutex_trylock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimeRoundUp@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_timedlock@AM_init_ope,AMSTB_SrcFile.c/AMSTB_pthread_mutex_timedlock@AMIN_return,R_OSAL_ThsyncMutexLockUntilTimeStamp@@,;
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation (p_get_value is NULL)
+,0,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_STATE,;gs_osal_threadsync_is_initialized is false
+,1,0,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle is NULL
+,1,g_st_osal_mutex_control,0,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;handle->handle_id is not OSAL_MUTEX_HANDLE_ID.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,0,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_PAR,;p_time_stamp is NULL.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_FAIL,3,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_PAR,;R_OSAL_Internal_CheckTimestamp() returns OSAL_RETURN_FAIL.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,2,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation (p_get_value is not NULL)
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,2,0,16,OSAL_RETURN_OK,0,0,OSAL_RETURN_BUSY,;pthread_mutex_trylock() returns EBUSY.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,2,0,11,OSAL_RETURN_OK,0,0,OSAL_RETURN_BUSY,;pthread_mutex_trylock() returns EAGAIN.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,2,0,22,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,;pthread_mutex_trylock() returns is not EOK.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimeRoundUp() returns OSAL_RETURN_FAIL.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,110,OSAL_RETURN_TIME,;pthread_mutex_timedlock() returns ETIMEDOUT.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,22,OSAL_RETURN_FAIL,;pthread_mutex_timedlock() returns is not 0.
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,0,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_HANDLE,;Return code is OSAL_RETURN_OK & handle->active is false. 
+,1,g_st_osal_mutex_control,0x4F53414C5F4D5458ULL,1,g_st_osal_time,gs_osal_threadsync_is_initialized,OSAL_RETURN_OK,3,2,0,OSAL_RETURN_OK,1,0,OSAL_RETURN_STATE,;Return code is OSAL_RETURN_OK & gs_osal_threadsync_is_initialized is false. 

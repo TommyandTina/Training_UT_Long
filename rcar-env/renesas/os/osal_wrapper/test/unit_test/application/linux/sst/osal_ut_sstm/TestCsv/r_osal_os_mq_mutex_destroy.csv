@@ -1,0 +1,8 @@
+modi,r_osal_os_mq_mutex_destroy,19_115,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,
+#COMMENT,@p_mutex,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],r_osal_os_mq_mutex_destroy@@,;,,,,,,,
+,g_osal_os_mutex_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,g_osal_os_mutex_t[0],0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDestroy returns OSAL_RETURN_FAIL,,,,,,,

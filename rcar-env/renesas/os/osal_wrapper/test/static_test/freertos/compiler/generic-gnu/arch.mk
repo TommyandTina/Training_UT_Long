@@ -1,0 +1,28 @@
+
+ifeq ($(VLIB_CROSS_COMPILE),)
+VLIB_CROSS_COMPILE = $(CROSS_COMPILE)
+endif
+
+CC   := $(VLIB_CROSS_COMPILE)gcc
+CCD  := $(VLIB_CROSS_COMPILE)gdb
+CXX  := $(VLIB_CROSS_COMPILE)g++
+AR   := $(VLIB_CROSS_COMPILE)ar
+AS   := $(VLIB_CROSS_COMPILE)gcc
+LINK := $(VLIB_CROSS_COMPILE)gcc
+OBJCOPY := $(VLIB_CROSS_COMPILE)objcopy
+OBJDUMP := $(VLIB_CROSS_COMPILE)objdump
+
+VLIB_COMMONFLAGS	+= -c -MD -ffreestanding
+ifneq ($(VLIB_CPU),)
+VLIB_COMMONFLAGS	+= -mcpu=$(VLIB_CPU)
+VLIB_LDFLAGS		+= -mcpu=$(VLIB_CPU) -mfpu=vfpv3-d16
+endif
+VLIB_COMMONFLAGS	+=  -Wall  
+ifneq ($(VLIB_DEBUG_BUILD), no)
+VLIB_COMMONFLAGS	+= -g
+endif
+
+VLIB_AS_EXT		:= s S
+VLIB_LIB_EXT		:= a
+VLIB_APP_EXT		:= out
+VLIB_OBJ_EXT		:= o

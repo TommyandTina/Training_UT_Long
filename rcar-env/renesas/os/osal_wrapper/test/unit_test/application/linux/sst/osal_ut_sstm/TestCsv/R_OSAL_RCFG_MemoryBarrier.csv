@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_MemoryBarrier,02_018,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gs_inner_cond_mtx,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MemoryBarrier,R_OSAL_OS_MemoryBarrier,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gs_inner_cond_mtx,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MemoryBarrier@AMIN_return,R_OSAL_RCFG_MemoryBarrier@@,;,,,,,,,,
+,g_osal_os_mutex_t[0],OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,,

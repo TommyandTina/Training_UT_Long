@@ -1,0 +1,28 @@
+modi,r_osal_rcfg_cond_control_init,03_023,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,r_osal_configuration.c/g_osal_cond_config[0].id,r_osal_configuration.c/g_osal_cond_config[1].id,r_osal_configuration.c/g_osal_cond_config[2].id,r_osal_configuration.c/g_osal_cond_config[3].id,,,,,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexInitAttr,R_OSAL_OS_MutexInitAttr,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondInitAttr,R_OSAL_OS_CondInitAttr,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondStaticCreate,R_OSAL_OS_CondStaticCreate,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexCreate,R_OSAL_OS_MutexCreate,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDeinitAttr,R_OSAL_OS_CondDeinitAttr,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDeinitAttr,R_OSAL_OS_MutexDeinitAttr,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,
+#COMMENT,r_osal_configuration.c/g_osal_cond_config[0].id,r_osal_configuration.c/g_osal_cond_config[1].id,r_osal_configuration.c/g_osal_cond_config[2].id,r_osal_configuration.c/g_osal_cond_config[3].id,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondInitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondStaticCreate@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexCreate@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AMOUT_p_ptr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondStaticCreate@AM_count,r_osal_rcfg_cond_control_init@@,;
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_FAIL,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexInitAttr() returns OSAL_RETURN_FAIL
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_FAIL,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_CondInitAttr() returns OSAL_RETURN_FAIL
+,0xffffffffffffffffUL,0xffffffffffffffffUL,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;gs_osal_num_of_cond_table is 0
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,0,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_MEM,;p_cond_config_index is NULL
+,0x7001U,0x7000U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;g_osal_cond_config[0].id is more than g_osal_cond_config[1].id
+,0x7000U,0x7000U,0x7002U,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_CONF,;g_osal_cond_config[0].id is equal to g_osal_cond_config[1].id
+,0x7000U,0x7001U,0x7001U,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_CONF,;g_osal_cond_config[1].id is equal to g_osal_cond_config[2].id
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_MEM,;gsp_osal_cond_control is NULL
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_CondStaticCreate() returns OSAL_RETURN_FAIL
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexCreate() returns OSAL_RETURN_FAIL
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_CondDeinitAttr() returns OSAL_RETURN_FAIL
+,0x7000U,0x7001U,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexDeinitAttr() returns OSAL_RETURN_FAIL
+,0x7000U,0xffffffffffffffffUL,0xFFFFFFFFFFFFFFFF,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;gs_osal_num_of_cond_table is 1
+,0x7000U,0x7001U,0x7002U,0xFFFFFFFFFFFFFFFF,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_cond_config_addr1,g_st_osal_cond_control,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;gs_osal_num_of_cond_table is 3

@@ -1,0 +1,11 @@
+modi,R_MEML_Deinitialize,09_102,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_manage,$@p_manage[0].buffer.p_next,@p_manage[0].p_allocate,@p_manage[0].p_deallocate,R_MEML_Deinitialize@@,;,,,,,,
+,1,0,0,0,MEML_RETURN_OK,;Normal operation,,,,,,
+,0,0,0,0,MEML_RETURN_PAR,;p_manage is NULL.,,,,,,
+,1,1,0,0,MEML_RETURN_OK,;p_manage.buffer.p_next is not NULL.,,,,,,
+,1,0,meml_alloc_dummy,0,MEML_RETURN_OK,;p_manage.allocate is not NULL.,,,,,,
+,1,0,0,meml_dealloc_dummy,MEML_RETURN_OK,;p_manage.deallocate is not NULL.,,,,,,
+,1,1,meml_alloc_dummy,meml_dealloc_dummy,MEML_RETURN_FAIL,";p_manage.allocate, deallocate, buffer.p_next are not NULL.",,,,,,
+,1,1,meml_alloc_dummy,0,MEML_RETURN_OK,";p_manage.allocate,  buffer.p_next are not NULL. deallocate is NULL",,,,,,

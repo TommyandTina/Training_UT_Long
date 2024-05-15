@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acf xmlversion="2.0.0">
+  <components>
+    <component version="9.5.0" target="C" name="qac"/>
+    <component version="4.3.0" target="C++" name="qacpp"/>
+    <component version="1.7.2" target="C_CPP" name="rcma"/>
+    <component version="2.3.5" target="C" name="m3cm"/>
+  </components>
+  <component_settings>
+    <input_to version="9.5.0" target="C" component="qac">
+      <option argument="wchar_t=unsigned int" name="-intrinsictype "/>
+      <option argument="63" name="-namelength "/>
+      <option argument="63" name="-xnamelength "/>
+      <option argument="+" name="-enabledataflow"/>
+      <option argument="df::inter=1" name="-prodoption "/>
+      <option argument="df::query_timeout=1500" name="-prodoption "/>
+      <option argument="df::function_timeout=600000" name="-prodoption "/>
+      <option argument="df::query_timeout_message+" name="-prodoption "/>
+      <option argument="${POKY_INC_PATH}" name="-i "/>
+      <option argument="${POKY_INC_PATH}" name="-quiet "/>
+      <option argument="STCYC>19:9103" name="-threshold "/>
+      <option argument="STPTH>200:9104" name="-threshold "/>
+      <option argument="STGTO>0:9105" name="-threshold "/>
+      <option argument="STCAL>7:9107" name="-threshold "/>
+      <option argument="STPAR>5:9108" name="-threshold "/>
+      <option argument="STST3>50:9109" name="-threshold "/>
+      <option argument="STMIF>4:9110" name="-threshold "/>
+      <option argument="STM19>1:9111" name="-threshold "/>
+      <option argument="R_ACF_SYS" name="-undef "/>
+      <option argument="R_DOF_SYS" name="-undef "/>
+      <option argument="R_STV_SYS" name="-undef "/>
+      <option argument="__WORDSIZE=32" name="-d "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\stub.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\test.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\drivers" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\compiler" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\taurus" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\bsp\freertos\h3" name="-quiet "/>
+    </input_to>
+    <input_to version="4.3.0" target="C++" component="qacpp">
+      <option argument="+" name="-enabledataflow"/>
+      <option argument="df::inter=1" name="-prodoption "/>
+      <option argument="df::query_timeout=1500" name="-prodoption "/>
+      <option argument="df::function_timeout=60000" name="-prodoption "/>
+      <option argument="df::analyse_header_functions=inter" name="-prodoption "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\stub.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\test.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\drivers" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\compiler" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\taurus" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\bsp\freertos\h3" name="-quiet "/>
+    </input_to>
+    <input_to version="1.7.2" target="C_CPP" component="rcma">
+      <option argument="${POKY_INC_PATH}" name="-quiet "/>
+      <option argument="STM29>5:9106" name="-threshold "/>
+      <option argument="STNRA>0:9112" name="-threshold "/>
+      <option argument="STM28/STM22>0.2:9113" name="-threshold "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\stub.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\test.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\drivers" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\compiler" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\taurus" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\bsp\freertos\h3" name="-quiet "/>
+    </input_to>
+    <input_to version="2.3.5" target="C" component="m3cm">
+      <option argument="${POKY_INC_PATH}" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\stub.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\os\osal_lib_stub\test.c" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\drivers" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\compiler" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\osal_wrapper\test\static_test\freertos\taurus" name="-quiet "/>
+      <option argument="${PROJECT_ROOT}\..\..\..\..\renesas\os\bsp\freertos\h3" name="-quiet "/>
+    </input_to>
+  </component_settings>
+</acf>

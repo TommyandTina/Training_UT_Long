@@ -1,0 +1,9 @@
+modi,R_OSAL_ThsyncMemoryBarrier,03_013,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_ThsyncGetInitStatus,R_OSAL_RCFG_ThsyncGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MemoryBarrier,R_OSAL_RCFG_MemoryBarrier,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_ThsyncGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MemoryBarrier@AMIN_return,R_OSAL_ThsyncMemoryBarrier@@,;,,,,,,,,
+,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;R_OSAL_RCFG_ThsyncGetInitStatus() return OSAL_MANAGER_STATE_UNINITIALIZED,,,,,,,,
+,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_STATE,OSAL_RETURN_STATE,;R_OSAL_RCFG_MemoryBarrier() retrun OSAL_RETUNR_STATE,,,,,,,,

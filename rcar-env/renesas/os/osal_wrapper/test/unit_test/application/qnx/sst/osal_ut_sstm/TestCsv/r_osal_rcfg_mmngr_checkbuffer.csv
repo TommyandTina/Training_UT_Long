@@ -1,0 +1,19 @@
+modi,r_osal_rcfg_mmngr_checkbuffer,09_041,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_cmn_check_buffer_handle,r_osal_rcfg_mmngr_cmn_check_buffer_handle,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mmngr_send_monitor_event,r_osal_rcfg_mmngr_send_monitor_event,,,,,,,,,,,,,,
+#COMMENT,@p_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,g_st_osal_memory_buffer_obj.mmngr_owner_hndl,g_st_osal_memory_manager_obj[0].p_ptr_self,g_st_osal_mem_mmngr_ptr_self[0].config.mode,g_osal_mem_buf_ptr_self.p_buffer_va,g_osal_mem_buf_ptr_self.size,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_cmn_check_buffer_handle@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_control,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mmngr_send_monitor_event@AMIN_return,r_osal_rcfg_mmngr_checkbuffer@@,;
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_STACK,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_HANDLE,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;r_osal_rcfg_mmngr_cmn_check_buffer_handle() return non-OSAL_RETURN_OK.
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_FAIL
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_MEM,;Detect under flow
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,OSAL_RETURN_MEM,;Detect over flow
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_st_osal_mem_mmngr_ptr_self,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,AMSTB_SrcFile.c/mmngr_buffer+4096,64,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL

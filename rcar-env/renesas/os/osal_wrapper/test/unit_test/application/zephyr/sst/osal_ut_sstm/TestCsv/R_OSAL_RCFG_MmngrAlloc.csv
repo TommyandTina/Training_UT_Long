@@ -1,0 +1,7 @@
+modi,R_OSAL_RCFG_MmngrAlloc,09_007,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_buffer_obj ,@hndl_mmngr,g_st_osal_memory_manager_obj[0].p_allocate,@size,@alignment,AMSTB_SrcFile.c/AMSTB_osal_mem_internal@AMIN_return,R_OSAL_RCFG_MmngrAlloc@@,;,,,,
+,g_memory_buffer_handle,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,
+,g_memory_buffer_handle,g_st_osal_memory_manager_obj,0,1,1,OSAL_RETURN_OK,OSAL_RETURN_HANDLE_NOT_SUPPORTED,;hndl_mmngr->p_allocate is NULL,,,,
+,g_memory_buffer_handle,g_st_osal_memory_manager_obj,AMSTB_osal_mem_internal,1,1,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;hndl_mmngr->p_allocate return OSAL_RETURN_FAIL,,,,

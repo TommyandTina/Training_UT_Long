@@ -1,0 +1,6 @@
+modi,R_OSAL_IoRead16,07_006,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_IoBlockRead16,R_OSAL_IoBlockRead16,,,,,,,,,,
+#COMMENT,@handle,@offset,@p_data,AMSTB_SrcFile.c/AMSTB_R_OSAL_IoBlockRead16@AMIN_return,R_OSAL_IoRead16@@,;,,,,,,
+,g_st_osal_common_device_control,1,array_uint16,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,

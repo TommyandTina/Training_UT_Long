@@ -1,0 +1,19 @@
+modi,R_OSAL_RCFG_CondSignal,03_011,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_threadsync.c/gsp_osal_cond_control,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,,,,,,,,,,
+0,0,0,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondSignal,R_OSAL_OS_CondSignal,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_threadsync.c/gsp_osal_cond_control,r_osal_res_cfg_threadsync.c/gs_osal_num_of_cond_table,@handle,g_st_osal_cond_control_array[0].handle_id,g_st_osal_cond_control_array[0].active,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondSignal@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_RCFG_CondSignal@@,;
+,g_st_osal_cond_control_array,2,g_st_osal_cond_control_array,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,0xFFFFFF00,2,0,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle less than (uintptr_t)&gsp_osal_cond_control[0]
+,0xFFFFFF00,2,0xFFFFFFF0,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle more than (uintptr_t)&gsp_osal_cond_control[(gs_osal_num_of_cond_table - (size_t)1)]
+,0xFFFFFF00,2,0xFFFFFF01,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;0U not equal ((uintptr_t)handle & (sizeof(uintptr_t) - 1U))
+,g_st_osal_cond_control_array,2,g_st_osal_cond_control_array,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is not OSAL_RES_CFG_COND_HANDLE_ID
+,g_st_osal_cond_control_array,2,g_st_osal_cond_control_array,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() returns OSAL_RETURN_FAIL
+,g_st_osal_cond_control_array,2,g_st_osal_cond_control_array,OSAL_RES_CFG_COND_HANDLE_ID,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->active is false.
+,g_st_osal_cond_control_array,2,g_st_osal_cond_control_array,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_CondSignal() returns OSAL_RETURN_FAIL
+,g_st_osal_cond_control_array,2,g_st_osal_cond_control_array,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() returns OSAL_RETURN_FAIL
+,g_st_osal_cond_control_array,2,g_st_osal_cond_control_array,OSAL_RES_CFG_COND_HANDLE_ID,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;CondSignal() is failed and MutexUnlock() is failed

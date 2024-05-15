@@ -1,0 +1,18 @@
+    The flexrayctl utility for RENESAS R-CarV3U
+    CREATED   : 12.18.2020
+    MODIFIED  : 06.30.2021
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-CarV3U board
+    TARGET OS : QNX SDP 7.1
+
+    
+    HISTORY   :
+            12.18.2020 : Ver.1.0
+            - Create new version 
+            03.16.2021 : Ver.1.1
+            - Support transfer handler to transfer messages between Messages buffers and user RAM automatically.
+            - Support timer and stopwatch.
+            - Support stopwatch events, timer events.
+            07.30.2021 : Ver.1.2             
+            - Remove "flexrayctl.h".
+            - Remove "pthread_create" in source code and add line code to check frameId==0 and frameId>2047

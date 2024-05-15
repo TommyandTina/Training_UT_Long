@@ -1,0 +1,9 @@
+modi,R_OSAL_OS_MqCheckBusy,10_012,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].numofmsg,g_st_osal_os_mq[0].rcv_wait_count,g_st_osal_os_mq[0].snd_wait_count,R_OSAL_OS_MqCheckBusy@@,;,,,,,,
+,g_st_osal_os_mq,0,0,0,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,0,0,0,OSAL_RETURN_FAIL,;mq is NULL.,,,,,,
+,g_st_osal_os_mq,1,0,0,OSAL_RETURN_BUSY,;mq->numofmsg is not 0.,,,,,,
+,g_st_osal_os_mq,0,1,0,OSAL_RETURN_BUSY,;mq->snd_wait_count is not 0.,,,,,,
+,g_st_osal_os_mq,0,0,1,OSAL_RETURN_BUSY,;mq->rcv_wait_count is not 0.,,,,,,

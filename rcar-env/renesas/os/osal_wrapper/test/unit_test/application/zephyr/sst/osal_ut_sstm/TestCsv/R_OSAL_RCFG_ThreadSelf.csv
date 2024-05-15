@@ -1,0 +1,9 @@
+modi,R_OSAL_RCFG_ThreadSelf,02_007,4,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_osal_num_of_thread_table,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadStaticSelf,R_OSAL_OS_ThreadStaticSelf,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadStaticSelf,R_OSAL_OS_ThreadStaticSelf,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_osal_num_of_thread_table,@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadStaticSelf@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadStaticSelf@AMIN_pp_arg,R_OSAL_RCFG_ThreadSelf@@,;,,,,,,
+,2,g_uts_thread_handle,OSAL_RETURN_OK,g_st_osal_thread_control,OSAL_RETURN_OK,;Normal operation,,,,,,
+,2,g_uts_thread_handle,OSAL_RETURN_FAIL,g_st_osal_thread_control,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadStaticSelf return OSAL_RETURN_FAIL,,,,,,
+,2,g_uts_thread_handle,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_arg is NULL.,,,,,,

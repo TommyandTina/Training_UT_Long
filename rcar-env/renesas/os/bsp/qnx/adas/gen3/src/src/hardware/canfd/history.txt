@@ -1,0 +1,30 @@
+	The CANFD driver for RENESAS R-Car Gen3
+
+    CREATED   : 11.20.2020
+    MODIFIED  : 4.30.2021
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            11.20.2020 : Ver.0.1
+            - Create new version 
+            12.18.2020 : Ver.0.2
+            - Add canfd_pfc_config.c due to CANFD5 Pin mutiplex with FLEXRAY Pin
+            - Add canfd_log.h for debugging
+            - Optimze the code
+            02.06.2021 : Ver.0.3
+            - Support R-CarV3H
+            04.30.2021: Ver.0.4
+            - Support R-CarGen3 & Rcar-V3U
+            07.30.2021 : Ver.0.5
+            - Added MOD_SEL0[8] = 0 in start-up code for R-Car V3M (IPL configures MOD_SEL0[8] = 1 for using CANFD_*_B pins)
+            11.18.2022 : Ver.0.6
+            - Add in 2.1 support (same as V3H 2.0 support)
+            - Add function "canfd_calculate_bittiming" to calculate CAN bit time.
+            - Remove define CANFD_nPRESDIV_250K, CANFD_nSJW_250K, CANFD_nTSEG1_250K, CANFD_nTSEG2_250K, CANFD_dPRESDIV_2M
+              , CANFD_dSJW_2M, CANFD_dTSEG1_2M, CANFD_dTSEG2_2M and remove calculate CAN bit time in options in "main" function.
+-----------------------------------------------------------------------------
+ Known limitations/Testing conditions with this driver
+-----------------------------------------------------------------------------
+    - SW32 setting must be ON for testing CANFD communication between 2 V3M Eagle boards

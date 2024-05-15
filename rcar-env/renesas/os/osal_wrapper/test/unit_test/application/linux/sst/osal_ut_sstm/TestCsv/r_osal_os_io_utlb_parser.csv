@@ -1,0 +1,29 @@
+modi,r_osal_os_io_utlb_parser,15_157,21,1,,,,CPP,,,,0,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regcomp,regcomp,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_regexec,regexec,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_utlb_parser_sub,r_osal_os_io_utlb_parser_sub,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_utlb_parser_sub,r_osal_os_io_utlb_parser_sub,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_utlb_parser_sub,r_osal_os_io_utlb_parser_sub,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@p_axi_bus_name,@len,@pp_list,@p_numOfutlb,AMSTB_SrcFile.c/AMSTB_regcomp@AM_count,AMSTB_SrcFile.c/AMSTB_regcomp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AM_count,AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_index[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_rm_so[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_rm_eo[0],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_index[1],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_rm_so[1],AMSTB_SrcFile.c/AMSTB_regexec@AMIN_pmatch_rm_eo[1],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_utlb_parser_sub@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_utlb_parser_sub@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_utlb_parser_sub@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_utlb_parser@@,;
+,str,1,0,g_size_t,0,0,0,g_regmatch_t,0,0,0,0,0,0,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,0,1,0,g_size_t,0,0,0,g_regmatch_t,0,0,0,0,0,0,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_axi_bus_name is NULL
+,str,1,0,0,0,0,0,g_regmatch_t,0,0,0,0,0,0,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;p_numOfutlb is NULL
+,str,1,0,g_size_t,0,-1,0,g_regmatch_t,0,0,0,0,0,0,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;regcomp returns -1
+,str,1,0,g_size_t,0,0,0,0,0,0,0,0,0,0,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;calloc returns NULL
+,str,1,0,g_size_t,0,0,0,g_regmatch_t,0,-1,0,0,0,0,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;regexec[0] returns -1
+,str,1,0,g_size_t,0,0,0,g_regmatch_t,0,0,-1,0,0,0,0,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;regexec[1] returns -1
+,str,1,0,g_size_t,0,0,0,g_regmatch_t,0,0,0,0,0,0,0,0,1,0,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;r_osal_os_io_utlb_parser_sub returns OSAL_RETURN_FAIL

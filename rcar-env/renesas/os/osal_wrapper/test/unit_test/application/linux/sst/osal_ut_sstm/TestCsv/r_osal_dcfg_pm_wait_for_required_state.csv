@@ -1,0 +1,28 @@
+modi,r_osal_dcfg_pm_wait_for_required_state,07_018,17,1,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_pm_get_power_clock_state,r_osal_dcfg_pm_get_power_clock_state,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_pm_get_power_clock_state,r_osal_dcfg_pm_get_power_clock_state,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_pm_get_power_clock_state,r_osal_dcfg_pm_get_power_clock_state,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple,R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadSleep,R_OSAL_OS_ThreadSleep,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadSleep,R_OSAL_OS_ThreadSleep,,,,,,,,,,,,,,,,,
+#COMMENT,@handle,@state,@p_abs_timeout,@p_abs_timeout[0].tv_sec,@p_abs_timeout[0].tv_nsec,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_pm_get_power_clock_state@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_pm_get_power_clock_state@AMIN_pwr_status,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_pm_get_power_clock_state@AMIN_clk_status,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple@AMIN_p_time_stamp[0].tv_sec,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple@AMIN_p_time_stamp[0].tv_nsec,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple@AMIN_p_time_stamp[1].tv_sec,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple@AMIN_p_time_stamp[1].tv_nsec,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadSleep@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadSleep@AMIN_return[0],r_osal_dcfg_pm_wait_for_required_state@@,;
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,0,0,0,1,500000,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_CG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,0,0,1,500000,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_ENABLED,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,1,0,1,500000,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_FAIL,0,0,0,1,500000,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_dcfg_pm_get_power_clock_state() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,2,0,1,500000,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;state is invalid
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,0,1,0,1,500000,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;state is invalid
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,1,0,1,500000,OSAL_RETURN_FAIL,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp_multiple() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,1,0,1,500001,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_TIME,;current time is invalid
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,1,0,1,500000,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadSleep() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,1,0,1,0,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_ClockTimeGetHighPrecisTimeStamp() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,1,0,1,0,OSAL_RETURN_OK,1,999999999,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadSleep() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_PM_STATE_PG,g_st_osal_time_t,1,500000,OSAL_RETURN_OK,1,1,0,1,0,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadSleep() return OSAL_RETURN_FAIL

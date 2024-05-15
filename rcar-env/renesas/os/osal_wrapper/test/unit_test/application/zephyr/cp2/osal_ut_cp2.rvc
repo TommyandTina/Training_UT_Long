@@ -1,0 +1,18 @@
+/disregard = "[Vv][0-9]*[\.Ll][0-9]*"
+/disregard = "\*\*\*\*\*\**"
+/disregard = "\-\-\-\-\-\-*"
+/disregard = "\+\+\+\+\+\+*"
+/disregard = "\/\/\/\/\/\/*"
+/disregard = "======*"
+/keyword=far TYPEATT
+/keyword=near TYPEATT
+/keyword=__fp16 TYPE
+/keyword=__builtin_va_list TYPE
+/keyword=__unaligned TYPEATT
+/keyword=__inline IGNORE
+/keyword=__declspec IGNORE (EXPRESSION)
+/keyword=__asm ASM (EXPRESSION)
+/keyword=__asm__ ASM (STRING)
+/keyword=_Float16 TYPE
+/keyword=__builtin_va_start IGNORE (EXPRESSION)
+/keyword=__builtin_va_end IGNORE (EXPRESSION)

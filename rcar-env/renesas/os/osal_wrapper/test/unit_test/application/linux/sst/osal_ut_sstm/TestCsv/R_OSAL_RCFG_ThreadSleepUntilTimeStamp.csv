@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_ThreadSleepUntilTimeStamp,01_011,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ThreadSleepUntilTimeStamp,R_OSAL_HIF_ThreadSleepUntilTimeStamp,,,,,,,,,,
+#COMMENT,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ThreadSleepUntilTimeStamp@AMIN_return,R_OSAL_RCFG_ThreadSleepUntilTimeStamp@@,;,,,,,,,,
+,g_st_osal_time_t,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,,

@@ -1,0 +1,13 @@
+modi,R_OSAL_MmngrClose,09_002,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrClose,R_OSAL_RCFG_MmngrClose,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrGetInitStatus,R_OSAL_RCFG_MmngrGetInitStatus,,,,,,,,,,
+#COMMENT,@hndl_mmngr,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrClose@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrGetInitStatus@AMIN_return,R_OSAL_MmngrClose@@,;,,,,,,,
+,g_st_osal_common_memory_manager_obj,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,g_st_osal_common_memory_manager_obj,OSAL_RETURN_OK,OSAL_MANAGER_STATE_MEMOPENED,OSAL_RETURN_STATE,;status of memory manager is OSAL_MANAGER_STATE_INITIALIZED,,,,,,,
+,g_st_osal_common_memory_manager_obj,OSAL_RETURN_OK,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_STATE,;status of memory manager is OSAL_MANAGER_STATE_UNINITIALIZED,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_HANDLE,;handle is null,,,,,,,
+,g_st_osal_common_memory_manager_obj,OSAL_RETURN_FAIL,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_FAIL,;R_OSAL_RCFG_MmngrClose() return OSAL_RETURN_FAIL,,,,,,,
+,g_st_osal_common_memory_manager_obj,OSAL_RETURN_HANDLE,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_HANDLE,;R_OSAL_RCFG_MmngrClose() return OSAL_RETURN_HANDLE,,,,,,,
+,g_st_osal_common_memory_manager_obj,OSAL_RETURN_STATE,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_STATE,;R_OSAL_RCFG_MmngrClose() return OSAL_RETURN_STATE,,,,,,,

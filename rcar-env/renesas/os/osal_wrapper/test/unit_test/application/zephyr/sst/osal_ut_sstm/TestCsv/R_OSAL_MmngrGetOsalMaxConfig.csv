@@ -1,0 +1,12 @@
+modi,R_OSAL_MmngrGetOsalMaxConfig,09_006,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrGetDefaultIdx,R_OSAL_RCFG_MmngrGetDefaultIdx,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrGetNumOfRegions,R_OSAL_RCFG_MmngrGetNumOfRegions,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrGetOsalMaxConfig,R_OSAL_RCFG_MmngrGetOsalMaxConfig,,,,,,,,,,
+#COMMENT,@p_config,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrGetDefaultIdx@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrGetNumOfRegions@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrGetOsalMaxConfig@AMIN_return,R_OSAL_MmngrGetOsalMaxConfig@@,;,,,,,,
+,g_st_osal_common_mmngr_config,0,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,0,0,2,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_config is null,,,,,,
+,g_st_osal_common_mmngr_config,0,0,OSAL_RETURN_OK,OSAL_RETURN_CONF,;num_of_regions is 0,,,,,,
+,g_st_osal_common_mmngr_config,2,2,OSAL_RETURN_OK,OSAL_RETURN_CONF,;num_of_regions = default_idx,,,,,,
+,g_st_osal_common_mmngr_config,3,2,OSAL_RETURN_OK,OSAL_RETURN_CONF,;num_of_regions < default_idx,,,,,,

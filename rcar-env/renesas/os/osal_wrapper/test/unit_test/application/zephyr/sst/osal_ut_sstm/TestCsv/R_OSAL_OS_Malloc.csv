@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_Malloc,01_103,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+#COMMENT,@size,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],R_OSAL_OS_Malloc@@,;,,,,,,,
+,1,0,1,1,;Normal operation (size is not 0.),,,,,,,
+,0,0,1,0,;size is 0.,,,,,,,

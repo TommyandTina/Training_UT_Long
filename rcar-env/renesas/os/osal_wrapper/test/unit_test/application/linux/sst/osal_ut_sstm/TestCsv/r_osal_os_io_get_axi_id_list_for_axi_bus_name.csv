@@ -1,0 +1,12 @@
+modi,r_osal_os_io_get_axi_id_list_for_axi_bus_name,15_151,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_get_domain_name,r_osal_os_io_get_domain_name,,,,,,,,,,
+%,AMSTB_r_osal_os_io_utlb_parser,r_osal_os_io_utlb_parser,,,,,,,,,,
+%,AMSTB_r_osal_os_io_utlb_parser,r_osal_os_io_utlb_parser,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@p_param,@p_param[0].pst_domain_table,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_get_domain_name@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_utlb_parser@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_utlb_parser@AMIN_pp_list,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_get_axi_id_list_for_axi_bus_name@@,;,,,,
+,g_st_osal_os_io_get_num_of_axi_ids_for_axi_bus_name_t,g_st_osal_io_domain_table_t,OSAL_RETURN_OK,OSAL_RETURN_OK,array_int32,0,OSAL_RETURN_OK,;Normal operation,,,,
+,g_st_osal_os_io_get_num_of_axi_ids_for_axi_bus_name_t,g_st_osal_io_domain_table_t,OSAL_RETURN_FAIL,OSAL_RETURN_OK,array_int32,0,OSAL_RETURN_FAIL,;r_osal_os_io_get_domain_name returns OSAL_RETURN_FAIL,,,,
+,g_st_osal_os_io_get_num_of_axi_ids_for_axi_bus_name_t,g_st_osal_io_domain_table_t,OSAL_RETURN_OK,OSAL_RETURN_FAIL,array_int32,0,OSAL_RETURN_FAIL,;r_osal_os_io_utlb_parser returns OSAL_RETURN_FAIL,,,,
+,g_st_osal_os_io_get_num_of_axi_ids_for_axi_bus_name_t,g_st_osal_io_domain_table_t,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;p_utlb_buffer is NULL,,,,

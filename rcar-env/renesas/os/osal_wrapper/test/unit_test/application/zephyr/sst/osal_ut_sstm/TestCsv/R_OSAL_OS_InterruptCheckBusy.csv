@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_InterruptCheckBusy,06_103,4,1,,,,CPP,,,,0
+#InitWheneverCall,gsp_osal_interrupt_control,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_handler,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[1].irq_handler,gs_osal_num_of_interrupt_table,,,,,,,,
+0,0,0,0,0,,,,,,,,
+#COMMENT,gsp_osal_interrupt_control,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_handler,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[1].irq_handler,gs_osal_num_of_interrupt_table,R_OSAL_OS_InterruptCheckBusy@@,;,,,,,,
+,g_st_osal_interrupt_control_t,0,0,2,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,g_st_osal_interrupt_control_t,1,0,2,OSAL_RETURN_BUSY,;p_interrupt_control->irq_handler is non-NULL.,,,,,,

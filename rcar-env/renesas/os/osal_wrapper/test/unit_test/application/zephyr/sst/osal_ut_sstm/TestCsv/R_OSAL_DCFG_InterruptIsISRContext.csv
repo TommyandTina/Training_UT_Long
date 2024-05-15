@@ -1,0 +1,7 @@
+modi,R_OSAL_DCFG_InterruptIsISRContext,06_006,3,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_interrupt.c/gs_osal_interrupt_is_initialized_enu,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IsISRContext,R_OSAL_OS_IsISRContext,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_interrupt.c/gs_osal_interrupt_is_initialized_enu,@p_is_isr,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IsISRContext@AMIN_return,R_OSAL_InterruptIsISRContext@@,;,,,,,,,
+,1,g_bool,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation (p_get_value is NULL),,,,,,,
+,1,g_bool,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_IsISRContext() return OSAL_RETURN_FAUIL,,,,,,,

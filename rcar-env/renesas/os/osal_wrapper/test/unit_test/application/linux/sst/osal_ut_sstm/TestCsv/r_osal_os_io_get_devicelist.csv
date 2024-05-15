@@ -1,0 +1,21 @@
+modi,r_osal_os_io_get_devicelist,15_131,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_regex_pattern,r_osal_os_io_create_regex_pattern,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_generate_list,r_osal_os_io_generate_list,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_generate_list,r_osal_os_io_generate_list,,,,,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,,,,,
+%,AMSTB_strlen,strlen,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,
+#COMMENT,@p_device_type_name,@p_array,@array_size,@p_num_of_byte,@p_glob_buffer,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_regex_pattern@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_generate_list@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_generate_list@AMIN_pp_list_buffer,AMSTB_SrcFile.c/AMSTB_strlen@AM_count,AMSTB_SrcFile.c/AMSTB_strlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strlen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_get_devicelist@@,;
+,0,1,1,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_OK,str,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0,1,1,g_size_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,str,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc returns NULL
+,0,1,1,g_size_t,0,0,str,OSAL_RETURN_FAIL,OSAL_RETURN_OK,str,0,0,0,0,OSAL_RETURN_FAIL,;r_osal_os_io_create_regex_pattern returns OSAL_RETURN_FAIL
+,0,1,1,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,0,0,0,OSAL_RETURN_OK,;r_osal_os_io_generate_list p_local_array is NULL
+,0,1,1,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_FAIL,str,0,0,0,0,OSAL_RETURN_FAIL,;r_osal_os_io_generate_list returns OSAL_RETURN_FAIL
+,0,0,0,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_OK,str,0,0,0,0,OSAL_RETURN_OK_RQST,;Normal operation (p_array is NULL/array_size is 0)
+,0,0,1,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_OK,str,0,0,0,0,OSAL_RETURN_PAR,;Parameter error (p_array is NULL)
+,0,1,0,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_OK,str,0,0,0,0,OSAL_RETURN_PAR,;Parameter error (array_size is larger than local_array_size + 1)

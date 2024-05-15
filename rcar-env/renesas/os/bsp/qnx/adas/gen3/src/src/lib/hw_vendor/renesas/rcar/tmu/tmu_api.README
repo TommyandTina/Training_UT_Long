@@ -1,0 +1,369 @@
+TMU library interface for the Renesas R-Car Gen3 platform
+--------------------------------------------------------
+
+1. Abstract
+
+The TMU library interface allows generic modules to be written that
+can abstract the details of programming a Timer Unit (TMU) from individual 
+drivers. This allows drivers to work with multiple TMU channels, and also 
+allows multiple drivers to share the code that controls the TMU module.
+
+2. Supported TMU features
+
+Count-down operation or input capture operation is supported.
+
+Interrupt-on-underflow support: the TMU can be configured to generate
+an interrupt when count-down value of the counter is zero. There are 2 
+interrupt service types that the driver can designate:
+  - To receive interrupt notification from the library, the driver supplies 
+    a structure of type "struct sigevent" to the library. This event will 
+    be delivered by the library upon reception of an interrupt.
+  - To be serviced from the library, the driver supplies a handler function
+    pointer and an user-data pointer to the lebrary. This function will 
+    be called and this user-data pointer will be passed to this function 
+    upon happening of an interrupt.
+
+Interrupt-on-input-capture support: the TMU can be configured to generate
+an interrupt by a trigger on TCLK pin. There are 2 interrupt service types
+that the driver can designate:
+  - To receive interrupt notification from the library, the driver supplies 
+    a structure of type "struct sigevent" to the library. This event will 
+    be delivered by the library upon reception of an interrupt.
+  - To be serviced from the library, the driver supplies a handler function
+    pointer and an user-data pointer to the lebrary. This function will 
+    be called and this user-data pointer will be passed to this function 
+    upon happening of an interrupt.
+
+3. API
+
+The primary TMU library entry point is get_tmufuncs(). This entry
+point is called to retrieve the remainder of the libraries entry
+points. This allows the library to be provided as a DLL, or as a
+static or shared library.  In the case of the library being used
+as a DLL, the driver would call dlsym() to find the get_tmufuncs()
+entry point, otherwise the driver would just reference get_tmufuncs()
+directly.
+
+The structures and defines used by TMU libraries, and
+drivers that use the libraries, are contained in <hw/tmu.h>
+
+The remainder of the entry points, which are stored in the
+cmt_functions_t structure, are as follows:
+    
+void * (*channel_attach)(const struct sigevent *unevent, const struct sigevent * (* unhandler)(void *, int), 
+                   const struct sigevent *inevent, const struct sigevent * (* inhandler)(void *, int), 
+                   const void * data, int priority, tmu_attach_flags flags);
+
+	Attach to a TMU channel.
+
+	"uevent" describes an event to be delivered when an underflow interrupt
+	occurs.  This structure will be passed to InterruptAttachEvent() when the 
+	library attaches to the interrupt number associated with the TMU channel.
+
+	"unhandler" describes a function to be executed when an underflow interrupt
+	occurs.  This function will be passed to InterruptAttach() when the library 
+	attaches to the interrupt number associated with the TMU channel.
+
+	"inevent" describes an event to be delivered when an input capture interrupt
+	occurs.  This structure will be passed to InterruptAttachEvent() when the 
+	library attachs to the interrupt number associated with the TMU channel.
+
+	"inhandler" describes a function to be executed when an input capture interrupt
+	occurs.  This function will be passed to InterruptAttach() when the library 
+	attaches to the interrupt number associated with the TMU channel.
+
+	"data" points to communications area that the library will pass to InterruptAttach().
+    "data" is valid when TMU_ATTACH_UNDR_ISR or TMU_ATTACH_INCAP_ISR is specified and it
+    is passed to "unhandler" or "inhandler".
+
+	"priority" controls the priority assigned to the TMU channel being attached to.  
+    If TMU_ATTACH_PRIORITY_STRICT is specified, then "priority" is TMU channel will be used, 
+    othervise the library will find a free channel to attach to.  
+    Upon return, channel points to the TMU channel number that was actually attached to.
+
+	Valid values for "flags" are:
+
+		TMU_ATTACH_ANY_CHANNEL
+
+			Instead of attempting to attach to the TMU
+			channel number that "priority" points to,
+			the library will attach to a free TMU
+			channel, if any are available.
+
+		TMU_ATTACH_PRIORITY_STRICT
+
+			Specifies that the TMU channel must be
+			assigned the exact priority level specified.
+			If the TMU channel cannot be assigned this
+			priority level, the attach will fail.
+
+		TMU_ATTACH_UNDR_EVENT
+
+			Specifies that the structure that "unevent" points
+			to is valid, and that this event should be
+			delivered each time a underflow interrupt occurs.
+
+		TMU_ATTACH_UNDR_ISR
+
+			Specifies that the function that "unhandler" points
+			to is valid, and that this handler should be
+			called each time a underflow interrupt occurs.
+
+		TMU_ATTACH_INCAP_EVENT
+
+			Specifies that the structure that "inevent" points
+			to is valid, and that this event should be
+			delivered each time a input capture interrupt occurs.
+
+		TMU_ATTACH_INCAP_ISR
+
+			Specifies that the function that "inhandler" points
+			to is valid, and that this handler should be
+			called each time an input capture interrupt occurs.
+
+	Upon success, this function returns a handle that is used upon
+	subsequent calls to the library that are associated with the
+	attached channel.
+
+	Upon failure, NULL is returned, and errno is set as appropriate.
+
+void	(*channel_release)(void *handle);
+
+	Releases a TMU channel.  The driver calls this when it no
+	longer needs to use the TMU channel.  "handle" is the value
+	that was returned from a successful call to channel_attach.
+	The handle is no longer valid after this function returns.
+
+int  (*start_counter)(void *handle);
+
+	Resume to count after calling stop_counter().
+
+int  (*stop_counter)(void *handle);
+	
+	Temporarily stop the Timer that is currently couting.
+	When this function returns, it is possible to resume
+	a counting by calling start_counter().
+
+int  (*start)(void *handle, uint32_t * count);
+
+	Commence the Timer. There must not be an
+	outstanding Timer counting in progress. set_mode(),
+	set_constant(), set_count(), set_clock() can have been called 
+	at some point since channel_attach() was called, 
+	in order to setup the Timer for counting.
+
+    uint32_t * count;
+
+		A returned current value of Timer counter right at the counting counter started.
+
+int  (*stop)(void *handle, uint32_t * count)
+
+	Stop a Timer counter that is currently counting. When this function returns, 
+    it is possible to initiate a new counter by calling  set_mode(), set_constant(), 
+	set_count(), set_clock() to re-configure the Timer by calling start().
+
+	uint32_t * count;
+
+		A returned current value of the Timer right at the couting counter stopped.
+
+int  (*set_mode)(void *handle, const tmu_mode_t mode);
+
+	Set operation mode for the Timer. 
+    Before starting the Timer by calling start() should call this function.
+
+	const tmu_mode_t mode;
+
+		These flags describe the operation mode of the Timer.  
+        Valid values are:
+
+		TMU_MODE_NORMAL
+
+			The Timer countdowns by external/internal clock.
+
+            The underflow interrupt can be enabled/disabled. If TMU_ATTACH_UNDR_EVENT
+            or TMU_ATTACH_UNDR_ISR flag is used when calling to channel_attach, 
+            the underflow interrupt is enabled.
+			
+		TMU_MODE_INCAP
+
+			Input capture function is enabled.
+
+            The input capture interrupt can be enabled/disabled. If TMU_ATTACH_INCAP_EVENT
+            or TMU_ATTACH_INCAP_ISR flag is used when calling to channel_attach, 
+            the underflow interrupt is enabled.
+            
+            The underflow interrupt can be enabled in Input capture mode.
+            If TMU_ATTACH_UNDR_EVENT or TMU_ATTACH_UNDR_ISR flag is used when 
+            calling to channel_attach, the underflow interrupt is enabled.
+
+int  (*get_mode)(void *handle, tmu_mode_t * const mode);
+
+	Retrieves operation mode of the Timer. 
+
+	tmu_mode_t * const mode;
+
+		Returned flags describe the operation mode of the Timer.  
+        Valid values are:
+
+		TMU_MODE_NORMAL
+
+			The Timer is in countdown mode.
+
+		TMU_MODE_INCAP
+
+			Input capture function is enabled.
+
+int  (*set_clock)(void *handle, tmu_clock_t * const clk);
+
+    Specify clock source, divider ratio and clock edge for the Timer.
+    Before starting the Timer by calling start() should call this function.
+
+        tmu_clock_t * const clk;
+            
+            The structure that "clk" points to contains the following members:
+
+            int parent;
+                Parent clock. It should specify when external clock is selected. 
+
+            int div;
+                Parent divider ratio. Valid values are:
+            
+                TMU_CLOCK_DIV_EXT
+
+                    Count on external clock (TCLK)
+
+                TMU_CLOCK_DIV_4
+
+                    The counter counts on Internal input clock/4
+
+                TMU_CLOCK_DIV_16
+
+                    The counter counts on Internal input clock/16
+
+                TMU_CLOCK_DIV_64
+
+                    The counter counts on Internal input clock/64
+
+                TMU_CLOCK_DIV_256
+
+                    The counter counts on Internal input clock/256
+
+                TMU_CLOCK_DIV_1024
+
+                    The counter counts on Internal input clock/1024
+            
+            int freq;
+
+                clock that TMU couting on after dividing parant clock
+
+            tmu_clock_edge_t clk_edge;
+            
+                Set clock edge when clock source is external selected or 
+                input capture function is enabled:
+
+                    TMU_CLOCK_EDGE_RISE
+
+                        Count/capture register set on rising edge
+
+                    TMU_CLOCK_EDGE_FALL
+
+                        Count/capture register set on falling edge
+
+                    TMU_CLOCK_EDGE_BOTH
+                        
+                        Count/capture register set on both rising and falling edge
+                
+int  (*get_clock)(void *handle, tmu_clock_t * const clk);
+
+    Retrieves clock source and divider ratio of the Timer.
+
+int  (*set_constant)(void *handle, const uint32_t tcor);
+    
+    Set the constant (TCOR) value for the Timer. After underflow has 
+    been generated according to the result of the TCNT countdown, 
+    the value of "tcor" is set to TCNT and TCNT continues countdown 
+    from the value.
+
+    Before starting the Timer by calling start() should call this 
+    function.
+
+int  (*get_constant)(void *handle, uint32_t * const tcor);
+    
+    Retrieves the constant (TCOR) value of the Timer.
+
+int  (*set_count)(void *handle, const uint32_t count);
+    
+    Currently set the value for the Timer. The value of "count" is 
+    set to TCNT and TCNT continues countdown from the value.
+
+int  (*get_count)(void *handle, uint32_t * const count);
+    
+    Retrieves the TCNT value of the Timer.
+
+int  (*get_incapture)(void *handle, uint32_t * const tcpr);
+
+    Retrieves the Input Capture Register value (TCPR).
+
+int  (*get_cycle)(void *handle, uint64_t * const tick);
+
+    Retrieves overlapped cycle number.
+
+void (*underflow_isr)(void * handle);
+    
+    The counter reaches to zero.
+
+	There are two cases when this function should be called:
+	if the driver receives an event from the TMU library (as
+	a result of having specified TMU_ATTACH_UNDR_EVENT)
+    or attached interrupt handler "unhandler" of the driver is 
+    called (as a result of having specified TMU_ATTACH_UNDR_ISR).
+
+	When the driver receives an event from the TMU library or 
+    attached interrupt handler "unhandler" is called,
+	it should call this function before engaging in any other
+	interaction with the TMU library.  Internally, the TMU
+	library might need to clear and/or unmask an interrupt
+	source, for example.
+    
+    "unhandler" is attached in channel_attach().
+
+void (*incapture_isr)(void * handle);
+
+    An input capture happens.
+
+	There are two cases when this function should be called:
+	if the driver receives an event from the TMU library (as
+	a result of having specified TMU_ATTACH_INCAP_EVENT)
+    or attached interrupt handler "unhandler" of the driver is 
+    called (as a result of having specified TMU_ATTACH_INCAP_ISR).
+
+	When the driver receives an event from the TMU library or 
+    attached interrupt handler "inhandler" is called,
+	it should call this function before engaging in any other
+	interaction with the TMU library.  Internally, the TMU
+	library might need to clear and/or unmask an interrupt
+	source, for example.
+
+    "inhandler" is attached in channel_attach().
+
+int  (*get_underflow_count)(void *handle, uint32_t * const underflow_count);
+
+    Retrieves number of the underflow interrupt generation times.
+    This value can be used in case of calculating a very long time.
+
+    So that the undefflow interrupt number is valid, need to to specify 
+    TMU_ATTACH_UNDR_EVENT flag or TMU_ATTACH_UNDR_ISR flag when attaching 
+    to a TMU channel when calling channel_attach().
+
+uint64_t(*change_cycle_to_ns)(void *handle, uint64_t tick, uint64_t * ns);
+
+    Converts a cycle number to time in nano seconds.
+
+    uint64_t tick;
+
+        A cycle number needs to be converted to nano seconds.
+
+    uint64_t * ns;
+
+        A pointer stores returned value of time in nano seconds that "tick"
+        value is converted to.

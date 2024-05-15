@@ -1,0 +1,19 @@
+modi,osal_internal_mem_open_malloc,09_026,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_init,pthread_mutexattr_init,,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_settype,pthread_mutexattr_settype,,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_destroy,pthread_mutexattr_destroy,,,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,$@p_mngr_control,$@p_usr_config,@p_usr_config[0].max_registered_monitors_cbs,@p_usr_config[0].max_allowed_allocations,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_settype@AMIN_return,AMSTB_SrcFile.c/AMSTB_malloc@AM_count,AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_destroy@AMIN_return,osal_internal_mem_open_map@@,;
+,1,1,1,1,1,0,0,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,0,0,0,OSAL_RETURN_OK,;Normal operation
+,1,1,1,1,1,-1,0,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,0,0,0,OSAL_RETURN_FAIL,;pthread_mutexattr_init() return non-zero
+,1,1,1,1,1,0,-1,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,0,0,0,OSAL_RETURN_FAIL,;pthread_mutexattr_settype() return non-zero
+,1,1,1,1,1,0,0,0,0,g_osal_mem_buf_ptr_self,0,0,0,OSAL_RETURN_MEM,;p_mngr_control->p_monitor is NULL
+,1,1,1,1,1,0,0,0,g_st_osal_mem_monitor_desc,0,0,0,0,OSAL_RETURN_MEM,;p_mngr_control->p_buffers is NULL
+,1,1,1,1,2,0,0,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,-1,0,0,OSAL_RETURN_FAIL,;pthread_mutex_init() return non-zero
+,1,1,1,1,1,0,0,0,g_st_osal_mem_monitor_desc,g_osal_mem_buf_ptr_self,0,0,-1,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy() return non-zero

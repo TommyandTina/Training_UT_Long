@@ -1,0 +1,21 @@
+modi,R_OSAL_OS_ThreadWaitFinish,02_104,11,1,,,,CPP,,,,0,
+#InitWheneverCall,,,,,,,,,,,,,
+0,,,,,,,,,,,,,
+%,AMSTB_z_impl_clock_gettime,z_impl_clock_gettime,,,,,,,,,,,
+%,AMSTB_z_impl_clock_gettime,z_impl_clock_gettime,,,,,,,,,,,
+%,AMSTB_pthread_self,pthread_self,,,,,,,,,,,
+%,AMSTB_pthread_mutex_lock,pthread_mutex_lock,,,,,,,,,,,
+%,AMSTB_pthread_cond_timedwait,pthread_cond_timedwait,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,
+#COMMENT,@thread,AMSTB_SrcFile.c/g_osal_os_thread.thread,AMSTB_SrcFile.c/g_posix_thread.state,AMSTB_SrcFile.c/AMSTB_z_impl_clock_gettime@AM_count,AMSTB_SrcFile.c/AMSTB_z_impl_clock_gettime@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_self@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_lock@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_timedwait@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return,AMSTB_SrcFile.c/g_os_time.tv_sec,AMSTB_SrcFile.c/g_os_time.tv_nsec,R_OSAL_OS_ThreadWaitFinish@@,;
+,g_osal_os_thread,g_posix_thread,3,0,0,0,0,0,0,1,500000001,OSAL_RETURN_OK,;Normal operation
+,0,g_posix_thread,3,0,0,0,0,0,0,1,1000001,OSAL_RETURN_FAIL,;thread is NULL.
+,g_osal_os_thread,g_posix_thread,3,0,-1,0,0,0,0,1,1000001,OSAL_RETURN_FAIL,;clock_gettime() return non-zero.
+,g_osal_os_thread,g_posix_thread,3,0,0,0,0,0,0,1,1000000000,OSAL_RETURN_FAIL,;time_stamp.tv_nsec more than OSAL_MAX_TV_NSEC.
+,g_osal_os_thread,g_posix_thread,3,0,0,0,0,0,0,1,1000000,OSAL_RETURN_OK,;time_stamp.tv_nsec % OSAL_MSECTONSEC is not 0.
+,g_osal_os_thread,g_posix_thread,3,0,0,g_posix_thread,0,0,0,1,500000001,OSAL_RETURN_FAIL,;The target thread is equal to the current thread.
+,g_osal_os_thread,g_posix_thread,3,0,0,0,0,0,0,1,400000001,OSAL_RETURN_OK,;(time_stamp.tv_nsec + timeout value) is less than OSAL_MAX_TV_NSEC.
+,g_osal_os_thread,g_posix_thread,3,0,0,0,1,0,0,1,500000001,OSAL_RETURN_FAIL,;pthread_mutex_lock() returns non-zero value.
+,g_osal_os_thread,g_posix_thread,1,0,0,0,0,1,0,1,500000001,OSAL_RETURN_FAIL,;pthread_cond_timedwait() returns non-zero value.
+,g_osal_os_thread,g_posix_thread,1,0,0,0,0,0,0,1,500000001,OSAL_RETURN_FAIL,;thread->thread->state is not PTHREAD_EXITED after calling pthread_cond_timedwait().
+,g_osal_os_thread,g_posix_thread,3,0,0,0,0,0,1,1,500000001,OSAL_RETURN_FAIL,;pthread_mutex_unlock() returns non-zero value.

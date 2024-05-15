@@ -1,0 +1,10 @@
+modi,R_OSAL_MmngrGetOsalMaxConfig,09_009,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetDefaultRegionInfo,R_OSAL_DCFG_GetDefaultRegionInfo,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetNumOfMemoryRegionInfo,R_OSAL_DCFG_GetNumOfMemoryRegionInfo,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetMaxConfigOfMemory,R_OSAL_DCFG_GetMaxConfigOfMemory,,,,,,,,,,
+#COMMENT,@p_config,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetDefaultRegionInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetNumOfMemoryRegionInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetMaxConfigOfMemory@AMIN_return,R_OSAL_MmngrGetOsalMaxConfig@@,;,,,,,,
+,g_st_osal_mmngr_config,0,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,
+,0,0,2,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_config is 0,,,,,,
+,g_st_osal_mmngr_config,0,2,OSAL_RETURN_PAR,OSAL_RETURN_PAR,;R_OSAL_DCFG_GetMaxConfigOfMemory() return OSAL_RETURN_PAR,,,,,,

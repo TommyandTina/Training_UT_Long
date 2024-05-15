@@ -1,0 +1,19 @@
+modi,R_OSAL_OS_ThreadInitAttr,02_109,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_pthread_attr_init,pthread_attr_init,,,,,,,,,,
+%,AMSTB_pthread_attr_setinheritsched,pthread_attr_setinheritsched,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedpolicy,pthread_attr_setschedpolicy,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedparam,pthread_attr_setschedparam,,,,,,,,,,
+%,AMSTB_pthread_attr_setstacksize,pthread_attr_setstacksize,,,,,,,,,,
+#COMMENT,@priority,@stack_size,$@p_thread_attr,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_attr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setinheritsched@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedpolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedparam@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setstacksize@AMIN_return,R_OSAL_OS_ThreadInitAttr@@,;
+,OSAL_THREAD_PRIORITY_TYPE14,1,1,0,g_osal_os_threadattr,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,OSAL_THREAD_PRIORITY_TYPE14,1,0,0,g_osal_os_threadattr,0,0,0,0,0,OSAL_RETURN_FAIL,;p_thread_attr is NULL.
+,OSAL_THREAD_PRIORITY_TYPE14,1,1,0,0,0,0,0,0,0,OSAL_RETURN_MEM,;calloc() return NULL.
+,OSAL_THREAD_PRIORITY_TYPE14,1,1,0,g_osal_os_threadattr,-1,0,0,0,0,OSAL_RETURN_FAIL,;pthread_attr_init() return non-zero
+,OSAL_THREAD_PRIORITY_TYPE14,1,1,0,g_osal_os_threadattr,0,-1,0,0,0,OSAL_RETURN_FAIL,;pthread_attr_setinheritsched() return non-zero
+,OSAL_THREAD_PRIORITY_TYPE14,1,1,0,g_osal_os_threadattr,0,0,-1,0,0,OSAL_RETURN_FAIL,;pthread_attr_setschedpolicy() return non-zero
+,OSAL_THREAD_PRIORITY_TYPE14,1,1,0,g_osal_os_threadattr,0,0,0,-1,0,OSAL_RETURN_FAIL,;pthread_attr_setschedparam() return non-zero
+,OSAL_THREAD_PRIORITY_TYPE14,1,1,0,g_osal_os_threadattr,0,0,0,0,-1,OSAL_RETURN_FAIL,;pthread_attr_setstacksize() return non-zero

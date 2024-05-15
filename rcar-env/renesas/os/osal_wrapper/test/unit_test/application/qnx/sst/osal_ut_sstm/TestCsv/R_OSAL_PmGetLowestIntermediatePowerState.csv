@@ -1,0 +1,13 @@
+modi,R_OSAL_PmGetLowestIntermediatePowerState,08_005,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_PmGetInitStatus,R_OSAL_DCFG_PmGetInitStatus,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_PmGetLowestIntermediatePowerState,R_OSAL_DCFG_PmGetLowestIntermediatePowerState,,,,,,,,,,
+#COMMENT,@handle,$@p_state,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_PmGetInitStatus@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_PmGetLowestIntermediatePowerState@AMIN_return,R_OSAL_PmGetLowestIntermediatePowerState@@,;,,,,,,
+,g_st_osal_common_device_control_array,1,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,g_st_osal_common_device_control_array,1,OSAL_MANAGER_STATE_UNINITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_STATE,;Power Manager is uninitialized,,,,,,
+,0,1,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;Handle is null,,,,,,
+,g_st_osal_common_device_control_array,0,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_state is null,,,,,,
+,g_st_osal_common_device_control_array,1,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;R_OSAL_DCFG_PmGetLowestIntermediatePowerState() retrun OSAL_RETURN_FAIL,,,,,,
+,g_st_osal_common_device_control_array,1,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;R_OSAL_DCFG_PmGetLowestIntermediatePowerState() retrun OSAL_RETURN_HANDLE,,,,,,
+,g_st_osal_common_device_control_array,1,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,OSAL_RETURN_OK,;R_OSAL_DCFG_PmGetLowestIntermediatePowerState() retrun OSAL_RETURN_UNSUPPORTED_OPERATION,,,,,,

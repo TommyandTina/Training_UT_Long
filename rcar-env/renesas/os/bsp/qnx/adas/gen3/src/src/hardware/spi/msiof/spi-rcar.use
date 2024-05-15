@@ -1,0 +1,17 @@
+%C Driver for R-Car SPI (MSIOF) controllers
+
+Syntax:
+    spi-master -d rcar [option[,option ...]] ... &
+
+Options (to override autodetected defaults):
+
+    "base"          /* Base address for this MSIOFx controller */
+    "clock"         /* defined the value of the clock source of the SPI */
+    "channel"       /* defines the connected channel number defined in hardware info */
+    "irq"           /* IRQ for this MSIFO intereface */
+    "num_cs"        /* number of support devices on this channel (default=1)*/
+    "blksize"       /* Transceiver's block size */
+
+Examples:
+    # Start SPI master driver
+    spi-master -u0 -d rcar channel=1,blksize=64

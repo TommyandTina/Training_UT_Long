@@ -1,0 +1,11 @@
+modi,R_OSAL_OS_MqReset,10_011,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_sem_post,sem_post,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].config.max_num_msg,g_st_osal_os_mq[0].queue,g_st_osal_queue[0].p_buffer,g_st_osal_queue[1].p_buffer,g_st_osal_os_mq[0].snd_wait_count,AMSTB_SrcFile.c/AMSTB_sem_post@AMIN_return,R_OSAL_OS_MqReset@@,;,,,
+,g_st_osal_os_mq,2,g_st_osal_queue,gp_void,gp_void,1,0,OSAL_RETURN_OK,;Normal operation,,,
+,0,2,g_st_osal_queue,gp_void,gp_void,1,0,OSAL_RETURN_FAIL,;mq is NULL.,,,
+,g_st_osal_os_mq,2,g_st_osal_queue,gp_void,gp_void,0,0,OSAL_RETURN_OK,;mq->send_wait_count is 0.,,,
+,g_st_osal_os_mq,2,g_st_osal_queue,gp_void,gp_void,2,1,OSAL_RETURN_FAIL,;sem_post returns non-zero value.,,,
+,g_st_osal_os_mq,2,0,gp_void,gp_void,1,0,OSAL_RETURN_FAIL,;mq->queue is NULL.,,,
+,g_st_osal_os_mq,2,g_st_osal_queue,0,0,1,0,OSAL_RETURN_FAIL,;mq->queue[buffer_count].p_buffer is NULL.,,,

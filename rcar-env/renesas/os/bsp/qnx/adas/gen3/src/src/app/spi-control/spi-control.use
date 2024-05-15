@@ -1,0 +1,29 @@
+%C SPI Driver test utility
+
+Syntax:
+# spi-control <spi path> [-s device] [-i] | [[-c | -r | -w] [-v]]
+
+Options:
+    -<spi path>: spi path of device, e.g. "/dev/spi0"
+     -s    : select device, default: 0
+    -i    : show driver & device information
+    -c    : set device config
+        clock : set device clock rate
+    -w    : write data to device
+    -r    : send command and receive data
+        cmd   : command to send
+        rlen  : read length, in bytes
+    -v    : view exchanged data
+
+Examples:
+    - Display device 0 information:
+     # spi-control /dev/spi2 -s0 -i
+
+    - Write data to device 0 (string "testing"):
+     # spi-control /dev/spi2 -s0 -w 74:65:73:74:69:6e:67 -v
+
+    - Send "9F" command to device 1 then read 3 byte of data:
+     # spi-control /dev/spi2 -s0 -r cmd=9F,rlen=3 -v
+
+    - Set device 1 clock:
+     # spi-control /dev/spi2 -s0 -c clock=5000000

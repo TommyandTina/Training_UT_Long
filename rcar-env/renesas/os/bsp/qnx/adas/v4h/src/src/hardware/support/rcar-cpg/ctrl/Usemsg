@@ -1,0 +1,54 @@
+An interface beween CPG library/driver and the user
+
+Syntax:
+    cpg_ctrl mod=<module_name> idx=<module_chan_index>  clk=<clock_value> -e -d
+    or
+    cpg_ctrl mod=mstp idx=bit_index>  bit=<bit_indx> -e -d -r -A -B -C
+
+Options:
+    <module_name>: Module name
+        hdmi  for HDMI
+        canfd for CANFD
+        msiof for MSIOF
+        csi2  for CSI2
+        dsi   for DSI
+        ipc   for IPC
+        fray  for FlexRAY (V3M/V3H/V3U/V4H)
+        rgx   for RGX
+        sdhi  for SDHIn
+        rpc   for RPC (flash)
+        cpu   for CA57
+        pll   for PLL
+        post  for POST
+        mstp  for Modules by accessing MSTP registers
+    <module_chan_index>: Channel index
+        0, 1, 2, 3 for SDHI0, SDHI1, SDHI2, SDHI3
+        0, 1, 2, 3, 4, 5, 20, 21, 30, 31 for PLL0, PLL1, PLL2, PLL3, PLL4, PLL5, PLL20, PLL21, PLL30, PLL31
+        0, 2, 3, 4 for POST, POST2, POST3, POST4
+    <clock_value>: Expected clock value
+    <divider_value>: clock divider value need to set to clock register
+    <reg_idx>: Index of MSTP register
+    <bit_idx>: Bit index from 0 to 31 in MSTP register
+    -e: Enable clock
+    -d: Disable clock
+    -r: Reset module by MSTP register
+    -A: Reset module by MSTP register (Type A)
+    -B: Reset module by MSTP register (Type B)
+    -C: Reset module by MSTP register (Type C)
+
+
+    To get clock info ignore clk, div, -e and -d options
+Example: 
+    - Change POST clock to 66,66MHz
+    #cpg_ctrl mod=post idx=0 clk=66666666
+
+    - Change POST clock to 66,66MHz and enable clock
+    #cpg_ctrl mod=post idx=0 clk=66666666 -e
+
+    - Disbale POST clock 
+    #cpg_ctrl mod=post idx=0 -d
+
+    - Get POST clock info
+    #cpg_ctrl mod=post idx=0
+
+Note : <clock_value> and <divider_value> should not input concurrently

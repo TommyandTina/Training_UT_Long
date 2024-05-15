@@ -1,0 +1,35 @@
+modi,R_OSAL_OS_InterruptRegisterIsr,14_103,23,1,,,,CPP,,,,0,,,,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTryLock,R_OSAL_OS_MutexTryLock,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexTryLock,R_OSAL_OS_MutexTryLock,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_init,pthread_attr_init,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setinheritsched,pthread_attr_setinheritsched,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedpolicy,pthread_attr_setschedpolicy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedparam,pthread_attr_setschedparam,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_create,pthread_create,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_destroy,pthread_attr_destroy,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondTimedWait,R_OSAL_OS_CondTimedWait,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].int_handle,@handle[0].int_handle[0].irq_enable,@handle[0].int_handle[0].irq_func,@handle[0].int_handle[0].irq_thread,@handle[0].int_handle[0].irq_thread_active,@irq_channel,@priority_value,@irqHandlerFunction,@p_irq_arg,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTryLock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexTryLock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_attr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setinheritsched@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedpolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedparam@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_create@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondTimedWait@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_OS_InterruptRegisterIsr@@,;
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,0,g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;handle is NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;irqHandlerFunction is not NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,1,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;irq_enable is true
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,1,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;irq_func is not NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,g_osal_thread_t,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;irq_thread is not NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_BUSY,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexTryLock returns OSAL_RETURN_BUSY
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,-1,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_attr_init returns -1 (Unlock is OK)
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,-1,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;pthread_attr_init returns -1 (Unlock is FAIL)
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,-1,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_attr_setinheritsched returns -1
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,-1,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_attr_setschedpolicy returns -1
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,-1,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_attr_setschedparam returns -1
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc returns NULL
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,-1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_create returns -1
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,-1,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_attr_destroy returns -1
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_TIME,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_CondTimedWait returns OSAL_RETURN_TIME
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,0,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;irq_thread_active is false
+,g_st_osal_device_control_t[0],g_st_osal_interrupt_control_t,0,0,0,1,0,0,1,0,0,OSAL_RETURN_OK,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL

@@ -1,0 +1,11 @@
+modi,R_OSAL_DCFG_IoGetAxiIdListForAxiBusName,07_017,7,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_get_domain_name,r_osal_dcfg_io_get_domain_name,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_check_axiidlist_for_domainname,r_osal_dcfg_io_check_axiidlist_for_domainname,,,,,,,,,,
+#COMMENT,$@p_axi_bus_name,@p_array,@array_size,@p_num_of_written_axi_ids,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_get_domain_name@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_check_axiidlist_for_domainname@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_check_axiidlist_for_domainname@AMIN_p_num_of_axi_ids,R_OSAL_DCFG_IoGetAxiIdListForAxiBusName@@,;,,,
+,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,OSAL_RETURN_OK,5,OSAL_RETURN_OK,;Normal operation,,,
+,1,g_uint64_t,5,array_sizet,OSAL_RETURN_UNKNOWN_NAME,OSAL_RETURN_OK,5,OSAL_RETURN_UNKNOWN_NAME,;r_osal_dcfg_io_get_domain_name() return non-OSAL_RETURN_OK.,,,
+,1,g_uint64_t,5,array_sizet,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,5,OSAL_RETURN_UNKNOWN_NAME,;r_osal_dcfg_io_check_axiidlist_for_domainname() return non-OSAL_RETURN_OK.,,,
+,1,g_uint64_t,4,array_sizet,OSAL_RETURN_OK,OSAL_RETURN_OK,5,OSAL_RETURN_PAR,;p_array is not NULL and array_size is less than numofaxiids,,,
+,1,0,5,array_sizet,OSAL_RETURN_OK,OSAL_RETURN_OK,5,OSAL_RETURN_OK_RQST,;p_array is NULL and array_size is bigger than or equal to numofaxiids,,,

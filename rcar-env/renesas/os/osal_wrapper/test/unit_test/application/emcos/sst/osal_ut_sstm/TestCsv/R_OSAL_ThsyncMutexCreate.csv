@@ -1,0 +1,20 @@
+modi,R_OSAL_ThsyncMutexCreate,03_001,10,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetMutexInfo,R_OSAL_RCFG_GetMutexInfo,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfMutex,R_OSAL_RCFG_GetNumOfMutex,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,
+#COMMENT,r_osal_threadsync.c/gs_osal_threadsync_is_initialized,@p_handle,@mutex_id,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMutexInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfMutex@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMutexInfo@AM_count,R_OSAL_ThsyncMutexCreate@@,;
+,1,g_osal_mutex_handle,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,2,OSAL_RETURN_OK,;Normal operation
+,0,g_osal_mutex_handle,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,2,OSAL_RETURN_STATE,;gs_osal_threadsync_is_initialized is false
+,1,0,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,0,2,OSAL_RETURN_PAR,;p_handle is NULL
+,1,g_osal_mutex_handle,1,OSAL_RETURN_FAIL,2,0,OSAL_RETURN_OK,0,0,2,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetMutexInfo() returns OSAL_RETURN_FAIL
+,1,g_osal_mutex_handle,1,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,1,OSAL_RETURN_FAIL,;The aquired mutex_control is NULL.
+,1,g_osal_mutex_handle,1,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,3,OSAL_RETURN_FAIL,;The aquired mutex_control->usr_config is NULL.
+,1,g_osal_mutex_handle,1,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,5,OSAL_RETURN_ID,;mutex_control->usr_config->id is not equal mutex_id
+,1,g_osal_mutex_handle,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_FAIL,0,0,2,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() returns OSAL_RETURN_FAIL.
+,1,g_osal_mutex_handle,1,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,4,OSAL_RETURN_BUSY,;control->active is not false
+,1,g_osal_mutex_handle,1,OSAL_RETURN_OK,1,0,OSAL_RETURN_OK,0,-1,2,OSAL_RETURN_FAIL,;pthread_mutex_unlock() returns is not 0.

@@ -1,0 +1,15 @@
+modi,R_OSAL_DCFG_InterruptDisableIsr,06_005,11,1,,,,CPP,,,,0,
+#InitWheneverCall,r_osal_dev_cfg_io.c/gp_osal_device_control,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,,,,,,,,,,,
+0,0,0,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_InterruptDisableIsr,R_OSAL_OS_InterruptDisableIsr,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gp_osal_device_control,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,@handle,g_st_osal_device_control_array[0].handle_id,g_st_osal_device_control_array[0].active,$g_st_osal_device_control_array[0].interrupt_index,g_st_osal_device_control_array[0].interrupt_index[0],$g_st_osal_device_control_array[0].dev_info,g_st_osal_device_control_array[0].dev_info[0].irq_channels,@irq_channel,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_InterruptDisableIsr@AMIN_return,R_OSAL_DCFG_InterruptDisableIsr@@,;
+,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,10,0,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,0xFFFFFF00,2,0,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,10,0,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle less than (uintptr_t)&gp_osal_device_control[0]
+,0xFFFFFF00,2,0xFFFFFFF0,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,10,0,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle more than (uintptr_t)&gp_osal_device_control[(g_osal_num_of_device_table - (size_t)1)]
+,0xFFFFFF00,2,0xFFFFFF01,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,10,0,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;0U not equal ((uintptr_t)handle & (sizeof(uintptr_t) - 1U))
+,g_st_osal_device_control_array,2,g_st_osal_device_control_array,0,1,10,0,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is note OSAL_DEV_CFG_DEVICE_HANDLE_ID
+,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,0,10,0,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->active is not true
+,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,10,0,0,10,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->dev_info is NULL
+,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,0,0,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->interrupt_index is NULL
+,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,10,0,1,10,11,OSAL_RETURN_OK,OSAL_RETURN_PAR,;handle->dev_info->irq_channels less than irq_channel
+,g_st_osal_device_control_array,2,g_st_osal_device_control_array,OSAL_DEV_CFG_DEVICE_HANDLE_ID,1,10,-1,1,10,0,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;handle->interrupt_index[irq_channel] equal to OSAL_DEV_CFG_INTERRUPT_NONE_INDEX

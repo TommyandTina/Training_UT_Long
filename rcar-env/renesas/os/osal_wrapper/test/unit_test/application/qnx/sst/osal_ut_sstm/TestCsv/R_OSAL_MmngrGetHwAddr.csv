@@ -1,0 +1,12 @@
+modi,R_OSAL_MmngrGetHwAddr,09_013,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_MmngrGetHwAddr,R_OSAL_RCFG_MmngrGetHwAddr,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,@p_hw_addr,@axi_id,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_MmngrGetHwAddr@AMIN_return,R_OSAL_MmngrGetHwAddr@@,;,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_uintptr_t,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,0,g_uintptr_t,1,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;memory_buffer_obj_hndl is null,,,,,,
+,g_st_osal_common_memory_buffer_obj,0,1,OSAL_RETURN_OK,OSAL_RETURN_PAR,;p_hw_addr is null,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_uintptr_t,0,OSAL_RETURN_OK,OSAL_RETURN_PAR,;axi_id is eqauls OSAL_AXI_BUS_ID_INVALID,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_uintptr_t,1,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_RCFG_MmngrGetHwAddr() return OSAL_RETURN_FAIL,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_uintptr_t,1,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;R_OSAL_RCFG_MmngrGetHwAddr() return OSAL_RETURN_HANDLE,,,,,,
+,g_st_osal_common_memory_buffer_obj,g_uintptr_t,1,OSAL_RETURN_UNSUPPORTED_OPERATION,OSAL_RETURN_UNSUPPORTED_OPERATION,;R_OSAL_RCFG_MmngrGetHwAddr() return OSAL_RETURN_UNSUPPORTED_OPERATION,,,,,,

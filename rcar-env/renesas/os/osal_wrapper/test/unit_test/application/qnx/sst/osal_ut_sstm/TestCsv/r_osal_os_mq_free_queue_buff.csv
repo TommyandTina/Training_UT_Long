@@ -1,0 +1,9 @@
+modi,r_osal_os_mq_free_queue_buff,10_017,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].queue,g_st_osal_queue[0].p_buffer,g_st_osal_queue[1].p_buffer,@p_config,g_st_osal_mq_config[0].max_num_msg,g_dummy,;,,,,
+,g_st_osal_os_mq,g_st_osal_queue,1,1,g_st_osal_mq_config,1,-,;Normal operation,,,,
+,g_st_osal_os_mq,0,1,1,g_st_osal_mq_config,1,-,;mq->queue is NULL.,,,,
+,g_st_osal_os_mq,g_st_osal_queue,0,0,g_st_osal_mq_config,1,-,;mq->queue[buffer_count].p_buffer is NULL.,,,,
+,g_st_osal_os_mq,g_st_osal_queue,1,1,g_st_osal_mq_config,0,-,;p_config->max_num_msg is 0,,,,
+,g_st_osal_os_mq,g_st_osal_queue,1,1,g_st_osal_mq_config,2,-,;p_config->max_num_msg is 2,,,,

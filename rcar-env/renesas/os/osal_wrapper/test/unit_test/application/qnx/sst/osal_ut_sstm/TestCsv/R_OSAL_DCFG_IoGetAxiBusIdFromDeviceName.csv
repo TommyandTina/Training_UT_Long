@@ -1,0 +1,11 @@
+modi,R_OSAL_DCFG_IoGetAxiBusIdFromDeviceName,07_008,9,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_io.c/gs_osal_io_is_initialized_enu,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,r_osal_dev_cfg_io.c/gs_axi_bus_name_info_array_size,,,,,,,,,
+0,0,0,0,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_search_strings,r_osal_dcfg_io_search_strings,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_search_strings,r_osal_dcfg_io_search_strings,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_search_strings,r_osal_dcfg_io_search_strings,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_search_strings,r_osal_dcfg_io_search_strings,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gs_osal_io_is_initialized_enu,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,r_osal_dev_cfg_io.c/gs_axi_bus_name_info_array_size,@p_device_name,@p_axi_id,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_search_strings@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_search_strings@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_search_strings@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_search_strings@AMIN_return[2],R_OSAL_DCFG_IoGetAxiBusIdFromDeviceName@@,;,
+,1,g_axi_bus_name_info_3,3,1,array_uint64,0,1,1,1,OSAL_RETURN_OK,;Normal operation,
+,1,g_axi_bus_name_info_3,3,1,array_uint64,0,0,0,0,OSAL_RETURN_UNKNOWN_NAME,;r_osal_dcfg_io_search_strings() return NULL,
+,1,g_axi_bus_name_info_3,1,1,array_uint64,0,1,1,1,OSAL_RETURN_UNKNOWN_NAME,;count is not equal (gs_axi_bus_name_info_array_size - 1U),

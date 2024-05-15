@@ -1,0 +1,26 @@
+modi,r_osal_os_io_register_axi_bus_info,15_122,21,1,,,,CPP,,,,0,,,,,,,,,,,
+#InitWheneverCall,r_osal_os_io.c/gs_axi_bus_name_info_array_size,r_osal_os_io.c/gs_axi_bus_name_info,r_osal_os_io.c/gs_axi_bus_name_info[0].utlb,r_osal_os_io.c/gs_axi_bus_name_info[1].utlb,,,,,,,,,,,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_device_name_connect,r_osal_os_io_device_name_connect,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_io_device_name_connect,r_osal_os_io_device_name_connect,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_os_io.c/gs_axi_bus_name_info_array_size,r_osal_os_io.c/gs_axi_bus_name_info,r_osal_os_io.c/gs_axi_bus_name_info[0].utlb,r_osal_os_io.c/gs_axi_bus_name_info[1].utlb,@p_bus_domain,@p_device_name,@utlb,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strcmp@AM_count,AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strstr@AM_count,AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_device_name_connect@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_device_name_connect@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_register_axi_bus_info@@,;
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,1,0,str,str,0,0,0,0,0,0,0,OSAL_RETURN_OK,0,g_st_osal_axi_bus_name_info_t,0,OSAL_RETURN_OK,;Normal operation (utlb is match)
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,1,0,str,str,0,1,0,0,0,0,0,OSAL_RETURN_OK,0,g_st_osal_axi_bus_name_info_t,0,OSAL_RETURN_OK,;strcmp returns not 0
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,2,0,str,str,0,0,0,0,0,0,0,OSAL_RETURN_OK,0,g_st_osal_axi_bus_name_info_t,0,OSAL_RETURN_OK,;Normal operation (utlb is not match)
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,1,0,str,str,0,0,0,0,1,0,0,OSAL_RETURN_OK,0,g_st_osal_axi_bus_name_info_t,0,OSAL_RETURN_OK,;strstr returns not NULL
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,1,0,0,str,0,0,0,0,0,0,0,OSAL_RETURN_OK,0,g_st_osal_axi_bus_name_info_t,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[0] returns NULL
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,1,0,str,str,0,0,0,0,0,0,0,OSAL_RETURN_FAIL,0,g_st_osal_axi_bus_name_info_t,0,OSAL_RETURN_FAIL,;r_osal_os_io_device_name_connect returns OSAL_RETURN_FAIL
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,2,0,str,str,0,0,0,0,0,0,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_MEM,;realloc returns NULL
+,2,g_st_osal_axi_bus_name_info_t,0,1,0,0,2,0,str,0,0,0,0,0,0,0,0,OSAL_RETURN_OK,0,g_st_osal_axi_bus_name_info_t,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[1] returns NULL

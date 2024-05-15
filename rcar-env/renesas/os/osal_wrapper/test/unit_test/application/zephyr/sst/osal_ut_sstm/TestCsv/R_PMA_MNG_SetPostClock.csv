@@ -1,0 +1,21 @@
+modi,R_PMA_MNG_SetPostClock,02_013,14,4,,,,CPP,,,,0,,,,,,,
+#InitWheneverCall,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_timeout,,,,,,,,,,,,,,,,,
+0,0,0,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_SetPostDivider,R_PMA_BSP_WRAP_SetPostDivider,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_EnablePostClock,R_PMA_BSP_WRAP_EnablePostClock,,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_DisablePostClock,R_PMA_BSP_WRAP_DisablePostClock,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,,,,
+#COMMENT,@clockEnable,@chanIdx,$@pClockDivider,*@pClockDivider,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_timeout,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_SetPostDivider@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_EnablePostClock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_DisablePostClock@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_control,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_SetPostDivider@AMOUT_chanIdx,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_EnablePostClock@AMOUT_chanIdx,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_DisablePostClock@AMOUT_chanIdx,R_PMA_MNG_SetPostClock@@,;
+,-1,0,1,10,1,1,,,,,,,,,,,,R_PMA_INVALID_ARGUMENT,;clockEnable is -1
+,R_PMA_CLK_ENABLE,5,1,10,1,1,,,,,,,,,,,,R_PMA_INVALID_ARGUMENT,;chanIdx more than R_PMA_COMMON_CLK_POSTCKCR(4u)
+,R_PMA_CLK_ENABLE,2,0,,1,1,,,,,,,,,,,,R_PMA_INVALID_ARGUMENT,;pClockDivider is NULL
+,R_PMA_CLK_ENABLE,2,1,64,1,1,,,,,,,,,,,,R_PMA_INVALID_ARGUMENT,;*pClockDivider is R_PMA_COMMON_CLK_DIVIDER or more (64u)
+,R_PMA_CLK_ENABLE,0,1,0,1,1,OSAL_RETURN_FAIL,,,,,0,0,,,,,R_PMA_NG,;R_OSAL_HIF_MutexLockForTimePeriod() returns OSAL_RETURN_FAIL
+,R_PMA_CLK_ENABLE,4,1,63,1,1,OSAL_RETURN_OK,R_PMA_BSP_EINVAL,,,OSAL_RETURN_OK,0,0,0,4,,,R_PMA_BSP_EINVAL,;R_PMA_BSP_WRAP_SetPostDivider() returns 'R_PMA_BSP_EINVAL
+,R_PMA_CLK_ENABLE,4,1,63,1,1,OSAL_RETURN_OK,R_PMA_OK,R_PMA_BSP_EINVAL,,OSAL_RETURN_OK,0,0,0,4,4,,R_PMA_BSP_EINVAL,;R_PMA_BSP_WRAP_EnablePostClock() returns 'R_PMA_BSP_EINVAL
+,R_PMA_CLK_DISABLE,4,1,63,1,1,OSAL_RETURN_OK,R_PMA_OK,,R_PMA_BSP_EINVAL,OSAL_RETURN_OK,0,0,0,4,,4,R_PMA_BSP_EINVAL,;R_PMA_BSP_WRAP_DisablePostClock() returns 'R_PMA_BSP_EINVAL
+,R_PMA_CLK_DISABLE,4,1,63,1,1,OSAL_RETURN_OK,R_PMA_OK,,R_PMA_OK,OSAL_RETURN_FAIL,0,0,0,4,,4,R_PMA_NG,;R_OSAL_OS_MutexUnlock() returns OSAL_RETURN_FAIL
+,R_PMA_CLK_DISABLE,4,1,63,1,1,OSAL_RETURN_OK,R_PMA_OK,,R_PMA_BSP_EINVAL,OSAL_RETURN_FAIL,0,0,0,4,,4,R_PMA_NG,;R_OSAL_OS_MutexUnlock() returns OSAL_RETURN_FAIL
+,R_PMA_CLK_ENABLE,4,1,63,1,1,OSAL_RETURN_OK,R_PMA_OK,R_PMA_OK,,OSAL_RETURN_OK,0,0,0,4,4,,R_PMA_OK,;Normal operation
+,R_PMA_CLK_DISABLE,4,1,63,1,1,OSAL_RETURN_OK,R_PMA_OK,,R_PMA_OK,OSAL_RETURN_OK,0,0,0,4,,4,R_PMA_OK,;Normal operation

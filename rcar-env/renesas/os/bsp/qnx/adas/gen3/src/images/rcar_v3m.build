@@ -1,0 +1,616 @@
+###########################################################################
+##
+## QNX Neutrino 7.1.0 on the R-Car V3M (ARMv8 Cortex-A53 core) Eagle Board
+##
+###########################################################################
+##
+## SUPPORTED DEVICES:
+##
+## SERIAL: SCIF0
+## I2C: I2C0, I2C3, I2C4
+## SPI FLASH
+## THERMAL
+## NETWORK: RAVB
+## WATCHDOG
+## WFD
+## SPI MASTER MODE AND SPI SLAVE MODE
+###########################################################################
+##
+## NOTES:
+##
+###########################################################################
+
+###########################################################################
+## START OF BUILD SCRIPT
+###########################################################################
+
+#[+keeplinked]
+[+compress]
+[image=0x50100000]
+[virtual=aarch64le,raw] .bootstrap = {
+    ## Options specific to this BSP:
+    ## -c is XTal clock
+    ##startup-rcar_v3m -P2 -W-c16640000 -vvvvv
+    ## Without "-c", default Xtal = 16660000
+    startup-rcar_v3m -P2 -W -Dscif0
+    #######################################################################
+    ## PATH set here is the *safe* path for executables.
+    ## LD_LIBRARY_PATH set here is the *safe* path for libraries.
+    ##     i.e. These are the paths searched by setuid/setgid binaries.
+    ##          (confstr(_CS_PATH...) and confstr(_CS_LIBPATH...))
+    #######################################################################
+    PATH=/proc/boot:/bin:/usr/bin:/usr/photon/bin:/opt/bin:/sbin:/usr/sbin:/usr/lib:/tmp:/etc
+    LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll:/opt/lib:/usr/photon/lib:/usr/lib:/tmp:/etc procnto-smp-instr -ae
+}
+
+[+script] .script = {
+    # Initialise the console
+    procmgr_symlink ../../proc/boot/ldqnx-64.so.2 /usr/lib/ldqnx-64.so.2
+
+    display_msg Welcome to QNX Neutrino 7.1.0 on the R-Car V3M Eagle Board
+
+    # Setup Environment variables
+    ENV=/etc/profile
+
+    # Start some common servers
+    display_msg Starting slogger and pipe servers...
+    slogger2
+    pipe &
+    random -t
+    waitfor /dev/random 5
+    mqueue &
+
+    #######################################################################
+    ## WatchDog utility
+    ## If startup is given '-W' parameter then the 'wdtkick' utility MUST
+    ## be uncommented below.
+    #######################################################################
+    display_msg Starting watchdog ...
+    wdtkick-rcar -W 0x0:0x5A5AFF00
+
+    #######################################################################
+    ## Resource seed
+    #######################################################################
+    resource_seed dma=sys=0,15 dma=rt=0,31 mem=sysdesc=0,255 mem=rtdesc=0,255
+    
+    #######################################################################
+    ## CPG Clock driver
+    #######################################################################
+    rcar-cpg-mgr -d support &
+    waitfor /dev/cpg 4
+
+    #######################################################################
+    ## SYSC driver
+    #######################################################################
+    rcar-sysc-mgr -d support &
+    waitfor /dev/sysc 4
+
+    #######################################################################
+    ## SERIAL driver
+    #######################################################################
+    display_msg Starting Serial driver...
+    devc-serscif -e -F -b115200 -t 14 scif0 &
+    waitfor /dev/ser1 4
+    reopen /dev/ser1
+
+    #######################################################################
+    ## I2C driver
+    #######################################################################
+    display_msg "Starting I2C driver ..."
+    # I2C0
+    i2c-rcar-A -p0xe6500000 -i319 -d -v --u0 &
+    # I2C3
+    i2c-rcar-A -p0xe66D0000 -i322 -d -v --u3 &
+    # I2C4
+    i2c-rcar-A -p0xe66D8000 -i51 -d -v --u4 &
+
+    #######################################################################
+    ## SPI Flash driver
+    #######################################################################
+    #display_msg "Starting SPI Flash driver..."
+    #devf-rcar_qspi-gen3 -r -b5 &
+
+
+    #######################################################################
+    ## eMMC flash driver
+    ## For more aggressive MMC R/W performance, please use the following command:
+    ##   devb-sdmmc-rcar_gen3 blk maxio=256,cache=1m,ra=256k:512k,rapolicy=aggressive,commit=none cam cache,async mem name=below4G sdio idx=2,emmc,~ac12 sdmmc cache=on disk name=mmc@0
+    ## Please note that there are risks involved with using such command.
+    ## For details, please visit: http://www.qnx.com/support/knowledgebase.html?id=501a0000000Mpbr
+    ## NOTE: Any reset with volatile cache enabled will cause the qnx6 filesystem to go read only.  Resets can be common based on incorrect tuning and driver quality.
+    #######################################################################
+    display_msg "Starting MMC memory flash driver ..."
+    devb-sdmmc-rcar_gen3 blk cache=64m,maxio=1024,delwri=0,ra=256k:1024k cam cache,async,bounce=1024k mem name=below4G sdio idx=0,emmc sdmmc partitions=on,cache=on disk name=mmc@0,maxio=1024
+    waitfor /dev/mmc0 1
+
+
+    #######################################################################
+    ## Network driver
+    #######################################################################
+    display_msg "Starting Networking ..."
+    sh /proc/boot/ravb_start.sh
+
+    #######################################################################
+    ## Remote debug
+    #######################################################################
+    inetd
+    devc-pty
+    waitfor /dev/ptyp0 4
+    waitfor /dev/socket 4
+    qconn port=8000
+
+    #######################################################################
+    ## Graphics
+    #######################################################################
+    display_msg "Starting Display driver..."
+    LIBIMG_CFGFILE=/etc/system/config/img.conf
+    screen -c /usr/lib/graphics/rcarv3m/graphics.conf &
+    waitfor /dev/screen 3
+
+    [+session] ksh &
+}
+
+# Redirect console messages
+[type=link] /bin/sh=/proc/boot/ksh
+[type=link] /tmp=/dev/shmem
+
+###########################################################################
+## Shared Libraries
+###########################################################################
+libc.so
+libgcc_s.so.1
+ldqnx-64.so.2
+libregex.so
+libqh.so
+libc++.so
+libpps.so
+libm.so
+libsecpol.so
+libz.so
+libslog2.so
+libslog2parse.so
+libslog2shim.so
+libtracelog.so
+libcatalog.so
+
+# Block device
+libcam.so
+io-blk.so
+cam-disk.so
+fs-qnx6.so
+fs-dos.so
+libncursesw.so.1
+
+# Network driver
+libsocket.so
+libcrypto.so
+libssl.so
+libqcrypto.so
+qcrypto-openssl.so
+libnbutil.so
+devnp-ravb.so
+# Support ASIX-based USB to Ethernet Dongles
+# devnp-asix.so
+devnp-usbdnet.so
+
+# Executables
+[data=c]
+
+###########################################################################
+## libqcrypto support
+###########################################################################
+[perms=644] /etc/qcrypto.conf = {
+openssl     tags=*
+}
+
+# Create a profile so telnet sessions will get environment variables
+/etc/profile={
+export SYSNAME=nto
+export TERM=qansi
+export HOME=/
+export LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll:/usr/lib:/opt/lib:/usr/lib/graphics/rcarv3m
+export PATH=/proc/boot:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/lib:/opt/bin
+export SHELL=/bin/sh
+export DISPLAY=127.1:0
+export HOSTNAME=Neutrino
+export TMPDIR=/tmp
+export LOGNAME=root
+export LIBIMG_CFGFILE=/etc/system/config/img.conf
+}
+
+###########################################################################
+## WatchDog utility
+###########################################################################
+wdtkick-rcar
+
+###########################################################################
+## Resource seed
+###########################################################################
+/proc/boot/resource_seed=resource_seed
+
+###########################################################################
+## HW vendor
+###########################################################################
+rcar-cpg-mgr
+cpg-support.so
+rcar-sysc-mgr
+sysc-support.so
+rcar-tmu.so
+rcar-cmt.so
+cpg_sysc_test
+cpg_ctrl
+sysc_ctrl
+timer_test
+tpu_test
+
+###########################################################################
+## Serial driver
+###########################################################################
+devc-serscif
+
+###########################################################################
+## I2C driver
+###########################################################################
+i2c-rcar-A
+i2c-rcar-B
+isend
+isendrecv
+
+###########################################################################
+## SPI Flash driver
+###########################################################################
+devf-rcar_qspi-gen3
+
+###########################################################################
+## Network driver
+###########################################################################
+io-pkt-v6-hc
+nicinfo
+ping
+inetd
+ftp
+fs-nfs3
+ifconfig
+if_up
+telnet
+genmac-random
+arp
+hostname
+omshell
+route
+rcar-uboot-env
+
+ravb_start.sh {
+    #!/bin/sh
+    waitfor /dev/fs0 1 > /dev/null 2>&1
+    if [ $? == 0 ]; then
+        ETHADDR=`rcar-uboot-env /dev/fs0 ethaddr offset=0x700000 2> /dev/null`
+
+       if [ $? == 0 ]; then
+          ETHADDR=`echo $ETHADDR | sed -e "s/ethaddr=//g;s/://g"`
+        else
+            ETHADDR=""
+        fi
+    fi
+
+    if [ -z "$ETHADDR" ]; then
+        ETHADDR=`genmac-random -m`
+    fi
+    io-pkt-v6-hc -d ravb mac=$ETHADDR -p tcpip pkt_typed_mem=below4G,smmu=off
+    dhclient -m -lf /dev/shmem/dhclient.leases -pf /dev/shmem/dhclient.pid -nw ravb0
+}
+
+###########################################################################
+## dhclient support
+###########################################################################
+dhclient
+/sbin/ifconfig=ifconfig
+[search=${QNX_TARGET}/sbin perms=a+x] /sbin/dhclient-script=dhclient-script
+[search=${QNX_TARGET}/etc]/etc/dhclient.conf=dhclient.conf
+
+###########################################################################
+## Remote debug
+###########################################################################
+qconn
+devc-pty
+pdebug
+
+###########################################################################
+## Network services (telnet) support
+###########################################################################
+devc-pty
+tftp
+/etc/hosts=${QNX_TARGET}/etc/hosts
+/etc/services=${QNX_TARGET}/etc/services
+
+/etc/inetd.conf = {
+ftp        stream tcp nowait root  /usr/sbin/ftpd           in.ftpd -l
+telnet     stream tcp nowait root  /usr/sbin/telnetd        in.telnetd
+}
+
+/etc/ftpusers=${QNX_TARGET}/etc/ftpusers
+
+/etc/ftpd.conf = {
+/* Make things a+rw by default */
+umask all 0000
+}
+
+[uid=0 gid=0 perms=0644] /etc/passwd = {
+root:x:0:0:Superuser:/root:/bin/sh
+sshd:x:15:6:sshd:/var/chroot/sshd:/bin/false
+qnxuser:x:1000:1000:QNX User:/home/qnxuser:/bin/sh
+}
+
+# Enabled Username/Password: root/root, qnxuser/qnxuser
+[uid=0 gid=0 perms=0600] /etc/shadow = {
+root:@S@NKlWES1quMp1wmqugkUSnFEpPGn58kIs4wQOgDDNs06vimR+bbGPUKM+9P6jbFUzo3Rm+Qe5MS+17xKhwaeJEg==@Mjg5ZTJiMTM0YTRjYTE2ZGFjMDdhZTFlY2NlMDVmNmE=:1468494669:0:0
+sshd:*:1231323780:0:0
+qnxuser:@S@HZERXjgixvb3157FFeraShhvTVw+10ccUtVUVZbi0fUwpzlzBZFw5gHiFd1XHKit8D39Whe749XAY8fV4P5ANQ==@Y2ZlOTg3M2RhNTM4Y2M2ODY0OWZhODdiNDRkMmU5Nzg=:1468488235:0:0
+}
+
+[uid=0 gid=0 perms=0644] /etc/group = {
+root:x:0:root
+sshd:x:6:
+qnxuser:x:qnxuser
+}
+
+###########################################################################
+## PAM configurations addon build file
+###########################################################################
+[uid=0 gid=0 perms=4755] /bin/login=login
+[uid=0 gid=0 perms=4755] /bin/passwd=passwd
+[uid=0 gid=0 perms=4755] /bin/su=su
+[uid=0 gid=0 perms=0755] /usr/sbin/sshd=sshd
+[uid=0 gid=0 perms=0755] /usr/sbin/ftpd=ftpd
+[uid=0 gid=0 perms=0755] /usr/sbin/inetd=inetd
+[uid=0 gid=0 perms=0755] /usr/sbin/telnetd=telnetd
+
+[uid=0 gid=0 type=dir dperms=0755] /usr
+[uid=0 gid=0 type=dir dperms=0755] /usr/lib
+[uid=0 gid=0 type=dir dperms=0755] /etc
+[uid=0 gid=0 type=dir dperms=0755] /etc/pam.d
+[uid=0 gid=0 perms=0644] /etc/pam.d/login=${QNX_TARGET}/etc/pam.d/login
+[uid=0 gid=0 perms=0644] /etc/pam.d/passwd=${QNX_TARGET}/etc/pam.d/passwd
+[uid=0 gid=0 perms=0644] /etc/pam.d/su=${QNX_TARGET}/etc/pam.d/su
+[uid=0 gid=0 perms=0644] /etc/pam.d/ftpd=${QNX_TARGET}/etc/pam.d/ftpd
+
+[uid=0 gid=0 perms=0755] /usr/lib/libpam.so=libpam.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_ftpusers.so=pam_ftpusers.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_rootok.so=pam_rootok.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_qnx.so=pam_qnx.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_deny.so=pam_deny.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_echo.so=pam_echo.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_exec.so=pam_exec.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_group.so=pam_group.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_mac.so=pam_mac.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_permit.so=pam_permit.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_radius.so=pam_radius.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_self.so=pam_self.so
+
+###########################################################################
+## Filesystems support
+###########################################################################
+fdisk
+mkdosfs
+mkqnx6fs
+devb-ram
+
+###########################################################################
+## Thermal driver
+###########################################################################
+rcar-thermal
+thermal_test
+
+############################################################################
+# CANFD driver
+############################################################################
+canfd-rcar
+canctl
+
+###########################################################################
+## MMC block driver support files
+###########################################################################
+devb-sdmmc-rcar_gen3
+
+###########################################################################
+## VIN library 
+###########################################################################
+/proc/boot/libcapture-board-rcarv3m-eagle.so=libcapture-board-rcarv3m-eagle.so
+/proc/boot/libcapture-soc-rcar3.so=libcapture-soc-rcar3.so
+[type=link] libcapture.so=libcapture.so.1
+/proc/boot/libcapture-decoder-adv7482.so=libcapture-decoder-adv7482.so
+/proc/boot/libcapture-decoder-max9286.so=libcapture-decoder-max9286.so
+/proc/boot/libcapture-decoder-adv7612.so=libcapture-decoder-adv7612.so
+[type=link] libcapture.so.1=/proc/boot/libcapture-board-rcarv3m-eagle.so
+
+###########################################################################
+## Video capture executables
+###########################################################################
+/usr/bin/vcapture-demo=vcapture-demo
+/usr/bin/camera_ctrl=camera_ctrl
+
+###########################################################################
+## PWM driver 
+###########################################################################
+pwm-rcar
+pwm_test
+
+###########################################################################
+## GPIO driver
+###########################################################################
+rcar-gpio
+gpio_test
+
+###########################################################################
+## DMA memory to memory app test
+###########################################################################
+dma-memtomem-test
+
+###########################################################################
+## general commands
+###########################################################################
+cp
+ls
+cat
+ksh
+pipe
+pidin
+uname
+slogger2
+slog2info
+slay
+mount
+umount
+use
+date
+shutdown
+chmod
+ln
+rm
+mv
+sleep
+dd
+top
+grep
+df
+find
+mkdir
+pwd
+waitfor
+echo
+dumper
+random
+flashctl
+awk
+ps
+random
+route
+mqueue
+diff
+sed
+in32
+out32
+grep
+awk
+iperf3
+ptpd2
+
+###########################################################################
+## Image library support
+###########################################################################
+/lib/libimg.so.1=../install/aarch64le/lib/libimg.so.1
+/lib/libjpeg.so.4=../install/aarch64le/lib/libjpeg.so.4
+/lib/libpng16.so.16=../install/aarch64le/lib/libpng16.so.16
+/lib/dll/img_codec_jpg.so=../install/aarch64le/lib/dll/img_codec_jpg.so
+/lib/dll/img_codec_png.so=../install/aarch64le/lib/dll/img_codec_png.so
+
+###########################################################################
+## Image library configuration file
+###########################################################################
+/etc/system/config/img.conf = {
+[img_codec_jpg.so]
+mime=image/jpeg:image/jpg
+ext=jpg:jpeg
+[img_codec_png.so]
+mime=image/png
+ext=png
+}
+
+###########################################################################
+## Touch excutables
+###########################################################################
+/usr/sbin/mtouch=mtouch
+
+###########################################################################
+## Touch libraries
+###########################################################################
+/lib/libmtouch-devi.so=libmtouch-devi.so
+/lib/libmtouch-fake.so=libmtouch-fake.so
+/lib/libmtouch-hid.so=libmtouch-hid.so
+/lib/libmtouch-inject.so=libmtouch-inject.so
+/lib/libmtouch-calib.so=libmtouch-calib.so
+
+###########################################################################
+## Font libraries
+###########################################################################
+/usr/lib/libfontconfig.so=libfontconfig.so
+/usr/lib/libfreetype.so=libfreetype.so
+
+###########################################################################
+## Screen libraries
+###########################################################################
+/lib/libmemobj.so=libmemobj.so
+/lib/libscrmem.so=libscrmem.so
+/lib/libgestures.so=libgestures.so
+/lib/libinputevents.so=libinputevents.so
+/lib/libkalman.so=libkalman.so
+/lib/dll/screen-debug.so=screen-debug.so
+/lib/dll/screen-sw.so=screen-sw.so
+/lib/dll/screen-stdbuf.so=screen-stdbuf.so
+/lib/dll/libwfdcfg-sample.so=libwfdcfg-sample.so
+/usr/lib/libscreen.so=libscreen.so
+/usr/lib/libswblit.so=libswblit.so
+/usr/lib/libWFD.so=libWFD.so
+
+###########################################################################
+## Screen excutables
+###########################################################################
+/sbin/screen=screen
+/usr/bin/events=events
+/usr/bin/sw-vsync=sw-vsync
+/usr/bin/sharewin=sharewin
+/usr/bin/win-vsync=win-vsync
+/usr/bin/screenshot=screenshot
+/usr/bin/calib-touch=calib-touch
+
+###########################################################################
+## Screen board specific excutables
+###########################################################################
+/usr/bin/discom_test=../install/aarch64le/usr/bin/discom_test
+
+###########################################################################
+## Screen board specific libraries
+###########################################################################
+/lib/dll/screen-rcar3-alloc.so=../install/aarch64le/lib/dll/screen-rcar3-alloc.so
+/usr/lib/graphics/rcarv3m/graphics.conf=../install/aarch64le/usr/lib/graphics/rcarv3m/graphics-eagle.conf
+/usr/lib/graphics/rcarv3m/libwfdcfg-rcarv3m-eagle.so=../install/aarch64le/usr/lib/graphics/rcarv3m/libwfdcfg-rcarv3m-eagle.so
+/usr/lib/graphics/rcarv3m/libWFDrcar3.so=../install/aarch64le/usr/lib/graphics/libWFDrcar3.so
+
+###########################################################################
+## Test script support
+###########################################################################
+[perms=755] /etc/test_script/timer_test.sh=../install/etc/test_scripts/timer_test.sh 
+
+###########################################################################
+##
+## INTERRUPT MAP (Renesas R-CarV3M)
+##
+###########################################################################
+##
+##
+## vector: 0 - 31
+## device: reserved
+##
+## vector 32 - 511
+## device: same IRQs as defined in Renesas R-CarV3M Table 12A (INTC-AP Interrupt Mapping)
+##
+## GPIO interrupts are cascaded.  Individual GPIO IRQs are defined below
+## vector 512 - 543
+## device: GPIO0[0 - 31]
+##
+## vector 544 - 575
+## device: GPIO1[0 - 31]
+##
+## vector 576 - 607
+## device: GPIO2[0 - 31]
+##
+## vector 608 - 639
+## device: GPIO3[0 - 31]
+##
+## vector 640 - 671
+## device: GPIO4[0 - 31]
+##
+## vector 672 - 703
+## device: GPIO5[0 - 31]
+##
+###########################################################################

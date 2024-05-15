@@ -1,0 +1,7 @@
+modi,r_osal_rcfg_cond_compare_id,02_023,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_array1,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0].cond_id,@p_array2,g_st_osal_cond_control_t_p[1],g_st_osal_cond_control_t[1].cond_id,r_osal_rcfg_cond_compare_id@@,;,,,,
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],0,g_st_osal_cond_control_t_p[1],g_st_osal_cond_control_t[1],1,-1,;Normal operation ,,,,
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],1,g_st_osal_cond_control_t_p[1],g_st_osal_cond_control_t[1],0,1,;Normal operation ,,,,
+,g_st_osal_cond_control_t_p[0],g_st_osal_cond_control_t[0],1,g_st_osal_cond_control_t_p[1],g_st_osal_cond_control_t[1],1,0,;Normal operation ,,,,

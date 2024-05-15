@@ -1,0 +1,9 @@
+modi,R_OSAL_RCFG_MqCheckBusy,04_005,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqCheckBusy,R_OSAL_OS_MqCheckBusy,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_message.c/gs_osal_num_of_mq_table,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqCheckBusy@AMIN_return,R_OSAL_RCFG_MqCheckBusy@@,;,,,,,,,,
+,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation,,,,,,,,
+,2,OSAL_RETURN_BUSY,OSAL_RETURN_BUSY,;R_OSAL_OS_MqCheckBusy() return OSAL_RETURN_BUSY,,,,,,,,
+,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;gs_osal_num_of_mq_table is 0,,,,,,,,
+,1,OSAL_RETURN_OK,OSAL_RETURN_OK,;gs_osal_num_of_mq_table is 1,,,,,,,,

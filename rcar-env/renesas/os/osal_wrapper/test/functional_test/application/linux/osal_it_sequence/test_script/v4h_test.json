@@ -1,0 +1,15 @@
+{
+          "SERIAL_PORT":"/dev/serial/by-path/pci-0000:04:00.3-usb-0:3.1.1:1.0-port0",
+          "USB_MOUNT_POINT": "1-1.1.3",
+          "SERIAL_ID": "",
+          "RCAR_BOARD": "white-hawk",
+          "RCAR_TARGET_OS": "linux",
+          "CI_RUNNER_ID": 391,
+          "BAUD_RATE": 921600,
+          "NFS_FOLDER": "/tftpboot",
+          "boot_command": "",
+          "command":
+          [
+                    "ltrace -o ltrace_v4h_result.log -f -s 1024 ./osal_wrapper_functional_test_sequence_v4h_d"
+          ]
+}

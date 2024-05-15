@@ -1,0 +1,5 @@
+modi,osal_io_set_is_init,07_029,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,g_dummy,;,,,,,,,,,
+,1,,;Normal operation,,,,,,,,,

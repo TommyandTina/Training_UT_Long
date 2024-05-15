@@ -1,0 +1,16 @@
+modi,R_PMA_HW_DEP_SetHwaState,04_040,11,3,,,,CPP,,,,0,,,
+#InitWheneverCall,r_pma_hwdepend.c/g_pma_hw_dep_sysc_ref_tbl,r_pma_hwdepend.c/g_pma_hw_dep_cpg_ref_tbl,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,dummy_g_pma_hw_dep_hwa_info_tbl[0].sysc_id,dummy_g_pma_hw_dep_hwa_info_tbl[0].cpg_id,,,,,,,,,,
+0,0,0,0,0,0,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_GetHwaState,R_PMA_HW_DEP_GetHwaState,,,,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_NoticeToSyscOn,R_PMA_HW_DEP_NoticeToSyscOn,,,,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_NoticeToCpgOn,R_PMA_HW_DEP_NoticeToCpgOn,,,,,,,,,,,,,
+#COMMENT,@hwaId,r_pma_hwdepend.c/g_pma_hw_dep_sysc_ref_tbl,r_pma_hwdepend.c/g_pma_hw_dep_cpg_ref_tbl,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,dummy_g_pma_hw_dep_hwa_info_tbl[0].sysc_id,dummy_g_pma_hw_dep_hwa_info_tbl[0].cpg_id,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_GetHwaState@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_NoticeToSyscOn@AM_count,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_NoticeToCpgOn@AM_count,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_GetHwaState@AMOUT_pClkStat,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_GetHwaState@AMOUT_pPwrStat,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_NoticeToSyscOn@AM_count,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_NoticeToCpgOn@AM_count,R_PMA_HW_DEP_SetHwaState@@,;
+,0,dummy_g_pma_hw_dep_sysc_ref_tbl,dummy_g_pma_hw_dep_cpg_ref_tbl,dummy_g_pma_hw_dep_hwa_info_tbl,0,0,R_PMA_NG,0,0,0,0,0,0,R_PMA_NG,;R_PMA_HW_DEP_GetHwaState returns R_PMA_NG
+,0,dummy_g_pma_hw_dep_sysc_ref_tbl,dummy_g_pma_hw_dep_cpg_ref_tbl,dummy_g_pma_hw_dep_hwa_info_tbl,0,0,R_PMA_BSP_ECPG,0,0,0,R_PMA_STATE_OFF,0,0,R_PMA_OK,;Normal operation (ECPG and pwr_stat is OFF)
+,0,0,0,dummy_g_pma_hw_dep_hwa_info_tbl,,,R_PMA_BSP_ECPG,0,0,0,R_PMA_STATE_ON,0,0,R_PMA_OK,;Normal operation (ECPG and g_pma_hw_dep_sysc_ref_tbl is NULL)
+,0,dummy_g_pma_hw_dep_sysc_ref_tbl,dummy_g_pma_hw_dep_cpg_ref_tbl,dummy_g_pma_hw_dep_hwa_info_tbl,R_PMA_SYSC_DOMAIN_ID_NONE,0,R_PMA_BSP_ECPG,0,0,0,R_PMA_STATE_ON,0,0,R_PMA_OK,;Normal operation (ECPG and SYSC domain is R_PMA_SYSC_DOMAIN_ID_NONE)
+,0,dummy_g_pma_hw_dep_sysc_ref_tbl,dummy_g_pma_hw_dep_cpg_ref_tbl,dummy_g_pma_hw_dep_hwa_info_tbl,R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0,0,R_PMA_BSP_ECPG,0,0,0,R_PMA_STATE_ON,1,0,R_PMA_OK,;Normal operation (ECPG)
+,0,dummy_g_pma_hw_dep_sysc_ref_tbl,dummy_g_pma_hw_dep_cpg_ref_tbl,dummy_g_pma_hw_dep_hwa_info_tbl,0,0,R_PMA_OK,0,0,R_PMA_STATE_OFF,R_PMA_STATE_OFF,0,0,R_PMA_OK,;Normal operation (pwr_stat and clk_stat is OFF)
+,0,0,0,dummy_g_pma_hw_dep_hwa_info_tbl,,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_OK,0,0,R_PMA_STATE_ON,R_PMA_STATE_ON,0,1,R_PMA_OK,;Normal operation (g_pma_hw_dep_cpg_ref_tbl is NULL)
+,0,dummy_g_pma_hw_dep_sysc_ref_tbl,dummy_g_pma_hw_dep_cpg_ref_tbl,dummy_g_pma_hw_dep_hwa_info_tbl,R_PMA_SYSC_DOMAIN_ID_NONE,R_PMA_CPG_DOMAIN_ID_NONE,R_PMA_OK,0,0,R_PMA_STATE_ON,R_PMA_STATE_ON,0,0,R_PMA_OK,;Normal operation (SYSC and CPG is DOMAIN_ID_NONE)
+,0,dummy_g_pma_hw_dep_sysc_ref_tbl,dummy_g_pma_hw_dep_cpg_ref_tbl,dummy_g_pma_hw_dep_hwa_info_tbl,R_PMA_SYSC_DOMAIN_ID_V4H_A1CNN0,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_OK,0,0,R_PMA_STATE_ON,R_PMA_STATE_ON,1,1,R_PMA_OK,;Normal operation 

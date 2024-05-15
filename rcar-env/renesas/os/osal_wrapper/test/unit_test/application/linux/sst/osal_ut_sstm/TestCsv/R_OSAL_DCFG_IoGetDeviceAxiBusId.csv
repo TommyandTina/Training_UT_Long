@@ -1,0 +1,23 @@
+modi,R_OSAL_DCFG_IoGetDeviceAxiBusId,06_012,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_IoGetAxiBusInformation,R_OSAL_OS_IoGetAxiBusInformation,,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename,r_osal_dcfg_io_check_axiidlist_for_devicename,,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename,r_osal_dcfg_io_check_axiidlist_for_devicename,,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename,r_osal_dcfg_io_check_axiidlist_for_devicename,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,
+#COMMENT,@device,@device[0].handle_id,@device[0].dev_id,@p_axi_id,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_IoGetAxiBusInformation@AMIN_p_param,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename@AMIN_pp_list_buffer,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_check_axiidlist_for_devicename@AMIN_p_num_of_axi_ids,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,R_OSAL_DCFG_IoGetDeviceAxiBusId@@,;
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_OK,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_OK,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod returns OSAL_RETURN_TIME
+,g_st_osal_device_control_t[0],0,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_OK,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_HANDLE,;handle_id is not OSAL_IO_HANDLE_ID (Unlock is OK)
+,g_st_osal_device_control_t[0],0,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_OK,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_HANDLE,;handle_id is not OSAL_IO_HANDLE_ID (Unlock is FAIL)
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_OK,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_IoGetAxiBusInformation returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_FAIL,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;r_osal_dcfg_io_check_axiidlist_for_devicename returns OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_UNKNOWN_NAME,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_OK,0,OSAL_RETURN_HANDLE,;r_osal_dcfg_io_check_axiidlist_for_devicename returns OSAL_RETURN_UNKNOWN_NAME
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_OK,g_osal_axi_bus_id_t,0,0,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;r_osal_dcfg_io_check_axiidlist_for_devicename returns numofaxiids=0
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,0,g_osal_common_axi_bus_id,0,OSAL_RETURN_OK,OSAL_RETURN_OK,g_st_osal_os_io_get_device_axi_bus_id_t,OSAL_RETURN_OK,g_osal_axi_bus_id_t,1,0,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL

@@ -1,0 +1,23 @@
+modi,R_OSAL_PmGetRequiredState,08_003,14,2,,,,CPP,,,,0,,,,,
+#InitWheneverCall,r_osal_power.c/gs_osal_pm_is_initialized,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_GetHwaState,R_PMA_GetHwaState,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,
+#COMMENT,r_osal_power.c/gs_osal_pm_is_initialized,@handle,g_st_osal_device_control.active,g_st_osal_device_control.handle_id,g_st_osal_device_control.dev_info,g_st_osal_device_control.pma_handle,g_st_osal_device_info.pma_id,$@p_state,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_PMA_GetHwaState@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_PMA_GetHwaState@input_enReqState,R_OSAL_PmGetRequiredState@@,R_OSAL_PmGetRequiredState@p_state[0],;
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_OK,OSAL_PM_REQUIRED_STATE_REQUIRED,;Normal operation
+,0,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_STATE,,;gs_osal_pm_is_initialized is false
+,1,0,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_HANDLE,,;handle is Null
+,1,g_st_osal_device_control,0,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_HANDLE,,;handle->active is false
+,1,g_st_osal_device_control,1,0,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_HANDLE,,;handle->handle_id is not equals OSAL_DEVICE_HANDLE_ID
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,0,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_HANDLE,,;handle->dev_info is Null
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_NUM,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_UNSUPPORTED_OPERATION,,;handle->dev_info->pma_id is equals R_PMA_HWA_ID_NONE
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,0,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_HANDLE,,;handle->pma_handle is NULL
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,0,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_PAR,,;p_state is NULL
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_FAIL,R_PMA_RESULT_OK,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_FAIL,,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_ERR_RESULT_NG,0,0,R_PMA_HWA_REQUESTED,OSAL_RETURN_FAIL,,;R_PMA_GetHwaState() return R_PMA_ERR_RESULT_NG
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,R_PMA_HWA_RELEASED,OSAL_RETURN_OK,OSAL_PM_REQUIRED_STATE_RELEASED,;The aquierd policy is equals R_PMA_HWA_RELEASED
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,0,-1,OSAL_RETURN_OK,OSAL_PM_REQUIRED_STATE_INVALID,;The aquierd policy is not equals Normal State
+,1,g_st_osal_device_control,1,OSAL_DEVICE_HANDLE_ID,g_st_osal_device_info,g_st_pma_handle,R_PMA_HWA_ID_IMR_LX4_CH0,1,0,OSAL_RETURN_OK,R_PMA_RESULT_OK,0,-1,R_PMA_HWA_REQUESTED,OSAL_RETURN_FAIL,,;pthread_mutex_unlock() return non-zero

@@ -1,0 +1,9 @@
+Read a long word at a physical register/memory
+----------------------------------------------
+Synctax : in32 addr
+
+arguments:
+    addr  : the physical address
+
+Ex: in32 0xe6060000
+

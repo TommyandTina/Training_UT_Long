@@ -1,0 +1,6 @@
+modi,R_OSAL_RCFG_MmngrGetOsalMaxConfig,09_010,3,1,,,,CPP,,,,0
+#InitWheneverCall,g_osal_memory_region_info_list.p_info[0].range,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,g_osal_memory_region_info_list.p_info[0].range,@p_config,@region_idx,R_OSAL_RCFG_MmngrGetOsalMaxConfig@@,;,,,,,,,
+,60000000,g_st_osal_mmngr_config,0,OSAL_RETURN_OK,;Normal operation,,,,,,,
+,0,g_st_osal_mmngr_config,0,OSAL_RETURN_CONF,;OSAL_MMNGR_MEM_RESERVE_SIZE more than g_osal_memory_region_info_list.p_info[region_idx].range,,,,,,,

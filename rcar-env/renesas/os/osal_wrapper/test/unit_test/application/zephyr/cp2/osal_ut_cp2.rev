@@ -1,0 +1,384 @@
+;===============================================================
+;	ｱｾﾝﾌﾞﾗﾁｬｰﾄ生成 option file
+;===============================================================
+; ソース解析モードの指定
+;	アセンブラソース解析方法を指定します
+;       モードの種類は３タイプ(混在可）です
+; 	/mode = macro ------ 構造化マクロ解析（XASS-V仕様）
+;	        comment ---- 機能コメント解析
+;	        operation -- 命令語解析
+;===============================================================
+;/mode = operation 
+;===============================================================
+; モジュールの分割モード
+;	/module = mcall --- ﾌｧｲﾙ内でｺｰﾙされているﾗﾍﾞﾙをﾓｼﾞｭｰﾙの
+;	 		    先頭として分割
+;	        = mret ---- ﾘﾀｰﾝ命令の後に出現するﾗﾍﾞﾙがどこから
+;			    も分岐してこないﾗﾍﾞﾙならﾓｼﾞｭｰﾙの先頭
+;			    と判断
+;===============================================================
+/module=mcall mret
+;===============================================================
+; コード以外のセクション定義(コード部の終了）
+;	この定義によりコードセクションの終了をします
+;	/dsect=命令  ｵﾍﾟﾗﾝﾄﾞ..
+;	例）/dsect = sect data dumy stak 
+;	    /dsect = end
+;	    /dsect = ends              
+;	    /dsect = dseg
+;     
+;	    /dsect = .text             
+;
+;===============================================================
+/dsect = end
+;===============================================================
+; データ擬似命令定義（分岐ラベルの制御）
+;	定数データのﾗﾍﾞﾙを分岐ラベルと区別させるために定義します
+;	/data = 擬似命令
+;	例）/data = db 
+;           /data = dw       
+;           /data = ds
+;           /data = FLOAT
+;           /data = DFLOAT
+;
+;===============================================================
+/data = db
+/data = dw
+/data = ds
+/data = dd
+;===============================================================
+; グローバル疑似命令定義
+;　　　グローバル疑似命令を定義します
+;　　　　/global　=　命令
+;===============================================================
+/global=global
+;===============================================================
+; 分岐ラベル指定
+;	分岐ラベルの記述様式を指定します
+;	/label = ラベル記述様式１ ラベル記述様式２..
+;
+;	         label1 --- ﾗﾍﾞﾙ名：    （ﾗﾍﾞﾙ名：equ.. は除外）
+;		 label2 --- ﾗﾍﾞﾙ名 equ *
+;	         label3 --- ﾗﾍﾞﾙ名 equ $
+;	         label4 --- ﾗﾍﾞﾙ名: equ *
+;		 label5 --- ﾗﾍﾞﾙ名: equ $
+;   	         label6 --- ﾗﾍﾞﾙ名   (1ｶﾗﾑ目から記述されている
+;	                              ものはﾗﾍﾞﾙとみなす）
+;
+;		デフォルトは、label1、label２、label３です   
+;===============================================================
+/label = label1 label2
+;===============================================================
+; 処理の分割方法
+;	ｱｾﾝﾌﾞﾗｿｰｽを逆生成チャートの処理ボックスへどう分割するか
+;       を指定します
+;	/proc = モード
+;	        comment --- ｿｰｽ中のｺﾒﾝﾄが出現する度に１ﾎﾞｯｸｽ作成 
+;		step    --- ｿｰｽ中のｱｾﾝﾌﾞﾗ１命令に対し,１ﾎﾞｯｸｽ作成
+;	        blank   --- ｿｰｽ中のﾌﾞﾗﾝｸが出現する度に１ﾎﾞｯｸｽ作成 
+;	        mark    --- 機能ｺﾒﾝﾄ";++[]"で指定した範囲を
+;			    １ﾎﾞｯｸｽとして作成 
+;
+;===============================================================
+/proc=blank
+;===============================================================
+; 無条件ジャンプ命令の定義
+;	無条件分岐命令を定義します
+;	/goto = 命令  /status  /delay = n
+;
+;		nは遅延スロットの数を指定してください
+;===============================================================
+/goto = bra
+/goto = jmp
+/goto = bra.s
+/goto = bra.l
+/goto = bra.x
+;===============================================================
+; 条件ジャンプ命令の定義
+;	条件分岐命令を定義します
+;	/gotoc = 命令  ｺﾝﾃﾞｨｼｮﾝｵﾍﾟﾗﾝﾄﾞ...  ｺﾝﾃﾞｨｼｮﾝ情報   /delay = n
+;
+;		nは遅延スロットの数を指定してください
+;===============================================================
+/gotoc = bcc		/nc
+/gotoc = bcs		/c
+/gotoc = beq		/eq
+/gotoc = bge		/ge
+/gotoc = bgt		/gt
+/gotoc = bhi		/hi
+/gotoc = ble		/le
+/gotoc = bls		/ls
+/gotoc = blt		/lt
+/gotoc = bmi		/mi
+/gotoc = bne		/ne
+/gotoc = bpl		/pl
+/gotoc = bvc		/nv
+/gotoc = bvs		/v
+
+/gotoc = bcc.s		/nc
+/gotoc = bcs.s		/c
+/gotoc = beq.s		/eq
+/gotoc = bge.s		/ge
+/gotoc = bgt.s		/gt
+/gotoc = bhi.s		/hi
+/gotoc = ble.s		/le
+/gotoc = bls.s		/ls
+/gotoc = blt.s		/lt
+/gotoc = bmi.s		/mi
+/gotoc = bne.s		/ne
+/gotoc = bpl.s		/pl
+/gotoc = bvc.s		/nv
+/gotoc = bvs.s		/v
+
+/gotoc = bcc.l		/nc
+/gotoc = bcs.l		/c
+/gotoc = beq.l		/eq
+/gotoc = bge.l		/ge
+/gotoc = bgt.l		/gt
+/gotoc = bhi.l		/hi
+/gotoc = ble.l		/le
+/gotoc = bls.l		/ls
+/gotoc = blt.l		/lt
+/gotoc = bmi.l		/mi
+/gotoc = bne.l		/ne
+/gotoc = bpl.l		/pl
+/gotoc = bvc.l		/nv
+/gotoc = bvs.l		/v
+
+/gotoc = bcc.x		/nc
+/gotoc = bcs.x		/c
+/gotoc = beq.x		/eq
+/gotoc = bge.x		/ge
+/gotoc = bgt.x		/gt
+/gotoc = bhi.x		/hi
+/gotoc = ble.x		/le
+/gotoc = bls.x		/ls
+/gotoc = blt.x		/lt
+/gotoc = bmi.x		/mi
+/gotoc = bne.x		/ne
+/gotoc = bpl.x		/pl
+/gotoc = bvc.x		/nv
+/gotoc = bvs.x		/v
+;===============================================================
+;  コンペア条件ジャンプ命令の定義
+;	コンペア分岐命令を定義します。ビット分岐命令やカウンタ
+;	付き分岐命令なども定義できます。
+;	/cmpgoto = 命令  ｺﾝﾃﾞｨｼｮﾝｵﾍﾟﾗﾝﾄﾞ
+;			 /operand = ｵﾍﾟﾗﾝﾄﾞの数
+;			 /true = ”真のときの条件ｺﾒﾝﾄ”
+;			 /false = ”偽のときの条件ｺﾒﾝﾄ”
+;			 /label = ﾗﾍﾞﾙｵﾍﾟﾗﾝﾄﾞ
+;			 /delay = n
+;
+;		nは遅延スロットの数を指定してください
+;===============================================================
+/cmpgoto = dbcc		/nc	/true="C == 0"	/false="C != 0"
+/cmpgoto = dbcs		/c	/true="C == 1"	/false="C != 1"
+/cmpgoto = dbeq		/eq	/true="$1 == 0"	/false="$1 != 0"
+/cmpgoto = dbne		/ne	/true="$1 != 0"	/false="$1 == 0"
+/cmpgoto = dbge		/ge	/true="$1 >= 0"	/false="$1 < 0"
+/cmpgoto = dbgt		/gt	/true="$1 > 0"	/false="$1 <= 0"
+/cmpgoto = dbhi		/hi	/true="$1 > 0"	/false="$1 <= 0"
+/cmpgoto = dble		/le	/true="$1 <= 0"	/false="$1 > 0"
+/cmpgoto = dbls		/ls	/true="$1 <= 0"	/false="$1 > 0"
+/cmpgoto = dblt		/lt	/true="$1 < 0"	/false="$1 >= 0"
+/cmpgoto = dbmi		/mi	/true="N == 1"	/false="N != 1"
+/cmpgoto = dbpl		/pl	/true="N == 0"	/false="N != 0"
+/cmpgoto = dbvc		/nv	/true="V == 0"	/false="V != 0"
+/cmpgoto = dbvs		/v	/true="V == 1"	/false="V != 1"
+/cmpgoto = dbcc.x	/nc	/true="C == 0"	/false="C != 0"
+/cmpgoto = dbcs.x	/c	/true="C == 1"	/false="C != 1"
+/cmpgoto = dbeq.x	/eq	/true="$1 == 0"	/false="$1 != 0"
+/cmpgoto = dbne.x	/ne	/true="$1 != 0"	/false="$1 == 0"
+/cmpgoto = dbge.x	/ge	/true="$1 >= 0"	/false="$1 < 0"
+/cmpgoto = dbgt.x	/gt	/true="$1 > 0"	/false="$1 <= 0"
+/cmpgoto = dbhi.x	/hi	/true="$1 > 0"	/false="$1 <= 0"
+/cmpgoto = dble.x	/le	/true="$1 <= 0"	/false="$1 > 0"
+/cmpgoto = dbls.x	/ls	/true="$1 <= 0"	/false="$1 > 0"
+/cmpgoto = dblt.x	/lt	/true="$1 < 0"	/false="$1 >= 0"
+/cmpgoto = dbmi.x	/mi	/true="N == 1"	/false="N != 1"
+/cmpgoto = dbpl.x	/pl	/true="N == 0"	/false="N != 0"
+/cmpgoto = dbvc.x	/nv	/true="V == 0"	/false="V != 0"
+/cmpgoto = dbvs.x	/v	/true="V == 1"	/false="V != 1"
+;===============================================================
+; サブルーチンコール命令の定義
+;	サブルーチンコール命令を定義します
+;	/call = 命令  /ststus  /delay = n
+;
+;		nは遅延スロットの数を指定してください
+;===============================================================
+/call = bsr
+/call = jsr
+/call = bsr.s
+/call = bsr.l
+/call = bsr.x
+;===============================================================
+; リターン命令の定義
+;	リターン命令を定義します
+;	/return = 命令  /ststus  /delay = n
+;
+;		nは遅延スロットの数を指定してください(nは0～9）
+;===============================================================
+/return = rte
+/return = rts
+;===============================================================
+; 演算（コンペア)命令の定義
+;	条件分岐命令の直前にある演算（コンペア)命令の定義します
+;
+;	/comp = 命令    /rev
+;
+;	   /revを指定するとｵﾍﾟﾗﾝﾄﾞ1とｵﾍﾟﾗﾝﾄﾞ2の並びを逆に表示できます
+;===============================================================
+/comp = cmp
+/comp = cmp.b
+/comp = cmp.w
+/comp = cmp.l
+/comp = cmpa
+/comp = cmpa.w
+/comp = cmpa.l
+/comp = cmpi
+/comp = cmpi.b
+/comp = cmpi.w
+/comp = cmpi.l
+/comp = cmpm
+/comp = cmpm.b
+/comp = cmpm.w
+/comp = cmpm.l
+
+/comp = abcd
+/comp = abcd.b
+/comp = add
+/comp = add.b
+/comp = add.w
+/comp = add.l
+/comp = addi
+/comp = addi.b
+/comp = addi.w
+/comp = addi.l
+/comp = addq
+/comp = addq.b
+/comp = addq.w
+/comp = addq.l
+/comp = addx
+/comp = addx.b
+/comp = addx.w
+/comp = addx.l
+/comp = and
+/comp = and.b
+/comp = and.w
+/comp = and.l
+/comp = andi
+/comp = andi.b
+/comp = andi.w
+/comp = andi.l
+/comp = bchg
+/comp = bchg.b
+/comp = bchg.l
+/comp = bclr
+/comp = bclr.b
+/comp = bclr.l
+/comp = bset
+/comp = bset.b
+/comp = bset.l
+/comp = btst
+/comp = btst.b
+/comp = btst.l
+/comp = chk
+/comp = chk.w
+/comp = divs
+/comp = divs.w
+/comp = divu
+/comp = divu.w
+/comp = eor
+/comp = eor.b
+/comp = eor.w
+/comp = eor.l
+/comp = eori
+/comp = eori.b
+/comp = eori.w
+/comp = eori.l
+/comp = muls
+/comp = muls.w
+/comp = mulu
+/comp = mulu.w
+/comp = nbcd
+/comp = nbcd.b
+/comp = or
+/comp = or.b
+/comp = or.w
+/comp = or.l
+/comp = ori
+/comp = ori.b
+/comp = ori.w
+/comp = ori.l
+/comp = sbcd
+/comp = sbcd.b
+/comp = sub
+/comp = sub
+/comp = sub.b
+/comp = sub.w
+/comp = sub.l
+/comp = subi
+/comp = subi.b
+/comp = subi.w
+/comp = subi.l
+/comp = subq
+/comp = subq.b
+/comp = subq.w
+/comp = subq.l
+/comp = subx
+/comp = subx.b
+/comp = subx.w
+/comp = subx.l
+;===============================================================
+; テスト命令の定義
+;	ｺﾝﾍﾟｱ命令に似ていますが、ﾃｽﾄ命令定義ではｵﾍﾟﾗﾝﾄﾞが１個で、
+;	そのｵﾍﾟﾗﾝﾄﾞが真か偽かという条件ｺﾒﾝﾄを生成します
+;	/test = 命令 
+;
+;===============================================================
+/test = tas
+/test = tas.b
+/test = tst
+/test = tst.b
+/test = tst.w
+/test = tst.l
+/test = scc
+/test = scs
+/test = seq
+/test = sge
+/test = sgt
+/test = shi
+/test = sle
+/test = sls
+/test = slt
+/test = smi
+/test = sne
+/test = spl
+/test = svc
+/test = svs
+
+/test = scc.b
+/test = scs.b
+/test = seq.b
+/test = sge.b
+/test = sgt.b
+/test = shi.b
+/test = sle.b
+/test = sls.b
+/test = slt.b
+/test = smi.b
+/test = sne.b
+/test = spl.b
+/test = svc.b
+/test = svs.b
+;===============================================================
+; ラベル名接頭／接尾文字定義
+;	ﾗﾍﾞﾙ名接頭／接尾文字定義で指定した文字は、ｵﾍﾟﾗﾝﾄﾞの解析
+;	時に無視されます
+;	/nonlabelchar = 文字１  文字２..
+;
+;===============================================================
+/nonlabelchar = #
+;===============================================================
+

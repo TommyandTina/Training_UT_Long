@@ -1,0 +1,603 @@
+/*
+ * $QNXLicenseC:
+ * Copyright 2017, QNX Software Systems.
+ * Copyright 2021, Renesas Electronics Corporation.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"). You
+ * may not reproduce, modify or distribute this software except in
+ * compliance with the License. You may obtain a copy of the License
+ * at: http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTIES OF ANY KIND, either express or implied.
+ *
+ * This file may contain contributions from others, either as
+ * contributors under the License or as licensors under other terms.
+ * Please review this entire file for other proprietary rights or license
+ * notices, as well as the QNX Development Suite License Guide at
+ * http://licensing.qnx.com/license-guide/ for other information.
+ * $
+ */
+
+#include "adv7612.h"
+
+int i2c_fd = -1;
+const char* adv7612_i2c_dev = "/dev/i2c0";  
+int adv7612_i2c_speed = 50000;  
+
+/* Structure for decoder register */
+struct adv7612_reg_info {
+    uint8_t addr;       /* i2c slave address */
+    uint8_t sub_addr;   /* register address */
+    uint8_t value;      /* register value */
+};
+
+struct adv7482_video_config {
+    uint32_t width;
+    uint32_t height;
+    int interlace;
+    char format[64];
+};
+
+const struct adv7612_reg_info adv7612_set_regs[] = {
+    {ADV7612_I2C_MAP_IO, 0xFF, 0x80},    /* I2C reset */
+    {ADV7612_I2C_MAP_NOT_ADDR, ADV7612_I2C_MAP_WAIT, 0x3}, /* Delay 300ms */
+    {ADV7612_I2C_MAP_IO, 0xF4, 0x80},    /* CEC */
+    {ADV7612_I2C_MAP_IO, 0xF5, 0x7C},    /* INFOFRAME */
+    {ADV7612_I2C_MAP_IO, 0xF8, 0x4C},    /* DPLL */
+    {ADV7612_I2C_MAP_IO, 0xF9, 0x64},    /* KSV */
+    {ADV7612_I2C_MAP_IO, 0xFA, 0x6C},    /* EDID */
+    {ADV7612_I2C_MAP_IO, 0xFB, 0x68},    /* HDMI */
+    {ADV7612_I2C_MAP_IO, 0xFD, 0x44},    /* CP */
+
+    {ADV7612_I2C_MAP_IO, 0x01, 0x06},    /* Prim_Mode =110b HDMI-GR */
+    {ADV7612_I2C_MAP_IO, 0x0B, 0x44},    /* Power up components */
+    {ADV7612_I2C_MAP_IO, 0x0C, 0x42},    /* Power up components */
+    {ADV7612_I2C_MAP_IO, 0x14, 0x7F}, 
+    {ADV7612_I2C_MAP_IO, 0x15, 0x80}, 
+    {ADV7612_I2C_MAP_IO, 0x19, 0x83}, 
+    {ADV7612_I2C_MAP_IO, 0x33, 0x40}, 
+    {ADV7612_I2C_MAP_CP, 0xBA, 0x01},    /* Enable HDMI FreeRun */
+    {ADV7612_I2C_MAP_KSV, 0x40, 0x81}, 
+    {ADV7612_I2C_MAP_HDMI, 0x9B, 0x03}, 
+    {ADV7612_I2C_MAP_HDMI, 0x00, 0x08},  /* Select HDMI Input Port A */
+    {ADV7612_I2C_MAP_HDMI, 0x02, 0x03}, 
+    {ADV7612_I2C_MAP_HDMI, 0x83, 0xFC}, 
+    {ADV7612_I2C_MAP_HDMI, 0x6F, 0x0C},
+    {ADV7612_I2C_MAP_HDMI, 0x85, 0x1F},
+    {ADV7612_I2C_MAP_HDMI, 0x87, 0x70},
+    {ADV7612_I2C_MAP_HDMI, 0x8D, 0x04}, 
+    {ADV7612_I2C_MAP_HDMI, 0x8E, 0x1E}, 
+    {ADV7612_I2C_MAP_HDMI, 0x1A, 0x8A}, 
+    {ADV7612_I2C_MAP_HDMI, 0x57, 0xDA}, 
+    {ADV7612_I2C_MAP_HDMI, 0x58, 0x01}, 
+    {ADV7612_I2C_MAP_HDMI, 0x75, 0x10},
+    {ADV7612_I2C_MAP_HDMI, 0x90, 0x04}, 
+    {ADV7612_I2C_MAP_HDMI, 0x91, 0x1E}, 
+    {ADV7612_I2C_MAP_HDMI, 0x04, 0x03},
+    {ADV7612_I2C_MAP_HDMI, 0x14, 0x00},
+    {ADV7612_I2C_MAP_HDMI, 0x15, 0x00},
+    {ADV7612_I2C_MAP_HDMI, 0x16, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x1C, 0x11},   
+    {ADV7612_I2C_MAP_INFOFRAME, 0x1D, 0x2F},    
+    {ADV7612_I2C_MAP_INFOFRAME, 0x1E, 0x00},   
+    {ADV7612_I2C_MAP_INFOFRAME, 0x1F, 0x00},    
+    {ADV7612_I2C_MAP_INFOFRAME, 0x20, 0x00}, 
+    {ADV7612_I2C_MAP_INFOFRAME, 0x21, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x22, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x23, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x24, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x25, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x26, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x27, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x28, 0x00},
+    {ADV7612_I2C_MAP_INFOFRAME, 0x29, 0x00},
+    {ADV7612_I2C_MAP_KSV, 0x77, 0x00},  
+    {ADV7612_I2C_MAP_KSV, 0x52, 0x20}, 
+    {ADV7612_I2C_MAP_KSV, 0x53, 0x00},  
+    {ADV7612_I2C_MAP_KSV, 0x70, 0x9E},
+    {ADV7612_I2C_MAP_KSV, 0x74, 0x03},  /* Enable EDID for ports A & B enable */
+    {ADV7612_I2C_MAP_NOT_ADDR, ADV7612_I2C_MAP_EOR, 0xFF}   /* End of register table */
+};
+
+uint8_t Adv7612_Program_EDID_HDTV_type1[] = {
+    0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x01, 0x0C, 0x01, 0x03, 0x80, 0x50, 0x2D, 0x78, 0x0A, 0x0D, 0xC9, 0xA0, 0x57, 0x47, 0x98, 0x27,
+    0x12, 0x48, 0x4C, 0x20, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x1D, 0x80, 0x18, 0x71, 0x1C, 0x16, 0x20, 0x58, 0x2C,
+    0x25, 0x00, 0x20, 0xC2, 0x31, 0x00, 0x00, 0x98, 0xD0, 0x39, 0x80, 0x18, 0x71, 0x38, 0x2D, 0x40,
+    0x58, 0x2C, 0x25, 0x00, 0xC4, 0x8E, 0x21, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0xFC, 0x00, 0x4D,
+    0x59, 0x20, 0x48, 0x44, 0x54, 0x56, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0xFD,
+    0x00, 0x3B, 0x3D, 0x0F, 0x2E, 0x08, 0x00, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x01, 0xE8,  
+                                                                                     /* Checksum */
+    /* Setting for Version 3 */
+    0x02, 0x01, 0x04, 0x00, 0x01, 0x1D, 0x00, 0x72, 0x51, 0xD0, 0x1E, 0x20, 0x6E, 0x28, 0x55, 0x00,
+    0x20, 0xC2, 0x31, 0x00, 0x00, 0x1E, 0x8C, 0x0A, 0xD0, 0x8A, 0x20, 0xE0, 0x2D, 0x10, 0x10, 0x3E,
+    0x96, 0x00, 0x58, 0xC2, 0x21, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x01, 0x00, 0x52, 0x45, 0x56,
+    0x31, 0x2E, 0x30, 0x33, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x39,
+    0x39, 0x46, 0x43, 0x35, 0x30, 0x30, 0x30, 0x31, 0x0A, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x76
+};
+
+uint8_t Adv7612_Program_EDID_SDTV_VGA_type1[] = {
+    0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x01, 0x0C, 0x01, 0x03, 0x80, 0x50, 0x2D, 0x78, 0x0A, 0x0D, 0xC9, 0xA0, 0x57, 0x47, 0x98, 0x27, 
+    0x12, 0x48, 0x4C, 0x20, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 
+    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x8C, 0x0A, 0xD0, 0x8A, 0x20, 0xE0, 0x2D, 0x10, 0x10, 0x3E, 
+    0x96, 0x00, 0x58, 0xC2, 0x21, 0x00, 0x00, 0x18, 0x8C, 0x0A, 0xD0, 0x90, 0x20, 0x40, 0x31, 0x20, 
+    0x0C, 0x40, 0x55, 0x00, 0xC4, 0x8E, 0x21, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0xFC, 0x00, 0x4D, 
+    0x59, 0x20, 0x48, 0x44, 0x54, 0x56, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0xFD, 
+    0x00, 0x3B, 0x3D, 0x0F, 0x2E, 0x08, 0x00, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x01, 0x6F,   
+                                                                                     /* Checksum */
+    /* Setting for Version 3 */
+    0x02, 0x01, 0x04, 0x00, 0xD6, 0x09, 0x80, 0xA0, 0x20, 0xE0, 0x2D, 0x10, 0x10, 0x3E, 0x96, 0x00,
+    0x58, 0xC2, 0x21, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x52, 0x45, 0x56,
+    0x31, 0x2E, 0x30, 0x33, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x39,
+    0x39, 0x46, 0x43, 0x35, 0x30, 0x30, 0x30, 0x31, 0x0A, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x72
+};
+
+uint8_t Adv7612_Program_EDID_HDTV_type2[] = {
+    0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x01, 0x0C, 0x01, 0x03, 0x80, 0x50, 0x2D, 0x78, 0x0A, 0x0D, 0xC9, 0xA0, 0x57, 0x47, 0x98, 0x27,
+    0x12, 0x48, 0x4C, 0x20, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x1D, 0x80, 0x18, 0x71, 0x1C, 0x16, 0x20, 0x58, 0x2C,
+    0x25, 0x00, 0xC4, 0x8E, 0x21, 0x00, 0x00, 0x9E, 0x01, 0x1D, 0x00, 0x72, 0x51, 0xD0, 0x1E, 0x20,
+    0x6E, 0x28, 0x55, 0x00, 0xC4, 0x8E, 0x21, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0xFC, 0x00, 0x4D,
+    0x59, 0x20, 0x48, 0x44, 0x54, 0x56, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0xFD,
+    0x00, 0x3B, 0x3D, 0x0F, 0x2E, 0x08, 0x00, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x01, 0x08,  
+                                                                                     /* Checksum */
+    /* Setting for Version 3 */
+
+    0x02, 0x01, 0x04, 0x00, 0x01, 0x1D, 0x80, 0x18, 0x71, 0x38, 0x2D, 0x40, 0x58, 0x2C, 0x25, 0x00,
+    0xC4, 0x8E, 0x21, 0x00, 0x00, 0x1E, 0x8C, 0x0A, 0xD0, 0x8A, 0x20, 0xE0, 0x2D, 0x10, 0x10, 0x3E,
+    0x96, 0x00, 0x13, 0x8E, 0x21, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x01, 0x00, 0x52, 0x45, 0x56,
+    0x31, 0x2E, 0x30, 0x30, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x39,
+    0x39, 0x46, 0x43, 0x35, 0x30, 0x30, 0x30, 0x31, 0x0A, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF7
+};
+
+uint8_t Adv7612_Program_EDID_SDTV_VGA_type2[] = {
+    0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x01, 0x0C, 0x01, 0x03, 0x80, 0x50, 0x2D, 0x78, 0x0A, 0x0D, 0xC9, 0xA0, 0x57, 0x47, 0x98, 0x27, 
+    0x12, 0x48, 0x4C, 0x20, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 
+    0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x8C, 0x0A, 0xA0, 0x14, 0x51, 0xF0, 0x16, 0x00, 0x26, 0x7C, 
+    0x43, 0x00, 0xC4, 0x8E, 0x21, 0x00, 0x00, 0x98, 0x8C, 0x0A, 0xD0, 0x90, 0x20, 0x40, 0x31, 0x20, 
+    0x0C, 0x40, 0x55, 0x00, 0xC4, 0x8E, 0x21, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0xFC, 0x00, 0x4D, 
+    0x59, 0x20, 0x48, 0x44, 0x54, 0x56, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0xFD, 
+    0x00, 0x3B, 0x3D, 0x0F, 0x2E, 0x08, 0x00, 0x0A, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x01, 0x42,   
+                                                                                     /* Checksum */
+    /* Setting for Version 3 */
+    0x02, 0x01, 0x04, 0x00, 0xD6, 0x09, 0x80, 0xA0, 0x20, 0xE0, 0x2D, 0x10, 0x10, 0x3E, 0x96, 0x00,
+    0x58, 0xC2, 0x21, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x52, 0x45, 0x56,
+    0x31, 0x2E, 0x30, 0x33, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x39,
+    0x39, 0x46, 0x43, 0x35, 0x30, 0x30, 0x30, 0x31, 0x0A, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x72
+};
+
+struct adv7482_video_config hdmi_config[] = {
+    /* width   height  interlace  format  */
+    { 640,      480,    0,         "VGA60" },
+    { 720,      480,    0,         "480P"  },
+    { 720,      576,    0,         "576P"  },
+    { 1280,     720,    0,         "720P"  },
+    { 1920,     1080,   0,         "1080P" },
+    { 1920,     1080,   1,         "1080I" },
+    { 0,        0,      0,         ""      }
+};                                                                           
+
+static int adv7612_i2c_read(uint8_t addr, uint8_t sub_addr, uint8_t *value)
+{
+    int status = EOK;
+    iov_t siov[2], riov[2];
+    i2c_sendrecv_t hdr; 
+
+    hdr.slave.addr = addr;
+    hdr.slave.fmt = I2C_ADDRFMT_7BIT;
+    hdr.stop = 1;
+
+    hdr.send_len = 1;
+    hdr.recv_len = 1;
+
+    SETIOV(&siov[0], &hdr, sizeof(hdr) );
+    SETIOV(&siov[1], &sub_addr, 1 );
+
+    SETIOV(&riov[0], &hdr, sizeof(hdr) );
+    SETIOV(&riov[1], value, 1 );
+
+    status = devctlv(i2c_fd, DCMD_I2C_SENDRECV, 2, 2, siov, riov, NULL);
+
+    if (status != EOK) {
+        errno = status;
+        perror("I2C_SEND read data");
+        return -1;
+    }
+
+    return 0;
+}
+
+static int adv7612_i2c_write(uint8_t addr, uint8_t sub_addr, uint8_t value)
+{
+    int status = EOK;
+
+    struct {
+        i2c_send_t hdr;     
+        unsigned char bytes[8]; 
+    } omsg;
+    
+    omsg.hdr.slave.addr = addr;
+    omsg.hdr.slave.fmt = I2C_ADDRFMT_7BIT;
+    omsg.hdr.len = 2;
+    omsg.hdr.stop = 1;
+    omsg.bytes[0] = sub_addr;
+    omsg.bytes[1] = value;
+
+    status = devctl(i2c_fd, DCMD_I2C_SEND, &omsg, sizeof(omsg.hdr) + omsg.hdr.len, NULL);
+
+    if(status != EOK) {
+        fprintf(stderr, "%s: Send failed, addr=%x, reg=%x, val=%x\n", __FUNCTION__, 
+                                addr, sub_addr, value);
+        return -1;
+    }   
+    
+    return 0;
+}
+
+static int adv7612_i2c_write_table(const struct adv7612_reg_info *regs)
+{
+    int status = EOK;
+
+    while (1) {
+        if(regs->addr == ADV7612_I2C_MAP_NOT_ADDR) {
+            if(regs->sub_addr == ADV7612_I2C_MAP_EOR)
+                break;      /* End of table */
+            if(regs->sub_addr == ADV7612_I2C_MAP_WAIT)
+                delay(100*regs->value); /* Wait a moment */
+        }
+        else {
+            status = adv7612_i2c_write(regs->addr, regs->sub_addr, regs->value);
+            if(status != EOK) {
+                errno = status;
+                return -1;
+            }   
+        }
+        regs++;
+    }
+    
+    return 0;
+}
+static int pca9654e_i2c_write (uint8_t addr, uint8_t sub_addr, uint8_t value)
+{
+    int status = EOK;
+    i2c_addr_t slave;
+
+    struct {
+        i2c_send_t hdr;     
+        unsigned char bytes[8]; 
+    } omsg;
+
+    slave.addr = addr >> 1;
+    slave.fmt = I2C_ADDRFMT_7BIT;
+
+    status = devctl(i2c_fd, DCMD_I2C_SET_SLAVE_ADDR, &slave, sizeof(slave), NULL);
+
+    if (status != EOK) {
+        fprintf(stderr, "%s: Set slave addr failed\n", __FUNCTION__);
+        return -1;
+    }
+            
+    omsg.hdr.slave = slave;
+    omsg.hdr.slave.fmt = I2C_ADDRFMT_7BIT;
+    omsg.hdr.len = 2;
+    omsg.hdr.stop = 1;
+    omsg.bytes[0] = sub_addr;
+    omsg.bytes[1] = value;
+
+    status = devctl(i2c_fd, DCMD_I2C_SEND, &omsg, sizeof(omsg.hdr) + omsg.hdr.len, NULL);
+
+    if(status != EOK) {
+        fprintf(stderr, "%s: Send failed, addr=%x, reg=%x, val=%x\n", __FUNCTION__, 
+                        addr, sub_addr, value);
+           return -1;
+    }
+    
+    return 0;   
+}
+
+static int adv7612_hdmi_detect_video_signal(video_info_t* video)
+{
+    uint8_t val;
+
+    video->signal = 0;
+
+    /* Check cable pluged or not */
+    if(adv7612_i2c_read(ADV7612_I2C_MAP_IO,0x6F, &val) < 0) {
+        return -1;
+    }
+
+    /* Exit when cable is not detected */
+    if(!(val & 0x01)) {
+       fprintf(stderr, "No cable detected\n");
+       return -1;
+    }
+
+    /* Cable is plugged, wait for signal */
+    while(1) {
+        if(adv7612_i2c_read(ADV7612_I2C_MAP_HDMI, ADV7612_HDMI_LINE_WIDTH_1_REG, &val) < 0) {
+            return -1;
+        }
+
+        if ((val & ADV7612_HDMI_VERT_FILTER_LOCKED) &&
+            (val & ADV7612_HDMI_DE_REGEN_FILTER_LOCKED)) {
+            break;
+        }
+    
+        delay(10);
+    }
+
+    video->signal = 1;
+    
+    return 0;
+}
+
+static int adv7612_hdmi_get_video_info(video_info_t* video)
+{    
+    uint8_t val;
+    int i = 0;
+
+    video->interlace = 0;
+    video->width     = 0;
+    video->height    = 0;
+    
+    /* Number of active pixels per line */
+    if(adv7612_i2c_read(ADV7612_I2C_MAP_HDMI, ADV7612_HDMI_LINE_WIDTH_1_REG, &val) < 0) {
+        return -1;
+    }
+    
+    video->width = (uint32_t)(ADV7612_HDMI_FIELD0_HEIGHT_1_MASK & val);
+
+    if(adv7612_i2c_read(ADV7612_I2C_MAP_HDMI,ADV7612_HDMI_LINE_WIDTH_2_REG, &val) < 0) {
+        return -1;
+    }
+   
+    video->width = (val | (video->width << 8));
+
+    /* Number of active lines per frame */
+    if(adv7612_i2c_read(ADV7612_I2C_MAP_HDMI, ADV7612_HDMI_FIELD0_HEIGHT_1_REG, &val) < 0) {
+        return -1;
+    }
+    
+    video->height = (uint32_t)(ADV7612_HDMI_FIELD0_HEIGHT_1_MASK & val);
+    
+    if(adv7612_i2c_read(ADV7612_I2C_MAP_HDMI, ADV7612_HDMI_FIELD0_HEIGHT_2_REG, &val) < 0) {
+        return -1;
+    }
+    
+    video->height = (val | (video->height << 8));
+
+    /* Interlaced or progressive mode ? */
+    if(adv7612_i2c_read(ADV7612_I2C_MAP_HDMI, ADV7612_HDMI_FIELD1_HEIGHT_REG, &val) < 0) {
+        return -1;
+    }
+
+    if ((val & ADV7612_HDMI_HDMI_INTERLACE) != 0) {
+        video->interlace = 1;
+        video->height *= 2;
+    }        
+
+    if (video->width == 0 || video->height == 0) {
+        fprintf(stderr, "Got invalid resolution(%dx%d).\n", video->width, video->height);
+        return -1;
+    }
+
+    while (1) {       
+        if (hdmi_config[i].width == 0) {
+            fprintf(stderr, "Not support resolution %dx%d%c\n", video->width, video->height, (video->interlace) ? 'i' : 'p');
+            return -1;
+        }
+        else if ((video->width == hdmi_config[i].width) && (video->height == hdmi_config[i].height) && (video->interlace == hdmi_config[i].interlace))
+            break;
+            
+        i++;
+    }
+
+    strcpy(video->format, hdmi_config[i].format);
+
+    return 0;
+}
+
+int adv7612_cp_color_setting(video_info_t* video)
+{
+    int ret = 0;
+
+    /* Brightness */
+    if(video->update & DECODER_COLOR_BRI_UPDATE) {
+        if ((video->bri < ADV7612_CP_BRI_CTRL_MIN) || (video->bri > ADV7612_CP_BRI_CTRL_MAX))
+            return -1;
+        
+        if (adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_BRI_CTRL_REG, video->bri) < 0)
+            return -1;
+ 
+        video->update &= ~DECODER_COLOR_BRI_UPDATE;
+    }
+
+    /* Hue */
+    if(video->update & DECODER_COLOR_HUE_UPDATE) {
+        if ((video->hue < ADV7612_CP_HUE_CTRL_MIN) || (video->hue > ADV7612_CP_HUE_CTRL_MAX))
+            return -1;
+        
+        if (adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_HUE_CTRL_REG, video->hue) < 0)
+            return -1;
+
+        video->update &= ~DECODER_COLOR_HUE_UPDATE;
+    }
+    
+    /* Contrast */
+    if(video->update & DECODER_COLOR_CON_UPDATE) {
+        if ((video->con < ADV7612_CP_CON_CTRL_MIN) || (video->con > ADV7612_CP_CON_CTRL_MAX))
+            return -1;
+        
+        if (adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_CON_CTRL_REG, video->con) < 0)
+            return -1;
+            
+        video->update &= ~DECODER_COLOR_CON_UPDATE;
+    }
+    
+    /* Saturation */
+    if(video->update & DECODER_COLOR_SAT_UPDATE) {
+        if ((video->sat < ADV7612_CP_SAT_CTRL_MIN) || (video->sat > ADV7612_CP_SAT_CTRL_MAX))
+            return -1;
+        
+        if (adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_SAT_CTRL_REG, video->sat) < 0)
+  
+
+        video->update &= ~DECODER_COLOR_SAT_UPDATE;
+    }
+
+    return ret;
+}
+
+int adv7612_update(video_info_t *video, int channel)
+{
+    if(video->update) {
+        if (adv7612_cp_color_setting(video) < 0) {
+            fprintf(stderr, "%s: failed, flags=%x\n", __FUNCTION__, video->update);
+            return -1;
+        }
+    }
+
+    return 0;
+}
+
+int adv7612_power(video_info_t *video, int channel, int on)
+{
+    if(adv7612_i2c_write(ADV7612_I2C_MAP_IO, ADV7612_IO_PWR_CTRL_REG, on ? ADV7612_IO_PWR_UP : ADV7612_IO_PWR_DOWN) < 0) {
+        return -1;
+    }
+
+    return 0;
+}
+
+int adv7612_init(video_info_t* video, int channel)
+{
+    int ret = 0;
+    int status;
+    uint8_t val;
+
+    if(i2c_fd == -1) {
+        i2c_fd = open(adv7612_i2c_dev, O_RDWR);
+    }
+
+    if (i2c_fd < 0) {
+        fprintf(stderr, "%s: Open device failed\n", __FUNCTION__);
+        return -1;
+    }
+
+    status = devctl(i2c_fd, DCMD_I2C_SET_BUS_SPEED, &adv7612_i2c_speed, 
+                sizeof(adv7612_i2c_speed), NULL);
+                
+    if (status != EOK) {
+        fprintf(stderr, "%s: Set bus speed failed\n", __FUNCTION__);
+        return -1;
+    }
+    if(video->board == RCAR_V3M_EAGLE) {
+        /* Set up PCA9654E to route signal from ADV7612 to V3M */
+        pca9654e_i2c_write(0x4e,0x03,0xf7);
+        pca9654e_i2c_write(0x4e,0x01,0xf7);
+    }
+
+    adv7612_i2c_write_table(adv7612_set_regs);
+
+    if(video->board == RCAR_V3M_EAGLE) {
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x03, 0x42);    /*  36-bit 4:4:4 SDR mode 0 */
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x05, 0x28);    /* Does not insert AV */
+
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x03, 0x22);
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x19, 0xc3);
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x04, 0x42);
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x05, 0x2C);
+
+        
+    } else {
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x02, 0xF2);    /* Auto color space, RGB out */
+        adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0x03, 0x40);    /* 24-bit 4:4:4 SDR mode 0 */
+    }
+    
+    /* Program EDID */
+    if(video->source_std == VIN_INPUT_STD_HDTV) {
+        for(int i = 0; i < 256; i++) {
+            if(video->board == RCAR_V3M_EAGLE)
+                adv7612_i2c_write(ADV7612_I2C_MAP_EDID, 0x0 + i, Adv7612_Program_EDID_HDTV_type1[i]);
+            else
+                adv7612_i2c_write(ADV7612_I2C_MAP_EDID, 0x0 + i, Adv7612_Program_EDID_HDTV_type2[i]);
+        }           
+    } else {
+        for(int i = 0; i < 256; i++) {
+            if(video->board == RCAR_V3M_EAGLE)
+                adv7612_i2c_write(ADV7612_I2C_MAP_EDID, 0x0 + i, Adv7612_Program_EDID_SDTV_VGA_type1[i]);
+            else
+                adv7612_i2c_write(ADV7612_I2C_MAP_EDID, 0x0 + i, Adv7612_Program_EDID_SDTV_VGA_type2[i]);
+        }
+    }       
+
+    /* Enable color controls */
+    if(adv7612_i2c_read(ADV7612_I2C_MAP_CP, ADV7612_CP_VID_ADJ_REG, &val) < 0) {
+        return -1;
+    }
+    
+    if(adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_VID_ADJ_REG, val | ADV7612_CP_VID_ADJ_ENABLE) < 0) {
+        return -1;
+    }
+    
+    /* Set default color value */
+    adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_BRI_CTRL_REG, ADV7612_CP_BRI_CTRL_DEF);
+    adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_HUE_CTRL_REG, ADV7612_CP_HUE_CTRL_DEF);
+    adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_CON_CTRL_REG, ADV7612_CP_CON_CTRL_DEF);
+    adv7612_i2c_write(ADV7612_I2C_MAP_CP, ADV7612_CP_SAT_CTRL_REG, ADV7612_CP_SAT_CTRL_DEF);
+
+    /* Power up */
+    if(adv7612_power(video, channel, 1) < 0) {
+        fprintf(stderr, "Unable to power up\n");
+        return -1;
+    }
+
+    /* Get video information */
+    if (adv7612_hdmi_detect_video_signal(video) < 0) {
+        fprintf(stderr, "Unable to detect video signal\n");
+        return -1;
+    }
+    
+    if (adv7612_hdmi_get_video_info(video) < 0) {
+        return -1;
+    } 
+
+    fprintf(stdout, "Detected Resolution: %s\n", video->format);
+
+    /* Decoder will be powered up after CSI had been enabled */
+    adv7612_power(video, 0, 0);
+
+    return ret;
+}
+
+int adv7612_fini(video_info_t *video, int channel)
+{   
+    /* I2C reset */
+    adv7612_i2c_write(ADV7612_I2C_MAP_IO, 0xFF, 0x80);
+    
+    if(!(i2c_fd < 0)) {
+        close(i2c_fd);
+    }
+    
+    return 0;
+}

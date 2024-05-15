@@ -1,0 +1,19 @@
+Renesas R-CAR GPIO driver
+
+Syntax
+%C [options] &
+
+Options:
+    -g        GPIO group number
+    -p        GPIO base address:GPIO size
+    -f        FPC base address:PFC size
+    -i        GPIO IRQ numbder
+    -I        GPIO group number to query GPIO base, IRQ, ... from HWINFO
+    -v        verbosity
+    -h        prints this info
+
+Examples:
+    Start GPIO Group 1:
+        #rcar-gpio -I1 &
+    Or:
+        #rcar-gpio -g1 -p0xE6050800:0x2000 &

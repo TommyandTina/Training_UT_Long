@@ -1,0 +1,6 @@
+modi,R_OSAL_Internal_GetThreadSpecific,01_012,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_getspecific,pthread_getspecific,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_pthread_getspecific@AMIN_return,R_OSAL_Internal_GetThreadSpecific@@,;,,,,,,,,,
+,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,

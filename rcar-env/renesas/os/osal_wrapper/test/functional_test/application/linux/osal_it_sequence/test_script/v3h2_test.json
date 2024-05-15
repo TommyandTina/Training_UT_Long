@@ -1,0 +1,15 @@
+{
+          "SERIAL_PORT":"/dev/serial/by-path/pci-0000:04:00.3-usb-0:3.3:1.0-port0",
+          "USB_MOUNT_POINT": "1-3.3",
+          "SERIAL_ID": "",
+          "RCAR_BOARD": "condor-i",
+          "RCAR_TARGET_OS": "linux",
+          "CI_RUNNER_ID": 391,
+          "NFS_FOLDER": "/tftpboot",
+          "BAUD_RATE": 115200,
+          "boot_command": "",
+          "command":
+          [
+                    "ltrace -o ltrace_v3h2_result.log -f -s 1024 ./osal_wrapper_functional_test_sequence_v3h2_d"
+          ]
+}

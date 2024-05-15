@@ -1,0 +1,24 @@
+modi,R_OSAL_IoGetNumOfAxiIdsForAxiBusName,07_038,15,1,,,,CPP,,,,0,,,,,
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetAxiBusInfo,R_OSAL_DCFG_GetAxiBusInfo,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,
+%,AMSTB_strnlen,strnlen,,,,,,,,,,,,,,,
+%,AMSTB_osal_internal_add_utlb_list,osal_internal_add_utlb_list,,,,,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,$@p_axi_bus_name,@p_num_of_axi_ids,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetAxiBusInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strnlen@AM_count,AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strnlen@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_osal_internal_add_utlb_list@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetAxiBusInfo@AM_count,g_st_osal_axi_bus_control.num,AMSTB_SrcFile.c/AMSTB_osal_internal_add_utlb_list@AMIN_match_count,R_OSAL_IoGetNumOfAxiIdsForAxiBusName@@,;
+,1,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,2,OSAL_RETURN_OK,;Normal operation
+,0,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,2,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false
+,1,0,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,2,OSAL_RETURN_PAR,;p_axi_bus_name is NULL
+,1,1,0,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,2,OSAL_RETURN_PAR,;p_num_of_axi_ids is NULL
+,1,1,array_sizet,OSAL_RETURN_PAR,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,2,OSAL_RETURN_FAIL,;R_OSAL_DCFG_GetAxiBusInfo() return OSAL_RETURN_FAIL
+,1,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,1,0,2,OSAL_RETURN_FAIL,;The aquired axi_bus_control is NULL
+,1,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,2,0,2,OSAL_RETURN_FAIL,;The aquired axi_bus_control->axi_bus_list  is NULL
+,1,1,array_sizet,OSAL_RETURN_OK,0,-1,-1,0,3,3,6,OSAL_RETURN_OK,0,1,2,OSAL_RETURN_UNKNOWN_NAME,;strncmp() return non-zero
+,1,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,5,OSAL_RETURN_OK,0,2,2,OSAL_RETURN_UNKNOWN_NAME,;axi_bus_name_len is less than (offset + (size_t)3U)
+,1,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_UNKNOWN_NAME,0,2,2,OSAL_RETURN_UNKNOWN_NAME,;osal_internal_add_utlb_list() return OSAL_RETURN_UNKNOWN_NAME
+,1,1,array_sizet,OSAL_RETURN_OK,0,0,0,0,3,3,6,OSAL_RETURN_OK,0,2,0,OSAL_RETURN_UNKNOWN_NAME,;match_count is 0

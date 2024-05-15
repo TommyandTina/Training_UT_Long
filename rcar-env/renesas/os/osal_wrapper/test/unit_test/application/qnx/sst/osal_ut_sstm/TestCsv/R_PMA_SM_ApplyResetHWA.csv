@@ -1,0 +1,11 @@
+modi,R_PMA_SM_ApplyResetHWA,03_008,6,3,,,,CPP,,,,0
+#InitWheneverCall,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enRstStat,,,,,,,,,
+0,0,0,0,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_ApplyReset,R_PMA_HW_DEP_ApplyReset,,,,,,,,,,
+#COMMENT,@handle,@hwaId,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enRstStat,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_ApplyReset@AMIN_return,r_pma_statemachine.c/g_pma_sm_info_tbl[0].enRstStat,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_ApplyReset@AMOUT_hwaId,R_PMA_SM_ApplyResetHWA@@,;,,
+,0,R_PMA_HWA_ID_V4H_VDSP1_GLOBAL,R_PMA_HWA_ID_NUM,0,0,,0,,R_PMA_INVALID_ARGUMENT,;handle is NULL,,
+,dummy_handle,R_PMA_HWA_ID_NUM,R_PMA_HWA_ID_NUM,0,0,,0,,R_PMA_INVALID_ARGUMENT,;hwaId is R_PMA_HWA_ID_NUM,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,0,0,,0,,R_PMA_INVALID_HANDLE,;g_pma_sm_info_tbl[hwaId].handle != handle,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_APPLIED_RESET,,R_PMA_APPLIED_RESET,,R_PMA_OK,;Normal operation (R_PMA_RELEASED_RESET),,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_RELEASED_RESET,R_PMA_INVALID_ARGUMENT,R_PMA_RELEASED_RESET,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_INVALID_ARGUMENT,;R_PMA_HW_DEP_ApplyReset() returns R_PMA_INVALID_ARGUMENT,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,dummy_handle,R_PMA_RELEASED_RESET,R_PMA_OK,R_PMA_APPLIED_RESET,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_OK,;Normal operation (R_PMA_APPLIED_RESET),,

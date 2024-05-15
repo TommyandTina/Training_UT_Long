@@ -1,0 +1,18 @@
+modi,R_OSAL_DCFG_PmGetResetState,07_013,11,1,,,,CPP,,,,0,
+#InitWheneverCall,,,,,,,,,,,,,
+0,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_pm_get_reset_state,r_osal_dcfg_pm_get_reset_state,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_pm_get_reset_state,r_osal_dcfg_pm_get_reset_state,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].handle_id,@handle[0].pm_handle,@handle[0].pm_handle[0].is_reset_support,@p_state,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_pm_get_reset_state@AM_state,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_pm_get_reset_state@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_DCFG_PmGetResetState@@,;
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,g_e_osal_pm_reset_state_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,g_e_osal_pm_reset_state_t,0,1,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_TIME
+,g_st_osal_device_control_t[0],OSAL_INVALID_HANDLE_ID,g_st_osal_power_control_t[0],true,g_e_osal_pm_reset_state_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is OSAL_INVALID_HANDLE_ID (Unlock is OK)
+,g_st_osal_device_control_t[0],OSAL_INVALID_HANDLE_ID,g_st_osal_power_control_t[0],true,g_e_osal_pm_reset_state_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_HANDLE,;handle->handle_id is OSAL_INVALID_HANDLE_ID (Unlock is FAIL)
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],false,g_e_osal_pm_reset_state_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;handle->is_reset_support is false
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,g_e_osal_pm_reset_state_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_dcfg_pm_get_reset_state() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,g_e_osal_pm_reset_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,;r_osal_dcfg_pm_get_reset_state output OSAL_PM_RESET_STATE_INVALID
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,g_e_osal_pm_reset_state_t,0,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL

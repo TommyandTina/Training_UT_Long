@@ -1,0 +1,10 @@
+modi,r_osal_dcfg_io_search_strings,07_032,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,
+#COMMENT,@p_src_string,@p_search_string,AMSTB_SrcFile.c/AMSTB_strstr@AM_count,AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[0],r_osal_dcfg_io_search_strings@@,;,,,,,,
+,char_dummy,1,0,char_dummy,char_dummy,;p_string equal to p_src_string.,,,,,,
+,char_dummy,1,0,char_dummy+3,char_dummy+3,;p_string[-1] equal to 0x0a,,,,,,
+,char_dummy,1,0,char_dummy+2,0,;p_string[-1] not equal to 0x0a,,,,,,
+,char_dummy,1,0,0,0,;p_string is NULL.,,,,,,

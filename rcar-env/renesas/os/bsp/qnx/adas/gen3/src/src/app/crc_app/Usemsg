@@ -1,0 +1,20 @@
+crc_app - CRC Application for R-Car V3U
+
+%C [Options]
+
+Option:
+           -b <CRC base address> /* Hex number:\n \
+                                      CRC0: 0xE6F00000  CRC1: 0xE6F10000  CRC2: 0xE7000000  CRC3: 0xE7010000
+                                      KCRC0: 0xE7020000  KCRC1: 0xE7030000  KCRC2: 0xE7040000  KCRC3: 0xE7050000*/
+           -m <CRC mode>         /* 0: INDEPENDENT_CRC_MODE 1: E2E_CRC_MODE */
+           -p <Polinomial>       /* Hex number */
+           -r <Reflected in>     /* 0 or 1 */
+           -R <Reflect out>      /* 0 or 1 */
+           -x <XOR Value>        /* Hex number */
+           -i <Initialize value> /* Hex number */
+           -w <data size>        /* Decimal number */
+
+
+e.g: 
+    crc_app -b 0xE6F00000 -m 0 -p  0x4C11DB7 -r 0 -R 0 -x 0xFFFFFFFF -i 0xFFFFFFFF -w 1
+

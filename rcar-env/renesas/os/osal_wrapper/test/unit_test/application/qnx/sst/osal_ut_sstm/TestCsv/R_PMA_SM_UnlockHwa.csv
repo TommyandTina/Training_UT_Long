@@ -1,0 +1,8 @@
+modi,R_PMA_SM_UnlockHwa,03_004,4,2,,,,CPP,,,,0
+#InitWheneverCall,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,@handle,@hwaId,r_pma_if.c/g_pma_max_hwa_id_num,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,r_pma_statemachine.c/g_pma_sm_info_tbl[0].handle,R_PMA_SM_UnlockHwa@@,;,,,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,dummy_handle,0,R_PMA_OK,;Normal operation,,,,,
+,dummy_handle,R_PMA_HWA_ID_NUM,R_PMA_HWA_ID_NUM,-,,R_PMA_INVALID_ARGUMENT,;hwaId is R_PMA_HWA_ID_NUM,,,,,
+,0,R_PMA_HWA_ID_V4H_VDSP1_GLOBAL,R_PMA_HWA_ID_NUM,-,,R_PMA_INVALID_ARGUMENT,;handle is NULL,,,,,
+,dummy_handle,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,0,,R_PMA_INVALID_HANDLE,;g_pma_sm_info_tbl[hwaId].handle != handle,,,,,

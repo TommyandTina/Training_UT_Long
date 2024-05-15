@@ -1,0 +1,57 @@
+%C - SSI Sound driver for Renesas R-Car SOC family
+
+This is a DLL of the io-audio system.
+
+command:
+    io-audio -d rcar [tx_voices=val][,rx_voices=val][,...]
+
+Driver Options:
+        tx_voices             : indicates number of voices used for playback;
+                                in case tx_op_mode=tdm_exsplit, it indicates the voice map to be used for the TDM exsplit mode
+        rx_voices             : indicates number of voices used for capture;
+                                in case rx_op_mode=tdm_exsplit, it indicates the voice map to be used for the TDM exsplit mode
+        tx_op_mode            : Indicates a special TDM mode to be used for playback
+                "tdm_ext"     - TDM extended mode is used
+                "tdm_split"   - TDM split mode is used
+                "tdm_exsplit" - TDM exsplit mode is used
+        rx_op_mode            : Indicates a special TDM mode to be used for capture
+                "tdm_ext"     - TDM extended mode is used
+                "tdm_split"   - TDM split mode is used
+                "tdm_exsplit" - TDM exsplit mode is used
+        clk_mode  "master"    : Indicating SSI is configured as master
+                  "slave"     : Indicating SSI is configured as slave
+        sample_size           : 8, 16, 24 or 32 bits (default is 16)
+        clk_pol               : Bit clock polarity
+                            0 - data sampled at SCK falling edge
+                            1 - data sampled at SCK rising edge (default)
+        fsync_pol             : Frame sync (WS) polarity
+                            0 - active low (default)
+                            1 - active high
+        bit_delay             : Delay between frame sync and start of data
+                            0 - none
+                            1 - 1 cycle (default)
+        sample_rate           : range in Hz - min_rate:max_rate (default 8000 - 192000 Hz
+        sample_rate_list      : list of all supported sample rates in Hz, separated by :
+        slot_size             : number of bits in one phase of frame clock 16, 24, 32, 64, 128, 256, 512 (default is 32)
+        mclk                  : MCLK RATE  in HZ  (default value of 12288000 from variant.h: MCLK)
+        mclk_fs               : Scale of MCLK RATE to sample rate (default value of 0 is variant specific)
+        mclk_src              : Select BRGA, BRGA or direct dividor for SSI0 Clock
+                            0 - Select direct divider for SSI0 Clock (default)
+                            1 - Select BRGA divider for SSI0 Clock
+                            2 - Select BRGA divider for SSI0 Clock
+        debug                 : enable register dumps at the start and end of playback or capture session
+Notes:
+
+Voice maps for the TDM exsplit consist in numeric values indicating the number of voices to be used for each BUSIF subchannel, starting from subchannel 0, separated by semicolons.
+
+io-audio configuration file: The platform is equipped with an analog codec, the analog codec DLL must be specified using an io-audio configuration file, and io-audio must get started using "io-audio -c <path-to-io_audio.conf>".
+
+Examples of [ctrl] section of io_audio.conf file, the driver options described above are listed as key-value pairs separated by commas as a value for the "options" key:
+
+   #Rcar-V4H example:
+   [ctrl]
+   name=rcar
+   options=sample_rate=32000:48000
+   mixer_dll=codec                        # Load deva-mixer-codec.so
+
+

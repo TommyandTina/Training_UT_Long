@@ -1,0 +1,24 @@
+modi,osal_internal_create_axibus_info,07_044,18,1,,,,CPP,,,,0,,,,,,,,
+#InitWheneverCall,r_osal_io.c/gs_axi_bus_name_info_array_size,r_osal_io.c/gsp_axi_bus_name_info,g_axi_bus_name_info.utlb,,,,,,,,,,,,,,,,,
+0,0,0,0,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,,,
+%,AMSTB_strstr,strstr,,,,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_axi_bus_name_info_array_size,r_osal_io.c/gsp_axi_bus_name_info,g_axi_bus_name_info.utlb,@p_device_control,g_st_osal_device_control.dev_info,g_st_osal_device_info.utlb_assignment,g_st_assignment.table_size,g_st_assignment.table[0],AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_malloc@AM_count,AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strstr@AM_count,AMSTB_SrcFile.c/AMSTB_strstr@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],osal_internal_create_axibus_info@@,;
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,1,1,0,0,0,g_axi_bus_name_info_p,0,char_dummy,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,0,1,1,0,0,0,g_axi_bus_name_info_p,0,char_dummy,0,0,0,0,OSAL_RETURN_OK,;p_device_control->dev_info->assignment is NULL
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,1,0,-1,0,0,0,char_dummy,0,0,0,0,OSAL_RETURN_MEM,;flag is 0. realloc() return NULL.
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,1,0,-1,0,g_axi_bus_name_info_p,0,0,0,0,0,0,OSAL_RETURN_MEM,;flag is 0. malloc() return NULL.
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,1,1,0,-1,0,g_axi_bus_name_info_p,0,char_dummy,0,0,0,0,OSAL_RETURN_OK,;strncmp() return non-zero.
+,1,g_axi_bus_name_info,0,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,1,1,0,0,0,g_axi_bus_name_info_p,0,char_dummy,0,0,0,0,OSAL_RETURN_OK,;The ultb is not gsp_axi_bus_name_info[j].utlb.
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,1,1,0,0,0,g_axi_bus_name_info_p,0,char_dummy,0,-1,0,0,OSAL_RETURN_OK,;flag is 1. strstr() return is not NULL.
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,1,0,0,0,0,0,char_dummy,0,0,0,0,OSAL_RETURN_MEM,;flag is 1. realloc() return 0.
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,1,0,0,0,g_axi_bus_name_info_p,0,0,0,0,0,0,OSAL_RETURN_MEM,;flag is 1. malloc() return 0.
+,1,g_axi_bus_name_info,1,g_st_osal_device_control,g_st_osal_device_info,g_st_assignment,2,1,0,0,0,g_axi_bus_name_info_p,0,char_dummy,0,0,0,-1,OSAL_RETURN_FAIL,;flag is 1. snprintf() return less than 0.

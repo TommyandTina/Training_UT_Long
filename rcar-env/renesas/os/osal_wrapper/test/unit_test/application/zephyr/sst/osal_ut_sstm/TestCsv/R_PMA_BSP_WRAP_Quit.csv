@@ -1,0 +1,5 @@
+modi,R_PMA_BSP_WRAP_Quit,05_002,1,1,,,,CPP,,,,0
+#InitWheneverCall,g_osal_num_of_device_config,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,g_osal_num_of_device_config,R_PMA_BSP_WRAP_Quit@@,;,,,,,,,,,
+,2,R_PMA_OK,;Normal operation,,,,,,,,,

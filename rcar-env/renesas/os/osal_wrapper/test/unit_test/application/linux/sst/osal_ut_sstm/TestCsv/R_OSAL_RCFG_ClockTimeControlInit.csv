@@ -1,0 +1,5 @@
+modi,R_OSAL_RCFG_ClockTimeControlInit,04_003,1,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_res_cfg_timeclock.c/gs_clock_time_init_state,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_timeclock.c/gs_clock_time_init_state,R_OSAL_RCFG_ClockTimeControlInit@@,;,,,,,,,,,
+,OSAL_MANAGER_STATE_INITIALIZED,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,

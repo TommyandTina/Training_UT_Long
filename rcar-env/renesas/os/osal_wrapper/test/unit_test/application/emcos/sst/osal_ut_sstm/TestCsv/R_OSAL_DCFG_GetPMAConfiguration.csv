@@ -1,0 +1,5 @@
+modi,R_OSAL_DCFG_GetPMAConfiguration,08_016,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_power.c/gs_osal_pm_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_power.c/gs_osal_pm_is_initialized,$@p_config,g_dummy,;,,,,,,,,
+,1,1,,;Normal operation ,,,,,,,,

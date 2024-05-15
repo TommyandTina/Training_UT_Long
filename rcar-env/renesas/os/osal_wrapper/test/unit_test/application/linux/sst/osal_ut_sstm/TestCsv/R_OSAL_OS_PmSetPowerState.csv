@@ -1,0 +1,7 @@
+modi,R_OSAL_OS_PmSetPowerState,16_102,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_os_pm_set_ioctl,r_osal_os_pm_set_ioctl,,,,,,,,,,
+#COMMENT,@handle,@value,AMSTB_SrcFile.c/AMSTB_r_osal_os_pm_set_ioctl@AMIN_return,R_OSAL_OS_PmSetPowerState@@,;,,,,,,,
+,g_st_osal_device_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;handle is NULL,,,,,,,

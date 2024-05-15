@@ -1,0 +1,9 @@
+modi,R_OSAL_OS_MmngrFlush,17_103,9,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,
+%,AMSTB_ioctl,ioctl,,,,,,,,,,
+#COMMENT,@memory_buffer_obj_hndl,@memory_buffer_obj_hndl[0].mmngr_owner_hndl,@memory_buffer_obj_hndl[0].mmngr_owner_hndl[0].p_ptr_self,@memory_buffer_obj_hndl[0].p_ptr_self,@addr,@offset,@size,AMSTB_SrcFile.c/AMSTB_ioctl@AM_count,AMSTB_SrcFile.c/AMSTB_ioctl@AMIN_return[0],R_OSAL_OS_MmngrFlush@@,;,
+,g_st_osal_memory_buffer_obj,g_st_osal_memory_manager_obj[0],g_st_osal_mem_mmngr_ptr_self[0],g_osal_mem_buf_ptr_self,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation,
+,0,,,,0,0,0,0,0,OSAL_RETURN_FAIL,;memory_buffer_obj_hndl is NULL,
+,g_st_osal_memory_buffer_obj,g_st_osal_memory_manager_obj[0],g_st_osal_mem_mmngr_ptr_self[0],g_osal_mem_buf_ptr_self,0,0,0,0,-1,OSAL_RETURN_PROHIBITED,;ioctl returns -1,

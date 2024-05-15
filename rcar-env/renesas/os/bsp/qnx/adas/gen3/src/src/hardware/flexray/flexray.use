@@ -1,0 +1,54 @@
+%C - Flexray driver for R-Car V3U
+flexray-rcar [options]
+Runs on:
+
+QNX Neutrino 7.1
+Options:
+
+-c static,dynamic,fifo,reject,filter,channel,cycle,level
+        Configure message RAM.
+        Options specific to configure message RAM. These options include:		
+        static: The number of staic message buffer
+        dynamic: The number of dynamic message buffer
+        fifo: The number of fifo message buffer
+        reject: The frame ID of the incoming frames to be rejected by the fifo
+        filter: Frame ID used to mask the frame ID rejected by the fifo
+        channel: The fifo receive channel filter
+                 channel=3:	No reception
+                 channel=2:	Receive only on channel A
+                 channel=1:	Receive only on channel B 
+                 channel=0:	Receive on both channels
+        cycle: Cycle counter filter determines the cycle set to which frame ID and channel rejection filter are applied
+               In cycles not belonging to the cycle set specified by cycleCount, all frames are rejected 
+               cycle=0:	Matching all cycles 	
+        secure: Type of receive fifo, reconfig and Sync Frame Payload Multiplex of message buffer control
+        level: Receive fifo critical level
+        For example: 
+                    - Startup FlexRay with static message=8, dynamic message=22, fifo message=0
+                     flexray-rcar -n 1 -c static=8,dynamic=22		
+                     flexray-rcar -n 2 -c static=8,dynamic=22
+                    - Startup FlexRay with static message=8, dynamic message=11, fifo message=11
+                     flexray-rcar -n 1 -c static=8,dynamic=11,fifo=11		
+                     flexray-rcar -n 2 -c static=8,dynamic=11,fifo=11					 
+-f  filename
+        Specify filename as the absolute pathname to get the configuration of system parameters      
+        For example: flexray-rcar -f /tmp/flexray-node.conf			
+-h      Print the usage of driver
+-p  priority
+        The priority of the processing thread. The default is 10. 
+        For example: flexray-rcar -p 10
+-m  node
+        Select FlexRay mode.
+        mode 0   Start driver use user RAM to handles the data transfer between URAM and FlexRay module(default mode 0).
+        mode 1   Start driver do not use user RAM to handles the data transfer between URAM and FlexRay module.
+        Example:  Start driver use user RAM: flexray-rcar
+                  Start driver don't use user RAM: flexray-rcar -m 1		
+-n  node  
+        Select FlexRay node
+        node 1   Start driver on node 1.
+        node 2   Start driver on node 2.			
+        Example:  Start driver on node 1: flexray-rcar -n 1
+                  Start driver on node 2: flexray-rcar -n 2					
+-v  verbose  
+        Increase the verbosity
+        Example:  flexray-rcar -vvv		

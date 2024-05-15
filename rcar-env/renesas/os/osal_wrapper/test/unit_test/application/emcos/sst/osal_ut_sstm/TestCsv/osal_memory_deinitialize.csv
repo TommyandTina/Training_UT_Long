@@ -1,0 +1,11 @@
+modi,osal_memory_deinitialize,09_021,9,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,r_osal_memory.c/gsp_osal_memory_manager,r_osal_memory.c/gspp_osal_mem_mmngr_ptr_self,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self[0].handle_id,,,,,,,
+0,0,0,0,0,0,,,,,,,
+%,AMSTB_R_OSAL_DCFG_GetNumOfMemoryRegionInfo,R_OSAL_DCFG_GetNumOfMemoryRegionInfo,,,,,,,,,,
+%,AMSTB_osal_internal_mem_close,osal_internal_mem_close,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,r_osal_memory.c/gsp_osal_memory_manager,r_osal_memory.c/gspp_osal_mem_mmngr_ptr_self,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self[0].handle_id,AMSTB_SrcFile.c/AMSTB_R_OSAL_DCFG_GetNumOfMemoryRegionInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_osal_internal_mem_close@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],osal_memory_deinitialize@@,;,
+,0,0,0,0,0,1,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;Normal operation,
+,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,1,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,;gs_osal_mem_mmngr_ptr_self is not 0,
+,0,g_memory_manager_handle,g_st_osal_mem_mmngr_ptr_self_p,g_st_osal_mem_mmngr_ptr_self,OSAL_MEMORY_HANDLE_ID,1,OSAL_RETURN_OK,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_destroy() return non-zero,

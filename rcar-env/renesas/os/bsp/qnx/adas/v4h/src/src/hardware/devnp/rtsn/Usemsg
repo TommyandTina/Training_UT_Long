@@ -1,0 +1,42 @@
+%C Driver for Renesas TSN Ethernet interface
+
+
+Syntax:
+  io-pkt-v6-hc -d rtsn [option[,option ...]] ...
+
+Options:
+  speed=100|1000       Force media data rate in Megabits/Second
+  duplex=0|1           Force half (0) or full (1) duplex mode.
+  flow=0|1|2|3         Force flow control
+                         0=off,
+                         1=Bidirectional pause,
+                         2=Rx pause frames,
+                         3=Tx pause frames
+  mii                  Use the RGMII interface between the RTSNES and the PHY.
+                       Default is RGMII.
+  iorange=0xXXXXXXXX   IO base address.
+  irq=num              IRQ of the interface.
+  mac=XXXXXXXXXXXX     Interface address of the controller.
+  verbose(=N)          Set verbosity level. With no N then level 1,
+                       repeated settings increase verbosity. N is a mask:
+                         1=general, 2=PHY, 4=Rx, 8=Tx.
+  avb                  Set driver in AVB mode.
+  tx_internal_delay    Enable TX internal delay
+  rx_internal_delay    Enable RX internal delay
+  internal_loopback    Enable internal loopback mode
+
+Examples:
+
+How to start and test the eTSN driver
+  
+    1) Start the eTSN driver
+      - Start the eTSN driver with port 0 (default)
+        # io-pkt-v6-hc -d rtsn mac=2E090A039BD8 -p tcpip prefix=/sock2 pkt_typed_mem=below4G,smmu=off 
+
+    2) How to test the eTSN driver
+      - The driver is still in the development phase, below can be supported:
+        Set static ip: # SOCK=/sock2 ifconfig tsn0 192.168.0.105
+
+      
+
+

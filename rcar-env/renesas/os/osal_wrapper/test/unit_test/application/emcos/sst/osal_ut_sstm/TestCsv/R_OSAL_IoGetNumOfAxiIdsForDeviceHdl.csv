@@ -1,0 +1,11 @@
+modi,R_OSAL_IoGetNumOfAxiIdsForDeviceHdl,07_040,7,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,@device_hdl,g_st_osal_device_control.handle_id,g_st_osal_device_control.active,g_st_osal_device_control.dev_info,g_st_osal_device_info.utlb_assignment,@p_num_of_axi_ids,R_OSAL_IoGetNumOfAxiIdsForDeviceHdl@@,;,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,g_st_assignment,array_sizet,OSAL_RETURN_OK,;Normal operation,,,
+,0,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,g_st_assignment,array_sizet,OSAL_RETURN_STATE,;gs_osal_io_is_initialized is false,,,
+,1,0,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,g_st_assignment,array_sizet,OSAL_RETURN_HANDLE,;device_hdl is NULL,,,
+,1,g_st_osal_device_control,0,1,g_st_osal_device_info,g_st_assignment,array_sizet,OSAL_RETURN_HANDLE,;device_hdl->handle_id is not  OSAL_DEVICE_HANDLE_ID,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,0,g_st_osal_device_info,g_st_assignment,array_sizet,OSAL_RETURN_HANDLE,;device_hdl->active is false,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,g_st_assignment,0,OSAL_RETURN_PAR,;p_num_of_axi_ids is NULL,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,g_st_osal_device_info,0,array_sizet,OSAL_RETURN_OK,;device_hdl->dev_info->utlb_assignment is NULL,,,

@@ -1,0 +1,5 @@
+modi,R_OSAL_OS_ThreadSetCpuAffinity,02_110,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@id,R_OSAL_OS_ThreadSetCpuAffinity@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,

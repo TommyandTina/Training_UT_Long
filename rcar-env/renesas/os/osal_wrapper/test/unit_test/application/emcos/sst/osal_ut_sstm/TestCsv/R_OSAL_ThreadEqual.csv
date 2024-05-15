@@ -1,0 +1,12 @@
+modi,R_OSAL_ThreadEqual,02_002,7,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_thread.c/gs_osal_thread_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_thread.c/gs_osal_thread_is_initialized,@handle1,g_thread_control_1.handle_id,@handle2,g_thread_control_2.handle_id,$@p_result,@p_result[0],R_OSAL_ThreadEqual@@,;,,,
+,1,g_thread_control_1,0x4F53414C5F544852,g_thread_control_1,0x4F53414C5F544852,1,1,OSAL_RETURN_OK,;Normal operation (handle1 and handle2 are same),,,
+,0,g_thread_control_1,0x4F53414C5F544852,g_thread_control_2,0x4F53414C5F544852,1,0,OSAL_RETURN_STATE,;gs_osal_thread_is_initialized is false,,,
+,1,0,0x4F53414C5F544852,g_thread_control_2,0x4F53414C5F544852,1,0,OSAL_RETURN_HANDLE,;handle1 is 0,,,
+,1,g_thread_control_1,0x4F53414C5F544852,0,0x4F53414C5F544852,1,0,OSAL_RETURN_HANDLE,;handle2 is 0,,,
+,1,g_thread_control_1,0,g_thread_control_2,0x4F53414C5F544852,1,0,OSAL_RETURN_HANDLE,;handle->handle_id is not equal OSAL_THREAD_HANDLE_ID,,,
+,1,g_thread_control_1,0x4F53414C5F544852,g_thread_control_2,0,1,0,OSAL_RETURN_HANDLE,;handle2->handle_id is not equal OSAL_THREAD_HANDLE_ID,,,
+,1,g_thread_control_1,0x4F53414C5F544852,g_thread_control_2,0x4F53414C5F544852,0,0,OSAL_RETURN_PAR,;p_result is 0,,,
+,1,g_thread_control_1,0x4F53414C5F544852,g_thread_control_2,0x4F53414C5F544852,1,0,OSAL_RETURN_OK,;thread of handle1 and thread of handle2 are not equal,,,

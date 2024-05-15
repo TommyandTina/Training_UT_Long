@@ -1,0 +1,6 @@
+modi,R_OSAL_MmngrInitializeMmngrConfigSt,09_007,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_config,R_OSAL_MmngrInitializeMmngrConfigSt@@,;,,,,,,,,,
+,g_st_osal_common_mmngr_config,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,
+,0,OSAL_RETURN_PAR,;p_config is null,,,,,,,,,

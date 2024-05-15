@@ -1,0 +1,10 @@
+modi,R_OSAL_OS_IoStaticDeinit,07_102,5,1,,,,CPP,,,,0
+#InitWheneverCall,$gsp_device_config_addr,gsp_device_config_addr[0].virtual_addr,gsp_device_config_addr[1].virtual_addr,gs_osal_num_of_device_config,,,,,,,,
+0,0,0,0,0,,,,,,,,
+%,AMSTB_munmap_device_memory,munmap_device_memory,,,,,,,,,,
+#COMMENT,$gsp_device_config_addr,gsp_device_config_addr[0].virtual_addr,gsp_device_config_addr[1].virtual_addr,gs_osal_num_of_device_config,AMSTB_SrcFile.c/AMSTB_munmap_device_memory@AMIN_return,R_OSAL_OS_IoStaticDeinit@@,;,,,,,
+,1,4096,0,2,0,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,4096,0,2,0,OSAL_RETURN_OK,;Normal operation (gsp_device_config_addr is NULL.),,,,,
+,1,4096,0,2,22,OSAL_RETURN_MEM,;munmap_device_memory() return non-EOK.,,,,,
+,1,4096,0,0,0,OSAL_RETURN_OK,;gs_osal_num_of_device_config is 0,,,,,
+,1,4096,0,1,0,OSAL_RETURN_OK,;gs_osal_num_of_device_config is 1,,,,,

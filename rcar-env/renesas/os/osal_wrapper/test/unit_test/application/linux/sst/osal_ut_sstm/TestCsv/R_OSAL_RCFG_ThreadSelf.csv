@@ -1,0 +1,20 @@
+modi,R_OSAL_RCFG_ThreadSelf,01_007,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,r_osal_res_cfg_thread.c/gs_inner_thread_mtx,r_osal_res_cfg_thread.c/gs_thread_array_size,r_osal_res_cfg_thread.c/gsp_thread_array,r_osal_res_cfg_thread.c/gsp_thread_array[0],,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadEqual,R_OSAL_OS_ThreadEqual,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadSelf,R_OSAL_OS_ThreadSelf,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadEqual,R_OSAL_OS_ThreadEqual,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_thread.c/gs_inner_thread_mtx,r_osal_res_cfg_thread.c/gs_thread_array_size,r_osal_res_cfg_thread.c/gsp_thread_array,r_osal_res_cfg_thread.c/gsp_thread_array[0],@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadEqual@AMIN_result,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadSelf@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadEqual@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_RCFG_ThreadSelf@@,;
+,g_st_osal_os_mutex_t[0],1,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_os_mutex_t[0],1,0,0,g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;gsp_thread_array[0] is NULL
+,g_st_osal_os_mutex_t[0],1,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_HANDLE,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_HANDLE
+,g_st_osal_os_mutex_t[0],1,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadSelf() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],1,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadEqual() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],1,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadEqual() result false
+,g_st_osal_os_mutex_t[0],1,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],1,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_ThreadSelf() and R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL
+,g_st_osal_os_mutex_t[0],0,g_osal_thread_handle_t,g_st_osal_thread_control_t[0],g_st_osal_thread_control_t[0],0,0,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;gs_thread_array_size is 0

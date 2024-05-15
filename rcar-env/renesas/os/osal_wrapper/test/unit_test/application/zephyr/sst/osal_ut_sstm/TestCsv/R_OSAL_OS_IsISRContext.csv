@@ -1,0 +1,8 @@
+modi,R_OSAL_OS_IsISRContext,01_107,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_k_is_in_isr,k_is_in_isr,,,,,,,,,,
+#COMMENT,@p_is_isr,AMSTB_SrcFile.c/AMSTB_k_is_in_isr@AMIN_return,R_OSAL_OS_IsISRContext@@,;,,,,,,,,
+,g_bool,1,OSAL_RETURN_OK,;Normal operation (Output argument is true),,,,,,,,
+,g_bool,0,OSAL_RETURN_OK,;Normal operation (Output argument is false),,,,,,,,
+,0,1,OSAL_RETURN_FAIL,;p_is_isr is NULL,,,,,,,,

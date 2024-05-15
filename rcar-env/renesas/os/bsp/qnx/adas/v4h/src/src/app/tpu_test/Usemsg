@@ -1,0 +1,20 @@
+   A program to test TPU library
+-------------------------------------
+  This program is a demonstration of R-Car Timer API that based on TPU module.
+
+  Syntax:
+        #tpu_test chan=<chan> mode=<mode> duty=<dyty> cycle=<cycle> verbose=<verbose>
+  Options:
+    <chan>=[int]          Select TPU channel (default: channle 1)
+    <mode>=[int]          Select TPU mode:
+                            0 : free-running (default)
+                            1 : PWM waveform
+                            other : An example for combination of PMW and Buffered mode
+    duty=[int]            Duty in ns of waveform (default: 100000ns)
+    duty=[int]            Cycle in ns of waveform (default: 200000ns)
+    verbose=[int]
+
+    Example:
+     #tpu_test mode=1 duty=500 cycle=1000
+
+See tpu.use for more detail

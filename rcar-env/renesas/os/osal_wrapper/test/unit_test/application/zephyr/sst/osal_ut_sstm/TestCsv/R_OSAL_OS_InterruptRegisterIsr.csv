@@ -1,0 +1,9 @@
+modi,R_OSAL_OS_InterruptRegisterIsr,06_104,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_control,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_handler,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_enable,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].usr_config,gs_osal_interrupt_config[0].priority,,,,,,,,,
+0,0,0,0,0,0,0,,,,,,,,,
+#COMMENT,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_control,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_handler,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].irq_enable,AMSTB_SrcFile.c/g_st_osal_interrupt_control_t[0].usr_config,gs_osal_interrupt_config[0].priority,$@handle,$@handle[0].interrupt_index,@handle[0].interrupt_index[0],@irq_channel,@priority_value,@irqHandlerFunction,@p_irq_arg,R_OSAL_OS_InterruptRegisterIsr@@,;
+,1,g_st_osal_interrupt_control_t,0,0,gs_osal_interrupt_config[0],OSAL_INTERRUPT_PRIORITY_LOWEST,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,;Normal operation 
+,0,g_st_osal_interrupt_control_t,0,0,gs_osal_interrupt_config[0],OSAL_INTERRUPT_PRIORITY_LOWEST,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_STATE,;gs_osal_os_interrupt_init_flag is false.
+,1,g_st_osal_interrupt_control_t,1,0,gs_osal_interrupt_config[0],OSAL_INTERRUPT_PRIORITY_LOWEST,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_BUSY,;p_interrupt_control->irq_handler is not NULL.
+,1,g_st_osal_interrupt_control_t,0,1,gs_osal_interrupt_config[0],OSAL_INTERRUPT_PRIORITY_LOWEST,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_BUSY,;p_interrupt_control->irq_enable is true.
+,1,g_st_osal_interrupt_control_t,0,0,gs_osal_interrupt_config[0],100,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,;p_interrupt_control->usr_config->priority is larger than the isr priority limit value.

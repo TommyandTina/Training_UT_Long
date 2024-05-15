@@ -1,0 +1,25 @@
+    The Thermal driver for R-Car S4 boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car S4 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            10.28.2020 : Ver.0.1
+            - Create new version (all features) ported from QNX 7.0
+            - Add R-Car V3U support
+            10.30.2021 : Ver.0.2
+            - Support for S4
+            05.30.2022 : Ver.0.3
+            - Update temperature & voltage calculation based on Linux v5.10.41/rcar-5.1.6.rc2
+            08.12.2022 : Ver.0.4
+            - Update temperature & IRQTEMPx calculation based on Rev.0.80 HWM
+            10.26.2022 : Ver.0.5
+            - Support to read calibration for S4: 
+              "The FUSE-related registers were added from S4 HW UM rev.0.70 So, this support is to read calibration with valid FUSE hardware on R-Car S4."
+
+-----------------------------------------------------------------------------
+ Known limitations with this release
+-----------------------------------------------------------------------------

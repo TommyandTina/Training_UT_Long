@@ -1,0 +1,29 @@
+    The libcapture for RENESAS R-CarV3U and R-CarV4H board
+
+    CREATED   : 12.08.2021
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : RENESAS R-CarV3U and R-CarV4H board
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+        12.08.2021 : Ver.0.1
+        - Create new version
+        09.30.2022 : Ver.0.2
+        - Add in GMSL2 Serializer MAX96712 support for image sensor of LI-AR0231-AP0200-GMSL2-120H camera
+        11.25.2022 : Ver.0.3
+        - Add in Software Reset for ISP
+        - Update ISP code based on Linux rcar-5.2.0.rc2
+        - Optimize/enhance code
+        12.20.2022 : Ver.0.4
+        - Update to able to display 8 cameras (enable 2 Deserializers) concurrently
+        01.20.2023 : ver.0.5
+        - Add in IPMMU over-32-bit to 32-bit address translation support
+        - Add in 'CAPTURE_PROPERTY_IPMMU_SUPPORT' property to choose IPMMU over-32-bit to 32-bit address translation or not
+        - Add in 'CAPTURE_PROPERTY_GMSL_MODE' property to choose GMSL1 MODE or GMSL2 MODE
+        02.21.2023 : Ver.0.6
+        - Resolve GMSL2 cameras issue
+        04.24.2023 : Ver.0.7
+        - Fix issue when enabling only one camera
+        - Update CSI D-Phy mode based on R-CarV4H_TS_053_CSI_D_IOComparator.xlsx
+        08.30.2023 : Ver.0.8
+        - Intergate IPMMU from BB's BSP "SVN Revision Number:  977770"

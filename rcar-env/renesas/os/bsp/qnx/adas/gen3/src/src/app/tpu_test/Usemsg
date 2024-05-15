@@ -1,0 +1,9 @@
+   A program to test TPU library
+-------------------------------------
+1. Copy tpu_test to /tmp of the target
+
+2. Run the following command:
+   
+   #/tmp/tpu_test verbose=1
+
+See tpu.use for more detail

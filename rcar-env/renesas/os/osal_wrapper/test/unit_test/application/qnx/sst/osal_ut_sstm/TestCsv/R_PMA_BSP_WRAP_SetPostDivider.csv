@@ -1,0 +1,8 @@
+modi,R_PMA_BSP_WRAP_SetPostDivider,05_011,5,4,,,,CPP,,,,0
+#InitWheneverCall,r_pma_bsp_wrapper.c/clkhwfuncs.clk_divider_set,,,,,,,,,,,
+0,0,,,,,,,,,,,
+%,AMSTB_dummy_clk_divider_set,dummy_clk_divider_set,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode,R_PMA_BSP_WRAP_Exchange_ErrCode,,,,,,,,,,
+#COMMENT,@chanIdx,@pClockDivider,r_pma_bsp_wrapper.c/clkhwfuncs.clk_divider_set,AMSTB_SrcFile.c/AMSTB_dummy_clk_divider_set@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Exchange_ErrCode@AMIN_return,AMSTB_SrcFile.c/AMSTB_dummy_clk_divider_set@AMOUT_id,AMSTB_SrcFile.c/AMSTB_dummy_clk_divider_set@AMOUT_idx,AMSTB_SrcFile.c/AMSTB_dummy_clk_divider_set@AMOUT_div,R_PMA_BSP_WRAP_SetPostDivider@@,;,,
+,0,dummy_pClockDivider,dummy_clk_divider_set,CPG_RET_ERROR,R_PMA_NG,CPG_CLK_POST,0,dummy_pClockDivider,R_PMA_NG,;clk_divider_set() returns CPG_RET_ERROR,,
+,1,dummy_pClockDivider,dummy_clk_divider_set,CPG_RET_OK,,CPG_CLK_POST,1,dummy_pClockDivider,R_PMA_OK,;Normal operation ,,

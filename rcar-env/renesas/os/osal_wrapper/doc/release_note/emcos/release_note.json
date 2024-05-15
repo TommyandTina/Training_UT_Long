@@ -1,0 +1,889 @@
+{
+    "release_date": "Jan.12.2023",
+    "document_version": "Rev.0.5.0",
+    "document_num": "",
+    "title": "OSAL Wrapper for eMCOS on R-Car V4H",
+    "intro": {
+        "description": [
+            "This document describes updates and restrictions for this release."
+        ]
+    },
+    "overview": {
+        "description": [
+            "This document describes the contents regarding to the OSAL Wrapper for eMCOS on R-Car V4H."
+        ]
+    },
+    "general_info": {
+        "table": [
+            {
+                "item": "Target devices",
+                "name": "R-Car V4H",
+                "note": "requires eMCOS BSP: \\n \"eMCOS SDK Board Support Package for R-Car Gen4 White Hawk ver2.1 rev3 Alpha\""
+            },
+            {
+                "item": "Supported OS",
+                "name": "eMCOS POSIX for R-Car Gen4 ver2.1 rev3 Alpha",
+                "note": "-"
+            },
+            {
+                "item": "Tool Chain",
+                "name": "ARM Compiler 6.16.1",
+                "note": "-"
+            },
+            {
+                "item": "OSAL API Specification",
+                "name": "OSAL API 3.0.0",
+                "note": "-"
+            }
+        ]
+    },
+    "release_software": {
+        "table": [{
+            "name": "OSAL Wrapper for eMCOS",
+            "version": "0.6.0",
+            "cur_qual": "Alpha",
+            "tar_qual": "ASIL",
+            "note": "-"
+        }],
+        "note": [
+            "The Current/Target Quality grades options are below:",
+            " - Current: Sample, Reference, Alpha Beta, QM, ASIL",
+            " - Target: Sample, Reference, QM, ASIL\\n",
+            " \\n"
+        ]
+    },
+    "license": {
+        "description": [
+            "Proprietary license \\n ",
+            "Copyright(C) [2021 - 2023] Renesas Electronics Corporation. All rights reserved. \\n \\n \\n"
+        ],
+        "table": [
+
+        ]
+    },
+    "restriction": {
+        "table": [{
+            "no": "ASDRCXPOSAL-447",
+            "description": [
+                "Most of the functions of the OSAL PM API are dummy implementations. Settings made by these APIs are not reflected in HW \\n ",
+                "When calling R_OSAL_Initialize() only \"supply Power and Clock\" and \"release reset\" for all modules."
+            ],
+            "impact": "Clock, Power and Reset cannot be controlled by OSAL PM API.",
+            "note": "Restrictions will be resolved by end of June, 2022 "
+        },
+        {
+            "no": "ASDRCXPOSAL-448",
+            "description": [
+                "The following APIs are not supported OSAL Wrapper for eMCOS. \\n",
+                " - R_OSAL_IoGetNumOfAxiIdsForAxiBusName() \\n ",
+                " - R_OSAL_IoGetAxiIdListForAxiBusName() \\n ",
+                " - R_OSAL_IoGetNumOfAxiIdsForDeviceHdl() \\n ",
+                " - R_OSAL_IoGetAxiIdListForDeviceHdl() \\n ",
+                " - R_OSAL_IoGetNumOfAxiIdsForDeviceName() \\n ",
+                " - R_OSAL_IoGetAxiIdListForDeviceName() \\n "
+            ],
+            "impact": "These APIs cannot be used.",
+            "note": "Restrictions will be resolved by end of September, 2022 "
+        },
+        {
+            "no": "ASDRCXPOSAL-449",
+            "description": "Memory region is uncached.",
+            "impact": "Cache flush / invaridate is not effective.",
+            "note": "Not supported by current BSP"
+        },
+        {
+            "no": "ASDRCXPOSAL-450",
+            "description": "R_OSAL_ThsyncMemoryBarrier() is a dummy implementation. It only returns RETURN_OK.",
+            "impact": "Memory Barrier is not effective.",
+            "note": "Not supported by current BSP"
+        },
+        {
+            "no": "ASDRCXPOSAL-452",
+            "description": "R_OSAL_ClockTimeGetTimeStamp() with OSAL_CLOCK_TYPE_HIGH_RESOLUTION has the same behavior as when OSAL_CLOCK_TYPE_HIGH_PRECISION is specified.",
+            "impact": "High resolution timer is unsupported.",
+            "note": "Not supported by current BSP"
+        },
+        {
+            "no": "ASDRCXPOSAL-453",
+            "description": "Each OSAL APIs have been partially verified against normal use-case.",
+            "impact": "Abnormal use-case has not been verified, so it may not be error-handled correctly.",
+            "note": "Restrictions will be resolved by end of September, 2022 "
+        },
+        {
+            "no": "ASDRCXPOSAL-622",
+            "description": "Call R_OSAL_Deinitialize() with a resource in use dose not return OSAL_RETURN_BUSY. ",
+            "impact": ["OS Resource is not released, however the OSAL management structure is released. \\n Before calling R_OSAL_Deinitialize(), all resources must be terminated with the following API \\n ",
+                       " - R_OSAL_ThreadJoin() \\n ",
+                       " - R_OSAL_ThsyncMutexDestroy() \\n ",
+                       " - R_OSAL_ThsyncCondDestroy() \\n ",
+                       " - R_OSAL_MqDelete() \\n ",
+                       " - R_OSAL_InterruptUnregisterIsr() \\n ",
+                       " - R_OSAL_IoDeviceClose() \\n ",
+                       " - R_OSAL_MmngrClose() \\n "
+            ],
+            "note": "Restrictions will be resolved by end of July, 2022 "
+        },
+        {
+            "no": "ASDRCXPOSAL-623",
+            "description": "eMCOS has known issue #1455302 regarding malloc(). R_OSAL_Initialize() and R_OSAL_MmngrOpen() use malloc(), so do not violate #1455302. ",
+            "impact": "Memory conflict occurs when #1455302 is violated. \\n R_OSAL_Initialize(), R_OSAL_MmngrOpen() and user malloc() should be in the same thread",
+            "note": "Not supported by current BSP"
+        }
+    ]
+    },
+    "rel_document": {
+        "table": [{
+                "type": "API Specification",
+                "name": "OSAL_API_Specification.pdf",
+                "version": "3.00E",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "API User's Manual",
+                "name": "OSAL_API_Users_Manual.pdf",
+                "version": "3.00E",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "Application Note",
+                "name": "OSAL_API_Application_Note.pdf",
+                "version": "3.00E",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "Wrapper User's Manual",
+                "name": "OSAL_eMCOS_Users_Manual.pdf",
+                "version": "0.04E",
+                "update": "Yes",
+                "note": "-"
+            },
+            {
+                "type": "Contents List",
+                "name": "CONTENT.md",
+                "version": "-",
+                "update": "Yes",
+                "note": "-"
+            }
+        ]
+    },
+    "upgrade": {
+        "description": [
+            ""
+        ],
+        "section": [{
+                "name": "Version 0.0.1",
+                "description": [
+                    "- This software is verified against only build."
+                ]
+            },
+            {
+                "name": "Version 0.1.0",
+                "description": [
+                    "- This software is verified against normal use-case."
+                ]
+            },
+            {
+                "name": "Version 0.2.0",
+                "description": [
+                    "- Resolved restriction: ASDRCXPOSAL-451, Table 4-1 has more details.",
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-469",
+                    "    - ASDRCXPOSAL-472",
+                    "    - ASDRCXPOSAL-475",
+                    "- Added to supported device: caiplite_wrapper, icumx"
+                ]
+            },
+            {
+                "name": "Version 0.3.0",
+                "description": [
+                    "- Resolved following restriction, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-454",
+                    "    - ASDRCXPOSAL-461",
+                    "- Fixed following issue, Table 4-1 has more details.",
+                    "    - ASDRCXPOSAL-497",
+                    "    - ASDRCXPOSAL-553",
+                    "    - ASDRCXPOSAL-577",
+                    "- Supported following APIs.(ASDRCXPOSAL-549)",
+                    "    - R_OSAL_MmngrOpenFromRegionIdx",
+                    "    - R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx"
+                ]
+            },
+            {
+                "name": "Version 0.4.0",
+                "description": [
+                    "- Removed GIC mask control for following API.[ASDRCXPOSAL-665]",
+                    "    - R_OSAL_InterruptDisableIsr",
+                    "- Removed unnecessary device information.[ASDRCXPOSAL-665]",
+                    "    - GFX",
+                    "    - RTDMAC"
+                ]
+            },
+            {
+                "name": "Version 0.5.0",
+                "description": [
+                    "- Improved software structure.[ASDRCXPOSAL-628]"
+                ]
+            },
+            {
+                "name": "Version 0.6.0",
+                "description": [
+                    "- Fixed the include path due to the path change of the header file.[ASDRCXPOSAL-665]"
+                ],
+                "custom_table": {
+                    "table_name": "Table 2-1 API Status List",
+                    "table": [{
+                            "c1": "60",
+                            "c2": "20",
+                            "c3": "20"
+                        },
+                        {
+                            "c1": "API Name",
+                            "c2": "Status",
+                            "c3": "Annotation"
+                        },
+                        {
+                            "c1": "R_OSAL_Initialize(void)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n Temporary implementation: Enables Power and Clock for all modules(ASDRCXPOSAL-447, ASDRCXPOSAL-461) \\n fixed issue: ASDRCXPOSAL-497"
+                        },
+                        {
+                            "c1": "R_OSAL_DeInitialize(void)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n Temporary implementation: Enables Power and Clock for all modules(ASDRCXPOSAL-447, ASDRCXPOSAL-461) \\n fixed issue: ASDRCXPOSAL-553"
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadCreate(const st_osal_thread_config_t* const p_config, osal_thread_id_t thread_id, osal_thread_handle_t* const p_handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadSleepUntilTimeStamp(const st_osal_time_t* const p_time_stamp)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadSleepForTimePeriod(osal_milli_sec_t time_period)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadSelf(osal_thread_handle_t* const p_handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadEqual(osal_thread_handle_t handle1, osal_thread_handle_t handle2, bool* const p_result)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadJoin(osal_thread_handle_t handle, int64_t* const p_return_value)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThreadInitializeThreadConfigSt(st_osal_thread_config_t* const config)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexCreate(osal_mutex_id_t mutex_id, osal_mutex_handle_t* const p_handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexDestroy(osal_mutex_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexLockUntilTimeStamp(osal_mutex_handle_t handle, const st_osal_time_t* const p_time_stamp)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexLockForTimePeriod(osal_mutex_handle_t handle, osal_milli_sec_t time_period)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexTryLock(osal_mutex_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMutexUnlock(osal_mutex_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondCreate(osal_cond_id_t cond_id, osal_cond_handle_t* const p_handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondDestroy(osal_cond_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondWaitForTimePeriod(osal_cond_handle_t cond_handle, osal_mutex_handle_t mutex_handle, osal_milli_sec_t time_period)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n fixed issue: ASDRCXPOSAL-454"
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondWaitUntilTimeStamp(osal_cond_handle_t cond_handle, osal_mutex_handle_t mutex_handle, const st_osal_time_t* const p_time_stamp)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n fixed issue: ASDRCXPOSAL-454"
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondBroadcast(osal_cond_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncCondSignal(osal_cond_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ThsyncMemoryBarrier(void)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-450) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqCreate(const st_osal_mq_config_t* const p_config, osal_mq_id_t mq_Id, osal_mq_handle_t* const p_handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqDelete(osal_mq_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqSendUntilTimeStamp(osal_mq_handle_t handle, const st_osal_time_t* const p_time_stamp, const void* p_buffer, size_t buffer_size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqSendForTimePeriod(osal_mq_handle_t handle, osal_milli_sec_t time_period, const void* p_buffer, size_t buffer_size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqReceiveUntilTimeStamp(osal_mq_handle_t handle, const st_osal_time_t* const p_time_stamp, void* p_buffer, size_t buffer_size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqReceiveForTimePeriod(osal_mq_handle_t handle, osal_milli_sec_t time_period, void* p_buffer, size_t buffer_size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqIsFull(osal_mq_handle_t handle, bool* const p_result)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqIsEmpty(osal_mq_handle_t handle, bool* const p_result)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqGetConfig(osal_mq_handle_t handle, st_osal_mq_config_t* const p_config)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqReset(osal_mq_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MqInitializeMqConfigSt(st_osal_mq_config_t* const config)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_ClockTimeGetTimeStamp(e_osal_clock_type_t clock_type, st_osal_time_t* const p_time_stamp)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n High resolution timer is unsupported(ASDRCXPOSAL-452)"
+                        },
+                        {
+                            "c1": "R_OSAL_ClockTimeCalculateTimeDifference(const st_osal_time_t* const p_time2, const st_osal_time_t* const p_time1, osal_nano_sec_t* const p_time_difference)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptGetNumOfIrqChannels(osal_device_handle_t handle, size_t* const p_numOfChannels)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptRegisterIsr(osal_device_handle_t handle, uint64_t irq_channel, e_osal_interrupt_priority_t priority_value, p_osal_isr_func_t irqHandlerFunction, void* irq_arg)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptUnregisterIsr(osal_device_handle_t handle, uint64_t irq_channel, p_osal_isr_func_t irqHandlerFunction)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptEnableIsr(osal_device_handle_t handle, uint64_t irq_channel)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptDisableIsr(osal_device_handle_t handle, uint64_t irq_channel)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n Removed GIC mask control(ASDRCXPOSAL-665)"
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptIsISRContext(bool* const p_is_isr)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_InterruptSetIsrPriority(osal_device_handle_t handle, uint64_t irq_channel, e_osal_interrupt_priority_t priority_value)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfDevices(const char* deviceType, size_t* const p_numOfDevices)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetDeviceList(const char* device_type_name, char* p_buffer, size_t buffer_size, size_t* const p_num_of_byte)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoDeviceOpen(const char* id, osal_device_handle_t* const p_handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoDeviceClose(osal_device_handle_t handle)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead8(osal_device_handle_t handle, uintptr_t offset, uint8_t* const p_data)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead16(osal_device_handle_t handle, uintptr_t offset, uint16_t* const p_data)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead32(osal_device_handle_t handle, uintptr_t offset, uint32_t* const p_data)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoRead64(osal_device_handle_t handle, uintptr_t offset, uint64_t* const p_data)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite8(osal_device_handle_t handle, uintptr_t offset, uint8_t data)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite16(osal_device_handle_t handle, uintptr_t offset, uint16_t data)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite32(osal_device_handle_t handle, uintptr_t offset, uint32_t data)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoWrite64(osal_device_handle_t handle, uintptr_t offset, uint64_t data)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead8(osal_device_handle_t handle, uintptr_t offset, uint8_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead16(osal_device_handle_t handle, uintptr_t offset, uint16_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead32(osal_device_handle_t handle, uintptr_t offset, uint32_t* p_data, size_t size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockRead64(osal_device_handle_t handle, uintptr_t offset, uint64_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite8(osal_device_handle_t handle, uintptr_t offset, const uint8_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite16(osal_device_handle_t handle, uintptr_t offset, const uint16_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite32(osal_device_handle_t handle, uintptr_t offset, const uint32_t* p_data, size_t size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoBlockWrite64(osal_device_handle_t handle, uintptr_t offset, const uint64_t* p_data, size_t size)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetDeviceAxiBusId(osal_device_handle_t device, osal_axi_bus_id_t * const axi_id)",
+                            "c2": "Not support",
+                            "c3": "This API will be deprecated and removed. User shall not be used.(ASDRCXPOSAL-456) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiBusIdFromDeviceName(const char * device_name, osal_axi_bus_id_t * const axi_id)",
+                            "c2": "Not support",
+                            "c3": "This API will be deprecated and removed. User shall not be used.(ASDRCXPOSAL-456) "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiBusNameList(char * p_buffer, size_t buffer_size, size_t * const p_num_of_byte)",
+                            "c2": "Not support",
+                            "c3": ""
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiBusName(osal_axi_bus_id_t axi_id, char * p_buffer, size_t buffer_size, size_t * const p_num_of_byte)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfAxiIdsForAxiBusName ( const char * p_axi_bus_name, size_t * p_num_of_axi_ids )",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiIdListForAxiBusName (const char * p_axi_bus_name, osal_axi_bus_id_t * p_buffer, size_t num_of_max_entry, size_t * const p_num_of_written_axi_ids)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfAxiIdsForDeviceHdl (osal_device_handle_t device_hdl, size_t * const p_num_of_axi_ids)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiIdListForDeviceHdl (osal_device_handle_t device_hdl, osal_axi_bus_id_t * p_buffer, size_t num_of_max_entry, size_t * const p_num_of_written_axi_ids)",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetNumOfAxiIdsForDeviceName ( const char * p_device_name, size_t * const p_num_of_axi_ids )",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_IoGetAxiIdListForDeviceName (const char * p_device_name, osal_axi_bus_id_t * p_buffer, size_t num_of_max_entry, size_t * const p_num_of_written_axi_ids )",
+                            "c2": "Not support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetRequiredState(osal_device_handle_t handle, e_osal_pm_required_state_t state, bool applyImmediate)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetRequiredState(osal_device_handle_t handle, e_osal_pm_required_state_t* const p_state)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmWaitForState(osal_device_handle_t handle, e_osal_pm_state_t state, osal_milli_sec_t time_period)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetState(osal_device_handle_t handle, e_osal_pm_state_t* const p_state)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetPolicy(osal_device_handle_t handle, e_osal_pm_policy_t policy, bool applyImmediate)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetPolicy(osal_device_handle_t handle, e_osal_pm_policy_t* const p_policy)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetResetState(osal_device_handle_t handle, e_osal_pm_reset_state_t state)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetResetState(osal_device_handle_t handle, e_osal_pm_reset_state_t* const p_state)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmGetLowestIntermediatePowerState(osal_device_handle_t handle, e_osal_pm_state_t* const state)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_PmSetPostClock(osal_device_handle_t handle, bool clock_enable, uint32_t clock_divider)",
+                            "c2": "Not Support",
+                            "c3": "This API is dummy implementation(ASDRCXPOSAL-447) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrOpen(const st_osal_mmngr_config_t * const config, osal_memory_manager_handle_t * const hndl_mmngr)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrOpenFromRegionIdx(const st_osal_mmngr_config_t * const config, osal_memory_region_idx_t region_idx, osal_memory_manager_handle_t * const hndl_mmngr)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453)"
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrClose(osal_memory_manager_handle_t hndl_mmngr)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrAlloc(osal_memory_manager_handle_t hndl_mmngr, size_t size, size_t alignment, osal_memory_buffer_handle_t * const buffer_obj)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n Memory region is uncached(ASDRCXPOSAL-449)"
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrDealloc(osal_memory_manager_handle_t hndl_mmngr, osal_memory_buffer_handle_t buffer_obj)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetConfig(osal_memory_manager_handle_t hndl_mmngr, st_osal_mmngr_config_t * const config)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetOsalMaxConfig(st_osal_mmngr_config_t * const config)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx(osal_memory_region_idx_t region_idx, st_osal_mmngr_config_t * const config)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrInitializeMmngrConfigSt(st_osal_mmngr_config_t * const config)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrRegisterMonitor(osal_memory_manager_handle_t hndl_mmngr, e_osal_mmngr_event_t monitored_event, fp_osal_memory_mngr_cb_t monitor_handler, void * user_arg)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetCpuPtr(osal_memory_buffer_handle_t memory_buffer_obj_hndl, void ** const cpu_ptr)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetConstCpuPtr(osal_memory_buffer_handle_t memory_buffer_obj_hndl, const void ** const const_cpu_ptr)",
+                            "c2": "Not Support",
+                            "c3": " "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrFlush(osal_memory_buffer_handle_t memory_buffer_obj_hndl, size_t offset, size_t size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n Memory region is uncached(ASDRCXPOSAL-449)"
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrInvalidate(osal_memory_buffer_handle_t memory_buffer_obj_hndl, size_t offset, size_t size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) \\n Memory region is uncached(ASDRCXPOSAL-449)"
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetHwAddr(osal_memory_buffer_handle_t memory_buffer_obj_hndl, osal_axi_bus_id_t axi_id, uintptr_t * const hw_addr)",
+                            "c2": "Partially Support",
+                            "c3": "The value of axi_id must be set to something other than OSAL_AXI_BUS_ID_INVALID. OSAL_AXI_BUS_ID_INVALIDwill result in an error, other values will have the same behavior. "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrGetSize(osal_memory_buffer_handle_t memory_buffer_obj_hndl, size_t * const size)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrCheckBuffer(osal_memory_buffer_handle_t memory_buffer_obj_hndl)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrDebugMmngrPrint(osal_memory_manager_handle_t hndl_mmngr, FILE * output)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_MmngrDebugBufferPrint(osal_memory_buffer_handle_t hndl_buffer, FILE * output)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        },
+                        {
+                            "c1": "R_OSAL_GetVersion(void)",
+                            "c2": "Partially Support",
+                            "c3": "Partially verified against normal use-case(ASDRCXPOSAL-453) "
+                        }
+                    ]
+                }
+
+            }
+        ]
+    },
+    "kil": {
+        "description": [
+
+        ],
+        "table": [{
+            "number": " ",
+            "description": " None",
+            "work_around": " "
+        }]
+    },
+    "fil": {
+        "description": [
+
+        ],
+        "table": [{
+                "number": "ASDRCXPOSAL-451",
+                "description": "[Ver 0.2.0] Supported devices are IMR, ISP and ICCOM due to resource limitations"
+            },
+            {
+                "number": "ASDRCXPOSAL-475",
+                "description": "[Ver 0.2.0] After R_OSAL_Deinitialize() is called twice, R_OSAL_Initialize() returns OSAL_RETURN_STATE."
+            },
+            {
+                "number": "ASDRCXPOSAL-472",
+                "description": "[Ver 0.2.0] When R_OSAL_MmngrOpen() is called with 'config.max_registered_monitors_cbs = 0', it returns OSAL_RETURN_MEM."
+            },
+            {
+                "number": "ASDRCXPOSAL-469",
+                "description": "[Ver 0.2.0] The failure of interrupt resource creation causes the exception in R_OSAL_Initialize()."
+            },
+            {
+                "number": "ASDRCXPOSAL-454",
+                "description": "[Ver 0.3.0]  If call R_OSAL_ThsyncCondWaitForTimePeriod() or R_OSAL_ThsyncCondWaitUntilTimeStamp() with an unlocked mutex, R_OSAL_Deinitialize() returns OSAL_RETURN_BUSY."
+            },
+            {
+                "number": "ASDRCXPOSAL-461",
+                "description": "[Ver 0.3.0] OSAL Power control is set directly to registers without using the SYSC/CPG Driver included in the BSP."
+            },
+            {
+                "number": "ASDRCXPOSAL-497",
+                "description": "[Ver 0.3.0] Call R_OSAL_Initialize() and R_OSAL_Deinitialize(), R_OSAL_Initialize() return OSAL_RETURN_FAIL"
+            },
+            {
+                "number": "ASDRCXPOSAL-553",
+                "description": "[Ver 0.3.0] Call R_OSAL_Initialize() and R_OSAL_Deinitialize(), R_OSAL_Deinitialize() return OSAL_RETURN_FAIL"
+            },
+            {
+                "number": "ASDRCXPOSAL-577",
+                "description": "[Ver 0.3.0] When R_OSAL_IoDeviceOpen is called with a device that dose not have IO access informaion, it return OSAL_RETURN_FAIL"
+            }
+        ]
+    },
+    "rev": {
+        "description": [
+
+        ],
+        "table": [{
+                "rev": "0.0.1",
+                "date": "2022/2/24",
+                "page": "-",
+                "sum": "New creation"
+            },
+            {
+                "rev": "0.1.0",
+                "date": "2022/3/9",
+                "page": [
+                    "P2 \\n ",
+                    "P4 "
+                ],
+                "sum": [
+                    "Update restriction \\n ",
+                    "Update upgrade information and API status "
+                ]
+            },
+            {
+                "rev": "0.2.0",
+                "date": "2022/4/5",
+                "page": [
+                    "P2 \\n ",
+                    "P4 \\n ",
+                    "P13 "
+                ],
+                "sum": [
+                    "Update Restrictions: Remove ASDRCXPOSAL-451 \\n ",
+                    "Update upgrade information \\n ",
+                    "Update Fixed Issues List: Add ASDRCXPOSAL-475, ASDRCXPOSAL-472, ASDRCXPOSAL-469"
+                ]
+            },
+            {
+                "rev": "0.3.0",
+                "date": "2022/5/12",
+                "page": [
+                    "P2 \\n \\n \\n ",
+                    "P4 \\n ",
+                    "P14 "
+                ],
+                "sum": [
+                    "Update Restrictions: \\n  - Add ASDRCXPOSAL-622, ASDRCXPOSAL-623 \\n  - Remove ASDRCXPOSAL-454, ASDRCXPOSAL-461 \\n ",
+                    "Update upgrade information \\n ",
+                    "Update Fixed Issues List: \\n  - Add ASDRCXPOSAL-497, ASDRCXPOSAL-553, ASDRCXPOSAL-577"
+                ]
+            },
+            {
+                "rev": "0.4.0",
+                "date": "2022/5/31",
+                "page": [
+                    "P5"
+                ],
+                "sum": [
+                    "Update upgrade information"
+                ]
+            },
+            {
+                "rev": "0.5.0",
+                "date": "2023/1/12",
+                "page": [
+                    "P1 \\n ",
+                    "P5"
+                ],
+                "sum": [
+                    "Updated Copyright year in Licence \\n ",
+                    "Updated upgrade information"
+                ]
+            }
+        ]
+    }
+}

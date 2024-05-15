@@ -1,0 +1,22 @@
+modi,osal_internal_cond_initialize,03_017,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_init,pthread_mutexattr_init,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_settype,pthread_mutexattr_settype,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfCond,R_OSAL_RCFG_GetNumOfCond,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetCondInfo,R_OSAL_RCFG_GetCondInfo,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,
+%,AMSTB_pthread_cond_init,pthread_cond_init,,,,,,,,,,
+%,AMSTB_pthread_mutex_init,pthread_mutex_init,,,,,,,,,,
+%,AMSTB_pthread_mutexattr_destroy,pthread_mutexattr_destroy,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_settype@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfCond@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetCondInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_cond_init@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_pthread_mutex_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutexattr_destroy@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetCondInfo@AM_count,osal_internal_cond_initialize@@,;
+,0,0,2,OSAL_RETURN_OK,0,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0,0,0,OSAL_RETURN_OK,0,0,0,0,0,0,OSAL_RETURN_CONF,;R_OSAL_RCFG_GetNumOfCond returns 0.
+,-1,0,2,OSAL_RETURN_OK,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_mutexattr_init() return is not 0
+,0,-1,2,OSAL_RETURN_OK,0,0,0,0,0,0,OSAL_RETURN_FAIL,;pthread_mutexattr_settype() return is not 0
+,0,0,2,OSAL_RETURN_FAIL,0,0,0,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetCondInfo() return OSAL_RETURN_FAIL
+,0,0,2,OSAL_RETURN_OK,0,0,0,0,0,1,OSAL_RETURN_FAIL,;The aquired cond_control is NULL
+,0,0,2,OSAL_RETURN_OK,0,-1,-1,0,0,0,OSAL_RETURN_FAIL,;pthread_cond_init() return is not 0
+,0,0,2,OSAL_RETURN_OK,0,0,0,-1,0,0,OSAL_RETURN_FAIL,;pthread_mutex_init() return is not 0
+,0,0,2,OSAL_RETURN_OK,0,0,0,0,-1,0,OSAL_RETURN_FAIL,;pthread_mutexattr_destroy() return is not 0

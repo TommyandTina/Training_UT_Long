@@ -1,0 +1,15 @@
+modi,R_OSAL_RCFG_MqReceiveUntilTimeStamp,04_011,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_res_cfg_message.c/gsp_osal_mq_control,r_osal_res_cfg_message.c/gs_osal_num_of_mq_table,,,,,,,,,,,,,
+0,0,0,,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mq_active_check_cmn,r_osal_rcfg_mq_active_check_cmn,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MqReceiveUntilTimeStamp,R_OSAL_HIF_MqReceiveUntilTimeStamp,,,,,,,,,,,,,
+#COMMENT,r_osal_res_cfg_message.c/gsp_osal_mq_control,r_osal_res_cfg_message.c/gs_osal_num_of_mq_table,@handle,g_st_osal_mq_control[0].handle_id,g_st_osal_mq_control[0].usr_config,g_st_osal_mq_rcfg_config[0].config.msg_size,@p_time_stamp,g_st_osal_time.tv_sec,g_st_osal_time.tv_nsec,@p_buffer,@buffer_size,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mq_active_check_cmn@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MqReceiveUntilTimeStamp@AMIN_return,R_OSAL_RCFG_MqReceiveUntilTimeStamp@@,;
+,g_st_osal_mq_control,2,g_st_osal_mq_control,OSAL_RES_CFG_MESSAGE_HANDLE_ID,g_st_osal_mq_rcfg_config,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,0xFFFFFF00,2,0,OSAL_RES_CFG_MESSAGE_HANDLE_ID,g_st_osal_mq_rcfg_config,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle less than (uintptr_t)&gsp_osal_mq_control[0]
+,0xFFFFFF00,2,0xFFFFFFF0,OSAL_RES_CFG_MESSAGE_HANDLE_ID,g_st_osal_mq_rcfg_config,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;(uintptr_t)handle more than (uintptr_t)&gsp_osal_mq_control[(gs_osal_num_of_mq_table - (size_t)1)]
+,0xFFFFFF00,2,0xFFFFFF01,OSAL_RES_CFG_MESSAGE_HANDLE_ID,g_st_osal_mq_rcfg_config,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;0U not equal ((uintptr_t)handle & (sizeof(uintptr_t) - 1U))
+,g_st_osal_mq_control,2,g_st_osal_mq_control,OSAL_RES_CFG_INVALID_RES_HANDLE_ID,g_st_osal_mq_rcfg_config,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is not equal OSAL_MESSAGE_HANDLE_ID
+,g_st_osal_mq_control,2,g_st_osal_mq_control,OSAL_RES_CFG_MESSAGE_HANDLE_ID,0,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->usr_config is NULL
+,g_st_osal_mq_control,2,g_st_osal_mq_control,OSAL_RES_CFG_MESSAGE_HANDLE_ID,g_st_osal_mq_rcfg_config,1,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_PAR,;buffer_size is not equal handle->usr_config->config.msg_size
+,g_st_osal_mq_control,2,g_st_osal_mq_control,OSAL_RES_CFG_MESSAGE_HANDLE_ID,g_st_osal_mq_rcfg_config,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_STATE,OSAL_RETURN_OK,OSAL_RETURN_STATE,;r_osal_rcfg_mq_active_check_cmn() return non-OSAL_RETURN_OK.
+,g_st_osal_mq_control,2,g_st_osal_mq_control,OSAL_RES_CFG_MESSAGE_HANDLE_ID,g_st_osal_mq_rcfg_config,4,g_st_osal_time,200,500000000,array_uint32,4,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_HIF_MqReceiveUntilTimeStamp return OSAL_RETURN_FAIL

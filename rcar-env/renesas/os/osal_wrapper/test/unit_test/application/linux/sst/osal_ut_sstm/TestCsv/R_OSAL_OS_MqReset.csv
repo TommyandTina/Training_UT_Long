@@ -1,0 +1,21 @@
+modi,R_OSAL_OS_MqReset,19_110,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_mutex_lock_for_time_period,r_osal_os_mq_mutex_lock_for_time_period,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_receive,r_osal_os_mq_receive,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_mq_receive,r_osal_os_mq_receive,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondBroadcast,R_OSAL_OS_CondBroadcast,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+#COMMENT,@mq,@mq[0].numofmsg,@mq[0].p_osal_config,@mq[0].p_osal_config[0].max_num_msg,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_mutex_lock_for_time_period@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_receive@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_os_mq_receive@AMIN_mq_numofmsg,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondBroadcast@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_OS_MqReset@@,;
+,g_st_osal_os_mq_t,1,g_st_osal_mq_config_t,1,OSAL_RETURN_OK,0,1,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation
+,0,1,g_st_osal_mq_config_t,1,OSAL_RETURN_OK,0,1,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;mq is NULL
+,g_st_osal_os_mq_t,1,g_st_osal_mq_config_t,1,OSAL_RETURN_FAIL,0,1,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_mq_mutex_lock_for_time_period returns OSAL_RETURN_FAIL
+,g_st_osal_os_mq_t,0,g_st_osal_mq_config_t,1,OSAL_RETURN_OK,0,1,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;mq->numofmsg is not equal mq->p_osal_config->max_num_msg
+,g_st_osal_os_mq_t,1,g_st_osal_mq_config_t,1,OSAL_RETURN_OK,0,0,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc returns NULL
+,g_st_osal_os_mq_t,1,g_st_osal_mq_config_t,1,OSAL_RETURN_OK,0,1,0,0,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_OS_CondBroadcast returns OSAL_RETURN_FAIL (Unlock is OK)
+,g_st_osal_os_mq_t,1,g_st_osal_mq_config_t,1,OSAL_RETURN_OK,0,1,0,0,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_CondBroadcast returns OSAL_RETURN_FAIL (Unlock is FAIL)
+,g_st_osal_os_mq_t,1,g_st_osal_mq_config_t,1,OSAL_RETURN_OK,0,1,0,0,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock returns OSAL_RETURN_FAIL

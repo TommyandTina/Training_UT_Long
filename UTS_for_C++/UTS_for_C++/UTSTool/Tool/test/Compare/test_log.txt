@@ -1,0 +1,78 @@
+[I][==========] RunAllTests() START
+[I][----------] 16 tests from UT_CompareTestFunc
+[I][ RUN ] UT_CompareTestFunc_ALL.CompareTestFunc_0001
+[V]<OK> ReturnValue1 [output] E_OK(0) <==> [expected] E_OK(0)
+[V]<OK> *ReturnValue2 [output] null(0) <==> [expected] null(0)
+[V]<OK> core8 [output] null(0) <==> [expected] null(0)
+[V]<OK> index11 [output] 0x00000001(0) <==> [expected] 0x00000001(0)
+[V]<OK> test12->data[10][11] [output] 0x00000001(0) <==> [expected] 0x00000001(0)
+[V]<OK> g_core16.core_type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> g_core16.core_num [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> g_impdev.CbFunc [output] null(0) <==> [expected] null(0)
+[V]<OK> r_imr_osal_msg_create.channel [output] IMR_CH0(0) <==> [expected] IMR_CH0(0)
+[V]<OK> r_imr_osal_msg_destroy.*index [output] null(0) <==> [expected] null(0)
+[V]<OK> r_imr_osal_io_create.*p_config [output] null(0) <==> [expected] null(0)
+[V]<OK> r_imr_osal_io_destroy.config.type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> r_imr_osal_io_destroy.config.ch [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V][ RESULT ] CompareTestFunc-001: OK
+[ OK ] UT_CompareTestFunc_ALL.CompareTestFunc_0001
+[I][ RUN ] UT_CompareTestFunc_ALL.CompareTestFunc_0002
+[V]<OK> ReturnValue1 [output] E_OK(0) <==> [expected] E_OK(0)
+[V]<OK> *ReturnValue2 [output] not null(0) <==> [expected] not null(0)
+[V]<OK> test4->state[0] [output] READY(0) <==> [expected] READY(0)
+[V]<OK> test4->state[1] [output] READY(0) <==> [expected] READY(0)
+[V]<OK> test4->state[1] [output] READY(0) <==> [expected] READY(0)
+[V]<OK> test7 [output] not change(0) <==> [expected] not change(0)
+[V]<OK> core8 [output] not null(0) <==> [expected] not null(0)
+[V]<OK> core8.core_type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> core8.core_num [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> index11 [output] 0x00000001(0) <==> [expected] 0x00000001(0)
+[V]<OK> test12->data[10][11] [output] 0x00000001(0) <==> [expected] 0x00000001(0)
+[V]<OK> test13->data_10_[0] [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> test13->data_10_[1] [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> g_core16.core_type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> g_core16.core_num [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> g_impdev.CbFunc [output] not null(0) <==> [expected] not null(0)
+[V]<OK> r_imr_osal_msg_create.channel [output] IMR_CH0(0) <==> [expected] IMR_CH0(0)
+[V]<OK> r_imr_osal_msg_destroy.*index [output] not null(0) <==> [expected] not null(0)
+[V]<OK> r_imr_osal_msg_destroy.index [output] 0xAAAABBBB(0) <==> [expected] 0xAAAABBBB(0)
+[V]<OK> r_imr_osal_io_create.*p_config [output] not null(0) <==> [expected] not null(0)
+[V]<OK> r_imr_osal_io_create.*p_config.type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> r_imr_osal_io_create.*p_config.ch [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> r_imr_osal_io_destroy.config.type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> r_imr_osal_io_destroy.config.ch [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V][ RESULT ] CompareTestFunc-002: OK
+[ OK ] UT_CompareTestFunc_ALL.CompareTestFunc_0002
+[I][ RUN ] UT_CompareTestFunc_ALL.CompareTestFunc_0003
+[V]<OK> ReturnValue1 [output] E_OK(0) <==> [expected] E_OK(0)
+[V]<OK> *ReturnValue2 [output] &g_v3hdevparam(0) <==> [expected] &g_v3hdevparam(0)
+[V]<OK> test4->state[0] [output] READY(0) <==> [expected] READY(0)
+[V]<OK> test4->state[1] [output] READY(1) <==> [expected] READY(1)
+[V]<OK> test4->state[2] [output] STOP(1) <==> [expected] STOP(1)
+[V]<OK> test7 [output] not change(0) <==> [expected] not change(0)
+[V]<OK> core8 [output] not null(0) <==> [expected] not null(0)
+[V]<OK> core8.core_type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> core8.core_num [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> index11 [output] 0x00000001(0) <==> [expected] 0x00000001(0)
+[V]<OK> test12->data[10][11] [output] 0x00000001(0) <==> [expected] 0x00000001(0)
+[V]<OK> test13->data_10_[0] [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> test13->data_10_[1] [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> test13->data_10_[2] [output] 0xCCCCCCCC(0) <==> [expected] 0xCCCCCCCC(0)
+[V]<OK> g_core16.core_type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> g_core16.core_num [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> g_impdev.CbFunc [output] &callback_func(0) <==> [expected] &callback_func(0)
+[V]<OK> r_imr_osal_msg_create.channel [output] IMR_CH0(0) <==> [expected] IMR_CH0(0)
+[V]<OK> r_imr_osal_msg_destroy.*index [output] not null(0) <==> [expected] not null(0)
+[V]<OK> r_imr_osal_msg_destroy.index [output] 0xAAAABBBB(0) <==> [expected] 0xAAAABBBB(0)
+[V]<OK> r_imr_osal_io_create.*p_config [output] not null(0) <==> [expected] not null(0)
+[V]<OK> r_imr_osal_io_create.*p_config.type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> r_imr_osal_io_create.*p_config.ch [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V]<OK> r_imr_osal_io_destroy.config.type [output] 0x0000AAAA(0) <==> [expected] 0x0000AAAA(0)
+[V]<OK> r_imr_osal_io_destroy.config.ch [output] 0x0000BBBB(0) <==> [expected] 0x0000BBBB(0)
+[V][ RESULT ] CompareTestFunc-003: OK
+[ OK ] UT_CompareTestFunc_ALL.CompareTestFunc_0003
+[I][  PASSED  ] 2 tests from UT_CompareTestFunc
+[I][Result ] UT_CompareTestFunc : OK = 2, NG = 0, Skip = 0
+[I][==========] RunAllTests() END
+[I]
+ 2 PASSED TEST

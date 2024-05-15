@@ -1,0 +1,12 @@
+modi,R_OSAL_OS_MutexTryLock,03_304,2,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_trylock,pthread_mutex_trylock,,,,,,,,,,
+#COMMENT,$@mutex,AMSTB_SrcFile.c/AMSTB_pthread_mutex_trylock@AMIN_return,R_OSAL_OS_MutexTryLock@@,;,,,,,,,,
+,1,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,,
+,0,0,OSAL_RETURN_FAIL,;mutex is NULL.,,,,,,,,
+,1,16,OSAL_RETURN_BUSY,;pthread_mutex_trylock() return EBUSY.,,,,,,,,
+,1,11,OSAL_RETURN_BUSY,;pthread_mutex_trylock() return EAGAIN.,,,,,,,,
+,1,45,OSAL_RETURN_BUSY,;pthread_mutex_trylock() return EDEADLK.,,,,,,,,
+,1,22,OSAL_RETURN_BUSY,;pthread_mutex_trylock() return EINVAL.,,,,,,,,
+,1,1,OSAL_RETURN_FAIL,;pthread_mutex_trylock() return non-EOK.,,,,,,,,

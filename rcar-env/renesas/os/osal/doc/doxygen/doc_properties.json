@@ -1,0 +1,746 @@
+{
+    "module_name": "OSAL",
+    "filename": "R-Car_OSAL_APISpecification",
+    "module_short_name": "OSAL",
+    "document_status": "Released",
+    "document_number": "LLWEB-10094080",
+    "history": [
+        {
+            "version": "2.10E",
+            "date": "Apr 12, 2021",
+            "change": [
+                {
+                    "page": "1",
+                    "content": ""
+                }
+            ]
+        },
+        {
+            "version": "2.20E",
+            "date": "Mar 17, 2021",
+            "change": [
+                {
+                    "page": "17, 18, 19, 20",
+                    "content": "changed parameter check for mq send receive."
+                },
+                {
+                    "page": " ",
+                    "content": "R_OSAL_MqSendUntilTimeStamp, R_OSAL_MqSendForTimePeriod, R_OSAL_MqReceiveUntilTimeStamp and R_OSAL_MqReceiveForTimePeriod"
+                },
+                {
+                    "page": "73, 74",
+                    "content": "Changed API definition."
+                },
+                {
+                    "page": " ",
+                    "content": "Replaced OSAL_RETURN_PERMITTED to OSAL_RETURN_PROHIBITED"
+                },
+                {
+                    "page": " ",
+                    "content": "Removed OSAL_RETURN_CANCELED"
+                },
+                {
+                    "page": "77",
+                    "content": "Fixed OSAL types definition."
+                },
+                {
+                    "page": " ",
+                    "content": "char* task_name -> const char* task_name in st_osal_thread_config_t"
+                },
+                {
+                    "page": "48",
+                    "content": "Updated function argument description."
+                },
+                {
+                    "page": " ",
+                    "content": "R_OSAL_PmSetPostClock(): Argument range: 0 <= clock_divider < 64"
+                },
+                {
+                    "page": "54, 55, 58, 59, 64",
+                    "content": "Added a note about 64-byte boundaries to match ARM's cache size."
+                },
+                {
+                    "page": " ",
+                    "content": "R_OSAL_MmngrAlloc(alignment, size), R_OSAL_MmngrFlush(alignment, size), R_OSAL_MmngrInvalidate(alignment, size)"
+                },
+                {
+                    "page": "51, 52",
+                    "content": "Added missing return code"
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_STATE"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_Deinitialize()"
+                },
+                {
+                    "page": "38",
+                    "content": "Added missing return code"
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_UNKNOWN_NAME"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_IoGetDeviceList()"
+                },
+                {
+                    "page": "73, 74",
+                    "content": "Fixed typo OSAL_RETURN_UNKOWN_NAME to OSAL_RETURN_UNKNOWN_NAME"
+                },
+                {
+                    "page": "80",
+                    "content": "Updated struct st_osal_sub_version"
+                },
+                {
+                    "page": " ",
+                    "content": "majorVeresion/minorVersion/patchVersion -> major/minor/patch"
+                }
+            ]
+        },
+        {
+            "version": "2.30E",
+            "date": "Apr 12, 2021",
+            "change": [
+                {
+                    "page": "68, 70",
+                    "content": "Updated applyImmediate description."
+                },
+                {
+                    "page": " ",
+                    "content": "R_OSAL_PmSetRequiredState() and R_OSAL_PmSetPolicy()"
+                },
+                {
+                    "page": "106",
+                    "content": "Added argument value description"
+                }
+            ]
+        },
+        {
+            "version": "2.40E",
+            "date": "May 14, 2021",
+            "change": [
+                {
+                    "page": "17, 20, 28, 32",
+                    "content": "Replace 'sleep time' to 'timeout' in api description"
+                },
+                {
+                    "page": "All",
+                    "content": "Fixed to maintain consistency with the xOS1 development."
+                }
+            ]
+        },
+        {
+            "version": "2.50E",
+            "date": "June 5, 2021",
+            "change": [
+                {
+                    "page": "76",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_OK"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_MmngrClose"
+                },
+                {
+                    "page": "74, 75, 78, 79",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_PAR"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_MmngrAlloc, R_OSAL_MmngrCheckBuffer, R_OSAL_MmngrDebugMmngrPrint and R_OSAL_MmngrDebugBufferPrint"
+                },
+                {
+                    "page": "54, 75",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_MEM"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_IoGetAxiBusNameList and R_OSAL_MmngrCheckBuffer"
+                },
+                {
+                    "page": "69, 74, 75, 77, 80 - 83, 85, 87 - 89",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_FAIL"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_PmSetPostClock, R_OSAL_MmngrOpen, R_OSAL_MmngrClose, R_OSAL_MmngrAlloc, R_OSAL_MmngrDealloc, R_OSAL_MmngrGetConfig, R_OSAL_MmngrRegisterMonitor, R_OSAL_MmngrGetCpuPtr, R_OSAL_MmngrGetConstCpuPtr, R_OSAL_MmngrFlush, R_OSAL_MmngrInvalidate, R_OSAL_MmngrGetHwAddr, R_OSAL_MmngrGetSize and R_OSAL_MmngrCheckBuffer"
+                },
+                {
+                    "page": "89",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_HANDLE"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_MmngrRegisterMonitor"
+                },
+                {
+                    "page": "52 - 55, 77",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_STATE"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_IoGetAxiBusIdFromDeviceName, R_OSAL_IoGetAxiBusName, R_OSAL_IoGetAxiBusNameList, R_OSAL_IoGetDeviceAxiBusId and R_OSAL_MmngrDealloc"
+                },
+                {
+                    "page": "74, 85, 89",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_UNSUPPORTED_OPERATION"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_MmngrAlloc, R_OSAL_MmngrRegisterMonitor and R_OSAL_MmngrGetSize"
+                },
+                {
+                    "page": "105",
+                    "content": "Updated variable description in st_osal_mmngr_config."
+                },
+                {
+                    "page": " ",
+                    "content": "memory_limit, max_allowed_allocations and max_registered_monitors_cbs"
+                },
+                {
+                    "page": "65, 69",
+                    "content": "Removed \"Will be supported in the future\""
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_PmSetPostClock and R_OSAL_PmGetLowestIntermediatePowerState"
+                }
+            ]
+        },
+        {
+            "version": "2.51E",
+            "date": "Jun 23, 2021",
+            "change": [
+                {
+                    "page": "1",
+                    "content": "Added OSAL API version"
+                }
+            ]
+        },
+        {
+            "version": "2.60E",
+            "date": "Jul 12, 2021",
+            "change": [
+                {
+                    "page": "All",
+                    "content": "Fixed Doxygen comment style"
+                },
+                {
+                    "page": "Back Cover",
+                    "content": "Added Document Number"
+                }
+            ]
+        },
+        {
+            "version": "2.61E",
+            "date": "Jul 28, 2021",
+            "change": [
+                {
+                    "page": "73, 75, 76, 77, 79, 82, 88",
+                    "content": "Refined return code usage of Memory Manager."
+                },
+                {
+                    "page": " ",
+                    "content": "R_OSAL_MmngrClose, R_OSAL_MmngrAlloc, R_OSAL_MmngrDealloc, R_OSAL_MmngrGetConfig, R_OSAL_MmngrGetOsalMaxConfig, R_OSAL_MmngrRegisterMonitor, R_OSAL_MmngrDebugMmngrPrint"
+                }
+            ]
+        },
+        {
+            "version": "2.70E",
+            "date": "Jul 30, 2021",
+            "change": [
+                {
+                    "page": "5",
+                    "content": "Updated R_OSAL_Deinitialize. Added OSAL_RETURN_BUSY to return code and Added descriptions to Note"
+                },
+                {
+                    "page": "17",
+                    "content": "Added R_OSAL_ThsyncMemoryBarrier definition"
+                },
+                {
+                    "page": "27",
+                    "content": "Fixed typo in R_OSAL_MqReceiveForTimePeriod"
+                }
+            ]
+        },
+        {
+            "version": "2.80E",
+            "date": "Sep 2, 2021",
+            "change": [
+                {
+                    "page": "all",
+                    "content": "Updated description of API return value"
+                },
+                {
+                    "page": "58, 59",
+                    "content": "Refined return code usage of R_OSAL_IoGetAxiBusName and R_OSAL_IoGetAxiBusNameList."
+                },
+                {
+                    "page": " ",
+                    "content": "in case of \"if provided buffer is too small.\" (OSAL_RETURN_MEM -> OSAL_RETURN_PAR)"
+                },
+                {
+                    "page": "61",
+                    "content": "Refined return code usage of R_OSAL_IoGetDeviceList."
+                },
+                {
+                    "page": " ",
+                    "content": "in case of \"if provided buffer is too small.\" (OSAL_RETURN_FAIL -> OSAL_RETURN_PAR)"
+                },
+                {
+                    "page": "74, 75, 79, 80, 81",
+                    "content": "Added missing API return values."
+                },
+                {
+                    "page": " ",
+                    "content": "Target Return Code: OSAL_RETURN_UNSUPPORTED_OPERATION"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_PmSetRequiredState, R_OSAL_PmGetRequiredState, R_OSAL_PmWaitForState, R_OSAL_PmGetState, R_OSAL_PmSetResetState and R_OSAL_PmGetResetState"
+                },
+                {
+                    "page": "83, 86, 89, 91, 102",
+                    "content": "Refined return code usage of Memory Manager."
+                },
+                {
+                    "page": " ",
+                    "content": "in case of \"if Memory Manager is not opened.\" (OSAL_RETURN_HANDLE -> OSAL_RETURN_STATE)"
+                },
+                {
+                    "page": " ",
+                    "content": "Target API: R_OSAL_MmngrClose, R_OSAL_MmngrAlloc, R_OSAL_MmngrDealloc, R_OSAL_MmngrGetConfig, R_OSAL_MmngrRegisterMonitor, R_OSAL_MmngrDebugMmngrPrint"
+                },
+                {
+                    "page": "all",
+                    "content": "Updated description of struct/enum"
+                },
+                {
+                    "page": "all",
+                    "content": "Updated description of API brief"
+                }
+            ]
+        },
+        {
+            "version": "2.90E",
+            "date": "Oct 1, 2021",
+            "change": [
+                {
+                    "page": "all",
+                    "content": "Specified unique value for enum"
+                }
+            ]
+        },
+        {
+            "version": "2.100E",
+            "date": "Nov.4,2021",
+            "change": [
+                {
+                    "page": "63",
+                    "content": "Add R_OSAL_IoGetAxiIdListForAxiBusName()"
+                },
+                {
+                    "page": "65",
+                    "content": "Add R_OSAL_IoGetAxiIdListForDeviceHdl()"
+                },
+                {
+                    "page": "66",
+                    "content": "Add R_OSAL_IoGetAxiIdListForDeviceName()"
+                },
+                {
+                    "page": "69",
+                    "content": "Add R_OSAL_IoGetNumOfAxiIdsForAxiBusName()"
+                },
+                {
+                    "page": "70",
+                    "content": "Add R_OSAL_IoGetNumOfAxiIdsForDeviceHdl()"
+                },
+                {
+                    "page": "71",
+                    "content": "Add R_OSAL_IoGetNumOfAxiIdsForDeviceName()"
+                }
+            ]
+        },
+        {
+            "version": "2.110E",
+            "date": "Dec.6,2021",
+            "change": [{
+                    "page": "63, 65, 66, 69, 70, 71",
+                    "content": "Add OSAL_RETURN_FAIL"
+                },
+                {
+                    "page": "",
+                    "content": "Target API: R_OSAL_IoGetAxiIdListForAxiBusName(), R_OSAL_IoGetNumOfAxiIdsForAxiBusName(), R_OSAL_IoGetAxiIdListForDeviceName(), R_OSAL_IoGetNumOfAxiIdsForDeviceName(), R_OSAL_IoGetNumOfAxiIdsForDeviceHdl() and R_OSAL_IoGetAxiIdListForDeviceHdl()"
+                }
+            ]
+        },
+        {
+            "version": "3.00E",
+            "date": "Apr.26,2022",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.0.0"
+                },
+                {
+                    "page": "12",
+                    "content": "Added the condition that returns OSAL_RETURN_FAIL to R_OSAL_ThreadSelf()"
+                },
+                {
+                    "page": "50",
+                    "content": "Added the condition that returns OSAL_RETURN_PAR to R_OSAL_InterruptUnregisterIsr()"
+                },
+                {
+                    "page": "112",
+                    "content": "Added new API: R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx()"
+                },
+                {
+                    "page": "119",
+                    "content": "Added new API: R_OSAL_MmngrOpenFromRegionIdx()"
+                },
+                {
+                    "page": "142",
+                    "content": "Added new typedef: osal_memory_region_idx_t"
+                }
+            ]
+        },
+        {
+            "version": "3.10E",
+            "date": "Jun.8,2022",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.1.0"
+                },
+                {
+                    "page": "76",
+                    "content": "Fixed the condition that R_OSAL_IoRead16() returns RETURN_PAR."
+                },
+                {
+                    "page": "77",
+                    "content": "Fixed the condition that R_OSAL_IoRead32() returns RETURN_PAR."
+                },
+                {
+                    "page": "78",
+                    "content": "Fixed the condition that R_OSAL_IoRead64() returns RETURN_PAR."
+                },
+                {
+                    "page": "83",
+                    "content": "Fixed the condition that R_OSAL_IoWrite8() returns RETURN_PAR."
+                },
+                {
+                    "page": "80",
+                    "content": "Fixed the condition that R_OSAL_IoWrite16() returns RETURN_PAR."
+                },
+                {
+                    "page": "81",
+                    "content": "Fixed the condition that R_OSAL_IoWrite32() returns RETURN_PAR."
+                },
+                {
+                    "page": "82",
+                    "content": "Fixed the condition that R_OSAL_IoWrite64() returns RETURN_PAR."
+                },
+                {
+                    "page": "56",
+                    "content": "Fixed the condition that R_OSAL_IoBlockRead8() returns RETURN_PAR."
+                },
+                {
+                    "page": "53",
+                    "content": "Fixed the condition that R_OSAL_IoBlockRead16() returns RETURN_PAR."
+                },
+                {
+                    "page": "54",
+                    "content": "Fixed the condition that R_OSAL_IoBlockRead32() returns RETURN_PAR."
+                },
+                {
+                    "page": "55",
+                    "content": "Fixed the condition that R_OSAL_IoBlockRead64() returns RETURN_PAR."
+                },
+                {
+                    "page": "60",
+                    "content": "Fixed the condition that R_OSAL_IoBlockWrite8() returns RETURN_PAR."
+                },
+                {
+                    "page": "57",
+                    "content": "Fixed the condition that R_OSAL_IoBlockWrite16() returns RETURN_PAR."
+                },
+                {
+                    "page": "58",
+                    "content": "Fixed the condition that R_OSAL_IoBlockWrite32() returns RETURN_PAR."
+                },
+                {
+                    "page": "59",
+                    "content": "Fixed the condition that R_OSAL_IoBlockWrite64() returns RETURN_PAR."
+                }
+            ]
+        },
+        {
+            "version": "3.20E",
+            "date": "Jul.8,2022",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.2.0"
+                },
+                {
+                    "page": "70",
+                    "content": "Update description of R_OSAL_IoGetDeviceAxiBusId()."
+                },
+                {
+                    "page": "63",
+                    "content": "Update description of R_OSAL_IoGetAxiBusIdFromDeviceName()."
+                },
+                {
+                    "page": "65",
+                    "content": "Update description of R_OSAL_IoGetAxiBusNameList()."
+                },
+                {
+                    "page": "64",
+                    "content": "Update description of R_OSAL_IoGetAxiBusName()."
+                }
+            ]
+        },
+        {
+            "version": "3.30E",
+            "date": "Aug.4,2022",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.3.0"
+                },
+                {
+                    "page": "13",
+                    "content": "Fixed the condition that R_OSAL_ThreadSleepUntilTimeStamp() returns RETURN_PAR."
+                },
+                {
+                    "page": "18",
+                    "content": "Fixed the condition that R_OSAL_ThsyncCondWaitForTimePeriod() returns RETURN_PAR."
+                },
+                {
+                    "page": "19",
+                    "content": "Fixed the condition that R_OSAL_ThsyncCondWaitUntilTimeStamp() returns RETURN_PAR."
+                },
+                {
+                    "page": "79",
+                    "content": "Fixed the description of R_OSAL_IoWrite16 (data) of the following functions from \"To set address of …\" to \"To set value of …\"."
+                },
+                {
+                    "page": "80",
+                    "content": "Fixed the description of R_OSAL_IoWrite32 (data) of the following functions from \"To set address of …\" to \"To set value of …\"."
+                },
+                {
+                    "page": "81",
+                    "content": "Fixed the description of R_OSAL_IoWrite64 (data) of the following functions from \"To set address of …\" to \"To set value of …\"."
+                },
+                {
+                    "page": "82",
+                    "content": "Fixed the description of R_OSAL_IoWrite8 (data) of the following functions from \"To set address of …\" to \"To set value of …\"."
+                }
+            ]
+        },
+        {
+            "version": "3.40E",
+            "date": "Oct.4,2022",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.4.0"
+                },
+                {
+                    "page": "45",
+                    "content": "Added the condition that returns OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_InterruptDisableIsr()."
+                },
+                {
+                    "page": "46",
+                    "content": "Added the condition that returns OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_InterruptEnableIsr()."
+                },
+                {
+                    "page": "49",
+                    "content": "Added the condition that returns OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_InterruptRegisterIsr()."
+                },
+                {
+                    "page": "51",
+                    "content": "Added the condition that returns OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_InterruptSetIsrPriority()."
+                },
+                {
+                    "page": "52",
+                    "content": "Added the condition that returns OSAL_RETURN_UNSUPPORTED_OPERATION to R_OSAL_InterruptUnregisterIsr()."
+                },
+                {
+                    "page": "112",
+                    "content": "Added the condition that returns OSAL_RETURN_CONF to R_OSAL_MmngrGetConfig()."
+                },
+                {
+                    "page": "116",
+                    "content": "Added the condition that returns OSAL_RETURN_CONF to R_OSAL_MmngrGetOsalMaxConfig()."
+                },
+                {
+                    "page": "117",
+                    "content": "Added the condition that returns OSAL_RETURN_CONF to R_OSAL_MmngrGetOsalMaxConfigFromRegionIdx()."
+                }
+            ]
+        },
+        {
+            "version": "3.50E",
+            "date": "Oct.21,2022",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.5.0"
+                },
+                {
+                    "page": "28",
+                    "content": "Added a condition to return OSAL_RETURN_FAIL of R_OSAL_ThsyncMutexUnlock(). "
+                },
+                {
+                    "page": " ",
+                    "content": "condition: \"Mutex has already unlocked.\""
+                },
+                {
+                    "page": " ",
+                    "content": "The behavior of the API has not been changed, just added the description to the API specification."
+                },
+                {
+                    "page": "115",
+                    "content": "Added condition to return OSAL_RETURN_PAR of R_OSAL_MmngrGetHwAddr()."
+                },
+                {
+                    "page": " ",
+                    "content": "condition: \"axi_id is OSAL_AXI_BUS_ID_INVALID.\""
+                },
+                {
+                    "page": " ",
+                    "content": "The behavior of the API has not been changed, just added the description to the API specification."
+                }
+            ]
+        },
+        {
+            "version": "3.60E",
+            "date": "Jan.12,2023",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.6.0"
+                },
+                {
+                    "page": "1",
+                    "content": "Added Note to Overview section"
+                },
+                {
+                    "page": "95",
+                    "content": "Removed unnecessary condition to return OSAL_RETURN_PAR of R_OSAL_PmSetPolicy()."
+                },
+                {
+                    "page": "105",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrCheckBuffer()."
+                },
+                {
+                    "page": "107",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrDealloc()."
+                },
+                {
+                    "page": "108",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrDebugBufferPrint()."
+                },
+                {
+                    "page": " ",
+                    "content": "Added \"FILE\" to Note."
+                },
+                {
+                    "page": "109",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrDebugMmngrPrint()."
+                },
+                {
+                    "page": " ",
+                    "content": "Added \"FILE\" to Note."
+                },
+                {
+                    "page": "110",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrFlush()."
+                },
+                {
+                    "page": "112",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrGetConfig()."
+                },
+                {
+                    "page": "113",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrGetConstCpuPtr()."
+                },
+                {
+                    "page": "114",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrGetCpuPtr()."
+                },
+                {
+                    "page": "115",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrGetHwAddr()."
+                },
+                {
+                    "page": "118",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrGetSize()."
+                },
+                {
+                    "page": "121",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrInvalidate()."
+                },
+                {
+                    "page": "123",
+                    "content": "Fixed typo in brief for R_OSAL_MmngrOpen() (from R_OSAL_MmgrInitializeMmngrConfigSt to R_OSAL_MmngrInitializeMmngrConfigSt)."
+                },
+                {
+                    "page": "124",
+                    "content": "Fixed typo in brief for R_OSAL_MmngrOpenFromRegionIdx() (from R_OSAL_MmgrInitializeMmngrConfigSt to R_OSAL_MmngrInitializeMmngrConfigSt)."
+                },
+                {
+                    "page": "125",
+                    "content": "Clarified the conditions that returns OSAL_RETURN_HANDLE in R_OSAL_MmngrRegisterMonitor()."
+                },
+                {
+                    "page": "128",
+                    "content": "Update brief of definition \"OSAL_AXI_BUS_ID_INVALID and OSAL_AXI_BUS_ID_IPA_MAIN_MEMORY\" "
+                }
+            ]
+        },
+        {
+            "version": "3.70E",
+            "date": "Feb.10,2023",
+            "change": [{
+                    "page": "1",
+                    "content": "Updated OSAL API version to 3.7.0"
+                },
+                {
+                    "page": "96",
+                    "content": "Updated description for when applyImmediate is true in R_OSAL_PmSetPolicy()"
+                },
+                {
+                    "page": "102 - 128",
+                    "content": "Updated the description of the return value of Memory Manager APIs to avoid misunderstandings."
+                }
+            ]
+        }
+    ]
+}

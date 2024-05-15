@@ -1,0 +1,1387 @@
+###########################################################################
+##
+## QNX Neutrino 7.1 on the R-CarE3 (ARMv8 Cortex-A53 core) Ebisu Board
+##
+###########################################################################
+##
+## SUPPORTED DEVICES:
+##
+## SERIAL: SCIF1, SCIF2
+## I2C: I2C2, I2C4
+## Display
+## SD/MMC
+## VIN
+## DMA
+## Audio
+## WDT
+## WFD
+## SPI MASTER MODE AND SPI SLAVE MODE
+## HSCIF: HSCIF1
+## THERMAL
+## NETWORK: RAVB
+## USB: USB2.0, USB3.0
+###########################################################################
+##
+## NOTES:
+##
+###########################################################################
+
+###########################################################################
+## START OF BUILD SCRIPT
+###########################################################################
+
+#[+keeplinked]
+[+compress]
+[image=0x50100000]
+[virtual=aarch64le,raw] .bootstrap = {
+    ## Options specific to this BSP:
+    ## -c is XTal clock
+    ##startup-rcar_e3 -P2 -W -c48000000 -vvvvv
+    ## Without "-c", default Xtal = 48000000
+    startup-rcar_e3 -P2 -W   
+    #######################################################################
+    ## PATH set here is the *safe* path for executables.
+    ## LD_LIBRARY_PATH set here is the *safe* path for libraries.
+    ##     i.e. These are the paths searched by setuid/setgid binaries.
+    ##          (confstr(_CS_PATH...) and confstr(_CS_LIBPATH...))
+    #######################################################################
+    PATH=/proc/boot:/bin:/usr/bin:/usr/photon/bin:/opt/bin:/sbin:/usr/sbin:/usr/lib:/tmp:/etc
+    LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll:/opt/lib:/usr/photon/lib:/usr/lib:/tmp:/etc procnto-smp-instr -ae
+}
+
+[+script] .script = {
+    # Initialise the console
+    procmgr_symlink ../../proc/boot/ldqnx-64.so.2 /usr/lib/ldqnx-64.so.2
+
+    display_msg Welcome to QNX Neutrino 7.1 on the R-CarE3 Ebisu Board
+
+    # Setup Environment variables
+    ENV=/etc/profile
+
+    # Start some common servers
+    display_msg Starting slogger and pipe servers...
+    slogger2
+    pipe &
+    random -t
+    waitfor /dev/random 5
+    mqueue &
+
+    #######################################################################
+    ## WatchDog utility
+    ## If startup is given '-W' parameter then the 'wdtkick' utility MUST
+    ## be uncommented below.
+    #######################################################################
+    display_msg Starting watchdog ...
+    wdtkick-rcar -W 0x0:0x5A5AFF00
+
+    #######################################################################
+    ## Resource seed
+    #######################################################################
+    resource_seed dma=sys=0,47 dma=audio=0,15 dma=audiopp=0,28 dma=rt=0,15 mem=sysdesc=0,383 mem=audio=0,127 mem=rtdesc=0,255
+
+    #######################################################################
+    ## CPG Clock driver
+    #######################################################################
+    rcar-cpg-mgr -d support &
+    waitfor /dev/cpg 4
+
+    #######################################################################
+    ## SYSC driver
+    #######################################################################
+    rcar-sysc-mgr -d support &
+    waitfor /dev/sysc 4
+
+    #######################################################################
+    ## SERIAL driver
+    #######################################################################
+    display_msg Starting Serial driver...
+    devc-serscif -e -F -b115200 -c66666666 -t 14 scif2 &
+    waitfor /dev/ser1 4
+    reopen /dev/ser1
+
+    #######################################################################
+    ## I2C driver
+    #######################################################################
+    display_msg "Starting I2C driver ..."
+    # I2C0
+    i2c-rcar-A -p0xe6500000 -i319 -d -v --u0 &
+    # I2C3
+    i2c-rcar-A -p0xe66D0000 -i322 -d -v --u3 &
+	
+    #######################################################################
+    ## USB driver
+    #######################################################################
+    display_msg "Starting USB Host driver ..."
+    io-usb-otg -t memory=/memory/below4G -d hcd-xhci ioport=0xEE000000,irq=0x86,memory=/memory/below4G -d hcd-ehci ioport=0xEE080100,irq=0x8C,memory=/memory/below4G -d hcd-ohci ioport=0xEE080000,irq=0x8C,memory=/memory/below4G
+    waitfor /dev/usb/io-usb-otg 4
+    devb-umass blk cache=10m cam pnp mem name=/memory/below4G &
+
+    ## SPI Flash driver
+    #######################################################################
+    #display_msg "Starting SPI Flash driver..."
+    #devf-rcar_qspi-gen3 -r -b5 &
+
+    
+    #######################################################################
+    ## Audio driver
+    #######################################################################
+    display_msg "Starting Audio driver ..."
+    io-audio -c /etc/system/config/audio/io_audio.conf
+    waitfor /dev/snd 4
+
+    #######################################################################
+    ## SD memory card driver
+    #######################################################################
+    display_msg "Starting SDHI memory card driver ..."
+    devb-sdmmc-rcar_gen3 blk cache=64m,maxio=1024,ra=256k:1024k cam cache,async,pnp,bounce=1024k mem name=below4G sdio idx=0 disk name=sd@0,maxio=1024
+    devb-sdmmc-rcar_gen3 blk cache=64m,maxio=1024,ra=256k:1024k cam cache,async,pnp,bounce=1024k mem name=below4G sdio idx=1,bs=nowp disk name=sd@1,maxio=1024
+    
+    #######################################################################
+    ## eMMC flash driver
+    ## For more aggressive MMC R/W performance, please use the following command:
+    ##   devb-sdmmc-rcar_gen3 blk maxio=256,cache=1m,ra=256k:512k,rapolicy=aggressive,commit=none cam cache,async mem name=below4G sdio idx=2,emmc,~ac12 sdmmc cache=on disk name=mmc@0
+    ## Please note that there are risks involved with using such command.
+    ## For details, please visit: http://www.qnx.com/support/knowledgebase.html?id=501a0000000Mpbr
+    ## NOTE: Any reset with volatile cache enabled will cause the qnx6 filesystem to go read only.  Resets can be common based on incorrect tuning and driver quality.
+    #######################################################################
+    #display_msg "Starting MMC memory flash driver ..."
+    devb-sdmmc-rcar_gen3 blk cache=64m,maxio=1024,delwri=0:0,ra=256k:1024k cam cache,async,bounce=1024k mem name=below4G sdio idx=3,emmc sdmmc partitions=on,cache=on disk name=mmc@0,maxio=1024
+    waitfor /dev/mmc0 1
+
+    #######################################################################
+    ## Network driver
+    #######################################################################
+    display_msg "Starting Networking ..."
+    sh /proc/boot/ravb_start.sh
+
+    #######################################################################
+    ## Remote debug
+    #######################################################################
+    inetd
+    devc-pty
+    waitfor /dev/ptyp0 4
+    waitfor /dev/socket 4
+    qconn port=8000
+
+    #######################################################################
+    ## Graphics
+    #######################################################################
+    display_msg "Starting Display driver..."
+    LIBIMG_CFGFILE=/etc/system/config/img.conf
+    screen -c /usr/lib/graphics/rcare3/graphics.conf &
+    waitfor /dev/screen 3
+
+    #######################################################################
+    [+session] ksh &
+}
+
+# Redirect console messages
+[type=link] /bin/sh=/proc/boot/ksh
+[type=link] /tmp=/dev/shmem
+
+###########################################################################
+## Shared Libraries
+###########################################################################
+libc.so
+libgcc_s.so.1
+ldqnx-64.so.2
+libregex.so
+libqh.so
+libc++.so
+libpps.so
+libm.so
+libsecpol.so
+libz.so
+libslog2.so
+libslog2parse.so
+libslog2shim.so
+libtracelog.so
+libmq.so.1
+
+# USB host
+libhiddi.so
+libusbdi.so
+devu-hcd-ehci.so
+devu-hcd-ohci.so
+devu-hcd-xhci.so
+
+
+# Block device
+libcam.so
+io-blk.so
+cam-disk.so
+fs-qnx6.so
+fs-dos.so
+libncursesw.so
+
+# Network driver
+libsocket.so
+libcrypto.so
+libssl.so
+libqcrypto.so
+qcrypto-openssl.so
+libnbutil.so
+devnp-ravb.so
+# Support ASIX-based USB to Ethernet Dongles
+# devnp-asix.so
+devnp-usbdnet.so
+
+# Executables
+[data=c]
+
+###########################################################################
+## libqcrypto support
+###########################################################################
+[perms=644] /etc/qcrypto.conf = {
+openssl     tags=*
+}
+
+# Create a profile so telnet sessions will get environment variables
+/etc/profile={
+export SYSNAME=nto
+export TERM=qansi
+export HOME=/
+export LD_LIBRARY_PATH=/proc/boot:/lib:/usr/lib:/lib/dll:/usr/lib:/opt/lib:/usr/lib/graphics/rcare3
+export PATH=/proc/boot:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/lib:/opt/bin
+export SHELL=/bin/sh
+export DISPLAY=127.1:0
+export HOSTNAME=Neutrino
+export TMPDIR=/tmp
+export LOGNAME=root
+export LIBIMG_CFGFILE=/etc/system/config/img.conf
+}
+
+###########################################################################
+## WatchDog utility
+###########################################################################
+wdtkick-rcar
+
+###########################################################################
+## Resource seed
+###########################################################################
+/proc/boot/resource_seed=resource_seed
+
+###########################################################################
+## HW vendor
+###########################################################################
+rcar-cpg-mgr
+cpg-support.so
+rcar-sysc-mgr
+sysc-support.so
+rcar-tmu.so
+rcar-cmt.so
+cpg_sysc_test
+cpg_ctrl
+sysc_ctrl
+timer_test
+tpu_test
+
+###########################################################################
+## Serial driver
+###########################################################################
+devc-serscif
+
+###########################################################################
+## I2C driver
+###########################################################################
+i2c-rcar-A
+i2c-rcar-B
+isend
+isendrecv
+
+###########################################################################
+## USB driver
+###########################################################################
+usb
+io-usb-otg
+devb-umass
+
+###########################################################################
+## USB Function driver
+###########################################################################
+ulink_ctrl
+devu-umass_client-block
+devc-serusb_dcd
+
+###########################################################################
+## SPI Flash driver
+###########################################################################
+devf-rcar_qspi-gen3
+flashctl
+
+###########################################################################
+## SPI driver
+###########################################################################
+spi-master
+spi-rcar.so
+spi-control
+spi-slave-rcar
+spi-slave-control
+
+###########################################################################
+## Network driver
+###########################################################################
+io-pkt-v6-hc
+nicinfo
+ping
+inetd
+ftp
+fs-nfs3
+ifconfig
+if_up
+telnet
+genmac-random
+arp
+hostname
+omshell
+route
+rcar-uboot-env
+
+ravb_start.sh {
+    #!/bin/sh
+    waitfor /dev/mmc2 1 > /dev/null 2>&1
+    if [ $? == 0 ]; then
+        ETHADDR=`rcar-uboot-env /dev/mmc2 ethaddr 2> /dev/null`
+
+        if [ $? == 0 ]; then
+            ETHADDR=`echo $ETHADDR | sed -e "s/ethaddr=//g;s/://g"`
+        else
+            ETHADDR=""
+        fi
+    fi
+
+    if [ -z "$ETHADDR" ]; then
+        ETHADDR=`genmac-random -m`
+    fi
+    io-pkt-v6-hc -d ravb mac=$ETHADDR,speed=100,duplex=1 -p tcpip pkt_typed_mem=below4G
+    dhclient -m -lf /dev/shmem/dhclient.leases -pf /dev/shmem/dhclient.pid -nw ravb0
+}
+
+###########################################################################
+## dhclient support
+###########################################################################
+dhclient
+/sbin/ifconfig=ifconfig
+[search=${QNX_TARGET}/sbin perms=a+x] /sbin/dhclient-script=dhclient-script
+[search=${QNX_TARGET}/etc]/etc/dhclient.conf=dhclient.conf
+
+###########################################################################
+## Remote debug
+###########################################################################
+qconn
+devc-pty
+pdebug
+
+###########################################################################
+## Network services (telnet) support
+###########################################################################
+tftp
+
+/etc/hosts=${QNX_TARGET}/etc/hosts
+/etc/services=${QNX_TARGET}/etc/services
+
+/etc/inetd.conf = {
+ftp        stream tcp nowait root  /usr/sbin/ftpd           in.ftpd -l
+telnet     stream tcp nowait root  /usr/sbin/telnetd        in.telnetd
+}
+
+/etc/ftpusers=${QNX_TARGET}/etc/ftpusers
+
+/etc/ftpd.conf = {
+/* Make things a+rw by default */
+umask all 0000
+}
+
+[uid=0 gid=0 perms=0644] /etc/passwd = {
+root:x:0:0:Superuser:/root:/bin/sh
+sshd:x:15:6:sshd:/var/chroot/sshd:/bin/false
+qnxuser:x:1000:1000:QNX User:/home/qnxuser:/bin/sh
+}
+
+# Enabled Username/Password: root/root, qnxuser/qnxuser
+[uid=0 gid=0 perms=0600] /etc/shadow = {
+root:@S@NKlWES1quMp1wmqugkUSnFEpPGn58kIs4wQOgDDNs06vimR+bbGPUKM+9P6jbFUzo3Rm+Qe5MS+17xKhwaeJEg==@Mjg5ZTJiMTM0YTRjYTE2ZGFjMDdhZTFlY2NlMDVmNmE=:1468494669:0:0
+sshd:*:1231323780:0:0
+qnxuser:@S@HZERXjgixvb3157FFeraShhvTVw+10ccUtVUVZbi0fUwpzlzBZFw5gHiFd1XHKit8D39Whe749XAY8fV4P5ANQ==@Y2ZlOTg3M2RhNTM4Y2M2ODY0OWZhODdiNDRkMmU5Nzg=:1468488235:0:0
+}
+
+[uid=0 gid=0 perms=0644] /etc/group = {
+root:x:0:root
+sshd:x:6:
+qnxuser:x:qnxuser
+}
+
+###########################################################################
+## PAM configurations addon build file
+###########################################################################
+[uid=0 gid=0 perms=4755] /bin/login=login
+[uid=0 gid=0 perms=4755] /bin/passwd=passwd
+[uid=0 gid=0 perms=4755] /bin/su=su
+[uid=0 gid=0 perms=0755] /usr/sbin/sshd=sshd
+[uid=0 gid=0 perms=0755] /usr/sbin/ftpd=ftpd
+[uid=0 gid=0 perms=0755] /usr/sbin/inetd=inetd
+[uid=0 gid=0 perms=0755] /usr/sbin/telnetd=telnetd
+
+[uid=0 gid=0 type=dir dperms=0755] /usr
+[uid=0 gid=0 type=dir dperms=0755] /usr/lib
+[uid=0 gid=0 type=dir dperms=0755] /etc
+[uid=0 gid=0 type=dir dperms=0755] /etc/pam.d
+[uid=0 gid=0 perms=0644] /etc/pam.d/login=${QNX_TARGET}/etc/pam.d/login
+[uid=0 gid=0 perms=0644] /etc/pam.d/passwd=${QNX_TARGET}/etc/pam.d/passwd
+[uid=0 gid=0 perms=0644] /etc/pam.d/su=${QNX_TARGET}/etc/pam.d/su
+[uid=0 gid=0 perms=0644] /etc/pam.d/ftpd=${QNX_TARGET}/etc/pam.d/ftpd
+
+[uid=0 gid=0 perms=0755] /usr/lib/libpam.so=libpam.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_ftpusers.so=pam_ftpusers.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_rootok.so=pam_rootok.so
+[uid=0 gid=0 perms=0755] /usr/lib/pam_qnx.so=pam_qnx.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_deny.so=pam_deny.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_echo.so=pam_echo.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_exec.so=pam_exec.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_group.so=pam_group.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_mac.so=pam_mac.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_permit.so=pam_permit.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_radius.so=pam_radius.so
+#[uid=0 gid=0 perms=0755] /usr/lib/pam_self.so=pam_self.so
+
+###########################################################################
+## Audio driver
+###########################################################################
+
+/etc/system/config/audio/io_audio.conf = {
+########################################
+# rcar for On-board audio
+########################################
+[ctrl]
+name=rcar-cs2000
+options=ver=e3,tx_ssi=0,rx_ssi=1,tx_use_src=1,rx_use_src=1,tx_use_dvc=1,rx_use_dvc=1
+mixer_dll=ak4613                       # Load deva-mixer-ak4613.so
+ak4613_i2c_dev=3                       # /dev/i2c3
+ak4613_i2c_addr=16                     # 0x10
+ak4613_out1=enable:differential
+ak4613_in1=enable:single-ended
+}
+
+###########################################################################
+## SD/MMC block driver support files
+###########################################################################
+devb-sdmmc-rcar_gen3
+
+###########################################################################
+## Filesystems support
+###########################################################################
+fdisk
+mkdosfs
+mkqnx6fs
+devb-ram
+
+############################################################################
+# CANFD driver
+###########################################################################
+canfd-rcar
+canctl
+
+###########################################################################
+## Thermal driver
+###########################################################################
+rcar-thermal
+thermal_test
+
+###########################################################################
+## GPIO driver
+###########################################################################
+rcar-gpio
+gpio_test
+
+###########################################################################
+## MMC block driver support files
+###########################################################################
+devb-sdmmc-rcar_gen3
+
+###########################################################################
+## Audio driver
+###########################################################################
+deva-ctrl-rcar-cs2000.so
+deva-mixer-ak4613.so
+deva-util-restore.so
+libasound.so
+libaoi.so
+libm.so
+libsecpol.so
+
+io-audio
+wave
+waverec
+mix_ctl
+
+############################################################################
+### VIN library 
+############################################################################
+/proc/boot/libcapture-board-rcare3-ebisu.so=libcapture-board-rcare3-ebisu.so
+/proc/boot/libcapture-soc-rcar3.so=libcapture-soc-rcar3.so
+[type=link] libcapture.so=libcapture.so.1
+/proc/boot/libcapture-decoder-adv7482.so=libcapture-decoder-adv7482.so
+[type=link] libcapture.so.1=/proc/boot/libcapture-board-rcare3-ebisu.so
+
+# VIN application 
+/proc/boot/camera_ctrl=camera_ctrl
+/usr/bin/vcapture-demo=vcapture-demo
+
+###########################################################################
+## PWM driver 
+###########################################################################
+pwm-rcar
+pwm_test
+
+###########################################################################
+## DMA memory to memory app test
+###########################################################################
+dma-memtomem-test
+
+###########################################################################
+## Image library support
+###########################################################################
+/lib/libimg.so.1=../install/aarch64le/lib/libimg.so.1
+/lib/libjpeg.so.4=../install/aarch64le/lib/libjpeg.so.4
+/lib/libpng16.so.16=../install/aarch64le/lib/libpng16.so.16
+/lib/dll/img_codec_jpg.so=../install/aarch64le/lib/dll/img_codec_jpg.so
+/lib/dll/img_codec_png.so=../install/aarch64le/lib/dll/img_codec_png.so
+
+###########################################################################
+## Image library configuration file
+###########################################################################
+/etc/system/config/img.conf = {
+[img_codec_jpg.so]
+mime=image/jpeg:image/jpg
+ext=jpg:jpeg
+[img_codec_png.so]
+mime=image/png
+ext=png
+}
+
+###########################################################################
+## Touch excutables
+###########################################################################
+/usr/sbin/mtouch=mtouch
+
+###########################################################################
+## Touch libraries
+###########################################################################
+/lib/libmtouch-devi.so=libmtouch-devi.so
+/lib/libmtouch-fake.so=libmtouch-fake.so
+/lib/libmtouch-hid.so=libmtouch-hid.so
+/lib/libmtouch-inject.so=libmtouch-inject.so
+/lib/libmtouch-calib.so=libmtouch-calib.so
+
+###########################################################################
+## Font libraries
+###########################################################################
+/usr/lib/libfontconfig.so=libfontconfig.so
+/usr/lib/libfreetype.so=libfreetype.so
+
+###########################################################################
+## Screen libraries
+###########################################################################
+/lib/libmemobj.so=libmemobj.so
+/lib/libscrmem.so=libscrmem.so
+/lib/libgestures.so=libgestures.so
+/lib/libinputevents.so=libinputevents.so
+/lib/libkalman.so=libkalman.so
+/lib/dll/screen-debug.so=screen-debug.so
+/lib/dll/screen-sw.so=screen-sw.so
+/lib/dll/screen-stdbuf.so=screen-stdbuf.so
+/lib/dll/libwfdcfg-sample.so=libwfdcfg-sample.so
+/usr/lib/libscreen.so=libscreen.so
+/usr/lib/libswblit.so=libswblit.so
+/usr/lib/libWFD.so=libWFD.so
+
+###########################################################################
+## Screen excutables
+###########################################################################
+/sbin/screen=screen
+/usr/bin/events=events
+/usr/bin/sw-vsync=sw-vsync
+/usr/bin/sharewin=sharewin
+/usr/bin/win-vsync=win-vsync
+/usr/bin/screenshot=screenshot
+/usr/bin/calib-touch=calib-touch
+
+###########################################################################
+## Screen board specific excutables
+###########################################################################
+/usr/bin/discom_test=../install/aarch64le/usr/bin/discom_test
+/usr/bin/cmm_test=../install/aarch64le/usr/bin/cmm_test
+/sbin/rcar-cmm=../install/aarch64le/sbin/rcar-cmm
+
+###########################################################################
+## Screen board specific libraries
+###########################################################################
+/lib/dll/screen-rcar3-alloc.so=../install/aarch64le/lib/dll/screen-rcar3-alloc.so
+/usr/lib/graphics/rcare3/graphics.conf=../install/aarch64le/usr/lib/graphics/rcare3/graphics.conf
+/usr/lib/graphics/rcare3/libwfdcfg-rcare3-ebisu.so=../install/aarch64le/usr/lib/graphics/rcare3/libwfdcfg-rcare3-ebisu.so
+/usr/lib/graphics/rcare3/libWFDrcar3.so=../install/aarch64le/usr/lib/graphics/libWFDrcar3.so
+
+###########################################################################
+## Test script support
+###########################################################################
+[perms=755] /etc/test_script/timer_test.sh=../install/etc/test_scripts/timer_test.sh 
+
+###########################################################################
+## general commands
+###########################################################################
+cp
+ls
+cat
+ksh
+pipe
+pidin
+uname
+slogger2
+slog2info
+slay
+mount
+umount
+use
+date
+shutdown
+chmod
+ln
+rm
+mv
+sleep
+dd
+top
+grep
+df
+find
+mkdir
+pwd
+waitfor
+echo
+dumper
+random
+awk
+ps
+ps
+awk
+iperf2
+iperf3
+ptpd2
+mqueue
+diff
+sed
+in32
+out32
+awk
+grep
+
+###########################################################################
+## END OF BUILD SCRIPT
+###########################################################################
+
+
+###########################################################################
+##
+## INTERRUPT MAP
+##
+## The Interrupt Map is arranged by vector number in ascending order.
+## Related interrupts that are grouped together list the vector numbers
+## according to the device name.
+## For example:
+##     vector: 319,320,318,322,51-53
+##     device: I2C0-I2C6
+## I2C2 has a vector number of 318.
+## I2C5 has a vector number of 52.
+##
+###########################################################################
+##
+## vector: 32-35,50,193
+## trigger: N/A
+## device: IRQ0-IRQ5
+##
+## vector: 36-43
+## trigger: N/A
+## device: GPIO0-GPIO7
+##
+## vector: 44-47
+## trigger: N/A
+## device: Reserved
+##
+## vector: 184,185,196,55,48,49
+## trigger: level
+## device: SCIF0-SCIF5 (from Module Serial)
+##
+## vector: 319,320,318,322,51-53
+## trigger: level
+## device: I2C0-I2C6
+##
+## vector: 54
+## trigger: N/A
+## device: DBSC4 (from Module DDR4)
+##
+## vector: 56-59
+## trigger: N/A
+## device: Reserved
+##
+## vector: 60
+## trigger: N/A
+## device: DCU (from Module Decompression Unit)
+##
+## vector: 61,62
+## trigger: N/A
+## device: CAN_FD0,CAN_FD1
+##
+## vector: 63
+## trigger: N/A
+## device: Reserved
+##
+## vector: 64-69,253
+## trigger: N/A
+## device: RFSO0-RFSO6 (from Module Failure Self-Detection Output)
+##
+## vector: 70
+## trigger: N/A
+## device: RPC (from Module SPI Bus Controller)
+##
+## vector: 71-95
+## trigger: level
+## device: RAVB0-RAVB24 (from Module EthernetAVB)
+##
+## vector: 96
+## trigger: N/A
+## device: Reserved
+##
+## vector: 97
+## trigger: N/A
+## device: CRYPTO_PKA_SEC
+##
+## vector: 98
+## trigger: N/A
+## device: CRYPTO_PKA_PUB
+##
+## vector: 99-101
+## trigger: level
+## device: THS0-THS2 (from Module Thermal)
+##
+## vector: 102
+## trigger: N/A
+## device: CRYPTO_SEC
+##
+## vector: 103
+## trigger: N/A
+## device: CRYPTO_PUB
+##
+## vector: 104
+## trigger: N/A
+## device: CA57_CORE0_PMU
+##
+## vector: 105
+## trigger: N/A
+## device: CA57_CORE1_PMU
+##
+## vector: 106
+## trigger: N/A
+## device: CA57_CORE2_PMU
+##
+## vector: 107
+## trigger: N/A
+## device: CA57_CORE3_PMU
+##
+## vector: 108
+## trigger: N/A
+## device: CA57_CORE0_CTI
+##
+## vector: 109
+## trigger: N/A
+## device: CA57_CORE1_CTI
+##
+## vector: 110
+## trigger: N/A
+## device: CA57_CORE2_CTI
+##
+## vector: 111
+## trigger: N/A
+## device: CA57_CORE3_CTI
+##
+## vector: 112
+## trigger: N/A
+## device: CA57_CORE0_COMM
+##
+## vector: 113
+## trigger: N/A
+## device: CA57_CORE1_COMM
+##
+## vector: 114
+## trigger: N/A
+## device: CA57_CORE2_COMM
+##
+## vector: 115
+## trigger: N/A
+## device: CA57_CORE3_COMM
+##
+## vector: 116
+## trigger: N/A
+## device: CA53_CORE0_PMU
+##
+## vector: 117
+## trigger: N/A
+## device: CA53_CORE1_PMU
+##
+## vector: 118
+## trigger: N/A
+## device: CA53_CORE2_PMU
+##
+## vector: 119
+## trigger: N/A
+## device: CA53_CORE3_PMU
+##
+## vector: 120
+## trigger: N/A
+## device: CA53_CORE0_CTI
+##
+## vector: 121
+## trigger: N/A
+## device: CA53_CORE1_CTI
+##
+## vector: 122
+## trigger: N/A
+## device: CA53_CORE2_CTI
+##
+## vector: 123
+## trigger: N/A
+## device: CA53_CORE3_CTI
+##
+## vector: 124
+## trigger: N/A
+## device: CA53_CORE0_COMM
+##
+## vector: 125
+## trigger: N/A
+## device: CA53_CORE1_COMM
+##
+## vector: 126
+## trigger: N/A
+## device: CA53_CORE2_COMM
+##
+## vector: 127
+## trigger: N/A
+## device: CA53_CORE3_COMM
+##
+## vector: 128
+## trigger: N/A
+## device: LBSC (from Module EX-Bus)
+##
+## vector: 129
+## trigger: N/A
+## device: USB3_1_BC (from Module USB3.0 Host)
+##
+## vector: 130
+## trigger: N/A
+## device: USB3_1_HOST (from Module USB3.0 Host)
+##
+## vector: 131
+## trigger: N/A
+## device: USB3_1_OTG (from Module USB3.0 Host)
+##
+## vector: 132
+## trigger: N/A
+## device: USB3_1_PERI (from Module USB3.0 Host)
+##
+## vector: 133
+## trigger: N/A
+## device: USB3_0_BC (from Module USB3.0 Host)
+##
+## vector: 134
+## trigger: level
+## device: USB3_0_HOST (from Module USB3.0 Host)
+##
+## vector: 135
+## trigger: N/A
+## device: USB3_0_OTG (from Module USB3.0 Host)
+##
+## vector: 136
+## trigger: N/A
+## device: USB3_0_PERI (from Module USB3.0 Host)
+##
+## vector: 137
+## trigger: level
+## device: SATA
+##
+## vector: 138
+## trigger: N/A
+## device: CCI
+##
+## vector: 139
+## trigger: level
+## device: EHCI_OTG (from Module USB2.0 Host)
+##
+## vector: 140
+## trigger: level
+## device: EHCI0_HOST (from Module USB2.0 Host)
+##
+## vector: 141,142
+## trigger: N/A
+## device: USB_DMAC0,USB_DMAC1 (from Module USB DMAC)
+##
+## vector: 143
+## trigger: N/A
+## device: EHCI_DDM (from Module USB2.0 Host)
+##
+## vector: 144
+## trigger: level
+## device: EHCI1_HOST (from Module USB2.0 Host)
+##
+## vector: 145
+## trigger: level
+## device: EHCI2_HOST (from Module USB2.0 Host)
+##
+## vector: 146,147
+## trigger: N/A
+## device: Reserved
+##
+## vector: 148
+## trigger: level
+## device: PCIE0
+##
+## vector: 149
+## trigger: N/A
+## device: PCIE0_DMA
+##
+## vector: 150
+## trigger: N/A
+## device: PCIE0_ERR
+##
+## vector: 151
+## trigger: N/A
+## device: GSX (from Module 3D Graphics Engine)
+##
+## vector: 152-159
+## trigger: N/A
+## device: CMT1_0-CMT1_7 (from Module Compare Match Timer)
+##
+## vector: 160-162,179
+## trigger: N/A
+## device: TMU1_0-TMU1_3 (from Module Timer Unit)
+##
+## vector: 163-165
+## trigger: N/A
+## device: TMU3_0-TMU3_2 (from Module Timer Unit)
+##
+## vector: 166
+## trigger: N/A
+## device: SCMT (from Module System Timer)
+##
+## vector: 167
+## trigger: N/A
+## device: TPU (from Module Timer Pulse Unit)
+##
+## vector: 168-170
+## trigger: N/A
+## device: TMU0_0-TMU0_2 (from Module Timer Unit)
+##
+## vector: 171
+## trigger: N/A
+## device: SUCMT (from Module System Up-Time Clock)
+##
+## vector: 172
+## trigger: N/A
+## device: WDT_RCLK_TIMER (from Module Watchdog)
+##
+## vector: 173
+## trigger: N/A
+## device: WDT_SECURE_TIMER (from Module Watchdog)
+##
+## vector: 174,175
+## trigger: N/A
+## device: CMT0_0,CMT0_1 (from Module Compare Match Timer)
+##
+## vector: 186,187,176-178
+## trigger: N/A
+## device: HSCIF0-HSCIF4 (from Module Serial)
+##
+## vector: 180
+## trigger: N/A
+## device: PCIE1
+##
+## vector: 181
+## trigger: N/A
+## device: PCIE1_DMA
+##
+## vector: 182
+## trigger: N/A
+## device: PCIE1_ERR
+##
+## vector: 183
+## trigger: N/A
+## device: DEBUG
+##
+## vector: 188-191
+## trigger: N/A
+## device: MSIOF0-MSIOF3 (from Module Clock-Synchronized Serial)
+##
+## vector: 192
+## trigger: N/A
+## device: STB (from Module Video Decoding Processor)
+##
+## vector: 194,195,201,202
+## trigger: N/A
+## device: VSP2_0_0-VSP2_0_3 (from Module Video Signal Processor)
+##
+## vector: 197-200
+## trigger: level
+## device: SDHI0-SDHI3
+##
+## vector: 220-223,206-208,203
+## trigger: N/A
+## device: VIN0-VIN7 (from Module Video Input Module)
+##
+## vector: 212-215,204,209-211
+## trigger: N/A
+## device: MFIS_EICR0-MFIS_EICR7 (from Module Multifunctional IF)
+##
+## vector: 205
+## trigger: level
+## device: I2C_DVFS
+##
+## vector: 216,278,217,279
+## trigger: N/A
+## device: CSI2_0-CSI2_1 (from Module Camera Serial)
+##
+## vector: 218,219
+## trigger: N/A
+## device: CAN0,CAN1
+##
+## vector: 224-227
+## trigger: N/A
+## device: IMR_LX4_0-IMR_LX4_3 (from Module Image Renderer)
+##
+## vector: 228
+## trigger: N/A
+## device: IPMMU (from Module Memory Management)
+##
+## vector: 229
+## trigger: N/A
+## device: IPMMU_SEC (from Module Memory Management)
+##
+## vector: 230
+## trigger: N/A
+## device: Reserved
+##
+## vector: 231
+## trigger: level
+## device: SYS_DMAC0_ERR (from Module System DMAC)
+##
+## vector: 232-247
+## trigger: level
+## device: SYS_DMAC0_0-SYS_DMAC0_15 (from Module System DMAC)
+##
+## vector: 248-251,340-351
+## trigger: level
+## device: SYS_DMAC1_0-SYS_DMAC1_15 (from Module System DMAC)
+##
+## vector: 252
+## trigger: level
+## device: SYS_DMAC1_ERR (from Module System DMAC)
+##
+## vector: 254,264
+## trigger: N/A
+## device: VSP2_1_0,VSP2_1_1 (from Module Video Signal Processor)
+##
+## vector: 255
+## trigger: N/A
+## device: IVDP1C (from Module Video Decoding Processor)
+##
+## vector: 256-263
+## trigger: N/A
+## device: MFIS_AREICR0-MFIS_AREICR7 (from Module Multifunctional IF)
+##
+## vector: 265
+## trigger: N/A
+## device: Reserved
+##
+## vector: 276,277,266
+## trigger: N/A
+## device: CPG0-CPG2 (from Module Clock Pulse Generator)
+##
+## vector: 267
+## trigger: N/A
+## device: Reserved
+##
+## vector: 268
+## trigger: N/A
+## device: SPEED_PULSE
+##
+## vector: 269
+## trigger: N/A
+## device: ADSP (from Module Audio DSP)
+##
+## vector: 270,271
+## trigger: N/A
+## device: Reserved
+##
+## vector: 272
+## trigger: N/A
+## device: VCP4_VDPB_VINT (from Module Video Codec Processor)
+##
+## vector: 273
+## trigger: N/A
+## device: VCP4_VDPB_CINT (from Module Video Codec Processor)
+##
+## vector: 274,275
+## trigger: N/A
+## device: DTCP0,DTCP1 (from Module Digital Transmission Content Protection)
+##
+## vector: 280-287
+## trigger: N/A
+## device: GPIO_A0-GPIO_A7
+##
+## vector: 288,300-302
+## trigger: N/A
+## device: DU0-DU3
+##
+## vector: 289
+## trigger: N/A
+## device: VSP2_2_1 (from Module Video Signal Processor)
+##
+## vector: 290
+## trigger: N/A
+## device: VCP4_VCPL4_VINT (from Module Video Codec Processor)
+##
+## vector: 291
+## trigger: N/A
+## device: VCP4_VCPL4_CINT (from Module Video Codec Processor)
+##
+## vector: 292
+## trigger: N/A
+## device: VCP4_VCPLF_VINT (from Module Video Codec Processor)
+##
+## vector: 293
+## trigger: N/A
+## device: VCP4_VCPLF_CINT (from Module Video Codec Processor)
+##
+## vector: 294-296
+## trigger: N/A
+## device: FDP1_0-FDP1_2 (from Module Fine Display Processor)
+##
+## vector: 297
+## trigger: N/A
+## device: VSP2_3_1 (from Module Video Signal Processor)
+##
+## vector: 298
+## trigger: N/A
+## device: VSP2_BLEND (from Module Video Signal Processor)
+##
+## vector: 299
+## trigger: N/A
+## device: Reserved
+##
+## vector: 303-314
+## trigger: N/A
+## device: Reserved
+##
+## vector: 315,316
+## trigger: N/A
+## device: TSIF0,TSIF1 (from Module Transport Stream IF)
+##
+## vector: 317
+## trigger: N/A
+## device: Reserved
+##
+## vector: 321
+## trigger: N/A
+## device: Reserved
+##
+## vector: 323-326
+## trigger: level
+## device: SDHI_DMA0-SDHI_DMA3
+##
+## vector: 327
+## trigger: N/A
+## device: Reserved
+##
+## vector: 328
+## trigger: N/A
+## device: SIM
+##
+## vector: 329
+## trigger: N/A
+## device: SYSC (from Module System Controller)
+##
+## vector: 330
+## trigger: N/A
+## device: FM
+##
+## vector: 331-334
+## trigger: N/A
+## device: Reserved
+##
+## vector: 335-338
+## trigger: N/A
+## device: TMU2_0-TMU2_3 (from Module Timer Unit)
+##
+## vector: 339
+## trigger: N/A
+## device: Reserved
+##
+## vector: 352-367
+## trigger: level
+## device: AUDIO_DMAC0_0-AUDIO_DMAC0_15 (from Module Audio DMAC)
+##
+## vector: 368-381,414,415
+## trigger: level
+## device: AUDIO_DMAC1_0-AUDIO_DMAC1_15 (from Module Audio DMAC)
+##
+## vector: 382
+## trigger: level
+## device: AUDIO_DMAC0_ERR (from Module Audio DMAC)
+##
+## vector: 383
+## trigger: level
+## device: AUDIO_DMAC1_ERR (from Module Audio DMAC)
+##
+## vector: 384-393
+## trigger: N/A
+## device: SCU0-SCU9 (from Module Sampling Rate Converter)
+##
+## vector: 394-401
+## trigger: N/A
+## device: MLM0-MLM7 (from Module MediaLB+)
+##
+## vector: 402-411
+## trigger: N/A
+## device: SSI0-SSI9 (from Module Serial Sound IF)
+##
+## vector: 412
+## trigger: N/A
+## device: IVDP1C_VINT (from Module Video Decoding Processor)
+##
+## vector: 413
+## trigger: N/A
+## device: IVDP1C_CINT (from Module Video Decoding Processor)
+##
+## vector: 416
+## trigger: N/A
+## device: MLP_MLB (from Module MediaLB+)
+##
+## vector: 417,418
+## trigger: N/A
+## device: MLP_AHB0,MLP_AHB1 (from Module MediaLB+)
+##
+## vector: 419,420
+## trigger: N/A
+## device: MLP_RX0,MLP_RX1 (from Module MediaLB+)
+##
+## vector: 421
+## trigger: N/A
+## device: HDMI0_MASTER
+##
+## vector: 422
+## trigger: N/A
+## device: HDMI0_CEC
+##
+## vector: 423
+## trigger: N/A
+## device: HDMI0_ESM
+##
+## vector: 424
+## trigger: N/A
+## device: HDMI0_MRNG
+##
+## vector: 425
+## trigger: N/A
+## device: FIELD_BIST_FIN
+##
+## vector: 426
+## trigger: N/A
+## device: FIELD_BIST_PRE
+##
+## vector: 427
+## trigger: N/A
+## device: REALTIME_PMU
+##
+## vector: 428
+## trigger: N/A
+## device: REALTIME_CTI
+##
+## vector: 449-463,429
+## trigger: level
+## device: SYS_DMAC2_0-SYS_DMAC2_15 (from Module System DMAC)
+##
+## vector: 430-437
+## trigger: N/A
+## device: CMT2_0-CMT2_7 (from Module Compare Match Timer)
+##
+## vector: 438-440
+## trigger: N/A
+## device: TMU4_0-TMU4_2 (from Module Timer Unit)
+##
+## vector: 441-447
+## trigger: N/A
+## device: MFIS_ERR0-MFIS_ERR6 (from Module Multifunctional IF)
+##
+## vector: 448
+## trigger: level
+## device: SYS_DMAC2_ERR (from Module System DMAC)
+##
+## vector: 464
+## trigger: N/A
+## device: DOC0_DOC (from Module Display Output Checker)
+##
+## vector: 465
+## trigger: N/A
+## device: DOC0_ACT (from Module Display Output Checker)
+##
+## vector: 466
+## trigger: N/A
+## device: DOC1_DOC (from Module Display Output Checker)
+##
+## vector: 467
+## trigger: N/A
+## device: DOC1_ACT (from Module Display Output Checker)
+##
+## vector: 468
+## trigger: N/A
+## device: HDMI1_MASTER
+##
+## vector: 469
+## trigger: N/A
+## device: HDMI1_CEC
+##
+## vector: 470
+## trigger: N/A
+## device: HDMI1_ESM
+##
+## vector: 471-475
+## trigger: N/A
+## device: IMP_X5_0-IMP_X5_4 (from Module Image Processing Unit)
+##
+## vector: 476-478
+## trigger: N/A
+## device: VSP2_I0-VSP2_I2 (from Module Video Signal Processor)
+##
+## vector: 479
+## trigger: N/A
+## device: HDMI1_RNG
+##
+## vector: 480
+## trigger: N/A
+## device: RT_DMAC_ERR (from Module Realtime DMAC)
+##
+## vector: 481-496
+## trigger: N/A
+## device: RT_DMAC0-RT_DMAC15 (from Module Realtime DMAC)
+##
+## vector: 497-501
+## trigger: N/A
+## device: VSP2_D0-VSP2_D4 (from Module Video Signal Processor)
+##
+## vector: 502-509
+## trigger: N/A
+## device: CMT3_0-CMT3_7 (from Module Compare Match Timer)
+##
+## vector: 510,511
+## trigger: N/A
+## device: Reserved
+##
+##
+###########################################################################

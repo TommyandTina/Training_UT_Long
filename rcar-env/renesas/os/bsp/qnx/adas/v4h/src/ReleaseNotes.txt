@@ -1,0 +1,319 @@
+﻿=====================================================================
+             BSP Release Notes
+=====================================================================  
+This is a release note for QNX 7.1 BSP for R-Car Gen4 boards
+
+This BSP is distributed under QNX Apache License, version 2.0.
+
+                         Board:  RENESAS Renesas R-Car V4H boards
+                      BSP file:  R-CarGen4_qnx71_bsp_vx.y.zip
+                       Version:  1.9
+                  Release Date:  10.30.2023
+                        Author:  Renesas Electronics America Inc.
+ Software Development Platform:  QNX SDP 7.1
+=====================================================================
+
+---------------------------------------------------------------------
+ Installation
+---------------------------------------------------------------------
+Please refer to the BSP Setup Manual for specific instructions on
+using this BSP with the specified target device.
+
+---------------------------------------------------------------------
+ Uninstallation
+---------------------------------------------------------------------
+
+---------------------------------------------------------------------
+ QNX7.1 BSP Change History
+---------------------------------------------------------------------
+    CREATED DATE  : 01.30.2022
+    LAST MODIFIED : 10.30.2023
+
+    BSP CONTENTS  :
+    +-- <images>            : where the resultant boot images are places
+    +-- <install>           : gets populated at the beginning of the BSP build process
+    +-- <prebuilt>          : contains the binaries, system binaries, buidfiles, libraries, 
+    |   |                   : and header files that are shipped with the BSP
+    |   +-- <aarch64le>     : store prebuilt binaries
+    |   +-- <etc>           : store test script files
+    |   +-- <usr>           : store header files
+    +-- <src>               : stored the whole source files of BSP
+    |   +-- <app>           : store testing program source files
+    |   |   +-- <camera_ctrl>       : stores VIN testing source files
+    |   |   +-- <cpg_sysc_test>     : stores CPG and SYSC testing source files
+    |   |   +-- <discom_test>       : stores discom testing source files
+    |   |   +-- <gpio_test>         : stores GPIO driver testing source files
+    |   |   +-- <dma-memtomem-test> : stores mem to mem transfer testing source files
+    |   |   +-- Makefile            : compiling makefile
+    |   |   +-- <spi-control>       : stores SPI master testing source files
+    |   |   +-- <spi-slave-control> : stores SPI slave testing source files
+    |   |   +-- <timer_test>        : stores CMT/TMU testing source files
+    |   |   +-- <pwm_test>          : stores PWM driver testing source files
+    |   |   +-- <tpu_test>          : stores TPU driver testing source files
+    |   +-- <hardware>              : BSP source files
+    |   |   +-- <deva>              : store SSI, SSIU and ADG (Audio) driver source files
+    |   |   +-- <canfd>             : store CANFD driver source files
+    |   |   +-- <devb>              : store SD/eMMC driver source files
+    |   |   +-- <devc>              : stores SCIF and HSCIF driver source files
+    |   |   +-- <devnp>             : stores AVB and Rswich network drivers(io-pkt) source files
+    |   |   +-- <devs>              : stores AVB and Rswich network drivers(io-sock) source files
+    |   |   +-- <flash>             : stores Flash driver source files
+    |   |   +-- <i2c>               : stores I2C driver source files
+    |   |   +-- <ipl>               : stores QNX IPL loader source files
+    |   |   +-- <pwm>               : stores PWM driver source files
+    |   |   +-- <spi>               : stores MSIOF driver source files
+    |   |   +-- Makefile            : compiling makefile
+    |   |   +-- <startup>           : stores Startup source files
+    |   |   +-- <support>           : utility programs and other drivers
+    |   |   |   +-- <boardname>         : stores boardname getting utility source files
+    |   |   |   +-- <genmac>            : stores genmac utility source files
+    |   |   |   +-- Makefile            : compiling makefile
+    |   |   |   +-- <rcar-cpg>          : store CPG mgr driver source files
+    |   |   |   +-- <rcar-gpio>         : store GPIO driver source files
+    |   |   |   +-- <rcar-uboot-env>    : stores rcar uboot environment source files
+    |   |   |   +-- <rcar-sysc>         : stores sysc resource manager driver source files
+    |   |   |   +-- <wdtkick-rcar>      : stores Watchdog timer utility source files
+    |   +-- <lib>                   : drivers libraries and includes
+    |   |   +-- <dma>               : stores SYS-DMAC & RT-DMAC libraries source file
+    |   |   +-- <hw_vendor>         : stores source files for vendor's hw
+    |   |   |   +-- Makefile            : compiling makefile
+    |   |   |   +-- <renesas>           : stores source files for Renesas's HW driver
+    |   |   |   |   +-- Makefile        : compiling makefile
+    |   |   |   |   +-- <rcar>          : stores source files for R-CarGen4
+    |   |   |   |   |   +-- <cmt>           : store cmt library source file
+    |   |   |   |   |   +-- <cpg>           : store rcar-cpg library source file
+    |   |   |   |   |   +-- <cpg-support>   : store cpg-support library source file
+    |   |   |   |   |   +-- <ipmmu>         : store client ipmmu library source file
+    |   |   |   |   |   +-- Makefile        : compiling makefile
+    |   |   |   |   |   +-- <sysc>          : store rcar-sysc library source file
+    |   |   |   |   |   +-- <sysc-support>  : store sysc-support library source file
+    |   |   |   |   |   +-- <tmu>           : store tmu library source file
+    |   |   |   |   |   +-- <tpu>           : store tpu library source file
+    |   |   +-- <vin>               : stores CSI and VIN libraries source file
+    |   |   +-- <timer>             : stores Timer library using CPG/TMU HW source file
+    |   |   +-- Makefile            : compiling makefile
+    |   +-- Makefile                : compiling make file
+    |   +-- <utils>                 : utilities
+    |   |   +-- Makefile            : compiling makefile
+    +-- Makefile           : compiling make file
+    +-- ReleaseNotes.txt   : Release note for QNX 7.1 BSP for R-Car V4H boards
+    +-- source.xml         : some information about BSP, CPU name
+
+    HISTORY:
+    01.31.2022 : Ver.0.1
+    - Create new version with supported modules:
+      + startup
+      + CPG lib/driver
+      + SYSC lib/driver
+      + WDT driver
+      + devc driver
+      + devnp driver
+      + devb driver
+      + flash driver
+      + DMA lib
+	  + I2C driver
+    02.28.2022 : Ver.0.2
+    - Support drivers:
+      + Display driver
+      + TMU lib
+      + CMT lib 
+      + TPU lib
+    03.30.2022 : Ver.0.3
+    - Support drivers:
+      + SPI (MSIOF) driver
+      + GPIO driver
+      + VIN driver
+    - devnp driver: Code optimization/enhancement based on code review, Linux code and Hardware manual
+    - devc driver: Support TX, RX, RTS trigger level change for HSCIF (this is new feature add in)
+    04.28.2022 : Ver.0.4
+    - Support drivers:
+      + CANFD
+      + PWM
+    - CPG driver: Add in support for new MSTP modules (base on GPG HMW update: Rev.0.56 on Aug. 31, 2017) for GPG driver
+    - devc driver: Optimize/enhance code (base on code Rev:805958 of S4 BSP on QNX Software Center)
+    - I2C driver: Optimize/enhance code in DMA stransfer
+    - SPI driver: Optimize/enhance code (base on code Rev:805958 of S4 BSP on QNX Software Center)
+    05.30.2022 : Ver.0.5
+    - Support drivers:
+      + eTSN Network
+      + Audio (SSI & SIU)
+    - DMA lib: Update base on BSP on QNX Software Center Rev: 954457
+    - SPI, I2C, flash, devc : Update in DMA init function due to update of DMA lib
+    - CPG driver: Add in Reset bit alocation for ANRT1, ADG, INTAP
+    - Startup:
+      + Add more RAM: 2G at 0x4_8000_0000 and 4G at 0x6_0000_0000, total 8GB is enabled
+      + Fix value write to ICC_ASGI1R_EL1 register
+    06.30.2022 : Ver.0.6
+    - SYSC driver: Add in Power ON/OFF CA-CPU cores/A3Domain/L3Cache by APMU controller to sysc-support lib
+    - Startup:
+      + Enable all (4) CA76-CPU cores: verified with IPL v3.3.0. 
+      + Apply CPU power ON from sysc-support lib to board_smp.c
+      + Apply inter-core interrupt defect W/A patch and build option from BB.
+      + Update startup lib from BB's V4H BSP (r-car-v4h_br-mainline_be-710_SVN957832_JBN8) on QNX Software Center
+    - Added in QNX IPL module (Uboot replacement) for V4H to download QNX ifs image from eMMC and QSPI 
+    - CANFD driver: Fix fCAN clock using internal clock source: fCAN clock should be 80Mhz/2
+    - CPG driver: Add in Software reset sequence A) B) C) implementation
+    07.20.2022 : Ver.0.7
+    - Network driver (devnp):
+      + Add in AVB1 and AVB2 and Marvel 88Q2110 Phy supports
+      + Fix gPTP offset and update gPTP code for eTSN driver
+      + Update Phy m88e2110_parse_status() to set speed to 2.5G if parsing speed is 5000Mbps and 10000Mbps of RSwitch driver
+    - I2C driver : Add in changing IO voltage to 1.8V for FAST MODE+
+    - SD/eMMC (devb) driver:
+      + Update framework from BB's V4H BSP (r-car-v4h_br-mainline_be-710_SVN957832_JBN8) on QNX Software Center
+      + Update code for changing SD card VDD power and IO voltage power
+    - SPI driver :
+      + Fix bytes order issue when transferring with bus width bigger than 8 bits in slave driver
+      + Move code resets transmit/receive from "spi_slave_intr" to "spi_slave_clear_buffer"
+    08.30.2022 : Ver.0.8
+    - Audio driver (deva): Add in WM8731 codec mixer
+    - Apply SMMU (IPMMU) support to all drivers
+    - Optimize flash (RPC) driver code
+    - Startup :
+      + Optimize PFC and CPG configuration for SCIF/HSCIF debug
+      + Add in 266.66MHz internal clock source support for SCIF debug
+    - DMA driver : Remove built-in descriptor support
+    - devc driver :
+      + Correct formula in calculating N value to set to SCBRR/HSBRR registers
+      + Add in 'INTERNAL_CLOCK2' macro to handle internal clock (266.66MHz) input to BRG of SCIF/HSCIF
+    09.30.2022 : Ver.0.9
+    - Add in memory type for DMA buffer allocation for devc, I2C, SPI drivers
+    - eMMC (devb) driver : 
+      + Support power suspend and power resume.
+      + Comment _sdio_reset() call in line 608 in _sdio_pwrmgnt() in base.c:
+        Suspend process in the host driver only disables clock supplly and disables all the host interrupt 
+        And then resume process in the host driver will recover the host state before suspend so _sdio_reset( dev ) call seems unnecessary
+    - Flash driver : Add WA to fix defect "RPC data cache hit logic has a problem. Reading RPC registers with CacheON may hit the data cache by mistake. Wrong data is read."
+    - Audio driver : Add in more system-word length and data-word length supports
+    - CPG driver : Add in Assert/Deassert reset sequence A) B) C) and Check reset state support
+    - VIN driver : Add in GMSL2 Serializer MAX96712 support for image sensor of LI-AR0231-AP0200-GMSL2-120H camera
+    10.24.2022 : Ver.1.0
+    - Startup: Reserving memory for RTOS and OSAL software
+      + From 0x6000_0000, size 512MB for Zepher and MCAL (RTOS on CR core)
+      + From 0x8000_0000, size 560MB for FCPR (OSAL)
+    - eMMC driver : Update always to reset DMAC when any error occurs regardless DMAC is started or not
+    - CPG driver : 
+      + Updated SRCRn access from read-modify-write to only write to target bit (this has fixed Software Reset issue when 2 OS in CA and CR cores are accessing same SRCRn register at the same time)
+      + Updated RAHSR access from read-modify-write to only write to expected target bit
+      + Removed using error codes from errno.h
+      + Added error codes:
+        CPG_RET_OK
+        CPG_RET_INVALPARA
+        CPG_RET_TIMEOUT
+        CPG_RET_HWFAIL
+        CPG_RET_ERROR
+    - SYSC driver :
+      + Removed using error codes from errno.h
+      + Added error codes:
+        SYSC_RET_OK
+        SYSC_RET_INVALPARA
+        SYSC_RET_TIMEOUT
+        SYSC_RET_HWFAIL
+        SYSC_RET_ERROR
+    11.30.2022 : Ver.1.1
+    - I2C driver :
+      + Fix bus speed setting for Fast mode+ when starting driver with option '-o od18'.
+      + Add in channel index to prefix of all logs
+      + Replace second call rcar_dma_wait_complete() by rcar_i2c_wait_complete() in DMA transfer to resolve DMA timeout
+      + Correct only R-Car V3U/V4H support fast mode+
+    - Network driver :
+      + Change 'rtsnes' driver name into 'rtsn'
+      + Add in Phy M88Q2110 Software Reset
+      + Update eTSN driver basing on Linux rcar-5.1.7.rc5
+      + Integrate the latest R-Switch2 driver from S4 BSP v1.1 to R-Switch2 driver
+    - WFD driver:
+      + Update DSI driver based on Linux rcar-5.2.0.rc2
+      + Fix DSI wrong setting in SN65DSI86 driver when only one data lane is used
+      + Apply Software workaround for DSI/CSI-2 TX register write malfunction (R-CarV4H_spec_limitation_list_20220906+ SW WA.pptx: 29):
+    - VIN driver :
+      + Add in Software Reset for ISP
+      + Optimize/enhance code
+    - GPIO driver : Apply limitation for V4H 1.0 GP1_23 - GP1_28 ports (R-CarV4H_spec_limitation_list_20220906+ SW WA.pptx: 5):
+      Set “1” to all bits of POC0/1 (GP1_23 - 28 can be used when 3.3V voltage level is supplied to VDDQ18_33_SPI power rail)
+    - Audio driver :
+      + Add in ADG BRRA and BRRB divider support
+      + Add in DA7212 codec mixer
+    - CANFD drivers : Remove usued macro and code
+    - CPG : Added in “CPG_RET_UNKNOWNSTA” return code
+    - SYSC : Added in “SYSC_RET_UNKNOWNSTA” return code
+    - Startup :
+      + Apply Software workaround for V4H 1.0 APMU Access protection error (R-CarV4H_spec_limitation_list_20220906+ SW WA.pptx: 30):
+        Set any bit of D[n]ACCENR(n=0-3)/RTGRPx, CL0GRPx, CL1GRPx(x=0-3) to 1 in board_smp.c
+      + Apply Software workaround for V4H 1.0 AVB0,1,2 and TSN0 (R-CarV4H_spec_limitation_list_20220906+ SW WA.pptx: 1):
+        Set 1.8V IO mode (when TX clock internal delay mode is used with 1Gbps data transfer rate) in board_config.h
+    12.23.2022 : Ver.1.2
+    - IPMMU : integrated BB's IPMMU driver libraries for over-32-bit to 32-bit memory address translation support:
+      + Updated rcar_v4h.build file and prebuild folders for IPMMU support
+      + Enabled IPMMU in eMMC (devb) and network eAVB (devnp) drivers
+      + Use 'USE_SMMU' to guard smmu functions for devc, i2c, spi, flash drivers (note: please don't use smmu in this BSP)
+    - VIN driver : update to enable displaying 8 cameras (enable 2 Deserializers) concurrently
+    - Network driver :
+      + Update PHY M88Q2110 Initiation for eTSN and AVB1 and AVB2
+      + Remove TX internal delay setting in AVB driver
+    01.20.2023 : Ver.1.3
+    - Network (devnp) driver : Add in 'ipmmu=on/off' option to handle using IPMMU or not in AVB driver
+    - VIN driver :
+      + Integrate BB's IPMMU driver libraries for over-32-bit to 32-bit memory address translation support
+      + Support an option to choose camera input mode between GMSL1 MODE and GMSL2 MODE
+    - Audio driver : Update DA7212 codec mixer
+    - GPIO driver : Add an inverse write to 'PFC_PMMR' register before writing to PFC_PUEN/PFC_PUD register
+    - DMA driver : Replace by rsrcdb_detach_resources() in dma_channel_release() to detach DMA channel
+    02.24.2023 : Ver.1.4
+    - IPMMU :
+      + Integrated BB’s libipmmu
+      + Remove ipmmu-manager
+      + Use smmuman service instead of ipmmu-manager in build script
+    - eTSN driver :
+      + Fix receiving issue in rtsnes_receive() (when receiving descriptor index 1022 (max) but not goes back to 0):
+          Set DT_LINK for link descritor 1023 before return rtsnes_receive() (this issue was found when run iperf3)
+    - VIN driver :
+      + Update for GMSL2 camera support to remove limitation testing with Leopard camera (LI-IMX390-GMSL2-120H)
+    - SPI driver :
+      + Update "spi_slave_intr" function to fix lost bytes in slave read and master clock > 2Mhz
+    04.24.2023 : Ver.1.5
+    - Add build script rcar_v4h-ipmmu.build to support drivers using IPMMU
+    - Startup : Add SoC Rev.1.1, 2.0 & 2.1 support in uname string
+    - VIN driver :
+     + Fix issue when enabling only one camera (specify by -source=[0..3] in testing app)
+     + Update CSI D-Phy mode based on R-CarV4H_TS_053_CSI_D_IOComparator.xlsx
+    - CPG driver :
+      + Fix un-correct minimum value for POST clock
+      + Add SoC product ID check in A, B and C flow resets
+      + Add OPP (power management) feature support from QNX BSP JNB34
+    - WFD driver : Add SoC Rev2.0 support
+    - Audio driver : Update missing setting in TDM mode
+    - SYSC driver : Add dummy returns for V4H 2.0, 2.1 to control "A3IR and A2CN0 and A1CNN0 are turned on in IPL, they are prohibited to turn off"
+    - IPMMU : Integrate librcar-ipmmu from QNX BSP JNB34
+    - eMMC driver : Update driver framework from QNX BSP JNB34
+    - Network driver : Remove 'ipmmu' option and add 'ipmmu' compiler variant
+    05.30.2023 : Ver.1.6
+    - Add devs driver for eAVB, eTSN (io-sock based network)
+    - QNX IPL : Add HS200 Support for eMMC
+    - IPMMU : Add IPMMU client lib
+    - CPG & SYSC drivers: Remove iofunc_attr_unlock() calls in rcar_cpg_io_devctl() & rcar_sysc_io_devctl()
+    08.30.2023 : Ver.1.7
+    - Startup : Add Power ON A3IR domain for SoC v1.0 as default
+    - Update from BB's BSP "SVN Revision Number:  977770" for:
+      + Startup
+      + IPMMU client lib, configuration files
+      + devb, devc, I2C, DMA, CPG, SYSC drivers: Optimize framework & code convention
+      + Intergate IPMMU for devnp, VIN
+    09.30.2023 : Ver.1.8
+    - Flash driver : Fix write buffer for hyperfash: Only use write buffer with 256 bytes
+    - Exclude building iosock and devs driver for the case SDK io-sock not installed yet
+    - DMAC : Update dma_xfer_complete() to fix the issue on Audio playback
+    - CPG and SYSC resource driver :
+      + Add stub function rcar_sysc_attr_do_nothing() for increasing peformance
+      + Update rcar_cpg_mstp_control() to fix Reset Type A, B and C issue (cpg_funcs->mstp_assert_gen4_a(b/c) return into *status)
+    - PWM driver : Add iofunc_attr_lock() before return pwm_devctl()
+    10.30.2023 : Ver.1.9
+    - Add SoC 2.2 revision support:
+      + Startup : Add SoC Rev2.2 support in uname string
+      + SYSC driver : Add dummy returns for V4H 2.2 to control "A3IR and A2CN0 and A1CNN0 are turned on in IPL, they are prohibited to turn off"
+      + WFD driver : Add SoC 2.2 support (banary release)
+    - devb, devc, I2C, SPI, GPIO, PWM drivers: Code convention
+    - WDT driver: Optimize and correct bus width in accessing to read WDT Control and Count registers
+    - Add SoC 2.1, 2.2 revisions to '/etc/rcar4-v4h_r20.smmu'
+-----------------------------------------------------------------------------
+ Known limitations with this release
+-----------------------------------------------------------------------------

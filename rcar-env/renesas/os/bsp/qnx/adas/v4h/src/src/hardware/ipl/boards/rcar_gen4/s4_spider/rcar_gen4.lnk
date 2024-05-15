@@ -1,0 +1,31 @@
+TARGET(elf64-littleaarch64)
+OUTPUT_FORMAT(elf64-littleaarch64)
+ENTRY(_start)
+MEMORY
+{
+	rom			:	ORIGIN = 0x0000000050000000,	LENGTH = 0x80000
+}
+
+SECTIONS
+{
+	.text : {
+				*(.text)
+				*(.note.gnu.build-id)
+				*(.rodata*)
+			} > rom
+
+    . = ALIGN(4);
+	_etext = .;
+
+	.data : {	*(.data)
+				*(.sdata)
+			} > rom
+
+	.bss  : {
+				*(.bss)
+				*(.sbss)
+			} > rom
+
+    . = ALIGN(4);
+	_ecopy = .;
+}

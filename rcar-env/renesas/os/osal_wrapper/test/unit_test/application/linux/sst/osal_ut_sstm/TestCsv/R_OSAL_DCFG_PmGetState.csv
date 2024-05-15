@@ -1,0 +1,23 @@
+modi,R_OSAL_DCFG_PmGetState,07_009,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_pm_get_state,r_osal_dcfg_pm_get_state,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_MutexLockForTimePeriod,R_OSAL_HIF_MutexLockForTimePeriod,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_pm_get_state,r_osal_dcfg_pm_get_state,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexUnlock,R_OSAL_OS_MutexUnlock,,,,,,,,,,,,,
+#COMMENT,@handle,@handle[0].handle_id,@handle[0].pm_handle,@handle[0].pm_handle[0].is_power_support,@handle[0].pm_handle[0].is_clock_support,@handle[0].pm_handle[0].is_reset_support,@p_state,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AM_count,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_pm_get_state@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_MutexLockForTimePeriod@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_pm_get_state@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexUnlock@AMIN_return[0],R_OSAL_DCFG_PmGetState@@,;
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,true,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,true,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;R_OSAL_HIF_MutexLockForTimePeriod() return OSAL_RETURN_TIME
+,g_st_osal_device_control_t[0],OSAL_INVALID_HANDLE_ID,g_st_osal_power_control_t[0],true,true,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_HANDLE,;handle->handle_id is OSAL_INVALID_HANDLE_ID (Unlock is OK)
+,g_st_osal_device_control_t[0],OSAL_INVALID_HANDLE_ID,g_st_osal_power_control_t[0],true,true,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_HANDLE,;handle->handle_id is OSAL_INVALID_HANDLE_ID (Unlock is FAIL)
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,true,false,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,";handle->is_power_support=true, handle->is_clock_support=true, and handle->is_reset_support=false"
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,false,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,";handle->is_power_support=true, handle->is_clock_support=false, and handle->is_reset_support=true"
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,false,false,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,";handle->is_power_support=true, handle->is_clock_support=false, and handle->is_reset_support=false"
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],false,true,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,";handle->is_power_support=false, handle->is_clock_support=true, and handle->is_reset_support=true"
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],false,true,false,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,";handle->is_power_support=false, handle->is_clock_support=true, and handle->is_reset_support=false"
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],false,false,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,";handle->is_power_support=false, handle->is_clock_support=false, and handle->is_reset_support=true"
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],false,false,false,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_UNSUPPORTED_OPERATION,";handle->is_power_support=false, handle->is_clock_support=false, and handle->is_reset_support=false"
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,true,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_dcfg_pm_get_state() return OSAL_RETURN_FAIL
+,g_st_osal_device_control_t[0],OSAL_IO_HANDLE_ID,g_st_osal_power_control_t[0],true,true,true,g_e_osal_pm_state_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_OS_MutexUnlock() return OSAL_RETURN_FAIL

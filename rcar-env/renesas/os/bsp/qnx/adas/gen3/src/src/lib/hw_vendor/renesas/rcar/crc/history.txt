@@ -1,0 +1,12 @@
+	The CRC library for RENESAS R-CarV3U boards
+
+    CREATED   : 03.10.2021
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car V3U
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            03.10.2021 : Ver.0.1
+              - Create new version
+                

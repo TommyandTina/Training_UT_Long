@@ -1,0 +1,7 @@
+modi,R_OSAL_RCFG_MutexLockUntilTimeStamp,02_009,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_r_osal_rcfg_mutex_lock,r_osal_rcfg_mutex_lock,,,,,,,,,,
+#COMMENT,@handle,@p_time_stamp,AMSTB_SrcFile.c/AMSTB_r_osal_rcfg_mutex_lock@AMIN_return,R_OSAL_RCFG_MutexLockUntilTimeStamp@@,;,,,,,,,
+,g_st_osal_mutex_control_t[0],0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,g_st_osal_mutex_control_t[0],0,OSAL_RETURN_HANDLE,OSAL_RETURN_HANDLE,;r_osal_rcfg_mutex_lock() return OSAL_RETURN_HANDLE,,,,,,,

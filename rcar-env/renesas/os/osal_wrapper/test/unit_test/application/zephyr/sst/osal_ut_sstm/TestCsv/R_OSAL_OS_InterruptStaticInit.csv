@@ -1,0 +1,18 @@
+modi,R_OSAL_OS_InterruptStaticInit,06_101,23,1,,,,CPP,,,,0,,,,,,,,,,,,,
+#InitWheneverCall,gs_osal_interrupt_config[0].id,gs_osal_interrupt_config[1].id,gs_osal_interrupt_config[2].id,gs_osal_interrupt_config[0].irq_number,gs_osal_interrupt_config[1].irq_number,gs_osal_interrupt_config[0].priority,gs_osal_interrupt_config[1].priority,,,,,,,,,,,,,,,,,,
+0,0,0,0,0,0,0,0,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_strncmp,strncmp,,,,,,,,,,,,,,,,,,,,,,,
+#COMMENT,gs_osal_interrupt_config[0].id,gs_osal_interrupt_config[1].id,gs_osal_interrupt_config[2].id,gs_osal_interrupt_config[0].irq_number,gs_osal_interrupt_config[1].irq_number,gs_osal_interrupt_config[0].priority,gs_osal_interrupt_config[1].priority,@device_control_table,AMSTB_SrcFile.c/g_osal_device_control[0].dev_info,AMSTB_SrcFile.c/g_osal_device_control[1].dev_info,AMSTB_SrcFile.c/g_osal_device_config[0].irq_channels,AMSTB_SrcFile.c/g_osal_device_config[1].irq_channels,AMSTB_SrcFile.c/g_osal_device_config[0].interrupt,AMSTB_SrcFile.c/g_osal_device_config[1].interrupt,AMSTB_SrcFile.c/g_st_osal_interrupt_info[0].irq_number,AMSTB_SrcFile.c/g_st_osal_interrupt_info[1].irq_number,@device_table_num,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strncmp@AM_count,AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strncmp@AMIN_return[1],R_OSAL_OS_InterruptStaticInit@@,;
+,g_str_dummy,g_str_dummy,0,1,2,10,10,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,2,2,2,0,g_st_osal_interrupt_control_t,g_int32_t,0,0,0,OSAL_RETURN_OK,;Normal operation 
+,0,0,0,1,2,10,10,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,2,2,2,0,g_st_osal_interrupt_control_t,g_int32_t,0,0,0,OSAL_RETURN_MEM,;gs_osal_num_of_interrupt_table is 0
+,g_str_dummy,g_str_dummy,0,1,2,10,10,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,2,2,2,0,0,g_int32_t,0,0,0,OSAL_RETURN_MEM,;calloc() return NULL. (case gsp_osal_interrupt_control)
+,g_str_dummy,g_str_dummy,0,1,2,10,10,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,2,2,2,0,g_st_osal_interrupt_control_t,0,0,0,0,OSAL_RETURN_MEM,;calloc() return NULL. (case p_device_control->interrupt_index)
+,g_str_dummy,g_str_dummy,0,1,2,10,10,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,0,0,2,0,g_st_osal_interrupt_control_t,g_int32_t,0,0,0,OSAL_RETURN_OK,;p_local_control->usr_config->irq_number is not p_device_control->dev_info->interrupt[channel_count].irq_number.
+,g_str_dummy,g_str_dummy,0,2,2,10,10,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,2,2,2,0,g_st_osal_interrupt_control_t,g_int32_t,0,1,1,OSAL_RETURN_CONF,;strncmp() return non-0.
+,g_str_dummy,g_str_dummy,0,2,2,10,10,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,2,2,2,0,g_st_osal_interrupt_control_t,g_int32_t,0,0,0,OSAL_RETURN_CONF,;Find the same interrupt control information. 
+,g_str_dummy,g_str_dummy,0,1,2,15,15,g_osal_device_control,g_osal_device_config[0],g_osal_device_config[1],2,0,g_st_osal_interrupt_info,0,2,2,2,0,g_st_osal_interrupt_control_t,g_int32_t,0,0,0,OSAL_RETURN_CONF,;p_interrupt_control->usr_config->priority  is the lager than OSAL_INTERRUPT_PRIORITY_HIGHEST

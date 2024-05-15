@@ -1,0 +1,13 @@
+modi,r_osal_os_io_get_num_of_device,15_128,8,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,
+%,AMSTB_r_osal_os_io_create_regex_pattern,r_osal_os_io_create_regex_pattern,,,,,,,,,,
+%,AMSTB_r_osal_os_io_count_device,r_osal_os_io_count_device,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,
+#COMMENT,@p_deviceType,@p_numOfDevices,@p_glob_buffer,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_r_osal_os_io_create_regex_pattern@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_io_count_device@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_get_num_of_device@@,;,,
+,0,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation,,
+,0,g_size_t,0,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_OS_Malloc returns NULL,,
+,0,g_size_t,0,0,str,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;r_osal_os_io_create_regex_pattern returns OSAL_RETURN_FAIL,,
+,0,g_size_t,0,0,str,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;r_osal_os_io_count_device returns OSAL_RETURN_FAIL,,

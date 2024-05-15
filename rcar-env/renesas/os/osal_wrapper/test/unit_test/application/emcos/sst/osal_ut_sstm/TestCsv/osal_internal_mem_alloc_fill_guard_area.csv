@@ -1,0 +1,7 @@
+modi,osal_internal_mem_alloc_fill_guard_area,09_031,5,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_memory.c/gs_osal_memory_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_memory.c/gs_osal_memory_is_initialized,$@p_buffer_info,@p_buffer_info[0].p_buffer_va,@p_buffer_info[0].size,@mode,osal_internal_mem_open_map@@,;,,,,,
+,1,1,8192,0,OSAL_MMNGR_ALLOC_MODE_STACK_PROT,OSAL_RETURN_OK,;Normal operation(mode is OSAL_MMNGR_ALLOC_MODE_STACK_PROT),,,,,
+,1,1,8192,0,OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT,OSAL_RETURN_OK,;Normal operation(mode is OSAL_MMNGR_ALLOC_MODE_FREE_LIST_PROT),,,,,
+,1,1,8192,0,OSAL_MMNGR_ALLOC_MODE_STACK,OSAL_RETURN_OK,;mode is not equals OSAL_MMNGR_ALLOC_MODE_STACK_PROT,,,,,

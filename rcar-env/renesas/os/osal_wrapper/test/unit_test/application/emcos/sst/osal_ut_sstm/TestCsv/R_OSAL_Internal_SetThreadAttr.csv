@@ -1,0 +1,22 @@
+modi,R_OSAL_Internal_SetThreadAttr,01_014,13,1,,,,CPP,,,,0,,,
+#InitWheneverCall,r_osal_common.c/gs_inner_thread_attr_mngr_num,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,,,
+%,AMSTB_malloc,malloc,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_init,pthread_attr_init,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setinheritsched,pthread_attr_setinheritsched,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedpolicy,pthread_attr_setschedpolicy,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedparam,pthread_attr_setschedparam,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setstacksize,pthread_attr_setstacksize,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,,,,
+#COMMENT,r_osal_common.c/gs_inner_thread_attr_mngr_num,$@p_attr_info,@p_attr_info[0].policy,$@p_attr,AMSTB_SrcFile.c/AMSTB_malloc@AM_count,AMSTB_SrcFile.c/AMSTB_malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_attr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setinheritsched@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedpolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedparam@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setstacksize@AMIN_return,AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],R_OSAL_Internal_SetThreadAttr@@,;
+,0,1,OSAL_SCHED_FIFO,1,0,g_osal_inner_thread_attr,0,0,0,0,0,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_OK,;Normal operation 
+,0,1,OSAL_SCHED_FIFO,1,0,0,0,0,0,0,0,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_MEM,;p_tmp_attr is NULL.
+,0,1,OSAL_SCHED_FIFO,1,0,g_osal_inner_thread_attr,1,0,0,0,0,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_FAIL,;pthread_attr_init() is return non-zero.
+,0,1,OSAL_SCHED_FIFO,1,0,g_osal_inner_thread_attr,0,1,0,0,0,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_FAIL,;pthread_attr_setinheritsched() is return non-zero.
+,0,1,OSAL_SCHED_RR,1,0,g_osal_inner_thread_attr,0,0,0,0,0,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_OK,;p_attr_info->policy is OSAL_SCHED_RR.
+,0,1,OSAL_SCHED_FIFO,1,0,g_osal_inner_thread_attr,0,0,1,0,0,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_FAIL,;pthread_attr_setschedpolicy() is return non-zero.
+,0,1,OSAL_SCHED_FIFO,1,0,g_osal_inner_thread_attr,0,0,0,1,0,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_FAIL,;pthread_attr_setschedparam() is return non-zero.
+,0,1,OSAL_SCHED_FIFO,1,0,g_osal_inner_thread_attr,0,0,0,0,1,0,g_osal_inner_thread_attr_arry,OSAL_RETURN_FAIL,;pthread_attr_setstacksize() is return non-zero.
+,0,1,OSAL_SCHED_FIFO,1,0,g_osal_inner_thread_attr,0,0,0,0,0,0,0,OSAL_RETURN_MEM,;p_mngr_tbl is NULL.

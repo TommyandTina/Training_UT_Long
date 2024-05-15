@@ -1,0 +1,18 @@
+	The TMU driver for RENESAS R-CarV3U boards
+
+    CREATED   : 12.18.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car V3U boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            12.18.2020 : Ver.0.1
+              - Create new version that supports all features/functions.
+            02.28.2022 : Ver.0.2
+              - Support for R-Car V4H
+-----------------------------------------------------------------------------
+ Known limitations with this version
+-----------------------------------------------------------------------------
+Not to test Input Capture function and external clock source.
+

@@ -1,0 +1,22 @@
+%C Driver for R-Car SPI (MSIOF) controllers
+
+Syntax:
+    spi-master -u[dev_number] -d /proc/boot/spi-rcar.so [option[,option ...]] ... &
+
+Options (to override autodetected defaults):
+    "dev_number"    : Device number show in /dev/spi* (0,1,2,...)
+    "channel"       : Defines the connected channel number defined in hardware info 
+                      R-Car H3/M3/M3N/E3/V3H/V3M/S4 support 4 channels(0...3)
+                      R-Car V3U support 6 channels(0...5)
+                    
+    "blksize"       : Transceiver's block size(R-CarV4H: 0 < blksize <=128, for other products 0< blksize <=64 )
+    "dma"           : DMA mode, TX and RX requests (DMARS), min and max channels 
+                      dma[=<tx_req_id>,<rx_req_id>[<chan_min>,<chan_max>]]
+    "typed_mem"     : Specify memory type for DMA transfer
+
+
+Examples:
+    # Start SPI master driver using DMA mode
+    spi-master -u1 -d /proc/boot/spi-rcar.so channel=1,blksize=64,dma
+    # Start SPI master driver using DMA mode with DMA transfer info
+    spi-master -u1 -d /proc/boot/spi-rcar.so channel=1,blksize=64,dma=0x40,0x41

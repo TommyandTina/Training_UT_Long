@@ -1,0 +1,12 @@
+modi,R_OSAL_Internal_MutexTimedLock,01_019,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_GetTimestamp,R_OSAL_Internal_GetTimestamp,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimespecAdd,R_OSAL_Internal_TimespecAdd,,,,,,,,,,
+%,AMSTB_pthread_mutex_timedlock,pthread_mutex_timedlock,,,,,,,,,,
+#COMMENT,$@handle,@time_period,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_GetTimestamp@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimespecAdd@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_timedlock@AMIN_return,R_OSAL_Internal_MutexTimedLock@@,;,,,,,
+,1,10,OSAL_RETURN_OK,OSAL_RETURN_OK,0,OSAL_RETURN_OK,;Normal operation ,,,,,
+,1,10,OSAL_RETURN_FAIL,OSAL_RETURN_OK,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_GetTimestamp() return OSAL_RETURN_FAIL.,,,,,
+,1,10,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimespecAdd() return OSAL_RETURN_FAIL.,,,,,
+,1,10,OSAL_RETURN_OK,OSAL_RETURN_OK,110,OSAL_RETURN_TIME,;pthread_mutex_timedlock() return is ETIMEDOUT.,,,,,
+,1,10,OSAL_RETURN_OK,OSAL_RETURN_OK,-1,OSAL_RETURN_FAIL,;pthread_mutex_timedlock() return is non-zero.,,,,,

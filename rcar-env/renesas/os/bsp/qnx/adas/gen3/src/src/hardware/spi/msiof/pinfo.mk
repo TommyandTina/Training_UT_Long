@@ -1,0 +1,3 @@
+define PINFO
+PINFO DESCRIPTION=R_CarH2 MSIOF SPI driver
+endef

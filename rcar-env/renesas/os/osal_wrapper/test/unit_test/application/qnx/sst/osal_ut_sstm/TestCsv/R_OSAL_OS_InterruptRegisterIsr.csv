@@ -1,0 +1,19 @@
+modi,R_OSAL_OS_InterruptRegisterIsr,06_104,16,1,,,,CPP,,,,0,,,,,,
+#InitWheneverCall,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_thread_control,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_handler,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_enable,,,,,,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_interrupt_timedlock_mutex,r_osal_os_interrupt_timedlock_mutex,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_interrupt_timedlock_mutex_cmn,r_osal_os_interrupt_timedlock_mutex_cmn,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_cond_signal,pthread_cond_signal,,,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,,,
+%,AMSTB_r_osal_os_interrupt_unlock_mutex,r_osal_os_interrupt_unlock_mutex,,,,,,,,,,,,,,,,
+#COMMENT,gs_osal_os_interrupt_init_flag,gsp_osal_interrupt_thread_control,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_handler,AMSTB_SrcFile.c/g_osal_interrupt_thread_control[0].irq_enable,$@handle,$@handle[0].interrupt_index,@handle[0].interrupt_index[0],@irq_channel,@priority_value,@irqHandlerFunction,@p_irq_arg,AMSTB_SrcFile.c/AMSTB_r_osal_os_interrupt_timedlock_mutex@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_interrupt_timedlock_mutex_cmn@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_cond_signal@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return,AMSTB_SrcFile.c/AMSTB_r_osal_os_interrupt_unlock_mutex@AMIN_return,R_OSAL_OS_InterruptRegisterIsr@@,;
+,1,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation 
+,1,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_TIME,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_interrupt_timedlock_mutex() return non-OSAL_RETURN_OK.
+,0,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_STATE,;gs_osal_os_interrupt_init_flag is false.
+,1,g_osal_interrupt_thread_control,1,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;p_interrupt_control->irq_handler is not NULL.
+,1,g_osal_interrupt_thread_control,0,1,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_OK,OSAL_RETURN_BUSY,;p_interrupt_control->irq_enable is true.
+,1,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,22,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_cond_signal() return non-zero.
+,1,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,0,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;r_osal_os_interrupt_unlock_mutex() return non-OSAL_RETURN_OK.
+,1,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,0,0,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;r_osal_os_interrupt_timedlock_mutex_cmn() return non-OSAL_RETURN_OK.
+,1,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,0,22,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_mutex_unlock() return non-zero.
+,1,g_osal_interrupt_thread_control,0,0,1,1,0,0,OSAL_INTERRUPT_PRIORITY_LOWEST,1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,22,22,OSAL_RETURN_OK,OSAL_RETURN_FAIL,;pthread_cond_signal() return non-zero and pthread_mutex_unlock() return non-zero.

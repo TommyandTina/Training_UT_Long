@@ -1,0 +1,5 @@
+%C welcome_msg
+Display welcome massage and board name
+
+Options
+welcom_msg  A welcome message will print before board name

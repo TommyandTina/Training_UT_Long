@@ -1,0 +1,36 @@
+modi,r_osal_os_io_get_map_size,15_138,20,1,,,,CPP,,,,0,,,,,,,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fopen,fopen,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fopen,fopen,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fopen,fopen,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fscanf,fscanf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fscanf,fscanf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fscanf,fscanf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fscanf,fscanf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_fscanf,fscanf,,,,,,,,,,,,,,,,,,,,
+%,AMSTB__fclose_internal,_fclose_internal,,,,,,,,,,,,,,,,,,,,
+%,AMSTB__fclose_internal,_fclose_internal,,,,,,,,,,,,,,,,,,,,
+%,AMSTB__fclose_internal,_fclose_internal,,,,,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,,,,,,,
+#COMMENT,@handle,@p_uio_symbolic_name,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_fopen@AM_count,AMSTB_SrcFile.c/AMSTB_fopen@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_fopen@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_fscanf@AM_count,AMSTB_SrcFile.c/AMSTB_fscanf@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_fscanf@AMIN_p_result[0],AMSTB_SrcFile.c/AMSTB_fscanf@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_fscanf@AMIN_p_result[1],AMSTB_SrcFile.c/AMSTB__fclose_internal@AM_count,AMSTB_SrcFile.c/AMSTB__fclose_internal@AMIN_return[0],AMSTB_SrcFile.c/AMSTB__fclose_internal@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,r_osal_os_io_get_map_size@@,;
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,1,1,1,1,0,0,0,0,OSAL_RETURN_OK,;Normal operation (size is not 0 / addr is not 0)
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,OSAL_RETURN_OK,;Normal operation (size is 0 / addr is 0)
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,1,1,1,0,0,0,0,0,OSAL_RETURN_CONF,;Normal operation (size is not 0 / addr is 0)
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,1,0,1,1,0,0,0,0,OSAL_RETURN_CONF,;Normal operation (size is 0 / addr is not 0)
+,g_st_osal_device_control_t[0],0,0,0,str,0,0,0,0,1,1,0,1,1,1,1,0,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[0] returns NULL
+,g_st_osal_device_control_t[0],0,0,str,0,0,0,0,0,1,1,0,1,1,1,1,0,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc[1] returns NULL
+,g_st_osal_device_control_t[0],0,0,str,str,0,-1,0,0,1,1,0,1,1,1,1,0,0,0,0,OSAL_RETURN_FAIL,;snprintf[0] returns -1
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,-1,0,1,1,0,1,1,1,1,0,0,0,0,OSAL_RETURN_FAIL,;snprintf[1] returns -1
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,OSAL_RETURN_CONF,;fopen[0] returns NULL
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,0,0,1,1,1,1,0,0,0,0,OSAL_RETURN_CONF,;fopen[1] returns NULL
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,0,1,1,1,0,0,0,0,OSAL_RETURN_FAIL,;fscanf[0] returns 0
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,1,1,0,1,0,0,0,0,OSAL_RETURN_FAIL,;fscanf[1] returns 0
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,1,1,1,1,0,-1,0,0,OSAL_RETURN_FAIL,;fclose[0] returns -1
+,g_st_osal_device_control_t[0],0,0,str,str,0,0,0,0,1,1,0,1,1,1,1,0,0,-1,0,OSAL_RETURN_FAIL,;fclose[1] returns -1

@@ -1,0 +1,10 @@
+modi,R_OSAL_InterruptGetNumOfIrqChannels,06_001,6,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,,,,,,,,,,,
+0,0,,,,,,,,,,,
+#COMMENT,r_osal_interrupt.c/gs_osal_interrupt_is_initialized,@handle,g_st_osal_device_control.handle_id,g_st_osal_device_control.active,g_st_osal_device_control.irq_channels,@p_numOfChannels,R_OSAL_InterruptGetNumOfIrqChannels@@,;,,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,1,g_uint64_t,OSAL_RETURN_OK,;Normal operation ,,,,
+,0,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,1,g_uint64_t,OSAL_RETURN_STATE,;gs_osal_interrupt_is_initialized is false,,,,
+,1,0,OSAL_DEVICE_HANDLE_ID,1,1,g_uint64_t,OSAL_RETURN_HANDLE,;handle is NULL,,,,
+,1,g_st_osal_device_control,0,1,1,g_uint64_t,OSAL_RETURN_HANDLE,;handle->handle_id is not OSAL_DEVICE_HANDLE_ID,,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,0,1,g_uint64_t,OSAL_RETURN_HANDLE,;handle->active is not true,,,,
+,1,g_st_osal_device_control,OSAL_DEVICE_HANDLE_ID,1,1,0,OSAL_RETURN_PAR,;p_numOfChannels is NULL,,,,

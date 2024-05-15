@@ -1,0 +1,10 @@
+modi,r_osal_rcfg_mmngr_cmn_check_buffer_handle,09_046,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_ptr_self,g_st_osal_memory_buffer_obj.p_ptr_self,g_st_osal_memory_buffer_obj.mmngr_owner_hndl,g_st_osal_memory_manager_obj[0].p_ptr_self,g_osal_mem_buf_ptr_self.handle_id,r_osal_rcfg_mmngr_cmn_check_buffer_handle@@,;,,,,,
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_RES_CFG_BUFFER_HANDLE_ID,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_RES_CFG_BUFFER_HANDLE_ID,OSAL_RETURN_HANDLE,;p_ptr_self is NULL,,,,,
+,g_st_osal_memory_buffer_obj,0,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,OSAL_RES_CFG_BUFFER_HANDLE_ID,OSAL_RETURN_HANDLE,;p_buffer_obj->p_ptr_self is NULL,,,,,
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,0,g_osal_mem_buf_ptr_self,OSAL_RES_CFG_BUFFER_HANDLE_ID,OSAL_RETURN_HANDLE,;p_buffer_obj->mmngr_owner_hndl is NULL,,,,,
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,0,OSAL_RES_CFG_BUFFER_HANDLE_ID,OSAL_RETURN_HANDLE,;p_buffer_obj->mmngr_owner_hndl->p_ptr_self is NULL,,,,,
+,g_st_osal_memory_buffer_obj,g_osal_mem_buf_ptr_self,g_st_osal_memory_manager_obj,g_osal_mem_buf_ptr_self,0,OSAL_RETURN_HANDLE,;p_buffer->handle_id is not equals OSAL_RES_CFG_BUFFER_HANDLE_ID,,,,,

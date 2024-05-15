@@ -1,0 +1,16 @@
+	The CPG driver libraries for RENESAS R-Car Gen3 boards
+
+    CREATED   : 01.25.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3 boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            01.25.2021 : Ver.0.1
+            - Create new version
+            10.30.2021 : ver0.2
+            - Update with new cpg-support lib framework
+            - Add cpg control app
+            11.15.2022 : ver0.3
+            - Sync with updates from cpg-support lib

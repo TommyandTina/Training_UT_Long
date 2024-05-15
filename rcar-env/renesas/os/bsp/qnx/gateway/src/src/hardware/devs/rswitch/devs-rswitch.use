@@ -1,0 +1,20 @@
+%C Driver for Renesas RSwitch Ethernet interface
+
+
+Syntax:
+  io-sock [-o option[,option...]][-d driver ]
+
+Options:
+  Options:
+    -d driver
+        Start the specified devs-* driver:
+        You can specify driver without the devs- prefix or the .so extension.
+    -o opt[,opt...]
+      The opt variable can be any of the following:
+        dtb
+          Specify the path to a Device Tree Blob file.
+
+Examples:
+  #io-sock -odtb=/etc/io-sock/r8a779f0-spider.dtb -d rswitch
+  #sleep 1
+  #dhclient -m -lf /dev/shmem/dhclient.leases -pf /dev/shmem/dhclient.pid -nw tsn0

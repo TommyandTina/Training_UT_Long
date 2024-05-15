@@ -1,0 +1,16 @@
+modi,r_osal_dcfg_io_add_utlb_list,07_026,12,1,,,,CPP,,,,0,,
+#InitWheneverCall,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,
+%,AMSTB_r_osal_dcfg_io_add_utlb_list_single,r_osal_dcfg_io_add_utlb_list_single,,,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gsp_axi_bus_name_info,$@p_domain_name,$@p_num_str,@p_num_str[0],@p_num_str[1],@p_num_str[2],@list_size,@p_list_buffer,@p_utlb_control,g_st_osal_utlb_list_control.match_count,g_st_osal_utlb_list_control.current_utlb,AMSTB_SrcFile.c/AMSTB_r_osal_dcfg_io_add_utlb_list_single@AMIN_return,r_osal_dcfg_io_add_utlb_list@@,;
+,g_axi_bus_name_info_1,1,3,0x5f,0x31,0x30,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation('_' route)
+,g_axi_bus_name_info_5,1,3,0x2d,0x30,0x34,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation('-' route)
+,g_axi_bus_name_info_1,1,3,0x5f,0x2f,0x30,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,;p_num_str[1] is less than '0'
+,g_axi_bus_name_info_1,1,3,0x5f,0x3a,0x30,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,;p_num_str[1] is bigger than '9'
+,g_axi_bus_name_info_1,1,3,0x5f,0x31,0x2f,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,;p_num_str[2] is less than '0'
+,g_axi_bus_name_info_1,1,3,0x5f,0x31,0x3a,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,;p_num_str[2] is bigger than '9'
+,g_axi_bus_name_info_1,1,3,0x00,0x31,0x30,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,";p_num_str[0] is neither ""-"" nor ""_""."
+,g_axi_bus_name_info_1,1,3,0x2d,0x30,0x34,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,0,2,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,;0 is equals match_count ('-' route)
+,g_axi_bus_name_info_1,1,3,0x2d,0x30,0x30,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_UNKNOWN_NAME,;num is less than *current_utlb ('-' route)
+,g_axi_bus_name_info_1,1,3,0x2d,0x30,0x34,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_UNKNOWN_NAME,OSAL_RETURN_UNKNOWN_NAME,;r_osal_dcfg_io_add_utlb_list_single() return non-OSAL_RETURN_OK.
+,g_axi_bus_name_info_1,1,3,0x2d,0x30,0x33,dummy_array_sizet,array_uint64,g_st_osal_utlb_list_control,3,2,OSAL_RETURN_OK,OSAL_RETURN_OK,;(utlb - current_val) is 1

@@ -1,0 +1,2 @@
+#define WINAMS_SPMC_U4_INT
+#define WinAMS_SPMC_Init_arg_void 1

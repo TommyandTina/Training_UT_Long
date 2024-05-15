@@ -1,0 +1,8 @@
+modi,R_OSAL_Internal_MutexDestroy,01_021,3,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,
+%,AMSTB_pthread_mutex_destroy,pthread_mutex_destroy,,,,,,,,,,
+#COMMENT,$@handle,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_destroy@AMIN_return[0],R_OSAL_Internal_MutexDestroy@@,;,,,,,,,
+,1,0,0,OSAL_RETURN_OK,;Normal operation ,,,,,,,
+,1,0,-1,OSAL_RETURN_FAIL,;pthread_mutex_destroy is return non-zero.,,,,,,,

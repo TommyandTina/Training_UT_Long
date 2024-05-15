@@ -1,0 +1,13 @@
+modi,R_OSAL_OS_CondInitAttr,03_206,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_calloc,calloc,,,,,,,,,,
+%,AMSTB_pthread_condattr_init,pthread_condattr_init,,,,,,,,,,
+%,AMSTB_pthread_condattr_setclock,pthread_condattr_setclock,,,,,,,,,,
+#COMMENT,$@p_cond_attr,AMSTB_SrcFile.c/AMSTB_calloc@AM_count,AMSTB_SrcFile.c/AMSTB_calloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_condattr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_condattr_setclock@AMIN_return,R_OSAL_OS_CondInitAttr@@,;,,,,,
+,1,0,g_os_cond_attr,0,0,OSAL_RETURN_OK,;Normal operation ,,,,,
+,0,0,g_os_cond_attr,0,0,OSAL_RETURN_FAIL,;p_cond_attr is NULL.,,,,,
+,1,0,0,0,0,OSAL_RETURN_MEM,;malloc() return NULL.,,,,,
+,1,0,g_os_cond_attr,12,0,OSAL_RETURN_FAIL,;pthread_condattr_init() return non-EOK.,,,,,
+,1,0,g_os_cond_attr,0,22,OSAL_RETURN_FAIL,;pthread_condattr_setclock() return non-EOK.,,,,,

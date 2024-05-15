@@ -1,0 +1,7 @@
+modi,r_osal_rcfg_mq_search,04_017,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,@p_key,AMSTB_SrcFile.c/osal_mq_id,@p_search_info,g_st_osal_mq_control[0].usr_config,g_st_osal_mq_rcfg_config[0].id,r_osal_rcfg_mq_search@@,;,,,,,
+,osal_mq_id,0,g_st_osal_mq_control,g_st_osal_mq_rcfg_config,0,0,;p_cmp_info1->usr_config->id is equal to p_cmp_info2->usr_config->id is equal,,,,,
+,osal_mq_id,1,g_st_osal_mq_control,g_st_osal_mq_rcfg_config,0,1,;p_cmp_info1->usr_config->id more than p_cmp_info2->usr_config->id is equal,,,,,
+,osal_mq_id,0,g_st_osal_mq_control,g_st_osal_mq_rcfg_config,1,-1,;p_cmp_info1->usr_config->id less than p_cmp_info2->usr_config->id is equal,,,,,

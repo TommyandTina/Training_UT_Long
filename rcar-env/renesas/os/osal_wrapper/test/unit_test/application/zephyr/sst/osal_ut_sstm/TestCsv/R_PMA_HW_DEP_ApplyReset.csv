@@ -1,0 +1,12 @@
+modi,R_PMA_HW_DEP_ApplyReset,04_004,8,4,,,,CPP,,,,0,
+#InitWheneverCall,g_pma_max_hwa_id_num,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[0].actual_rst_stat,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[319].actual_rst_stat,,,,,,,,,
+0,0,0,0,0,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_CheckResetDepParent,R_PMA_HW_DEP_CheckResetDepParent,,,,,,,,,,,
+%,AMSTB_R_PMA_HW_DEP_CheckResetDepChild,R_PMA_HW_DEP_CheckResetDepChild,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_AssertReset,R_PMA_BSP_WRAP_AssertReset,,,,,,,,,,,
+#COMMENT,@hwaId,g_pma_max_hwa_id_num,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[0].actual_rst_stat,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[319].actual_rst_stat,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_CheckResetDepParent@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_HW_DEP_CheckResetDepChild@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_AssertReset@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_AssertReset@AMOUT_modId,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[0].actual_rst_stat,r_pma_hwdepend.c/g_pma_hw_dep_hwa_info_tbl[319].actual_rst_stat,R_PMA_HW_DEP_ApplyReset@@,;
+,R_PMA_HWA_ID_NUM,R_PMA_HWA_ID_NUM,g_pma_hw_dep_hwa_info_tbl_v4h,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,,,,,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_NG,;hwaId is R_PMA_HWA_ID_NUM
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,g_pma_hw_dep_hwa_info_tbl_v4h,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_NG,,,,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_NG,;R_PMA_HW_DEP_CheckResetDepParent() returns R_PMA_NG
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,g_pma_hw_dep_hwa_info_tbl_v4h,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_OK,R_PMA_NG,,,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_NG,;R_PMA_HW_DEP_CheckResetDepChild() returns R_PMA_NG
+,R_PMA_HWA_ID_V4H_IMPPSC,R_PMA_HWA_ID_NUM,g_pma_hw_dep_hwa_info_tbl_v4h,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_OK,R_PMA_OK,R_PMA_NG,R_PMA_CPG_DOMAIN_ID_V4H_IMPPSC,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_NG,;R_PMA_BSP_WRAP_AssertReset() returns R_PMA_NG
+,R_PMA_HWA_ID_V4H_IPMMU_CACHE_IR,R_PMA_HWA_ID_NUM,g_pma_hw_dep_hwa_info_tbl_v4h,R_PMA_RELEASED_RESET,R_PMA_RELEASED_RESET,R_PMA_OK,R_PMA_OK,R_PMA_OK,R_PMA_CPG_DOMAIN_ID_NONE,R_PMA_RELEASED_RESET,R_PMA_APPLIED_RESET,R_PMA_OK,;Normal operation 

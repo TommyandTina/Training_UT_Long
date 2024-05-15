@@ -1,0 +1,7 @@
+modi,R_OSAL_HIF_CondWaitForTimePeriod,03_001,4,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod,,,,,,,,,,
+#COMMENT,@time_period,@cond,@mutex,AMSTB_SrcFile.c/AMSTB_R_OSAL_HIF_ClockTimeGetTimeoutByTimePeriod@AMIN_return,R_OSAL_HIF_CondWaitForTimePeriod@@,;,,,,,,
+,10,g_osal_common_cond,g_osal_common_mutex,OSAL_RETURN_OK,OSAL_RETURN_OK,;Normal operation ,,,,,,
+,-1,g_osal_common_cond,g_osal_common_mutex,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,;R_OSAL_HIF_ClockGetTimeOutByTimePeriod return OSAL_RETURN_FAIL,,,,,,

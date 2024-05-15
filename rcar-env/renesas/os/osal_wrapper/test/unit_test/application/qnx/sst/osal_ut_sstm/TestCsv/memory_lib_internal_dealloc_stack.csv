@@ -1,0 +1,9 @@
+modi,memory_lib_internal_dealloc_stack,09_107,6,1,,,,CPP,,,,0
+#InitWheneverCall,AMSTB_SrcFile.c/meml_buffer_dummy[0].p_prev,AMSTB_SrcFile.c/meml_buffer_dummy[0].addr,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,AMSTB_SrcFile.c/meml_buffer_dummy[0].p_prev,AMSTB_SrcFile.c/meml_buffer_dummy[0].addr,$@p_manage,@address,$@p_manage[0].buffer.p_next,@p_manage[0].buffer.p_prev,memory_lib_internal_dealloc_stack@@,;,,,,
+,dummy_buffer_pa,dummy_buffer_va,1,dummy_buffer_va,1,meml_buffer_dummy,MEML_RETURN_OK,;Normal operation,,,,
+,dummy_buffer_pa,dummy_buffer_va,0,dummy_buffer_va,1,meml_buffer_dummy,MEML_RETURN_PAR,;p_manage is NULL.,,,,
+,dummy_buffer_pa,dummy_buffer_va,1,0,1,meml_buffer_dummy,MEML_RETURN_PAR,;address is NULL,,,,
+,dummy_buffer_pa,dummy_buffer_va,1,dummy_buffer_va,0,meml_buffer_dummy,MEML_RETURN_PAR,;p_manage.buffer.p_next is NULL,,,,
+,dummy_buffer_pa,dummy_buffer_va,1,dummy_buffer_pa,1,meml_buffer_dummy,MEML_RETURN_PAR,;address is not p_manage.buffer.p_prev,,,,

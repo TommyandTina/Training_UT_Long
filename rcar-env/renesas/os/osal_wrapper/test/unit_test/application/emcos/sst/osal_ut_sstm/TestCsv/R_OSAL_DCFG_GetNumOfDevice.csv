@@ -1,0 +1,6 @@
+modi,R_OSAL_DCFG_GetNumOfDevice,07_033,2,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_io.c/gs_osal_io_is_initialized,r_osal_dev_cfg.c/gsp_osal_device_info,,,,,,,,,,
+0,0,0,,,,,,,,,,
+#COMMENT,r_osal_io.c/gs_osal_io_is_initialized,r_osal_dev_cfg.c/gsp_osal_device_info,R_OSAL_DCFG_GetNumOfDevice@@,;,,,,,,,,
+,1,gs_osal_device_info_v4h,170,;Normal operation ,,,,,,,,
+,1,gs_osal_device_info_dummy,0,;Invalid device information,,,,,,,,

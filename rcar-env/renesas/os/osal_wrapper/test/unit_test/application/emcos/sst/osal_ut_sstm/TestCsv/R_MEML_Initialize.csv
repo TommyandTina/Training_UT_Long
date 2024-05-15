@@ -1,0 +1,11 @@
+modi,R_MEML_Initialize,09_101,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_manage,@pa,@va,@size,@mode,R_MEML_Initialize@@,;,,,,,
+,1,1,1,1,MEML_ALLOC_MODE_STACK,MEML_RETURN_OK,;Normal operation,,,,,
+,0,1,1,1,MEML_ALLOC_MODE_STACK,MEML_RETURN_PAR,;p_manage is NULL.,,,,,
+,1,0,1,1,MEML_ALLOC_MODE_STACK,MEML_RETURN_PAR,;pa is NULL,,,,,
+,1,1,0,1,MEML_ALLOC_MODE_STACK,MEML_RETURN_PAR,;va is NULL,,,,,
+,1,1,1,0,MEML_ALLOC_MODE_STACK,MEML_RETURN_PAR,;size = 0,,,,,
+,1,1,1,1,MEML_ALLOC_MODE_FREE_LIST,MEML_RETURN_OK,;mode is MEML_ALLOC_MODE_FREE_LIST,,,,,
+,1,1,1,1,1000,MEML_RETURN_PAR,;mode is 1000,,,,,

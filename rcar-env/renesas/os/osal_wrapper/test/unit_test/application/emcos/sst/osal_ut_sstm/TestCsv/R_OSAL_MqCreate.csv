@@ -1,0 +1,25 @@
+modi,R_OSAL_MqCreate,04_001,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,r_osal_message.c/gs_osal_mq_is_initialized,,,,,,,,,,,,,,,
+0,0,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetMqInfo,R_OSAL_RCFG_GetMqInfo,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetMqInfo,R_OSAL_RCFG_GetMqInfo,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_RCFG_GetNumOfMq,R_OSAL_RCFG_GetNumOfMq,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_Internal_TimedlockMutex,R_OSAL_Internal_TimedlockMutex,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,
+%,AMSTB_pthread_mutex_unlock,pthread_mutex_unlock,,,,,,,,,,,,,,
+#COMMENT,r_osal_message.c/gs_osal_mq_is_initialized,@p_config,g_st_osal_mq_config.max_num_msg,g_st_osal_mq_config.msg_size,@mq_Id,@p_handle,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMqInfo@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetMqInfo@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_RCFG_GetNumOfMq@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_Internal_TimedlockMutex@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_mutex_unlock@AMIN_return[0],g_st_osal_mq_control.active,R_OSAL_MqCreate@@,;
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_OK,;Normal operation
+,0,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_STATE,;gs_osal_mq_is_initialized is not true
+,1,0,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_PAR,;p_config is 0
+,1,g_st_osal_mq_config,1,1,0,0,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_PAR,;p_handle is 0
+,1,g_st_osal_mq_config,0,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_PAR,;p_config->max_num_msg is 0
+,1,g_st_osal_mq_config,1,0,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_PAR,;p_config->msg_size is 0
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_FAIL,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_RCFG_GetMqInfo() return OSAL_RETURN_FAIL
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,1,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;The aquired mq_control is 0
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,3,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_FAIL,;The aquired mq_control->usr_config is 0
+,1,g_st_osal_mq_config,1,1,5,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,0,OSAL_RETURN_ID,;mq_Id is not equal mp_control->usr_config->id
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_FAIL,0,0,0,OSAL_RETURN_FAIL,;R_OSAL_Internal_TimedlockMutex() return OSAL_RETURN_FAIL
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,0,1,OSAL_RETURN_BUSY,;control->active is true
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,-1,1,OSAL_RETURN_BUSY,;control->active is true and pthread_mutex_unlock() is return non-zero
+,1,g_st_osal_mq_config,1,1,0,g_osal_mq_handle,2,OSAL_RETURN_OK,2,0,OSAL_RETURN_OK,0,-1,0,OSAL_RETURN_FAIL,;pthread_mutex_unlock() is return non-zero

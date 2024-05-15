@@ -1,0 +1,26 @@
+%C DMA lib test utility
+
+Syntax:
+# dma-memtomem-test dma=<dma_type>[,desc=<desc_num>][,chan=<chan_idx>][,~event][,debug][,mbu=<burst_unit>][,ulb=<buffer_size>]
+
+Options:
+    <dma_type>    : rt or sys
+    <desc_num>    : descriptor number (1-255)
+    <chan_idx>    : channel index (depends on SoC, it can be 0-64)
+                  :   If not specify, will attach any free channel
+                  :   Not specify is default 
+    event         : If specfiy, will use use to check completion
+    debug         : If specfiy, will enable register dump
+                  :   Disable is default
+    <burst_unit>  : Maximum burst unit for SDRAM, power-of-two values are recommended
+                      Default is 128 (bytes), maximum is 512 (bytes)
+    <buffer_size> : Upper limit on buffer size, power-of-two values are recommended
+                      Default is 512 (bytes), maximum is 1024 (bytes)
+
+Examples:
+    # dma-memtomem-test dma=sys,event
+    # dma-memtomem-test dma=sys,desc=2,chan=28,event
+
+Note: 
+    Built-in memory descriptor desn't work in this release
+

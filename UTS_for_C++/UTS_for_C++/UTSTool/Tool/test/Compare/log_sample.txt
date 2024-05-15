@@ -1,0 +1,40 @@
+
+[I][==========] RunAllTests() START
+
+[I][RUN] UT_example_function_ALL.example_function_0001
+[V]<OK> ReturnValue1 [output] E_OK (0) <==>[expected] E_OK (0)
+[V]<OK> ReturnValue2 [output] null (0) <==>[expected] null (0)
+[V]<OK> global_var[0] [output] 0x00000000 (0) <==>[expected] 0x00000000 (0)
+[V]<OK> global_var[1] [output] 0x00000001 (1) <==>[expected] 0x00000001 (1)
+[V]<OK> global_var[2] [output] 0x00000000 (0) <==>[expected] 0x00000000 (0)
+[V]<OK> global_var[3] [output] 0x00000000 (0) <==>[expected] 0x00000000 (0)
+[V]<OK> global_struct_var.element [output] 0x0000000a (10) <==>[expected] 0x0000000a (10)
+[V]<OK> local_function_channel [output] IMR_CH0 (0) <==>[expected] IMR_CH0 (0)
+[V]<OK> local_function_point [output] not null (12341234) <==>[expected] not null (12341234)
+[V][ RESULT ] example_function-001: OK
+
+[I][RUN] UT_example_function_ALL.example_function_0002
+[V]<OK> ReturnValue1 [output] E_OK (0) <==>[expected] E_OK (0)
+[V]<OK> ReturnValue2 [output] not null (12345678) <==>[expected] not null (12345678)
+[V]<OK> global_var[0] [output] 0x00000001 (0) <==>[expected] 0x00000001 (0)
+[V]<OK> global_var[1] [output] 0x00000001 (1) <==>[expected] 0x00000001 (1)
+[V]<OK> global_var[2] [output] 0x00000001 (0) <==>[expected] 0x00000001 (0)
+[V]<OK> global_var[3] [output] 0x00000001 (0) <==>[expected] 0x00000001 (0)
+[V]<OK> global_struct_var.element [output] 0x0000000a (10) <==>[expected] 0x0000000a (10)
+[V]<OK> local_function_channel [output] IMR_CH0 (0) <==>[expected] IMR_CH0 (0)
+[V]<OK> local_function_point [output] not null (12341234) <==>[expected] not null (12341234)
+[V][ RESULT ] example_function-002: OK
+
+[I][RUN] UT_example_function_ALL.example_function_0003
+[V]<OK> ReturnValue1 [output] E_OK (0) <==>[expected] E_OK (0)
+[V]<OK> ReturnValue2 [output] &some_addr (12345678) <==>[expected] &some_addr (12345678)
+[V]<OK> global_var[0] [output] 0x00000002 (0) <==>[expected] 0x00000002 (0)
+[V]<OK> global_var[1] [output] 0x00000001 (1) <==>[expected] 0x00000001 (1)
+[V]<OK> global_var[2] [output] 0x00000002 (0) <==>[expected] 0x00000002 (0)
+[V]<OK> global_var[3] [output] 0x00000002 (0) <==>[expected] 0x00000002 (0)
+[V]<OK> global_struct_var.element [output] 0x0000000a (10) <==>[expected] 0x0000000a (10)
+[V]<OK> local_function_channel [output] IMR_CH0 (0) <==>[expected] IMR_CH0 (0)
+[V]<OK> local_function_point [output] not null (12341234) <==>[expected] not null (12341234)
+[V][ RESULT ] example_function-003: OK
+
+[I][==========] RunAllTests() END

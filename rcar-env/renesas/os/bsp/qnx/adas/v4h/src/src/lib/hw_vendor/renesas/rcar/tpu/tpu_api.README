@@ -1,0 +1,379 @@
+TPU controller library interface for the Renesas R-Car V3U, R-Car V4H platform
+-------------------------------------------------------------------
+
+1. Abstract
+
+The TPU library interface allows generic modules to be written that
+can abstract the details of programming a Timer Pulse Uint (TPU) 
+from an individual driver.
+
+TPU can work as free-running and period counter or output a waveform or 
+a PWM waveform with any duty cycle.
+
+2. Supported TPU features
+
+  Waveform output on compare match: output of a 0 or 1 or toggling of 
+  output is selectable. 
+
+  Counter clearing operation: Counters can be cleared in response to a 
+  compare match. 
+
+  PWM mode allows the output of a PWM waveform with any duty cycle.
+
+  The four outputs can be used to produce PWM output in up to four phases.
+
+3. API
+
+The primary TPU library entry point is get_tpufuncs().  This entry
+point is called to retrieve the remainder of the libraries entry
+points.  This allows the library to be provided as a DLL, or as a
+static or shared library.  In the case of the library being used
+as a DLL, the driver would call dlsym() to find the get_tpufuncs()
+entry point, otherwise the driver would just reference get_tpufuncs()
+directly.
+
+The structures and defines used by TPU libraries, and
+drivers that use the libraries, are contained in <hw/tpu.h>
+
+The remainder of the entry points, which are stored in the
+cmt_functions_t structure, are as follows:
+    
+void * (*channel_attach)(int priority, tmu_attach_flags flags);
+
+	Attach to a TPU channel.
+
+	"priority" controls the priority assigned to the TPU channel being attached to.  
+    If TPU_ATTACH_PRIORITY_STRICT is specified, then "priority" is TPU channel will be used, 
+    othervise the library will find a free channel to attach to.  
+    Upon return, channel points to the TPU channel number that was actually attached to.
+
+	Valid values for "flags" are:
+
+		TPU_ATTACH_ANY_CHANNEL
+
+			Instead of attempting to attach to the TPU
+            channel number that "priority" points to,
+			the library will attach to a free TPU
+			channel, if any are available.
+
+		TPU_ATTACH_MOTOR_CONTROL_CHANNEL
+
+			Attach to TPU channel 0 for Motor control.
+
+		TPU_ATTACH_PRIORITY_STRICT
+
+			Specifies that the TPU channel must be
+			assigned the exact priority level specified.
+			If the TPU channel cannot be assigned this
+			priority level, the attach will fail.
+
+		TPU_ATTACH_INTERRUPT_ENABLE
+
+			The library doesn't attach TPU interrupt. 
+            The driver will attach a TPU interrupt.
+            This flag enables interrupts and return 
+            interrupt statuses to the driver.
+
+
+	Upon success, this function returns a handle that is used upon
+	subsequent calls to the library that are associated with the
+	attached channel.
+
+	Upon failure, NULL is returned, and errno is set as appropriate.
+
+void	(*channel_release)(void *handle);
+
+	Releases a TPU channel.  The driver calls this when it no
+	longer needs to use the TPU channel.  "handle" is the value
+	that was returned from a successful call to channel_attach.
+	The handle is no longer valid after this function returns.
+
+int  (*start_counter)(void *handle);
+
+	Resume the Timer counting after calling stop_counter().
+
+int  (*stop_counter)(void *handle);
+	
+	Temporarily stop the Timer that is currently couting.
+	When this function returns, it is possible to resume
+	a counting by calling start_counter().
+
+int  (*start)(void *handle, uint32_t * count);
+
+	Commence the Timer. There must not be an outstanding Timer 
+    counting in progress. set_mode(), set_clear_src(), set_clock(), 
+    set_general_reg() or just waveform_config() have/has been called 
+    at some point since channel_attach() was called, in order to 
+    prepare the Timer for counting.
+
+    uint32_t * count;
+
+		A returned current TCNT value right before the Timer started.
+
+int  (*stop)(void *handle, uint32_t * count)
+
+	Stop a Timer that is currently counting. When this function returns, 
+    it is possible to initiate a new counter by calling  set_mode(), 
+    set_clear_src(), set_clock(), set_general_reg to re-configure the Timer 
+    or by just calling waveform_config() to configure the Timer to output 
+    a waveform by calling start().
+
+	uint32_t * count;
+
+		A returned current TCNT value right after the Timer stopped.
+
+int  (*set_mode)(void *handle, const tpu_mode_t mode);
+
+	Set operation mode for the Timer. 
+    Before starting the Timer by calling start() should call this function.
+
+	const tpu_mode_t mode;
+
+		These flags describe the operation mode of the Timer.  
+        Valid values are:
+
+		TPU_MODE_NORMAL
+
+			Specifies the Timer is Free-Running counter or periodic counter.
+            It is counts up.
+
+            The driver should specify clearing source to clear TCNT counter.
+
+            If clearing source is disabled, the Timer operates as Free-Runing
+            and it counts up to 0xFFFF and then TCNT counter repeats counting 
+            from zero.
+
+            If clearing source is specied, the Timer operates as periodic 
+            counter and it counts up until matches specified TGR value and 
+            then TCNT counter is clear and repeat to count from zero.
+
+		TPU_MODE_PWM
+
+			Specifies the Timer is a waveform output by compare match.
+            TPU_MODE_PWM flag cannot be specifies togeter TPU_MODE_NORMAL flag
+            at the same time. 
+
+            Need to specify clearing source in this mode, and spicify more 
+            the following flags.
+
+        TPU_MODE_TGRA_NORMAL_OP
+
+            Specifies the TGRA to operates in Normal operation.
+
+        TPU_MODE_TGRA_BUF_OP
+
+            Specifies the TGRA and TGRC operate as buffered operation.
+
+            TPU_MODE_TGRA_BUF_OP flag cannot be specified TPU_MODE_TGRA_NORMAL_OP
+            flag at the same time.
+
+        TPU_MODE_TGRB_NORMAL_OP
+
+            Specifies the TGRB to operates in Normal operation.
+
+        TPU_MODE_TGRD_BUF_OP
+
+            Specifies the TGRB and TGRD operate as buffered operation.
+            
+            TPU_MODE_TGRB_BUF_OP flag cannot be specified TPU_MODE_TGRB_NORMAL_OP
+            flag at the same time.
+
+        TPU_MODE_BUF_WR_ON_MATCH
+        
+            Specifies when a compare match occurs, TGRA and TGRB is updated.
+
+        TPU_MODE_BUF_WR_ON_CLEAR
+        
+            Specifies when a clearing of the counter occurs, TGRA and TGRB is updated.
+
+
+int  (*set_clock)(void *handle, tpu_clock_div_t clock_div, tpu_clock_edge_t clock_edge);
+
+    Set clock divisor ratio and clock edge counting operation of the Timer.
+    Before starting the Timer by calling start() should call this function.
+
+    int clock_div;
+        Parent clock divisor ratio. Valid values are:
+    
+        TPU_CLOCK_DIV_1
+
+            The counter counts on Internal input clock/1
+
+        TPU_CLOCK_DIV_4
+
+            The counter counts on Internal input clock/4
+
+        TPU_CLOCK_DIV_16
+
+            The counter counts on Internal input clock/16
+
+        TPU_CLOCK_DIV_64
+
+            The counter counts on Internal input clock/64
+
+    tpu_clock_edge_t clock_edge;
+
+        These flags describe the clock edge count/capture.  Valid values are:
+
+            TPU_CLOCK_EDGE_RISE
+
+                Count/capture register set on rising edge
+
+            TPU_CLOCK_EDGE_FALL
+
+                Count/capture register set on falling edge
+
+            TPU_CLOCK_EDGE_BOTH
+                
+                Count/capture register set on both rising and falling edges
+
+        If clock_div is Internal clock/1, cannot specifies the TPU_CLOCK_EDGE_FALL 
+        and TPU_CLOCK_EDGE_BOTH flags.
+
+int  (*set_pin_state)(void * handle, tpu_pin_state_t state, int initial);
+
+    Specify output state to TPU0TO pins.
+    Before starting the Timer by calling start() should call this function.
+
+        tpu_pin_state_t state;
+            
+            These flags describe the output state to TPU0TO pins when match compare 
+            with TGRA occurs.  Valid values are:
+
+                TPU_PIN_OUTPUT_0
+
+                    "0" level is outputed on TPU0TO pin when TCNT value matches 
+                    with TGRA value.
+
+                TPU_PIN_OUTPUT_1
+
+                    "1" level is outputed on TPU0TO pin when TCNT value matches 
+                    with TGRA value.
+
+                TPU_PIN_OUTPUT_TOGGLE
+
+                    "0" and "1" level is toggled on TPU0TO pin when TCNT value matches 
+                    with TGRA value.
+
+        int initial;
+            
+            Specifies the initial value is outputed on TPU0TO pin. Valid values are:
+
+                0
+
+                    The initial value is outputed on TPU0TO pin is "0"
+
+                1
+
+                    The initial value is outputed on TPU0TO pin is "1"
+
+int  (*set_general_reg)(void *handle, tpu_general_reg_t reg, uint16_t val);
+
+    Specify value of the Timer General Register (TGR).
+    Before starting the Timer by calling start() should call this function.
+
+        tpu_general_reg_t reg;
+
+            Specify "val" value is set to which TGR. Valid values are:
+
+            TPU_REG_GENERAL_A
+
+                "val" is set to TGRA 
+
+            TPU_REG_GENERAL_B
+
+                "val" is set to TGRB 
+
+            TPU_REG_GENERAL_C
+
+                "val" is set to TGRC 
+
+            TPU_REG_GENERAL_D
+
+                "val" is set to TGRD
+
+int  (*set_count)(void *handle, const uint32_t count);
+
+    Currently set the value for the Timer. The value of "count" is 
+    set to TCNT and TCNT continues counting up from the value.
+
+int  (*get_count)(void *handle, uint32_t * const count);
+    
+    Retrieves the TCNT value of the Timer.
+
+int  (*waveform_config)(void *handle, int duty_ns, int period_ns);
+
+    Configure the Timer to output a waveform.
+    Before starting the Timer by calling start() should call this function.
+
+        int duty_ns;
+
+            Specify duty cycle of waveform.
+
+        int period_ns;
+
+            Specify period cycle of waveform.
+
+void (*intr_isr)(void * handle, uint16_t * const tsr);
+
+    An interrupt service, it should be called before engaging 
+    in any other interaction with the TPU library. Internally, 
+    the TPU library might need to clear an interrupt
+	source, for example.
+
+    uint16_t * const tsr;
+
+    A returned value contains interrupt sources. Valid values are:
+
+        TPU_INTR_TIMER_MATCH_A
+
+            When the values of TCNT and TGRA have matched
+
+        TPU_INTR_TIMER_MATCH_B
+
+            When the values of TCNT and TGRB have matched
+
+        TPU_INTR_TIMER_MATCH_C
+
+            When the values of TCNT and TGRC have matched
+
+        TPU_INTR_TIMER_MATCH_D
+
+            When the values of TCNT and TGRD have matched
+
+        TPU_INTR_TIMER_OVERF
+
+            When the value of TCNT overflows (when its value changes from H'FFFF to H'0000) 
+
+        TPU_INTR_MOTOR_STOP_STATE
+
+            Motor Control Stop Transition Detection:
+            When the sequence state is shifted to the stop state
+
+        TPU_INTR_MOTOR_ACCE_STATE
+
+            Motor Control Acceleration Transition Detection:
+            When the sequence state is shifted to the acceleration state
+
+        TPU_INTR_MOTOR_NORM_STATE
+
+            Motor Control Normal Transition Detection:
+            When the sequence state is shifted to the normal state
+
+        TPU_INTR_MOTOR_DECE_STATE
+
+            Motor Control Deceleration Transition Detection:
+            When the sequence state is shifted to the deceleration state
+
+        TPU_INTR_MOTOR_TRAN_REQ
+
+            Motor Control Data Transfer Request Detection:
+            When data transfer request occurs
+
+        TPU_INTR_MOTOR_DMA_OVERF
+
+            Motor Control Data Transfer Overflow Detection: 
+            When the DMA transfer overflow occurs
+
+    This function is valid call when TPU_ATTACH_INTERRUPT_ENABLE flag 
+    is specified in channel_attach().

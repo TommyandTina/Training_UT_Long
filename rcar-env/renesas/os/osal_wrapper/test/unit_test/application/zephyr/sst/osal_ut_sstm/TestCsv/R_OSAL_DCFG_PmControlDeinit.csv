@@ -1,0 +1,12 @@
+modi,R_OSAL_DCFG_PmControlDeinit,08_012,7,1,,,,CPP,,,,0
+#InitWheneverCall,r_osal_dev_cfg_io.c/gp_osal_device_control,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,r_osal_dev_cfg_power.c/gs_osal_pma_handle,,,,,,,,,
+0,0,0,0,,,,,,,,,
+%,AMSTB_R_PMA_UnlockHwa,R_PMA_UnlockHwa,,,,,,,,,,
+%,AMSTB_R_PMA_Quit,R_PMA_Quit,,,,,,,,,,
+#COMMENT,r_osal_dev_cfg_io.c/gp_osal_device_control,r_osal_dev_cfg_io.c/g_osal_num_of_device_table,r_osal_dev_cfg_power.c/gs_osal_pma_handle,AMSTB_SrcFile.c/AMSTB_R_PMA_UnlockHwa@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_Quit@AMIN_return,g_st_osal_device_control_array[0].dev_info,g_st_osal_device_control_array[0].pma_handle,R_OSAL_DCFG_PmControlDeinit@@,;,,,
+,g_st_osal_device_control_array,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,g_st_osal_device_info,1,OSAL_RETURN_OK,;Normal operation,,,
+,g_st_osal_device_control_array,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,g_st_osal_device_info,0,OSAL_RETURN_OK,;p_device_control->pma_handle is NULL,,,
+,g_st_osal_device_control_array,1,1,R_PMA_RESULT_OK,R_PMA_ERR_RESULT_NG,g_st_osal_device_info,1,OSAL_RETURN_FAIL,;R_PMA_Quit() return R_PMA_ERR_RESULT_NG,,,
+,g_st_osal_device_control_array,1,0,R_PMA_RESULT_OK,R_PMA_RESULT_OK,g_st_osal_device_info,1,OSAL_RETURN_OK,;gs_osal_pma_handle is NULL,,,
+,g_st_osal_device_control_array,0,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,g_st_osal_device_info,1,OSAL_RETURN_OK,;g_osal_num_of_device_table is 0,,,
+,g_st_osal_device_control_array,2,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,g_st_osal_device_info,1,OSAL_RETURN_OK,;g_osal_num_of_device_table is 2,,,

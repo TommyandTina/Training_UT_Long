@@ -1,0 +1,6 @@
+modi,R_OSAL_OS_CondInitAttr,03_206,1,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_cond_attr,R_OSAL_OS_CondInitAttr@@,;,,,,,,,,,
+,1,OSAL_RETURN_OK,;Normal operation ,,,,,,,,,
+,0,OSAL_RETURN_OK,;p_cond_attr is NULL.,,,,,,,,,

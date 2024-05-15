@@ -1,0 +1,19 @@
+modi,r_osal_os_io_create_regex_pattern,15_129,11,1,,,,CPP,,,,0,
+#InitWheneverCall,,,,,,,,,,,,,
+0,,,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,
+%,AMSTB_strcmp,strcmp,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,
+%,AMSTB_snprintf,snprintf,,,,,,,,,,,
+#COMMENT,@p_type,@p_pattern,@size,AMSTB_SrcFile.c/AMSTB_strcmp@AM_count,AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[1],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[2],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[3],AMSTB_SrcFile.c/AMSTB_strcmp@AMIN_return[4],AMSTB_SrcFile.c/AMSTB_snprintf@AM_count,AMSTB_SrcFile.c/AMSTB_snprintf@AMIN_return[0],r_osal_os_io_create_regex_pattern@@,;
+,0,0,0,0,0,1,1,1,1,0,0,OSAL_RETURN_OK,;Normal operation (strcmp[0] is 0)
+,0,0,0,0,1,0,1,1,1,0,0,OSAL_RETURN_OK,;Normal operation (strcmp[1] is 0)
+,0,0,0,0,1,1,0,1,1,0,0,OSAL_RETURN_OK,;Normal operation (strcmp[2] is 0)
+,0,0,0,0,1,1,1,0,1,0,0,OSAL_RETURN_OK,;Normal operation (strcmp[3] is 0)
+,0,0,0,0,1,1,1,1,0,0,0,OSAL_RETURN_OK,;Normal operation (strcmp[4] is 0)
+,0,0,0,0,1,1,1,1,1,0,0,OSAL_RETURN_OK,;Normal operation (strcmp[] is not 0)
+,0,0,0,0,0,1,1,1,1,0,-1,OSAL_RETURN_FAIL,;snprintf returns -1

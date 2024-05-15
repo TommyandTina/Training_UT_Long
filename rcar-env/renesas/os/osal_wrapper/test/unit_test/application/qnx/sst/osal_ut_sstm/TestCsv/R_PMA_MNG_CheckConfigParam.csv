@@ -1,0 +1,11 @@
+modi,R_PMA_MNG_CheckConfigParam,02_014,4,3,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@pConfig,$@pParam,@pConfig[0].task_priority,@pConfig[0].timeout_ms,@pParam[0].task_priority,@pParam[0].timeout_ticks,R_PMA_MNG_CheckConfigParam@@,;,,,,
+,0,100,,,1,10,R_PMA_OK,;Normal operation (pConfig is NULL. Default value),,,,
+,1,0,,,,,R_PMA_NG,;pParam is NULL,,,,
+,1,100,-1,15,,,R_PMA_INVALID_ARGUMENT,;pConfig->task_priority is less than OSAL_THREAD_PRIORITY_LOWEST(0),,,,
+,1,100,15,15,,,R_PMA_INVALID_ARGUMENT,;pConfig->task_priority is more than OSAL_THREAD_PRIORITY_HIGHEST(15),,,,
+,1,100,14,0,14,,R_PMA_INVALID_ARGUMENT,;pConfig->timeout_ms is less than R_PMA_MNG_TIMEOUT_MS_MIN_TH(1),,,,
+,1,100,14,15,14,15,R_PMA_OK,;Normal operation,,,,
+,1,100,1,1,1,1,R_PMA_OK,;Normal operation,,,,

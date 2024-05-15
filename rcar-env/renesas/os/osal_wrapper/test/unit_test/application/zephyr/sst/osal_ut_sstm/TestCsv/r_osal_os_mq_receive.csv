@@ -1,0 +1,11 @@
+modi,r_osal_os_mq_receive,10_014,10,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_memcpy,memcpy,,,,,,,,,,
+%,AMSTB_memset,memset,,,,,,,,,,
+#COMMENT,@mq,g_st_osal_os_mq[0].config.max_num_msg,g_st_osal_os_mq[0].numofmsg,g_st_osal_os_mq[0].head,g_st_osal_os_mq[0].queue,g_st_osal_queue[0].p_buffer,@buffer_size,@p_buffer,AMSTB_SrcFile.c/AMSTB_memcpy@AMIN_return,AMSTB_SrcFile.c/AMSTB_memset@AMIN_return,r_osal_os_mq_receive@@,;
+,g_st_osal_os_mq,4,2,0,g_st_osal_queue,gp_void,4,gp_void,0,0,OSAL_RETURN_OK,;Normal operation
+,0,4,2,0,0,gp_void,4,gp_void,0,0,OSAL_RETURN_FAIL,;mq->queue is NULL
+,g_st_osal_os_mq,4,2,0,g_st_osal_queue,0,4,gp_void,0,0,OSAL_RETURN_FAIL,;mq->queue[mq->head].p_buffer is NULL
+,g_st_osal_os_mq,4,1,0,g_st_osal_queue,gp_void,4,gp_void,0,0,OSAL_RETURN_OK,;mq->numofmsg is 0
+,g_st_osal_os_mq,1,2,0,g_st_osal_queue,gp_void,4,gp_void,0,0,OSAL_RETURN_OK,;mq->config.max_num_msg - (uint64_t)1 is equal to (uint64_t)mq->head

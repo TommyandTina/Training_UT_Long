@@ -1,0 +1,27 @@
+modi,R_OSAL_OS_ThreadCreate,09_101,14,1,,,,CPP,,,,0,,,,
+#InitWheneverCall,,,,,,,,,,,,,,,,
+0,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Free,R_OSAL_OS_Free,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_init,pthread_attr_init,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setinheritsched,pthread_attr_setinheritsched,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedpolicy,pthread_attr_setschedpolicy,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setschedparam,pthread_attr_setschedparam,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_setstacksize,pthread_attr_setstacksize,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_Malloc,R_OSAL_OS_Malloc,,,,,,,,,,,,,,
+%,AMSTB_pthread_create,pthread_create,,,,,,,,,,,,,,
+%,AMSTB_pthread_attr_destroy,pthread_attr_destroy,,,,,,,,,,,,,,
+#COMMENT,@p_config,@func,@p_arg,@p_thread,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Free@AM_count,AMSTB_SrcFile.c/AMSTB_pthread_attr_init@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setinheritsched@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedpolicy@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setschedparam@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_setstacksize@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_Malloc@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_pthread_create@AMIN_return,AMSTB_SrcFile.c/AMSTB_pthread_attr_destroy@AMIN_return,R_OSAL_OS_ThreadCreate@@,;
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_OK,;Normal operation
+,0,1,1,g_osal_thread_t,0,0,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;p_config is NULL
+,g_osal_thread_config_t,0,1,g_osal_thread_t,0,0,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;func is NULL
+,g_osal_thread_config_t,1,0,g_osal_thread_t,0,0,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;p_arg is NULL
+,g_osal_thread_config_t,1,1,0,0,0,0,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;p_thread is NULL
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,1,0,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;pthread_attr_init() return error
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,1,0,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;pthread_attr_setinheritsched() return error
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,0,1,0,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;pthread_attr_setschedpolicy() return error
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,0,0,1,0,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;pthread_attr_setschedparam() return error
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,0,0,0,1,g_st_osal_os_thread_t,0,0,OSAL_RETURN_FAIL,;pthread_attr_setstacksize() return error
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,0,0,0,0,0,0,0,OSAL_RETURN_MEM,;R_OSAL_OS_Malloc() return NULL
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,0,0,0,0,g_st_osal_os_thread_t,1,0,OSAL_RETURN_FAIL,;pthread_create() return error
+,g_osal_thread_config_t,1,1,g_osal_thread_t,0,0,0,0,0,0,0,g_st_osal_os_thread_t,0,1,OSAL_RETURN_FAIL,;pthread_attr_destroy() return error

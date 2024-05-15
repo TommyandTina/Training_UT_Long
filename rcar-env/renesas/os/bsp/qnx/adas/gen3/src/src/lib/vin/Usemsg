@@ -1,0 +1,40 @@
+This lib is used with camera_ctrl or QNX vcapture-demo application
+
+- For camera_ctrl usage information
+    + Excute command
+    use camera_ctrl 
+	
+- For QNX vcapture-demo usage information
+    + Excute command
+    use vcapture-demo
+	
+- For example:
+
+For V3U Falcon Board
+    # MAX96712 (U7) CN4
+        + Color patern test (Only support for CSI channel 0)
+        camera_ctrl -display=1 -pipeline=1 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -source=0 
+        vcapture-demo -std=user-defined -format=rgba8888 -device=0 -dmode=adaptive -frame-size=1920x1080 -source=0
+		+ Camera test (Support CSI channel 0 and CSI channel 1)
+        camera_ctrl -display=1 -pipeline=1 -size=1920x1080 -bsize=1280x1080 -source=0
+		vcapture-demo -std=user-defined -format=uyvy -dmode=adaptive -frame-size=1280x1080 -source=0
+        camera_ctrl -display=1 -pipeline=1 -size=1920x1080 -bsize=1280x1080 -source=1
+		vcapture-demo -std=user-defined -format=uyvy -dmode=adaptive -frame-size=1280x1080 -source=1
+    # MAX96712 (U10) CN5
+        + Color patern test (CSI channel 2)
+        camera_ctrl -display=1 -pipeline=1 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -source=2 
+        vcapture-demo -std=user-defined -format=rgba8888 -device=0 -dmode=adaptive -frame-size=1920x1080 -source=2
+		+ Camera test (CSI channel 2)
+        camera_ctrl -display=1 -pipeline=1 -size=1920x1080 -bsize=1280x1080 -source=2
+		vcapture-demo -std=user-defined -format=uyvy -dmode=adaptive -frame-size=1280x1080 -source=2
+    # MAX96712 (U13) CN6
+        + Color patern test (CSI channel 3)
+        camera_ctrl -display=1 -pipeline=1 -size=1920x1080 -bsize=1920x1080 -format=rgba8888 -source=3
+        vcapture-demo -std=user-defined -format=rgba8888 -device=0 -dmode=adaptive -frame-size=1920x1080 -source=3			
+		+ Camera test (CSI channel 3)
+        camera_ctrl -display=1 -pipeline=1 -size=1920x1080 -bsize=1280x1080 -source=3
+		vcapture-demo -std=user-defined -format=uyvy -dmode=adaptive -frame-size=1280x1080 -source=3
+
+
+
+

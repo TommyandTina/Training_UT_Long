@@ -1,0 +1,11 @@
+modi,r_osal_dcfg_pm_get_reset_state,07_020,5,2,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_PmGetResetState,R_OSAL_OS_PmGetResetState,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_PmGetResetState,R_OSAL_OS_PmGetResetState,,,,,,,,,,
+#COMMENT,@handle,@p_reset_state,@p_reset_state[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_PmGetResetState@AMIN_value,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_PmGetResetState@AMIN_return,r_osal_dcfg_pm_get_reset_state@@,@p_reset_state[0],;,,,,
+,g_st_osal_device_control_t[0],g_e_osal_pm_reset_state_t,-1,1,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_PM_RESET_STATE_APPLIED,;Normal operation ,,,,
+,g_st_osal_device_control_t[0],g_e_osal_pm_reset_state_t,-1,1,OSAL_RETURN_UNSUPPORTED_OPERATION,OSAL_RETURN_OK,OSAL_PM_RESET_STATE_RELEASED,;R_OSAL_OS_PmGetResetState() return OSAL_RETURN_UNSUPPORTED_OPERATION,,,,
+,g_st_osal_device_control_t[0],g_e_osal_pm_reset_state_t,-1,1,OSAL_RETURN_FAIL,OSAL_RETURN_FAIL,,;R_OSAL_OS_PmGetResetState() return OSAL_RETURN_FAIL,,,,
+,g_st_osal_device_control_t[0],g_e_osal_pm_reset_state_t,-1,0,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_PM_RESET_STATE_RELEASED,;Normal operation ,,,,
+,g_st_osal_device_control_t[0],g_e_osal_pm_reset_state_t,-1,2,OSAL_RETURN_OK,OSAL_RETURN_OK,OSAL_PM_RESET_STATE_INVALID,;Normal operation ,,,,

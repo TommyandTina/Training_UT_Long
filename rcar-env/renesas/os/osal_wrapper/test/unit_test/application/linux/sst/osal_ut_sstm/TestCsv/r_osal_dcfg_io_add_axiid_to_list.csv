@@ -1,0 +1,9 @@
+modi,r_osal_dcfg_io_add_axiid_to_list,06_024,5,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+%,AMSTB_realloc,realloc,,,,,,,,,,
+#COMMENT,@pp_list_buffer,@p_dst_index,@count,AMSTB_SrcFile.c/AMSTB_realloc@AM_count,AMSTB_SrcFile.c/AMSTB_realloc@AMIN_return[0],r_osal_dcfg_io_add_axiid_to_list@@,;,,,,,
+,gp_osal_axi_bus_id_t,g_size_t,0,0,g_osal_axi_bus_id_t,OSAL_RETURN_OK,;Normal operation,,,,,
+,0,g_size_t,0,0,g_osal_axi_bus_id_t,OSAL_RETURN_OK,;pp_list_buffer is NULL,,,,,
+,gp_osal_axi_bus_id_t,g_size_t,0,0,0,OSAL_RETURN_FAIL,;realloc returns NULL,,,,,

@@ -1,0 +1,28 @@
+R-Car I2C A Manager
+
+%C [Generic options] [options]
+
+e.g. i2c-rcar-A -I0 -v -d --u0
+
+options:
+-p addr             port address
+-i irq              IRQ
+-v                  Verbose level (Default: 0)
+-d                  Enable DMA transfer
+-s                  Enable SMMU
+-D                  Enable DMA transfer using dma channel info (Colon seperated): rx_reqid:tx_req_id:chan_min:chan_max
+-m                  Specify memory type for DMA transfer
+-o val              val: od/od33 for 3.3V IO; od18 for 1.8V IO. (Default: 3.3V IO)
+-t timeout          Custom data transfer timeout in nanosec.
+                    When this options is not set, by default, the data transfer timeout
+                    is calculated based on data length and bus speed.
+                    This timeout expiration will only occur if hardware becomes non-responsive,
+                    i.e. no incoming interrupt, SCL clock signal suddenly disappeared.
+Generic options:
+--b bus_speed       Default bus speed. (Default: 100000)
+--m max_msg_len     Minimum length of resmgr receive buffer.
+                    (Default: 128 bytes)
+--n nparts          Minimum number of iov_t's in resmgr context.
+                    (Default: 2)
+--u unit            Unit number. Number to append to device name
+                    prefix (/dev/i2c). (Default: 0)

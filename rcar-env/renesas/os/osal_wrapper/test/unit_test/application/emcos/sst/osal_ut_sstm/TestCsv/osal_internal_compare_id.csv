@@ -1,0 +1,9 @@
+modi,osal_internal_compare_id,06_017,9,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+#COMMENT,$@p_str1,@p_str1[0],@p_str1[1],@p_str1[2],$@p_str2,@p_str2[0],@p_str2[1],@p_str2[2],@len,osal_internal_compare_id@@,;,
+,3,97,97,0,3,97,97,0,3,OSAL_RETURN_OK,;Normal operation(AA - AA),
+,3,97,97,0,3,98,97,0,3,OSAL_RETURN_CONF,;p_str1 is not equals p_str2(AA - AB),
+,3,97,97,0,3,97,97,0,1,OSAL_RETURN_CONF,;len is not equals loop_count,
+,3,0,0,0,3,97,97,0,3,OSAL_RETURN_CONF,;len is not equals loop_count (p_str1 is \0),
+,3,97,97,0,3,0,0,0,3,OSAL_RETURN_CONF,;len is not equals loop_count (p_str2 is \0),

@@ -1,0 +1,9 @@
+modi,R_OSAL_OS_BinarySearch,18_109,6,1,,,,CPP,,,,0
+#InitWheneverCall,,,,,,,,,,,,
+0,,,,,,,,,,,,
+%,AMSTB_bsearch,bsearch,,,,,,,,,,
+#COMMENT,@p_key,@p_array,@array_num,@array_size,@compare_function,AMSTB_SrcFile.c/AMSTB_bsearch@AMIN_return,R_OSAL_OS_BinarySearch@@,;,,,,
+,1,1,0,0,1,1,1,;Normal operation ,,,,
+,0,1,0,0,1,1,0,;p_key is NULL,,,,
+,1,0,0,0,1,1,0,;p_array is NULL,,,,
+,1,1,0,0,0,1,0,;compare_function is NULL,,,,

@@ -1,0 +1,17 @@
+    The I2C driver for R-Car Gen3e boards
+
+    CREATED   : 10.28.2020
+    MODIFIED  : 
+    AUTHOR    : Renesas Electronics America Inc.
+    HARDWARE  : Renesas reference R-Car Gen3e boards
+    TARGET OS : QNX SDP 7.1
+
+    HISTORY   :
+            02.28.2021 : Ver.0.1
+			- Create new version from QNX7.0 driver
+            06.30.2021 : Ver1.1
+            - Support HW info for rcar-B (IIC)
+            11.16.2022 : Ver.0.2
+            - Support Fast mode+ support for V3U
+            - Add in channel index to prefix of all logs
+            - Optimze interrupt handler code

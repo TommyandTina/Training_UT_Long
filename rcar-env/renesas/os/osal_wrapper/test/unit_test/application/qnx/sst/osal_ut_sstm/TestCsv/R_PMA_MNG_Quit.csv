@@ -1,0 +1,25 @@
+modi,R_PMA_MNG_Quit,02_002,15,2,,,,CPP,,,,0,,,,,,
+#InitWheneverCall,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_queue,r_pma_manager.c/g_pma_mng_thread,r_pma_manager.c/g_pma_mng_timeout,,,,,,,,,,,,,,
+0,0,0,0,0,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadWaitFinish,R_OSAL_OS_ThreadWaitFinish,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MqDelete,R_OSAL_OS_MqDelete,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDestroy,R_OSAL_OS_CondDestroy,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDestroy,R_OSAL_OS_MutexDestroy,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_ThreadDeinitAttr,R_OSAL_OS_ThreadDeinitAttr,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_CondDeinitAttr,R_OSAL_OS_CondDeinitAttr,,,,,,,,,,,,,,,,
+%,AMSTB_R_OSAL_OS_MutexDeinitAttr,R_OSAL_OS_MutexDeinitAttr,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_SM_Quit,R_PMA_SM_Quit,,,,,,,,,,,,,,,,
+%,AMSTB_R_PMA_BSP_WRAP_Quit,R_PMA_BSP_WRAP_Quit,,,,,,,,,,,,,,,,
+#COMMENT,r_pma_manager.c/g_pma_mng_mutex,r_pma_manager.c/g_pma_mng_queue,r_pma_manager.c/g_pma_mng_thread,r_pma_manager.c/g_pma_mng_timeout,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadWaitFinish@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MqDelete@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AMIN_return[0],AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_ThreadDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDeinitAttr@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_Quit@AM_count,AMSTB_SrcFile.c/AMSTB_R_PMA_BSP_WRAP_Quit@AMIN_return,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_CondDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_OSAL_OS_MutexDestroy@AM_count,AMSTB_SrcFile.c/AMSTB_R_PMA_SM_Quit@AM_count,R_PMA_MNG_Quit@@,;
+,1,1,1,1,R_PMA_ERR_INVALID_HANDLE,,,,,,,,,0,0,,R_PMA_NG,;R_OSAL_OS_ThreadWaitFinish() returns OSAL_RETURN_FAIL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_ERR_INVALID_HANDLE,,,,,,,,0,0,,R_PMA_NG,;R_OSAL_OS_MqDelete() returns OSAL_RETURN_FAIL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_ERR_INVALID_HANDLE,,,,,,,0,0,,R_PMA_NG,;R_OSAL_OS_CondDestroy() returns OSAL_RETURN_FAIL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_ERR_INVALID_HANDLE,,,,,,0,0,,R_PMA_NG,;R_OSAL_OS_MutexDestroy() returns OSAL_RETURN_FAIL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_ERR_INVALID_HANDLE,,,,,0,0,,R_PMA_NG,;R_OSAL_OS_ThreadDeinitAttr() returns OSAL_RETURN_FAIL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_ERR_INVALID_HANDLE,,,,0,0,,R_PMA_NG,;R_OSAL_OS_CondDeinitAttr() returns OSAL_RETURN_FAIL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_ERR_INVALID_HANDLE,,,0,0,,R_PMA_NG,;R_OSAL_OS_MutexDeinitAttr() returns OSAL_RETURN_FAIL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,0,R_PMA_NG,0,0,1,R_PMA_NG,;R_PMA_BSP_WRAP_Quit() returns R_PMA_NG
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,0,R_PMA_BSP_EINVAL,0,0,1,R_PMA_BSP_EINVAL,;R_PMA_BSP_WRAP_Quit() returns R_PMA_BSP_EINVAL
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,0,R_PMA_BSP_ETIMEDOUT,0,0,1,R_PMA_BSP_ETIMEDOUT,;R_PMA_BSP_WRAP_Quit() returns R_PMA_BSP_ETIMEDOUT
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,0,R_PMA_BSP_EIO,0,0,1,R_PMA_BSP_EIO,;R_PMA_BSP_WRAP_Quit() returns R_PMA_BSP_EIO
+,1,1,1,1,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,R_PMA_RESULT_OK,0,R_PMA_OK,0,0,1,R_PMA_OK,;Normal operation
