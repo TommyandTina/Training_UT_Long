@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "freertos.h": "c"
+        "freertos.h": "c",
+        "r_impdrv_private.h": "c",
+        "r_impdrv_attrsetclbrkaddr.h": "c"
     }
 }

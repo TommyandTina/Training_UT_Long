@@ -8,7 +8,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-// bool TEST_R_IMPDRV_CRC(const char *category, int32_t no);
+bool TEST_R_IMPDRV_CRC(const char *category, int32_t no);
 bool TEST_R_IMPDRV_GetPMState(const char *category, int32_t no);
 bool TEST_impdrv_genctl_pm_get_state(const char *category, int32_t no);
 bool TEST_impdrv_osdep_pm_get_policy(const char *category, int32_t no);

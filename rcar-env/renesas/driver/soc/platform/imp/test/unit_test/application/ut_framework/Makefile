@@ -37,6 +37,10 @@ ifeq ($(DEVICE),v4h2)
 UPPER_DEVICE := V4H2
 endif
 
+ifeq ($(DEVICE),v4m)
+UPPER_DEVICE := V4M
+endif
+
 #-----------------------------------------------------------------
 # Test source files
 #-----------------------------------------------------------------
@@ -114,6 +118,17 @@ C_SRC1	:= $(filter-out $(wildcard ./base/imp/**/*v3x*),$(C_SRC1))
 C_SRC2	:= $(filter-out $(wildcard ./ut/imp/**/*v4h1*),$(C_SRC2))
 C_SRC2	:= $(filter-out $(wildcard ./ut/imp/**/*v3x*),$(C_SRC2))
 endif
+
+# v4m
+ifeq ($(DEVICE),v4m)
+C_SRC1	:= $(filter-out $(wildcard ./base/imp/**/*v3x*),$(C_SRC1))
+C_SRC1	:= $(filter-out $(wildcard ./base/imp/**/*v4h1*),$(C_SRC1))
+C_SRC1	:= $(filter-out $(wildcard ./base/imp/**/*v4h2*),$(C_SRC1))
+C_SRC2	:= $(filter-out $(wildcard ./ut/imp/**/*v3x*),$(C_SRC2))
+C_SRC2	:= $(filter-out $(wildcard ./ut/imp/**/*v4h1*),$(C_SRC2))
+C_SRC2	:= $(filter-out $(wildcard ./ut/imp/**/*v4h2*),$(C_SRC2))
+endif
+
 
 OBJS1     += $(subst ./,./$(OBJDIR)/,$(C_SRC1:.c=.c.o))
 DEPS1     += $(subst ./,./$(DEPDIR)/,$(C_SRC1:.c=.c.d))

@@ -2444,7 +2444,7 @@ e_impdrv_errorcode_t impdrv_cmnctl_test_checksum(
     if (IMPDRV_EC_OK == ercd)
     {
         if (current_checksum != g_impdrv_cmn_ctl_chk.checksum)
-        {
+        {printf("%d\n",current_checksum);
             ercd = IMPDRV_EC_NG_SYSTEMERROR;
         }
     }
