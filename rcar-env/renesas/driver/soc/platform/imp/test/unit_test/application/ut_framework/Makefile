@@ -4,8 +4,10 @@
 # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 #   2017.01.12 Rev 0.0 Newly created by T.Ohashi
 SHELL=cmd
-RMDIR=rm -rf
-RM=rm -rf
+# RMDIR=rm -rf
+# RM=rm -rf
+RMDIR=rmdir /S /Q
+RM=del /S /Q
 
 TEST_ENV=TEST_ENV_UT
 OBJDIR	:= obj
@@ -371,12 +373,61 @@ ifeq ($(DEVICE), v4h2)
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 endif
 
+ifeq ($(DEVICE), v4m)
+./obj/base/imp_stub/r_impdrv_dmasctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dmasctl_stub_ut.c)
+	$(eval ODIR=$(dir $@))
+	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
+	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
+	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
+	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
+
+./obj/base/imp_stub/r_impdrv_dspctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dspctl_stub_ut.c)
+	$(eval ODIR=$(dir $@))
+	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
+	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
+	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
+	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
+
+# ./obj/src/target/$(DEVICE)/r_impdrv_dspctl.c.o: $(abspath ../../../../src/target/$(DEVICE)/r_impdrv_dspctl.c)
+# 	$(eval ODIR=$(dir $@))
+# 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
+# 	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
+# 	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
+# 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
+
+# ./obj/src/target/$(DEVICE)/r_impdrv_udefctl.c.o: $(abspath ../../../../src/target/$(DEVICE)/r_impdrv_udefctl.c)
+# 	$(eval ODIR=$(dir $@))
+# 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
+# 	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
+# 	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
+# 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
+
+./obj/base/imp_stub/r_impdrv_udefctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_udefctl_stub_ut.c)
+	$(eval ODIR=$(dir $@))
+	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
+	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
+	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
+	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
+endif
+
 -include $(DEPS)
 
-clean:
-	$(RM) $(OBJDIR) $(DRVDIR)/obj $(DRVDIR)/dep $(DRVDIR)/obj_$(DEVICE) $(DRVDIR)/dep_$(DEVICE) $(DEPDIR) $(OUTPUT) *.csi *.cov *.exe *.ctr *.ctg *.a
+###note: clean for linux 
+# clean:
+# 	$(RM) $(OBJDIR) $(DRVDIR)/obj $(DRVDIR)/dep $(DRVDIR)/obj_$(DEVICE) $(DRVDIR)/dep_$(DEVICE) $(DEPDIR) $(OUTPUT) *.csi *.cov *.exe *.ctr *.ctg *.a
 
-.PHONY: all clean
+###note: clean for window 
+clean:
+	-$(RMDIR) $(OBJDIR)
+	-$(RMDIR) $(DRVDIR)/obj
+	-$(RMDIR) $(DRVDIR)/dep
+	-$(RMDIR) $(DRVDIR)/obj_$(DEVICE)
+	-$(RMDIR) $(DRVDIR)/dep_$(DEVICE)
+	-$(RMDIR) $(DEPDIR)
+	-$(RM) $(OUTPUT) *.csi *.cov *.exe *.ctr *.ctg *.a
+
+
+.PHONY: all clean miniclean
 
 ALL_TESTS := 
 
