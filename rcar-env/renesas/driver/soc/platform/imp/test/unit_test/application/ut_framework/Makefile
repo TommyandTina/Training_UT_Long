@@ -16,7 +16,7 @@ DRVDIR  := imp
 OBJS :=
 DEPS :=
 
-DEVICE  ?= v4h2
+DEVICE  ?= v4m
 
 # Convert to upper string
 ifeq ($(DEVICE),v3m2)

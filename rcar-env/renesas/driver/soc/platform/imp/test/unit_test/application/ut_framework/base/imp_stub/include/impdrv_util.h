@@ -118,7 +118,7 @@ extern e_impdrv_errorcode_t impdrv_cmnctl_test_checksum(void);
 #define IMPDRV_CNN_CORENUM_VAL      (1U)                /**< Maximum number of cores for CNN. */
 #define IMPDRV_DTA_CORENUM_VAL      (0U)                /**< Maximum number of cores for DTA. */
 #endif
-#elif defined(RCAR_V4H) || defined(RCAR_V4H2) 
+#elif defined(RCAR_V4H) || defined(RCAR_V4H2) || defined(RCAR_V4M)
 #define IMPDRV_IMP_CORENUM_VAL      (4U) 
 #define IMPDRV_IMPS_CORENUM_VAL     (0U) 
 #define IMPDRV_OCV_CORENUM_VAL      (4U) 

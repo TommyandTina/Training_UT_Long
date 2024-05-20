@@ -24,7 +24,7 @@ const st_impdrv_corectl_func_t* impdrv_ut_get_corectl_func(
             NULL,   NULL
         },
         /** IMPDRV_CORE_TYPE_IMP */
-#if !defined(RCAR_V4H) && !defined(RCAR_V4H2)
+#if !defined(RCAR_V4H) && !defined(RCAR_V4H2) && !defined(RCAR_V4M)
         {   impdrv_impctl_is_valid_core,    impdrv_impctl_check_state,      impdrv_impctl_set_state,
             impdrv_impctl_init_start,       impdrv_impctl_init_end,         impdrv_impctl_start,
             impdrv_impctl_stop,             impdrv_impctl_attr_init,        impdrv_impctl_set_mem_init,
@@ -33,7 +33,7 @@ const st_impdrv_corectl_func_t* impdrv_ut_get_corectl_func(
             impdrv_impctl_pm_set_policy,    impdrv_impctl_pm_get_policy,    NULL,
             impdrv_impctl_bus_if_check,     impdrv_impctl_conf_reg_check
         },
-#elif defined(RCAR_V4H2)
+#elif defined(RCAR_V4H2) || defined(RCAR_V4M)
         {   impdrv_impctl_is_valid_core,    impdrv_impctl_check_state,      impdrv_impctl_set_state,
             impdrv_impctl_init_start,       impdrv_impctl_init_end,         impdrv_impctl_start,
             impdrv_impctl_stop,             impdrv_impctl_attr_init,        impdrv_impctl_set_mem_init,
@@ -54,7 +54,7 @@ const st_impdrv_corectl_func_t* impdrv_ut_get_corectl_func(
         },
 #endif
         /* IMPDRV_CORE_TYPE_IMP_SLIM */
-#if defined(RCAR_V3H2) | defined(RCAR_V3H1)
+#if defined(RCAR_V3H2) || defined(RCAR_V3H1)
         {   impdrv_impsctl_is_valid_core,   impdrv_impsctl_check_state,     impdrv_impsctl_set_state,
             impdrv_impsctl_init_start,      impdrv_impsctl_init_end,        impdrv_impsctl_start,
             impdrv_impsctl_stop,            impdrv_impsctl_attr_init,       impdrv_impsctl_set_mem_init,
@@ -83,7 +83,7 @@ const st_impdrv_corectl_func_t* impdrv_ut_get_corectl_func(
             NULL,                           impdrv_ocvctl_conf_reg_check
         },
         /** IMPDRV_CORE_TYPE_DMAC */
-#if !defined(RCAR_V4H) && !defined(RCAR_V4H2)
+#if !defined(RCAR_V4H) && !defined(RCAR_V4H2) && !defined(RCAR_V4M)
         {   impdrv_dmactl_is_valid_core,    impdrv_dmactl_check_state,      impdrv_dmactl_set_state,
             impdrv_dmactl_init_start,       impdrv_dmactl_init_end,         impdrv_dmactl_start,
             impdrv_dmactl_stop,             impdrv_dmactl_attr_init,        impdrv_dmactl_set_mem_init,
@@ -92,7 +92,7 @@ const st_impdrv_corectl_func_t* impdrv_ut_get_corectl_func(
             impdrv_dmactl_pm_set_policy,    impdrv_dmactl_pm_get_policy,    NULL,
             impdrv_dmactl_bus_if_check,     impdrv_dmactl_conf_reg_check
         },
-#elif defined(RCAR_V4H2)
+#elif defined(RCAR_V4H2) || defined(RCAR_V4M)
         {   impdrv_dmactl_is_valid_core,    impdrv_dmactl_check_state,      impdrv_dmactl_set_state,
             impdrv_dmactl_init_start,       impdrv_dmactl_init_end,         impdrv_dmactl_start,
             impdrv_dmactl_stop,             impdrv_dmactl_attr_init,        impdrv_dmactl_set_mem_init,
@@ -153,7 +153,7 @@ const st_impdrv_corectl_func_t* impdrv_ut_get_corectl_func(
         /** IMPDRV_CORE_TYPE_CNN */
         {   impdrv_cnnctl_is_valid_core,    impdrv_cnnctl_check_state,      impdrv_cnnctl_set_state,
             impdrv_cnnctl_init_start,       impdrv_cnnctl_init_end,         impdrv_cnnctl_start,
-            impdrv_cnnctl_stop,             impdrv_cnnctl_attr_init,        impdrv_cnnctl_set_mem_init,
+            NULL,                           impdrv_cnnctl_attr_init,        impdrv_cnnctl_set_mem_init,
             impdrv_cnnctl_set_core_map,     impdrv_cnnctl_set_cl,           impdrv_cnnctl_set_irq_mask,
             impdrv_cnnctl_execute,          impdrv_cnnctl_int_handler,      impdrv_cnnctl_resume_exe,
             impdrv_cnnctl_pm_set_policy,    impdrv_cnnctl_pm_get_policy,    NULL,

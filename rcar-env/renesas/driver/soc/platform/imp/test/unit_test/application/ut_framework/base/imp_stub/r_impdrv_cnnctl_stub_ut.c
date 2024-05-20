@@ -28,6 +28,13 @@
 #define impdrv_cnnctl_get_inten_val_ut_1472 impdrv_cnnctl_get_inten_val_stub
 #define impdrv_cnnctl_get_inten_val_ut_1936 impdrv_cnnctl_get_inten_val
 #endif
+#if defined(RCAR_V4M)
+#define impdrv_cnnctl_get_inten_val_ut_267 impdrv_cnnctl_get_inten_val
+#define impdrv_cnnctl_get_inten_val_ut_1198 impdrv_cnnctl_get_inten_val_stub
+#define impdrv_cnnctl_get_inten_val_ut_1355 impdrv_cnnctl_get_inten_val_stub
+#define impdrv_cnnctl_get_inten_val_ut_1475 impdrv_cnnctl_get_inten_val_stub
+#define impdrv_cnnctl_get_inten_val_ut_2010 impdrv_cnnctl_get_inten_val
+#endif
 /*impdrv_cnnctl_set_state*/
 #define  impdrv_cnnctl_set_state  impdrv_cnnctl_set_state_(__LINE__)
 #define  impdrv_cnnctl_set_state_(line)  impdrv_cnnctl_set_state__(line)
@@ -70,6 +77,17 @@
 #define  impdrv_cnnctl_set_state_ut_1448  impdrv_cnnctl_set_state_stub
 #define  impdrv_cnnctl_set_state_ut_1500  impdrv_cnnctl_set_state
 #endif
+#if defined(RCAR_V4M)
+#define  impdrv_cnnctl_set_state_ut_409  impdrv_cnnctl_set_state
+#define  impdrv_cnnctl_set_state_ut_591  impdrv_cnnctl_set_state
+#define  impdrv_cnnctl_set_state_ut_640  impdrv_cnnctl_set_state
+#define  impdrv_cnnctl_set_state_ut_649  impdrv_cnnctl_set_state
+#define  impdrv_cnnctl_set_state_ut_1235  impdrv_cnnctl_set_state_stub
+#define  impdrv_cnnctl_set_state_ut_1264  impdrv_cnnctl_set_state
+#define  impdrv_cnnctl_set_state_ut_1379  impdrv_cnnctl_set_state_stub
+#define  impdrv_cnnctl_set_state_ut_1451  impdrv_cnnctl_set_state_stub
+#define  impdrv_cnnctl_set_state_ut_1503  impdrv_cnnctl_set_state
+#endif
 
 #define  impdrv_cnnctl_check_inten  impdrv_cnnctl_check_inten_(__LINE__)
 #define  impdrv_cnnctl_check_inten_(line)  impdrv_cnnctl_check_inten__(line)
@@ -82,6 +100,10 @@
 #if defined (RCAR_V4H2)
 #define  impdrv_cnnctl_check_inten_ut_1971  impdrv_cnnctl_check_inten
 #define  impdrv_cnnctl_check_inten_ut_1343  impdrv_cnnctl_check_inten_stub
+#endif
+#if  defined(RCAR_V4M)
+#define  impdrv_cnnctl_check_inten_ut_2045  impdrv_cnnctl_check_inten
+#define  impdrv_cnnctl_check_inten_ut_1346  impdrv_cnnctl_check_inten_stub
 #endif
 #include "r_impdrv_cnnctl.c"
 

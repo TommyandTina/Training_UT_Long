@@ -15,18 +15,21 @@ shutil.copytree(src_dir, dst_dir, dirs_exist_ok=True)
 #File location need to change
 dsp_file = [
         '/target/v4h/r_impdrv_dspctl.c',
-        '/target/v4h2/r_impdrv_dspctl.c'
+        '/target/v4h2/r_impdrv_dspctl.c',
+        # '/target/v4m/r_impdrv_dspctl.c'
         ]
 cmnctl_reg_file = [
         '/target/v4h/r_impdrv_cmnctl_reg.c',
-        '/target/v4h2/r_impdrv_cmnctl_reg.c'
+        '/target/v4h2/r_impdrv_cmnctl_reg.c',
+        # '/target/v4m/r_impdrv_cmnctl_reg.c'
         ]
 cmnctl_file = [
         '/target/v3h1/r_impdrv_cmnctl.c',
         '/target/v3h2/r_impdrv_cmnctl.c',
         '/target/v3m2/r_impdrv_cmnctl.c',
         '/target/v4h/r_impdrv_cmnctl.c',
-        '/target/v4h2/r_impdrv_cmnctl.c'
+        '/target/v4h2/r_impdrv_cmnctl.c',
+        # '/target/v4m/r_impdrv_cmnctl.c'
         ]
 #value need to replace
 dsp_macro = [

@@ -170,7 +170,7 @@
 #define IMPDRV_IMP_INTSTS_WUP       (0x04000000U)       /**< WUP interrupt enable registration. */
 #define IMPDRV_OCV_8KBSTART_VAL     (0x0000U)           /**< 8KBSTART value for OCV. */
 
-#elif defined(RCAR_V4H) || defined(RCAR_V4H2)
+#elif defined(RCAR_V4H) || defined(RCAR_V4H2) || defined(RCAR_V4M)
 #define IMPDRV_INSTANCETABLE_NUM    (6U)  
 #define IMPDRV_IMP_INTSTS_APIPINT   (0x00000001U)
 #define IMPDRV_IMP_INTSTS_HPINT     (0x00000002U)
@@ -233,7 +233,7 @@
 #define IMPDRV_DMAS_SER_FIX              (0x0001F300U)
 #endif
 
-#if defined(RCAR_V4H2)
+#if defined(RCAR_V4H2) || defined(RCAR_V4M)
 #define IMPDRV_CNN_VCR              (0x00040001U) 
 #elif defined(RCAR_V4H)
 #define IMPDRV_CNN_VCR              (0x00030200U)
@@ -295,7 +295,7 @@ typedef struct
     uint32_t                  chk_val;          /**< Value to read back register */
 } st_impdrv_dma_write_info_tbl_t;
 
-#if defined(RCAR_V4H) || defined(RCAR_V4H2)
+#if defined(RCAR_V4H) || defined(RCAR_V4H2) || defined(RCAR_V4M)
 extern uint32_t impdrv_impctl_get_inten_val(
     const st_impdrv_corectl_t   *const p_corectl
 );
@@ -309,7 +309,7 @@ extern e_impdrv_errorcode_t impdrv_cmnctl_reg_find_resource(
     uint32_t                *const p_index,
     st_impdrv_hwrsc_def_t   *const p_resource
 );
-#if !defined(RCAR_V4H) || defined(RCAR_V4H2)
+#if !defined(RCAR_V4H) || defined(RCAR_V4H2) || defined(RCAR_V4M)
 extern uint32_t impdrv_cnnctl_get_inten_val(
     const bool      irq_mask[IMPDRV_IRQMASK_MAX]
 );

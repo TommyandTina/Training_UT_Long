@@ -21,10 +21,10 @@
 * Device(s)    : R-Car
 * Description  : IMP Driver function of impdrv_dspctl for xOS3
 ***********************************************************************************************************************/
-
 /**
  * @file r_impdrv_udefctl.c
  */
+#if !defined (WINDOWS_OS)  
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/mman.h>  /* for mmap */
@@ -32,7 +32,7 @@
 #include <sys/types.h> /* for open */
 #include <unistd.h>    /* for close */
 #include <errno.h>     /* for system api */
-
+#endif
 /*======================================================================================================================
 Includes <System Includes> , "Project Includes"
 ======================================================================================================================*/

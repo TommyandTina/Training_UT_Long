@@ -467,7 +467,7 @@ e_impdrv_errorcode_t impdrv_impctl_check_state(
         {
             /** When core state and specified state is not match */
             if (state != p_corectl->core_state)
-            {printf("state:%d core_state:%d\n",state,p_corectl->core_state);
+            {
                 ercd = IMPDRV_EC_NG_SEQSTATE;
             }
         }

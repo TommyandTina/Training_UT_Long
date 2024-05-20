@@ -27,7 +27,7 @@
 #define impdrv_cmnctl_reg_find_resource_ut_1426 impdrv_cmnctl_reg_find_resource_stub
 #define impdrv_cmnctl_reg_find_resource_ut_1547 impdrv_cmnctl_reg_find_resource_stub
 #define impdrv_cmnctl_reg_find_resource_ut_1613 impdrv_cmnctl_reg_find_resource
-/* V4H2 */
+/* V4H2,V4M */
 #define impdrv_cmnctl_reg_find_resource_ut_370 impdrv_cmnctl_reg_find_resource
 #define impdrv_cmnctl_reg_find_resource_ut_656 impdrv_cmnctl_reg_find_resource
 // #define impdrv_cmnctl_reg_find_resource_ut_712 impdrv_cmnctl_reg_find_resource
@@ -48,7 +48,7 @@
 // #define impdrv_cmnctl_get_io_imptop_ut_1146 impdrv_cmnctl_get_io_imptop_stub
 /* V4H */
 #define impdrv_cmnctl_get_io_imptop_ut_1195 impdrv_cmnctl_get_io_imptop_stub
-/* V4H2 */
+/* V4H2, V4M */
 #define impdrv_cmnctl_get_io_imptop_ut_1143 impdrv_cmnctl_get_io_imptop_stub
 
 /* impdrv_cmnctl_calc_checksum */
@@ -64,7 +64,7 @@
 /* V4H */
 #define impdrv_cmnctl_calc_checksum_ut_1010 impdrv_cmnctl_calc_checksum_stub
 #define impdrv_cmnctl_calc_checksum_ut_1037 impdrv_cmnctl_calc_checksum_stub
-/* V4H2 */
+/* V4H2, V4M */
 #define impdrv_cmnctl_calc_checksum_ut_958 impdrv_cmnctl_calc_checksum_stub
 #define impdrv_cmnctl_calc_checksum_ut_985 impdrv_cmnctl_calc_checksum_stub
 

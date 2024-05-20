@@ -1,4 +1,4 @@
-#if defined(RCAR_V3H2) || defined(RCAR_V4H) || defined(RCAR_V4H2)
+#if defined(RCAR_V3H2) || defined(RCAR_V4H) || defined(RCAR_V4H2) || defined(RCAR_V4M)
 
 // /*impdrv_dmasctl_get_inten_val*/
 #define impdrv_dmasctl_get_inten_val impdrv_dmasctl_get_inten_val_(__LINE__)
@@ -66,6 +66,31 @@
 #define impdrv_osdep_pow_on_imp_ut_829 impdrv_osdep_pow_on_imp_stub
 #endif
 
+#if defined(RCAR_V4M)
+#define impdrv_dmasctl_get_inten_val_ut_437 impdrv_dmasctl_get_inten_val
+#define impdrv_dmasctl_get_inten_val_ut_1545 impdrv_dmasctl_get_inten_val_stub
+#define impdrv_dmasctl_get_inten_val_ut_1720 impdrv_dmasctl_get_inten_val_stub
+#define impdrv_dmasctl_get_inten_val_ut_1869 impdrv_dmasctl_get_inten_val_stub //function for resume exe
+#define impdrv_dmasctl_get_inten_val_ut_2498 impdrv_dmasctl_get_inten_val
+
+#define  impdrv_dmasctl_set_state_ut_580  impdrv_dmasctl_set_state
+#define  impdrv_dmasctl_set_state_ut_887  impdrv_dmasctl_set_state
+#define  impdrv_dmasctl_set_state_ut_962  impdrv_dmasctl_set_state
+#define  impdrv_dmasctl_set_state_ut_971 impdrv_dmasctl_set_state
+#define  impdrv_dmasctl_set_state_ut_1587 impdrv_dmasctl_set_state_stub
+#define  impdrv_dmasctl_set_state_ut_1620 impdrv_dmasctl_set_state
+#define  impdrv_dmasctl_set_state_ut_1756 impdrv_dmasctl_set_state_stub
+#define  impdrv_dmasctl_set_state_ut_1835 impdrv_dmasctl_set_state_stub //function for resume exe
+#define  impdrv_dmasctl_set_state_ut_1900 impdrv_dmasctl_set_state
+
+#define  impdrv_dmasctl_osal_core_num_ut_296  impdrv_dmasctl_osal_core_num
+#define  impdrv_dmasctl_osal_core_num_ut_679  impdrv_dmasctl_osal_core_num_stub
+#define  impdrv_dmasctl_osal_core_num_ut_856  impdrv_dmasctl_osal_core_num_stub
+#define  impdrv_dmasctl_osal_core_num_ut_2013 impdrv_dmasctl_osal_core_num
+
+#define impdrv_osdep_pow_on_imp_ut_652 impdrv_osdep_pow_on_imp
+#define impdrv_osdep_pow_on_imp_ut_836 impdrv_osdep_pow_on_imp_stub
+#endif
 
 // /* impdrv_osdep_pow_on_imp */
 // /* V3H2 */

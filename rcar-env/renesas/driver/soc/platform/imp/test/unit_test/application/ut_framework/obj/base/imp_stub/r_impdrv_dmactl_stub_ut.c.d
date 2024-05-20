@@ -1,6 +1,6 @@
 obj/base/imp_stub/r_impdrv_dmactl_stub_ut.c.o: \
  C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/base/imp_stub/r_impdrv_dmactl_stub_ut.c \
- ../../../../../../../soc/platform/imp/src/target/v4h2/r_impdrv_dmactl.c \
+ ../../../../../../../soc/platform/imp/src/target/v4m/r_impdrv_dmactl.c \
  ../../../../../../../soc/platform/imp/include/rcar-xos/imp/r_impdrv.h \
  C:/Strawberry/c/lib/gcc/x86_64-w64-mingw32/8.3.0/include/stdint.h \
  C:/Strawberry/c/x86_64-w64-mingw32/include/stdint.h \
