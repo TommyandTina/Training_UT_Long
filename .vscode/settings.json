@@ -4,6 +4,7 @@
         "r_impdrv_private.h": "c",
         "r_impdrv_attrsetclbrkaddr.h": "c",
         "fcntl.h": "c",
-        "mman.h": "c"
+        "mman.h": "c",
+        "random": "c"
     }
 }

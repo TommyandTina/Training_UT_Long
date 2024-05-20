@@ -426,7 +426,6 @@ clean:
 	-$(RMDIR) $(DEPDIR)
 	-$(RM) $(OUTPUT) *.csi *.cov *.exe *.ctr *.ctg *.a
 
-
 .PHONY: all clean miniclean
 
 ALL_TESTS := 
