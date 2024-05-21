@@ -1,0 +1,10 @@
+gdb.exe nameoffile.exe
+break nameOfFunction
+r (run)
+break lineOfCode/nameOfFunc
+display nameOfVar :hiển thị biến xuyên suốt
+p/print nameOfVar: xem 1 lần
+c (countinue)
+step :step into
+finish: step out
+quit: exit
