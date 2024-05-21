@@ -667,7 +667,7 @@ e_osal_return_t R_OSAL_MqCreate(const st_osal_mq_config_t *const p_config, osal_
     s_R_OSAL_MqCreate *IO = &g_R_OSAL_MqCreate;
     e_osal_return_t ReturnValue;
     ReturnValue = IO->ReturnValue[IO->ut_index];
-     if (OSAL_RETURN_OK == ReturnValue)
+    if (OSAL_RETURN_OK == ReturnValue)
     {
         if (p_handle != NULL)
         {
