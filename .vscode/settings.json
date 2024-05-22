@@ -1,10 +1,11 @@
 {
-    "files.associations": {
-        "freertos.h": "c",
-        "r_impdrv_private.h": "c",
-        "r_impdrv_attrsetclbrkaddr.h": "c",
-        "fcntl.h": "c",
-        "mman.h": "c",
-        "random": "c"
-    }
+    // "files.associations": {
+    //     "freertos.h": "c",
+    //     "r_impdrv_private.h": "c",
+    //     "r_impdrv_attrsetclbrkaddr.h": "c",
+    //     "fcntl.h": "c",
+    //     "mman.h": "c",
+    //     "random": "c"
+    // },
+    // "terminal.integrated.shell.windows": "C:\\Users\\long.trinh-tien\\AppData\\Local\\Programs\\Git\\bin\\bash.exe"
 }

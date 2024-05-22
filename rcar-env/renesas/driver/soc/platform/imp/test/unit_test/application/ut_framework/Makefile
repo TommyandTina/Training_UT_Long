@@ -165,8 +165,8 @@ TEST_CONFIGS  += -DNDEBUG
 TEST_CONFIGS  += -DIMPDRV_DSPCRC_DETECT_ADDDEF
 EXTRA_CFLAGS += -std=c99 -g -O0
 
-CC := gcc
-LD := g++
+CC := gcc -g -Wall 
+LD := g++ -g -Wall 
 
 OUTPUT  = impdrv_ut.exe
 
@@ -424,9 +424,10 @@ clean:
 	-$(RMDIR) $(DRVDIR)/obj_$(DEVICE)
 	-$(RMDIR) $(DRVDIR)/dep_$(DEVICE)
 	-$(RMDIR) $(DEPDIR)
-	-$(RM) $(OUTPUT) *.csi *.cov *.exe *.ctr *.ctg *.a
+	-$(RM) $(OUTPUT) *.csi *.cov *.ctr *.ctg *.a
+	-$(RM) $(filter-out gdb.exe, $(wildcard *.exe))
 
-.PHONY: all clean miniclean
+.PHONY: all clean
 
 ALL_TESTS := 
 
