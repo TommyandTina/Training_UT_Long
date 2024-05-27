@@ -7,9 +7,9 @@
             "name": "Launch impdrv_ut.exe",
             "program": "C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/impdrv_ut.exe",
             "cwd": "${workspaceFolder}",
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false,//true if want to open external terminal
             "MIMode": "gdb",
             // "setupCommands": [
             //     {

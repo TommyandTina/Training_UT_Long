@@ -1,0 +1,137 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+
+        /*MAKE*/
+        {
+            "label": "make all",
+            "type": "shell",
+            "command": "",
+            "args": [
+                // "/c", //thoat khoi cmd ngay sau khi chay xong
+                // "cd C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
+                // "&",
+                "make",
+                "all"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/"
+            },
+            /*auto close*/
+            // "presentation": {
+            //     "reveal": "always",
+            //     "revealProblems": "onProblem",
+            //     "close": true
+            // }
+            
+        },
+
+        /*MAEK CLEAN*/
+        {
+            "label": "make clean",
+            "type": "process",
+            "windows": {
+                "command": "cmd"
+            },
+            "args": [
+                "/c",
+                "cd C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
+                "&",
+                "make",
+                "clean"
+            ],
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+
+        /*MAKE + RUN*/
+        {
+            "label": "make + run impdrv_ut.exe",
+            "type": "process",
+            "windows": {
+                "command": "cmd"
+            },
+            "args": [
+                "/c",
+                "cd C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
+                "&",
+                "impdrv_ut.exe"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "dependsOn": [
+                "make all"
+            ],
+            "dependsOrder": "sequence",
+        },
+
+        /*IMPORT*/
+        {
+            "label": "import IMPDRV.ini",
+            "type": "shell",
+            "options": {
+                "cwd": "C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/UTS_for_C++/UTS_for_C++/",
+            },
+            "command": "",
+            "args": [
+                "python",
+                "uts_TestExtract.py",
+                "../../spec/IMPDRV.ini"
+            ],
+            "problemMatcher": [],
+            // "presentation": {
+            //     "reveal": "silent",
+            //     "revealProblems": "onProblem",
+            //     "close": true
+            // },
+            "hide": true,
+        },
+
+        /*IMPORT + MAKE + RUN*/
+        {
+            "label": "import IMPDRV.ini + make + run impdrv_ut.exe",
+            "problemMatcher": [],
+            "dependsOn": [
+                "import IMPDRV.ini",
+                "make + run impdrv_ut.exe",
+            ],
+            "dependsOrder": "sequence",
+        },
+        {
+            "label": "Open file to change info",
+            "type": "shell",
+            "options": {
+                "cwd": "C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework",
+            },
+            "command": "code -g ${input:fileName}",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": true
+            },
+        },
+    ],
+    "inputs": [
+        {
+            "id": "fileName",
+            "type": "pickString",
+            "options": [
+                "../../../../../../../../../../spec/IMPDRV.ini:17",
+                "./ut/imp/include/test_case.h:500",   
+            ],
+            "description": "Select a file to open."
+        }
+    ],
+
+}

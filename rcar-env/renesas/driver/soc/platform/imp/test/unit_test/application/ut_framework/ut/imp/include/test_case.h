@@ -511,7 +511,7 @@ static const struct TestInfo TEST_UT_Info[] =
 	//TESTCASE_TABLE("imp", R_IMPDRV_AttrSetCoreMap),
 	//TESTCASE_TABLE("imp", R_IMPDRV_AttrSetCl),
 	//TESTCASE_TABLE("imp", R_IMPDRV_AttrSetIrqMask),
-	//TESTCASE_TABLE("imp", R_IMPDRV_SetIrqGroup),
+	// TESTCASE_TABLE("imp", R_IMPDRV_SetIrqGroup),
 	//TESTCASE_TABLE("imp", R_IMPDRV_Execute),
 	//TESTCASE_TABLE("imp", R_IMPDRV_ResumeExecution),
 	//TESTCASE_TABLE("imp", R_IMPDRV_SetPMPolicy),
