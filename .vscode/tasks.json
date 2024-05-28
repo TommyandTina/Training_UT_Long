@@ -19,7 +19,7 @@
                 "isDefault": true
             },
             "options": {
-                "cwd": "C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/"
+                "cwd": "${workspaceFolder}/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/"
             },
             /*auto close*/
             // "presentation": {
@@ -39,7 +39,7 @@
             },
             "args": [
                 "/c",
-                "cd C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
+                "cd ${workspaceFolder}/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
                 "&",
                 "make",
                 "clean"
@@ -60,7 +60,7 @@
             },
             "args": [
                 "/c",
-                "cd C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
+                "cd ${workspaceFolder}/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
                 "&",
                 "impdrv_ut.exe"
             ],
@@ -80,7 +80,7 @@
             "label": "import IMPDRV.ini",
             "type": "shell",
             "options": {
-                "cwd": "C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/UTS_for_C++/UTS_for_C++/",
+                "cwd": "${workspaceFolder}/UTS_for_C++/UTS_for_C++/",
             },
             "command": "",
             "args": [
@@ -111,9 +111,9 @@
             "label": "Open file to change info",
             "type": "shell",
             "options": {
-                "cwd": "C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework",
+                "cwd": "${workspaceFolder}/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework",
             },
-            "command": "code -g ${input:fileName}",
+            "command": "${input:fileName}",
             "problemMatcher": [],
             "presentation": {
                 "reveal": "silent",
@@ -121,17 +121,60 @@
                 "close": true
             },
         },
+        {
+            "label": "Choose file to Delete",
+            "type": "shell",
+            "command": "C:/Users/long.trinh-tien/AppData/Local/Programs/Git/bin/sh.exe ${workspaceFolder}/.vscode/delete_file.sh ${workspaceFolder}/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/obj ${input:fileNameToDelete}",
+            "problemMatcher": [],
+            "hide": false,
+        },
     ],
     "inputs": [
         {
             "id": "fileName",
             "type": "pickString",
             "options": [
-                "../../../../../../../../../../spec/IMPDRV.ini:17",
-                "./ut/imp/include/test_case.h:500",   
+                {"label": "IMPDRV.ini", "value": "code -g ${workspaceFolder}/spec/IMPDRV.ini:17" },
+                {"label": "test_case.h", "value": "code -g ./ut/imp/include/test_case.h:500" },
+                {"label": "Excel file", "value": "start excel.exe ${workspaceFolder}/spec/IMPD_X~4.XLS" },
             ],
             "description": "Select a file to open."
-        }
+        },
+        {
+            "id": "fileNameToDelete",
+            "type": "pickString",
+            "options": [
+                {"label": "Delete all object file (dangerous)", "value": "*" },
+                "R_IMPDRV_AttrSetClBrkAddr",
+                "R_IMPDRV_AttrSetGosubCond",
+                "R_IMPDRV_AttrSetIrqMask",
+                "R_IMPDRV_AttrSetCoreMemInit",
+                "R_IMPDRV_Start",
+                "R_IMPDRV_Init",
+                "R_IMPDRV_Quit",
+                "R_IMPDRV_AttrInit",
+                "R_IMPDRV_Execute",
+                "R_IMPDRV_SetPMPolicy",
+                "R_IMPDRV_GetPMPolicy",
+                "R_IMPDRV_GetPMState",
+                "R_IMPDRV_RegGetHwInfo",
+                "R_IMPDRV_RegRead32",
+                "R_IMPDRV_RegRequired",
+                "R_IMPDRV_SetMemProtect",
+                "R_IMPDRV_BusIfCheck",
+                "R_IMPDRV_RegWrite32",
+                "R_IMPDRV_ConfRegCheck",
+                "R_IMPDRV_ModuleStopCheck",
+                "R_IMPDRV_ResumeExecution",
+                "R_IMPDRV_AttrSetDsp",
+                "R_IMPDRV_GetVersion",
+                "R_IMPDRV_Stop",
+                "R_IMPDRV_AttrSetCl",
+                "R_IMPDRV_AttrSetCoreMap",
+                "R_IMPDRV_SetIrqGroup",
+            ],
+            "description": "Select the name of the file to delete"
+        },
     ],
 
 }

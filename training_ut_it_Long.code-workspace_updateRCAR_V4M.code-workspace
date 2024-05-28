@@ -13,6 +13,9 @@
 			"mman.h": "c",
 			"random": "c",
 			"stdio.h": "c"
-		}
+		},
+		"cSpell.words": [
+			"Renesas"
+		]
 	}
 }
