@@ -3,30 +3,11 @@
 #  _/     Makefile for Renesas Modules                         _/
 # _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 #   2017.01.12 Rev 0.0 Newly created by T.Ohashi
-ifeq ($(OS),Windows_NT)
-    detected_OS := Windows
-# is Windows_NT on XP, 2000, 7, Vista, 10...
-else
-    detected_OS := $(shell uname)
-# same as "uname -s"
-endif
-
-ifeq ($(detected_OS),Windows)
-    TEST_CONFIGS+=-DWIN32
-    TEST_CONFIGS+= -DWINDOWS_OS
-    SHELL=cmd
-    RMDIR=rmdir /S /Q
-    RM=del /S /Q
-endif
-
-ifeq ($(detected_OS),Linux)
-    TEST_CONFIGS+= -D LINUX
-    TEST_CONFIGS+= -DLINUX_OS
-    SHELL:=/bin/sh
-    RMDIR:= rm -rf
-    RM:= rm -rf
-endif
-
+SHELL=/bin/sh
+RMDIR=rm -rf
+RM=rm -rf
+# RMDIR=rmdir /S /Q
+# RM=del /S /Q
 
 TEST_ENV=TEST_ENV_UT
 OBJDIR	:= obj
@@ -179,7 +160,7 @@ TEST_CONFIGS  += -DUPDATE_IMP_TOP
 TEST_CONFIGS  += -DIMPDRV_BUILD_UNIT_TEST
 TEST_CONFIGS  += -DRCAR_$(UPPER_DEVICE)
 TEST_CONFIGS  += -DTEST_SOC=\"$(UPPER_DEVICE)\"
-# TEST_CONFIGS  += -DLINUX_OS
+TEST_CONFIGS  += -DLINUX_OS
 TEST_CONFIGS  += -DNDEBUG 
 TEST_CONFIGS  += -DIMPDRV_DSPCRC_DETECT_ADDDEF
 EXTRA_CFLAGS += -std=c99 -g -O0
@@ -189,9 +170,9 @@ LD := g++ -g -Wall
 
 OUTPUT  = impdrv_ut.exe
 
-# CANTPP_CMD = cppccd "--comp:x86-Win32-gcc4.6.2-bundled" --no_link
-# CANTPP_LD_CMD = cppccd "--comp:x86-Win32-gcc4.6.2-bundled"
-# CANTPP_TARGET_OPTS = "--parse:--line_directives" "--parse:-W2" "--sm:--call_seq_code" "--ci:--instr:func;call;stmt;decn;log;" "--analyse"
+#CANTPP_CMD = cppccd "--comp:x86-Win32-gcc4.6.2-bundled" --no_link
+#CANTPP_LD_CMD = cppccd "--comp:x86-Win32-gcc4.6.2-bundled"
+#CANTPP_TARGET_OPTS = "--parse:--line_directives" "--parse:-W2" "--sm:--call_seq_code" "--ci:--instr:func;call;stmt;decn;log;" "--analyse"
 
 # TEST_CONFIGS += -DWIN32 
 
@@ -211,144 +192,78 @@ libs: base1.a base2.a
 $(OBJDIR)/%.c.o: ./%.c
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst $(OBJDIR)/,$(DEPDIR)/,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -MF $(addprefix $(DEPDIR)/,$(subst .c,.c.d,$<)) -c -o $(subst ./$(OBJDIR)/,./,$@)  $<
 
 ./obj/base/imp_stub/r_impdrv_genctl_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_genctl_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_cmnctl_reg_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_cmnctl_reg_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_cmnctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_cmnctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_cnnctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_cnnctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_pscctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_pscctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_ocvctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_ocvctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_impctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_impctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 	
 ./obj/base/imp_stub/r_impdrv_dmactl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dmactl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 	
 ./obj/base/imp_stub/r_impdrv_osdep_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_osdep_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/src/r_impdrv_api.c.o: $(abspath ../../../../src/r_impdrv_api.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 # ./obj/src/r_impdrv_osdep.c.o: $(abspath ../../../../src/r_impdrv_osdep.c)
@@ -361,55 +276,31 @@ endif
 ./obj/src/r_impdrv_osdep_mmngr.c.o: $(abspath ../../../../src/r_impdrv_osdep_mmngr.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 
 ./obj/src/target/$(DEVICE)/r_impdrv_cmnctl_reg.c.o: $(abspath ../../../../src/target/$(DEVICE)/r_impdrv_cmnctl_reg.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ifeq ($(DEVICE), v3h2)
 ./obj/base/imp_stub/r_impdrv_impsctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_impsctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_dmasctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dmasctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 endif
 
@@ -417,14 +308,8 @@ ifeq ($(DEVICE), v3h1)
 ./obj/base/imp_stub/r_impdrv_impsctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_impsctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 endif
 
@@ -432,27 +317,15 @@ ifeq ($(DEVICE), v4h)
 ./obj/base/imp_stub/r_impdrv_dmasctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dmasctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_dspctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dspctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 # ./obj/src/target/$(DEVICE)/r_impdrv_dspctl.c.o: $(abspath ../../../../src/target/$(DEVICE)/r_impdrv_dspctl.c)
@@ -467,27 +340,15 @@ ifeq ($(DEVICE), v4h2)
 ./obj/base/imp_stub/r_impdrv_dmasctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dmasctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_dspctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dspctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 # ./obj/src/target/$(DEVICE)/r_impdrv_dspctl.c.o: $(abspath ../../../../src/target/$(DEVICE)/r_impdrv_dspctl.c)
@@ -507,14 +368,8 @@ endif
 ./obj/base/imp_stub/r_impdrv_udefctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_udefctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 endif
 
@@ -522,27 +377,15 @@ ifeq ($(DEVICE), v4m)
 ./obj/base/imp_stub/r_impdrv_dmasctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dmasctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 ./obj/base/imp_stub/r_impdrv_dspctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_dspctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 
 # ./obj/src/target/$(DEVICE)/r_impdrv_dspctl.c.o: $(abspath ../../../../src/target/$(DEVICE)/r_impdrv_dspctl.c)
@@ -562,37 +405,28 @@ endif
 ./obj/base/imp_stub/r_impdrv_udefctl_stub_ut.c.o: $(abspath ./base/imp_stub/r_impdrv_udefctl_stub_ut.c)
 	$(eval ODIR=$(dir $@))
 	$(eval DDIR=$(subst ./$(OBJDIR)/src/obj,./$(OBJDIR)/src/dep,$(ODIR)))
-ifeq ($(detected_OS),Linux)
 	@if [ ! -d "$(ODIR)" ]; then mkdir -p "$(ODIR)"; fi
 	@if [ ! -d "$(DDIR)" ]; then mkdir -p "$(DDIR)"; fi
-endif
-ifeq ($(detected_OS),Windows)
-	@if NOT EXIST $(subst /,\\,$(ODIR)) (mkdir $(subst /,\\,$(ODIR)))
-	@if NOT EXIST $(subst /,\\,$(DDIR)) (mkdir $(subst /,\\,$(DDIR)))
-endif
 	$(CANTPP_CMD) $(CANTPP_TARGET_OPTS) $(CC) $(INCDIR) $(RELINCE) $(C_CONFIG) $(DEBUG_CFLAGS) $(EXTRA_CFLAGS) $(DEF) -D$(TEST_ENV) $(TEST_CONFIGS) -MD -c -o $@ $<
 endif
 
 -include $(DEPS)
 
 ###note: clean for linux 
-ifeq ($(detected_OS),Linux)
 clean:
-	$(RM) $(OBJDIR) $(DRVDIR)/obj $(DRVDIR)/dep $(DRVDIR)/obj_$(DEVICE) $(DRVDIR)/dep_$(DEVICE) $(DEPDIR) $(OUTPUT) *.csi *.cov *.ctr *.ctg *.a \
-		$(filter-out make.exe gdb.exe,$(wildcard *.exe))
-endif
-ifeq ($(detected_OS),Windows)
+	$(RM) $(OBJDIR) $(DRVDIR)/obj $(DRVDIR)/dep $(DRVDIR)/obj_$(DEVICE) $(DRVDIR)/dep_$(DEVICE) $(DEPDIR) $(OUTPUT) *.csi *.cov *.exe *.ctr *.ctg *.a
+
 ###note: clean for window 
-clean:
-	-$(RMDIR) $(OBJDIR)
-	-$(RMDIR) $(DRVDIR)/obj
-	-$(RMDIR) $(DRVDIR)/dep
-	-$(RMDIR) $(DRVDIR)/obj_$(DEVICE)
-	-$(RMDIR) $(DRVDIR)/dep_$(DEVICE)
-	-$(RMDIR) $(DEPDIR)
-	-$(RM) $(OUTPUT) *.csi *.cov *.ctr *.ctg *.a
-	-$(RM) $(filter-out gdb.exe make.exe, $(wildcard *.exe))
-endif
+# clean:
+# 	-$(RMDIR) $(OBJDIR)
+# 	-$(RMDIR) $(DRVDIR)/obj
+# 	-$(RMDIR) $(DRVDIR)/dep
+# 	-$(RMDIR) $(DRVDIR)/obj_$(DEVICE)
+# 	-$(RMDIR) $(DRVDIR)/dep_$(DEVICE)
+# 	-$(RMDIR) $(DEPDIR)
+# 	-$(RM) $(OUTPUT) *.csi *.cov *.ctr *.ctg *.a
+# 	-$(RM) $(filter-out gdb.exe, $(wildcard *.exe))
+
 .PHONY: all clean
 
 ALL_TESTS := 
