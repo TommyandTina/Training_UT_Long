@@ -12,7 +12,8 @@
                 // "cd C:/Users/long.trinh-tien/Documents/Git/training_ut_it_Long/rcar-env/renesas/driver/soc/platform/imp/test/unit_test/application/ut_framework/",
                 // "&",
                 "make",
-                "all"
+                "all",
+                "-j64"
             ],
             "group": {
                 "kind": "build",

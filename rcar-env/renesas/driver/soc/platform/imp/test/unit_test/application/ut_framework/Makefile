@@ -580,6 +580,8 @@ ifeq ($(detected_OS),Linux)
 clean:
 	$(RM) $(OBJDIR) $(DRVDIR)/obj $(DRVDIR)/dep $(DRVDIR)/obj_$(DEVICE) $(DRVDIR)/dep_$(DEVICE) $(DEPDIR) $(OUTPUT) *.csi *.cov *.ctr *.ctg *.a \
 		$(filter-out make.exe gdb.exe,$(wildcard *.exe))
+run: all
+	./$(OUTPUT)
 endif
 ifeq ($(detected_OS),Windows)
 ###note: clean for window 
@@ -592,8 +594,10 @@ clean:
 	-$(RMDIR) $(DEPDIR)
 	-$(RM) $(OUTPUT) *.csi *.cov *.ctr *.ctg *.a
 	-$(RM) $(filter-out gdb.exe make.exe, $(wildcard *.exe))
+run: all
+	$(OUTPUT)
 endif
-.PHONY: all clean
+.PHONY: all clean run
 
 ALL_TESTS := 
 
